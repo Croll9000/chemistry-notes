@@ -7190,17 +7190,24 @@ R.pptArt=(t)=>{ const W=640, H=300, T=8, u=t%T, pour=Math.min(1,u/1.6), mix=Math
   /* pouring beaker: tilts about its rim corner (the spout), so the liquid leaves over the top */
   const sx=bx-6, sy=by-26, ang=-70*pour; s+=`<g transform="rotate(${(-ang).toFixed(1)} ${sx} ${sy})">${U.beakerSVG(sx-74,sy,70,82,{level:.55-.4*pour,liquid:"#e9f3f9"})}</g>`;
   if(u>.5&&u<2.2){ const ex=sx+4, ey=sy+2; s+=`<path d="M${ex} ${ey}q14 6 ${bx+30-ex} ${by+20-ey}" fill="none" stroke="#bfe0f2" stroke-width="5" stroke-linecap="round"/>`; }
-  s+=Tx(52,70,"AgNO₃(aq)",{a:"start"})+Tx(bx+bw/2,by+bh+22,"NaCl(aq)");
+  s+=Tx(6,206,"AgNO₃(aq)",{a:"start"})+Tx(6,221,"(poured in)",{a:"start",fs:11.5,w:700,c:"#5f6b72"})+Tx(bx+bw/2,by+bh+22,"NaCl(aq)");
   if(mix>.3) s+=Tx(bx+bw/2,by+bh+38,"white solid forms: AgCl(s)",{c:"#5f6b72",w:700,fs:12});
   /* zoom lens with ions */
   const zx=480, zy=146, zr=118; s+=`<circle cx="${zx}" cy="${zy}" r="${zr}" fill="#eef7fc" stroke="#1b2328" stroke-width="5"/><path d="M${bx+bw-10} ${by+70}L${zx-zr+8} ${zy+20}" stroke="#9aa7ad" stroke-width="2" stroke-dasharray="5 4"/>`;
   const rnd=i=>((Math.sin(i*12.9898)*43758.5453)%1+1)%1;
   const pts=[]; for(let i=0;i<4;i++){ ["Ag","NO3","Na","Cl"].forEach((k,j)=>pts.push({k,i,j})); }
   const slots=[]; for(let r=0;r<4;r++) for(let c=0;c<4;c++) slots.push([zx-66+c*44+(r%2?12:-6),zy-74+r*40]); const ord=[3,9,14,6,0,12,5,10,15,2,7,13,8,1,11,4];
+  const P=[], EFF={Ag:13,NO3:18,Na:12,Cl:15};
   pts.forEach((p,n)=>{ const fx=slots[ord[n]][0]+(rnd(n+1)-.5)*10, fy=slots[ord[n]][1]+(rnd(n+7)-.5)*8, wob=Math.sin(t*1.6+n)*4; let x=fx+wob, y=fy+Math.cos(t*1.3+n)*4;
     if(p.k==="Ag"||p.k==="Cl"){ /* pair up into a small lattice at the bottom of the lens */ const col=p.i, row=p.k==="Ag"?0:1, lx=zx-46+col*30+(row?15:0), ly=zy+62-row*24; x=x+(lx-x)*mix; y=y+(ly-y)*mix; }
-    s+=ion(x,y,p.k); });
-  if(mix>.6) s+=`<rect x="${zx-62}" y="${zy+34}" width="140" height="44" rx="8" fill="none" stroke="#1b2328" stroke-width="1.5" stroke-dasharray="5 4"/>`+Tx(zx,zy+96,"AgCl(s): Ag⁺ and Cl⁻ lock together",{fs:11.5});
+    P.push({x,y,k:p.k,e:EFF[p.k],fixed:(p.k==="Ag"||p.k==="Cl")&&mix>=.98}); });
+  /* keep every ion (and its label) from overlapping another: push overlapping ions apart, and keep them inside the lens */
+  for(let it=0;it<10;it++){ for(let a=0;a<P.length;a++) for(let b=a+1;b<P.length;b++){ const A1=P[a], B1=P[b]; let dx=B1.x-A1.x, dy=B1.y-A1.y, d=Math.hypot(dx,dy)||.01; const need=A1.e+B1.e+3; if(d>=need) continue; const push=need-d; dx/=d; dy/=d;
+      const wa=A1.fixed?0:B1.fixed?1:.5, wb=B1.fixed?0:A1.fixed?1:.5; A1.x-=dx*push*wa; A1.y-=dy*push*wa; B1.x+=dx*push*wb; B1.y+=dy*push*wb; }
+    if(mix>.5) P.forEach(q=>{ if(q.k==='Na'||q.k==='NO3'){ const top=zy+34-q.e-3; if(q.y>top) q.y=top-(q.y-top)*.0; } });
+    P.forEach(q=>{ if(q.fixed) return; const dx=q.x-zx, dy=q.y-zy, d=Math.hypot(dx,dy), lim=zr-q.e-8; if(d>lim){ q.x=zx+dx/d*lim; q.y=zy+dy/d*lim; } }); }
+  P.forEach(q=>s+=ion(q.x,q.y,q.k));
+  if(mix>.6) s+=`<rect x="${zx-62}" y="${zy+34}" width="140" height="44" rx="8" fill="none" stroke="#1b2328" stroke-width="1.5" stroke-dasharray="5 4"/>`+Tx(zx,H-24,"AgCl(s): Ag⁺ and Cl⁻ lock together",{fs:11.5});
   s+=Tx(zx,H-6,mix<.2?"Zoom: ions in the mixed solution":"Na⁺ and NO₃⁻ stay dissolved",{fs:12.5});
   s+=Tx(18,24,"AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)",{fs:15,a:"start"});
   return s+`</svg>`; };
