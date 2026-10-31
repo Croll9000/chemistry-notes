@@ -90,6 +90,7 @@
         <li class="added">A subscript after parentheses multiplies every atom inside the parentheses. Ex: Ca(OH)<sub>2</sub> contains 1 Ca, 2 O and 2 H.</li>
         <li class="added">To count the atoms in a formula with a coefficient, multiply each subscript by the coefficient. Ex: 3H<sub>2</sub>O contains 3 × 2 = 6 H atoms and 3 × 1 = 3 O atoms.</li>
       </ul>
+      <div class="center added" id="pkey-art"></div>
       <div class="center" id="nh3-art"></div>
       <div class="center"><div class="callout">This equation can be read as “1 molecule of N<sub>2</sub> reacts with 3 molecules of H<sub>2</sub> to form 2 molecules of NH<sub>3</sub>.”</div></div>
       <div class="cause added"><b>Why subscripts never change:</b> changing a subscript changes the substance. H<sub>2</sub>O is water, but H<sub>2</sub>O<sub>2</sub> is hydrogen peroxide, a different compound. Changing a coefficient only changes how many molecules or formula units there are.</div>
@@ -128,6 +129,7 @@ R.RxnPlayer(A.$("#h2o-anim"),{r:["H2","O2"],p:["H2O"],c:[2,1,2]},{w:520,h:210});
 A.$("#eq-art").innerHTML=`<div class="rp-eq"><span class="rp-side rp-r"><span class="rp-f">CH<sub>4</sub> + <span class="rp-co">2</span>O<sub>2</sub></span><span class="rp-br"></span><small>Reactants</small></span><span class="rp-ar">→<small>yields</small></span><span class="rp-side rp-p"><span class="rp-f">CO<sub>2</sub> + <span class="rp-co">2</span>H<sub>2</sub>O</span><span class="rp-br"></span><small>Products</small></span></div>`;
 /* N2 + 3H2 → 2NH3 with particles */
 const nh3={r:["N2","H2"],p:["NH3"],c:[1,3,2]};
+A.$("#pkey-art").innerHTML=`<div class="col" style="gap:4px;align-items:center"><b>How the particle pictures on these pages are drawn</b>${R.particleKey()}</div>`;
 A.$("#nh3-art").innerHTML=`<div class="col" style="gap:6px;align-items:center"><div style="font-size:30px;font-weight:800">${R.eqHTML(nh3)}</div><div class="r5-pl">${["N2","H2","NH3"].map((f,i)=>`${i===2?`<span class="r5-ar" style="font-size:22px">→</span>`:i?`<span class="r5-op" style="font-size:22px">+</span>`:""}<div class="r5-pc"><div class="r5-pn">${nh3.c[i]} molecule${nh3.c[i]>1?"s":""} of ${sub(f)}</div>${R.molBox(f,nh3.c[i],{w:130,h:90})}</div>`).join("")}</div>${B.coefSubArt(3,[["H"],["₂","#2E75D6"]],{coefText:"3 molecules of H₂",subText:"2 H atoms in each molecule",label:"In 3H2, the coefficient 3 counts molecules and the subscript 2 counts H atoms in each molecule"})}</div>`;
 A.$("#sub-art").innerHTML=`<div class="r5-pl"><div class="r5-pc"><div class="r5-pn">2H<sub>2</sub>O: 2 water molecules</div>${R.molBox("H2O",2,{w:150,h:80})}</div><div class="r5-pc"><div class="r5-pn">H<sub>2</sub>O<sub>2</sub>: 1 hydrogen peroxide molecule</div>${R.molBox("H2O2",1,{w:150,h:80})}</div></div>`;
 /* Parts of an equation: click the part that is asked for */

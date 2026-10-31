@@ -144,50 +144,77 @@
 const A=AS, R=A.U5, P=A.U3, sub=R.sub;
 const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" text-anchor="${o.a||"middle"}" font-family="Inter,Arial" font-size="${o.fs||13}" font-weight="${o.w||800}" fill="${o.c||"#1b2328"}">${t}</text>`;
 /* a beaker with a thermometer; T in °C sets the red column */
-const therm=(x,y,temp,lo=15,hi=45)=>A.U1.thermoAt(x,y,96,(temp-lo)/(hi-lo))+T(x+30,y+10,temp.toFixed(1)+" °C",{fs:12});
+const therm=(x,y,temp,lo=15,hi=45,below=false)=>A.U1.thermoAt(x,y,96,(temp-lo)/(hi-lo))+(below?T(x,y+128,temp.toFixed(1)+" °C",{fs:12,a:"middle"}):T(x+30,y+10,temp.toFixed(1)+" °C",{fs:12}));
 const heatArrows=(cx,cy,dir,t,col="#E00000")=>{ let s=""; for(let i=0;i<6;i++){ const a=i*Math.PI/3+.3, ph=((t*.6+i/6)%1), r0=dir>0?60+ph*40:100-ph*40; const x=cx+Math.cos(a)*r0, y=cy+Math.sin(a)*r0*.7; s+=`<path d="M${x.toFixed(1)} ${y.toFixed(1)}q4 -5 0 -10t0 -10" transform="rotate(${(a*180/Math.PI+90).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" fill="none" stroke="${col}" stroke-width="2.5" opacity="${(1-Math.abs(ph-.5)*1.6).toFixed(2)}"/>`; } return s; };
 const live=(el,fn)=>{ const t0=performance.now(); const f=()=>{ if(!el.isConnected) return; el.innerHTML=fn((performance.now()-t0)/1000); setTimeout(()=>requestAnimationFrame(f),50); }; f(); };
 /* hero */
 live(A.$("#hero"),t=>`<div style="background:#fff;border-radius:10px;padding:6px"><svg viewBox="0 0 300 190" width="300" role="img" aria-label="A reaction in a beaker gives off heat to its surroundings"><rect width="300" height="190" fill="#fff"/><rect x="10" y="10" width="280" height="170" rx="14" fill="#eef7fc" stroke="#2E75D6" stroke-dasharray="6 4"/>${T(150,28,"SURROUNDINGS",{fs:11,c:"#005ea3"})}<ellipse cx="150" cy="105" rx="58" ry="44" fill="#fff4e6" stroke="#E00000" stroke-width="2"/>${T(150,100,"SYSTEM",{fs:12,c:"#c40000"})}${T(150,116,"the reaction",{fs:11,w:600,c:"#5f6b72"})}${heatArrows(150,105,1,t)}</svg></div>`);
 /* universe = system + surroundings */
 A.$("#univ-art").innerHTML=`<svg viewBox="0 0 520 230" width="520" style="max-width:100%;height:auto" role="img" aria-label="The universe contains the system and its surroundings"><rect width="520" height="230" fill="#fff"/><rect x="10" y="10" width="500" height="210" rx="16" fill="#f4edfb" stroke="#7030A0" stroke-width="2"/>${T(260,32,"UNIVERSE = system + surroundings",{c:"#4b1d70"})}<rect x="40" y="46" width="440" height="160" rx="14" fill="#eef7fc" stroke="#2E75D6" stroke-width="2" stroke-dasharray="6 4"/>${T(130,70,"SURROUNDINGS",{c:"#005ea3"})}${T(130,88,"beaker, water, air,",{fs:11,w:600,c:"#5f6b72"})}${T(130,103,"thermometer, you…",{fs:11,w:600,c:"#5f6b72"})}<ellipse cx="320" cy="132" rx="110" ry="58" fill="#fff4e6" stroke="#E00000" stroke-width="2"/>${T(320,108,"SYSTEM",{c:"#c40000"})}<g transform="translate(0 0)">${R.molSVG("CH4",272,136,{k:.8})}${R.molSVG("O2",318,140,{k:.8})}${R.molSVG("O2",362,130,{k:.8})}</g>${T(320,172,"the particles in the reaction",{fs:11,w:600,c:"#5f6b72"})}</svg>`;
-/* Mg + HCl: highlight the system or the surroundings */
-(function(){ const host=A.$("#mg-host"); let hl="sys"; const t0=performance.now();
-  host.innerHTML=`<div class="qc-o" style="justify-content:center;margin-bottom:6px"><button type="button" class="wf-b sel" data-h="sys">Highlight the system</button><button type="button" class="wf-b" data-h="sur">Highlight the surroundings</button></div><div class="mg-svg"></div><div class="center" style="font-size:20px;margin-top:4px">${R.eqHTML({r:["Mg","HCl"],p:["MgCl2","H2"],c:[1,2,1,1],st:["s","aq","aq","g"],heatP:true})}</div>`;
+/* an exothermic and an endothermic reaction: highlight the system or the surroundings */
+(function(){ const host=A.$("#mg-host"); let hl="sys", rx="exo", t0=performance.now();
+  const EQ={exo:R.eqHTML({r:["Mg","HCl"],p:["MgCl2","H2"],c:[1,2,1,1],st:["s","aq","aq","g"],heatP:true}),endo:R.eqHTML({r:["NaHCO3","HC2H3O2"],p:["NaC2H3O2","H2O","CO2"],c:[1,1,1,1,1],st:["s","aq","aq","l","g"],heatR:true})};
+  host.innerHTML=`<div class="qc-o" style="justify-content:center;margin-bottom:6px"><button type="button" class="wf-b sel" data-x="exo">Exothermic: Mg + HCl</button><button type="button" class="wf-b" data-x="endo">Endothermic: baking soda + vinegar</button></div><div class="qc-o" style="justify-content:center;margin-bottom:6px"><button type="button" class="wf-b sel" data-h="sys">Highlight the system</button><button type="button" class="wf-b" data-h="sur">Highlight the surroundings</button></div><div class="mg-svg"></div><div class="center mg-eq" style="font-size:19px;margin-top:4px"></div>`;
+  const eqEl=host.querySelector(".mg-eq"); const setEq=()=>eqEl.innerHTML=EQ[rx];
   A.$$("[data-h]",host).forEach(b=>b.addEventListener("click",()=>{ hl=b.dataset.h; A.$$("[data-h]",host).forEach(x=>x.classList.toggle("sel",x===b)); }));
+  A.$$("[data-x]",host).forEach(b=>b.addEventListener("click",()=>{ rx=b.dataset.x; t0=performance.now(); A.$$("[data-x]",host).forEach(x=>x.classList.toggle("sel",x===b)); setEq(); })); setEq();
   const box=host.querySelector(".mg-svg");
-  const f=()=>{ if(!box.isConnected) return; const t=(performance.now()-t0)/1000, u=Math.min(1,(t%14)/10), temp=21+14*u, sys=hl==="sys";
-    let s=`<svg viewBox="0 0 560 300" width="560" style="max-width:100%;height:auto" role="img" aria-label="Magnesium ribbon reacting in hydrochloric acid; bubbles of hydrogen form and the thermometer rises"><rect width="560" height="300" fill="${sys?"#fff":"#eef7fc"}"/>`;
-    s+=A.U1.beakerSVG(170,60,200,208,{level:.7,liquid:sys?"#e8f2f8":"#bfe3f5"});
-    s+=`<rect x="${248}" y="${150+u*30}" width="${12}" height="${100-u*70}" rx="2" fill="#c9cdd1" stroke="${sys?"#E00000":"#7a868c"}" stroke-width="${sys?3:1.5}"/>`;
-    for(let i=0;i<16;i++){ const p=((t*.9+i*.29)%1.4)/1.4; if(u>=1&&p<.1) continue; s+=`<circle cx="${245+((i*13)%26)-6+Math.sin(t*3+i)*3}" cy="${240-p*120}" r="${2.5+(i%3)}" fill="none" stroke="${sys?"#E00000":"#9fb3bb"}" stroke-width="1.6" opacity="${1-p*.8}"/>`; }
-    if(sys) for(let i=0;i<10;i++){ const x=190+((i*53)%160), y=150+((i*37)%95); s+=`<circle cx="${x}" cy="${y}" r="5" fill="#fff4e6" stroke="#E00000" stroke-width="1.5"/>${T(x,y+3,i%2?"H⁺":"Cl⁻",{fs:6,c:"#c40000"})}`; }
-    s+=therm(330,40,temp);
-    s+=sys?heatArrows(255,190,1,t):"";
-    s+=T(90,80,sys?"SYSTEM:":"SURROUNDINGS:",{a:"middle",c:sys?"#c40000":"#005ea3"})+T(90,98,sys?"Mg, HCl, MgCl₂, H₂":"beaker, water,",{fs:12,w:600})+T(90,114,sys?"(the reacting particles)":"thermometer, air",{fs:12,w:600});
-    s+=T(470,150,"The thermometer is in",{fs:12,w:600})+T(470,166,"the surroundings.",{fs:12,w:600})+T(470,190,`Its temperature rises,`,{fs:12,w:600,c:"#c40000"})+T(470,206,"so heat flowed from the",{fs:12,w:600,c:"#c40000"})+T(470,222,"system to the surroundings.",{fs:12,w:600,c:"#c40000"});
+  /* dissolved particles: big, labeled circles in the site colors */
+  const ion=(x,y,sym,q,k=1.15)=>R.atom(x,y,sym,{k})+`<text x="${(x+R.rad(sym)*k+1).toFixed(1)}" y="${(y-R.rad(sym)*k+5).toFixed(1)}" font-family="Inter,Arial" font-size="12" font-weight="800" fill="${q>0?"#005ea3":"#c40000"}">${q>0?"+":"−"}</text>`;
+  const SPOTS=[[192,150],[225,205],[200,245],[300,150],[330,195],[345,245],[285,232],[215,175],[320,165],[190,215]];
+  const f=()=>{ if(!box.isConnected) return; const t=(performance.now()-t0)/1000, u=Math.min(1,(t%14)/10), endo=rx==="endo", temp=endo?21-5*u:21+14*u, sys=hl==="sys";
+    let s=`<svg viewBox="0 0 560 300" width="560" style="max-width:100%;height:auto" role="img" aria-label="${endo?"Baking soda reacting with vinegar; carbon dioxide bubbles form and the thermometer falls":"Magnesium ribbon reacting in hydrochloric acid; bubbles of hydrogen form and the thermometer rises"}"><rect width="560" height="300" fill="${sys?"#fff":"#eef7fc"}"/>`;
+    if(!sys) s+=`<rect x="4" y="4" width="552" height="292" rx="12" fill="none" stroke="#2E75D6" stroke-width="3" stroke-dasharray="8 5"/>`;
+    s+=A.U1.beakerSVG(170,60,200,208,{level:.7,liquid:sys?"#f2f7fa":"#bfe3f5"});
+    const pOp=sys?1:.3; s+=`<g opacity="${pOp}">`;
+    if(!endo){ s+=`<rect x="248" y="${150+u*30}" width="12" height="${100-u*70}" rx="2" fill="#B7BEC3" stroke="#1b2328" stroke-width="1.5"/>`+T(254,142+u*30,"Mg",{fs:12});
+      SPOTS.forEach(([x,y],i)=>s+=i%2?ion(x,y,"Cl",-1):ion(x,y,"H",1,1.3));
+      for(let i=0;i<7;i++){ const p=((t*.6+i*.29)%1.4)/1.4; if(u>=1&&p<.1) continue; s+=`<g opacity="${(1-p*.7).toFixed(2)}">${R.molSVG("H2",252+((i*13)%26)-12+Math.sin(t*3+i)*3,236-p*150,{k:.95})}</g>`; } }
+    else { const pile=24*(1-u); s+=`<path d="M215 ${262}q45 ${-pile-4} 110 0z" fill="#fff" stroke="#c9b48a" stroke-width="1.5"/>`+(pile>4?T(270,258,"NaHCO₃(s)",{fs:11,w:700}):"");
+      [[196,148],[200,200],[340,148],[338,202],[198,246],[342,246]].forEach(([x,y],i)=>s+=(i===1||i===2||i===5)?R.molSVG("HCO3",x,y,{k:.62})+`<text x="${x+16}" y="${y-14}" font-family="Inter,Arial" font-size="12" font-weight="800" fill="#c40000">−</text>`:ion(x,y,"Na",1));
+      for(let i=0;i<7;i++){ const p=((t*.6+i*.29)%1.4)/1.4; if(u>=1&&p<.1) continue; s+=`<g opacity="${(1-p*.7).toFixed(2)}">${R.molSVG("CO2",270+((i*17)%34)-17+Math.sin(t*3+i)*3,236-p*150,{k:.7})}</g>`; } }
+    s+=`</g>`;
+    s+=`<g opacity="${sys?.6:1}">${therm(390,40,temp)}</g>`;
+    if(sys) s+=heatArrows(270,190,endo?-1:1,t);
+    s+=T(90,70,sys?"SYSTEM:":"SURROUNDINGS:",{c:sys?"#c40000":"#005ea3"});
+    const L=sys?(endo?["NaHCO₃, HC₂H₃O₂,","NaC₂H₃O₂, H₂O, CO₂","(the reacting particles)"]:["Mg, HCl, MgCl₂, H₂","(the reacting particles)"]):["beaker, water,","thermometer, air"];
+    L.forEach((l,k)=>s+=T(90,90+k*16,l,{fs:12,w:600}));
+    s+=T(90,170,"Key",{fs:11.5,c:"#5f6b72"});
+    (endo?[["Na",1,"Na⁺ ion"],["HCO3",-1,"HCO₃⁻ ion"],["CO2",0,"CO₂ molecule"]]:[["H",1,"H⁺ ion"],["Cl",-1,"Cl⁻ ion"],["H2",0,"H₂ molecule"]]).forEach(([f,q,lab],k)=>{ const y=192+k*30; s+=(f.length>2||f==="H2"?R.molSVG(f,40,y,{k:f==="HCO3"?.5:.75}):R.atom(40,y,f,{k:1}))+`<text x="64" y="${y+4}" font-family="Inter,Arial" font-size="12" font-weight="700" fill="#1b2328">${lab}</text>`; });
+    s+=T(480,150,"The thermometer is in",{fs:12,w:600})+T(480,166,"the surroundings.",{fs:12,w:600})+T(480,190,endo?"Its temperature falls,":"Its temperature rises,",{fs:12,w:600,c:endo?"#005ea3":"#c40000"})+T(480,206,"so heat flowed from the",{fs:12,w:600,c:endo?"#005ea3":"#c40000"})+T(480,222,endo?"surroundings to the system.":"system to the surroundings.",{fs:12,w:600,c:endo?"#005ea3":"#c40000"})+T(480,246,endo?"Endothermic":"Exothermic",{fs:13,c:endo?"#005ea3":"#c40000"});
     box.innerHTML=s+`</svg>`; setTimeout(()=>requestAnimationFrame(f),50); }; f(); })();
 R.SystemSim(A.$("#oc-host"));
 R.FlowGame(A.$("#flow-host"));
 P.TapSort(A.$("#ws-host"),{prompt:"This is…",how:"Decide whether matter, energy, both or neither can cross the boundary of each system.",
   items:[["A pot of soup boiling on a stove with no lid","open","Steam (matter) escapes and heat (energy) flows in and out."],["A campfire","open","Gases and smoke leave, and heat and light are given off."],["A sealed can of soda cooling in a refrigerator","closed","No matter gets in or out, but heat leaves the can."],["A glow stick giving off light inside its sealed tube","closed","No matter gets in or out of the tube, but energy leaves as light."],["A plant in an open field","open","The plant takes in CO₂ and water and gives off O₂, and it absorbs light."],["Hot coffee in a sealed, insulated thermos","isolated","The lid keeps matter in and the insulation keeps heat in (nearly isolated)."],["A balloon full of air warming in the sun","closed","The air stays inside the balloon, but energy from the sun warms it."],["An ideal sealed, perfectly insulated box","isolated","Neither matter nor energy can cross its boundary."]],
   choices:[["open","Open"],["closed","Closed"],["isolated","Isolated"]]});
-/* heat transfer by collisions */
+/* heat transfer by collisions: the whole run is recorded, so it can be paused, scrubbed and rewound */
 (function(){ const el=A.$("#heat-host"); const rnd=A.U1.rng(3), H=[], C=[]; for(let i=0;i<14;i++){ H.push({x:30+rnd()*200,y:30+rnd()*150,a:rnd()*6.3}); C.push({x:290+rnd()*200,y:30+rnd()*150,a:rnd()*6.3}); }
-  let last=performance.now(), Th=80, Tc=20;
-  const f=now=>{ if(!el.isConnected) return; const dt=Math.min(.05,(now-last)/1000); last=now; const flow=(Th-Tc)*.03*dt; Th-=flow; Tc+=flow; if(Th-Tc<.5){ Th=80; Tc=20; }
-    const vH=40+Th*1.6, vC=40+Tc*1.6; const move=(L,v,x0,x1)=>L.forEach(p=>{ p.x+=Math.cos(p.a)*v*dt; p.y+=Math.sin(p.a)*v*dt; if(p.x<x0+8||p.x>x1-8){ p.a=Math.PI-p.a; p.x=Math.max(x0+8,Math.min(x1-8,p.x)); } if(p.y<28||p.y>192){ p.a=-p.a; p.y=Math.max(28,Math.min(192,p.y)); } });
-    move(H,vH,20,260); move(C,vC,260,500);
+  const FPS=30, DUR=24, N=FPS*DUR, frames=[]; let Th=80, Tc=20; const dt=1/FPS;
+  const move=(L,v,x0,x1)=>L.forEach(p=>{ p.x+=Math.cos(p.a)*v*dt; p.y+=Math.sin(p.a)*v*dt; if(p.x<x0+8||p.x>x1-8){ p.a=Math.PI-p.a; p.x=Math.max(x0+8,Math.min(x1-8,p.x)); } if(p.y<28||p.y>192){ p.a=-p.a; p.y=Math.max(28,Math.min(192,p.y)); } });
+  for(let f=0;f<N;f++){ frames.push({Th,Tc,H:H.map(p=>[p.x,p.y,p.a]),C:C.map(p=>[p.x,p.y,p.a])}); const flow=(Th-Tc)*.1*dt; Th-=flow; Tc+=flow; move(H,40+Th*1.6,20,260); move(C,40+Tc*1.6,260,500); }
+  el.innerHTML=`<div class="r5-player"><div class="hh-svg"></div><div class="controls" style="justify-content:center;flex-wrap:wrap"><button class="btn sm ghost keep" type="button" data-a="back">⟲ Back 3 s</button><button class="btn sm keep" type="button" data-a="p">Pause</button><button class="btn sm ghost keep" type="button" data-a="r">Restart</button><input type="range" min="0" max="${N-1}" value="0" aria-label="Time in the animation" style="width:min(260px,60vw)"><span class="muted hh-t" style="font-size:13px;min-width:48px"></span></div></div>`;
+  const box=el.querySelector(".hh-svg"), sl=el.querySelector("input"), pb=el.querySelector('[data-a="p"]'), tl=el.querySelector(".hh-t");
+  let fi=0, paused=false, last=performance.now(), acc=0;
+  const setP=v=>{ paused=v; pb.textContent=paused?"Play":"Pause"; };
+  pb.addEventListener("click",()=>{ if(fi>=N-1) fi=0; setP(!paused); });
+  el.querySelector('[data-a="r"]').addEventListener("click",()=>{ fi=0; setP(false); });
+  el.querySelector('[data-a="back"]').addEventListener("click",()=>{ fi=Math.max(0,fi-3*FPS); });
+  sl.addEventListener("input",()=>{ setP(true); fi=Math.max(0,Math.min(N-1,Math.round(+sl.value)||0)); });
+  const draw=()=>{ if(!(fi>=0&&fi<N)) fi=0; const F=frames[fi], vH=40+F.Th*1.6, vC=40+F.Tc*1.6;
     let s=`<svg viewBox="0 0 520 250" width="520" style="max-width:100%;height:auto" role="img" aria-label="Fast particles in a hot block collide at the boundary with slow particles in a cold block and transfer kinetic energy"><rect width="520" height="250" fill="#fff"/><rect x="20" y="20" width="240" height="180" fill="#fde6e1" stroke="#c94a4a" stroke-width="2"/><rect x="260" y="20" width="240" height="180" fill="#e3f0fb" stroke="#2E75D6" stroke-width="2"/>`;
-    H.forEach(p=>s+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="7" fill="#E00000" opacity=".85"/><line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${(p.x-Math.cos(p.a)*vH*.12).toFixed(1)}" y2="${(p.y-Math.sin(p.a)*vH*.12).toFixed(1)}" stroke="#E00000" stroke-width="2" opacity=".35"/>`);
-    C.forEach(p=>s+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="7" fill="#2E75D6" opacity=".85"/><line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${(p.x-Math.cos(p.a)*vC*.12).toFixed(1)}" y2="${(p.y-Math.sin(p.a)*vC*.12).toFixed(1)}" stroke="#2E75D6" stroke-width="2" opacity=".35"/>`);
-    s+=`<path d="M230 222h60" stroke="#E00000" stroke-width="4"/><path d="M298 222l-12 -7v14z" fill="#E00000"/>${T(260,244,"heat flows from hot to cold",{fs:12,c:"#c40000"})}${T(140,216,`hot: ${Th.toFixed(0)} °C`)}${T(380,216,`cold: ${Tc.toFixed(0)} °C`)}`;
-    el.innerHTML=s+`</svg>`; requestAnimationFrame(f); }; requestAnimationFrame(f); })();
+    F.H.forEach(([x,y,a])=>s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="#E00000" opacity=".85"/><line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x-Math.cos(a)*vH*.12).toFixed(1)}" y2="${(y-Math.sin(a)*vH*.12).toFixed(1)}" stroke="#E00000" stroke-width="2" opacity=".35"/>`);
+    F.C.forEach(([x,y,a])=>s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="#2E75D6" opacity=".85"/><line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x-Math.cos(a)*vC*.12).toFixed(1)}" y2="${(y-Math.sin(a)*vC*.12).toFixed(1)}" stroke="#2E75D6" stroke-width="2" opacity=".35"/>`);
+    const eq=F.Th-F.Tc<2; s+=eq?T(260,226,"Same temperature: no more net heat flow",{fs:12.5,c:"#0a7a2f"}):`<path d="M230 222h60" stroke="#E00000" stroke-width="4"/><path d="M298 222l-12 -7v14z" fill="#E00000"/>${T(260,244,"heat flows from hot to cold",{fs:12,c:"#c40000"})}`;
+    s+=`${T(140,216,`hot: ${F.Th.toFixed(0)} °C`)}${T(380,216,`cold: ${F.Tc.toFixed(0)} °C`)}`;
+    box.innerHTML=s+`</svg>`; sl.value=fi; tl.textContent=(fi/FPS).toFixed(1)+" s"; };
+  const loop=now=>{ if(!el.isConnected) return; const d=Math.min(.1,(now-last)/1000); last=now; if(!paused){ acc+=d*FPS; const st=Math.floor(acc); acc-=st; fi=Math.min(N-1,fi+st); if(fi>=N-1) setP(true); } draw(); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop); })();
 /* endothermic vs exothermic side by side */
 live(A.$("#endo-exo"),t=>{ const u=Math.min(1,(t%12)/9); let s=`<svg viewBox="0 0 600 260" width="600" style="max-width:100%;height:auto" role="img" aria-label="Endothermic: heat flows into the system and the surroundings get colder. Exothermic: heat flows out of the system and the surroundings get warmer."><rect width="600" height="260" fill="#fff"/>`;
   const panel=(x,endo)=>{ let q=`<rect x="${x}" y="10" width="280" height="240" rx="12" fill="${endo?"#eef5fc":"#fff4ec"}" stroke="${endo?"#2E75D6":"#E00000"}"/>${T(x+140,34,endo?"Endothermic process":"Exothermic process",{c:endo?"#005ea3":"#c40000",fs:15})}<ellipse cx="${x+120}" cy="140" rx="62" ry="48" fill="#fff" stroke="${endo?"#2E75D6":"#E00000"}" stroke-width="2"/>${T(x+120,136,"SYSTEM",{fs:12})}${T(x+120,152,endo?"absorbs heat":"releases heat",{fs:11,w:600,c:"#5f6b72"})}`;
     for(let i=0;i<6;i++){ const a=i*Math.PI/3+.3, ph=((t*.5+i/6)%1), r0=endo?110-ph*44:66+ph*44, X=x+120+Math.cos(a)*r0, Y=140+Math.sin(a)*r0*.75, ang=a*180/Math.PI+(endo?180:0); q+=`<g transform="translate(${X.toFixed(1)} ${Y.toFixed(1)}) rotate(${ang.toFixed(0)})" opacity="${(1-Math.abs(ph-.5)*1.5).toFixed(2)}"><path d="M-10 0h16" stroke="#E00000" stroke-width="3"/><path d="M10 0l-7 -5v10z" fill="#E00000"/></g>`; }
-    q+=therm(x+240,70,endo?22-12*u:22+18*u,0,45)+T(x+140,238,endo?"surroundings get colder":"surroundings get warmer",{fs:12,c:endo?"#005ea3":"#c40000"}); return q; };
+    q+=therm(x+240,64,endo?22-12*u:22+18*u,0,45,true)+T(x+140,238,endo?"surroundings get colder":"surroundings get warmer",{fs:12,c:endo?"#005ea3":"#c40000"}); return q; };
   return s+panel(10,true)+panel(310,false)+`</svg>`; });
 A.$("#heat-eq").innerHTML=`<div class="col" style="gap:10px;align-items:center"><div class="he-row"><span class="he-tag endo">Endothermic</span><span style="font-size:22px">${R.eqHTML({r:["CaCO3"],p:["CaO","CO2"],c:[1,1,1],st:["s","s","g"]}).replace('<span class="r5-eq">','<span class="r5-eq"><span class="r5-heat">178 kJ</span> <span class="r5-op">+</span> ')}</span><small class="muted">heat is a reactant (absorbed)</small></div><div class="he-row"><span class="he-tag exo">Exothermic</span><span style="font-size:22px">${R.eqHTML({r:["H2","O2"],p:["H2O"],c:[2,1,2],st:["g","g","l"]}).replace(/<\/span>$/,' <span class="r5-op">+</span> <span class="r5-heat">572 kJ</span></span>')}</span><small class="muted">heat is a product (released)</small></div></div>`;
 P.TapSort(A.$("#ee-host"),{prompt:"This is…",how:"Endothermic: the system absorbs heat, heat is written as a reactant, and the surroundings get colder. Exothermic: the system releases heat, heat is written as a product, and the surroundings get warmer.",

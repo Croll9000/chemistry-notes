@@ -97,18 +97,17 @@
         <li>The table below gives the solubility of many ionic compounds. Use it to decide whether a product forms a precipitate.</li>
       </ul>
       <div id="sol-tbl"></div>
-      <details class="enr-more"><summary>Want to memorize the general patterns? Solubility rules</summary>
-      <ol class="added" style="margin-top:10px">
-        <li>Compounds of group 1 elements (Li<sup>+</sup>, Na<sup>+</sup>, K<sup>+</sup>, etc.) and ammonium (NH<sub>4</sub><sup>+</sup>) are soluble.</li>
-        <li>Nitrates (NO<sub>3</sub><sup>−</sup>), chlorates (ClO<sub>3</sub><sup>−</sup>), perchlorates (ClO<sub>4</sub><sup>−</sup>) and acetates (C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup>) are soluble.</li>
+      <details class="enr-more" open><summary>Want to memorize the general patterns? Solubility rules</summary>
+      <ol style="margin-top:10px">
+        <li>Compounds of group 1 ions (Li<sup>+</sup>, Na<sup>+</sup>, K<sup>+</sup>, etc.) and ammonium (NH<sub>4</sub><sup>+</sup>) are soluble.</li>
+        <li>Nitrates (NO<sub>3</sub><sup>−</sup>), acetates (C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup>) and chlorates (ClO<sub>3</sub><sup>−</sup>) are soluble.</li>
         <li>Chlorides (Cl<sup>−</sup>), bromides (Br<sup>−</sup>) and iodides (I<sup>−</sup>) are soluble, except when combined with Ag<sup>+</sup>, Pb<sup>2+</sup> and Hg<sub>2</sub><sup>2+</sup>.</li>
-        <li>With the exception of rule 1, most carbonates (CO<sub>3</sub><sup>2−</sup>), chromates (CrO<sub>4</sub><sup>2−</sup>), phosphates (PO<sub>4</sub><sup>3−</sup>) and sulfites (SO<sub>3</sub><sup>2−</sup>) are insoluble.*</li>
-        <li>With the exception of rule 1 and the barium ion (Ba<sup>2+</sup>), hydroxides (OH<sup>−</sup>) and sulfides (S<sup>2−</sup>) are insoluble.*</li>
-        <li>With the exception of rule 2, silver (Ag<sup>+</sup>), mercury (Hg<sub>2</sub><sup>2+</sup>) and lead (Pb<sup>2+</sup>) salts are insoluble.</li>
-        <li>With the exception of compounds of calcium (Ca<sup>2+</sup>), strontium (Sr<sup>2+</sup>), barium (Ba<sup>2+</sup>) and the ions listed in rule 6, sulfates (SO<sub>4</sub><sup>2−</sup>) are soluble.</li>
+        <li>Sulfates (SO<sub>4</sub><sup>2−</sup>) are soluble, except when combined with Ba<sup>2+</sup> and Pb<sup>2+</sup> (insoluble) or Ca<sup>2+</sup> and Ag<sup>+</sup> (slightly soluble).</li>
+        <li>Fluorides (F<sup>−</sup>) are soluble, except when combined with Mg<sup>2+</sup>, Ca<sup>2+</sup>, Ba<sup>2+</sup> and Pb<sup>2+</sup>.</li>
+        <li>With the exception of rule 1, carbonates (CO<sub>3</sub><sup>2−</sup>), phosphates (PO<sub>4</sub><sup>3−</sup>) and sulfites (SO<sub>3</sub><sup>2−</sup>) are insoluble.</li>
+        <li>With the exception of rule 1 and the barium ion (Ba<sup>2+</sup>), hydroxides (OH<sup>−</sup>) are insoluble. Calcium hydroxide is slightly soluble.</li>
       </ol>
-      <p class="muted" style="font-size:13.5px">*Calcium chromate, calcium hydroxide and strontium hydroxide are slightly soluble.</p>
-      <div class="callout" style="margin-top:8px"><b>Where the rules and the table disagree, use the table.</b> LiF is slightly soluble and Li<sub>3</sub>PO<sub>4</sub> is insoluble (rule 1); MgSO<sub>3</sub> is soluble (rule 4); AgF and Pb(NO<sub>2</sub>)<sub>2</sub> are soluble and Ag<sub>2</sub>SO<sub>4</sub> is slightly soluble (rule 6); PbBr<sub>2</sub> is slightly soluble (rule 3). The rules do not cover fluorides or nitrites: use the table for those.</div>
+      <p class="muted" style="font-size:13.5px">The table and the rules agree: every cell in the table follows these rules. A dash (—) means the compound does not exist as a stable solid. Rules adapted from the general solubility rules used in college chemistry textbooks (LibreTexts, Solubility Rules).</p>
       </details>
     </div>
   </section>
@@ -150,9 +149,10 @@ const DR=[
  {r:["BaCl2","Na2SO4"],p:["BaSO4","NaCl"],c:[1,1,1,2],ppt:"BaSO4",given:"Barium sulfate, BaSO₄, does not dissolve in water.",ions:[["Ba²⁺","2+"],["Cl⁻","1−"],["Na⁺","1+"],["SO₄²⁻","2−"]]},{r:["CuSO4","NaOH"],p:["Cu(OH)2","Na2SO4"],c:[1,2,1,1],ppt:"Cu(OH)2",given:"Copper(II) hydroxide, Cu(OH)₂, does not dissolve in water.",ions:[["Cu²⁺","2+"],["SO₄²⁻","2−"],["Na⁺","1+"],["OH⁻","1−"]]},
  {r:["CaCl2","Na2CO3"],p:["CaCO3","NaCl"],c:[1,1,1,2],ppt:"CaCO3",given:"Calcium carbonate, CaCO₃, does not dissolve in water.",ions:[["Ca²⁺","2+"],["Cl⁻","1−"],["Na⁺","1+"],["CO₃²⁻","2−"]]},{r:["FeCl3","NaOH"],p:["Fe(OH)3","NaCl"],c:[1,3,1,3],ppt:"Fe(OH)3",given:"Iron(III) hydroxide, Fe(OH)₃, does not dissolve in water.",ions:[["Fe³⁺","3+"],["Cl⁻","1−"],["Na⁺","1+"],["OH⁻","1−"]]},
  {r:["NaNO3","KCl"],p:["NaCl","KNO3"],c:[1,1,1,1],none:true,ions:[["Na⁺","1+"],["NO₃⁻","1−"],["K⁺","1+"],["Cl⁻","1−"]]},{r:["KBr","NaNO3"],p:["KNO3","NaBr"],c:[1,1,1,1],none:true,ions:[["K⁺","1+"],["Br⁻","1−"],["Na⁺","1+"],["NO₃⁻","1−"]]},
+ {r:["Na2S","HCl"],p:["NaCl","H2S"],c:[1,2,2,1],gas:"H2S",given:"Hydrogen sulfide, H₂S, is a gas at room temperature.",ions:[["Na⁺","1+"],["S²⁻","2−"],["H⁺","1+"],["Cl⁻","1−"]]},
  {r:["HCl","NaOH"],p:["NaCl","H2O"],c:[1,1,1,1],water:true,ions:[["H⁺","1+"],["Cl⁻","1−"],["Na⁺","1+"],["OH⁻","1−"]],hint:"An acid and a base: H⁺ and OH⁻ combine to make water."}];
 R.Predict(A.$("#dr2-host"),{list:DR,steps:["write","sol","bal"],how:"Swap the positive ions to write the two possible products. Then use the solubility table to decide whether a reaction occurs, and balance.",writeTitle:"Swap the ions and write the two new compounds",writeHint:"Pair the first positive ion with the second negative ion, and the second positive ion with the first negative ion. Criss-cross the charges.",writeMiss:"pairing each positive ion with the other compound’s negative ion and balancing the charges"});
-R.Predict(A.$("#dr-host"),{list:DR,steps:["ions","swap","write","rt","bal"],how:"Step 1: identify the ions. Step 2: swap partners. Step 3: write the new formulas. Step 4: use the Reference Table and the given information to decide whether a solid forms. Step 5: balance.",writeTitle:"Swap the ions and write the two new compounds",writeHint:"Pair the first positive ion with the second negative ion, and the second positive ion with the first negative ion. Criss-cross the charges.",writeMiss:"pairing each positive ion with the other compound’s negative ion and balancing the charges",
+R.Predict(A.$("#dr-host"),{list:DR,steps:["ions","swap","write","rt","bal"],how:"Step 1: mark the positive and negative ions. Step 2: drag the negative ions to swap partners. Step 3: criss-cross the charges and write the new formulas. Step 4: use the Reference Table and the given information to decide whether a solid, water, or a gas forms. Step 5: balance.",writeTitle:"Swap the ions and write the two new compounds",writeHint:"Pair the first positive ion with the second negative ion, and the second positive ion with the first negative ion. Criss-cross the charges.",writeMiss:"pairing each positive ion with the other compound’s negative ion and balancing the charges",
   onDone:(it,holder)=>{ if(it.none) return; const d=A.h("div",{class:"center",style:"margin-top:8px"}); holder.appendChild(d); R.RxnPlayer(d,{r:it.r,p:it.p,c:it.c},{w:520,h:200}); }});
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Based on the activity series, which metal will react with CuSO<sub>4</sub>(aq)?",choices:["Ag","Au","Zn","Cu"],ans:3,explain:"Zn is above Cu, so it can replace copper."},
