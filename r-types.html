@@ -21,6 +21,7 @@
   <section class="note">
     <div class="tile"><h2>Types of Reactions</h2></div>
     <div class="body">
+      <p class="intro">Thousands of different reactions happen in kitchens, cars and living cells. Most of them fit into a handful of patterns, which makes it possible to predict their products.</p>
       <ul>
         <li>Chemical reactions can be classified into 5 different types:
           <ol><li>Synthesis</li><li>Decomposition</li><li>Single Replacement</li><li>Double Replacement</li><li>Combustion</li></ol></li>
@@ -34,6 +35,7 @@
   <section class="note" id="syn">
     <div class="tile"><h2>Synthesis Reactions</h2></div>
     <div class="body">
+      <p class="intro">Iron left outside slowly combines with oxygen to form rust. In a synthesis reaction, simpler substances join to form one more complex product.</p>
       <ul><li><span class="def">Synthesis Reaction</span> – chemical reaction in which two or more simple reactants combine into a more complex product.</li></ul>
       <div class="center" id="a-syn"></div>
       <div class="center"><div class="callout">In this synthesis reaction, 2 simple substances, iron (Fe) and sulfur (S), combine to form a more complex product, iron(II) sulfide (FeS).</div></div>
@@ -43,6 +45,7 @@
   <section class="note" id="dec">
     <div class="tile"><h2>Decomposition Reactions</h2></div>
     <div class="body">
+      <p class="intro">Hydrogen peroxide in a brown bottle slowly breaks down into water and oxygen gas. In a decomposition reaction, one compound breaks apart into simpler substances.</p>
       <ul><li><span class="def">Decomposition Reaction</span> – a chemical reaction in which a single reactant is broken down (decomposed) into two or more simple products.
         <ul><li>Often energy (heat or electricity) must be added to break down a compound.</li></ul></li></ul>
       <div class="center" id="a-dec"></div>
@@ -53,6 +56,7 @@
   <section class="note" id="sr">
     <div class="tile"><h2>Single Replacement Reactions</h2></div>
     <div class="body">
+      <p class="intro">A copper wire placed in silver nitrate solution grows silver crystals. In a single replacement reaction, one element takes the place of another element in a compound.</p>
       <ul><li><span class="def">Single Replacement Reaction</span> – a chemical reaction in which one element exchanges places with another element in a compound.</li></ul>
       <div class="center" id="a-sr"></div>
       <div class="center"><div class="callout">In this single replacement reaction, a lone element, zinc (Zn), reacts with a compound, copper(II) sulfate (CuSO<sub>4</sub>). The zinc replaces the copper to form zinc sulfate (ZnSO<sub>4</sub>) and copper metal (Cu).</div></div>
@@ -62,6 +66,7 @@
   <section class="note" id="dr">
     <div class="tile"><h2>Double Replacement Reactions</h2></div>
     <div class="body">
+      <p class="intro">Mixing two clear solutions can form a solid in an instant. In a double replacement reaction, the ions of two compounds trade partners.</p>
       <ul><li><span class="def">Double Replacement Reaction</span> – a chemical reaction in which an ion in one compound is exchanged with an ion in another compound.
         <ul><li>In double replacement reactions, positive ions replace positive ions, and negative ions replace negative ions.</li></ul></li></ul>
       <div class="center" id="a-dr"></div>
@@ -72,6 +77,7 @@
   <section class="note" id="comb">
     <div class="tile"><h2>Combustion Reactions</h2></div>
     <div class="body">
+      <p class="intro">Burning natural gas on a stove and gasoline in a car engine are both combustion reactions. A fuel reacts with oxygen and releases energy as heat and light.</p>
       <ul><li><span class="def">Combustion Reaction</span> – a chemical reaction in which a hydrocarbon (a molecule containing only hydrogen and carbon) reacts with oxygen (O<sub>2</sub>) to produce carbon dioxide (CO<sub>2</sub>) and water (H<sub>2</sub>O).
         <ul><li>Combustion reactions are exothermic, meaning they release heat.</li></ul></li></ul>
       <div class="center" id="a-comb"></div>
@@ -110,7 +116,7 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
   const SET=[["2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O","syn"],["N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>","syn"],["2Na + Cl<sub>2</sub> → 2NaCl","syn"],["MgO + H<sub>2</sub>O → Mg(OH)<sub>2</sub>","syn"],["2H<sub>2</sub>O → 2H<sub>2</sub> + O<sub>2</sub>","dec"],["2KClO<sub>3</sub> → 2KCl + 3O<sub>2</sub>","dec"],["2HgO → 2Hg + O<sub>2</sub>","dec"],["MgCO<sub>3</sub> → MgO + CO<sub>2</sub>","dec"],["Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu","sr"],["Cl<sub>2</sub> + 2NaBr → 2NaCl + Br<sub>2</sub>","sr"],["2Al + 6HCl → 2AlCl<sub>3</sub> + 3H<sub>2</sub>","sr"],["Cu + 2AgNO<sub>3</sub> → Cu(NO<sub>3</sub>)<sub>2</sub> + 2Ag","sr"],["AgNO<sub>3</sub> + NaCl → AgCl + NaNO<sub>3</sub>","dr"],["BaCl<sub>2</sub> + Na<sub>2</sub>SO<sub>4</sub> → BaSO<sub>4</sub> + 2NaCl","dr"],["HCl + NaOH → NaCl + H<sub>2</sub>O","dr"],["Pb(NO<sub>3</sub>)<sub>2</sub> + 2KI → PbI<sub>2</sub> + 2KNO<sub>3</sub>","dr"],["C<sub>3</sub>H<sub>8</sub> + 5O<sub>2</sub> → 3CO<sub>2</sub> + 4H<sub>2</sub>O","comb"],["2C<sub>2</sub>H<sub>6</sub> + 7O<sub>2</sub> → 4CO<sub>2</sub> + 6H<sub>2</sub>O","comb"],["C<sub>2</sub>H<sub>4</sub> + 3O<sub>2</sub> → 2CO<sub>2</sub> + 2H<sub>2</sub>O","comb"]];
   const WHY={syn:"Two or more reactants combine into one product.",dec:"One reactant breaks down into two or more products.",sr:"A lone element trades places with an element in a compound.",dr:"Two compounds swap their positive (or negative) ions.",comb:"A hydrocarbon reacts with O₂ to make CO₂ and H₂O."};
   let order=[], i=0, cur=null, right=0, streak=0; const g=A.Game(host,{how:"Read the equation and choose its type. Look at how many reactants and products there are, and whether any of them is a lone element.",scoreText:()=>`Correct ${right} · Streak ${streak}`}); g.button("Next",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small>This reaction is…</small><div class="qp-t" data-r="q" style="font-size:28px"></div></div><div class="qc"><div class="qc-o" data-r="o"></div></div><div class="center" data-r="pat" style="min-height:40px;margin-top:8px"></div>`;
+  g.stage.innerHTML=`<div class="qp"><small>This reaction is…</small><div class="qp-t" data-r="q"></div></div><div class="qc"><div class="qc-o" data-r="o"></div></div><div class="center" data-r="pat" style="min-height:40px;margin-top:8px"></div>`;
   const $=k=>g.stage.querySelector(`[data-r="${k}"]`);
   function next(){ g.fresh(); g.msg(""); $("pat").innerHTML=""; if(i>=order.length){ order=A.shuffle(SET.slice()); i=0; } cur=order[i++]; $("q").innerHTML=cur[0]; const O=$("o"); O.innerHTML=""; delete O.dataset.done;
     Object.keys(NAME).forEach(k=>{ const b=A.h("button",{type:"button"},NAME[k]); b.addEventListener("click",()=>{ if(O.dataset.done) return;

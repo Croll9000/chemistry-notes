@@ -339,7 +339,7 @@ A.$("#calc-art").innerHTML=`<div style="display:flex;gap:10px;align-items:flex-e
 (function(){
   const g=A.Game(A.$("#dc-host"),{how:"Read the problem, plug the numbers into the dotted boxes, then do the math with the calculator (top bar). Round to the hundredths place."});
   g.button("New problem",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small>Problem</small><div class="qp-t" id="dc-q" style="font-size:19px"></div></div><div id="dc-c1"></div><div id="dc-c2"></div>`;
+  g.stage.innerHTML=`<div class="qp"><small>Problem</small><div class="qp-t" id="dc-q"></div></div><div id="dc-c1"></div><div id="dc-c2"></div>`;
   const win=t=>{ g.win(); g.msg("✔ "+t,"good"); setTimeout(next,2600); };
   function next(){ g.fresh(); g.msg(""); A.$("#dc-c1").innerHTML=""; A.$("#dc-c2").innerHTML="";
     const kind=A.pick(["D","D","m","V","disp"]); const mat=A.pick([[0.8,"wood"],[2.70,"aluminum"],[7.87,"iron"],[1.74,"magnesium"],[8.96,"copper"],[11.3,"lead"]]);

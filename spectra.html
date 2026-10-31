@@ -193,7 +193,7 @@ A.$("#mix-fig").innerHTML=row("Element A",MA,{scale:false})+row("Element B",MB,{
     cur={known,ans}; g.fresh();
     A.$("#id-known").innerHTML=known.map(k=>row(S[k].name,S[k].lines,{scale:false,h:26})).join("");
     A.$("#id-unknown").innerHTML=row(mode==="one"?"Unknown":"Mixture",lines,{scale:true,h:34});
-    A.$("#id-choices").innerHTML=(mode==="one"?`<span class="ctl-label">Which element?</span>`:`<span class="ctl-label">Tick every element present:</span>`)+known.map(k=>mode==="one"?`<button class="btn ghost" type="button" data-k="${k}">${S[k].name}</button>`:`<label class="switch"><input type="checkbox" value="${k}"> ${S[k].name}</label>`).join("");
+    A.$("#id-choices").innerHTML=(mode==="one"?`<span class="g-ask">Which element?</span>`:`<span class="g-ask">Tick every element present:</span>`)+known.map(k=>mode==="one"?`<button class="btn ghost" type="button" data-k="${k}">${S[k].name}</button>`:`<label class="switch"><input type="checkbox" value="${k}"> ${S[k].name}</label>`).join("");
     chk.hidden=mode==="one";
     if(mode==="one") A.$$("#id-choices button").forEach(b=>b.addEventListener("click",()=>judge([b.dataset.k])));
     g.msg(mode==="mix"?"Tick every element that is present, then press Check. Careful: one element may have only some of its lines in the mixture.":"");
