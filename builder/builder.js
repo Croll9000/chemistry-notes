@@ -145,13 +145,19 @@ function save(blob,name){ const a=document.createElement("a"); a.href=URL.create
 async function makeDocx(key){ const D=window.docx; const {Document,Packer,Paragraph,TextRun,ImageRun,Table,TableRow,TableCell,WidthType,ShadingType,AlignmentType,LevelFormat,BorderStyle,Footer,PageNumber,TabStopType}=D;
   const FONT="Arial", showAns=key||O.ans==="both";
   const tr=(r,extra={})=>{ const st=r.st||r; const o={text:r.x,font:FONT,bold:!!(st.b||st.def),italics:!!st.i,strike:!!st.s,subScript:!!st.sub,superScript:!!st.sup,color:st.c?st.c.replace("#",""):undefined,underline:(st.u||st.def)?{}:undefined}; return new TextRun(Object.assign(o,extra)); };
-  const runsOf=(runs,size)=>{ const out=[]; (runs||[]).forEach(r=>{ if(r.blank){ if(key) out.push(tr(r,{bold:true,underline:{},highlight:"yellow",size})); else out.push(new TextRun({text:" ".repeat(Math.max(8,Math.round(r.x.length*1.7))),underline:{},font:FONT,size})); return; }
+  const runsOf=(runs,size)=>{ const out=[]; (runs||[]).forEach(r=>{ if(r.blank){ if(key) out.push(tr(r,{bold:true,underline:{},highlight:"yellow",size})); else out.push(new TextRun({text:"\u00A0".repeat(Math.max(16,Math.round(r.x.length*2.6))),underline:{},font:FONT,size})); return; }
       String(r.x).split("\n").forEach((part,i)=>{ if(i) out.push(new TextRun({break:1,font:FONT})); if(part) out.push(tr(Object.assign({},r,{x:part}),{size})); }); }); return out; };
-  const P=(children,o={})=>new Paragraph(Object.assign({children,spacing:{after:80}},o));
+  /* 1.5 line spacing; while KEEP is on, paragraphs stay on the same page as the next one (a section or question is not split) */
+  let KEEP=false;
+  const P=(children,o={})=>{ const sp=Object.assign({after:80,line:360,lineRule:"auto"},o.spacing||{}); const k=KEEP&&o.keepNext!==false? {keepNext:true,keepLines:true} : {}; return new Paragraph(Object.assign({children},k,o,{spacing:sp})); };
+  const endKeep=()=>{ if(KEEP){ KEEP=false; children.push(P([],{spacing:{after:0,line:240}})); } };
+  const estH=(items)=>items.reduce((h,m)=>{ const len=r=>(r||[]).reduce((a,x)=>a+String(x.x).length,0);
+    if(m.k==="p"||m.k==="li") return h+Math.ceil(len(m.runs)/92)*0.26+0.06; if(m.k==="box") return h+Math.ceil(len(m.runs)/88)*0.26+0.3;
+    if(m.k==="table") return h+m.rows.length*0.32; if(m.k==="img"){ const w=m.w*0.62, hh=m.h*0.62, k=Math.min(1,640/w,420/hh); return h+hh*k/96+0.3; } return h; },0.5);
   const children=[]; const PAGEW=640;
   const addImg=async(m,maxW=PAGEW,maxH=420)=>{ const data=await imgData(m.file); let w=m.w*0.62, h=m.h*0.62; const k=Math.min(1,maxW/w,maxH/h); w*=k; h*=k;
     if(m.label) children.push(P([new TextRun({text:"Example: "+m.label,italics:true,font:FONT,size:18,color:C.body})],{alignment:AlignmentType.CENTER,spacing:{before:120,after:40}}));
-    children.push(P([new ImageRun({type:"png",data,transformation:{width:Math.round(w),height:Math.round(h)}})],{alignment:AlignmentType.CENTER,spacing:{before:60,after:120}})); };
+    children.push(P([new ImageRun({type:"png",data,transformation:{width:Math.round(w),height:Math.round(h)}})],{alignment:AlignmentType.CENTER,spacing:{before:60,after:120,line:240}})); };
   const tableOf=(rows,size=20)=>{ const n=Math.max(...rows.map(r=>r.reduce((a,c)=>a+(c.cs||1),0)));
     return new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:rows.map(r=>new TableRow({children:r.map(c=>new TableCell({columnSpan:c.cs,rowSpan:c.rs,shading:c.th?{type:ShadingType.CLEAR,fill:C.row2,color:"auto"}:undefined,margins:{top:40,bottom:40,left:80,right:80},children:[P(runsOf(c.runs,size),{alignment:AlignmentType.CENTER,spacing:{after:0}})]}))}))}); };
   const boxOf=(runs,fill)=>new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[new TableRow({children:[new TableCell({shading:{type:ShadingType.CLEAR,fill,color:"auto"},margins:{top:80,bottom:80,left:140,right:140},borders:{top:{style:BorderStyle.SINGLE,size:8,color:C.boxLine},bottom:{style:BorderStyle.SINGLE,size:8,color:C.boxLine},left:{style:BorderStyle.SINGLE,size:8,color:C.boxLine},right:{style:BorderStyle.SINGLE,size:8,color:C.boxLine}},children:[P(runsOf(runs),{spacing:{after:0}})]})]})]});
@@ -161,7 +167,10 @@ async function makeDocx(key){ const D=window.docx; const {Document,Packer,Paragr
   if(key) children.push(P([new TextRun({text:"The words students fill in are highlighted.",italics:true,font:FONT,size:20,color:C.body})],{spacing:{after:200}}));
   if(!key) children.push(P([new TextRun({text:"Name: ________________________________     Date: ______________     Period: ______",font:FONT,size:22})],{spacing:{after:240}}));
   const lists={}; let inst=0; const listInst=id=>lists[id]||(lists[id]=++inst);
-  for(const m of model()){
+  const MM=model();
+  for(let mi=0;mi<MM.length;mi++){ const m=MM[mi];
+    if(m.k==="page"||m.k==="sec"||m.k==="lc") endKeep();
+    if(m.k==="sec"){ let j=mi+1; while(j<MM.length&&!["sec","page","lc"].includes(MM[j].k)) j++; KEEP=estH(MM.slice(mi+1,j))<=8.2; }
     if(m.k==="page") children.push(P([new TextRun({text:m.text,bold:true,size:32,font:FONT,color:C.tealInk})],{spacing:{before:280,after:80},border:{bottom:{style:BorderStyle.SINGLE,size:12,color:C.teal,space:2}},keepNext:true}));
     else if(m.k==="sec") children.push(P([new TextRun({text:m.text+(m.enr?" (Enrichment)":""),bold:true,size:26,font:FONT,color:"FFFFFF"})],{shading:{type:ShadingType.CLEAR,fill:m.enr?C.purple:C.teal,color:"auto"},spacing:{before:220,after:100},keepNext:true}));
     else if(m.k==="p") children.push(P(runsOf(m.runs,m.style==="small"||m.style==="cap"?18:undefined),{alignment:m.style==="cap"?AlignmentType.CENTER:undefined}));
@@ -175,14 +184,16 @@ async function makeDocx(key){ const D=window.docx; const {Document,Packer,Paragr
           if(it.cap) children.push(P(runsOf(it.cap),{alignment:AlignmentType.CENTER})); if(it.table){ children.push(tableOf(it.table.rows)); children.push(P([])); } if(it.fig) for(const x of imgs(m.pg,it.fig)) await addImg(x,520,320);
           for(const q of it.qs) await question(q,m.pg); }
         else await question(it,m.pg); } } }
-  async function question(q,pg){ children.push(P([new TextRun({text:q.n+".  ",bold:true,font:FONT})].concat(q.stem?runsOf(q.stem):[]),{spacing:{before:160,after:60},keepNext:true}));
+  endKeep();
+  async function question(q,pg){ KEEP=true; children.push(P([new TextRun({text:q.n+".  ",bold:true,font:FONT})].concat(q.stem?runsOf(q.stem):[]),{spacing:{before:160,after:60},keepNext:true}));
     if(q.stemImg) for(const x of imgs(pg,q.stemImg)) await addImg(x,560,300);
     if(q.fig) for(const x of imgs(pg,q.fig)) await addImg(x,480,300);
     if(q.table){ children.push(tableOf(q.table.rows,18)); children.push(P([])); } if(q.tableImg) for(const x of imgs(pg,q.tableImg)) await addImg(x,520,300);
-    if(q.choices){ for(let i=0;i<q.choices.length;i++){ const c=q.choices[i]; if(c.runs) children.push(P([new TextRun({text:`(${i+1})  `,font:FONT})].concat(runsOf(c.runs)),{indent:{left:440},spacing:{after:40}})); else { children.push(P([new TextRun({text:`(${i+1})`,font:FONT})],{indent:{left:440},spacing:{after:0}})); for(const x of imgs(pg,c.img)) await addImg(x,300,120); } } }
-    else if(q.parts) q.parts.forEach(p=>{ children.push(P([new TextRun({text:p+":",bold:true,font:FONT})],{indent:{left:440},spacing:{after:40}})); for(let i=0;i<3;i++) children.push(P([new TextRun({text:" ".repeat(120),underline:{},font:FONT})],{indent:{left:440},spacing:{after:120}})); });
-    else children.push(P([new TextRun({text:"Answer: ",font:FONT}),new TextRun({text:" ".repeat(30),underline:{},font:FONT}),new TextRun({text:q.unit?" "+q.unit.replace(/<[^>]+>/g,""):"",font:FONT})],{indent:{left:440}}));
-    if(showAns) children.push(P([new TextRun({text:"Answer: ",bold:true,font:FONT,color:C.key,size:20})].concat(runsOf(q.answer,20).map(x=>x)),{indent:{left:440},spacing:{after:120}})); }
+    if(q.choices){ for(let i=0;i<q.choices.length;i++){ const c=q.choices[i]; if(c.runs) children.push(P([new TextRun({text:`(${i+1})  `,font:FONT})].concat(runsOf(c.runs)),{indent:{left:440},spacing:{after:40}})); else { for(const x of imgs(pg,c.img)){ const data=await imgData(x.file); let w=x.w*0.62, h=x.h*0.62; const k=Math.min(1,300/w,120/h); children.push(P([new TextRun({text:`(${i+1})   `,font:FONT}),new ImageRun({type:"png",data,transformation:{width:Math.round(w*k),height:Math.round(h*k)}})],{alignment:AlignmentType.CENTER,spacing:{after:60,line:240}})); } } } }
+    else if(q.parts) q.parts.forEach(p=>{ children.push(P([new TextRun({text:p+":",bold:true,font:FONT})],{indent:{left:440},spacing:{after:40}})); for(let i=0;i<3;i++) children.push(P([new TextRun({text:"\u00A0".repeat(120),underline:{},font:FONT})],{indent:{left:440},spacing:{after:120}})); });
+    else children.push(P([new TextRun({text:"Answer: ",font:FONT}),new TextRun({text:"\u00A0".repeat(30),underline:{},font:FONT}),new TextRun({text:q.unit?" "+q.unit.replace(/<[^>]+>/g,""):"",font:FONT})],{indent:{left:440}}));
+    if(showAns) children.push(P([new TextRun({text:"Answer: ",bold:true,font:FONT,color:C.key,size:20})].concat(runsOf(q.answer,20).map(x=>x)),{indent:{left:440},spacing:{after:120}}));
+    endKeep(); }
   const lvl=(i,fmt,text)=>({level:i,format:fmt,text,alignment:AlignmentType.LEFT,style:{paragraph:{indent:{left:360+i*360,hanging:300}}}});
   const doc=new Document({creator:"Chemistry Notes",title:$("#title").value||"Chemistry Notes",styles:{default:{document:{run:{font:FONT,size:22,color:C.ink}}}},
     numbering:{config:[{reference:"bul",levels:["•","◦","▪","•","◦"].map((c,i)=>lvl(i,LevelFormat.BULLET,c))},{reference:"num",levels:[0,1,2,3,4].map(i=>lvl(i,LevelFormat.DECIMAL,`%${i+1}.`))}]},
@@ -199,6 +210,7 @@ async function makePptx(){ const pptx=new PptxGenJS(); pptx.layout="LAYOUT_WIDE"
   const bar=(sl,t,color,sub)=>{ sl.background={color:"FFFFFF"}; sl.addShape(pptx.ShapeType.rect,{x:0,y:0,w:SW,h:1.0,fill:{color},line:{color}}); sl.addText(t,{x:M,y:0.08,w:SW-2*M,h:0.84,fontFace:FONT,fontSize:28,bold:true,color:"FFFFFF",valign:"middle"}); if(sub) sl.addText(sub,{x:M,y:SH-0.42,w:SW-2*M,h:0.3,fontFace:FONT,fontSize:11,color:C.body}); };
   const pr=(r,extra)=>{ const st=r.st||r; return {text:r.x,options:Object.assign({fontFace:FONT,bold:!!(st.b||st.def),italic:!!st.i,underline:(st.u||st.def)?{style:"sng"}:undefined,strike:st.s?"sngStrike":undefined,subscript:!!st.sub,superscript:!!st.sup,color:st.c?st.c.replace("#",""):C.ink},extra||{})}; };
   const prRuns=(runs)=>{ const out=[]; (runs||[]).forEach(r=>{ if(r.blank){ out.push(pr(r,{bold:true,color:C.tealDeep,underline:{style:"sng"}})); return; } String(r.x).split("\n").forEach((part,i)=>{ if(i) out.push({text:"",options:{breakLine:true}}); if(part) out.push(pr(Object.assign({},r,{x:part}))); }); }); return out; };
+  const cellRuns=r=>{ const a=prRuns(r); return a.length?a:[{text:" ",options:{fontFace:FONT}}]; };  /* an empty table cell still needs one run, or PowerPoint repairs the file */
   const plain=runs=>(runs||[]).map(r=>r.x).join("");
   /* paragraph list → pptx text array (one paragraph per entry) */
   const paraArr=(paras)=>{ const out=[]; paras.forEach((p,pi)=>{ const rr=prRuns(p.runs); if(!rr.length) rr.push({text:" ",options:{}}); const fs=p.level>0?FS-2:FS;
@@ -223,7 +235,7 @@ async function makePptx(){ const pptx=new PptxGenJS(); pptx.layout="LAYOUT_WIDE"
       if(it.k==="box"){ const h=heightOf([{runs:it.runs}],SW-2*M-0.4)+0.25; if(h>room()&&y>TOP) fresh();
         sl.addText(paraArr([{runs:it.runs}]),{x:M,y,w:SW-2*M,h:Math.min(h,BOT-y),fill:{color:it.kind==="cause"?C.row:C.box},line:{color:C.boxLine,width:1.25},rectRadius:0.08,shape:pptx.ShapeType.roundRect,margin:8,valign:"middle",fit:"shrink"}); y+=h+0.15; i++; continue; }
       if(it.k==="table"){ const rows=it.rows.length, h=rows*0.42+0.1; if(h>room()&&y>TOP) fresh();
-        const fs=rows>9?12:rows>6?14:16; sl.addTable(it.rows.map(r=>r.map(c=>({text:prRuns(c.runs).map(x=>{ x.options.fontSize=fs; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,rowspan:c.rs,align:"center",valign:"middle",fontFace:FONT,fontSize:fs}}))),{x:M,y,w:SW-2*M,border:{type:"solid",pt:1,color:"9FC4D6"},fontFace:FONT,autoPage:false});
+        const fs=rows>9?12:rows>6?14:16; sl.addTable(it.rows.map(r=>r.map(c=>({text:cellRuns(c.runs).map(x=>{ x.options.fontSize=fs; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,rowspan:c.rs,align:"center",valign:"middle",fontFace:FONT,fontSize:fs}}))),{x:M,y,w:SW-2*M,border:{type:"solid",pt:1,color:"9FC4D6"},fontFace:FONT,autoPage:false});
         y+=Math.min(h,room())+0.15; i++; continue; }
       if(it.k==="img"){ const need=Math.min(BOT-TOP,(it.h/it.w)*(SW-2*M)); if(room()<Math.min(2.6,need)&&y>TOP) fresh(); await picture(it,M,y,SW-2*M,room()); i++; continue; }
       i++; }
@@ -245,7 +257,7 @@ async function makePptx(){ const pptx=new PptxGenJS(); pptx.layout="LAYOUT_WIDE"
         const pics=[].concat(q.stemImg?imgs(pg,q.stemImg):[],q.fig?imgs(pg,q.fig):[],q.tableImg?imgs(pg,q.tableImg):[]);
         const chH=q.choices?Math.min(3.2,q.choices.length*0.55):0.6;
         for(const p of pics){ const data=await imgB64(p.file); let iw=p.w/96, ih=p.h/96; const k=Math.min((SW-2*M)/iw,(BOT-y-chH-0.1)/ih,1.4); iw*=k; ih*=k; sl.addImage({data,x:(SW-iw)/2,y,w:iw,h:ih}); y+=ih+0.1; }
-        if(q.table){ sl.addTable(q.table.rows.map(r=>r.map(c=>({text:prRuns(c.runs).map(x=>{ x.options.fontSize=14; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,align:"center",fontFace:FONT,fontSize:14}}))),{x:M+1,y,w:SW-2*M-2,border:{type:"solid",pt:1,color:"9FC4D6"}}); y+=q.table.rows.length*0.4+0.1; }
+        if(q.table){ sl.addTable(q.table.rows.map(r=>r.map(c=>({text:cellRuns(c.runs).map(x=>{ x.options.fontSize=14; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,align:"center",fontFace:FONT,fontSize:14}}))),{x:M+1,y,w:SW-2*M-2,border:{type:"solid",pt:1,color:"9FC4D6"}}); y+=q.table.rows.length*0.4+0.1; }
         if(q.choices){ for(let i=0;i<q.choices.length;i++){ const c=q.choices[i]; const cw=(SW-2*M)/2, cx=M+(i%2)*cw, cy=y+Math.floor(i/2)*((BOT-y)/2);
             if(c.runs) sl.addText(paraArr([{runs:[{x:`(${i+1})  `,b:1}].concat(c.runs),level:0}]),{x:cx,y:cy,w:cw-0.2,h:Math.min(1,(BOT-y)/2),fontFace:FONT,valign:"top",fit:"shrink"});
             else { sl.addText(`(${i+1})`,{x:cx,y:cy,w:0.6,h:0.4,fontFace:FONT,fontSize:FS,bold:true,color:C.ink}); for(const p of imgs(pg,c.img)){ const data=await imgB64(p.file); let iw=p.w/96, ih=p.h/96; const k=Math.min((cw-0.9)/iw,((BOT-y)/2-0.1)/ih,1.4); sl.addImage({data,x:cx+0.65,y:cy,w:iw*k,h:ih*k}); } } } }
@@ -255,7 +267,7 @@ async function makePptx(){ const pptx=new PptxGenJS(); pptx.layout="LAYOUT_WIDE"
           sl.addText(paraArr([{runs:it.head,level:0,italic:true,size:15}]),{x:M,y,w:SW-2*M,h:0.5,fontFace:FONT}); y+=0.55;
           if(it.intro){ const h=Math.min(2.6,lines({runs:it.intro},SW-2*M)*LH({})+0.1); sl.addText(paraArr([{runs:it.intro,level:0}]),{x:M,y,w:SW-2*M,h,fontFace:FONT,valign:"top",fit:"shrink"}); y+=h+0.1; }
           const pics=[].concat(it.introImg?imgs(pg,it.introImg):[],it.fig?imgs(pg,it.fig):[]); for(const p of pics){ const data=await imgB64(p.file); let iw=p.w/96, ih=p.h/96; const k=Math.min((SW-2*M)/iw,(BOT-y)/ih,1.4); iw*=k; ih*=k; sl.addImage({data,x:(SW-iw)/2,y,w:iw,h:ih}); y+=ih+0.1; }
-          if(it.table&&y<BOT-0.8){ sl.addTable(it.table.rows.map(r=>r.map(c=>({text:prRuns(c.runs).map(x=>{ x.options.fontSize=14; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,align:"center",fontFace:FONT,fontSize:14}}))),{x:M+1,y,w:SW-2*M-2,border:{type:"solid",pt:1,color:"9FC4D6"}}); }
+          if(it.table&&y<BOT-0.8){ sl.addTable(it.table.rows.map(r=>r.map(c=>({text:cellRuns(c.runs).map(x=>{ x.options.fontSize=14; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,align:"center",fontFace:FONT,fontSize:14}}))),{x:M+1,y,w:SW-2*M-2,border:{type:"solid",pt:1,color:"9FC4D6"}}); }
           for(const q of it.qs) await qSlide(q,plain(it.title)); }
         else await qSlide(it); } continue; }
     await sectionSlides(sc.head,sc.color,sc.items,sc.foot); }
