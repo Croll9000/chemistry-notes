@@ -96,5 +96,8 @@ button{font:inherit;cursor:pointer}
 <script src="builder/lib/docx.js"></script>
 <script src="builder/lib/pptxgen.js"></script>
 <script src="builder/builder.js"></script>
+<script>/* if the builder files did not load, say so instead of doing nothing */
+if(!window.__pb){ const m=document.getElementById("gerr"); const say=()=>{ m.textContent="The builder files did not load. Check that the builder folder (builder.js, data.json, lib and pics) is uploaded to the GitHub repository next to teacher-builder.html, then reload this page."; };
+  document.getElementById("go").addEventListener("click",say); document.getElementById("code").addEventListener("keydown",e=>{ if(e.key==="Enter") say(); }); }</script>
 </body>
 </html>
