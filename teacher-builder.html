@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes Packet Builder</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--teal:#40BAD2;--teal-deep:#1f8fa8;--teal-ink:#0e5f72;--row:#E7F6F9;--row2:#BBE6EF;--ink:#1b2328;--body:#4a5257;--line:#cfdde1;--purple:#7030A0;--orange:#e07b00;--bg2:#f5fafb;--bad:#c40000;--good:#00843c}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;color:var(--body);background:var(--bg2);font-size:15px}
+[hidden]{display:none!important}
+header{background:var(--teal);color:#fff;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header h1{margin:0;font-size:22px;font-weight:700}
+header span{opacity:.9;font-size:14px}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--teal-deep);color:#fff;border:0;border-radius:8px;padding:9px 14px;font-weight:700}
+.btn:hover{background:var(--teal-ink)} .btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:#fff;color:var(--teal-ink);border:1.5px solid var(--teal)}
+.gate{max-width:420px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:12px;box-shadow:0 6px 18px rgba(14,95,114,.08)}
+.gate h2{margin:0;color:var(--ink)} .gate input{font:inherit;font-size:18px;padding:10px;border:1.5px solid var(--line);border-radius:8px}
+.gate .err{color:var(--bad);min-height:20px;margin:0}
+.app{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1fr);gap:16px;padding:16px;align-items:start}
+@media (max-width:900px){.app{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.panel h2{margin:0;font-size:17px;color:var(--ink)}
+.tree{max-height:46vh;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.tree details{margin:2px 0} .tree summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;padding:3px 0}
+.tree summary::-webkit-details-marker{display:none}
+.tree summary::before{content:"▸";color:var(--teal-deep);width:12px;display:inline-block}
+.tree details[open]>summary::before{content:"▾"}
+.tree .u>summary{font-weight:800;color:var(--ink)} .tree .pg{margin-left:16px} .tree .pg>summary{font-weight:600;color:var(--ink)}
+.tree .sec{margin-left:38px;display:flex;align-items:center;gap:6px;padding:2px 0;font-size:14px}
+.tag{font-size:10.5px;font-weight:800;border-radius:99px;padding:1px 7px;color:#fff;background:var(--purple)}
+.opt{display:flex;flex-direction:column;gap:5px}
+.opt>b{color:var(--ink);font-size:14px}
+.seg{display:inline-flex;border:1.5px solid var(--teal);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg button{background:#fff;border:0;padding:6px 10px;color:var(--teal-ink);font-weight:600;font-size:13.5px}
+.seg button[aria-pressed=true]{background:var(--teal);color:#fff}
+.opt input[type=text]{font:inherit;padding:7px 9px;border:1.5px solid var(--line);border-radius:8px}
+.chk{display:flex;gap:6px;align-items:center;font-size:14px}
+.dl{display:flex;flex-direction:column;gap:8px}
+.status{font-size:14px;min-height:20px;color:var(--teal-ink)} .status.err{color:var(--bad)}
+.preview{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;min-height:60vh}
+.preview .hint{background:var(--row);border-radius:8px;padding:8px 12px;font-size:14px;margin-bottom:12px}
+.pv-page{font-size:21px;font-weight:800;color:var(--teal-ink);margin:18px 0 6px;border-bottom:2px solid var(--teal)}
+.pv-sec{background:var(--teal);color:#fff;font-weight:700;font-size:17px;padding:6px 12px;border-radius:4px;margin:14px 0 8px}
+.pv-sec.enr{background:var(--purple)} .pv-sec.lc{background:var(--orange)}
+.pv p{margin:6px 0;line-height:1.55;color:var(--ink)} .pv p.intro{font-style:italic;color:var(--body)} .pv p.small{font-size:13.5px;color:var(--body)}
+.pv ul,.pv ol{margin:4px 0;padding-left:24px;line-height:1.55;color:var(--ink)}
+.pv .box{border:1.5px solid #e2c766;background:#fff8dc;border-radius:8px;padding:8px 12px;margin:8px 0;white-space:pre-wrap;color:var(--ink)}
+.pv table{border-collapse:collapse;margin:8px auto;font-size:14px} .pv td,.pv th{border:1px solid #9fc4d6;padding:4px 8px} .pv th{background:var(--row2)}
+.pv figure{margin:8px 0;text-align:center} .pv figure img{max-width:100%;max-height:340px;border:1px solid #eef2f3} .pv figcaption{font-size:13px;color:var(--body)}
+.pv .w{border-radius:3px}
+.manual .pv .w:not(.sp){cursor:pointer} .manual .pv .w:not(.sp):hover{background:#fff1a6}
+.pv .w.bl{background:#d6f0f7;color:var(--teal-ink);font-weight:700;box-shadow:inset 0 -2px 0 var(--teal-deep)}
+.pv .q{margin:8px 0 12px} .pv .q .ch{margin-left:22px} .pv .ans{color:var(--good);font-size:13.5px;margin-left:22px}
+.pv .clh{font-style:italic;font-size:14px} .pv .clt{font-weight:800;text-align:center}
+.count{font-size:13px;color:var(--body)}
+.empty{color:var(--body);text-align:center;padding:40px}
+</style>
+</head>
+<body>
+<header><h1>Notes Packet &amp; Slide Builder</h1><span>Guided notes (.docx), a teacher key and matching slides (.pptx) from the website’s notes</span></header>
+
+<div class="gate" id="gate">
+  <h2>Teacher access</h2>
+  <p style="margin:0">Enter the teacher code to use the builder.</p>
+  <input id="code" type="password" autocomplete="off" aria-label="Teacher code">
+  <button class="btn" id="go" type="button">Open the builder</button>
+  <p class="err" id="gerr"></p>
+</div>
+
+<div class="app" id="app" hidden>
+  <div class="panel">
+    <h2>1. Choose the notes</h2>
+    <div class="chk"><label class="chk"><input type="checkbox" id="enr" checked> Include enrichment sections</label></div>
+    <div class="tree" id="tree"></div>
+    <span class="count" id="count"></span>
+    <h2>2. Options</h2>
+    <div class="opt"><b>Title</b><input type="text" id="title" placeholder="Title for the packet and slides"></div>
+    <div class="opt"><b>Blanks</b><div class="seg" id="o-blank"><button data-v="pre" aria-pressed="true">Pre-chosen</button><button data-v="man" aria-pressed="false">Choose my own</button><button data-v="none" aria-pressed="false">No blanks</button></div><button class="btn ghost" id="seed" type="button" hidden>Start from the pre-chosen blanks</button></div>
+    <div class="opt"><b>Learning Check questions</b><div class="seg" id="o-lc"><button data-v="page" aria-pressed="true">End of each page’s notes</button><button data-v="end" aria-pressed="false">End of packet</button><button data-v="none" aria-pressed="false">Leave out</button></div></div>
+    <div class="opt"><b>Answers to the questions</b><div class="seg" id="o-ans"><button data-v="key" aria-pressed="true">Teacher key only</button><button data-v="both" aria-pressed="false">Student packet too</button></div></div>
+    <label class="chk"><input type="checkbox" id="intro" checked> Include the introduction paragraphs</label>
+    <h2>3. Download</h2>
+    <div class="dl"><button class="btn" id="d-stu" type="button">Student guided notes (.docx)</button><button class="btn" id="d-key" type="button">Teacher key (.docx)</button><button class="btn" id="d-ppt" type="button">Slides (.pptx)</button></div>
+    <div class="status" id="status" aria-live="polite"></div>
+  </div>
+  <div class="preview" id="pvwrap"><div class="hint" id="hint"></div><div class="pv" id="pv"><div class="empty">Check off some notes to see a preview.</div></div></div>
+</div>
+
+<script src="builder/lib/jszip.js"></script>
+<script src="builder/lib/docx.js"></script>
+<script src="builder/lib/pptxgen.js"></script>
+<script src="builder/builder.js"></script>
+</body>
+</html>

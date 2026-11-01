@@ -541,7 +541,7 @@ A.QSet = function(host, items, opts={}){
   items=items.map(it=>Object.assign({},it,{stem:A.nbU(it.stem),choices:it.choices&&it.choices.map(A.nbU),explain:A.nbU(it.explain)}));
   items=items.map(it=>Object.assign({},it,{stem:A.nbU(it.stem),choices:it.choices&&it.choices.map(A.nbU),explain:A.nbU(it.explain)}));
   const id=opts.id||("q"+Math.random().toString(36).slice(2,7));
-  const box=A.h("div",{class:"qset"});
+  const box=A.h("div",{class:"qset"}); box._items=items; /* read by the packet builder */
   const head=A.h("div",{class:"qset-h"});
   head.innerHTML=`<h3 style="font-size:20px">${opts.title||"Regents-Style Questions"}</h3><span class="score-chip" aria-live="polite"></span>`;
   box.appendChild(head);
