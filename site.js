@@ -588,7 +588,7 @@ A.QSet = function(host, items, opts={}){
       q.appendChild(ch);
     } else if(it.type==="num"||it.type==="text"||it.type==="shell"){
       const row=A.h("div",{class:"row"});
-      const inp=A.h("input",{class:"inp",type:"text",id:`${id}-${i}`,"aria-label":"answer","data-sup":it.type==="num"?"1":"",style:`width:${it.width||160}px`, inputmode: it.type==="num"?"decimal":"text"});
+      const inp=A.h("input",{class:"inp",type:"text",id:`${id}-${i}`,"aria-label":"answer","data-sup":(it.type==="num"||it.sup||(it.type==="text"&&/lenient|parseTyped/.test(String(it.check))))?"1":"",style:`width:${it.width||160}px`, inputmode: it.type==="num"?"decimal":"text"});
       const live=A.h("span",{class:"muted"});
       const btn=A.h("button",{class:"btn sm",type:"button"},"Check");
       row.append(it.pre? A.h("span",{},it.pre):"", inp, it.unit?A.h("span",{},it.unit):"", btn, live);
@@ -736,6 +736,8 @@ A.arrowInline=up=>`<svg class="arw-t" viewBox="0 0 12 36" aria-hidden="true"><li
 A.spinArrows=function(root){ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>/[↑↓]/.test(n.nodeValue)&&!n.parentElement.closest("svg,script,style,textarea,input,option,title,.arw-wrap")?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT}); const list=[]; while(w.nextNode()) list.push(w.currentNode);
   list.forEach(n=>{ const span=document.createElement("span"); span.className="arw-wrap"; span.innerHTML=n.nodeValue.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/[↑↓]/g,c=>`<span class="arw-c" role="img" aria-label="${c==="↑"?"spin up":"spin down"}">${A.arrowInline(c==="↑")}</span>`); n.replaceWith(span); }); };
 A.chrome = function(slug){
+  /* pages that are entirely enrichment use the purple theme of the orbital pages */
+  { const pg=["UNIT0","UNIT1","SITE","UNIT3","UNIT4","UNIT5","UNIT6"].flatMap(k=>A[k]||[]).find(p=>p.slug===slug); if(pg&&pg.enr) document.body.classList.add("enr-page"); }
   { let busy=false; const run=()=>{ if(busy) return; busy=true; requestAnimationFrame(()=>{ A.spinArrows(document.body); busy=false; }); }; run(); new MutationObserver(run).observe(document.body,{childList:true,subtree:true,characterData:true}); }
   if(window.SITE_MODE==="gsites"){ A.fixSitesLinks(); new MutationObserver(()=>A.fixSitesLinks()).observe(document.body,{childList:true,subtree:true}); }
   const mode=window.SITE_MODE||"web";
@@ -810,6 +812,9 @@ document.addEventListener("DOMContentLoaded",()=>{ const m=document.querySelecto
      In a factor box (data-sup="factor") a leading "10" works the same way. */
   A.supify = (s, factor) => { let t=s;
     t=t.replace(/(\d|^)\s*[x×*X]\s*10(?:\s+|\^)\(?([-−–]?\d+)\)?/g,(m,a,e)=>`${a}${a?" ":""}× 10${toSup(e)}`);
+    /* "1.05e24" and "1.05E-3" become 1.05 × 10²⁴; "10^5" or "2^3" put the exponent up */
+    t=t.replace(/(\d)\s*[eE]\s*\(?([-−–]?\d+)\)?/g,(m,a,e)=>`${a} × 10${toSup(e)}`);
+    t=t.replace(/(\d)\s*\^\s*\(?([-−–]?\d+)\)?/g,(m,a,e)=>`${a}${toSup(e)}`);
     if(factor) t=t.replace(/^\s*10(?:\s+|\^)\(?([-−–]?\d+)\)?/,(m,e)=>`10${toSup(e)}`);
     t=t.replace(/([⁰¹²³⁴⁵⁶⁷⁸⁹⁻])([-−–]?\d+)/g,(m,a,d)=>a+toSup(d));
     return t; };
@@ -831,7 +836,7 @@ document.addEventListener("DOMContentLoaded",()=>{ const m=document.querySelecto
    o = {sf: expected sig figs} or {dp: expected decimal places}. Returns true, false, or a hint string. */
 (function(){ const A=window.AS; if(!A) return;
   const PLACE=["ones","tenths","hundredths","thousandths","ten-thousandths"];
-  A.parseTyped = str => { const s=A.unsup(String(str)).trim().replace(/,/g,"").replace(/\s+/g,"").replace(/[−–]/g,"-");
+  A.parseTyped = str => { const s=A.unsup(String(str)).trim().replace(/,/g,"").replace(/\s+/g,"").replace(/[−–]/g,"-").replace(/^([-+]?)10\^/,"$11x10^");
     const m=s.match(/^([-+]?)(\d*)(?:\.(\d*))?(?:(?:e|E|[x×*]10\^?)([-+]?\d+))?$/); if(!m||!(m[2]+(m[3]||"")).length) return null;
     const int=m[2]||"", dec=m[3]||"", e=m[4]?+m[4]:0, digits=(int+dec).replace(/^0+/,""), sf=Math.max(1,digits.length);
     const v=parseFloat((m[1]||"")+(int||"0")+"."+(dec||"0"))*Math.pow(10,e);
@@ -7551,7 +7556,7 @@ S.pword=f=>{ const p=S.parse(f), els=Object.keys(p), metal=e=>{ const z=A.bySym[
   if(els.length===1&&p[els[0]]===1) return "atoms"; if(/^(NH4)/.test(f)||metal(els[0])&&els.length>1) return "formula units"; return "molecules"; };
 /* ---------- numbers ---------- */
 S.sup=e=>`10<sup>${e<0?"−"+(-e):e}</sup>`;
-S.sci=(v,sf=3)=>{ if(v===0) return "0"; const e=Math.floor(Math.log10(Math.abs(v))+1e-12); let m=v/Math.pow(10,e); m=+m.toPrecision(sf); if(Math.abs(m)>=10){ return S.sci(v*1.0000001,sf); } return `${m.toFixed(Math.max(0,sf-1))} × ${S.sup(e)}`; };
+S.sci=(v,sf=3)=>{ if(v===0) return "0"; let e=Math.floor(Math.log10(Math.abs(v))+1e-12); let m=v/Math.pow(10,e); m=+m.toPrecision(sf); if(Math.abs(m)>=10){ m/=10; e++; } return `${m.toFixed(Math.max(0,sf-1))} × ${S.sup(e)}`; };
 S.num=(v,sf=3)=>{ const a=Math.abs(v); if(a!==0&&(a>=1e5||a<1e-3)) return S.sci(v,sf); const r=+v.toPrecision(sf); const s=a>=1? r.toFixed(Math.max(0,sf-1-Math.floor(Math.log10(a)))) : r.toPrecision(sf); return s.replace(/\B(?=(\d{3})+(?!\d))/g,s.includes(".")?"":","); };
 S.plainNum=v=>{ const s=String(v); return s; };
 S.rnd=(lo,hi,sf=3)=>+(lo+Math.random()*(hi-lo)).toPrecision(sf);
@@ -7634,7 +7639,7 @@ S.Converter=function(host,o){ let done=0, mode="drag";
     let fr=""; for(let i=0;i<P0.k;i++) fr+=`<span class="da-fr"><span class="pr pl">(</span><span class="st"><span class="da-slot top${mode==="type"?" ty":""}" data-s="t${i}"></span><span class="da-bar"></span><span class="da-slot bot${mode==="type"?" ty":""}" data-s="b${i}"></span></span><span class="pr pR">)</span></span>`;
     $("eq").innerHTML=`<span class="da-given" data-r="given">${S.q(P0.gTxt,P0.given[1],P0.given[2])}</span>${fr}<span class="da-want">= <span class="blank">?</span> ${S.u(P0.want[0],P0.want[1])}</span>`;
     $("pool").innerHTML=""; $("tyhelp").hidden=mode!=="type"; $("pool").hidden=mode==="type";
-    if(mode==="type"){ dd=null; A.$$(".da-slot",$("eq")).forEach((sl,k)=>{ sl.innerHTML=`<input class="ty-n" inputmode="decimal" autocomplete="off" placeholder="number" aria-label="number"><input class="ty-u" autocomplete="off" placeholder="unit" aria-label="unit and substance">`; }); return; }
+    if(mode==="type"){ dd=null; A.$$(".da-slot",$("eq")).forEach((sl,k)=>{ sl.innerHTML=`<input class="ty-n" data-sup="1" inputmode="text" autocomplete="off" placeholder="number" aria-label="number"><input class="ty-u" autocomplete="off" placeholder="unit" aria-label="unit and substance">`; }); return; }
     /* one card per distinct quantity (more copies only when the setup really needs the same card twice) */
     const need={}; P0.path.forEach(e=>[e.a,e.b].forEach(sd=>{ const k=sd[0]+"|"+sd[2]+"|"+sd[3]; need[k]=(need[k]||0)+1; }));
     const ce=curEqs().filter(e=>!e.hide), seen={}; cards=[];
@@ -7688,9 +7693,17 @@ S.Converter=function(host,o){ let done=0, mode="drag";
     if(ucl(P0.want[0])!=="mol") st.push([P0.want[0],P0.want[1],""]);
     const L=st.length-1; st[L][2]=S.q(S.num(P0.ans,P0.sf||3),P0.want[0],P0.want[1]);
     $("flair").innerHTML=`<div class="s6-flair">${st.map(([u,sp,t],i)=>`${i?`<span class="s6-far" style="animation-delay:${i*.35-.15}s">➜</span>`:""}<span class="s6-fi" style="animation-delay:${i*.35}s">${S.qIcon(u,46)}<small>${t}</small></span>`).join("")}</div>`; }
+  /* what the answer means in everyday terms */
+  function realLife(){ const v=P0.ans, u=ucl(P0.want[0]), sp=P0.want[1]; const fmt=x=>S.num(x,2);
+    if(u==="g"){ const L=[[1,"paper clip"],[5,"nickel"],[23,"AA battery"],[150,"apple"],[370,"can of soda"],[1000,"textbook (about 1 kg)"]]; let best=L[0]; L.forEach(x=>{ if(v>=x[0]*0.8) best=x; }); const n=v/best[0];
+      return `${S.num(v,3)} g is about the mass of ${n<1.3?`a ${best[1]}`:`${fmt(n)} ${best[1]}${/\)$/.test(best[1])?"":"s"}`}.`; }
+    if(u==="L"){ return v<1? `${S.num(v,3)} L is about ${fmt(v*4.2)} cups.` : v<12? `${S.num(v,3)} L would fill about ${fmt(v/2)} two-liter soda bottles.` : `${S.num(v,3)} L would fill about ${fmt(v/7.1)} basketballs (7.1 L each).`; }
+    if(u==="particles"){ const yrs=v/3.156e7; return `Counting one ${P0.want[0].replace(/s$/,"")} per second, it would take about ${S.sci(yrs,2)} years to count them all. The universe is about 1.4 × 10<sup>10</sup> years old.`; }
+    if(u==="mol"&&sp&&S.mm(sp)){ const g=v*S.mm(sp); return `${S.num(v,3)} mol of ${S.f(sp)} has a mass of about ${S.num(g,3)} g and contains ${S.sci(v*S.AV,3)} ${S.pword(sp)}.`; }
+    return ""; }
   function go(){ const raw=$("ans").value, r=A.lenient(raw,P0.ans,{sf:P0.sf||3}); if(typeof r==="string"){ g.lose(); g.msg(r,"warn"); return; }
     const ok=r===true, i=$("ans"); i.classList.toggle("ok",ok); i.classList.toggle("no",!ok);
-    if(ok){ done++; g.win(); g.paint(); g.stage.querySelector(".da-want .blank").innerHTML=S.num(P0.ans,P0.sf||3); g.msg(`✔ ${S.q(P0.gTxt,P0.given[1],P0.given[2])} = ${S.q(S.num(P0.ans,P0.sf||3),P0.want[0],P0.want[1])}. ${P0.after||"The answer has the desired unit."}`,"good"); flair(); }
+    if(ok){ done++; g.win(); g.paint(); g.stage.querySelector(".da-want .blank").innerHTML=S.num(P0.ans,P0.sf||3); g.msg(`✔ ${S.q(P0.gTxt,P0.given[1],P0.given[2])} = ${S.q(S.num(P0.ans,P0.sf||3),P0.want[0],P0.want[1])}. ${P0.after||"The answer has the desired unit."}`,"good"); flair(); const rl=realLife(); if(rl) $("flair").insertAdjacentHTML("beforeend",`<div class="s6-real"><b>In real life:</b> ${rl}</div>`); }
     else { const v=A.parseTyped(raw); g.lose(); g.msg(!v? "Type a number." : Math.abs(Math.log10(Math.abs(v.v/P0.ans)))>1.5? "That’s off by a power of 10. Put parentheses around numbers in scientific notation, and divide by everything on the bottom." : "Recheck the multiplication and division.","bad"); } }
   $("chk").addEventListener("click",check); $("go").addEventListener("click",go); $("ans").addEventListener("keydown",e=>{ if(e.key==="Enter") go(); });
   host._conv={P:()=>P0,mode:m=>{ mode=m; buildSetup(); },
@@ -7781,11 +7794,12 @@ S.avogadroArt=(t,gases)=>{ gases=gases||["H2","O2","Ne"]; const W=630, H=270, bw
   s+=T(W/2,H-12,"Same volume, same temperature, same pressure → same number of particles",{fs:13,w:800,c:"#005ea3"});
   return s+`</svg>`; };
 /* 1 mole of any gas at STP fills 22.4 L */
-S.molarVolumeArt=()=>{ const W=640, H=250; let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="One mole of oxygen, neon and hydrogen gas each fill 22.4 liters at STP, even though their masses are different."><rect width="${W}" height="${H}" fill="#fff"/>`;
-  [["O2","32.00 g"],["Ne","20.18 g"],["H2","2.02 g"]].forEach(([f,m],i)=>{ const x=40+i*205, y=60, w=150; s+=`<path d="M${x} ${y}l30 -24h${w}l-30 24z" fill="#e3f0fb" stroke="#2E75D6" stroke-width="1.5"/><path d="M${x+w} ${y}l30 -24v${w}l-30 24z" fill="#cfe2f5" stroke="#2E75D6" stroke-width="1.5"/><rect x="${x}" y="${y}" width="${w}" height="${w}" fill="#eef6fc" stroke="#2E75D6" stroke-width="1.5"/>`;
-    for(let k=0;k<6;k++) s+=R.molSVG(f,x+24+((k*47)%110),y+26+((k*61)%100),{k:1});
-    s+=T(x+w/2+15,y+w+28,`1 mole ${S.f(f)} = ${m}`,{fs:13.5,w:800})+T(x+w/2,y-34,"22.4 L",{fs:15,w:800,c:"#c40000"}); });
-  s+=T(W/2,18,"At STP (273 K and 1 atm), 1 mole of any gas occupies 22.4 L",{fs:14,w:800,c:"#005ea3"});
+S.molarVolumeArt=()=>{ const W=660, H=320; let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="One mole of oxygen, neon and hydrogen gas each fill 22.4 liters at STP, even though their masses are different."><rect width="${W}" height="${H}" fill="#fff"/>`;
+  s+=T(W/2,22,"At STP (273 K and 1 atm), 1 mole of any gas occupies 22.4 L",{fs:15,w:800,c:"#005ea3"});
+  [["O2","32.00 g"],["Ne","20.18 g"],["H2","2.02 g"]].forEach(([f,m],i)=>{ const x=30+i*215, y=78, w=150, d=26;
+    s+=`<path d="M${x} ${y}l${d} -${d}h${w}l-${d} ${d}z" fill="#e3f0fb" stroke="#2E75D6" stroke-width="1.5"/><path d="M${x+w} ${y}l${d} -${d}v${w}l-${d} ${d}z" fill="#cfe2f5" stroke="#2E75D6" stroke-width="1.5"/><rect x="${x}" y="${y}" width="${w}" height="${w}" fill="#eef6fc" stroke="#2E75D6" stroke-width="1.5"/>`;
+    [[0,0],[1,0],[2,0],[0,1],[2,1],[1,2]].forEach(([c,r],k)=>{ s+=R.molSVG(f,x+30+c*45+((k*7)%9)-4,y+32+r*44+((k*5)%9)-4,{k:.95}); });
+    s+=T(x+w/2,y+w+24,"22.4 L",{fs:16,w:800,c:"#c40000"})+T(x+w/2,y+w+46,`1 mole ${S.f(f)} = ${m}`,{fs:14,w:800}); });
   return s+`</svg>`; };
 })();
 
@@ -7877,13 +7891,14 @@ S.RatioMachine=function(host,e){ e=e||{r:["N2","H2"],p:["NH3"],c:[1,3,2]}; const
 S.RatioPick=function(host){ let done=0;
   const g=A.Game(host,{how:"Use the coefficients of the balanced equation to write the mole ratio.",scoreText:()=>`Correct: ${done}`});
   g.button("Next",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small>Given the balanced equation</small><div class="qp-t" data-r="eq"></div><div class="g-ask" data-r="ask" style="margin-top:6px"></div></div><div class="qc-o" data-r="o" style="justify-content:center;margin-top:10px"></div>`;
+  g.stage.innerHTML=`<div class="qp"><small>Given the balanced equation</small><div class="qp-t" data-r="eq"></div><div class="g-ask" data-r="ask" style="margin-top:6px"></div></div><div class="qc-o" data-r="o" style="justify-content:center;margin-top:10px"></div><div data-r="pic" style="margin-top:10px"></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
   function next(){ g.fresh(); g.msg(""); const e=pick(S.RXN), all=e.r.concat(e.p); let i=Math.floor(Math.random()*all.length), j; do{ j=Math.floor(Math.random()*all.length); } while(j===i);
     $("eq").innerHTML=S.eqHTML(e); $("ask").innerHTML=`What is the mole ratio of ${S.f(all[i])} to ${S.f(all[j])}?`;
     const ans=`${e.c[i]} : ${e.c[j]}`, opts=new Set([ans,`${e.c[j]} : ${e.c[i]}`]); all.forEach((f,k)=>{ if(k!==i) opts.add(`${e.c[i]} : ${e.c[k]}`); }); opts.add(`1 : 1`); const L=A.shuffle([...opts].slice(0,4));
-    $("o").innerHTML=L.map(t=>`<button type="button" data-v="${t}">${t}</button>`).join(""); delete $("o").dataset.done;
-    A.$$("button",$("o")).forEach(b=>b.addEventListener("click",()=>{ if($("o").dataset.done) return; if(b.dataset.v===ans){ b.classList.add("right"); $("o").dataset.done=1; done++; g.win(); g.paint(); g.msg(`✔ The coefficients are ${e.c[i]} for ${S.f(all[i])} and ${e.c[j]} for ${S.f(all[j])}: ${ans}.`,"good"); } else { b.classList.add("wrong"); g.lose(); g.msg(b.dataset.v===`${e.c[j]} : ${e.c[i]}`?`That ratio is backwards: ${S.f(all[i])} comes first.`:"Use the coefficients of the two substances named in the question.","bad"); } })); }
+    $("o").innerHTML=L.map(t=>`<button type="button" data-v="${t}">${t}</button>`).join(""); delete $("o").dataset.done; $("pic").innerHTML="";
+    const showPic=()=>{ $("pic").innerHTML=`<div class="r5-pl">${all.map((f,k)=>`${k===e.r.length?`<span class="r5-ar">→</span>`:k?`<span class="r5-op">+</span>`:""}<div class="r5-pc" style="${k===i||k===j?"border:2.5px solid #F28C28;background:#fff8ee":"opacity:.55"}"><div class="r5-pn">${e.c[k]} ${R.pnames(f,e.c[k])}</div>${R.molBox(f,e.c[k],{w:R.ions(f)?150:120,h:90,max:1.3})}</div>`).join("")}</div>`; };
+    A.$$("button",$("o")).forEach(b=>b.addEventListener("click",()=>{ if($("o").dataset.done) return; if(b.dataset.v===ans){ b.classList.add("right"); $("o").dataset.done=1; done++; g.win(); g.paint(); showPic(); g.msg(`✔ The coefficients are ${e.c[i]} for ${S.f(all[i])} and ${e.c[j]} for ${S.f(all[j])}: ${ans}.`,"good"); } else { b.classList.add("wrong"); g.lose(); g.msg(b.dataset.v===`${e.c[j]} : ${e.c[i]}`?`That ratio is backwards: ${S.f(all[i])} comes first.`:"Use the coefficients of the two substances named in the question.","bad"); } })); }
   next(); };
 })();
 
@@ -7946,13 +7961,18 @@ S.hydrateArt=()=>{ const W=560, H=262; let s=`<svg viewBox="0 0 ${W} ${H}" width
   s+=T(106,24,"Anhydrous CuCl₂",{fs:14,w:800})+T(416,24,"Hydrate: CuCl₂•2H₂O",{fs:14,w:800,c:"#005ea3"})+T(106,H-14,"1 Cu²⁺ : 2 Cl⁻, no water",{fs:12,c:"#5f6b72"})+T(416,H-14,"2 H₂O for every Cu²⁺, inside the lattice",{fs:12,c:"#005ea3"});
   s+=`<path d="M218 120h76" stroke="#9aa7ad" stroke-width="3"/><path d="M294 120l-10 -6v12z" fill="#9aa7ad"/>`+T(256,108,"+ H₂O",{fs:12,c:"#005ea3"});
   return s+`</svg>`; };
+/* one formula unit of the ionic compound and its water molecules */
+S.hydPic=(f,n)=>{ const W=170+Math.min(n,5)*44, H=Math.max(110,Math.ceil(n/5)*44+30); let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="One formula unit of ${f} with ${n} water molecule${n>1?"s":""}"><rect width="${W}" height="${H}" fill="#fff"/>`;
+  s+=`<g transform="translate(4 ${(H-100)/2})">${R.molBox(f,1,{w:130,h:100,max:1.3}).replace(/^<svg[^>]*>/,"").replace(/<\/svg>$/,"")}</g>`+T(148,H/2+8,"•",{fs:26,c:"#5f6b72"});
+  for(let i=0;i<n;i++){ const c=i%5, r=Math.floor(i/5); s+=R.molSVG("H2O",182+c*44,24+r*44,{k:.9}); }
+  s+=T(182+Math.min(n,5)*22-4,H-6,`${n} H₂O`,{fs:12,c:"#005ea3"}); return s+`</svg>`; };
 S.HydrateName=function(host){ let done=0, mode="n2f", cur=null;
   const g=A.Game(host,{how:"Formula → Name: name the ionic compound, then add the prefix for the number of water molecules and “-hydrate.” Name → Formula: write the ionic compound’s formula, a dot, then the number of water molecules.",scoreText:()=>`Correct: ${done}`});
   g.seg("Mode",[["n2f","Formula → Name"],["f2n","Name → Formula"]],mode,v=>{ mode=v; next(); });
   g.button("New hydrate",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small data-r="ask"></small><div class="qp-t" data-r="q"></div></div><div data-r="w" style="margin-top:10px"></div>`;
+  g.stage.innerHTML=`<div class="qp"><small data-r="ask"></small><div class="qp-t" data-r="q"></div></div><div class="s6-pic" data-r="pic"></div><div data-r="w" style="margin-top:10px"></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
-  function next(){ g.fresh(); g.msg(""); cur=pick(S.HYD); const [f,nm,n]=cur, full=`${nm} ${S.PREFIX[n]}hydrate`;
+  function next(){ g.fresh(); g.msg(""); cur=pick(S.HYD); const [f,nm,n]=cur, full=`${nm} ${S.PREFIX[n]}hydrate`; $("pic").innerHTML= mode==="n2f"? S.hydPic(f,n) : "";
     if(mode==="n2f"){ $("ask").textContent="Name this hydrate"; $("q").innerHTML=S.f(S.hydF(f,n));
       $("w").innerHTML=`<div class="id-eq"><span>${nm}</span><div class="qc-o" data-r="pf">${A.shuffle(S.PREFIX.slice(1)).slice(0,0).join("")}${S.PREFIX.slice(1).map(p=>`<button type="button" data-v="${p}">${p}-</button>`).join("")}</div><span>hydrate</span></div><p class="muted center" style="font-size:14px">Step 1 is done for you: the ionic compound is ${nm}. Step 2: choose the prefix for ${n>1?"the number of":"one"} water molecule${n>1?"s":""}.</p>`;
       A.$$("[data-v]",$("w")).forEach(b=>b.addEventListener("click",()=>{ A.$$("[data-v]",$("w")).forEach(x=>x.classList.toggle("sel",x===b)); if(b.dataset.v===S.PREFIX[n]){ b.classList.add("right"); done++; g.win(); g.paint(); g.msg(`✔ ${full}: ${n} water molecule${n>1?"s":""} for every formula unit of ${S.f(f)}.`,"good"); } else { b.classList.add("wrong"); g.lose(); g.msg(`Count the water molecules: the number in front of H₂O is ${n}.`,"bad"); } })); }
@@ -7961,7 +7981,7 @@ S.HydrateName=function(host){ let done=0, mode="n2f", cur=null;
       A.$$("input",$("w")).forEach(i=>i.addEventListener("input",()=>B.autoSub&&B.autoSub(i)));
       $("go").addEventListener("click",()=>{ const ion=B.normF($("w").querySelector('[data-k="ion"]').value), k=+$("w").querySelector('[data-k="n"]').value;
         if(ion!==f){ g.lose(); return g.msg(`Step 1: write the formula of ${nm} (criss-cross the charges).`,"bad"); } if(k!==n){ g.lose(); return g.msg(`Step 2: “${S.PREFIX[n]}-” means ${n}.`,"bad"); }
-        done++; g.win(); g.paint(); g.msg(`✔ ${S.f(S.hydF(f,n))}`,"good"); }); } }
+        done++; g.win(); g.paint(); $("pic").innerHTML=S.hydPic(f,n); g.msg(`✔ ${S.f(S.hydF(f,n))}: ${n} water molecule${n>1?"s":""} for every formula unit of ${S.f(f)}.`,"good"); }); } }
   next(); };
 /* heating a hydrate in a crucible: the water leaves, the anhydrous compound stays */
 S.HydrateLab=function(host){ let t=-1, cur=null, last=performance.now(), said=false;
@@ -7991,45 +8011,63 @@ S.HydrateLab=function(host){ let t=-1, cur=null, last=performance.now(), said=fa
     svg.innerHTML=s; requestAnimationFrame(draw); }
   reset(); requestAnimationFrame(draw); };
 
-/* ---------- steel wool + battery: iron combines with oxygen from the air, so the mass goes UP ---------- */
-S.SteelWoolLab=function(host){ let t=-1, last=performance.now(), said=false, M0=0, MA=0, bx=0;
-  const g=A.Game(host,{how:"Read the balance, then press “Touch the battery.” The battery’s current heats the thin iron wires, and the iron reacts with oxygen from the air to form iron oxide. Record the masses, find the mass of oxygen that combined with the iron, then convert it to moles of O₂ (32.00 g/mol).",score:false});
-  g.button("Touch the battery",()=>{ if(t<0) t=0; }); g.button("Reset",()=>reset(),"ghost");
-  g.stage.innerHTML=`<div class="fl-wrap"><svg class="sim" viewBox="0 0 520 330" role="img" aria-label="Steel wool in a dish on a balance. A 9-volt battery touches the wool, the wool glows and turns dark as iron oxide forms, and the mass increases."></svg><div class="nb fl-nb"><h4>Lab notebook</h4><table>
-    <tr><td>Mass of steel wool (before)</td><td><input data-k="b" inputmode="decimal" aria-label="mass before"> g</td></tr>
-    <tr><td>Mass of product (after)</td><td><input data-k="a" inputmode="decimal" aria-label="mass after"> g</td></tr>
-    <tr><td>Mass of oxygen that combined (after − before)</td><td><input data-k="o" inputmode="decimal" aria-label="mass of oxygen"> g</td></tr>
-    <tr><td>Moles of O<sub>2</sub> that reacted</td><td><input data-k="n" inputmode="decimal" aria-label="moles of oxygen"> mol</td></tr></table><div data-r="da" class="mth" style="font-size:15px;margin:6px 0"></div><button class="btn sm" type="button" data-r="chk">Check</button></div></div>`;
-  const svg=g.stage.querySelector("svg"), nb=g.stage.querySelector(".nb"), inp=k=>nb.querySelector(`[data-k="${k}"]`);
-  function reset(){ t=-1; said=false; M0=+S.rnd(2.1,3.4,3).toFixed(2); MA=+(M0+S.rnd(.18,.46,2)).toFixed(2); ["b","a","o","n"].forEach(k=>{ inp(k).value=""; inp(k).classList.remove("ok","no"); }); nb.querySelector('[data-r="da"]').innerHTML=""; g.msg(""); }
-  nb.querySelector('[data-r="chk"]').addEventListener("click",()=>{ const v=k=>A.parseTyped(inp(k).value), mark=(k,ok)=>{ inp(k).classList.toggle("ok",ok); inp(k).classList.toggle("no",!ok); return ok; };
-    if(!mark("b",!!v("b")&&Math.abs(v("b").v-M0)<.006)) return g.msg("Read the balance before touching the battery to the steel wool.","bad");
-    if(t<4.6) return g.msg("Touch the battery to the steel wool and wait until the reaction stops.","warn");
-    if(!mark("a",!!v("a")&&Math.abs(v("a").v-MA)<.006)) return g.msg("Read the balance after the reaction stops.","bad");
-    const dm=+(MA-M0).toFixed(2); if(!mark("o",!!v("o")&&Math.abs(v("o").v-dm)<.006)) return g.msg("Subtract: mass after − mass before. The extra mass is the oxygen that combined with the iron.","bad");
-    const mol=dm/32.00, ok=!!v("n")&&(Math.abs(v("n").v-mol)<=Math.abs(mol)*.012||Math.abs(v("n").v-dm/32)<=Math.abs(mol)*.012); mark("n",ok);
-    nb.querySelector('[data-r="da"]').innerHTML=`${S.q(dm.toFixed(2),"g","O2",1)}${S.cf(1,"mol","O2","32.00","g","O2",0,1)} = ${S.q(S.num(mol,2),"mol","O2")}`;
-    if(!ok) return g.msg(`Convert grams of O₂ to moles: divide by the molar mass of O₂ (2 × 16.00 = 32.00 g/mol).`,"bad");
-    g.msg(`✔ ${dm.toFixed(2)} g of oxygen combined with the iron: ${S.num(mol,2)} mol of O₂ (about ${S.sci(mol*S.AV,2)} molecules). The mass increased because atoms from the air joined the solid. Mass is still conserved: the oxygen came from the air around the dish.`,"good"); });
-  /* a tangle of thin wires */
+/* ---------- steel wool + battery: iron combines with oxygen from the air, so the mass goes UP ----------
+   Steps unlock in order: record the mass → drag the battery onto the steel wool → record the new mass → oxygen gained → moles of O2 (scaffolded). */
+S.SteelWoolLab=function(host){ let t=-1, last=performance.now(), said=false, M0=0, MA=0, step=0, bat=null, drag=false;
+  const g=A.Game(host,{how:"Record the mass of the steel wool in the notebook. Then drag the 9-volt battery onto the steel wool: the current heats the thin iron wires and the iron reacts with oxygen from the air. Record the new mass, find the mass of oxygen that combined with the iron, and convert it to moles of O₂.",score:false});
+  g.button("Reset",()=>reset(),"ghost");
+  g.stage.innerHTML=`<div class="fl-wrap"><svg class="sim" viewBox="0 0 520 330" role="img" aria-label="Steel wool in a dish on a balance and a 9-volt battery. Drag the battery onto the steel wool: the wool glows and turns dark as iron oxide forms, and the mass increases." style="touch-action:none"></svg><div class="nb fl-nb"><h4>Lab notebook</h4><table>
+    <tr data-s="0"><td>1. Mass of steel wool (before)</td><td><input data-k="b" data-sup="1" inputmode="decimal" aria-label="mass before"> g</td></tr>
+    <tr data-s="1"><td>2. Mass of product (after)</td><td><input data-k="a" data-sup="1" inputmode="decimal" aria-label="mass after"> g</td></tr>
+    <tr data-s="2"><td>3. Mass of oxygen that combined (after − before)</td><td><input data-k="o" data-sup="1" inputmode="decimal" aria-label="mass of oxygen"> g</td></tr></table>
+    <div class="sw-mol" data-s="3"><b>4. Moles of O<sub>2</sub> that reacted</b>
+      <div class="sw-row">Molar mass of O<sub>2</sub> = 2 × <input data-k="am" data-sup="1" inputmode="decimal" aria-label="atomic mass of oxygen" style="width:64px"> = <input data-k="mm" data-sup="1" inputmode="decimal" aria-label="molar mass of oxygen gas" style="width:70px"> g/mol</div>
+      <div class="sw-row mth" data-r="da"></div></div>
+    <p class="muted" data-r="tip" style="font-size:13.5px;margin:6px 0 0"></p></div></div>`;
+  const svg=g.stage.querySelector("svg"), nb=g.stage.querySelector(".nb"), inp=k=>nb.querySelector(`[data-k="${k}"]`), val=k=>{ const n=A.parseTyped(inp(k).value); return n?n.v:null; };
+  const tips=["Read the balance and type the mass in box 1.","Drag the battery onto the steel wool (or click the battery and press Enter).","Wait for the reaction to stop.","Read the balance again and type the mass in box 2.","Subtract: mass after − mass before.","Find the molar mass of O₂, then fill in the conversion factor.","✔ Done."];
+  function lock(){ A.$$("[data-s]",nb).forEach(r=>{ const s0=+r.dataset.s; const open= s0===0? true : s0===1? step>=3 : s0===2? step>=4 : step>=5; r.classList.toggle("sw-lock",!open); A.$$("input",r).forEach(i=>i.disabled=!open||i.classList.contains("ok")&&false); });
+    nb.querySelector('[data-r="tip"]').textContent=tips[Math.min(step,6)]; }
+  function daRow(){ const dm=+(MA-M0).toFixed(2); nb.querySelector('[data-r="da"]').innerHTML=`<span>${S.q(dm.toFixed(2),"g","O2")}</span> × <span class="cf"><span class="pr pl">(</span><span class="fr"><span><input data-k="t1" data-sup="1" inputmode="decimal" style="width:54px" aria-label="top number"> ${S.u("mol","O2")}</span><span><input data-k="b1" data-sup="1" inputmode="decimal" style="width:64px" aria-label="bottom number"> ${S.u("g","O2")}</span></span><span class="pr pR">)</span></span> = <input data-k="n" data-sup="1" inputmode="decimal" style="width:96px" aria-label="moles of oxygen"> ${S.u("mol","O2")}`; }
+  const mark=(k,ok)=>{ const i=inp(k); if(!i) return ok; i.classList.toggle("ok",ok); i.classList.toggle("no",!ok&&i.value.trim()!==""); return ok; };
+  function check(){ const dm=+(MA-M0).toFixed(2);
+    if(step===0){ if(mark("b",val("b")!==null&&Math.abs(val("b")-M0)<.006)){ step=1; g.msg("✔ Mass recorded. Now drag the battery onto the steel wool.","good"); } else if(inp("b").value.trim()&&val("b")!==null&&Math.abs(val("b")-M0)>=.006) g.msg("Read the number on the balance display.","warn"); }
+    if(step===3){ if(mark("a",val("a")!==null&&Math.abs(val("a")-MA)<.006)){ step=4; g.msg("✔ The mass went up. Where did the extra mass come from?","good"); } }
+    if(step===4){ if(mark("o",val("o")!==null&&Math.abs(val("o")-dm)<.006)){ step=5; daRow(); wire(); g.msg(`✔ ${dm.toFixed(2)} g of oxygen from the air combined with the iron. Now convert grams of O₂ to moles.`,"good"); } else if(inp("o").value.trim()&&val("o")!==null) g.msg("Subtract the two masses: after − before.","warn"); }
+    if(step===5){ const amOK=val("am")!==null&&(Math.abs(val("am")-16)<.006||val("am")===16); mark("am",amOK); const mmOK=amOK&&val("mm")!==null&&Math.abs(val("mm")-2*val("am"))<.011; mark("mm",mmOK);
+      const M=mmOK?val("mm"):null, t1=val("t1"), b1=val("b1"), fOK=M!==null&&t1===1&&b1!==null&&Math.abs(b1-M)<.011; mark("t1",M!==null&&t1===1); mark("b1",M!==null&&b1!==null&&Math.abs(b1-M)<.011);
+      if(fOK){ const mol=dm/M, n=val("n"), ok=n!==null&&Math.abs(n-mol)<=Math.abs(mol)*.015; mark("n",ok);
+        if(ok){ step=6; g.msg(`✔ ${dm.toFixed(2)} g O₂ ÷ ${M} g/mol = ${S.num(mol,2)} mol of O₂, about ${S.sci(mol*S.AV,2)} molecules. The solid gained mass because atoms from the air joined it; mass is still conserved.`,"good"); } } }
+    lock(); }
+  function wire(){ A.$$("input",nb).forEach(i=>{ if(!i._w){ i._w=1; i.addEventListener("input",check); } }); }
+  function reset(){ t=-1; said=false; step=0; bat={x:430,y:160,on:false}; M0=+S.rnd(2.1,3.4,3).toFixed(2); MA=+(M0+S.rnd(.18,.46,2)).toFixed(2); A.$$("input",nb).forEach(i=>{ i.value=""; i.classList.remove("ok","no"); }); nb.querySelector('[data-r="da"]').innerHTML=""; g.msg(""); wire(); lock(); }
   const wool=(cx,cy,col,glow)=>{ let d=""; for(let i=0;i<60;i++){ const a=i*2.39, r=6+((i*7)%26); d+=`M${(cx+Math.cos(a)*r*1.6).toFixed(1)} ${(cy+Math.sin(a)*r*.55).toFixed(1)}q${((i*13)%30)-15} ${((i*7)%16)-12} ${((i*17)%40)-20} ${((i*5)%10)-3}`; }
     return (glow?`<ellipse cx="${cx}" cy="${cy}" rx="62" ry="22" fill="#ff8a1e" opacity="${glow}" filter="url(#swg)"/>`:"")+`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round"/>`; };
   const mix=(a,b,k)=>{ const h=x=>[1,3,5].map(i=>parseInt(x.slice(i,i+2),16)); const A1=h(a),B1=h(b); return "#"+A1.map((v,i)=>Math.round(v+(B1[i]-v)*k).toString(16).padStart(2,"0")).join(""); };
+  let geo={cx:0,by:0};
+  const start=()=>{ if(t>=0) return; t=0; bat.on=true; step=2; lock(); g.msg("The current heats the iron wires…",""); };
+  svg.addEventListener("pointerdown",e=>{ const [x,y]=B.svgPt(svg,e); if(Math.abs(x-bat.x)<30&&Math.abs(y-bat.y)<46&&!bat.on){ if(step<1){ g.msg("Record the mass of the steel wool (box 1) before you start the reaction.","warn"); return; } drag=true; svg.setPointerCapture(e.pointerId); e.preventDefault(); } });
+  svg.addEventListener("pointermove",e=>{ if(!drag) return; const [x,y]=B.svgPt(svg,e); bat.x=Math.max(20,Math.min(500,x)); bat.y=Math.max(30,Math.min(290,y)); });
+  svg.addEventListener("pointerup",()=>{ if(!drag) return; drag=false; if(Math.abs(bat.x-geo.cx)<85&&Math.abs(bat.y-(geo.by-60))<70) start(); else g.msg("Drop the battery right on top of the steel wool.","warn"); });
+  svg.tabIndex=0; svg.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&!bat.on){ e.preventDefault(); if(step<1) g.msg("Record the mass of the steel wool (box 1) first.","warn"); else start(); } });
   function draw(now){ if(!host.isConnected) return; const dt=Math.min(.05,(now-last)/1000); last=now; if(t>=0&&t<6) t+=dt;
-    const u=Math.max(0,Math.min(1,(t-1)/3.4)), mass=M0+(MA-M0)*u, touch=t>=0&&t<1.2? Math.min(1,t/.8) : t>=1.2&&t<4.6? 1 : t>=4.6? Math.max(0,1-(t-4.6)/.8) : 0;
+    const u=Math.max(0,Math.min(1,(t-1)/3.4)), mass=M0+(MA-M0)*u;
     let s=`<defs><filter id="swg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter></defs><rect width="520" height="330" fill="#fbf7f0"/><rect x="0" y="300" width="520" height="30" fill="#d9c9ac"/>`;
-    const Bl=U.balanceAt(110,120,mass.toFixed(2)+" g",.95); s+=Bl.svg; const cx=Bl.cx, by=Bl.panY-4;
+    const Bl=U.balanceAt(110,120,mass.toFixed(2)+" g",.95); s+=Bl.svg; const cx=Bl.cx, by=Bl.panY-4; geo={cx,by};
     s+=`<path d="M${cx-74} ${by-18}Q${cx} ${by+8} ${cx+74} ${by-18}" fill="#eceae4" stroke="#5f6b72" stroke-width="2.5"/>`;
     const glow= t>=1&&t<4.4? (.35+.25*Math.sin(now/90))*(1-u*.6) : 0;
     s+=wool(cx,by-26,mix("#b9bec2","#3a2c26",u),glow);
     if(glow) for(let i=0;i<10;i++){ const p=((now/600+i/10)%1); s+=`<circle cx="${(cx-50+((i*37)%100)+Math.sin(i*3+now/200)*6).toFixed(1)}" cy="${(by-30-p*40).toFixed(1)}" r="${(2.4*(1-p)).toFixed(2)}" fill="#ffb02e" opacity="${(1-p).toFixed(2)}"/>`; }
-    const bxp=430-(430-cx)*touch, byp=(by-60)-(15)*touch; s+=`<g transform="rotate(90 ${bxp} ${byp})">${B.battery(bxp,byp,{w:70,h:30})}</g>`+S.T(430,by-108,"9-volt battery",{fs:12,c:"#5f6b72"});
+    if(t>=4.6&&bat.on){ bat.on=false; bat.x=430; bat.y=160; }
+    const bx=bat.on? cx : bat.x, byy=bat.on? by-75 : bat.y;
+    if(step===1&&!drag&&!bat.on) s+=`<path d="M${bat.x-40} ${bat.y}C${bat.x-100} ${bat.y-40} ${cx+80} ${by-110} ${cx+40} ${by-70}" fill="none" stroke="#F28C28" stroke-width="2.5" stroke-dasharray="7 6" opacity="${(.5+.5*Math.sin(now/250)).toFixed(2)}"/>`+S.T(bat.x,bat.y+58,"drag me",{fs:13,w:800,c:"#b45f06"});
+    s+=`<g style="cursor:${bat.on?"default":"grab"}" transform="rotate(90 ${bx} ${byy})">${B.battery(bx,byy,{w:70,h:30})}</g>`+S.T(430,98,"9-volt battery",{fs:12,c:"#5f6b72"});
     if(t>=0&&t<4.6) for(let i=0;i<4;i++){ const p=((now/1400+i/4)%1); s+=`<g opacity="${Math.min(1,(1-p)*1.4).toFixed(2)}">${R.molSVG("O2",cx-110+i*30,by-130+p*90,{k:.75})}</g>`; }
     s+=S.T(20,28,"Steel wool (iron, Fe)",{a:"start",fs:16,w:800})+S.T(20,48,t<0?"Before the reaction":t<4.6?"Reacting: O₂ from the air combines with the iron":"After: iron oxide formed, the mass stopped changing",{a:"start",fs:13,c:"#5f6b72"});
     if(t>=0&&t<4.6) s+=S.T(cx-170,by-95,"O₂ from the air",{fs:12,c:"#c40000"});
-    if(t>=4.6&&!said){ said=true; g.msg("The reaction stopped. Read the balance again and record the mass after.",""); }
+    if(t>=4.6&&!said){ said=true; step=3; lock(); g.msg("The reaction stopped. Read the balance again and record the mass in box 2.",""); }
     svg.innerHTML=s; requestAnimationFrame(draw); }
-  host._sw={m:()=>[M0,MA],t:()=>t,go:()=>{ t=5; }};
+  host._sw={m:()=>[M0,MA],t:()=>t,step:()=>step,go:()=>{ if(step<1) step=1; start(); t=5; }};
   reset(); requestAnimationFrame(draw); };
 
 /* ---------- empirical and molecular formulas ---------- */
@@ -8040,10 +8078,12 @@ S.EmpiricalGame=function(host,o={}){ let done=0, mode=o.mode||"emp", cur=null;
   const g=A.Game(host,{how:o.how||"Empirical: divide every subscript by the largest number that divides all of them evenly. Molecular: divide the molar mass of the compound by the mass of the empirical formula, then multiply every subscript by that number.",scoreText:()=>`Correct: ${done}`});
   if(!o.mode) g.seg("Find the",[["emp","Empirical formula"],["mol","Molecular formula"]],mode,v=>{ mode=v; next(); });
   g.button("Check",()=>check()); g.button("New formula",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small data-r="ask"></small><div class="qp-t" data-r="q"></div></div><div data-r="w" style="margin-top:10px"></div>`;
+  g.stage.innerHTML=`<div class="qp"><small data-r="ask"></small><div class="qp-t" data-r="q"></div></div><div class="s6-pic" data-r="pic"></div><div data-r="w" style="margin-top:10px"></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
+  const pic=(f,lab)=>`<div class="s6-pcard">${R.molBox(f,1,{w:200,h:120,max:1.5})}<b>${lab}</b></div>`;
   let k=0; const bx=(key,w=70)=>`<span class="calc-n">${++k}</span><input class="inp id-bx" data-k="${key}" style="width:${w}px" autocomplete="off" aria-label="box ${k}">`;
   function next(){ g.fresh(); g.msg(""); k=0; let f; do{ f=pick(S.MOLEC); } while(cur&&f===cur.f); const E=S.empirical(f); cur={f,E};
+    $("pic").innerHTML= mode==="emp"? pic(f,`One molecule of ${S.f(f)}`) : pic(E.f,`Empirical formula ${S.f(E.f)} (the simplest ratio)`);
     if(mode==="emp"){ $("ask").textContent="Write the empirical formula of"; $("q").innerHTML=`${S.f(f)}`;
       const p=S.parse(f), els=S.order(f);
       $("w").innerHTML=`<div class="tbl-wrap"><table class="nt calc-t"><tr><th>Element</th>${els.map(e=>`<th>${e}</th>`).join("")}</tr><tr><td>Subscripts</td>${els.map(e=>`<td>${p[e]}</td>`).join("")}</tr><tr><td>Divide every subscript by</td><td colspan="${els.length}">${bx("g",60)}</td></tr><tr><td>Lowest ratio</td>${els.map(e=>`<td>${bx("s"+e,54)}</td>`).join("")}</tr></table></div><div class="id-eq" style="margin-top:8px"><span>Empirical formula:</span>${bx("f",140)}</div>`; }
@@ -8054,20 +8094,22 @@ S.EmpiricalGame=function(host,o={}){ let done=0, mode=o.mode||"emp", cur=null;
     if(mode==="emp"){ const p=S.parse(f), els=S.order(f); if(+v("g")!==E.g){ g.lose(); return g.msg(E.g===1?`The subscripts ${els.map(e=>p[e]).join(", ")} have no common factor except 1: divide by 1.`:`What is the largest number that divides ${els.map(e=>p[e]).join(", ")} evenly?`,"bad"); }
       for(const e of els) if(+v("s"+e)!==p[e]/E.g){ g.lose(); return g.msg(`${p[e]} ÷ ${E.g} = ?`,"bad"); }
       if(B.normF(v("f"))!==E.f){ g.lose(); return g.msg("Write the symbols in the same order, with the new subscripts (leave off subscripts of 1).","bad"); }
-      done++; g.win(); g.paint(); g.msg(E.g===1?`✔ ${S.f(f)} is already an empirical formula.`:`✔ ${S.f(f)} ÷ ${E.g} → ${S.f(E.f)}.`,"good"); }
+      done++; g.win(); g.paint(); if(E.g>1) $("pic").innerHTML=pic(f,`Molecule: ${S.f(f)}`)+`<span class="s6-par">÷ ${E.g} →</span>`+pic(E.f,`Simplest ratio: ${S.f(E.f)}`); g.msg(E.g===1?`✔ ${S.f(f)} is already an empirical formula.`:`✔ ${S.f(f)} ÷ ${E.g} → ${S.f(E.f)}: the same ratio of atoms, in the smallest whole numbers.`,"good"); }
     else { const Me=S.mm(E.f), M=S.mm(f), x=Math.round(M/Me); if(!near(v("me"),Me,.03)){ g.lose(); return g.msg(`Add up the atomic masses in ${S.f(E.f)}.`,"bad"); } if(+v("x")!==x){ g.lose(); return g.msg(`${M.toFixed(2)} ÷ ${Me.toFixed(2)} = ? (round to a whole number)`,"bad"); }
       if(B.normF(v("f"))!==f){ g.lose(); return g.msg(`Multiply every subscript in ${S.f(E.f)} by ${x}.`,"bad"); }
-      done++; g.win(); g.paint(); g.msg(`✔ ${S.f(E.f)} × ${x} → ${S.f(f)}.`,"good"); } }
+      done++; g.win(); g.paint(); $("pic").innerHTML=pic(E.f,`Empirical: ${S.f(E.f)}`)+`<span class="s6-par">× ${x} →</span>`+pic(f,`Molecule: ${S.f(f)}`); g.msg(`✔ ${S.f(E.f)} × ${x} → ${S.f(f)}.`,"good"); } }
   next(); };
 /* percent composition → empirical formula (enrichment): assume 100 g, convert to moles, divide by the smallest */
 S.PCT2EMP=[[["C",74.8],["H",25.2]],[["C",40.0],["H",6.7],["O",53.3]],[["Na",39.3],["Cl",60.7]],[["N",30.4],["O",69.6]],[["Fe",69.9],["O",30.1]],[["C",85.6],["H",14.4]],[["K",52.4],["Cl",47.6]],[["S",50.0],["O",50.0]],[["Mg",60.3],["O",39.7]],[["C",92.3],["H",7.7]],[["Al",52.9],["O",47.1]],[["C",52.1],["H",13.1],["O",34.8]]];
 S.PctEmpGame=function(host){ let done=0, cur=null;
   const g=A.Game(host,{how:"Fill in the numbered boxes in order. Assume 100 g, so each percent becomes grams. Convert grams to moles, divide every mole value by the smallest one, and use the whole numbers as subscripts (multiply them all if a value ends in .5).",scoreText:()=>`Solved: ${done}`});
   g.button("Check",()=>check()); g.button("New compound",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small>Determine the empirical formula</small><div class="qp-t" data-r="q"></div></div><div data-r="t" style="margin-top:10px"></div>`;
+  g.stage.innerHTML=`<div class="qp"><small>Determine the empirical formula</small><div class="qp-t" data-r="q"></div></div><div class="s6-pic" data-r="bar"></div><div data-r="t" style="margin-top:10px"></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
   function next(){ g.fresh(); g.msg(""); let c; do{ c=pick(S.PCT2EMP); } while(c===cur); cur=c; let k=0; const bx=(key,w=78)=>`<span class="calc-n">${++k}</span><input class="inp id-bx" data-k="${key}" style="width:${w}px" inputmode="decimal" autocomplete="off" aria-label="box ${k}">`;
     $("q").innerHTML=`A compound is ${c.map(([e,p])=>`${p.toFixed(1)}% ${A.bySym[e.toLowerCase()].name.toLowerCase()}`).join(" and ").replace(/ and (?=.* and )/,", ")} by mass.`;
+    { const W=560; let x=10, sv=`<svg viewBox="0 0 ${W} 86" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="A 100 gram sample split by mass"><rect width="${W}" height="86" fill="#fff"/>`+T(W/2,16,"Assume a 100 g sample:",{fs:13,w:800});
+      c.forEach(([e,p])=>{ const w=(W-20)*p/100; sv+=`<rect x="${x}" y="24" width="${w}" height="34" fill="${(B&&B.ATC&&B.ATC[e])||(R.col?R.col(e):"#9aa7ad")}" stroke="#fff" stroke-width="2"/>`+(w>40?T(x+w/2,46,e,{fs:14,w:800}):"")+T(x+w/2,76,`${p} g`,{fs:12.5,w:800}); x+=w; }); $("bar").innerHTML=sv+`</svg>`; }
     $("t").innerHTML=`<div class="tbl-wrap"><table class="nt calc-t"><tr><th>Element</th><th>Step 1: grams in 100 g</th><th>Step 2: moles (grams ÷ atomic mass)</th><th>Step 3: ÷ smallest moles</th><th>Subscript</th></tr>${c.map(([e])=>`<tr><td><b>${e}</b></td><td>${bx("g"+e,70)}</td><td>${bx("m"+e,90)}</td><td>${bx("r"+e,70)}</td><td>${bx("s"+e,54)}</td></tr>`).join("")}</table></div><div class="id-eq" style="margin-top:8px"><span>Step 4: empirical formula</span>${bx("f",140)}</div>`;
     A.$$("[data-k=\"f\"]",$("t")).forEach(i=>i.addEventListener("input",()=>B.autoSub&&B.autoSub(i))); B.orderBoxes($("t")); }
   function ans(){ const mol=cur.map(([e,p])=>p/S.am(e)), mn=Math.min(...mol), r=mol.map(m=>m/mn); let mult=1; for(const m of [1,2,3,4]){ if(r.every(x=>Math.abs(x*m-Math.round(x*m))<.12)){ mult=m; break; } } return {mol,r,sub:r.map(x=>Math.round(x*mult)),mult}; }
@@ -8109,27 +8151,68 @@ S.LimitSim=function(host){ let nH=6, nO=2, t=-1, t0=0;
   host.querySelector('[data-r="go"]').addEventListener("click",()=>{ t=0; t0=performance.now(); requestAnimationFrame(draw); });
   msg.innerHTML="Press “React.”"; draw(); };
 /* limiting reagent, theoretical yield, leftover excess and percent yield: one scaffolded calculation */
-S.LIMRX=[{r:["Al","Cl2"],p:["AlCl3"],c:[2,3,2],m:[5.0,4.0]},{r:["Ca","H2O"],p:["Ca(OH)2","H2"],c:[1,2,1,1],m:[9.2,9.2]},{r:["N2","H2"],p:["NH3"],c:[1,3,2],m:[9.5,1.4]},{r:["H2","O2"],p:["H2O"],c:[2,1,2],m:[4.0,16.0]},{r:["Mg","O2"],p:["MgO"],c:[2,1,2],m:[6.0,6.0]},{r:["CH4","O2"],p:["CO2","H2O"],c:[1,2,1,2],m:[8.0,20.0]},{r:["Fe","O2"],p:["Fe2O3"],c:[4,3,2],m:[11.2,4.0]},{r:["Na","Cl2"],p:["NaCl"],c:[2,1,2],m:[4.6,10.0]}];
-S.LimitingGame=function(host){ let done=0, cur=null, mode="lim";
-  const g=A.Game(host,{how:"Fill in the numbered boxes in order. Convert the mass of each reactant to moles, then use the mole ratio to find how many moles of product each reactant could make. The reactant that makes less product is the limiting reagent.",scoreText:()=>`Solved: ${done}`});
+/* each problem: a story, the reaction, the starting masses and the product to find (index into reactants + products) */
+S.LIMRX=[
+ {r:["Al","Cl2"],p:["AlCl3"],c:[2,3,2],m:[5.0,4.0],q:0,story:(a,b)=>`Aluminum chloride is used to make antiperspirants and as a catalyst in the plastics industry. A chemist drops ${a} g of aluminum foil into a sealed flask that contains ${b} g of chlorine gas. The foil burns brightly as aluminum chloride forms.`},
+ {r:["Ca","H2O"],p:["Ca(OH)2","H2"],c:[1,2,1,1],m:[9.2,9.2],q:1,story:(a,b)=>`Calcium metal reacts with water and bubbles as hydrogen gas is released. A student adds ${a} g of calcium turnings to a beaker containing ${b} g of water and collects the hydrogen gas.`},
+ {r:["N2","H2"],p:["NH3"],c:[1,3,2],m:[9.5,1.4],q:0,story:(a,b)=>`Fertilizer factories make ammonia from nitrogen in the air and hydrogen gas (the Haber process). A small test reactor is loaded with ${a} g of nitrogen gas and ${b} g of hydrogen gas.`},
+ {r:["H2","O2"],p:["H2O"],c:[2,1,2],m:[4.0,16.0],q:0,story:(a,b)=>`Fuel cells on spacecraft combine hydrogen and oxygen to make electricity, and the astronauts drink the water they produce. A fuel cell is supplied with ${a} g of hydrogen gas and ${b} g of oxygen gas.`},
+ {r:["Mg","O2"],p:["MgO"],c:[2,1,2],m:[6.0,6.0],q:0,story:(a,b)=>`Magnesium burns with a blinding white flame, which is why it is used in flares and fireworks. A ${a} g strip of magnesium ribbon is burned inside a container holding ${b} g of oxygen gas.`},
+ {r:["CH4","O2"],p:["CO2","H2O"],c:[1,2,1,2],m:[8.0,20.0],q:0,story:(a,b)=>`A gas stove burns methane, the main part of natural gas. A burner is supplied with ${a} g of methane and ${b} g of oxygen gas. Engineers need to know how much carbon dioxide the stove releases.`},
+ {r:["Fe","O2"],p:["Fe2O3"],c:[4,3,2],m:[11.2,4.0],q:0,story:(a,b)=>`Disposable hand warmers get hot because iron powder rusts quickly when the packet is opened to the air. A hand warmer contains ${a} g of iron powder, and ${b} g of oxygen gas from the air reaches it.`},
+ {r:["Na","Cl2"],p:["NaCl"],c:[2,1,2],m:[4.6,10.0],q:0,story:(a,b)=>`Sodium is a soft, reactive metal and chlorine is a toxic gas, yet together they make table salt. A chemist reacts ${a} g of sodium with ${b} g of chlorine gas.`}];
+/* rounded whole-number atomic masses are accepted too */
+const mmOK=(f,v)=>v!=null&&(Math.abs(v-S.mm(f))<=.011||Math.abs(v-Object.entries(S.parse(f)).reduce((t,[e,n])=>t+n*Math.round(S.am(e)),0))<.001);
+S.LimitingGame=function(host,o={}){ let done=0, cur=null, mode=o.mode||"lim", st=null;
+  const g=A.Game(host,{how:"Read the problem. Step 1: for each reactant, build the conversion: grams → moles (molar mass) → moles of product (mole ratio). The table fills in as you finish each one. Step 2: the reactant that makes less product runs out first: it is the limiting reagent.",scoreText:()=>`Solved: ${done}`});
   g.seg("Find",[["lim","Limiting reagent"],["yield","Theoretical & percent yield"]],mode,v=>{ mode=v; next(); });
-  g.button("Check",()=>check()); g.button("New problem",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small>Problem</small><div class="qp-t txt" data-r="q"></div></div><div data-r="t" style="margin-top:10px"></div>`;
+  g.button("New problem",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="qp"><small>Problem</small><div class="qp-t txt" data-r="q" style="font-size:18px!important"></div></div><div data-r="t" style="margin-top:10px;display:flex;flex-direction:column;gap:12px"></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
-  function calc(c){ const [a,b]=c.r, P=c.p[0], n=c.r.length, molA=c.m[0]/S.mm(a), molB=c.m[1]/S.mm(b), pA=molA*c.c[n]/c.c[0], pB=molB*c.c[n]/c.c[1], lim=pA<=pB?0:1, prod=Math.min(pA,pB), theo=prod*S.mm(P); return {molA,molB,pA,pB,lim,theo,P}; }
-  function next(){ g.fresh(); g.msg(""); let c; do{ c=pick(S.LIMRX); } while(c===cur); cur=c; let k=0; const bx=(key,w=82)=>`<span class="calc-n">${++k}</span><input class="inp id-bx" data-k="${key}" style="width:${w}px" inputmode="decimal" autocomplete="off" aria-label="box ${k}">`;
-    const X=calc(c); c.actual=+(X.theo*S.rnd(.62,.94,2)).toPrecision(3);
-    $("q").innerHTML=`${c.m[0].toFixed(1)} g of ${S.f(c.r[0])} react with ${c.m[1].toFixed(1)} g of ${S.f(c.r[1])}.<div class="s6-eq">${S.eqHTML(c)}</div>${mode==="yield"?`The reaction actually produces ${S.num(c.actual)} g of ${S.f(X.P)}.`:""}`;
-    $("t").innerHTML=`<div class="tbl-wrap"><table class="nt calc-t"><tr><th>Reactant</th><th>Mass (g)</th><th>Moles (mass ÷ molar mass)</th><th>Moles of ${S.f(X.P)} it could make (× mole ratio)</th></tr>${c.r.map((f,i)=>`<tr><td><b>${S.f(f)}</b> <small class="muted">(${S.mm(f).toFixed(2)} g/mol)</small></td><td>${c.m[i].toFixed(1)}</td><td>${bx("m"+i)}</td><td>${bx("p"+i)}</td></tr>`).join("")}</table></div>
-      <div class="id-eq" style="margin-top:8px"><span>Limiting reagent:</span><div class="qc-o" data-r="lim">${c.r.map((f,i)=>`<button type="button" data-v="${i}">${S.f(f)}</button>`).join("")}</div></div>
-      ${mode==="yield"?`<div class="tbl-wrap" style="margin-top:8px"><table class="nt calc-t"><tr><td>Theoretical yield: moles of ${S.f(X.P)} from the limiting reagent × ${S.mm(X.P).toFixed(2)} g/mol</td><td>${bx("th",90)} g</td></tr><tr><td>Percent yield = (actual yield ÷ theoretical yield) × 100</td><td>${bx("py",80)} %</td></tr></table></div>`:""}`;
-    $("t")._lim=null; A.$$('[data-r="lim"] button',$("t")).forEach(b=>b.addEventListener("click",()=>{ $("t")._lim=+b.dataset.v; A.$$('[data-r="lim"] button',$("t")).forEach(x=>x.classList.toggle("sel",x===b)); }));
-    B.orderBoxes($("t")); }
-  function check(){ const c=cur, X=calc(c), v=k=>$("t").querySelector(`[data-k="${k}"]`).value, n=c.r.length;
-    for(let i=0;i<2;i++){ const mol=i?X.molB:X.molA, p=i?X.pB:X.pA; if(!near(v("m"+i),mol,Math.max(.006,mol*.01))){ g.lose(); return g.msg(`${c.m[i].toFixed(1)} g ÷ ${S.mm(c.r[i]).toFixed(2)} g/mol = ?`,"bad"); } if(!near(v("p"+i),p,Math.max(.006,p*.012))){ g.lose(); return g.msg(`Mole ratio: ${c.c[i]} mol ${c.r[i]} → ${c.c[n]} mol ${X.P}. Multiply by ${c.c[n]}/${c.c[i]}.`,"bad"); } }
-    if($("t")._lim===null){ return g.msg("Choose the limiting reagent.","warn"); } if($("t")._lim!==X.lim){ g.lose(); return g.msg("The limiting reagent is the one that makes the smaller amount of product.","bad"); }
-    if(mode==="yield"){ if(!near(v("th"),X.theo,X.theo*.012)){ g.lose(); return g.msg(`${Math.min(X.pA,X.pB).toFixed(3)} mol × ${S.mm(X.P).toFixed(2)} g/mol = ?`,"bad"); } const py=c.actual/X.theo*100; if(!near(v("py"),py,.6)){ g.lose(); return g.msg(`(${S.num(c.actual)} g ÷ ${X.theo.toFixed(2)} g) × 100 = ?`,"bad"); } }
-    done++; g.win(); g.paint(); g.msg(`✔ ${S.f(c.r[X.lim])} is the limiting reagent; ${S.f(c.r[1-X.lim])} is in excess.${mode==="yield"?` Theoretical yield ${X.theo.toFixed(1)} g; percent yield ${(c.actual/X.theo*100).toFixed(1)}%.`:""}`,"good"); }
+  const all=c=>c.r.concat(c.p);
+  function calc(c){ const P=c.p[c.q], cP=c.c[c.r.length+c.q]; const mol=c.mm.map((m,i)=>m/S.mm(c.r[i])), pr=mol.map((m,i)=>m*cP/c.c[i]); const lim=pr[0]<=pr[1]?0:1; return {P,cP,mol,pr,lim,theo:pr[lim]*S.mm(P)}; }
+  const inp=(k,w=70,lab="")=>`<input class="lr-in" data-k="${k}" data-sup="1" inputmode="decimal" autocomplete="off" style="width:${w}px" aria-label="${lab||k}">`;
+  const cfI=(top,bot)=>`<span class="cf"><span class="pr pl">(</span><span class="fr"><span>${top}</span><span>${bot}</span></span><span class="pr pR">)</span></span>`;
+  const val=k=>{ const el=g.stage.querySelector(`[data-k="${k}"]`); const n=el&&A.parseTyped(el.value); return n?n.v:null; };
+  const mark=(k,ok)=>{ const el=g.stage.querySelector(`[data-k="${k}"]`); if(!el) return ok; el.classList.toggle("ok",ok); el.classList.toggle("no",!ok&&el.value.trim()!==""); return ok; };
+  function next(){ g.fresh(); g.msg(""); let c0; do{ c0=pick(S.LIMRX); } while(c0===cur); cur=c0; const c=cur; c.mm=c.m.map(x=>+(x*S.rnd(.85,1.15,3)).toFixed(1)); const X=calc(c); st={row:0,done:[false,false],lim:null,theo:null};
+    c.actual=+(X.theo*S.rnd(.62,.94,2)).toPrecision(3);
+    $("q").innerHTML=`${c.story(c.mm[0].toFixed(1),c.mm[1].toFixed(1))}<div class="s6-eq">${S.eqHTML(c)}</div><b>${mode==="yield"?`The reaction actually produces ${S.num(c.actual)} g of ${S.f(X.P)}. What are the theoretical yield and the percent yield of ${S.f(X.P)}?`:`Which reactant is the limiting reagent? How many moles of ${S.f(X.P)} can form?`}</b>`;
+    const P=X.P, row=i=>{ const R0=c.r[i]; return `<div class="lr-row" data-row="${i}"><div class="lr-h">Step 1${i?"b":"a"}: How much ${S.f(P)} could ${c.mm[i].toFixed(1)} g of ${S.f(R0)} make?</div><div class="mth lr-eq">${S.q(c.mm[i].toFixed(1),"g",R0)} × ${cfI(`1 ${S.u("mol",R0)}`,`${inp("mm"+i,74,"molar mass of "+R0)} ${S.u("g",R0)}`)} × ${cfI(`${inp("ct"+i,44,"coefficient of "+P)} ${S.u("mol",P)}`,`${inp("cb"+i,44,"coefficient of "+R0)} ${S.u("mol",R0)}`)} = ${inp("x"+i,90,"moles of "+P)} ${S.u("mol",P)}</div><p class="muted lr-tip">Molar mass of ${S.f(R0)} on the bottom; the coefficients from the balanced equation in the mole ratio.</p></div>`; };
+    $("t").innerHTML=`${row(0)}${row(1)}
+      <div class="lr-sum"><div class="tbl-wrap"><table class="nt"><tr><th>Reactant</th><th>Starting mass</th><th>Moles of ${S.f(P)} it could make</th></tr>${c.r.map((f,i)=>`<tr data-tr="${i}"><td><b>${S.f(f)}</b></td><td>${c.mm[i].toFixed(1)} g</td><td data-cell="${i}">—</td></tr>`).join("")}</table></div><div data-r="bars"></div></div>
+      <div class="lr-row" data-row="2"><div class="lr-h">Step 2: Which reactant runs out first?</div><div class="qc-o" data-r="lim" style="justify-content:center">${c.r.map((f,i)=>`<button type="button" data-v="${i}">${S.f(f)}</button>`).join("")}</div></div>
+      ${mode==="yield"?`<div class="lr-row" data-row="3"><div class="lr-h">Step 3: Theoretical yield: convert the moles of ${S.f(P)} from the limiting reagent to grams.</div><div class="mth lr-eq"><span data-r="lmol">?</span> ${S.u("mol",P)} × ${cfI(`${inp("mp",80,"molar mass of "+P)} ${S.u("g",P)}`,`1 ${S.u("mol",P)}`)} = ${inp("th",96,"theoretical yield")} ${S.u("g",P)}</div></div>
+      <div class="lr-row" data-row="4"><div class="lr-h">Step 4: Percent yield</div><div class="mth lr-eq">% yield = ${cfI(`${inp("ac",80,"actual yield")} g <small>actual</small>`,`${inp("tt",80,"theoretical yield")} g <small>theoretical</small>`)} × 100 = ${inp("py",80,"percent yield")} %</div><div data-r="meter"></div></div>`:""}`;
+    A.$$(".lr-in",$("t")).forEach(i=>i.addEventListener("input",live));
+    A.$$('[data-r="lim"] button',$("t")).forEach(b=>b.addEventListener("click",()=>pickLim(+b.dataset.v,b)));
+    bars(); lock(); }
+  function lock(){ const open=[true,st.done[0],st.done[0]&&st.done[1],st.lim!==null,st.theo!==null];
+    A.$$(".lr-row",$("t")).forEach(r=>{ const k=+r.dataset.row; r.classList.toggle("lr-lock",!open[k]); A.$$("input,button",r).forEach(x=>{ if(!x.classList.contains("ok")) x.disabled=!open[k]; }); }); }
+  /* live checking: each box turns green when right; a finished row fills the table and its bar */
+  function live(){ const c=cur, X=calc(c);
+    for(let i=0;i<2;i++){ if(st.done[i]) continue; const M=val("mm"+i), okM=mark("mm"+i,mmOK(c.r[i],M)), okT=mark("ct"+i,val("ct"+i)===X.cP), okB=mark("cb"+i,val("cb"+i)===c.c[i]);
+      if(okM&&okT&&okB){ const want=c.mm[i]/M*X.cP/c.c[i], x=val("x"+i), ok=mark("x"+i,x!==null&&Math.abs(x-want)<=Math.abs(want)*.015);
+        if(ok){ st.done[i]=true; st.pr=st.pr||[]; st.pr[i]=x; g.stage.querySelector(`[data-cell="${i}"]`).innerHTML=`<b>${S.num(x,3)} mol</b>`; g.msg(`✔ ${c.mm[i].toFixed(1)} g of ${S.f(c.r[i])} could make ${S.num(x,3)} mol of ${S.f(X.P)}.${i===0?" Now the other reactant.":" Compare the two amounts."}`,"good"); bars(); } } }
+    if(mode==="yield"&&st.theo===null&&st.lim!==null){ const okM=mark("mp",mmOK(X.P,val("mp"))); if(okM){ const want=st.pr[st.lim]*val("mp"), th=val("th"); if(mark("th",th!==null&&Math.abs(th-want)<=want*.015)){ st.theo=th; g.msg(`✔ The theoretical yield is ${S.num(th,3)} g of ${S.f(X.P)}: the most that can form.`,"good"); } } }
+    if(mode==="yield"&&st.theo!==null&&!st.fin){ const okA=mark("ac",val("ac")!==null&&Math.abs(val("ac")-c.actual)<1e-6), okT=mark("tt",val("tt")!==null&&Math.abs(val("tt")-st.theo)<.011);
+      if(okA&&okT){ const want=c.actual/st.theo*100, py=val("py"); if(mark("py",py!==null&&Math.abs(py-want)<.6)){ st.fin=true; done++; g.win(); g.paint(); meter(want); g.msg(`✔ Percent yield = ${want.toFixed(1)}%. Only ${S.num(c.actual)} g of the possible ${S.num(st.theo,3)} g was collected.`,"good"); } } }
+    lock(); }
+  function pickLim(i,b){ const c=cur, X=calc(c); if(st.lim!==null) return; const ok=Math.abs(st.pr[i]-Math.min(...st.pr))<1e-9;
+    if(!ok){ b.classList.add("wrong"); g.lose(); g.msg("Look at the table: the limiting reagent is the reactant that makes the smaller amount of product.","bad"); return; }
+    st.lim=i; b.classList.add("right"); A.$$('[data-r="lim"] button',$("t")).forEach(x=>x.disabled=true); bars();
+    g.stage.querySelector(`[data-tr="${i}"]`).classList.add("lr-limrow");
+    g.msg(`✔ ${S.f(c.r[i])} runs out first: it is the limiting reagent. ${S.f(c.r[1-i])} is the excess reagent. Only ${S.num(st.pr[i],3)} mol of ${S.f(X.P)} can form.${mode==="yield"?" Now find the theoretical yield.":""}`,"good");
+    if(mode==="yield"){ g.stage.querySelector('[data-r="lmol"]').innerHTML=S.num(st.pr[i],3); } else { done++; g.win(); g.paint(); } lock(); }
+  /* two bars: how much product each reactant could make; the shorter one limits the reaction */
+  function bars(){ const c=cur, X=calc(c), W=560, pr=(st.pr||[]); const max=Math.max(...X.pr)*1.08; let s=`<svg viewBox="0 0 ${W} 130" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Moles of product each reactant could make"><rect width="${W}" height="130" fill="#fff"/>`;
+    c.r.forEach((f,i)=>{ const y=18+i*52, have=st.done[i], w=have? (W-280)*pr[i]/max : 0, lim=st.lim===i;
+      s+=T(8,y+24,S.svgTxt(S.f(f)),{a:"start",fs:15,w:800})+`<rect x="70" y="${y}" width="${W-280}" height="34" rx="6" fill="#f3f6f7" stroke="#d5e3ea" stroke-dasharray="5 4"/>`;
+      if(have) s+=`<rect class="s6-grow" x="70" y="${y}" width="${w.toFixed(1)}" height="34" rx="6" fill="${lim?"#F28C28":st.lim!==null?"#9fc4d6":"#5aa5d6"}"/>`+T(78+w,y+23,`${S.num(pr[i],3)} mol ${S.svgTxt(S.f(X.P))}${lim?" (limiting)":st.lim!==null?" (excess)":""}`,{a:"start",fs:13,w:800}); });
+    s+=T(W/2,124,st.done[0]&&st.done[1]?"The shorter bar runs out first: that reactant limits how much product forms.":"Each bar fills in when you finish that conversion.",{fs:12.5,c:"#5f6b72"});
+    $("bars")&&(g.stage.querySelector('[data-r="bars"]').innerHTML=s+`</svg>`); }
+  function meter(p){ const W=520; g.stage.querySelector('[data-r="meter"]').innerHTML=`<svg viewBox="0 0 ${W} 70" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Percent yield ${p.toFixed(1)} percent"><rect width="${W}" height="70" fill="#fff"/><rect x="10" y="10" width="${W-20}" height="30" rx="6" fill="#f3f6f7" stroke="#9fc4d6"/><rect class="s6-grow" x="10" y="10" width="${((W-20)*Math.min(100,p)/100).toFixed(1)}" height="30" rx="6" fill="#00B050"/>${T(W/2,31,`${p.toFixed(1)}% of the theoretical yield was collected`,{fs:13,w:800})}${T(10,58,"0%",{a:"start",fs:11,c:"#5f6b72"})}${T(W-10,58,"100% (theoretical yield)",{a:"end",fs:11,c:"#5f6b72"})}</svg>`; }
+  host._lr={cur:()=>cur,calc:()=>calc(cur),st:()=>st};
   next(); };
 })();
 
@@ -8141,6 +8224,11 @@ S.pairArt=(left,right,toRight,toLeft,o={})=>{ const W=620, H=210, T=S.T; return 
   <path d="M206 78C270 30 350 30 414 78" fill="none" stroke="#E00000" stroke-width="3.5"/><path d="M416 80l-15 -3l8 -12z" fill="#E00000"/>${T(310,34,toRight,{fs:22,w:800,c:"#c40000"})}
   <path d="M414 132C350 180 270 180 206 132" fill="none" stroke="#005ea3" stroke-width="3.5"/><path d="M204 130l15 3l-8 12z" fill="#005ea3"/>${T(310,196,toLeft,{fs:22,w:800,c:"#005ea3"})}</svg>`; };
 S.wk=(title,steps)=>({title,steps});
+/* a hydrate's mass split into the anhydrous compound and the water */
+S.hydBar=(f,n)=>{ const T=S.T, W=560, hf=S.hydF(f,n), M=S.mm(hf), mw=n*S.mm("H2O"), ma=M-mw, w1=(W-20)*ma/M; return `<svg viewBox="0 0 ${W} 110" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="${f} hydrate: ${(mw/M*100).toFixed(1)} percent water by mass"><rect width="${W}" height="110" fill="#fff"/>${T(W/2,18,`1 mole of ${S.svgTxt(S.f(hf))}: ${M.toFixed(2)} g`,{fs:13.5,w:800})}<rect x="10" y="28" width="${w1}" height="40" fill="#cfd8dc" stroke="#fff" stroke-width="2"/><rect x="${10+w1}" y="28" width="${W-20-w1}" height="40" fill="#8fc9ee" stroke="#fff" stroke-width="2"/>${T(10+w1/2,53,`${S.svgTxt(S.f(f))} (anhydrous)`,{fs:13,w:800})}${T(10+w1+(W-20-w1)/2,53,`${n} H₂O`,{fs:13,w:800,c:"#005ea3"})}${T(10+w1/2,90,`${ma.toFixed(2)} g (${(ma/M*100).toFixed(1)}%)`,{fs:12.5,w:700})}${T(10+w1+(W-20-w1)/2,90,`${mw.toFixed(2)} g (${(mw/M*100).toFixed(1)}%)`,{fs:12.5,w:700,c:"#005ea3"})}</svg>`; };
+/* theoretical yield vs. actual yield */
+S.yieldArt=(theo,act,what)=>{ const T=S.T, W=560, w=(W-200)*(+act)/(+theo); return `<svg viewBox="0 0 ${W} 130" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Theoretical yield ${theo} grams; actual yield ${act} grams; percent yield ${(+act/+theo*100).toFixed(1)} percent"><rect width="${W}" height="130" fill="#fff"/>${T(10,40,"Theoretical yield",{a:"start",fs:13.5,w:800})}<rect x="150" y="20" width="${W-200}" height="30" rx="6" fill="#d6eaf7" stroke="#5aa5d6"/>${T(150+(W-200)/2,41,`${theo} g of ${what} (the maximum)`,{fs:13,w:800})}${T(10,88,"Actual yield",{a:"start",fs:13.5,w:800})}<rect x="150" y="68" width="${w.toFixed(1)}" height="30" rx="6" fill="#00B050"/><rect x="${(150+w).toFixed(1)}" y="68" width="${(W-200-w).toFixed(1)}" height="30" rx="6" fill="none" stroke="#9aa7ad" stroke-dasharray="5 4"/>${T(150+w/2,89,`${act} g collected`,{fs:13,w:800,c:"#fff"})}${T(W/2+70,122,`% yield = (${act} g ÷ ${theo} g) × 100 = ${(+act/+theo*100).toFixed(1)}%`,{fs:13.5,w:800,c:"#00843c"})}</svg>`; };
+
 /* several worked examples behind labeled tabs, so only one shows at a time */
 S.workedTabs=(host,list)=>{ host.innerHTML=`<div class="controls s6-wtabs" style="justify-content:center"><span class="ctl-label">Worked example</span><div class="seg" role="group" aria-label="Worked examples">${list.map((x,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===0}">${x.label}</button>`).join("")}</div></div><div data-r="w"></div>`;
   const w=host.querySelector('[data-r="w"]'); const show=i=>{ w.innerHTML=S.worked(list[i].title,list[i].steps); A.$$(".seg button",host).forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.i===i))); };
@@ -8149,4 +8237,1281 @@ S.workedTabs=(host,list)=>{ host.innerHTML=`<div class="controls s6-wtabs" style
 S.worked=(title,steps)=>`<div class="exbox">${title}</div>`+steps.map(([t,m],i)=>`${i?`<div class="sarr"><svg width="34" height="26" viewBox="0 0 34 26" aria-hidden="true"><path d="M10 0h14v12h8L17 26 2 12h8z" fill="#2E75D6"/></svg></div>`:""}<div class="sbox" style="grid-template-columns:minmax(150px,260px) minmax(0,1fr)"><div class="st">${t}</div><div class="sm"><span class="mth">${m}</span></div></div>`).join("");
 /* an equivalence and the two conversion factors made from it */
 S.eqFig=(a,b,note)=>`<div class="s6-eqfig"><div><b>Equivalence</b><div class="mth" style="font-size:22px;justify-content:center">${S.q(a[0],a[1],a[2])} = ${S.q(b[0],b[1],b[2])}</div></div><div><b>Conversion factors</b><div class="mth" style="font-size:22px;gap:28px;display:flex;flex-wrap:wrap;justify-content:center">${S.cf(b[0],b[1],b[2],a[0],a[1],a[2])}${S.cf(a[0],a[1],a[2],b[0],b[1],b[2])}</div></div>${note?`<p class="muted" style="margin:4px 0 0;font-size:14px">${note}</p>`:""}</div>`;
+})();
+
+/* ================= STUDENT NOTEBOOK =================
+   A school-notebook window that follows the student from page to page (localStorage "chemNotebook").
+   Tabs: Notes · Equation Tool (drag an equation, givens → substitution → answer with units, checked)
+         · Equation Builder (fractions, exponents, subscripts, symbols) · Calculator · Save & Export (PDF, Word, backup).
+   Opens from the "Notebook" button in the top bar, or from the notebook icon on any section heading
+   (in a Google Sites embed the window opens next to that section). notebook.html is a full-page version. */
+(function(){
+"use strict";
+const A=window.AS; if(!A) return;
+const NB=A.Notebook={};
+const KEY="chemNotebook";
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+
+/* ---------- storage ---------- */
+const blank=()=>({v:1,name:"",entries:[]});
+function load(){ try{ const d=JSON.parse(localStorage.getItem(KEY)||"null"); if(d&&Array.isArray(d.entries)) return d; }catch(e){} return blank(); }
+let D=load(), views=[];
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(D)); }catch(e){} views.forEach(f=>f()); }
+window.addEventListener("storage",e=>{ if(e.key===KEY){ D=load(); views.forEach(f=>f()); } });
+NB.data=()=>D; NB.setData=d=>{ if(d&&Array.isArray(d.entries)){ D=d; save(); } };
+
+/* where the student is */
+let SLUG="";
+const pageInfo=()=>{ const h=document.querySelector(".hero h1"); return {slug:SLUG, title:(h?h.textContent:document.title).trim()}; };
+
+/* ---------- chemistry text: H2O → H₂O, Ca^2+ → Ca²⁺, x10^23 → ×10²³, -> → → ---------- */
+NB.fmt=function(s){
+  let t=esc(s);
+  t=t.replace(/&lt;=&gt;|&lt;-&gt;/g,"⇌").replace(/-&gt;/g,"→").replace(/\bdelta\s?/gi,"Δ");
+  t=t.replace(/(\d)\s*[x×*]\s*10\s*\^\s*\(?([-−+]?\d+)\)?/g,(m,a,e)=>`${a} × 10<sup>${e.replace("-","−")}</sup>`);
+  t=t.replace(/\^\(([^)]*)\)/g,"<sup>$1</sup>").replace(/\^([+\-−]?[\d.]*[+\-−]?)/g,(m,e)=>e?`<sup>${e.replace(/-/g,"−")}</sup>`:m);
+  t=t.replace(/([A-Z][a-z]?|\))(\d+)(?![^<]*<\/sup>)/g,"$1<sub>$2</sub>");
+  t=t.replace(/_(\w+)/g,"<sub>$1</sub>").replace(/\b([cd]?m)3\b/g,"$1³").replace(/\b([cd]?m)\^?2\b(?!<)/g,(m,a)=>a+"²");
+  return t.replace(/\n/g,"<br>");
+};
+
+/* ---------- equations ---------- */
+const Vr=(k,html,name,u,o={})=>Object.assign({k,html,name,u},o);
+const F=(n,d)=>({f:[n,d]}), v=k=>({v:k});
+NB.EQS=[
+ {id:"gas",grp:"Reference Table",name:"Combined gas law",
+  vars:[Vr("P1","P<sub>1</sub>","initial pressure",["atm","kPa"]),Vr("V1","V<sub>1</sub>","initial volume",["L","mL"]),Vr("T1","T<sub>1</sub>","initial temperature",["K"]),
+        Vr("P2","P<sub>2</sub>","final pressure",["atm","kPa"]),Vr("V2","V<sub>2</sub>","final volume",["L","mL"]),Vr("T2","T<sub>2</sub>","final temperature",["K"])],
+  res:x=>x.P1*x.V1/x.T1-x.P2*x.V2/x.T2, lhs:"P2",
+  disp:[F([v("P1"),v("V1")],[v("T1")]),"=",F([v("P2"),v("V2")],[v("T2")])],
+  pair:{P1:"P2",P2:"P1",V1:"V2",V2:"V1",T1:"T2",T2:"T1"}},
+ {id:"heat",grp:"Reference Table",name:"Heat (temperature change)",
+  vars:[Vr("q","q","heat",["J","kJ"]),Vr("m","m","mass",["g"]),Vr("c","c","specific heat capacity",["J/g·K","J/g·°C"]),Vr("dT","ΔT","change in temperature",["K","°C"])],
+  res:x=>x.q-x.m*x.c*x.dT, lhs:"q", disp:[v("q"),"=",v("m"),v("c"),v("dT")]},
+ {id:"fus",grp:"Reference Table",name:"Heat of fusion",
+  vars:[Vr("q","q","heat",["J","kJ"]),Vr("m","m","mass",["g"]),Vr("Hf","H<sub>f</sub>","heat of fusion",["J/g"])],
+  res:x=>x.q-x.m*x.Hf, lhs:"q", disp:[v("q"),"=",v("m"),v("Hf")], unitOf:{q:["J"]}},
+ {id:"vap",grp:"Reference Table",name:"Heat of vaporization",
+  vars:[Vr("q","q","heat",["J","kJ"]),Vr("m","m","mass",["g"]),Vr("Hv","H<sub>v</sub>","heat of vaporization",["J/g"])],
+  res:x=>x.q-x.m*x.Hv, lhs:"q", disp:[v("q"),"=",v("m"),v("Hv")], unitOf:{q:["J"]}},
+ {id:"ppm",grp:"Reference Table",name:"Parts per million",
+  vars:[Vr("ppm","ppm","parts per million",["ppm"]),Vr("ms","mass of solute","mass of solute",["g"]),Vr("mt","mass of solution","mass of solution",["g"])],
+  res:x=>x.ppm-x.ms/x.mt*1e6, lhs:"ppm", disp:[v("ppm"),"=",F([v("ms")],[v("mt")]),"× 1 000 000"]},
+ {id:"mol",grp:"Reference Table",name:"Molarity (n = MV)",
+  vars:[Vr("n","n","moles",["mol"]),Vr("M","M","molarity",["M","mol/L"]),Vr("V","V","volume",["L"])],
+  res:x=>x.n-x.M*x.V, lhs:"n", disp:[v("n"),"=",v("M"),v("V")]},
+ {id:"kel",grp:"Reference Table",name:"Kelvin temperature",
+  vars:[Vr("K","K","temperature in kelvins",["K"]),Vr("C","°C","temperature in degrees Celsius",["°C"])],
+  res:x=>x.K-(x.C+273), lhs:"K", disp:[v("K"),"=",v("C"),"+ 273"], nounit:true},
+ {id:"dens",grp:"From the notes",name:"Density",
+  vars:[Vr("D","D","density",["g/mL","g/cm³","g/L"]),Vr("m","m","mass",["g"]),Vr("V","V","volume",["mL","cm³","L"])],
+  res:x=>x.D-x.m/x.V, lhs:"D", disp:[v("D"),"=",F([v("m")],[v("V")])],
+  unit:(k,U)=>k==="D"&&U.V?["g/"+U.V]:k==="V"&&U.D?[U.D.split("/")[1]]:null},
+ {id:"err",grp:"From the notes",name:"Percent error",
+  vars:[Vr("pe","% error","percent error",["%"]),Vr("me","measured value","measured value",[]),Vr("ac","accepted value","accepted value",[])],
+  res:x=>x.pe-(x.me-x.ac)/x.ac*100, lhs:"pe", disp:[v("pe"),"=",F([v("me"),"−",v("ac")],[v("ac")]),"× 100"],
+  unit:(k,U)=>k==="me"?(U.ac?[U.ac]:null):k==="ac"?(U.me?[U.me]:null):null},
+ {id:"pc",grp:"From the notes",name:"Percent composition by mass",
+  vars:[Vr("pc","% composition","percent by mass",["%"]),Vr("mp","mass of part","mass of part",["g"]),Vr("mw","mass of whole","mass of whole",["g"])],
+  res:x=>x.pc-x.mp/x.mw*100, lhs:"pc", disp:[v("pc"),"=",F([v("mp")],[v("mw")]),"× 100"]},
+ {id:"py",grp:"From the notes",name:"Percent yield",
+  vars:[Vr("py","% yield","percent yield",["%"]),Vr("ay","actual yield","actual yield",["g","mol"]),Vr("ty","theoretical yield","theoretical yield",["g","mol"])],
+  res:x=>x.py-x.ay/x.ty*100, lhs:"py", disp:[v("py"),"=",F([v("ay")],[v("ty")]),"× 100"],
+  unit:(k,U)=>k==="ay"?(U.ty?[U.ty]:null):k==="ty"?(U.ay?[U.ay]:null):null},
+ {id:"mm",grp:"From the notes",name:"Moles from mass",
+  vars:[Vr("n","moles","moles",["mol"]),Vr("m","given mass","mass",["g"]),Vr("M","molar mass","molar mass",["g/mol"])],
+  res:x=>x.n-x.m/x.M, lhs:"n", disp:[v("n"),"=",F([v("m")],[v("M")])]},
+ {id:"av",grp:"From the notes",name:"Particles from moles",
+  vars:[Vr("N","particles","number of particles",["particles","atoms","molecules","formula units","ions"]),Vr("n","moles","moles",["mol"])],
+  res:x=>x.N-x.n*6.02e23, lhs:"N", disp:[v("N"),"=",v("n"),"× 6.02 × 10<sup>23</sup>"]},
+ {id:"stp",grp:"From the notes",name:"Gas volume at STP",
+  vars:[Vr("V","volume","volume at STP",["L"]),Vr("n","moles","moles",["mol"])],
+  res:x=>x.V-x.n*22.4, lhs:"V", disp:[v("V"),"=",v("n"),"× 22.4 L/mol"]}
+];
+const EQ=id=>NB.EQS.find(e=>e.id===id);
+
+/* draw an equation. mode: "sym" (symbols), "sub" (input boxes for knowns), "val" (values filled in) */
+function drawEq(eq,mode,o={}){
+  let oneList=null;
+  const one=t=>{ if(typeof t==="string") return `<span class="snb-op">${t}</span>`;
+    if(t.f) return `<span class="snb-fr"><span class="snb-n">${oneList(t.f[0])}</span><span class="snb-d">${oneList(t.f[1])}</span></span>`;
+    const V=eq.vars.find(x=>x.k===t.v);
+    if(mode==="sym"||t.v===o.unknown) return `<span class="snb-var${t.v===o.unknown?" unk":""}">${V.html}</span>`;
+    if(mode==="sub") return `<input class="snb-sub" data-k="${t.v}" data-sup="1" data-grow="1" aria-label="${esc(V.name)}" placeholder="${V.html.replace(/<[^>]+>/g,"")}" value="${esc((o.subs||{})[t.v]||"")}">`;
+    return `<span class="snb-val">${NB.fmt((o.subs||{})[t.v]||"")}</span>`; };
+  const list=ts=>ts.map((t,i)=>{ const h=one(t); const adj=mode!=="sym"&&t.v&&t.v!==o.unknown&&((ts[i-1]&&ts[i-1].v)||(ts[i+1]&&ts[i+1].v)); return adj?`<span class="snb-op">(</span>${h}<span class="snb-op">)</span>`:h; }).join("");
+  oneList=list;
+  return `<span class="snb-eq">${list(eq.disp)}</span>`;
+}
+
+/* solve res(x)=0 for one unknown (secant, with a few starting points) */
+function solveFor(eq,vals,k){
+  const f=x=>eq.res(Object.assign({},vals,{[k]:x}));
+  const mag=Object.values(vals).filter(isFinite).map(Math.abs).filter(x=>x>0);
+  const starts=[1,2,...mag,...mag.map(x=>x*2)];
+  for(let s=0;s<starts.length-1;s++){ let a=starts[s], b=starts[s+1]===a?a*1.5+1:starts[s+1], fa=f(a), fb=f(b);
+    for(let i=0;i<200&&isFinite(fa)&&isFinite(fb);i++){ if(fb===fa) break; const c=b-fb*(b-a)/(fb-fa); a=b; fa=fb; b=c; fb=f(b); if(Math.abs(b-a)<=1e-12*Math.max(1,Math.abs(b))) return b; } }
+  return NaN;
+}
+
+/* ---------- units ---------- */
+const nu=s=>String(s||"").trim().toLowerCase().replace(/\s+/g,"").replace(/cm\^?3|cc$/g,"cm³").replace(/[•·*.]/g,"·").replace(/deg|º/g,"°").replace(/^c$/,"°c").replace(/liters?|litres?/,"l").replace(/grams?$/,"g").replace(/moles?$/,"mol");
+const sameU=(a,b)=>nu(a)===nu(b);
+function expectUnits(eq,k,U){
+  if(eq.unit){ const r=eq.unit(k,U); if(r) return r; }
+  if(eq.pair&&U[eq.pair[k]]) return [U[eq.pair[k]]];
+  if(eq.unitOf&&eq.unitOf[k]) return eq.unitOf[k];
+  const V=eq.vars.find(x=>x.k===k); return V.u;
+}
+const splitNU=s=>{ const t=A.unsup(String(s||"")).trim(); const m=t.match(/^([-+−]?[\d.,]+(?:\s*(?:[x×*]\s*10\s*\^?\s*[-−+]?\d+|[eE][-−+]?\d+))?)\s*(.*)$/); return m?{num:m[1],unit:m[2].trim()}:{num:t,unit:""}; };
+const pnum=s=>{ const p=A.parseTyped(String(s).replace(/−/g,"-")); return p?p.v:NaN; };
+
+/* ---------- window ---------- */
+let win=null;
+NB.open=function(anchor,o={}){
+  if(win){ if(anchor&&window.SITE_MODE==="gsites") place(anchor); if(o.section) setSection(o.section); return win; }
+  const vw=window.innerWidth;
+  win=A.floatWin({title:"Chemistry Notebook", width:"min(600px, calc(100vw - 16px))", x:Math.max(8,vw-Math.min(600,vw-16)-12), y:62, resizable:true,
+    onClose:()=>{ win=null; views=views.filter(f=>f!==paint); const b=A.$("#tb-nb"); b&&b.setAttribute("aria-pressed","false"); },
+    build(b){ b.classList.add("snb-host"); build(b); }});
+  win.el.classList.add("snb-win");
+  const b=A.$("#tb-nb"); b&&b.setAttribute("aria-pressed","true");
+  if(anchor&&window.SITE_MODE==="gsites") place(anchor);
+  if(o.section) setSection(o.section);
+  return win;
+};
+NB.toggle=()=>{ if(win) win.close(); else NB.open(); };
+function place(anchor){ const r=anchor.getBoundingClientRect(); const y=Math.max(8,r.top); win.el.style.top=y+"px"; }
+
+let paint=()=>{}, setSection=()=>{};
+function build(host,full){
+  host.innerHTML=`<div class="snb">
+   <div class="snb-tabs" role="tablist">${[["notes","Notes"],["eq","Equation Tool"],["build","Equation Builder"],["calc","Calculator"],["exp","Save & Export"]].map(([k,t],i)=>`<button type="button" role="tab" class="snb-tab t${i}" data-t="${k}" aria-selected="${i?"false":"true"}">${t}</button>`).join("")}</div>
+   <div class="snb-paper"><div class="snb-holes" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="snb-pane" data-p="notes"></div><div class="snb-pane" data-p="eq" hidden></div><div class="snb-pane" data-p="build" hidden></div><div class="snb-pane" data-p="calc" hidden></div><div class="snb-pane" data-p="exp" hidden></div>
+   </div></div>`;
+  const tabs=A.$$(".snb-tab",host), panes=A.$$(".snb-pane",host);
+  const show=k=>{ tabs.forEach(t=>t.setAttribute("aria-selected",String(t.dataset.t===k))); panes.forEach(p=>p.hidden=p.dataset.p!==k); };
+  tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.t)));
+  const P=k=>panes.find(p=>p.dataset.p===k);
+  let lastInput=null; host.addEventListener("focusin",e=>{ if(e.target.matches("input,textarea")&&!e.target.closest(".snb-calc")) lastInput=e.target; });
+  notesPane(P("notes"),{show});
+  eqPane(P("eq"),{show});
+  builderPane(P("build"),{show});
+  calcPane(P("calc"),{show,target:()=>lastInput});
+  exportPane(P("exp"));
+  host._show=show;
+  return host;
+}
+
+/* ---------- entry display ---------- */
+function workHTML(e){
+  const eq=EQ(e.eq); if(!eq) return "";
+  const giv=eq.vars.filter(x=>x.k!==e.unk&&e.giv[x.k]).map(x=>`${x.html} = ${NB.fmt(e.giv[x.k])}`).join(", ");
+  return `<div class="snb-work"><div><b>${esc(eq.name)}</b></div>
+   <div class="snb-wl"><span class="snb-wk">Given:</span> ${giv}; ${eq.vars.find(x=>x.k===e.unk).html} = ?</div>
+   <div class="snb-wl"><span class="snb-wk">Equation:</span> ${drawEq(eq,"sym")}</div>
+   <div class="snb-wl"><span class="snb-wk">Substitution:</span> ${drawEq(eq,"val",{unknown:e.unk,subs:e.subs})}</div>
+   <div class="snb-wl"><span class="snb-wk">Answer:</span> <span class="snb-ans">${eq.vars.find(x=>x.k===e.unk).html} = ${NB.fmt(e.ans)}</span>${e.ok===true?` <span class="snb-ok">✓ checked</span>`:""}</div></div>`;
+}
+const pieceHTML=p=>p.t==="frac"?`<span class="snb-fr"><span class="snb-n">${NB.fmt(p.n)}</span><span class="snb-d">${NB.fmt(p.d)}</span></span>`:p.t==="sup"?`<sup>${esc(p.v)}</sup>`:p.t==="sub"?`<sub>${esc(p.v)}</sub>`:`<span>${NB.fmt(p.v)}</span>`;
+function entryHTML(e){
+  if(e.t==="text") return `<div class="snb-txt">${NB.fmt(e.text)}</div>`;
+  if(e.t==="work") return workHTML(e);
+  if(e.t==="free"&&e.p) return `<div class="snb-free">${e.p.map(pieceHTML).join("")}</div>`;
+  return "";
+}
+NB.entryHTML=entryHTML;
+const when=ts=>{ try{ return new Date(ts).toLocaleDateString(undefined,{month:"short",day:"numeric"}); }catch(e){ return ""; } };
+
+/* ---------- Notes pane ---------- */
+function notesPane(p){
+  p.innerHTML=`<div class="snb-name"><label for="snb-nm">Name</label><input id="snb-nm" class="snb-line" autocomplete="off" value="${esc(D.name)}"></div>
+   <div class="snb-list" aria-live="polite"></div>
+   <div class="snb-new"><div class="snb-sec" hidden></div><label class="snb-lbl" for="snb-ta">New note</label>
+    <textarea id="snb-ta" class="snb-ta" rows="3" placeholder="Write a note. Type H2O for H₂O, Ca^2+ for Ca²⁺, 6.02x10^23 for 6.02 × 10²³, -> for an arrow."></textarea>
+    <div class="snb-prev" aria-label="Preview"></div>
+    <div class="snb-row"><button type="button" class="btn snb-add">Add to notebook</button><span class="snb-hint">Saved on this device. It goes with you to every page.</span></div></div>`;
+  const list=A.$(".snb-list",p), ta=A.$(".snb-ta",p), prev=A.$(".snb-prev",p), secEl=A.$(".snb-sec",p); let sec="";
+  A.$("#snb-nm",p).addEventListener("change",e=>{ D.name=e.target.value.trim(); save(); });
+  ta.addEventListener("input",()=>{ prev.innerHTML=ta.value?NB.fmt(ta.value):""; });
+  setSection=s=>{ sec=s; secEl.hidden=!s; secEl.innerHTML=s?`Section: <b>${esc(s)}</b> <button type="button" class="snb-x" aria-label="Remove section label">✕</button>`:""; const x=A.$(".snb-x",secEl); x&&x.addEventListener("click",()=>setSection("")); host()._show&&host()._show("notes"); setTimeout(()=>ta.focus(),0); };
+  const host=()=>p.closest(".snb-host");
+  A.$(".snb-add",p).addEventListener("click",()=>{ const t=ta.value.trim(); if(!t) { ta.focus(); return; } NB.add({t:"text",text:t,sec}); ta.value=""; prev.innerHTML=""; });
+  const render=()=>{
+    if(!D.entries.length){ list.innerHTML=`<p class="snb-empty">Your notebook is empty. Write a note below, or use the Equation Tool and press “Add to notebook.”</p>`; return; }
+    let last=""; list.innerHTML=D.entries.map(e=>{ const head=e.pg&&e.pg.title!==last?`<h4 class="snb-pg">${esc(e.pg.title)}</h4>`:""; if(e.pg) last=e.pg.title;
+      return `${head}<div class="snb-ent" data-id="${e.id}"><div class="snb-meta">${when(e.ts)}${e.sec?` · ${esc(e.sec)}`:""}</div>${entryHTML(e)}<div class="snb-tools">${e.t==="text"?`<button type="button" data-a="edit">Edit</button>`:""}<button type="button" data-a="up" aria-label="Move up">↑</button><button type="button" data-a="dn" aria-label="Move down">↓</button><button type="button" data-a="del">Delete</button></div></div>`; }).join("");
+    const nm=A.$("#snb-nm",p); if(document.activeElement!==nm) nm.value=D.name||"";
+  };
+  list.addEventListener("click",ev=>{ const b=ev.target.closest("button[data-a]"); if(!b) return; const el=b.closest(".snb-ent"), i=D.entries.findIndex(e=>e.id===el.dataset.id); if(i<0) return; const e=D.entries[i];
+    if(b.dataset.a==="del"){ if(b.dataset.sure){ D.entries.splice(i,1); save(); } else { b.dataset.sure="1"; b.textContent="Delete?"; b.classList.add("sure"); setTimeout(()=>{ if(b.isConnected){ delete b.dataset.sure; b.textContent="Delete"; b.classList.remove("sure"); } },2500); } }
+    if(b.dataset.a==="up"&&i>0){ [D.entries[i-1],D.entries[i]]=[D.entries[i],D.entries[i-1]]; save(); }
+    if(b.dataset.a==="dn"&&i<D.entries.length-1){ [D.entries[i+1],D.entries[i]]=[D.entries[i],D.entries[i+1]]; save(); }
+    if(b.dataset.a==="edit"){ const box=el.querySelector(".snb-txt"); box.innerHTML=`<textarea class="snb-ta" rows="3">${esc(e.text)}</textarea><div class="snb-row"><button type="button" class="btn snb-sv">Save</button></div>`;
+      const t=box.querySelector("textarea"); t.focus(); box.querySelector(".snb-sv").addEventListener("click",()=>{ e.text=t.value.trim()||e.text; save(); }); }
+  });
+  views.push(render); paint=render; render();
+}
+NB.add=function(e){ e.id=uid(); e.ts=Date.now(); e.pg=pageInfo(); D.entries.push(e); save(); };
+
+/* ---------- Equation Tool ---------- */
+function eqPane(p,ctx){
+  const grps=[...new Set(NB.EQS.map(e=>e.grp))];
+  p.innerHTML=`<p class="snb-how">Drag an equation onto the page (or tap it). Fill in the givens, plug them into the equation, then give your answer with units.</p>
+   <div class="snb-bank">${grps.map(g=>`<div class="snb-bg"><span class="snb-bgt">${g}</span><div class="snb-cards">${NB.EQS.filter(e=>e.grp===g).map(e=>`<button type="button" class="snb-card" data-eq="${e.id}" title="${esc(e.name)}">${drawEq(e,"sym")}<small>${esc(e.name)}</small></button>`).join("")}</div></div>`).join("")}</div>
+   <div class="snb-drop" tabindex="-1"><span>Drop an equation here</span></div>
+   <div class="snb-solve" hidden></div>`;
+  const drop=A.$(".snb-drop",p), sv=A.$(".snb-solve",p);
+  /* drag with pointer events (works with a mouse, a finger or a pen); a tap places it too */
+  A.$$(".snb-card",p).forEach(c=>{
+    c.addEventListener("pointerdown",ev=>{ if(ev.button>0) return; const sx=ev.clientX, sy=ev.clientY; let g=null;
+      const mv=m=>{ if(!g&&Math.hypot(m.clientX-sx,m.clientY-sy)>6){ g=c.cloneNode(true); g.classList.add("snb-ghost"); document.body.appendChild(g); c.classList.add("lift"); }
+        if(g){ g.style.left=(m.clientX-g.offsetWidth/2)+"px"; g.style.top=(m.clientY-g.offsetHeight/2)+"px"; const r=drop.getBoundingClientRect(); drop.classList.toggle("hot",m.clientX>r.left&&m.clientX<r.right&&m.clientY>r.top&&m.clientY<r.bottom); } };
+      const up=u=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up);
+        if(g){ g.remove(); c.classList.remove("lift"); const r=drop.getBoundingClientRect(); drop.classList.remove("hot"); if(u.clientX>r.left&&u.clientX<r.right&&u.clientY>r.top&&u.clientY<r.bottom) use(c.dataset.eq); c._dragged=true; setTimeout(()=>c._dragged=false,50); } };
+      document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); });
+    c.addEventListener("click",()=>{ if(!c._dragged) use(c.dataset.eq); });
+  });
+  let eq=null, unk=null, tries=0;
+  function use(id){ eq=EQ(id); unk=eq.lhs; tries=0;
+    drop.innerHTML=`<div class="snb-big">${drawEq(eq,"sym")}</div><button type="button" class="snb-x" aria-label="Clear the equation">✕</button>`; drop.classList.add("full");
+    A.$(".snb-x",drop).addEventListener("click",()=>{ eq=null; drop.classList.remove("full"); drop.innerHTML="<span>Drop an equation here</span>"; sv.hidden=true; });
+    sv.hidden=false;
+    sv.innerHTML=`<div class="snb-step"><span class="snb-sn">1</span><b>Givens</b> <span class="snb-hint">Type each value with its unit. Pick the one you are solving for.</span></div>
+      <table class="snb-giv"><tbody>${eq.vars.map(x=>`<tr data-k="${x.k}"><th scope="row"><span class="snb-var">${x.html}</span><small>${esc(x.name)}</small></th><td><input class="snb-gv" data-sup="1" data-grow="1" aria-label="${esc(x.name)} value and unit" placeholder="${x.u&&x.u[0]?"value "+x.u[0]:"value and unit"}"></td><td><label class="snb-unk"><input type="radio" name="snb-unk" value="${x.k}"${x.k===unk?" checked":""}> solve for</label></td></tr>`).join("")}</tbody></table>
+      <div class="snb-step"><span class="snb-sn">2</span><b>Substitution</b> <span class="snb-hint">Plug the givens into the equation.</span></div>
+      <div class="snb-subline"></div>
+      <div class="snb-step"><span class="snb-sn">3</span><b>Answer</b></div>
+      <div class="snb-ansrow"><span class="snb-var unk lhs"></span> = <input class="snb-an" data-sup="1" data-grow="1" aria-label="Answer number"> <input class="snb-au" aria-label="Answer unit" placeholder="unit"></div>
+      <div class="snb-row"><button type="button" class="btn snb-chk">Check</button><button type="button" class="btn ghost snb-save">Add to notebook</button></div>
+      <div class="status snb-msg idle" aria-live="polite">Feedback appears here.</div>`;
+    const sub=A.$(".snb-subline",sv);
+    const drawSub=()=>{ const keep={}; A.$$(".snb-sub",sub).forEach(i=>keep[i.dataset.k]=i.value); sub.innerHTML=drawEq(eq,"sub",{unknown:unk,subs:keep}); A.$(".snb-ansrow .lhs",sv).innerHTML=eq.vars.find(x=>x.k===unk).html;
+      A.$$("tr",sv).forEach(r=>{ const on=r.dataset.k===unk; r.classList.toggle("is-unk",on); const i=r.querySelector(".snb-gv"); i.disabled=on; if(on) i.value=""; i.placeholder=on?"?":(eq.vars.find(x=>x.k===r.dataset.k).u[0]?"value "+eq.vars.find(x=>x.k===r.dataset.k).u[0]:"value and unit"); }); };
+    A.$$("input[name=snb-unk]",sv).forEach(r=>r.addEventListener("change",()=>{ unk=r.value; tries=0; drawSub(); }));
+    drawSub();
+    A.$(".snb-chk",sv).addEventListener("click",()=>check(true));
+    A.$(".snb-save",sv).addEventListener("click",()=>{ const r=check(true)||check(false); if(!r) return;
+      NB.add({t:"work",eq:eq.id,unk,giv:r.giv,subs:r.subs,ans:r.ans,ok:r.ok});
+      msg(`Added to your notebook${r.ok?"":" (not checked yet)"}. <button type="button" class="linkbtn snb-go">See it</button>`, "good");
+      const go=A.$(".snb-go",sv); go&&go.addEventListener("click",()=>ctx.show("notes")); });
+    setTimeout(()=>{ const f=A.$(".snb-gv:not([disabled])",sv); f&&f.focus(); },0);
+  }
+  const msg=(h,c="")=>{ const m=A.$(".snb-msg",sv); m.className="status snb-msg "+c; m.innerHTML=h; };
+  function check(grade){
+    const giv={}, vals={}, U={}, subs={};
+    for(const r of A.$$("tr",sv)){ const k=r.dataset.k; if(k===unk) continue; const raw=r.querySelector(".snb-gv").value.trim(); giv[k]=raw;
+      const s=splitNU(raw), n=pnum(s.num); if(!raw||!isFinite(n)){ if(grade){ msg(`Type a number for ${eq.vars.find(x=>x.k===k).html} in the givens.`,"bad"); r.querySelector(".snb-gv").focus(); } else if(!raw){ msg(`Fill in ${eq.vars.find(x=>x.k===k).html} first.`,"bad"); } if(grade||!raw) return null; }
+      vals[k]=n; U[k]=s.unit; }
+    A.$$(".snb-sub",sv).forEach(i=>subs[i.dataset.k]=i.value.trim());
+    const ansRaw=(A.$(".snb-an",sv).value.trim()+" "+A.$(".snb-au",sv).value.trim()).trim();
+    if(!grade) return {giv,subs,ans:ansRaw,ok:false};
+    const fmtU=a=>a.map(u=>NB.fmt(u)).join(" or ");
+    /* temperatures in the gas law must be kelvin */
+    for(const k in U) if(/^T\d$/.test(k)&&eq.id==="gas"&&U[k]&&!sameU(U[k],"K")){ msg("Gas law temperatures must be in kelvin. Use K = °C + 273 first.","bad"); return null; }
+    if(eq.pair){ for(const k in eq.pair){ const q=eq.pair[k]; if(U[k]&&U[q]&&!sameU(U[k],U[q])){ msg(`${eq.vars.find(x=>x.k===k).html} and ${eq.vars.find(x=>x.k===q).html} must be in the same unit.`,"bad"); return null; } } }
+    const exact=solveFor(eq,vals,unk);
+    if(!isFinite(exact)){ msg("These givens don’t give an answer. Check the numbers.","bad"); return null; }
+    /* substitution: each box holds the given number (a unit is optional) */
+    const badSub=Object.keys(subs).filter(k=>{ const s=splitNU(subs[k]); const n=pnum(s.num); return !isFinite(n)||Math.abs(n-vals[k])>1e-9*Math.max(1,Math.abs(vals[k]))||(s.unit&&U[k]&&!sameU(s.unit,U[k])); });
+    const an=pnum(A.$(".snb-an",sv).value), au=A.$(".snb-au",sv).value.trim();
+    const want=expectUnits(eq,unk,U), unitOK=eq.nounit||!want.length?true:want.some(w=>sameU(w,au));
+    const r=isFinite(an)?Math.abs(an-exact)/Math.max(Math.abs(exact),1e-300):Infinity, numOK=r<=0.01;
+    tries++;
+    const lines=[];
+    if(badSub.length) lines.push(`Substitution: check the box for ${badSub.map(k=>eq.vars.find(x=>x.k===k).html).join(", ")}. It should match your givens.`);
+    if(!isFinite(an)) lines.push("Answer: type a number.");
+    else if(!numOK) lines.push(tries>=2?`Answer: the calculator gives ${A.fmtNum(exact)}${want.length?" "+NB.fmt(want[0]):""}.`:"Answer: check your math. Solve for the unknown, then use the calculator tab.");
+    if(isFinite(an)&&!eq.nounit&&!au&&want.length) lines.push(`Units: add the unit (${fmtU(want)}).`);
+    else if(isFinite(an)&&!unitOK) lines.push(`Units: the answer should be in ${fmtU(want)}.`);
+    const ok=!lines.length;
+    msg(ok?"Correct: the substitution matches your givens and the answer has the right units.":lines.join("<br>"), ok?"good":"bad");
+    return {giv,subs,ans:ansRaw,ok};
+  }
+}
+
+/* ---------- Equation Builder ---------- */
+function builderPane(p){
+  const SYM=["×","÷","−","±","=","≈","→","⇌","Δ","°","·","√","π","λ","α","β","γ","≤","≥","⁺","⁻"];
+  p.innerHTML=`<p class="snb-how">Build any equation. Add pieces in order, then type in each box. Tap a symbol to put it where your cursor is.</p>
+   <div class="snb-row snb-pb"><button type="button" class="btn ghost" data-add="txt">+ Text</button><button type="button" class="btn ghost" data-add="frac">+ Fraction</button><button type="button" class="btn ghost" data-add="sup">+ Exponent x<sup>n</sup></button><button type="button" class="btn ghost" data-add="sub">+ Subscript x<sub>n</sub></button></div>
+   <div class="snb-syms">${SYM.map(s=>`<button type="button" data-s="${s}">${s}</button>`).join("")}</div>
+   <div class="snb-bline" aria-label="Your equation"></div>
+   <div class="snb-lbl">Preview</div><div class="snb-bprev"></div>
+   <div class="snb-row"><button type="button" class="btn snb-badd">Add to notebook</button><button type="button" class="btn ghost snb-bclr">Clear</button></div>`;
+  const line=A.$(".snb-bline",p), prev=A.$(".snb-bprev",p); let P=[{t:"txt",v:""}], focus=null;
+  const draw=()=>{ line.innerHTML=P.map((x,i)=>`<span class="snb-pc ${x.t}" data-i="${i}">${x.t==="frac"?`<span class="snb-fr"><input data-f="n" value="${esc(x.n||"")}" aria-label="numerator"><input data-f="d" value="${esc(x.d||"")}" aria-label="denominator"></span>`:`<input data-f="v" value="${esc(x.v||"")}" aria-label="${x.t==="sup"?"exponent":x.t==="sub"?"subscript":"text"}">`}<button type="button" class="snb-pcx" aria-label="Remove piece">✕</button></span>`).join(""); pv(); };
+  const pv=()=>{ prev.innerHTML=P.some(x=>(x.v||x.n||x.d||"").trim())?P.map(pieceHTML).join(""):`<span class="snb-hint">Your equation shows here.</span>`; };
+  line.addEventListener("input",e=>{ const i=+e.target.closest(".snb-pc").dataset.i; P[i][e.target.dataset.f]=e.target.value; e.target.style.width=Math.max(3,e.target.value.length+1)+"ch"; pv(); });
+  line.addEventListener("focusin",e=>{ if(e.target.matches("input")) focus=e.target; });
+  line.addEventListener("click",e=>{ const x=e.target.closest(".snb-pcx"); if(!x) return; P.splice(+x.parentNode.dataset.i,1); if(!P.length) P=[{t:"txt",v:""}]; draw(); });
+  A.$$("[data-add]",p).forEach(b=>b.addEventListener("click",()=>{ const t=b.dataset.add; P.push(t==="frac"?{t,n:"",d:""}:{t,v:""}); draw(); const ins=A.$$(".snb-pc:last-child input",line); ins[0]&&ins[0].focus(); }));
+  A.$$("[data-s]",p).forEach(b=>{ b.addEventListener("pointerdown",e=>e.preventDefault()); b.addEventListener("click",()=>{ const t=focus&&focus.isConnected?focus:A.$$("input",line).pop(); const s=t.selectionStart??t.value.length; t.value=t.value.slice(0,s)+b.dataset.s+t.value.slice(t.selectionEnd??s); t.setSelectionRange(s+b.dataset.s.length,s+b.dataset.s.length); t.focus(); t.dispatchEvent(new Event("input",{bubbles:true})); }); });
+  A.$(".snb-badd",p).addEventListener("click",()=>{ const q=P.filter(x=>(x.v||x.n||x.d||"").trim()); if(!q.length) return; NB.add({t:"free",p:q.map(x=>Object.assign({},x))}); P=[{t:"txt",v:""}]; draw(); prev.innerHTML=`<span class="snb-ok">Added to your notebook.</span>`; });
+  A.$(".snb-bclr",p).addEventListener("click",()=>{ P=[{t:"txt",v:""}]; draw(); });
+  draw();
+}
+
+/* ---------- Calculator ---------- */
+function calcEval2(src){
+  let i=0; const s=src.replace(/\s+/g,"");
+  const pk=()=>s[i];
+  const fn={"log(":Math.log10,"ln(":Math.log,"sqrt(":Math.sqrt};
+  function num(){ const m=s.slice(i).match(/^(\d+\.?\d*|\.\d+)(E[-+]?\d+)?/); if(!m) throw 0; i+=m[0].length; return parseFloat(m[0]); }
+  function prim(){ for(const k in fn) if(s.startsWith(k,i)){ i+=k.length; const x=expr(); if(pk()===")") i++; return fn[k](x); }
+    if(s.startsWith("ANS",i)){ i+=3; return NB._ans||0; }
+    if(pk()==="("){ i++; const x=expr(); if(pk()===")") i++; return x; } return num(); }
+  function pow(){ let b=prim(); if(pk()==="^"){ i++; const e=una(); b=Math.pow(b,e); } return b; }
+  function una(){ if(pk()==="-"){ i++; return -una(); } return pow(); }
+  function term(){ let x=una(); while(pk()==="*"||pk()==="/"){ const o=s[i++], y=una(); x=o==="*"?x*y:x/y; } return x; }
+  function expr(){ let x=term(); while(pk()==="+"||pk()==="-"){ const o=s[i++], y=term(); x=o==="+"?x+y:x-y; } return x; }
+  const x=expr(); if(i<s.length) throw 0; return x;
+}
+NB.calc=calcEval2;
+function calcPane(p,ctx){
+  const K=[["C","fn"],["⌫","fn"],["(",""],[")",""],["÷","op"],["log","fn"],["7"],["8"],["9"],["×","op"],["10ˣ","fn"],["4"],["5"],["6"],["−","op"],["x²","fn"],["1"],["2"],["3"],["+","op"],["√","fn"],["0"],["."],["(−)",""],["=","eq"],["ln","fn"],["EE","fn"],["^","fn"],["ANS","fn"]];
+  p.innerHTML=`<div class="snb-calc"><div class="snb-disp"><span class="snb-ex">&nbsp;</span><span class="snb-va">0</span></div><div class="snb-keys">${K.map(([k,c])=>`<button type="button" class="${c||""}" data-k="${k}">${k}</button>`).join("")}</div>
+   <div class="snb-row"><button type="button" class="btn ghost snb-put">Put answer in the box I was typing in</button></div><p class="snb-hint">EE enters “× 10 to the power”: 6.02 EE 23 = 6.02 × 10²³. Use ( ) around numbers in scientific notation when you divide.</p></div>`;
+  let ex="", last=null, done=false; const E=A.$(".snb-ex",p), Vd=A.$(".snb-va",p);
+  const shown=()=>ex.replace(/\*/g,"×").replace(/\//g,"÷").replace(/sqrt\(/g,"√(").replace(/E/g,"×10^").replace(/(?<![A-Z])-/g,"−");
+  const press=k=>{ const m={"÷":"/","×":"*","−":"-","+":"+","(":"(",")":")",".":"."};
+    if(done&&/^[\d.(]$|^(log|ln|√|10ˣ|ANS)$/.test(k)) ex=""; if(done&&k in m&&!/[\d.(]/.test(k)) ex="ANS"; if(done&&(k==="x²"||k==="^")) ex="ANS"; done=false;
+    if(/^\d$/.test(k)) ex+=k; else if(k in m) ex+=m[k]; else if(k==="x²") ex+="^2"; else if(k==="√") ex+="sqrt("; else if(k==="log") ex+="log("; else if(k==="ln") ex+="ln("; else if(k==="10ˣ") ex+="10^"; else if(k==="EE") ex+="E"; else if(k==="^") ex+="^"; else if(k==="(−)") ex+="-"; else if(k==="ANS") ex+="ANS";
+    else if(k==="⌫") ex=ex.replace(/(sqrt\(|log\(|ln\(|ANS|.)$/,""); else if(k==="C"){ ex=""; Vd.textContent="0"; }
+    else if(k==="="){ try{ const o=(ex.match(/\(/g)||[]).length-(ex.match(/\)/g)||[]).length; if(o>0) ex+=")".repeat(o); last=calcEval2(ex); NB._ans=last; Vd.innerHTML=A.fmtNum(last); done=true; }catch(e){ Vd.textContent="Check the expression"; } }
+    E.innerHTML=ex?esc(shown()):"&nbsp;"; };
+  p.addEventListener("click",e=>{ const b=e.target.closest("button[data-k]"); if(b) press(b.dataset.k); });
+  A.$(".snb-calc",p).tabIndex=0;
+  A.$(".snb-calc",p).addEventListener("keydown",e=>{ if(e.target.matches("input")) return; const m={"Enter":"=","=":"=","Backspace":"⌫","Escape":"C","*":"×","/":"÷","-":"−","+":"+","(":"(",")":")",".":".","^":"^","e":"EE","E":"EE"}; const k=/^\d$/.test(e.key)?e.key:m[e.key]; if(k){ e.preventDefault(); press(k); } });
+  A.$(".snb-put",p).addEventListener("click",()=>{ const t=ctx.target(); if(last==null){ Vd.textContent="Press = first"; return; } if(!t||!t.isConnected){ Vd.innerHTML=A.fmtNum(last)+" <small>(click a box first)</small>"; return; }
+    const v=Math.abs(last)>=1e5||(Math.abs(last)<1e-3&&last!==0)?(()=>{ const e=Math.floor(Math.log10(Math.abs(last))); return `${+(last/Math.pow(10,e)).toPrecision(6)} × 10${A.supify("x10^"+e).replace(/^.*10/,"")}`; })():String(+last.toPrecision(8));
+    const s=t.selectionStart??t.value.length; t.value=t.value.slice(0,s)+v+t.value.slice(t.selectionEnd??s); t.dispatchEvent(new Event("input",{bubbles:true}));
+    const tab=t.closest(".snb-pane"); if(tab) ctx.show(tab.dataset.p); t.focus(); });
+}
+
+/* ---------- Save & Export ---------- */
+const hasDownloads=()=>{ try{ return window.SITE_MODE!=="gsites"||window.top===window; }catch(e){ return false; } };
+const NBURL="notebook.html";
+function exportPane(p){
+  p.innerHTML=`<p class="snb-how">Your notebook is saved in this browser on this device. To hand it in or keep a copy, download it.</p>
+   <div class="snb-exp">
+    <button type="button" class="btn" data-x="pdf">Download PDF</button><span class="snb-hint">Opens the print window. Choose “Save as PDF” as the printer.</span>
+    <button type="button" class="btn" data-x="docx">Download Word file (.docx)</button><span class="snb-hint">To make a Google Doc: upload the file to Google Drive, then open it with Google Docs.</span>
+    <button type="button" class="btn ghost" data-x="backup">Save a backup file</button><span class="snb-hint">Use this to move your notebook to another computer.</span>
+    <label class="btn ghost snb-file">Load a backup file<input type="file" accept=".json,application/json" hidden></label><span class="snb-hint">Adds the notes from a backup file to this notebook.</span>
+   </div>
+   <div class="status snb-xmsg idle" aria-live="polite"></div>
+   <div class="snb-danger"><button type="button" class="btn ghost snb-clear">Erase this notebook</button></div>`;
+  const msg=(h,c="")=>{ const m=A.$(".snb-xmsg",p); m.className="status snb-xmsg "+c; m.innerHTML=h; };
+  A.$$("[data-x]",p).forEach(b=>b.addEventListener("click",()=>{ if(!D.entries.length&&b.dataset.x!=="backup"){ msg("Your notebook is empty.","bad"); return; } NB.exportAs(b.dataset.x,msg); }));
+  A.$(".snb-file input",p).addEventListener("change",e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); if(!d||!Array.isArray(d.entries)) throw 0; const have=new Set(D.entries.map(x=>x.id)); let n=0; d.entries.forEach(x=>{ if(!have.has(x.id)){ D.entries.push(x); n++; } }); if(!D.name&&d.name) D.name=d.name; save(); msg(`Added ${n} note${n===1?"":"s"} from the backup.`,"good"); }catch(err){ msg("That file is not a notebook backup.","bad"); } }; r.readAsText(f); e.target.value=""; });
+  const clr=A.$(".snb-clear",p); clr.addEventListener("click",()=>{ if(clr.dataset.sure){ D=blank(); save(); delete clr.dataset.sure; clr.textContent="Erase this notebook"; msg("The notebook was erased.",""); } else { clr.dataset.sure="1"; clr.textContent="Erase everything? Click again to erase"; setTimeout(()=>{ delete clr.dataset.sure; clr.textContent="Erase this notebook"; },4000); } });
+}
+
+/* Downloads are blocked inside a Google Sites embed, so the export opens the notebook page in a new tab and hands it the notes. */
+NB.exportAs=function(kind,msg=()=>{}){
+  if(!hasDownloads()){
+    let w=null; try{ w=window.open(NBURL+"#export-"+kind,"_blank"); }catch(e){}
+    if(!w){ msg(`Your browser blocked the new tab. <a href="${NBURL}" target="_blank" rel="opener">Open the notebook page</a> and export from there.`,"bad"); return; }
+    const send=e=>{ if(e.source===w&&e.data==="snb-ready"){ w.postMessage({snb:D},"*"); window.removeEventListener("message",send); } };
+    window.addEventListener("message",send); msg("The download opens in a new tab.","good"); return; }
+  if(kind==="pdf") return printView();
+  if(kind==="docx") return docx(msg);
+  if(kind==="backup") return dl(new Blob([JSON.stringify(D,null,1)],{type:"application/json"}),fname("json"));
+};
+const fname=ext=>`Chemistry Notebook${D.name?" - "+D.name.replace(/[^\w .-]/g,""):""}.${ext}`;
+function dl(blob,name){ const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500); }
+
+function printView(){
+  let host=A.$("#snb-print"); if(!host){ host=A.h("div",{id:"snb-print"}); document.body.appendChild(host); }
+  let last=""; host.innerHTML=`<h1>Chemistry Notebook</h1>${D.name?`<p class="snb-pn">${esc(D.name)}</p>`:""}`+D.entries.map(e=>{ const h=e.pg&&e.pg.title!==last?`<h2>${esc(e.pg.title)}</h2>`:""; if(e.pg) last=e.pg.title; return `${h}<div class="snb-ent"><div class="snb-meta">${when(e.ts)}${e.sec?` · ${esc(e.sec)}`:""}</div>${entryHTML(e)}</div>`; }).join("");
+  document.body.classList.add("snb-printing");
+  const done=()=>{ document.body.classList.remove("snb-printing"); window.removeEventListener("afterprint",done); };
+  window.addEventListener("afterprint",done); setTimeout(()=>window.print(),60);
+}
+
+/* Word: docx.js (the same library the teacher builder uses), loaded only when needed */
+function loadDocx(){ return window.docx?Promise.resolve(window.docx):new Promise((ok,no)=>{ const s=document.createElement("script"); s.src="builder/lib/docx.js"; s.onload=()=>window.docx?ok(window.docx):no(); s.onerror=no; document.head.appendChild(s); }); }
+/* turn the site's HTML (sub/sup/fractions) into docx runs and math */
+function runsOf(html,X,o={}){
+  const box=document.createElement("div"); box.innerHTML=html; const out=[];
+  const walk=(n,st)=>{ if(n.nodeType===3){ if(n.textContent) out.push(new X.TextRun(Object.assign({text:n.textContent,font:"Calibri",size:24},st))); return; }
+    if(n.nodeType!==1) return; const t=n.tagName;
+    if(t==="BR"){ out.push(new X.TextRun({break:1})); return; }
+    if(t==="INPUT") return;
+    if(n.classList.contains("snb-fr")){ const num=n.querySelector(".snb-n"), den=n.querySelector(".snb-d"); out.push(new X.Math({children:[new X.MathFraction({numerator:mathOf(num,X),denominator:mathOf(den,X)})]})); return; }
+    const s=Object.assign({},st); if(t==="SUB") s.subScript=true; if(t==="SUP") s.superScript=true; if(t==="B"||t==="STRONG"||n.classList.contains("snb-ans")) s.bold=true;
+    n.childNodes.forEach(c=>walk(c,s)); };
+  box.childNodes.forEach(c=>walk(c,o)); return out;
+}
+function mathOf(el,X){ const out=[]; const walk=n=>{ if(n.nodeType===3){ if(n.textContent.trim()) out.push(new X.MathRun(n.textContent)); return; } if(n.nodeType!==1) return;
+  if(n.tagName==="SUB"){ const b=out.pop()||new X.MathRun(""); out.push(new X.MathSubScript({children:[b],subScript:[new X.MathRun(n.textContent)]})); return; }
+  if(n.tagName==="SUP"){ const b=out.pop()||new X.MathRun(""); out.push(new X.MathSuperScript({children:[b],superScript:[new X.MathRun(n.textContent)]})); return; }
+  if(n.classList&&n.classList.contains("snb-fr")){ out.push(new X.MathFraction({numerator:mathOf(n.querySelector(".snb-n"),X),denominator:mathOf(n.querySelector(".snb-d"),X)})); return; }
+  n.childNodes.forEach(walk); }; el.childNodes.forEach(walk); return out.length?out:[new X.MathRun(" ")]; }
+async function docx(msg){
+  msg("Making the Word file…");
+  let X; try{ X=await loadDocx(); }catch(e){ msg("The Word file could not be made here. Try Download PDF.","bad"); return; }
+  const P=(html,o={})=>new X.Paragraph(Object.assign({children:runsOf(html,X),spacing:{after:80,line:300}},o));
+  const kids=[new X.Paragraph({heading:X.HeadingLevel.TITLE,children:[new X.TextRun({text:"Chemistry Notebook",font:"Calibri"})]})];
+  if(D.name) kids.push(P(esc(D.name)));
+  let last="";
+  D.entries.forEach(e=>{
+    if(e.pg&&e.pg.title!==last){ kids.push(new X.Paragraph({heading:X.HeadingLevel.HEADING_2,children:[new X.TextRun({text:e.pg.title,font:"Calibri"})],spacing:{before:240,after:80}})); last=e.pg.title; }
+    kids.push(new X.Paragraph({children:[new X.TextRun({text:when(e.ts)+(e.sec?" · "+e.sec:""),italics:true,color:"6B7780",size:18,font:"Calibri"})]}));
+    if(e.t==="text") kids.push(P(NB.fmt(e.text)));
+    else if(e.t==="work"){ const tmp=document.createElement("div"); tmp.innerHTML=workHTML(e); A.$$(".snb-wl, .snb-work>div:first-child",tmp).forEach(l=>kids.push(P(l.innerHTML))); }
+    else if(e.t==="free") kids.push(P(e.p.map(pieceHTML).join("")));
+  });
+  const doc=new X.Document({styles:{default:{document:{run:{font:"Calibri",size:24}}}},sections:[{properties:{page:{margin:{top:1080,bottom:1080,left:1080,right:1080}}},children:kids}]});
+  const blob=await X.Packer.toBlob(doc); dl(blob,fname("docx")); msg("Downloaded. To make a Google Doc, upload it to Google Drive and open it with Google Docs.","good");
+}
+
+/* ---------- the full-page notebook (notebook.html) ---------- */
+NB.page=function(){
+  SLUG="notebook";
+  const main=A.$(".snb-full"); const host=A.h("div",{class:"snb-host full"}); main.appendChild(host); build(host,true);
+  const m=location.hash.match(/^#export-(pdf|docx|backup)$/);
+  if(m){ /* opened from a Sites embed: take the notes from the page that opened this tab */
+    const st=A.h("div",{class:"status snb-open-msg"},"Getting your notebook…"); main.insertBefore(st,host);
+    let got=false; const run=()=>{ st.textContent=m[1]==="pdf"?"Choose “Save as PDF” in the print window.":"Your download should start now. You can close this tab."; NB.exportAs(m[1],h=>st.innerHTML=h); };
+    window.addEventListener("message",e=>{ if(e.data&&e.data.snb&&!got){ got=true; D=e.data.snb; views.forEach(f=>f()); run(); } });
+    try{ window.opener&&window.opener.postMessage("snb-ready","*"); }catch(e){}
+    setTimeout(()=>{ if(!got){ got=true; run(); } },2500);
+    history.replaceState(null,"",location.pathname);
+  }
+};
+
+/* ---------- top-bar button and section buttons ---------- */
+const ICON=`<svg width="14" height="16" viewBox="0 0 14 16" aria-hidden="true"><rect x="2.5" y=".75" width="10.75" height="14.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M.5 4h3M.5 8h3M.5 12h3" stroke="currentColor" stroke-width="1.5"/><path d="M6 5h5M6 8h5" stroke="currentColor" stroke-width="1.2"/></svg>`;
+const oldChrome=A.chrome;
+A.chrome=function(slug){
+  const r=oldChrome.apply(this,arguments); SLUG=slug;
+  try{ A.addPics&&A.addPics(slug); }catch(e){}
+  try{
+    const bar=A.$(".topbar-in"), menu=bar&&bar.querySelector(".menu-btn");
+    if(bar&&!A.$("#tb-nb")){ const b=A.h("button",{class:"tool-btn",type:"button",id:"tb-nb","aria-pressed":"false",title:"Open your notebook. It follows you to every page."},`${ICON}<span class="tl">Notebook</span>`);
+      bar.insertBefore(b,menu||null); b.addEventListener("click",()=>NB.toggle()); }
+    A.$$("section.note > .tile").forEach(tile=>{ const h=tile.querySelector("h2"); if(!h||tile.querySelector(".snb-pin")) return; const t=h.textContent.trim();
+      const b=A.h("button",{class:"snb-pin",type:"button","aria-label":`Write about “${t}” in your notebook`,title:"Write about this in your notebook"},ICON);
+      b.addEventListener("click",()=>NB.open(tile,{section:t})); tile.appendChild(b); });
+  }catch(e){}
+  return r;
+};
+})();
+
+/* ================= SECTION PICTURES, UNITS 0–5 =================
+   One simple drawing per section plus a short text box beside it (the style of Mr. Lipp's slides:
+   flat shapes with black outlines, the site's atom colors, a thin black-bordered text box).
+   window.PICS05 = [{n, slug, sec, svg, box, alt}]  — works in the browser and in node (gallery). */
+(function(G){
+const F='font-family="InterSupSub,Inter,Arial,sans-serif"';
+const C={blue:"#2E75D6",red:"#E00000",green:"#00B050",purple:"#7030A0",orange:"#F28C28",teal:"#40BAD2",tealD:"#1f8fa8",yellow:"#FFD200",gray:"#8a949a",ink:"#1b2328",
+  metal:"#f6c3cc",non:"#bfe3f5",mtd:"#d9ec9f"};
+const ATC={H:"#2E75D6",O:"#E00000",C:"#00B050",N:"#7030A0",S:"#FFD200",Cl:"#F28C28",F:"#9EE6E6",Na:"#B7B7B7",K:"#B7B7B7",Pb:"#6d7b85",I:"#4B2A7A",Al:"#c9c9c9",Mg:"#c9c9c9"};
+const DARK=new Set(["H","O","C","N","I","Pb"]);
+const svg=(W,H,body,alt)=>`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="${alt.replace(/"/g,"&quot;")}" ${F}><rect width="${W}" height="${H}" fill="#fff"/>${body}</svg>`;
+const T=(x,y,s,o={})=>`<text x="${x}" y="${y}" font-size="${o.s||14}" font-weight="${o.w||500}" fill="${o.c||C.ink}" text-anchor="${o.a||"middle"}"${o.it?' font-style="italic"':""}>${s}</text>`;
+const atom=(x,y,r,s,o={})=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${o.fill||ATC[s]||"#ccc"}" stroke="#000" stroke-width="1.3"/>${s?`<text x="${x}" y="${y+r*.36}" text-anchor="middle" font-size="${(r*(s.length>1?.85:1)).toFixed(1)}" font-weight="800" fill="${o.ink||(DARK.has(s)?"#fff":"#000")}">${s}</text>`:""}`;
+const arr=(x1,y1,x2,y2,c=C.ink,w=2.5,h=9)=>{ const a=Math.atan2(y2-y1,x2-x1), bx=x2-h*Math.cos(a), by=y2-h*Math.sin(a), px=Math.sin(a)*h*.55, py=-Math.cos(a)*h*.55;
+  return `<line x1="${x1}" y1="${y1}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${c}" stroke-width="${w}"/><polygon points="${x2},${y2} ${(bx+px).toFixed(1)},${(by+py).toFixed(1)} ${(bx-px).toFixed(1)},${(by-py).toFixed(1)}" fill="${c}"/>`; };
+const box=(x,y,w,h,o={})=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx||0}" fill="${o.f||"#fff"}" stroke="${o.st||"#000"}" stroke-width="${o.sw||1.3}"${o.da?` stroke-dasharray="${o.da}"`:""}/>`;
+const dots=(x,y,n,r=3,c="#000")=>{ /* Lewis dots: n valence electrons around a symbol centered at x,y (paired as on the slides) */
+  const P=[[0,-1],[1,0],[0,1],[-1,0]], D=17; let o="", k=[0,0,0,0];
+  for(let i=0;i<n;i++) k[i%4]++;
+  P.forEach(([dx,dy],i)=>{ for(let j=0;j<k[i];j++){ const off=k[i]===2?(j?5:-5):0; o+=`<circle cx="${x+dx*D+(dy?off:0)}" cy="${y-5+dy*D+(dx?off:0)}" r="${r}" fill="${c}"/>`; } });
+  return o; };
+const sub=s=>s.replace(/(\d+)/g,'<tspan font-size="70%" dy="4">$1</tspan><tspan dy="-4"></tspan>');
+
+const P=[];
+const add=(n,slug,sec,box_,alt,W,H,body)=>P.push({n,slug,sec,box:box_,alt,svg:svg(W,H,body,alt)});
+
+/* 1 SI — Mars Climate Orbiter */
+add(1,"l-quantities","The SI System",
+ "The Mars Climate Orbiter (1999) was lost because one team gave its numbers in pound-force seconds while the other team expected newton-seconds. The spacecraft came in much closer to Mars than planned. One shared set of units prevents mistakes like this.",
+ "Mars with a planned orbit path and the actual path, which came too close to the planet.",440,230,
+ `<circle cx="300" cy="125" r="72" fill="#f4d3c6"/><circle cx="300" cy="125" r="62" fill="#c1440e" stroke="#000" stroke-width="1.3"/>
+  <circle cx="282" cy="105" r="9" fill="#9e3409"/><circle cx="318" cy="150" r="6" fill="#9e3409"/>
+  <path d="M60 40 C150 40 190 30 200 125 A100 100 0 0 0 400 125" fill="none" stroke="${C.green}" stroke-width="3" stroke-dasharray="8 5"/>
+  <path d="M60 40 C150 40 210 50 228 125 A72 72 0 0 0 300 197" fill="none" stroke="${C.red}" stroke-width="3"/>
+  <g transform="translate(46,40)"><rect x="-9" y="-7" width="18" height="14" fill="#d9a441" stroke="#000"/><rect x="-31" y="-4" width="20" height="8" fill="${C.blue}" stroke="#000"/><rect x="11" y="-4" width="20" height="8" fill="${C.blue}" stroke="#000"/></g>
+  ${T(300,130,"Mars",{c:"#fff",w:700,s:15})}
+  ${T(120,95,"planned path",{c:C.green,w:700,a:"end"})}${T(130,175,"actual path:",{c:C.red,w:700,a:"end"})}${T(130,192,"too close",{c:C.red,w:700,a:"end"})}
+  ${T(46,72,"orbiter",{s:12})}`);
+
+/* 2 Scientific notation on the calculator */
+(()=>{ const keys=[["7","8","9","÷"],["4","5","6","×"],["1","2","3","−"],["0",".","EE","+"]]; let k="";
+ keys.forEach((r,i)=>r.forEach((s,j)=>{ const x=32+j*33, y=92+i*30, hi=s==="EE"; k+=box(x,y,28,24,{rx:4,f:hi?C.orange:"#eef2f3",st:hi?"#000":"#9aa7ad",sw:hi?1.6:1})+T(x+14,y+17,s,{s:13,w:hi?800:600,c:hi?"#fff":C.ink}); }));
+ const seq=["6",".","0","2","EE","2","3"]; let q="";
+ seq.forEach((s,i)=>{ const x=200+i*33, hi=s==="EE"; q+=box(x,70,28,28,{rx:4,f:hi?C.orange:"#eef2f3",st:hi?"#000":"#9aa7ad",sw:hi?1.6:1})+T(x+14,89,s,{s:14,w:hi?800:600,c:hi?"#fff":C.ink}); if(i) q+=""; });
+ add(2,"l-scinot","Scientific Notation on Your Calculator",
+ "To enter 6.02 × 10²³, press EE (or EXP, or ×10ⁿ) in place of “× 10”. The calculator already puts in the 10, so you only type the exponent.",
+ "A calculator with the EE key highlighted, the key sequence 6.02 EE 23, and the display 6.02E23.",440,235,
+ `${box(20,20,160,200,{rx:14,f:"#3c4449"})}${box(32,32,136,44,{rx:4,f:"#dfeee0"})}${T(160,62,"6.02E23",{a:"end",s:19,w:700})}${k}
+  ${T(310,50,"Press these keys:",{w:700})}${q}
+  ${T(310,135,"The display shows",{s:14})}${box(244,145,132,34,{rx:4,f:"#dfeee0"})}${T(366,169,"6.02E23",{a:"end",s:17,w:700})}
+  ${T(306,205,"This means 6.02 × 10",{s:14,w:600})}<text x="377" y="196" font-size="10" font-weight="600" fill="${C.ink}">23</text>`); })();
+
+/* 3 Prefixes work with any unit */
+add(3,"l-metric","Prefixes Work With Any Unit",
+ "The prefix tells the size and the unit tells what is measured. A millimeter, a milligram and a milliliter are each one thousandth (0.001) of their base unit.",
+ "The prefix milli connected to three examples: 1 millimeter on a ruler, 1 milligram, and 1 milliliter drop.",440,230,
+ `${box(140,14,160,56,{rx:8,f:C.teal,st:C.tealD})}${T(220,38,"milli- (m)",{c:"#fff",w:800,s:18})}${T(220,59,"= 0.001 of the base unit",{c:"#fff",s:12.5,w:600})}
+  ${arr(180,72,85,128,C.tealD,2)}${arr(220,72,220,128,C.tealD,2)}${arr(260,72,355,128,C.tealD,2)}
+  <rect x="30" y="140" width="110" height="34" fill="#fff3c4" stroke="#000"/>${[0,1,2,3,4,5,6,7,8,9,10].map(i=>`<line x1="${40+i*9}" y1="140" x2="${40+i*9}" y2="${i%5?150:156}" stroke="#000" stroke-width="1"/>`).join("")}
+  <rect x="58" y="160" width="9" height="6" fill="${C.red}"/>${T(85,198,"1 mm",{w:800,s:16})}${T(85,216,"meter",{s:12,c:C.gray})}
+  <ellipse cx="220" cy="157" rx="26" ry="13" fill="#fff" stroke="#000" stroke-width="1.3"/><line x1="220" y1="144" x2="220" y2="170" stroke="#000"/>${T(220,198,"1 mg",{w:800,s:16})}${T(220,216,"gram",{s:12,c:C.gray})}
+  <path d="M355 136 C355 136 340 158 340 165 A15 15 0 0 0 370 165 C370 158 355 136 355 136Z" fill="#9fd3f0" stroke="#000" stroke-width="1.3"/>${T(355,198,"1 mL",{w:800,s:16})}${T(355,216,"liter",{s:12,c:C.gray})}`);
+
+/* 4 Rulers */
+(()=>{ let t=""; const x0=30, pc=80;
+ for(let i=0;i<=50;i++){ const x=x0+i*pc/10, L=i%10===0?24:i%5===0?16:10; t+=`<line x1="${x}" y1="80" x2="${x}" y2="${80+L}" stroke="#000" stroke-width="${i%10?1:1.5}"/>`; if(i%10===0) t+=T(x,123,i/10,{s:14,w:700}); }
+ const end=x0+3.45*pc;
+ add(4,"l-measure","Rulers and Meter Sticks",
+ "The end of the pencil is past 3.4 cm but not yet at 3.5 cm. Read the marks you are sure of (3.4) and estimate one more digit: 3.45 cm.",
+ "A pencil lined up with the zero mark of a centimeter ruler. Its tip is between 3.4 and 3.5 cm, read as 3.45 cm.",460,185,
+ `<rect x="${x0-14}" y="80" width="${5*pc+28}" height="52" fill="#fff3c4" stroke="#000" stroke-width="1.3"/>${t}${T(x0+5*pc+2,145,"cm",{s:12,a:"start"})}
+  <rect x="${x0}" y="48" width="${end-x0-22}" height="18" fill="${C.yellow}" stroke="#000" stroke-width="1.3"/><rect x="${x0}" y="48" width="14" height="18" fill="#f2a5b0" stroke="#000" stroke-width="1.3"/>
+  <polygon points="${end-22},48 ${end},57 ${end-22},66" fill="#f3d9b1" stroke="#000" stroke-width="1.3"/><polygon points="${end-7},54.5 ${end},57 ${end-7},59.5" fill="#333"/>
+  <line x1="${end}" y1="40" x2="${end}" y2="140" stroke="${C.red}" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="${x0}" y1="40" x2="${x0}" y2="76" stroke="${C.red}" stroke-width="1.6" stroke-dasharray="4 3"/>
+  ${T(end,165,"3.45 cm",{c:C.red,w:800,s:17})}${T(x0,32,"start at 0",{c:C.red,w:700,s:12,a:"start"})}`); })();
+
+/* 5 Accuracy and precision: targets */
+(()=>{ const tg=(cx,pts)=>`<circle cx="${cx}" cy="72" r="48" fill="#fff" stroke="#000" stroke-width="1.3"/><circle cx="${cx}" cy="72" r="32" fill="#bfe3f5" stroke="#000"/><circle cx="${cx}" cy="72" r="15" fill="${C.red}" stroke="#000"/>`+pts.map(([x,y])=>`<circle cx="${cx+x}" cy="${72+y}" r="4.2" fill="#000" stroke="#fff" stroke-width="1"/>`).join("");
+ const lab=(cx,a,b)=>T(cx,142,a,{s:13,w:700})+T(cx,159,b,{s:13,w:700});
+ add(5,"l-accuracy","Accuracy and Precision in Data",
+ "The center of each target is the accepted value. Precise means the measurements are close to each other. Accurate means they are close to the accepted value. Student B’s data looks like the second target.",
+ "Four targets: dots clustered in the center (accurate and precise), clustered off center (precise, not accurate), spread around the center (accurate, not precise), and spread off center (neither).",500,170,
+ tg(65,[[-3,-2],[3,3],[2,-4],[-2,4]])+tg(190,[[22,-24],[27,-20],[24,-28],[19,-19]])+tg(315,[[-24,-8],[22,14],[6,-27],[-9,25]])+tg(440,[[18,-30],[34,4],[-8,-38],[30,-20]])
+ +lab(65,"Accurate","and precise")+lab(190,"Precise,","not accurate")+lab(315,"Accurate,","not precise")+lab(440,"Neither","")); })();
+
+/* 6 Sig fig rules */
+(()=>{ const ch=["0",".","0","0","4","0","5","0"], xs=[60,84,108,142,190,224,258,292]; let d="";
+ ch.forEach((c,i)=>{ d+=T(xs[i],80,c,{s:46,w:700,c:i<4?"#a8b2b7":C.green}); });
+ add(6,"l-sigfigs","Rules for Counting Significant Figures",
+ "The zeros in front only show where the decimal point is, so they are not significant. 0.004050 has 4 significant figures: 4, 0, 5 and the final 0.",
+ "The number 0.004050 with its leading zeros in gray and the digits 4050 in green, labeled leading zeros, sandwiched zero and trailing zero. It has 4 significant figures.",440,205,
+ `${d}<path d="M44 92 v8 h112 v-8" fill="none" stroke="${C.gray}" stroke-width="2"/>${T(100,120,"leading zeros:",{s:13,c:C.gray,w:700})}${T(100,136,"not significant",{s:13,c:C.gray,w:700})}
+  ${arr(224,150,224,96,C.green,2)}${T(224,168,"sandwiched zero",{s:13,c:C.green,w:700})}
+  ${arr(300,120,293,96,C.green,2)}${T(318,136,"trailing zero after",{s:13,c:C.green,w:700})}${T(318,152,"a decimal point",{s:13,c:C.green,w:700})}
+  ${T(368,72,"→ 4",{s:24,w:800,c:C.green,a:"start"})}${T(374,92,"sig figs",{s:13,w:700,c:C.green,a:"start"})}
+  <path d="M176 92 v8 h132 v-8" fill="none" stroke="${C.green}" stroke-width="2"/>${T(330,196,"",{})}`); })();
+
+/* 7 Multiplying and dividing */
+add(7,"l-sigcalc","Multiplying and Dividing",
+ "A block has a mass of 12.5 g and a volume of 4.2 cm³. The calculator shows 2.976190476, but 4.2 has only 2 significant figures, so the density is 3.0 g/cm³.",
+ "Density equals 12.5 grams, 3 significant figures, divided by 4.2 cubic centimeters, 2 significant figures. The calculator answer 2.976190476 is rounded to 3.0 grams per cubic centimeter.",470,190,
+ `${T(40,78,"D =",{s:22,w:700,a:"start"})}${T(130,62,"12.5 g",{s:22,w:700})}<line x1="88" y1="72" x2="172" y2="72" stroke="#000" stroke-width="2"/>${T(130,100,"4.2 cm³",{s:22,w:700})}
+  ${T(240,60,"3 sig figs",{s:12.5,w:700,c:C.blue,a:"start"})}${arr(236,56,180,56,C.blue,1.8,7)}
+  ${T(240,104,"2 sig figs",{s:12.5,w:700,c:C.red,a:"start"})}${arr(236,100,180,98,C.red,1.8,7)}
+  ${box(40,128,170,38,{rx:5,f:"#dfeee0"})}${T(200,154,"2.976190476",{s:19,w:700,a:"end",c:"#7d878c"})}<line x1="58" y1="147" x2="204" y2="147" stroke="${C.red}" stroke-width="2.5"/>
+  ${arr(220,147,270,147,C.ink,2.5)}${T(350,156,"3.0 g/cm³",{s:24,w:800,c:C.green})}${T(350,180,"2 sig figs",{s:12.5,w:700,c:C.red})}`);
+
+/* 8 Exact numbers */
+(()=>{ let e=""; for(let r=0;r<2;r++) for(let c=0;c<6;c++) e+=`<ellipse cx="${46+c*28}" cy="${84+r*30}" rx="11" ry="13" fill="#fbf3e4" stroke="#000" stroke-width="1.1"/>`;
+ let tk=""; for(let i=0;i<=10;i++){ const y=170-i*12; tk+=`<line x1="330" y1="${y}" x2="${i%5?342:350}" y2="${y}" stroke="#000" stroke-width="1"/>`; if(i%5===0) tk+=T(352,y+4,30+i,{s:11,a:"start"}); }
+ add(8,"l-sigcalc","Exact Numbers",
+ "You can count 12 eggs exactly: there is no such thing as 12.3 eggs. A measurement like 36.5 mL always has an estimated last digit, so only measured numbers limit your answer.",
+ "An egg carton holding 12 eggs labeled counted, exact. A graduated cylinder reading 36.5 milliliters labeled measured, last digit estimated.",440,230,
+ `<rect x="30" y="68" width="172" height="62" rx="6" fill="#d8c6a5" stroke="#000" stroke-width="1.3"/>${e}
+  ${T(116,160,"12 eggs",{s:17,w:800})}${T(116,180,"counted: exact",{s:13,w:700,c:C.green})}
+  <path d="M318 40 v140 a4 4 0 0 0 4 4 h22 a4 4 0 0 0 4 -4 v-140" fill="#fff" stroke="#000" stroke-width="1.3"/>
+  <path d="M319.5 88 q14 8 27 0 v92 h-27z" fill="#9fd3f0"/>${tk}<path d="M319.5 88 q14 8 27 0" fill="none" stroke="${C.blue}" stroke-width="1.5"/>
+  ${T(333,205,"36.5 mL",{s:17,w:800})}${T(333,224,"measured: last digit estimated",{s:13,w:700,c:C.orange})}`); })();
+
+/* 9 Dimensional analysis */
+add(9,"l-convert","Dimensional Analysis",
+ "A movie that is 2.5 hours long runs 150 minutes. The unit you start with (h) goes on the bottom of the conversion factor so it cancels.",
+ "2.5 hours times 60 minutes over 1 hour equals 150 minutes. The hours units are crossed out.",450,170,
+ `${T(70,92,"2.5 h",{s:26,w:700})}<line x1="84" y1="96" x2="102" y2="74" stroke="${C.red}" stroke-width="2.5"/>
+  ${T(125,92,"×",{s:26,w:700})}${T(195,70,"60 min",{s:24,w:700,c:C.blue})}<line x1="150" y1="82" x2="242" y2="82" stroke="#000" stroke-width="2"/>${T(195,112,"1 h",{s:24,w:700})}<line x1="204" y1="114" x2="222" y2="92" stroke="${C.red}" stroke-width="2.5"/>
+  ${T(262,92,"=",{s:26,w:700})}${T(340,92,"150 min",{s:26,w:800,c:C.green})}
+  ${T(70,140,"given",{s:13,w:700,c:C.gray})}${T(195,140,"conversion factor",{s:13,w:700,c:C.gray})}${T(340,140,"answer",{s:13,w:700,c:C.gray})}
+  ${T(195,30,"desired unit on top",{s:12.5,w:700,c:C.blue})}${T(195,160,"given unit on the bottom",{s:12.5,w:700,c:C.red})}`);
+
+/* 10 Periodic table regions */
+(()=>{ const pos=z=>{ if(z===1) return [1,1]; if(z===2) return [1,18]; if(z<=4) return [2,z-2]; if(z<=10) return [2,z+8]; if(z<=12) return [3,z-10]; if(z<=18) return [3,z]; if(z<=36) return [4,z-18]; if(z<=54) return [5,z-36]; if(z<=56) return [6,z-54]; if(z===57) return [6,3]; if(z<=71) return null; if(z<=86) return [6,z-68]; if(z<=88) return [7,z-86]; if(z===89) return [7,3]; if(z<=103) return null; return [7,z-100]; };
+ const MD=[5,14,32,33,51,52,84,85], NM=[1,2,6,7,8,9,10,15,16,17,18,34,35,36,53,54,86]; let g=""; const s=19, x0=104, y0=40;
+ for(let z=1;z<=118;z++){ const p=pos(z); if(!p) continue; const [r,c]=p; g+=`<rect x="${x0+(c-1)*s}" y="${y0+(r-1)*s}" width="${s}" height="${s}" fill="${MD.includes(z)?C.mtd:NM.includes(z)?C.non:C.metal}" stroke="#7d878c" stroke-width=".7"/>`; }
+ const st=[[13,2],[13,3],[14,3],[14,4],[15,4],[15,5],[16,5],[16,6],[17,6],[17,7]]; let d=`M${x0+12*s} ${y0+s}`; st.forEach(([c,r])=>{ d+=` L${x0+c*s-(c===13&&r===2?0:0)} ${y0+(r-1)*s}`.replace(/.*/,m=>m); });
+ const stair=`M${x0+12*s} ${y0+s} V${y0+2*s} H${x0+13*s} V${y0+3*s} H${x0+14*s} V${y0+4*s} H${x0+15*s} V${y0+5*s} H${x0+16*s} V${y0+6*s} H${x0+17*s} V${y0+7*s}`;
+ add(10,"m-atoms","Periodic Table of Elements",
+ "Most elements are metals (pink). The nonmetals (blue) are on the right. The metalloids (green) sit along the staircase line between them.",
+ "An outline of the periodic table colored by region: metals on the left, nonmetals on the right, metalloids along the staircase. Arrows show a group is a column and a period is a row.",470,215,
+ `${g}<path d="${stair}" fill="none" stroke="#000" stroke-width="3"/>
+  ${arr(x0-14,y0+5,x0-14,y0+7*s,C.ink,2.2)}${T(x0-22,y0+62,"Group",{s:12.5,w:800,a:"end"})}${T(x0-22,y0+78,"(column)",{s:11,a:"end"})}
+  ${arr(x0,y0+7*s+16,x0+18*s,y0+7*s+16,C.ink,2.2)}${T(x0+9*s,y0+7*s+36,"Period (row)",{s:12.5,w:800})}
+  ${T(x0+5.5*s,y0+2*s-2,"Metals",{s:15,w:800})}${T(x0+16.5*s,y0+4*s-6,"",{})}`); })();
+
+/* 11 Bonds and energy */
+add(11,"m-bonds","Bonds and Energy",
+ "Two separate hydrogen atoms have more energy than an H₂ molecule. That is why energy is released when the bond forms and must be added to break it.",
+ "An energy diagram. Two separate H atoms are high in energy. The bonded H2 molecule is lower. Bond forms: energy released. Bond breaks: energy absorbed.",460,230,
+ `${arr(24,210,24,20,C.ink,2)}${T(14,120,"Energy",{s:13,w:700,a:"middle"}).replace("<text",'<text transform="rotate(-90 14 120)"')}
+  <line x1="40" y1="60" x2="440" y2="60" stroke="${C.gray}" stroke-dasharray="5 4"/><line x1="40" y1="180" x2="440" y2="180" stroke="${C.gray}" stroke-dasharray="5 4"/>
+  ${atom(196,40,17,"H")}${atom(256,40,17,"H")}${T(338,45,"separate atoms",{s:13,w:700,a:"start"})}
+  ${atom(212,160,17,"H")}${atom(238,160,17,"H")}${T(338,165,"bonded (H₂)",{s:13,w:700,a:"start"})}${T(338,182,"more stable",{s:12,w:600,a:"start",c:C.green})}
+  ${arr(150,72,150,140,C.red,3)}${T(142,100,"bond forms:",{s:12.5,w:800,c:C.red,a:"end"})}${T(142,116,"energy released",{s:12.5,w:600,c:C.red,a:"end"})}
+  ${arr(300,140,300,72,C.blue,3)}${T(310,100,"bond breaks:",{s:12.5,w:800,c:C.blue,a:"start"})}${T(310,116,"energy absorbed",{s:12.5,w:600,c:C.blue,a:"start"})}`);
+
+/* 12 Describing matter */
+add(12,"m-props","Describing Matter",
+ "Copper conducts electricity well and can be pulled into thin wires, so it is used for electrical wiring. Gold is shiny and does not tarnish, so it is used in jewelry.",
+ "A copper wire and a gold ring, each labeled with properties: copper conducts electricity, gold is shiny and does not tarnish.",440,200,
+ `<path d="M30 120 C80 60 130 170 190 100" fill="none" stroke="#b87333" stroke-width="7" stroke-linecap="round"/><path d="M30 120 C80 60 130 170 190 100" fill="none" stroke="#e3a46b" stroke-width="2" stroke-linecap="round"/>
+  ${T(110,40,"copper (Cu)",{s:15,w:800})}${box(36,150,150,40,{rx:5})}${T(111,166,"conducts electricity",{s:12.5,w:600})}${T(111,182,"bends into wires",{s:12.5,w:600})}
+  <ellipse cx="320" cy="98" rx="46" ry="40" fill="none" stroke="#b8860b" stroke-width="12"/><ellipse cx="320" cy="98" rx="46" ry="40" fill="none" stroke="#ffd966" stroke-width="5"/>
+  <polygon points="320,46 308,36 332,36" fill="#bfe3f5" stroke="#000"/>${T(320,24,"gold (Au)",{s:15,w:800})}${box(250,150,140,40,{rx:5})}${T(320,166,"shiny",{s:12.5,w:600})}${T(320,182,"does not tarnish",{s:12.5,w:600})}`);
+
+/* 13 Evidence of a chemical change */
+(()=>{ const bub=(x,y,n,seed)=>{ let o=""; for(let i=0;i<n;i++){ const bx=x+((i*37+seed)%46)-23, by=y-((i*23+seed*3)%70); o+=`<circle cx="${bx}" cy="${by}" r="${2.5+(i%3)}" fill="#fff" stroke="#000" stroke-width=".9"/>`; } return o; };
+ add(13,"m-changes","Evidence of a Chemical Change",
+ "Both glasses have bubbles. The antacid tablet reacts with water to make a new substance, carbon dioxide gas (chemical change). The bubbles in boiling water are still water (physical change).",
+ "Left: an antacid tablet fizzing in a glass of water, labeled new substance, CO2, chemical change. Right: a pot of boiling water with bubbles, labeled still H2O, physical change.",460,230,
+ `<path d="M50 50 L62 180 H138 L150 50" fill="#e6f4fb" stroke="#000" stroke-width="1.3"/><path d="M52 70 L62 180 H138 L148 70z" fill="#bfe3f5"/>
+  <rect x="80" y="166" width="40" height="10" rx="3" fill="#fff" stroke="#000"/>${bub(100,160,16,3)}
+  ${T(100,30,"antacid tablet",{s:13,w:800})}${T(100,204,"new substance: CO₂",{s:13,w:700,c:C.red})}${T(100,222,"chemical change",{s:13,w:800,c:C.red})}
+  <rect x="270" y="86" width="140" height="80" rx="6" fill="#bfe3f5" stroke="#000" stroke-width="1.3"/><rect x="255" y="80" width="170" height="10" rx="4" fill="#7d878c" stroke="#000"/>
+  ${bub(340,160,14,7)}<path d="M300 72 q-8 -12 0 -24 q8 -12 0 -24 M340 72 q-8 -12 0 -24 q8 -12 0 -24 M380 72 q-8 -12 0 -24 q8 -12 0 -24" fill="none" stroke="#9aa7ad" stroke-width="2"/>
+  <path d="M290 172 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0" fill="${C.orange}" stroke="#c40000"/>
+  ${T(340,204,"still H₂O",{s:13,w:700,c:C.blue})}${T(340,222,"physical change",{s:13,w:800,c:C.blue})}`); })();
+
+/* 14 Density: float or sink */
+add(14,"m-density","Density Is a Property of a Substance",
+ "Water has a density of 1.00 g/mL. Wood and ice are less dense than water, so they float. Iron (7.87 g/cm³) is more dense, so it sinks.",
+ "A tank of water with a block of wood floating high, an ice cube floating mostly underwater, and an iron bolt resting on the bottom.",440,230,
+ `<rect x="40" y="40" width="360" height="160" fill="#fff" stroke="#000" stroke-width="1.5"/><rect x="41.5" y="80" width="357" height="118.5" fill="#bfe3f5"/><line x1="41.5" y1="80" x2="398.5" y2="80" stroke="${C.blue}" stroke-width="2"/>
+  <rect x="70" y="64" width="70" height="30" fill="#c8a27a" stroke="#000" stroke-width="1.3"/>${T(105,56,"wood",{s:13,w:800})}${T(105,118,"about 0.5 g/cm³",{s:11.5,w:600})}
+  <rect x="190" y="74" width="54" height="54" fill="#eef9ff" stroke="#000" stroke-width="1.3" opacity=".95"/>${T(217,66,"ice",{s:13,w:800})}${T(217,146,"0.92 g/cm³",{s:11.5,w:600})}
+  <rect x="300" y="178" width="70" height="16" rx="3" fill="#6d7b85" stroke="#000" stroke-width="1.3"/><rect x="292" y="172" width="14" height="28" fill="#56626a" stroke="#000"/>${T(335,150,"iron",{s:13,w:800})}${T(335,166,"7.87 g/cm³",{s:11.5,w:600})}
+  ${T(220,222,"water: 1.00 g/mL",{s:13,w:800,c:C.blue})}`);
+
+/* 15 Identifying substances: real vs. fake gold */
+add(15,"m-density","Identifying Substances",
+ "These two bars are the same size and look the same. The real gold bar has a density of 19.3 g/cm³. A copper bar with a thin gold coating (about 9 g/cm³) has less than half the mass.",
+ "Two identical-looking gold bars of 10 cubic centimeters on balances. The real gold bar reads 193 grams. The gold-coated copper bar reads about 90 grams.",450,220,
+ `${[[110,"193 g","real gold",C.green],[330,"about 90 g","gold-coated copper",C.red]].map(([x,m,l,c])=>`<polygon points="${x-50},70 ${x+50},70 ${x+40},100 ${x-40},100" fill="#ffd966" stroke="#000" stroke-width="1.3" transform="translate(0,0)"/><polygon points="${x-50},70 ${x+50},70 ${x+38},58 ${x-38},58" fill="#ffe999" stroke="#000" stroke-width="1.3"/>
+  <rect x="${x-70}" y="100" width="140" height="10" fill="#9aa7ad" stroke="#000"/><rect x="${x-60}" y="110" width="120" height="50" rx="4" fill="#d6dcdf" stroke="#000" stroke-width="1.3"/><rect x="${x-44}" y="120" width="88" height="28" fill="#dfeee0" stroke="#000"/>${T(x,140,m,{s:15,w:800})}
+  ${T(x,184,l,{s:14,w:800,c})}${T(x,202,"10 cm³",{s:12.5,w:600,c:C.gray})}`).join("")}
+  ${T(220,30,"Same volume, different mass",{s:14,w:800})}`);
+
+/* 16 Separating mixtures: filtration */
+add(16,"m-separate","Separating Mixtures",
+ "Filtration separates by particle size. The sand is too large to pass through the filter paper, but the water passes through. Water treatment plants filter water through layers of sand and gravel.",
+ "A funnel lined with filter paper over a flask. Muddy water with sand is poured in. The sand stays on the filter and clear water drips into the flask.",440,240,
+ `<g transform="rotate(-40 150 40)"><path d="M120 10 v50 a6 6 0 0 0 6 6 h44 a6 6 0 0 0 6 -6 v-50" fill="#fff" stroke="#000" stroke-width="1.3"/><path d="M121.5 34 h53 v26 a4.5 4.5 0 0 1 -4.5 4.5 h-44 a4.5 4.5 0 0 1 -4.5 -4.5z" fill="#c9a676"/></g><path d="M168 54 q12 10 40 30" fill="none" stroke="#c9a676" stroke-width="4"/>${T(80,24,"sand + water",{s:13,w:800})}
+  <polygon points="150,70 290,70 230,140 210,140" fill="#fff" stroke="#000" stroke-width="1.3"/><polygon points="160,74 280,74 222,134 218,134" fill="#f7f7f7" stroke="#9aa7ad"/>
+  ${(()=>{ let o=""; for(let y=128;y>=106;y-=6){ const hw=(134-y)*58/60-4; for(let x=220-hw;x<=220+hw;x+=7) o+=`<circle cx="${x.toFixed(1)}" cy="${y}" r="3" fill="#b58a4c" stroke="#000" stroke-width=".6"/>`; } return o; })()}
+  <rect x="214" y="140" width="12" height="30" fill="#fff" stroke="#000" stroke-width="1.3"/>
+  <path d="M190 170 h60 v20 l30 40 h-120 l30 -40z" fill="#fff" stroke="#000" stroke-width="1.3"/><path d="M170 214 l-8 15 h116 l-8 -15z" fill="#bfe3f5"/>
+  <path d="M220 176 q-4 7 0 9 q4 -2 0 -9z" fill="#9fd3f0" stroke="${C.blue}"/><path d="M220 194 q-4 7 0 9 q4 -2 0 -9z" fill="#9fd3f0" stroke="${C.blue}"/>
+  ${arr(330,112,250,118,C.ink,2)}${T(336,100,"sand stays on",{s:13,w:700,a:"start"})}${T(336,116,"the filter paper",{s:13,w:700,a:"start"})}
+  ${arr(330,216,270,218,C.ink,2)}${T(336,212,"water passes",{s:13,w:700,a:"start"})}${T(336,228,"through",{s:13,w:700,a:"start"})}`);
+
+/* 17 Democritus */
+add(17,"history","Democritus",
+ "Democritus reasoned that cutting matter in half over and over must stop at a piece that cannot be cut. He had no experiments to test the idea, and Aristotle rejected it. It was set aside for about 2,000 years.",
+ "A block of matter cut in half again and again, getting smaller each time, until the last piece is labeled atomos, cannot be cut.",460,170,
+ `<rect x="20" y="40" width="80" height="80" fill="${C.teal}" stroke="#000" stroke-width="1.3"/>${arr(108,80,138,80)}
+  <rect x="146" y="60" width="40" height="40" fill="${C.teal}" stroke="#000" stroke-width="1.3"/>${arr(194,80,222,80)}
+  <rect x="230" y="70" width="20" height="20" fill="${C.teal}" stroke="#000" stroke-width="1.3"/>${arr(258,80,284,80)}
+  <rect x="292" y="75" width="10" height="10" fill="${C.teal}" stroke="#000" stroke-width="1"/>${arr(310,80,336,80)}${T(322,72,"…",{s:18,w:800})}
+  <circle cx="370" cy="80" r="6" fill="${C.purple}" stroke="#000" stroke-width="1.2"/>
+  ${T(390,124,"atomos",{s:16,w:800,c:C.purple})}${T(390,142,"“cannot be cut”",{s:13,w:600,c:C.purple})}${arr(380,108,372,90,C.purple,1.6,6)}
+  ${T(60,140,"cut in half",{s:12.5,w:600,c:C.gray})}`);
+
+/* 18 Thomson: cathode ray tube */
+add(18,"history","J.J. Thomson",
+ "The beam bent away from the negative plate and toward the positive plate. Opposite charges attract, so the particles in the beam must be negative. We now call them electrons.",
+ "A cathode ray tube. A beam travels from the cathode on the left and bends toward the positive plate, away from the negative plate.",460,210,
+ `<path d="M40 70 h80 l60 -30 h220 a12 12 0 0 1 12 12 v100 a12 12 0 0 1 -12 12 h-220 l-60 -30 h-80z" fill="#eef9ff" stroke="#000" stroke-width="1.4"/>
+  <rect x="50" y="78" width="8" height="58" fill="#6d7b85" stroke="#000"/>${T(54,62,"cathode (−)",{s:12,w:700})}
+  <rect x="120" y="78" width="8" height="22" fill="#6d7b85" stroke="#000"/><rect x="120" y="114" width="8" height="22" fill="#6d7b85" stroke="#000"/>${T(124,160,"anode (+)",{s:12,w:700})}
+  <rect x="220" y="54" width="110" height="10" fill="${C.blue}" stroke="#000"/>${T(340,64,"− plate",{s:13,w:800,c:C.blue,a:"start"})}
+  <rect x="220" y="150" width="110" height="10" fill="${C.red}" stroke="#000"/>${T(340,160,"+ plate",{s:13,w:800,c:C.red,a:"start"})}
+  <path d="M58 107 H220 Q300 110 400 140" fill="none" stroke="${C.green}" stroke-width="4"/><path d="M58 107 H400" fill="none" stroke="${C.gray}" stroke-width="1.5" stroke-dasharray="5 4"/>
+  ${T(392,146,"beam",{s:12.5,w:800,c:C.green,a:"end"})}${T(398,100,"straight line",{s:11,c:C.gray,a:"end"})}`);
+
+/* 19 Rutherford: gold foil */
+add(19,"history","Ernest Rutherford",
+ "Most alpha particles went straight through the gold foil, so the atom is mostly empty space. A few bounced back, so each atom has a small, dense, positive nucleus.",
+ "Alpha particles from a source in a lead box hit thin gold foil inside a ring-shaped detector. Most pass straight through, a few are deflected and a very few bounce back.",460,230,
+ `<circle cx="300" cy="115" r="92" fill="none" stroke="${C.green}" stroke-width="6" stroke-dasharray="230 30" transform="rotate(170 300 115)"/>${T(300,222,"detector screen",{s:12.5,w:700,c:C.green})}
+  <rect x="30" y="92" width="64" height="46" fill="#6d7b85" stroke="#000" stroke-width="1.3"/><circle cx="62" cy="115" r="8" fill="${C.yellow}" stroke="#000"/>${T(62,82,"alpha source",{s:12,w:700})}${T(62,154,"(lead box)",{s:11,c:C.gray})}
+  <rect x="296" y="70" width="8" height="90" fill="#ffd966" stroke="#000"/>${T(300,62,"gold foil",{s:12.5,w:800})}
+  ${arr(96,115,380,115,C.red,2.2,8)}${arr(96,110,380,104,C.red,2,8)}${arr(96,120,380,126,C.red,2,8)}
+  <path d="M96 112 L300 112" fill="none" stroke="${C.red}" stroke-width="2"/>${arr(300,112,350,48,C.red,2,8)}
+  ${arr(296,118,222,168,C.red,2,8)}
+  ${T(398,108,"most go",{s:12,w:700,a:"start",c:C.red})}${T(398,123,"straight",{s:12,w:700,a:"start",c:C.red})}${T(356,40,"a few bend",{s:12,w:700,a:"start",c:C.red})}
+  ${T(214,170,"a very few",{s:12,w:700,c:C.red,a:"end"})}${T(214,185,"bounce back",{s:12,w:700,c:C.red,a:"end"})}`);
+
+/* 20 History of atomic models */
+(()=>{ const m=[];
+ m.push([60,"Dalton","1803",`<circle cx="60" cy="80" r="30" fill="#7d878c" stroke="#000" stroke-width="1.3"/>`]);
+ let pp=`<circle cx="160" cy="80" r="30" fill="#f6c3cc" stroke="#000" stroke-width="1.3"/>`; [[-14,-12],[10,-16],[-4,4],[16,8],[-16,14],[4,20]].forEach(([x,y])=>pp+=`<circle cx="${160+x}" cy="${80+y}" r="4" fill="${C.blue}" stroke="#000" stroke-width=".8"/>`); m.push([160,"Thomson","1897",pp]);
+ let ru=`<circle cx="260" cy="80" r="30" fill="#fff" stroke="#9aa7ad" stroke-dasharray="3 3"/><circle cx="260" cy="80" r="4" fill="${C.red}" stroke="#000"/>`; [[-20,-14],[18,-18],[22,14],[-12,22]].forEach(([x,y])=>ru+=`<circle cx="${260+x}" cy="${80+y}" r="3.5" fill="${C.blue}" stroke="#000" stroke-width=".8"/>`); m.push([260,"Rutherford","1911",ru]);
+ let bo=`<circle cx="360" cy="80" r="14" fill="none" stroke="#000"/><circle cx="360" cy="80" r="28" fill="none" stroke="#000"/><circle cx="360" cy="80" r="5" fill="${C.red}" stroke="#000"/>`; [[14,0],[-14,0],[0,28],[0,-28],[20,20],[-20,-20]].forEach(([x,y])=>bo+=`<circle cx="${360+x}" cy="${80+y}" r="3.5" fill="${C.blue}" stroke="#000" stroke-width=".8"/>`); m.push([360,"Bohr","1913",bo]);
+ let wm=`<defs><radialGradient id="p5cl"><stop offset="0" stop-color="${C.blue}" stop-opacity=".75"/><stop offset="1" stop-color="${C.blue}" stop-opacity="0"/></radialGradient></defs><circle cx="460" cy="80" r="32" fill="url(#p5cl)"/><circle cx="460" cy="80" r="4" fill="${C.red}" stroke="#000"/>`; m.push([460,"Wave-mechanical","1926",wm]);
+ add(20,"history","History of Atomic Models",
+ "Each model kept the ideas that still matched the evidence and changed the ones that did not. The model we use today is the result of over 200 years of experiments.",
+ "Five atomic models in order: Dalton's solid sphere (1803), Thomson's plum pudding (1897), Rutherford's nuclear model (1911), Bohr's shells (1913) and the wave-mechanical electron cloud (1926).",520,160,
+ `<line x1="40" y1="140" x2="490" y2="140" stroke="#000" stroke-width="2"/>${arr(470,140,505,140,C.ink,2)}`+m.map(([x,n,y,d])=>d+T(x,130,n,{s:12.5,w:800})+`<circle cx="${x}" cy="140" r="4" fill="#000"/>`+T(x,156,y,{s:12,w:600,c:C.gray})).join("")+T(260,24,"",{})); })();
+
+/* 21 Groups and ionic charges */
+(()=>{ const g=[["1","1+",C.metal],["2","2+",C.metal],["13","3+",C.metal],["14","share",C.mtd],["15","3−",C.non],["16","2−",C.non],["17","1−",C.non],["18","0",C.non]]; let o="";
+ g.forEach(([n,c,f],i)=>{ const x=30+i*52; o+=`<rect x="${x}" y="52" width="48" height="90" fill="${f}" stroke="#000" stroke-width="1.2"/>`+T(x+24,44,n,{s:13,w:800})+T(x+24,104,c,{s:c==="share"?13:20,w:800,c:c.includes("+")?C.red:c.includes("−")?C.blue:C.ink}); });
+ add(21,"ions","Groups and Ionic Charges",
+ "Sodium (group 1) loses 1 electron to have the same configuration as neon. Chlorine (group 17) gains 1 electron to have the same configuration as argon. That is why NaCl has a 1:1 ratio.",
+ "Main group columns with their usual ion charges: group 1 is 1+, group 2 is 2+, group 13 is 3+, group 14 shares, group 15 is 3−, group 16 is 2−, group 17 is 1− and group 18 is 0.",460,200,
+ `${o}${T(30,20,"Group",{s:12,w:700,a:"start",c:C.gray})}${T(108,170,"metals lose electrons",{s:13,w:700,c:C.red})}${T(108,188,"(cations, +)",{s:12,c:C.red})}${T(342,170,"nonmetals gain electrons",{s:13,w:700,c:C.blue})}${T(342,188,"(anions, −)",{s:12,c:C.blue})}`); })();
+
+/* Bohr helper */
+const bohr=(cx,cy,sh,o={})=>{ const r0=o.r0||16, dr=o.dr||14; let s=""; sh.forEach((n,i)=>{ const R=r0+(i+1)*dr; s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#000" stroke-width="1"/>`;
+  for(let k=0;k<n;k++){ const a=-Math.PI/2+k*2*Math.PI/n+(i%2?Math.PI/n:0); const val=i===sh.length-1&&o.hv; s+=`<circle cx="${(cx+R*Math.cos(a)).toFixed(1)}" cy="${(cy+R*Math.sin(a)).toFixed(1)}" r="${o.er||3.6}" fill="${val?C.red:C.blue}" stroke="#000" stroke-width=".8"/>`; } });
+  return s+`<circle cx="${cx}" cy="${cy}" r="${r0}" fill="#f6c3cc" stroke="#000" stroke-width="1.2"/>`+(o.nuc||""); };
+
+/* 22 Atomic structure: sodium Bohr model */
+add(22,"bohr","Atomic Structure",
+ "Sodium has 11 electrons: 2 in the first shell, 8 in the second and 1 in the outermost shell. This is written 2-8-1, the same way it appears on the Periodic Table.",
+ "A Bohr model of sodium with 11 protons and 12 neutrons in the nucleus, and 2, 8 and 1 electrons in three shells.",420,230,
+ `${bohr(150,115,[2,8,1],{r0:24,dr:26,er:5})}${T(150,112,"11 p⁺",{s:12,w:800})}${T(150,127,"12 n⁰",{s:12,w:800})}
+  ${T(330,70,"Sodium",{s:18,w:800})}${T(330,100,"2-8-1",{s:26,w:800,c:C.blue})}${T(330,130,"nucleus: protons",{s:12.5,w:600})}${T(330,146,"and neutrons",{s:12.5,w:600})}${T(330,172,"electrons in",{s:12.5,w:600,c:C.blue})}${T(330,188,"energy levels (shells)",{s:12.5,w:600,c:C.blue})}`);
+
+/* 23 Patterns: group 1 down */
+add(23,"bohr","Patterns on the Periodic Table",
+ "Lithium, sodium and potassium each have 1 valence electron (red). Each one down the group has one more shell. That is why they react in similar ways.",
+ "Bohr models of lithium (2-1), sodium (2-8-1) and potassium (2-8-8-1). Each has one valence electron shown in red, and each has one more shell than the one before.",480,220,
+ `${bohr(70,110,[2,1],{r0:10,dr:14,hv:1})}${bohr(200,110,[2,8,1],{r0:10,dr:14,hv:1})}${bohr(360,110,[2,8,8,1],{r0:10,dr:14,hv:1})}
+  ${T(70,200,"Li  2-1",{s:14,w:800})}${T(200,200,"Na  2-8-1",{s:14,w:800})}${T(360,200,"K  2-8-8-1",{s:14,w:800})}${T(240,24,"Group 1",{s:14,w:800,c:C.red})}`);
+
+/* 24 Why valence electrons matter */
+add(24,"valence","Why Valence Electrons Matter",
+ "Sodium has 1 valence electron to lose, so a small piece reacts with water right away. Neon has a full valence shell, so it does not react. In a sign, it just glows when electricity passes through it.",
+ "A piece of sodium fizzing and skating on water. A neon sign glowing red-orange. Sodium has 1 valence electron; neon's valence shell is full.",460,210,
+ `<rect x="20" y="100" width="190" height="70" fill="#bfe3f5" stroke="#000" stroke-width="1.3"/><rect x="92" y="88" width="34" height="16" rx="5" fill="#d6dcdf" stroke="#000"/>
+  ${[[80,86],[138,84],[100,74],[124,72],[72,96],[146,96]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3" fill="#fff" stroke="#000" stroke-width=".8"/>`).join("")}<path d="M88 92 l-14 -10 M132 92 l14 -12" stroke="${C.orange}" stroke-width="2"/>
+  ${T(115,40,"sodium (Na)",{s:14,w:800})}${T(115,58,"1 valence electron",{s:12,w:700,c:C.red})}${T(115,192,"reacts with water",{s:13,w:700})}
+  <rect x="250" y="70" width="190" height="90" rx="8" fill="#2b2f33" stroke="#000"/><text x="345" y="128" text-anchor="middle" font-size="40" font-weight="800" fill="none" stroke="#ff6a3d" stroke-width="2.4" style="filter:drop-shadow(0 0 4px #ff6a3d)">NEON</text>
+  ${T(345,40,"neon (Ne)",{s:14,w:800})}${T(345,58,"full valence shell",{s:12,w:700,c:C.green})}${T(345,192,"does not react",{s:13,w:700})}`);
+
+/* 25 Mendeleev's prediction */
+add(25,"p-building","Predicting Missing Elements",
+ "Mendeleev left a gap below silicon and predicted its properties from its neighbors. Germanium, found in 1886, matched his predictions closely.",
+ "A column of the periodic table: C, Si, a question mark, Sn, Pb. A table compares Mendeleev's predictions for eka-silicon (mass about 72, density about 5.5) with germanium (72.63, 5.32).",460,230,
+ `${["C","Si","?","Sn","Pb"].map((s,i)=>box(40,20+i*40,54,38,{f:s==="?"?"#fff3c4":"#f4f6f7",da:s==="?"?"5 3":""})+T(67,45+i*40,s,{s:18,w:800,c:s==="?"?C.orange:C.ink})).join("")}
+  ${arr(100,99,150,99,C.orange,2)}
+  ${box(160,50,280,120)}<line x1="160" y1="82" x2="440" y2="82" stroke="#000"/><line x1="160" y1="126" x2="440" y2="126" stroke="#000"/><line x1="250" y1="50" x2="250" y2="170" stroke="#000"/><line x1="345" y1="50" x2="345" y2="170" stroke="#000"/>
+  <rect x="160.6" y="50.6" width="278.8" height="31" fill="${C.teal}"/>${T(297,71,"",{})}${T(297,71,"predicted",{s:12.5,w:800,c:"#fff"})}${T(392,71,"germanium",{s:12.5,w:800,c:"#fff"})}
+  ${T(205,100,"atomic",{s:12.5,w:700})}${T(205,116,"mass",{s:12.5,w:700})}${T(297,110,"about 72",{s:14,w:700,c:C.orange})}${T(392,110,"72.63",{s:14,w:700,c:C.green})}
+  ${T(205,144,"density",{s:12.5,w:700})}${T(205,160,"(g/cm³)",{s:11.5})}${T(297,152,"about 5.5",{s:14,w:700,c:C.orange})}${T(392,152,"5.32",{s:14,w:700,c:C.green})}
+  ${T(300,200,"“eka-silicon” turned out to be germanium (Ge)",{s:13,w:800})}`);
+
+/* 26 Hydrogen */
+add(26,"p-families","Hydrogen: A Family of Its Own",
+ "Hydrogen is placed above lithium because it has 1 valence electron, but it is a nonmetal gas made of H₂ molecules. It is the most common element in the universe and makes up most of the Sun.",
+ "The top left of the periodic table with hydrogen set apart above lithium and sodium. Next to it, an H2 molecule labeled nonmetal, diatomic gas.",440,210,
+ `${box(40,20,52,44,{f:C.non,sw:2})}${T(66,49,"H",{s:20,w:800})}${box(40,76,52,44,{f:C.metal})}${T(66,105,"Li",{s:18,w:800})}${box(40,120,52,44,{f:C.metal})}${T(66,149,"Na",{s:18,w:800})}${box(40,164,52,40,{f:C.metal})}${T(66,190,"K",{s:18,w:800})}
+  ${T(66,14,"",{})}<line x1="30" y1="70" x2="104" y2="70" stroke="${C.red}" stroke-width="2" stroke-dasharray="5 3"/>${T(150,152,"alkali metals",{s:13,w:700,c:C.red,a:"start"})}<path d="M104 80 h20 v120 h-20" fill="none" stroke="${C.red}" stroke-width="1.8"/><line x1="124" y1="148" x2="146" y2="148" stroke="${C.red}" stroke-width="1.8"/>
+  ${atom(300,60,22,"H")}${atom(334,60,22,"H")}${T(317,110,"H₂",{s:18,w:800})}${T(317,132,"nonmetal",{s:13,w:700,c:C.blue})}${T(317,150,"diatomic gas at STP",{s:13,w:700,c:C.blue})}`);
+
+/* 27 Net pull */
+(()=>{ const one=(cx,sh,Z,net,lab)=>bohr(cx,100,sh,{r0:20,dr:16,hv:1,er:3.6,nuc:T(cx,104,"+"+Z,{s:13,w:800})})+`<circle cx="${cx}" cy="100" r="${20+2*16+6}" fill="none" stroke="${C.purple}" stroke-width="7" stroke-opacity=".25"/>`+T(cx,190,lab,{s:15,w:800})+T(cx,210,"net pull ≈ +"+net,{s:14,w:800,c:C.red});
+ add(27,"p-forces","Putting It Together: The Net Pull",
+ "Sodium and chlorine both have 10 inner electrons (shaded) shielding the valence electrons. Sodium's 11 protons give a net pull of about +1. Chlorine's 17 protons give about +7, so chlorine's valence electrons are held much more tightly.",
+ "Bohr models of sodium and chlorine with the 10 inner electrons shaded. Sodium's nucleus is +11 with net pull about +1. Chlorine's nucleus is +17 with net pull about +7.",440,220,
+ one(110,[2,8,1],11,1,"Na (2-8-1)")+one(330,[2,8,7],17,7,"Cl (2-8-7)")+T(220,104,"10 inner",{s:12,w:700,c:C.purple})+T(220,120,"electrons",{s:12,w:700,c:C.purple})); })();
+
+/* 28 Summary: trends */
+(()=>{ const W=18, x0=40, y0=50; let g=""; for(let r=0;r<6;r++) for(let c=0;c<8;c++) g+=`<rect x="${x0+c*W*1.6}" y="${y0+r*W*1.1}" width="${W*1.6}" height="${W*1.1}" fill="#f4f6f7" stroke="#bcc6cb" stroke-width=".8"/>`;
+ add(28,"p-forces","Summary: The Pull of the Nucleus",
+ "Across a period the pull on the valence electrons gets stronger: atoms get smaller and hold their electrons more tightly. Down a group the valence electrons are farther away: atoms get larger and hold them less tightly.",
+ "An outline of the main-group elements. An arrow across a period: stronger pull, smaller atoms, higher ionization energy. An arrow down a group: weaker pull, larger atoms, lower ionization energy.",470,230,
+ `${g}${arr(x0,y0-12,x0+8*W*1.6,y0-12,C.red,3)}${T(x0+4*W*1.6,y0-20,"",{})}
+  ${T(x0+4*W*1.6,y0+6*W*1.1+26,"",{})}${arr(x0-14,y0,x0-14,y0+6*W*1.1,C.blue,3)}
+  ${T(290,60,"Across a period →",{s:13.5,w:800,c:C.red,a:"start"})}${T(290,78,"stronger pull",{s:12.5,w:600,a:"start"})}${T(290,94,"smaller atoms",{s:12.5,w:600,a:"start"})}${T(290,110,"higher ionization energy",{s:12.5,w:600,a:"start"}).replace('text-anchor="start"','text-anchor="start" textLength="0"').replace(' textLength="0"',"")}
+  ${T(290,146,"Down a group ↓",{s:13.5,w:800,c:C.blue,a:"start"})}${T(290,164,"weaker pull",{s:12.5,w:600,a:"start"})}${T(290,180,"larger atoms",{s:12.5,w:600,a:"start"})}${T(290,196,"lower ionization energy",{s:12.5,w:600,a:"start"})}`); })();
+
+/* 29 Atoms and ions (radii to scale: CRC atomic, Shannon ionic, pm) */
+(()=>{ const k=.3, c=(x,r,f,l,sub_)=>`<circle cx="${x}" cy="100" r="${r*k}" fill="${f}" stroke="#000" stroke-width="1.3"/>`+T(x,100+5,l,{s:15,w:800})+T(x,170,sub_,{s:12,w:600,c:C.gray});
+ add(29,"p-ionic","Atoms and Their Ions",
+ "A sodium atom loses its whole outer shell when it becomes Na⁺, so the ion is much smaller. A chlorine atom gains an electron but no protons when it becomes Cl⁻, so the ion is larger. Circles are drawn to scale.",
+ "Circles drawn to scale: a sodium atom (160 pm) shrinks to a smaller Na+ ion (102 pm). A chlorine atom (100 pm) grows into a larger Cl− ion (181 pm).",470,200,
+ c(60,160,"#d6dcdf","Na","160 pm")+arr(116,100,146,100)+c(180,102,"#d6dcdf","Na⁺","102 pm")+c(290,100,C.orange,"Cl","100 pm")+arr(326,100,356,100)+c(410,181,C.orange,"Cl⁻","181 pm")
+ +T(120,30,"metal: ion is smaller",{s:13,w:800,c:C.red})+T(350,30,"nonmetal: ion is larger",{s:13,w:800,c:C.blue})+T(235,192,"",{})); })();
+
+/* 30 Lewis structure, ionic: NaCl */
+add(30,"b-ionic","Drawing Lewis Structures (Ionic)",
+ "Sodium gives its 1 valence electron to chlorine, so the arrow points to the nonmetal. Both ions now have complete valence shells. This is table salt, NaCl.",
+ "Lewis diagrams: Na with one dot and Cl with seven dots, an arrow moving sodium's electron to chlorine, then [Na]+ and [Cl]− with eight dots in brackets.",470,170,
+ `${T(60,90,"Na",{s:28,w:700})}<circle cx="86" cy="80" r="3.4" fill="${C.red}"/>${T(160,90,"Cl",{s:28,w:700})}${dots(160,85,7)}
+  <path d="M88 72 Q110 40 136 72" fill="none" stroke="${C.red}" stroke-width="2"/>${arr(130,64,137,74,C.red,2,8)}
+  ${arr(200,80,240,80)}
+  ${T(282,90,"[Na]",{s:26,w:700})}${T(312,64,"+",{s:18,w:800,c:C.red})}${T(386,90,"[",{s:30,w:400})}${T(410,90,"Cl",{s:28,w:700})}${dots(410,85,8)}${T(436,90,"]",{s:30,w:400})}${T(452,64,"−",{s:18,w:800,c:C.blue})}
+  ${T(110,140,"Na loses 1 e⁻",{s:13,w:700,c:C.red})}${T(330,150,"both have full valence shells",{s:13,w:700,c:C.green})}`);
+
+/* 31 Criss-cross */
+add(31,"b-ionname","Writing Ionic Formulas",
+ "Two Al³⁺ ions give +6 and three O²⁻ ions give −6, so the charges cancel. Aluminum oxide is the thin coating that forms on aluminum and protects it from corroding.",
+ "Criss-cross method: Al 3+ and O 2−. The 3 crosses down to become oxygen's subscript and the 2 becomes aluminum's subscript, giving Al2O3.",440,200,
+ `${T(80,80,"Al",{s:32,w:700})}${T(112,56,"3+",{s:18,w:800,c:C.red})}${T(220,80,"O",{s:32,w:700})}${T(246,56,"2−",{s:18,w:800,c:C.blue})}
+  ${arr(118,66,232,134,C.red,2.2)}${arr(252,66,188,134,C.blue,2.2)}
+  ${T(110,140,"",{})}${T(160,172,"Al",{s:32,w:700})}${T(188,182,"2",{s:20,w:800,c:C.blue})}${T(212,172,"O",{s:32,w:700})}${T(234,182,"3",{s:20,w:800,c:C.red})}
+  ${T(340,126,"2(+3) = +6",{s:15,w:700,c:C.red})}${T(340,148,"3(−2) = −6",{s:15,w:700,c:C.blue})}${T(340,172,"total = 0",{s:15,w:800,c:C.green})}`);
+
+/* 32 Lewis covalent: H2O */
+add(32,"b-lewis","Drawing Lewis Structures (Covalent)",
+ "Oxygen can form the most bonds, so it goes in the center. Each circled pair is a shared pair of electrons (a covalent bond). Oxygen now has 8 electrons around it and each hydrogen has 2.",
+ "Water drawn with Lewis dots. H, O and H, with each shared pair of electrons circled. Oxygen has two lone pairs.",440,170,
+ `${T(120,96,"H",{s:30,w:700})}${T(220,96,"O",{s:30,w:700})}${T(320,96,"H",{s:30,w:700})}
+  <circle cx="141" cy="86" r="3.6" fill="${C.blue}"/><circle cx="150" cy="86" r="3.6" fill="#000"/><circle cx="291" cy="86" r="3.6" fill="#000"/><circle cx="300" cy="86" r="3.6" fill="${C.blue}"/>
+  <ellipse cx="146" cy="86" rx="14" ry="10" fill="none" stroke="${C.red}" stroke-width="2"/><ellipse cx="295" cy="86" rx="14" ry="10" fill="none" stroke="${C.red}" stroke-width="2"/>
+  <circle cx="214" cy="60" r="3.6" fill="#000"/><circle cx="226" cy="60" r="3.6" fill="#000"/><circle cx="214" cy="112" r="3.6" fill="#000"/><circle cx="226" cy="112" r="3.6" fill="#000"/>
+  ${T(146,140,"shared pair",{s:12.5,w:700,c:C.red})}${T(295,140,"shared pair",{s:12.5,w:700,c:C.red})}${T(220,36,"lone pair",{s:12.5,w:700,c:C.gray})}
+  ${T(220,164,"O: 8 electrons, each H: 2 electrons",{s:13,w:800,c:C.green})}`);
+
+/* 33 Counting electrons: CO2 */
+add(33,"b-lewis","Drawing Lewis Structures by Counting Electrons",
+ "CO₂ has 4 + 6 + 6 = 16 valence electrons. Two double bonds use 8 of them and the lone pairs use the other 8. Every atom ends with 8 electrons.",
+ "The Lewis structure of carbon dioxide, O double bond C double bond O, with two lone pairs on each oxygen. A tally shows 16 valence electrons: 8 in bonds and 8 in lone pairs.",450,190,
+ `${T(100,96,"O",{s:32,w:700})}${T(200,96,"C",{s:32,w:700})}${T(300,96,"O",{s:32,w:700})}
+  <line x1="120" y1="80" x2="180" y2="80" stroke="${C.red}" stroke-width="3"/><line x1="120" y1="92" x2="180" y2="92" stroke="${C.red}" stroke-width="3"/><line x1="220" y1="80" x2="280" y2="80" stroke="${C.red}" stroke-width="3"/><line x1="220" y1="92" x2="280" y2="92" stroke="${C.red}" stroke-width="3"/>
+  ${[[94,58],[106,58],[94,114],[106,114],[294,58],[306,58],[294,114],[306,114]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.6" fill="${C.blue}"/>`).join("")}
+  ${T(200,150,"C: 4  +  O: 6  +  O: 6  =  16 valence electrons",{s:13.5,w:800})}${T(200,172,"8 in bonds (red)  +  8 in lone pairs (blue)",{s:13,w:700,c:C.gray})}
+  ${T(400,96,"",{})}`);
+
+/* 34 Ionic or covalent naming */
+add(34,"b-covname","Ionic or Covalent Naming?",
+ "MgCl₂ has a metal, so it is ionic: magnesium chloride, with no prefix. SCl₂ is two nonmetals, so it is covalent: sulfur dichloride.",
+ "A question box: does it contain a metal or polyatomic ion? Yes leads to ionic, no prefixes, magnesium chloride. No leads to covalent, prefixes, sulfur dichloride.",460,220,
+ `${box(110,14,240,46,{rx:8,f:C.teal,st:C.tealD})}${T(230,34,"Does it contain a metal",{s:13,w:800,c:"#fff"})}${T(230,51,"or a polyatomic ion?",{s:13,w:800,c:"#fff"})}
+  ${arr(170,62,110,104,C.ink,2)}${T(126,82,"yes",{s:13,w:800,a:"end",c:C.green})}${arr(290,62,350,104,C.ink,2)}${T(334,82,"no",{s:13,w:800,a:"start",c:C.red})}
+  ${box(20,108,180,96,{rx:6})}${T(110,130,"Ionic: no prefixes",{s:13.5,w:800})}${T(110,160,"MgCl₂",{s:20,w:800,c:C.blue})}${T(110,186,"magnesium chloride",{s:13.5,w:700})}
+  ${box(260,108,180,96,{rx:6})}${T(350,130,"Covalent: prefixes",{s:13.5,w:800})}${T(350,160,"SCl₂",{s:20,w:800,c:C.red})}${T(350,186,"sulfur dichloride",{s:13.5,w:700})}`);
+
+/* 35 Deciding: ionic or covalent — color the elements */
+add(35,"b-naming","Deciding: Ionic or Covalent",
+ "Color the metals and look for polyatomic ions. NaCl has a metal, so it is ionic. CO₂ has only nonmetals, so it is covalent. NH₄Cl has no metal, but NH₄⁺ is a polyatomic ion, so it is ionic.",
+ "Three formulas with metals in pink and nonmetals in blue: NaCl is ionic (table salt), CO2 is covalent (dry ice), and NH4Cl, with the polyatomic ion NH4+ circled, is ionic.",470,200,
+ `${[[80,"NaCl","ionic","table salt",[["Na",C.metal],["Cl",C.non]]],[235,"CO₂","covalent","dry ice",[["C",C.non],["O₂",C.non]]],[395,"NH₄Cl","ionic","",[["NH₄",C.non],["Cl",C.non]]]].map(([x,f,t,u,parts])=>{ let o="", xx=x-(parts.length===2?(parts[0][0].length+parts[1][0].length)*7.5:0); const w=parts.map(p=>p[0].length*15+8);
+   let cx=x-(w[0]+w[1])/2; parts.forEach((p,i)=>{ o+=`<rect x="${cx}" y="50" width="${w[i]}" height="40" rx="5" fill="${p[1]}" stroke="#000" stroke-width="1.2"/>`+T(cx+w[i]/2,78,p[0],{s:22,w:800}); cx+=w[i]+4; });
+   return o+T(x,124,t,{s:16,w:800,c:t==="ionic"?C.red:C.blue})+(u?T(x,144,u,{s:12.5,c:C.gray,w:600}):""); }).join("")}
+  <ellipse cx="${395-((4*15+8)+(2*15+8))/2+(4*15+8)/2}" cy="70" rx="40" ry="28" fill="none" stroke="${C.purple}" stroke-width="2.4"/>${T(380,178,"NH₄⁺ is a polyatomic ion",{s:12.5,w:800,c:C.purple})}
+  ${box(20,166,14,14,{f:C.metal})}${T(40,178,"metal",{s:12,a:"start"})}${box(90,166,14,14,{f:C.non})}${T(110,178,"nonmetal",{s:12,a:"start"})}`);
+
+/* 37 Bond strength exceptions: bar chart */
+(()=>{ const d=[["F–F",159,C.blue],["Cl–Cl",242,C.green],["H–Cl",431,C.orange],["H–H",436,C.purple]]; let o="";
+ d.forEach(([l,v,c],i)=>{ const x=80+i*90, h=v*.34; o+=`<rect x="${x}" y="${180-h}" width="56" height="${h}" fill="${c}" stroke="#000" stroke-width="1.2"/>`+T(x+28,174-h,v,{s:13.5,w:800})+T(x+28,200,l,{s:14,w:800}); });
+ add(37,"b-strength","Patterns, Exceptions and Interactions",
+ "Fluorine atoms are smaller than chlorine atoms, so you might expect F–F to be stronger. It is actually the weakest bond here. When the patterns don’t agree, the measured bond energy is the answer.",
+ "A bar graph of bond energies in kilojoules per mole: F–F 159, Cl–Cl 242, H–Cl 431, H–H 436.",440,215,
+ `<line x1="60" y1="180" x2="430" y2="180" stroke="#000" stroke-width="1.5"/><line x1="60" y1="20" x2="60" y2="180" stroke="#000" stroke-width="1.5"/>${o}
+  ${T(30,100,"Bond energy (kJ/mol)",{s:12,w:700}).replace("<text",'<text transform="rotate(-90 30 100)"')}`); })();
+
+/* 38 Balancing: 2H2 + O2 -> 2H2O */
+add(38,"r-balancing","Balancing Chemical Reactions",
+ "There are 4 hydrogen atoms and 2 oxygen atoms before and after the reaction. The atoms are only rearranged. The main engines of the space shuttle ran on this reaction.",
+ "2H2 plus O2 yields 2H2O drawn with atoms: two H2 molecules and one O2 molecule on the left, two water molecules on the right. Each side has 4 H and 2 O.",460,200,
+ `${atom(40,70,15,"H")}${atom(66,70,15,"H")}${atom(40,120,15,"H")}${atom(66,120,15,"H")}${T(100,102,"+",{s:24,w:800})}${atom(136,95,17,"O")}${atom(166,95,17,"O")}
+  ${arr(200,95,250,95,C.ink,2.5)}
+  ${atom(300,70,17,"O")}${atom(279,86,12,"H")}${atom(321,86,12,"H")}${atom(380,110,17,"O")}${atom(359,126,12,"H")}${atom(401,126,12,"H")}
+  ${T(100,170,"2H₂ + O₂",{s:16,w:800})}${T(340,170,"2H₂O",{s:16,w:800})}${T(100,192,"4 H, 2 O",{s:13,w:700,c:C.green})}${T(340,192,"4 H, 2 O",{s:13,w:700,c:C.green})}`);
+
+/* 39 Steps to balancing: counting table for CH4 */
+add(39,"r-balancing","Steps to Balancing Chemical Reactions",
+ "Natural gas is mostly methane, CH₄. When it burns on a gas stove, 1 CH₄ reacts with 2 O₂. Count each element on both sides to check that the equation is balanced.",
+ "The balanced equation CH4 + 2O2 yields CO2 + 2H2O with an atom count table: C 1 and 1, H 4 and 4, O 4 and 4, all checked.",460,215,
+ `${T(230,40,"CH₄ + 2O₂ → CO₂ + 2H₂O",{s:22,w:800})}
+  ${box(90,62,280,140)}<rect x="90.6" y="62.6" width="278.8" height="31" fill="${C.teal}"/>${T(140,83,"Element",{s:13,w:800,c:"#fff"})}${T(230,83,"Reactants",{s:13,w:800,c:"#fff"})}${T(320,83,"Products",{s:13,w:800,c:"#fff"})}
+  ${[["C","1","1"],["H","4","4"],["O","4","2 + 2 = 4"]].map(([e,a,b],i)=>{ const y=94+i*36; return `<line x1="90" y1="${y}" x2="370" y2="${y}" stroke="#000"/>`+T(140,y+24,e,{s:16,w:800})+T(230,y+24,a,{s:16,w:700})+T(320,y+24,b,{s:15,w:700})+T(392,y+24,"✓",{s:18,w:800,c:C.green}); }).join("")}
+  <line x1="190" y1="62" x2="190" y2="202" stroke="#000"/><line x1="275" y1="62" x2="275" y2="202" stroke="#000"/>`);
+
+/* 40 Open, closed, isolated */
+(()=>{ const heat=(x,y,dir)=>`<path d="M${x} ${y} q6 -8 0 -16 q-6 -8 0 -16" fill="none" stroke="${C.red}" stroke-width="2.4"/>`;
+ add(40,"r-systems","Open vs. Closed Systems",
+ "Steam escapes from an open pot (matter and energy leave). A sealed can lets heat in or out but keeps its contents (energy only). A good insulated bottle keeps both in for hours, so it is close to an isolated system.",
+ "Three containers. An open pot of soup with steam and heat leaving: open system. A sealed can with heat arrows only: closed system. An insulated bottle with no arrows: close to isolated.",480,220,
+ `<path d="M30 80 h120 v70 a10 10 0 0 1 -10 10 h-100 a10 10 0 0 1 -10 -10z" fill="#7d878c" stroke="#000" stroke-width="1.3"/><rect x="34" y="86" width="112" height="14" fill="${C.orange}"/>
+  <path d="M60 72 q-8 -12 0 -24 q8 -12 0 -24 M90 72 q-8 -12 0 -24 q8 -12 0 -24 M120 72 q-8 -12 0 -24 q8 -12 0 -24" fill="none" stroke="#9aa7ad" stroke-width="2.4"/>
+  ${arr(150,110,178,94,C.red,2.4)}${T(184,92,"heat",{s:11,w:700,c:C.red,a:"start"})}${T(90,186,"open",{s:15,w:800})}${T(90,204,"matter + energy",{s:12,w:600,c:C.gray})}
+  <rect x="210" y="70" width="60" height="96" rx="8" fill="${C.red}" stroke="#000" stroke-width="1.3"/><rect x="214" y="64" width="52" height="10" rx="4" fill="#c9c9c9" stroke="#000"/><rect x="216" y="100" width="48" height="30" fill="#fff" stroke="#000"/>${T(240,121,"soda",{s:12,w:800,c:C.red})}
+  ${arr(276,110,304,94,C.red,2.4)}${arr(330,150,278,150,C.red,2.4)}${T(310,90,"heat",{s:11,w:700,c:C.red,a:"start"})}${T(240,186,"closed",{s:15,w:800})}${T(240,204,"energy only",{s:12,w:600,c:C.gray})}
+  <rect x="366" y="58" width="60" height="110" rx="12" fill="${C.teal}" stroke="#000" stroke-width="1.3"/><rect x="376" y="44" width="40" height="18" rx="4" fill="#3c4449" stroke="#000"/><rect x="372" y="64" width="48" height="98" rx="9" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 3"/>
+  ${T(396,186,"close to isolated",{s:15,w:800})}${T(396,204,"neither (for a while)",{s:12,w:600,c:C.gray})}`); })();
+
+/* 41 Double replacement: lead(II) nitrate + potassium iodide */
+add(41,"r-predict-rep","Predicting Double Replacement Reactions",
+ "Two clear solutions are mixed and a bright yellow solid forms. The ions switch partners: Pb²⁺ pairs with I⁻ to make PbI₂, a precipitate. K⁺ and NO₃⁻ stay dissolved.",
+ "Two clear solutions, lead(II) nitrate and potassium iodide, are mixed in a beaker. A yellow solid, lead(II) iodide, forms and settles. Potassium nitrate stays dissolved.",520,230,
+ `<path d="M40 40 v110 a16 16 0 0 0 32 0 v-110" fill="#eef9ff" stroke="#000" stroke-width="1.3"/>${T(56,182,"Pb(NO₃)₂(aq)",{s:12.5,w:800})}
+  <path d="M120 40 v110 a16 16 0 0 0 32 0 v-110" fill="#eef9ff" stroke="#000" stroke-width="1.3"/>${T(136,182,"KI(aq)",{s:12.5,w:800})}${T(96,110,"+",{s:24,w:800})}
+  ${arr(175,100,215,100,C.ink,2.5)}
+  <path d="M235 50 v110 a10 10 0 0 0 10 10 h90 a10 10 0 0 0 10 -10 v-110" fill="#eef9ff" stroke="#000" stroke-width="1.3"/><path d="M236.5 80 h107 v80 a8.5 8.5 0 0 1 -8.5 8.5 h-90 a8.5 8.5 0 0 1 -8.5 -8.5z" fill="#fff9c4"/>
+  ${Array.from({length:30},(_,i)=>`<circle cx="${244+((i*29)%92)}" cy="${163-((i*11)%14)}" r="3.2" fill="${C.yellow}" stroke="#b08a00" stroke-width=".7"/>`).join("")}
+  ${arr(400,150,352,156,C.ink,2)}${T(404,146,"PbI₂(s)",{s:14,w:800,a:"start",c:"#a07800"})}${T(404,162,"yellow precipitate",{s:12,w:600,a:"start"})}
+  ${arr(400,96,346,100,C.ink,2)}${T(404,92,"KNO₃(aq)",{s:14,w:800,a:"start",c:C.blue})}${T(404,108,"stays dissolved",{s:12,w:600,a:"start"})}
+  ${T(290,214,"Pb(NO₃)₂ + 2KI → PbI₂ + 2KNO₃",{s:13.5,w:800})}`);
+
+G.PICS05=P;
+})(typeof window!=="undefined"?window:globalThis);
+
+/* ================= SECTION PICTURES, UNITS 0–5: round 2 =================
+   Pictures that use the site's standard drawings (Bohr models, mini periodic table, Lewis structures,
+   particle pictures, atom-count tables). Runs in the browser after the site code.
+   Each entry replaces the round-1 entry with the same number in window.PICS05. */
+(function(){
+const A=window.AS; if(!A||!window.PICS05) return;
+const P3=A.U3, B=A.U4, R=A.U5;
+const C={blue:"#2E75D6",red:"#E00000",green:"#00B050",purple:"#7030A0",orange:"#F28C28",teal:"#40BAD2",tealD:"#1f8fa8",yellow:"#FFD200",gray:"#8a949a",ink:"#1b2328",metal:"#f6c3cc",non:"#bfe3f5",mtd:"#d9ec9f"};
+const T=(x,y,s,o={})=>`<text x="${x}" y="${y}" font-family="InterSupSub,Inter,Arial,sans-serif" font-size="${o.s||14}" font-weight="${o.w||600}" fill="${o.c||C.ink}" text-anchor="${o.a||"middle"}">${s}</text>`;
+const arr=(x1,y1,x2,y2,c=C.ink,w=2.5,h=9)=>{ const a=Math.atan2(y2-y1,x2-x1), bx=x2-h*Math.cos(a), by=y2-h*Math.sin(a), px=Math.sin(a)*h*.55, py=-Math.cos(a)*h*.55;
+  return `<line x1="${x1}" y1="${y1}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${c}" stroke-width="${w}"/><polygon points="${x2},${y2} ${(bx+px).toFixed(1)},${(by+py).toFixed(1)} ${(bx-px).toFixed(1)},${(by-py).toFixed(1)}" fill="${c}"/>`; };
+const svg=(W,H,body,alt)=>`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="${alt.replace(/"/g,"&quot;")}" font-family="InterSupSub,Inter,Arial,sans-serif"><rect width="${W}" height="${H}" fill="#fff"/>${body}</svg>`;
+const scale=(html,f)=>html.replace(/<svg([^>]*?) width="([\d.]+)"(?: height="([\d.]+)")?/,(m,a,w,h)=>`<svg${a} width="${(+w*f).toFixed(0)}"${h?` height="${(+h*f).toFixed(0)}"`:""}`);
+const cap=(t,o={})=>`<div class="p5-cap" style="${o.c?`color:${o.c}`:""}">${t}</div>`;
+const col=(...k)=>`<div class="p5-col">${k.join("")}</div>`;
+const row=(...k)=>`<div class="p5-row">${k.join("")}</div>`, rowB=(...k)=>`<div class="p5-row bot">${k.join("")}</div>`, rowT=(...k)=>`<div class="p5-row top">${k.join("")}</div>`;
+const sub=s=>s.replace(/(\d+)/g,"<sub>$1</sub>");
+const MOL=f=>B.COVMOL.find(m=>m.f===f);
+const tb=(Z,o={})=>A.tableBohr(Z,{opts:Object.assign({valence:true,valenceGold:true},o)});
+/* ions drawn like the site's particle pictures: element-colored atoms, a dashed circle for a polyatomic ion, a charge tag */
+const tag=(x,y,q)=>{ const t=`${Math.abs(q)===1?"":Math.abs(q)}${q>0?"+":"−"}`, w=8+t.length*6, col=q>0?"#005ea3":"#c40000";
+  return `<rect x="${x-w/2}" y="${y-6.5}" width="${w}" height="13" rx="6.5" fill="#fff" stroke="${col}"/><text x="${x}" y="${y+3.6}" text-anchor="middle" font-family="Inter,Arial" font-size="9.5" font-weight="800" fill="${col}">${t}</text>`; };
+const ion=(f,q,x,y,k=1)=>{ const at=R.layoutMol(f); const c0=at[0]; let s="", rr=R.rad(at[0].s)*k;
+  if(at.length>1){ const ring=Math.max(...at.map(a=>Math.hypot(a.x-c0.x,a.y-c0.y)+R.rad(a.s)))*k+1.5; s+=R.ionRing(x,y,ring,k); rr=ring; }
+  at.forEach(a=>s+=R.atom(x+(a.x-c0.x)*k,y+(a.y-c0.y)*k,a.s,{k}));
+  return s+tag(x+rr*.8+(at.length>1?2:7),y-rr*.8-(at.length>1?2:5),q); };
+
+const X=[];
+const add=(n,o)=>X.push(Object.assign({n},o));
+
+/* 10 Periodic table regions: the site's mini periodic table */
+add(10,{box:"Most elements are metals (pink). The nonmetals (blue) are on the right. The metalloids (green) sit along the staircase line between them.",
+ alt:"The periodic table colored by region: metals on the left, nonmetals on the right, metalloids along the staircase line. Group numbers 1 to 18 are across the top.",
+ art:()=>{ const MD=[5,14,32,33,51,52,84,85], NM=[1,2,6,7,8,9,10,15,16,17,18,34,35,36,53,54,86];
+  const pt=P3.miniPT({w:500,fill:Z=>MD.includes(Z)?C.mtd:NM.includes(Z)?C.non:C.metal,colLabels:Array.from({length:18},(_,i)=>[String(i+1),C.ink,13]),label:"periodic table colored by metals, metalloids and nonmetals"});
+  return col(pt,`<div class="p5-key"><span><i style="background:${C.metal}"></i>Metals</span><span><i style="background:${C.mtd}"></i>Metalloids</span><span><i style="background:${C.non}"></i>Nonmetals</span></div>`,cap("Group = a column (1–18). Period = a row (1–7).")); }});
+
+/* 17 Democritus — a gold nugget cut again and again */
+add(17,{box:"Democritus reasoned that if you kept cutting a piece of gold in half, you would reach a piece too small to cut. He called it atomos. He had no experiments to test the idea, and Aristotle rejected it, so it was set aside for about 2,000 years.",
+ alt:"A knife cuts a gold nugget in half again and again. The pieces get smaller until the last one, seen through a magnifying glass, is a single particle labeled atomos, cannot be cut.",
+ art:()=>{ const nug=(x,y,s)=>`<path d="M${x-s} ${y+s*.55} L${x-s*.8} ${y-s*.35} L${x-s*.2} ${y-s*.7} L${x+s*.6} ${y-s*.5} L${x+s} ${y+s*.1} L${x+s*.7} ${y+s*.6}Z" fill="#ffd34d" stroke="#8a6d00" stroke-width="1.4"/><path d="M${x-s*.5} ${y-s*.2} L${x} ${y-s*.45}" stroke="#fff6c9" stroke-width="${Math.max(1,s*.12)}" stroke-linecap="round"/>`;
+  const knife=(x,y)=>`<g transform="translate(${x} ${y}) rotate(-12)"><rect x="-4" y="-46" width="8" height="22" rx="2" fill="#6b4a2b" stroke="#000"/><path d="M-4 -24 L4 -24 L4 6 L-4 -2Z" fill="#d6dcdf" stroke="#000"/></g>`;
+  const cut=(x,y,h)=>`<line x1="${x}" y1="${y-h}" x2="${x}" y2="${y+h}" stroke="${C.red}" stroke-width="2" stroke-dasharray="4 3"/>`;
+  return svg(520,190,`<rect x="10" y="120" width="500" height="12" rx="3" fill="#c8a27a" stroke="#000"/>
+   ${nug(60,96,34)}${cut(60,96,30)}${knife(66,62)}${arr(104,96,128,96)}
+   ${nug(160,104,20)}${cut(160,104,18)}${knife(164,84)}${arr(190,104,212,104)}
+   ${nug(236,110,11)}${cut(236,110,10)}${arr(256,110,276,110)}
+   ${nug(294,113,6)}${arr(310,113,330,113)}${T(346,117,"…",{s:20,w:800})}
+   <circle cx="430" cy="78" r="44" fill="#fff" stroke="#3c4449" stroke-width="5"/><line x1="461" y1="109" x2="490" y2="140" stroke="#3c4449" stroke-width="9" stroke-linecap="round"/>
+   <circle cx="430" cy="78" r="13" fill="#ffd34d" stroke="#000" stroke-width="1.4"/>${arr(370,112,404,92,C.gray,1.5,7)}
+   ${T(430,152,"atomos",{s:16,w:800,c:C.purple})}${T(430,170,"“cannot be cut”",{s:13,c:C.purple})}
+   ${T(130,160,"cut in half again and again",{s:13,c:C.gray})}`,"Cutting gold into smaller and smaller pieces until a single atomos remains"); }});
+
+/* 18 Thomson — symmetric tube, everything on one center line */
+add(18,{box:"The beam bent away from the negative plate and toward the positive plate. Opposite charges attract, so the particles in the beam must be negative. We now call them electrons.",
+ alt:"A cathode ray tube. The beam leaves the cathode, passes through the anode and bends toward the positive plate, away from the negative plate.",
+ art:()=>{ const y=110;
+  return svg(480,220,`<path d="M30 ${y-30} H130 L180 ${y-70} H440 a12 12 0 0 1 12 12 V${y+58} a12 12 0 0 1 -12 12 H180 L130 ${y+30} H30 a8 8 0 0 1 -8 -8 V${y-22} a8 8 0 0 1 8 -8Z" fill="#eef9ff" stroke="#000" stroke-width="1.4"/>
+   <rect x="40" y="${y-22}" width="9" height="44" fill="#6d7b85" stroke="#000"/>
+   <rect x="110" y="${y-24}" width="8" height="18" fill="#6d7b85" stroke="#000"/><rect x="110" y="${y+6}" width="8" height="18" fill="#6d7b85" stroke="#000"/>
+   <rect x="240" y="${y-52}" width="120" height="9" fill="${C.blue}" stroke="#000"/><rect x="240" y="${y+43}" width="120" height="9" fill="${C.red}" stroke="#000"/>
+   ${T(232,y-43,"− plate",{s:13,w:800,c:C.blue,a:"end"})}${T(232,y+52,"+ plate",{s:13,w:800,c:C.red,a:"end"})}
+   <path d="M49 ${y} H240 Q330 ${y} 440 ${y+40}" fill="none" stroke="${C.green}" stroke-width="4"/><line x1="240" y1="${y}" x2="440" y2="${y}" stroke="${C.gray}" stroke-width="1.4" stroke-dasharray="5 4"/>
+   ${T(44,y+48,"cathode (−)",{s:12,w:700})}${T(114,y+48,"anode (+)",{s:12,w:700}).replace(`y="${y+48}"`,`y="${y+64}"`)}
+   ${T(446,y-6,"no bend",{s:11,c:C.gray,a:"end"})}${T(446,y+62,"beam",{s:12.5,w:800,c:C.green,a:"end"})}`,"Cathode ray tube"); }});
+
+/* 21 Groups and ionic charges: the site's mini periodic table, groups colored by charge */
+add(21,{box:"Atoms in the same group form ions with the same charge. Sodium (group 1) loses 1 electron and becomes Na⁺. Chlorine (group 17) gains 1 electron and becomes Cl⁻. Group 14 atoms usually share electrons instead.",
+ alt:"A periodic table with the main groups colored. The usual ion charge is written under each column: group 1 is 1+, group 2 is 2+, group 13 is 3+, group 14 shares, group 15 is 3−, group 16 is 2−, group 17 is 1− and group 18 is 0.",
+ art:()=>{ const G={1:["1+","#f7c6c6","#b00000"],2:["2+","#ffd9a8","#b35c00"],13:["3+","#fff0a3","#8a6d00"],14:["share","#e4e4e4","#4a5257"],15:["3−","#cdeec3","#1e7a12"],16:["2−","#c7e3f7","#005ea3"],17:["1−","#ddd0f5","#5b2a86"],18:["0","#f3e3cf","#7a4d00"]};
+  let pt=P3.miniPT({w:540,stair:false,fill:Z=>{ const e=A.EL[Z]; return Z===1?null:G[e.group]?G[e.group][1]:null; },colLabels:Array.from({length:18},(_,i)=>G[i+1]?[String(i+1),G[i+1][2],13]:null),label:"periodic table with each main group colored by its ion charge"});
+  /* charge row under the table */
+  const m=pt.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/), W=+m[1], H=+m[2], offX=6, cw=34;
+  let extra=""; Object.entries(G).forEach(([g,[q,,c]])=>{ const x=offX+(g-1)*cw+cw/2; extra+=`<rect x="${x-16}" y="${H+2}" width="32" height="24" rx="5" fill="#fff" stroke="${c}" stroke-width="1.6"/>`+T(x,H+19,q,{s:q==="share"?9.5:14,w:800,c}); });
+  pt=pt.replace(`viewBox="0 0 ${W} ${H}"`,`viewBox="0 0 ${W} ${H+32}"`).replace(/<\/svg>$/,extra+`</svg>`);
+  return col(cap("Group",{c:C.gray}),pt,cap("Usual ion charge")); }});
+
+/* 22 Atomic structure: the standard Bohr model */
+add(22,{box:"Sodium has 11 electrons: 2 in the first energy level, 8 in the second and 1 in the third. This is written 2-8-1, the same way it is shown on the Periodic Table.",
+ alt:"The Bohr model of sodium: a nucleus with 11 protons and 12 neutrons, and electrons in three energy levels: 2, 8 and 1.",
+ art:()=>row(scale(tb(11,{valence:false}),.8),col(`<div class="p5-big">Sodium</div>`,`<div class="p5-cfg">2-8-1</div>`,cap("nucleus: 11 protons, 12 neutrons"),cap("electrons in energy levels")))});
+
+/* 23 Patterns: group 1 Bohr models */
+add(23,{box:"Lithium, sodium and potassium each have 1 valence electron (gold). Each one down the group has one more energy level. That is why they react in similar ways.",
+ alt:"Bohr models of lithium (2-1), sodium (2-8-1) and potassium (2-8-8-1). Each has one valence electron shown in gold, and each has one more energy level than the one above it.",
+ art:()=>rowB(...[[3,"Li  2-1"],[11,"Na  2-8-1"],[19,"K  2-8-8-1"]].map(([Z,l])=>col(scale(tb(Z),.55),cap(l,{c:C.ink}))))});
+
+/* 24 Why valence electrons matter: stable vs. reactive */
+add(24,{box:"Sodium has 1 valence electron that it loses easily, so sodium reacts with water right away. Neon’s valence shell is full (8), which is stable. Neon atoms don’t bond to anything, not even to each other.",
+ alt:"Left: the Bohr model of sodium with 1 valence electron, and a piece of sodium fizzing in water: reactive. Right: the Bohr model of neon with a full valence shell of 8, and a box of separate neon atoms that do not bond: stable.",
+ art:()=>{ const na=svg(200,120,`<rect x="20" y="40" width="160" height="70" fill="#bfe3f5" stroke="#000" stroke-width="1.3"/><rect x="82" y="30" width="34" height="16" rx="5" fill="#d6dcdf" stroke="#000"/>
+     ${[[70,28],[128,26],[90,16],[112,14],[62,38],[138,38],[100,6]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.2" fill="#fff" stroke="#000" stroke-width=".8"/>`).join("")}${T(100,128,"",{})}`,"sodium fizzing in water");
+   let ne=`<rect x="10" y="8" width="180" height="104" rx="6" fill="#fbfcfd" stroke="#7f97a6"/>`; [[40,30],[100,24],[160,36],[64,78],[128,70],[170,90],[30,92]].forEach(([x,y])=>ne+=`<circle cx="${x}" cy="${y}" r="11" fill="#7fd3e8" stroke="#000" stroke-width="1.2"/>`+T(x,y+4,"Ne",{s:9.5,w:800}));
+   return rowB(col(scale(tb(11),.6),`<div class="p5-tag bad">1 valence electron</div>`,cap("easy to lose:<br>sodium reacts with water")),
+              col(scale(tb(10),.6),`<div class="p5-tag good">full valence shell (8)</div>`,cap("stable:<br>neon does not form bonds"))); }});
+
+/* 27 Net pull: standard Bohr models with the inner electrons shaded */
+add(27,{box:"Sodium and chlorine both have 10 inner electrons (shaded) between the nucleus and the valence electrons. Sodium’s 11 protons give a net pull of about +1. Chlorine’s 17 protons give about +7, so chlorine holds its valence electrons much more tightly.",
+ alt:"Bohr models of sodium (2-8-1) and chlorine (2-8-7) with the 10 inner electrons shaded purple. Sodium: 11 protons minus 10 inner electrons, net pull about +1. Chlorine: 17 minus 10, net pull about +7.",
+ art:()=>{ const shade=h=>h.replace(/<g class="nucleus"/,`<circle cx="195" cy="195" r="63" fill="none" stroke="${C.purple}" stroke-opacity=".18" stroke-width="30"/><g class="nucleus"`);
+  return rowB(col(scale(shade(tb(11)),.62),cap("Na (2-8-1)",{c:C.ink}),`<div class="p5-eq">net pull ≈<br>11 − 10 = <b>+1</b></div>`),
+             col(`<div class="p5-mid"><span style="color:${C.purple}">shaded:</span><br>10 inner<br>electrons</div>`),
+             col(scale(shade(tb(17)),.62),cap("Cl (2-8-7)",{c:C.ink}),`<div class="p5-eq">net pull ≈<br>17 − 10 = <b>+7</b></div>`)); }});
+
+/* 28 Summary: the standard trend arrows on the mini periodic table */
+add(28,{box:"Across a period the pull on the valence electrons gets stronger: atoms get smaller and hold their electrons more tightly. Down a group the valence electrons are farther away: atoms get larger and hold them less tightly.",
+ alt:"A periodic table with a blue arrow across the top: net pull increases, atoms get smaller. A red arrow down the side: valence electrons farther away, atoms get larger.",
+ art:()=>P3.miniPT({w:520,stair:false,arrows:{h:"Stronger attraction for electrons",v:"Weaker attraction for electrons"},label:"periodic trends"})});
+
+/* 29 Atoms and ions: the standard atom → ion figures, drawn to scale */
+add(29,{box:"A sodium atom loses its whole outer energy level when it becomes Na⁺, so the ion is much smaller. A chlorine atom gains an electron but no protons when it becomes Cl⁻, so the ion is larger.",
+ alt:"Drawn to scale. A sodium atom loses its one outer electron and becomes a smaller Na+ ion. A chlorine atom gains one electron and becomes a larger Cl− ion.",
+ art:()=>{ const a=P3.ionStep(11,1), b=P3.ionStep(17,-1); const f=.5;
+  return col(row(scale(a.atom,f),a.mid?scale(a.mid,f):"",scale(a.ion,f)),cap("metal: Na → Na⁺ (smaller)",{c:"#005ea3"}),row(scale(b.atom,f),b.mid?scale(b.mid,f):"",scale(b.ion,f)),cap("nonmetal: Cl → Cl⁻ (larger)",{c:"#c40000"})); }});
+
+/* 30 Ionic Lewis structures: the site's electron-transfer drawing (MgCl2 needs a second chlorine) */
+add(30,{box:"Magnesium has 2 valence electrons, but one chlorine atom only needs 1. A second chlorine atom is recruited. The arrows point to the nonmetal. Each ion ends with a complete valence shell.",
+ alt:"Lewis diagrams: magnesium gives one electron to each of two chlorine atoms (arrows point to chlorine). Below: Cl− , Mg2+ and Cl− in brackets with their charges.",
+ art:()=>{ const L=B.lewis, D=n=>B.atomDots(n), ion=(s,n,q)=>L({atoms:[{s,x:0,y:0,dots:D(n)}],brackets:true,charge:q},{scale:.8,label:`${s} ion`});
+  const down=`<svg viewBox="0 0 40 40" width="26" aria-hidden="true"><path d="M12 2h16v18h10L20 38 2 20h10z" fill="#2E75D6" stroke="#1b2328" stroke-width="1.5"/></svg>`;
+  return col(scale(B.IX.example(12,17,1,2,{label:"Magnesium gives one electron to each chlorine"}),.8),down,`<div class="lw-row" style="gap:10px">${ion("Cl",8,-1)}${ion("Mg",0,2)}${ion("Cl",8,-1)}</div>`); }});
+
+/* 31 Criss-cross: the same picture as the Writing Ionic Formulas examples (symmetric arrows) */
+add(31,{box:"Two Al³⁺ ions give +6 and three O²⁻ ions give −6, so the charges cancel. Aluminum oxide is the thin coating that forms on aluminum and protects it from corroding.",
+ alt:"Criss-cross: Al 3+ and O 2−. The 3 crosses to become oxygen's subscript and the 2 crosses to become aluminum's subscript, giving Al2O3.",
+ art:()=>{ const t=(x,y,txt,fs,c)=>T(x,y,txt,{s:fs,w:800,c,a:"start"}), B1="#005ea3", R1="#c40000", mx=30, nx=120, mw=2*19, nw=21;
+  const pic=`<svg viewBox="0 0 210 150" width="250" role="img" aria-label="Criss-cross for aluminum oxide">${t(mx,44,"Al",32,B1)}${t(mx+mw+2,26,"3+",18,B1)}${t(nx,44,"O",32,R1)}${t(nx+nw+2,26,"2−",18,R1)}
+   <path d="M${mx+mw+10} 32L${nx+nw+4} 112" stroke="#00B050" stroke-width="3"/><path d="M${nx+nw+4} 120l-9 -11 10 -4z" fill="#00B050"/><path d="M${nx+nw+10} 32L${mx+mw+8} 112" stroke="#F28C28" stroke-width="3"/><path d="M${mx+mw+8} 120l-1 -14 10 4z" fill="#F28C28"/>
+   ${t(mx,140,"Al",32,C.ink)}${t(mx+mw+2,148,"2",20,"#F28C28")}${t(nx,140,"O",32,C.ink)}${t(nx+nw+2,148,"3",20,"#00B050")}</svg>`;
+  return row(pic,`<div class="p5-sum"><div><b style="color:#005ea3">2(+3)</b> = +6</div><div><b style="color:#c40000">3(−2)</b> = −6</div><div class="t">total = <b>0</b></div></div>`); }});
+
+/* 32 Covalent Lewis structures: the site's circled-pair drawing */
+add(32,{box:"Nitrogen can form the most bonds (3), so it goes in the center. Each shared pair is circled: one electron from nitrogen and one from hydrogen. Nitrogen now has 8 electrons around it and each hydrogen has 2.",
+ alt:"Ammonia, NH3, drawn with Lewis dots. Each hydrogen's electron sits next to one of nitrogen's electrons, and each shared pair is circled. Nitrogen keeps one lone pair.",
+ art:()=>{ const m=MOL("NH3"), c=B.covCount(m,[1,1,1]);
+  return col(B.lewis(B.covSpec(m,[1,1,1],{circles:true}),{style:"dot",scale:1}),cap(`N: <b>${c[0]}</b> electrons &nbsp; each H: <b>${c[1]}</b> electrons`,{c:C.ink})); }});
+
+/* 33 Counting electrons: CO2 in line notation */
+add(33,{box:"CO₂ has 4 + 6 + 6 = 16 valence electrons. Two double bonds use 8 of them and the lone pairs use the other 8. Every atom ends with 8 electrons.",
+ alt:"The Lewis structure of carbon dioxide: O double bond C double bond O, with two lone pairs on each oxygen. 16 valence electrons: 8 in bonds and 8 in lone pairs.",
+ art:()=>col(B.lewis(B.covSpec(MOL("CO2"),MOL("CO2").b,{lines:true}),{scale:1.1}),cap("C: 4 + O: 6 + O: 6 = <b>16</b> valence electrons",{c:C.ink}),cap("8 in bonds + 8 in lone pairs"))});
+
+/* 35 Deciding ionic or covalent, with everyday examples */
+add(35,{box:"Look for a metal or a polyatomic ion. NaCl (table salt) has a metal, so it is ionic. CO₂ (dry ice) has only nonmetals, so it is covalent. NH₄Cl, used in some batteries, has no metal, but NH₄⁺ is a polyatomic ion, so it is ionic.",
+ alt:"Three examples. A salt shaker: NaCl, sodium is a metal, ionic. A block of dry ice giving off fog: CO2, only nonmetals, covalent. A battery: NH4Cl, NH4+ is a polyatomic ion, ionic.",
+ art:()=>{ const chip=(t,f)=>`<span class="p5-chip" style="background:${f}">${t}</span>`;
+  const shaker=svg(90,96,`<path d="M30 30 h30 l6 60 h-42z" fill="#eef9ff" stroke="#000" stroke-width="1.3"/><path d="M28 18 h34 v12 h-34z" fill="#c9c9c9" stroke="#000"/><path d="M28 18 q17 -16 34 0" fill="#c9c9c9" stroke="#000"/>${[[38,10],[45,7],[52,10]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.3" fill="#000"/>`).join("")}<path d="M26 64 h38 l2 26 h-42z" fill="#fff"/>${[[34,74],[44,80],[54,72],[40,86],[58,84]].map(([x,y])=>`<rect x="${x}" y="${y}" width="4" height="4" fill="#d6dcdf" stroke="#9aa7ad" stroke-width=".6"/>`).join("")}`,"salt shaker");
+  const ice=svg(90,96,`<path d="M18 50 l40 -10 l20 10 l-40 12z" fill="#f4f8fa" stroke="#000"/><path d="M18 50 v28 l20 12 v-28z" fill="#e3edf2" stroke="#000"/><path d="M38 62 v28 l40 -12 v-28z" fill="#d2e1e8" stroke="#000"/><path d="M14 40 q10 -14 22 -6 q8 -14 22 -4 q12 -10 22 4" fill="none" stroke="#b8c4ca" stroke-width="3" stroke-linecap="round"/><path d="M20 26 q14 -12 30 -2" fill="none" stroke="#d3dbdf" stroke-width="3" stroke-linecap="round"/>`,"dry ice");
+  const bat=svg(90,96,`<rect x="26" y="20" width="38" height="70" rx="4" fill="#3c4449" stroke="#000"/><rect x="38" y="12" width="14" height="9" rx="2" fill="#c9c9c9" stroke="#000"/><rect x="26" y="20" width="38" height="24" fill="${C.orange}" stroke="#000"/>${T(45,72,"+",{s:18,w:800,c:"#fff"})}`,"battery");
+  return row(col(shaker,`<div class="p5-f">${chip("Na",C.metal)}${chip("Cl",C.non)}</div>`,`<div class="p5-tag" style="color:${C.red}">ionic</div>`,cap("table salt")),
+             col(ice,`<div class="p5-f">${chip("C",C.non)}${chip("O₂",C.non)}</div>`,`<div class="p5-tag" style="color:${C.blue}">covalent</div>`,cap("dry ice")),
+             col(bat,`<div class="p5-f">${chip("NH₄",C.non).replace('class="p5-chip"','class="p5-chip poly"')}${chip("Cl",C.non)}</div>`,`<div class="p5-tag" style="color:${C.red}">ionic</div>`,cap("NH₄⁺ is a polyatomic ion",{c:C.purple})),
+             `<div class="p5-key vert"><span><i style="background:${C.metal}"></i>metal</span><span><i style="background:${C.non}"></i>nonmetal</span></div>`); }});
+
+/* 38 Balancing: the site's particle picture */
+add(38,{box:"There are 4 hydrogen atoms and 2 oxygen atoms before and after the reaction. The atoms are only rearranged. The main engines of the space shuttle ran on this reaction.",
+ alt:"Particle picture of 2H2 + O2 → 2H2O. Two H2 molecules and one O2 molecule on the left; two water molecules on the right. Each side has 4 H atoms and 2 O atoms.",
+ art:()=>{ const mol=(f,x,y,k)=>R.molSVG(f,x,y,{k});
+  return col(svg(460,190,`${mol("H2",50,46,1.5)}${mol("H2",50,122,1.5)}${T(108,92,"+",{s:24,w:800})}${mol("O2",160,84,1.5)}${arr(212,84,262,84,C.ink,3)}${mol("H2O",320,40,1.5)}${mol("H2O",390,110,1.5)}
+    ${T(105,180,"Reactants: 4 H, 2 O",{s:13,w:700,c:C.green})}${T(350,180,"Products: 4 H, 2 O",{s:13,w:700,c:C.green})}`,"2H2 + O2 → 2H2O"),`<div class="p5-eqn">2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O</div>`); }});
+
+/* 39 Steps: the same atom-count table as the balancing games */
+add(39,{box:"Natural gas is mostly methane, CH₄. When it burns on a gas stove, 1 CH₄ reacts with 2 O₂. Count each element on both sides to check that the equation is balanced.",
+ alt:"The balanced equation CH4 + 2O2 → CO2 + 2H2O with the atom count table: carbon 1 and 1, hydrogen 4 and 4, oxygen 4 and 4.",
+ art:()=>{ const flame=svg(70,90,`<path d="M35 8 C50 30 60 44 58 60 A23 23 0 0 1 12 60 C10 44 22 34 26 20 C30 34 34 36 35 8Z" fill="#2E75D6" stroke="#1b4f8a"/><path d="M35 40 C42 52 46 58 44 66 A9 9 0 0 1 26 66 C25 58 30 52 35 40Z" fill="#9fd3f0"/><rect x="6" y="80" width="58" height="8" rx="3" fill="#6d7b85"/>`,"gas stove flame");
+  return row(flame,col(`<div class="p5-eqn">CH<sub>4</sub> + 2O<sub>2</sub> → CO<sub>2</sub> + 2H<sub>2</sub>O</div>`,R.countTable({r:["CH4","O2"],p:["CO2","H2O"]},[1,2,1,2]))); }});
+
+/* 40 Open, closed, isolated — each system has a dashed boundary */
+add(40,{box:"Steam escapes from an open pot, so matter and energy both leave. A sealed can keeps its soda in but lets heat in or out. An insulated bottle keeps both in for hours, so it is close to an isolated system.",
+ alt:"Three containers, each inside a dashed boundary. An open pot on a burner: steam and heat cross the boundary (open). A sealed soda can with water drops on it: only heat crosses (closed). An insulated bottle: nothing crosses (close to isolated).",
+ art:()=>{ const bd=(x,w)=>`<rect x="${x}" y="22" width="${w}" height="150" rx="10" fill="none" stroke="${C.gray}" stroke-width="1.6" stroke-dasharray="6 4"/>`, heat=(x,y,dir)=>`<path d="M${x} ${y} q5 -6 10 0 t10 0 t10 0" fill="none" stroke="${C.red}" stroke-width="2.4" transform="rotate(${dir} ${x} ${y})"/>`;
+  const W=540;
+  return svg(W,226,`${bd(14,160)}${bd(190,160)}${bd(366,160)}
+   <path d="M40 92 h108 v52 a8 8 0 0 1 -8 8 h-92 a8 8 0 0 1 -8 -8z" fill="#7d878c" stroke="#000" stroke-width="1.3"/><rect x="44" y="98" width="100" height="12" fill="${C.orange}"/><rect x="34" y="88" width="120" height="8" rx="3" fill="#56626a"/>
+   <path d="M64 156 q6 -10 12 0 q6 -10 12 0 q6 -10 12 0 q6 -10 12 0" fill="${C.blue}" stroke="#1b4f8a"/>
+   <path d="M66 80 q-7 -10 0 -20 q7 -10 0 -20 q-7 -10 0 -18 M94 80 q-7 -10 0 -20 q7 -10 0 -20 q-7 -10 0 -18 M122 80 q-7 -10 0 -20 q7 -10 0 -20 q-7 -10 0 -18" fill="none" stroke="#9aa7ad" stroke-width="2.4"/>
+   ${T(168,54,"steam",{s:11,w:700,c:C.gray,a:"end"})}${heat(150,120,0)}${arr(170,120,184,120,C.red,2.2,7)}
+   <rect x="245" y="70" width="50" height="86" rx="7" fill="${C.red}" stroke="#000" stroke-width="1.3"/><rect x="249" y="64" width="42" height="9" rx="4" fill="#c9c9c9" stroke="#000"/><rect x="250" y="98" width="40" height="24" fill="#fff" stroke="#000"/>${T(270,115,"soda",{s:11,w:800,c:C.red})}
+   ${[[252,84],[286,132],[256,144],[288,90]].map(([x,y])=>`<path d="M${x} ${y} q-2.5 4 0 5 q2.5 -1 0 -5z" fill="#9fd3f0" stroke="${C.blue}" stroke-width=".7"/>`).join("")}
+   ${heat(306,100,0)}${arr(326,100,340,100,C.red,2.2,7)}${arr(236,136,212,136,C.red,0,0)}${heat(206,136,0)}${arr(226,136,240,136,C.red,2.2,7)}
+   <rect x="420" y="58" width="52" height="104" rx="12" fill="${C.teal}" stroke="#000" stroke-width="1.3"/><rect x="428" y="44" width="36" height="16" rx="4" fill="#3c4449" stroke="#000"/><rect x="426" y="64" width="40" height="92" rx="9" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 3"/>
+   ${T(446,112,"",{})}<line x1="486" y1="96" x2="508" y2="118" stroke="${C.gray}" stroke-width="2"/><line x1="508" y1="96" x2="486" y2="118" stroke="${C.gray}" stroke-width="2"/>
+   ${T(94,192,"Open",{s:15,w:800})}${T(94,210,"matter + energy cross",{s:12,c:C.gray})}
+   ${T(270,192,"Closed",{s:15,w:800})}${T(270,210,"only energy crosses",{s:12,c:C.gray})}
+   ${T(446,192,"Close to isolated",{s:15,w:800})}${T(446,210,"nothing crosses",{s:12,c:C.gray})}
+   ${T(270,16,"dashed line = the system’s boundary",{s:12,w:700,c:C.gray})}`,"open, closed and isolated systems"); }});
+
+/* 41 Double replacement, with the ions shown in every container */
+add(41,{box:"Each clear solution holds dissolved ions (only a few are drawn). When they are mixed, Pb²⁺ and I⁻ meet and form PbI₂, a bright yellow solid (a precipitate). K⁺ and NO₃⁻ stay dissolved in the water.",
+ alt:"Lead(II) nitrate solution with Pb2+ and NO3− ions, and potassium iodide solution with K+ and I− ions, are mixed. The beaker on the right has K+ and NO3− ions in solution and a yellow solid, PbI2, on the bottom.",
+ art:()=>{ const k=.62;
+  const tube=(x,body)=>`<path d="M${x} 20 v130 a35 35 0 0 0 70 0 v-130" fill="#eef9ff" stroke="#000" stroke-width="1.3"/><path d="M${x+1.5} 44 h67 v106 a33.5 33.5 0 0 1 -67 0z" fill="#e3f2fb"/>${body}`;
+  const t1=tube(16,ion("Pb",2,44,74,1)+ion("NO3",-1,46,118,k)+ion("NO3",-1,52,162,k)), t2=tube(126,ion("K",1,152,90,1)+ion("I",-1,160,150,1));
+  let pile=""; for(let i=0;i<7;i++) pile+=`<circle cx="${294+i*17}" cy="${172-(i%2)*4}" r="7" fill="${C.yellow}" stroke="#a07800" stroke-width="1"/>`;
+  return col(svg(540,240,`${t1}${t2}${T(51,222,"Pb(NO₃)₂(aq)",{s:12.5,w:800})}${T(161,222,"KI(aq)",{s:12.5,w:800})}${T(106,100,"+",{s:24,w:800})}
+   ${arr(206,110,240,110,C.ink,2.5)}
+   <path d="M256 40 v136 a10 10 0 0 0 10 10 h140 a10 10 0 0 0 10 -10 v-136" fill="#eef9ff" stroke="#000" stroke-width="1.3"/><path d="M257.5 66 h157 v110 a8.5 8.5 0 0 1 -8.5 8.5 h-140 a8.5 8.5 0 0 1 -8.5 -8.5z" fill="#e3f2fb"/>
+   ${ion("K",1,286,88,1)}${ion("NO3",-1,374,92,k)}${ion("NO3",-1,312,118,k)}${ion("K",1,388,126,1)}${pile}
+   ${arr(452,170,422,170,C.ink,2)}${T(456,166,"PbI₂(s)",{s:13,w:800,a:"start",c:"#a07800"})}${T(456,182,"yellow solid",{s:11.5,a:"start"})}
+   ${T(336,222,"K⁺ and NO₃⁻ stay dissolved",{s:12.5,w:800,c:C.blue})}`,"double replacement"),`<div class="p5-eqn">Pb(NO<sub>3</sub>)<sub>2</sub> + 2KI → PbI<sub>2</sub> + 2KNO<sub>3</sub></div>`); }});
+
+
+/* ===== round 3 ===== */
+const U1=A.U1, L0=A.U0;
+/* 4 Rulers: the site's ruler */
+add(4,{box:"The end of the pencil is past 3.4 cm but not yet at 3.5 cm. Read the marks you are sure of (3.4) and estimate one more digit: 3.45 cm.",
+ alt:"A pencil lined up with the zero mark of a centimeter ruler. Its tip is between 3.4 and 3.5 cm, read as 3.45 cm.",
+ art:()=>{ const x0=30, px=90, end=x0+3.45*px;
+  return svg(520,180,`${L0.ruler(x0,82,{cm:5,px})}
+   <rect x="${x0}" y="50" width="${end-x0-24}" height="20" fill="${C.yellow}" stroke="#000" stroke-width="1.3"/><rect x="${x0}" y="50" width="16" height="20" fill="#f2a5b0" stroke="#000" stroke-width="1.3"/><rect x="${x0+16}" y="50" width="6" height="20" fill="#c9c9c9" stroke="#000"/>
+   <polygon points="${end-24},50 ${end},60 ${end-24},70" fill="#f3d9b1" stroke="#000" stroke-width="1.3"/><polygon points="${end-8},56.7 ${end},60 ${end-8},63.3" fill="#333"/>
+   <line x1="${end}" y1="40" x2="${end}" y2="140" stroke="${C.red}" stroke-width="1.6" stroke-dasharray="4 3"/><line x1="${x0}" y1="40" x2="${x0}" y2="80" stroke="${C.red}" stroke-width="1.6" stroke-dasharray="4 3"/>
+   ${T(end,166,"3.45 cm",{s:17,w:800,c:C.red})}${T(x0,32,"start at 0",{s:12,w:700,c:C.red,a:"start"})}`,"ruler reading 3.45 cm"); }});
+
+/* 5 Accuracy and precision: the dartboards used on this page, one per student in the data table */
+add(5,{box:"Each dart is one trial and the bull’s-eye is the accepted value, 2.70 g/cm³. Student B’s darts land close together but far from the center: precise but not accurate. That pattern usually means a systematic error.",
+ alt:"Four dartboards, one for each student in the table. Student A: darts in the bull's-eye. Student B: darts close together but off center. Student C: darts spread around the center. Student D: darts spread and off center.",
+ art:()=>{ const board=(vals,base)=>{ const size=112, c=size/2, R=size/2-6; let s=`<svg viewBox="0 0 ${size} ${size}" width="${size}" role="img" aria-label="dartboard">`;
+    [1,.8,.6,.4,.2].forEach((f,i)=>{ s+=`<circle cx="${c}" cy="${c}" r="${R*f}" fill="${i%2?"#fff":"#cfe1f3"}" stroke="#1b2328" stroke-width="1.5"/>`; });
+    s+=`<circle cx="${c}" cy="${c}" r="${R*.08}" fill="#E00000" stroke="#1b2328" stroke-width="1.2"/>`;
+    vals.forEach((v,i)=>{ const d=(+v-2.70)/.75, a=(base+i*7)*Math.PI/180, X=c+d*R*Math.cos(a), Y=c+d*R*Math.sin(a);
+      s+=`<g><line x1="${X}" y1="${Y}" x2="${X+9}" y2="${Y-9}" stroke="#1b2328" stroke-width="2"/><path d="M${X+9} ${Y-9}l4 -1l-2 -3z" fill="#00B050" stroke="#1b2328" stroke-width=".8"/><circle cx="${X}" cy="${Y}" r="4.5" fill="#1b2328" stroke="#fff" stroke-width="1"/></g>`; });
+    return s+`</svg>`; };
+  const S=[["A",["2.71","2.69","2.70"],-40,"#0a7a2f","accurate and precise"],["B",["3.10","3.11","3.09"],-40,"#005ea3","precise, not accurate"],["C",["2.40","3.00","2.71"],-40,"#c06000","accurate, not precise"],["D",["2.10","3.40","3.30"],-40,"#c40000","neither"]];
+  return rowB(...S.map(([n,v,b,c,t])=>col(board(v,b),`<b style="color:${c};font-size:14px">Student ${n}</b>`,cap(v.join(", ")),`<span style="color:${c};font-size:12.5px;font-weight:700">${t}</span>`))); }});
+
+/* 8 Exact numbers: the site's graduated cylinder */
+add(8,{box:"You can count 12 eggs exactly: there is no such thing as 12.3 eggs. A measurement like 36.5 mL always has an estimated last digit, so only measured numbers limit your answer.",
+ alt:"An egg carton holding 12 eggs labeled counted, exact. A graduated cylinder reading 36.5 milliliters labeled measured, last digit estimated.",
+ art:()=>{ let e=""; for(let r=0;r<2;r++) for(let c=0;c<6;c++) e+=`<ellipse cx="${30+c*28}" cy="${34+r*30}" rx="11" ry="13" fill="#fbf3e4" stroke="#000" stroke-width="1.1"/>`;
+  const carton=svg(200,100,`<rect x="14" y="18" width="172" height="62" rx="6" fill="#d8c6a5" stroke="#000" stroke-width="1.3"/>${e}`,"egg carton");
+  return rowB(col(carton,`<b style="font-size:17px">12 eggs</b>`,`<span class="p5-tag good">counted: exact</span>`),col(U1.cylinder(50,36.5,{w:140,h:240}),`<b style="font-size:17px">36.5 mL</b>`,`<span class="p5-tag" style="color:#c06000">measured: last digit estimated</span>`)); }});
+
+/* 11 Bonds and energy: labels kept off the lines */
+add(11,{box:"Two separate hydrogen atoms have more energy than an H₂ molecule. That is why energy is released when the bond forms and must be added to break it.",
+ alt:"An energy diagram. Two separate H atoms are high in energy. The bonded H2 molecule is lower and more stable. Bond forms: energy released. Bond breaks: energy absorbed.",
+ art:()=>svg(470,240,`${arr(24,220,24,20,C.ink,2)}<text transform="rotate(-90 14 120)" x="14" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="${C.ink}">Energy</text>
+   <line x1="40" y1="62" x2="450" y2="62" stroke="${C.gray}" stroke-dasharray="5 4"/><line x1="40" y1="190" x2="450" y2="190" stroke="${C.gray}" stroke-dasharray="5 4"/>
+   ${R.atom(196,40,"H",{k:1.7})}${R.atom(256,40,"H",{k:1.7})}${T(340,46,"separate atoms",{s:13,w:700,a:"start"})}
+   ${R.atom(214,168,"H",{k:1.7})}${R.atom(237,168,"H",{k:1.7})}${T(340,164,"bonded (H₂)",{s:13,w:700,a:"start"})}${T(340,180,"more stable",{s:12,w:700,a:"start",c:C.green})}
+   ${arr(150,74,150,176,C.red,3)}${T(140,116,"bond forms:",{s:12.5,w:800,c:C.red,a:"end"})}${T(140,132,"energy released",{s:12.5,c:C.red,a:"end"})}
+   ${arr(300,176,300,74,C.blue,3)}${T(310,116,"bond breaks:",{s:12.5,w:800,c:C.blue,a:"start"})}${T(310,132,"energy absorbed",{s:12.5,c:C.blue,a:"start"})}`,"energy of bonded and separate atoms")});
+
+/* 13 Chemical change: the site's beaker */
+add(13,{box:"Both containers have bubbles. The antacid tablet reacts with water to make a new substance, carbon dioxide gas (chemical change). The bubbles in boiling water are still water (physical change).",
+ alt:"Left: an antacid tablet fizzing in a beaker of water, labeled new substance CO2, chemical change. Right: a pot of boiling water with bubbles, labeled still H2O, physical change.",
+ art:()=>{ const bub=(x0,y0,x1,y1,n,seed,f,st,r0,r1)=>{ let o="", sd=seed; const rnd=()=>{ sd=(sd*9301+49297)%233280; return sd/233280; }; for(let i=0;i<n;i++){ const bx=x0+rnd()*(x1-x0), by=y0+rnd()*(y1-y0), r=r0+rnd()*(r1-r0); o+=`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${r.toFixed(1)}" fill="${f}" stroke="${st}" stroke-width="1"/>`; } return o; };
+  const flame=x=>`<path d="M${x} 196 c-9 -4 -10 -14 -4 -22 c1 6 4 8 5 8 c-1 -8 3 -14 8 -18 c-1 8 4 12 6 17 c3 7 0 14 -7 15z" fill="${C.orange}" stroke="#c40000" stroke-width="1"/><path d="M${x+5} 194 c-4 -2 -4 -7 -1 -11 c1 4 3 5 4 5 c0 -3 1 -5 3 -7 c0 4 2 6 2 9 c1 3 -1 5 -4 5z" fill="${C.yellow}"/>`;
+  return svg(470,236,`${U1.beakerSVG(50,50,110,130,{level:.7})}<rect x="85" y="164" width="40" height="10" rx="3" fill="#fff" stroke="#000"/>${bub(60,98,150,160,22,11,"#ffffff","#5f6b72",1.6,3.4)}
+   ${T(105,34,"antacid tablet in water",{s:13,w:800})}${T(105,214,"CO₂ bubbles: a new substance",{s:13,w:700,c:C.red})}${T(105,231,"chemical change",{s:13,w:800,c:C.red})}
+   <rect x="290" y="86" width="140" height="80" rx="6" fill="#bfe3f5" stroke="#000" stroke-width="1.3"/><rect x="275" y="80" width="170" height="10" rx="4" fill="#7d878c" stroke="#000"/>
+   ${bub(298,96,422,160,14,29,"#d9effc","#2E75D6",3,6.5)}<path d="M320 72 q-8 -12 0 -24 q8 -12 0 -24 M360 72 q-8 -12 0 -24 q8 -12 0 -24 M400 72 q-8 -12 0 -24 q8 -12 0 -24" fill="none" stroke="#9aa7ad" stroke-width="2"/>
+   ${[316,340,364,388].map(flame).join("")}<rect x="300" y="196" width="120" height="8" rx="3" fill="#56626a"/>
+   ${T(360,222,"water vapor bubbles: still H₂O",{s:13,w:700,c:C.blue})}${T(360,239,"physical change",{s:13,w:800,c:C.blue})}`,"chemical and physical change").replace('viewBox="0 0 470 236"','viewBox="0 0 470 248"'); }});
+
+/* 15 Identifying substances: the site's balance */
+add(15,{box:"These two bars are the same size and look the same. Real gold has a density of 19.3 g/cm³. A copper bar with a thin gold coating (about 9 g/cm³) has less than half the mass.",
+ alt:"Two identical-looking gold bars of 10 cubic centimeters on electronic balances. The real gold bar reads 193 grams. The gold-coated copper bar reads 90 grams.",
+ art:()=>{ const bal=(x,r)=>{ const b=U1.balanceAt(x,40,r,.72); const cx=b.cx, py=b.panY; return b.svg+`<polygon points="${cx-40},${py-18} ${cx+40},${py-18} ${cx+32},${py} ${cx-32},${py}" fill="#ffd966" stroke="#000" stroke-width="1.3"/><polygon points="${cx-40},${py-18} ${cx+40},${py-18} ${cx+30},${py-27} ${cx-30},${py-27}" fill="#ffe999" stroke="#000" stroke-width="1.3"/>`; };
+  return svg(460,240,`${bal(10,"193.0 g")}${bal(240,"89.6 g")}${T(111,214,"real gold",{s:14,w:800,c:C.green})}${T(341,214,"gold-coated copper",{s:14,w:800,c:C.red})}${T(111,232,"10 cm³",{s:12,c:C.gray})}${T(341,232,"10 cm³",{s:12,c:C.gray})}${T(230,20,"Same volume, different mass",{s:14,w:800})}`,"two gold bars on balances"); }});
+
+/* 16 Filtration: the site's beaker and flask; the beaker pours toward the funnel */
+add(16,{box:"Filtration separates by particle size. The sand is too large to pass through the filter paper, but the water passes through into the flask. Water treatment plants filter water through layers of sand and gravel.",
+ alt:"A tilted beaker pours muddy water into a funnel lined with filter paper. The sand stays on the paper and clear water drips into a flask below.",
+ art:()=>{ const F=U1.flaskSVG(250,232,120,110,{level:.3});
+  const w=60, h=72, th=58*Math.PI/180, px=w/2, py=h/2, ox=100, oy=16, rot=([x,y])=>{ const dx=x-px, dy=y-py; return [ox+px+dx*Math.cos(th)-dy*Math.sin(th), oy+py+dx*Math.sin(th)+dy*Math.cos(th)]; };
+  const inner=[[0,0],[w,0],[w,h],[0,h]].map(rot), pour=rot([w+5,-4]), ys=pour[1]+2;
+  const clip=(poly,yc)=>{ const out=[]; for(let i=0;i<poly.length;i++){ const A2=poly[i], B2=poly[(i+1)%poly.length], ina=A2[1]>=yc, inb=B2[1]>=yc; if(ina) out.push(A2); if(ina!==inb){ const t=(yc-A2[1])/(B2[1]-A2[1]); out.push([A2[0]+t*(B2[0]-A2[0]),yc]); } } return out; };
+  const liq=clip(inner,ys), pts=p=>p.map(q=>q.map(v=>v.toFixed(1)).join(",")).join(" ");
+  const out=[[-5,-4],[0,2],[0,h-5],[5,h],[w-5,h],[w,h-5],[w,2],[w+5,-4]].map(rot);
+  const ticks=[.3,.5,.7].map(f=>{ const a2=rot([w-14,h*f]), b2=rot([w-4,h*f]); return `<line x1="${a2[0]}" y1="${a2[1]}" x2="${b2[0]}" y2="${b2[1]}" stroke="#1b2328" stroke-width="1.4"/>`; }).join("");
+  let sand=""; for(let y=104;y>=86;y-=6){ const hw=(110-y)-5; for(let x=250-hw;x<=250+hw;x+=7) sand+=`<circle cx="${x.toFixed(1)}" cy="${y}" r="3" fill="#b58a4c" stroke="#000" stroke-width=".6"/>`; }
+  return svg(480,280,`<polygon points="${pts(inner)}" fill="#f6fbfd"/><polygon points="${pts(liq)}" fill="#c9a676"/>${[[0.3,.55],[.6,.7],[.45,.85]].map(([fx,fy])=>{ const q=rot([w*fx,h*fy]); return q[1]>ys+3?`<circle cx="${q[0]}" cy="${q[1]}" r="2.4" fill="#8a6234"/>`:""; }).join("")}
+   <polyline points="${pts(out)}" fill="none" stroke="#1b2328" stroke-width="2.5" stroke-linejoin="round"/>${ticks}
+   <g transform="translate(0 30)"><polygon points="185,60 315,60 256,112 244,112" fill="#fff" stroke="#000" stroke-width="1.5"/><polygon points="194,64 306,64 251,108 249,108" fill="#f4f4f4" stroke="#9aa7ad"/>${sand}
+   <rect x="244" y="112" width="12" height="26" fill="#fff" stroke="#000" stroke-width="1.3"/>
+   ${F.svg}<path d="M250 142 q-4 7 0 9 q4 -2 0 -9z" fill="#9fd3f2" stroke="${C.blue}"/><path d="M250 160 q-4 7 0 9 q4 -2 0 -9z" fill="#9fd3f2" stroke="${C.blue}"/>
+   ${arr(370,90,300,90,C.ink,2)}${T(376,86,"sand stays on",{s:13,w:700,a:"start"})}${T(376,102,"the filter paper",{s:13,w:700,a:"start"})}
+   ${arr(370,212,318,212,C.ink,2)}${T(376,208,"clear water",{s:13,w:700,a:"start"})}${T(376,224,"passes through",{s:13,w:700,a:"start"})}</g><path d="M${pour[0]} ${pour[1]} Q${pour[0]+24} ${pour[1]+2} 226 124" fill="none" stroke="#c9a676" stroke-width="5" stroke-linecap="round"/>
+   ${T(110,128,"muddy water",{s:13,w:800})}${T(110,144,"(sand + water)",{s:12,c:C.gray})}`,"filtration"); }});
+
+/* 17 Democritus: a detailed knife and the site's magnifying glass */
+add(17,{box:"Democritus reasoned that if you kept cutting a piece of gold in half, you would reach a piece too small to cut. He called it atomos. He had no experiments to test the idea, and Aristotle rejected it, so it was set aside for about 2,000 years.",
+ alt:"A knife cuts a gold nugget in half again and again. The pieces get smaller until the last one, seen through a magnifying glass, is a single particle labeled atomos, cannot be cut.",
+ art:()=>{ const nug=(x,y,s)=>`<path d="M${x-s} ${y+s*.55} L${x-s*.8} ${y-s*.35} L${x-s*.2} ${y-s*.7} L${x+s*.6} ${y-s*.5} L${x+s} ${y+s*.1} L${x+s*.7} ${y+s*.6}Z" fill="#ffd34d" stroke="#8a6d00" stroke-width="1.4"/><path d="M${x-s*.5} ${y-s*.2} L${x} ${y-s*.45}" stroke="#fff6c9" stroke-width="${Math.max(1,s*.12)}" stroke-linecap="round"/>`;
+  const knife=(x,y,k=1)=>`<g transform="translate(${x} ${y}) rotate(-12) scale(${k})"><rect x="-5" y="-62" width="10" height="28" rx="3" fill="#6b4a2b" stroke="#000"/><circle cx="0" cy="-54" r="1.6" fill="#d6dcdf" stroke="#000" stroke-width=".5"/><circle cx="0" cy="-42" r="1.6" fill="#d6dcdf" stroke="#000" stroke-width=".5"/><rect x="-7" y="-35" width="14" height="5" rx="1.5" fill="#9aa7ad" stroke="#000"/><path d="M-5 -30 L5 -30 L5 6 Q0 4 -5 -4Z" fill="#e8ecee" stroke="#000"/><path d="M3 -28 V2" stroke="#fff" stroke-width="1.4"/></g>`;
+  const cut=(x,y,h)=>`<line x1="${x}" y1="${y-h}" x2="${x}" y2="${y+h}" stroke="${C.red}" stroke-width="2" stroke-dasharray="4 3"/>`;
+  return svg(540,210,`<rect x="10" y="130" width="380" height="12" rx="3" fill="#c8a27a" stroke="#000"/>
+   ${nug(60,106,34)}${cut(60,106,30)}${knife(66,74)}${arr(104,106,128,106)}
+   ${nug(160,114,20)}${cut(160,114,18)}${knife(164,94,.75)}${arr(190,114,212,114)}
+   ${nug(236,120,11)}${cut(236,120,10)}${arr(256,120,276,120)}
+   ${nug(294,123,6)}${arr(310,123,330,123)}${T(350,127,"…",{s:20,w:800})}
+   ${B.lensSVG(450,80,46,`<circle r="14" fill="#ffd34d" stroke="#000" stroke-width="1.4"/>`)}
+   ${T(450,166,"atomos",{s:16,w:800,c:C.purple})}${T(450,184,"“cannot be cut”",{s:13,c:C.purple})}
+   ${T(150,166,"cut in half again and again",{s:13,c:C.gray})}`,"Cutting gold into smaller and smaller pieces"); }});
+
+/* 19 Rutherford: the gap in the detector lines up with the beam */
+add(19,{box:"Most alpha particles went straight through the gold foil, so the atom is mostly empty space. A very few bounced back, so each atom has a small, dense, positive nucleus.",
+ alt:"Alpha particles from a source in a lead box pass through a gap in a ring-shaped detector and hit thin gold foil. Most pass straight through, a few bend and a very few bounce back.",
+ art:()=>{ const cx=300, cy=115, r=92, a1=190*Math.PI/180, a2=170*Math.PI/180, P=a=>`${(cx+r*Math.cos(a)).toFixed(1)} ${(cy+r*Math.sin(a)).toFixed(1)}`;
+  return svg(480,240,`<path d="M${P(a1)} A${r} ${r} 0 1 1 ${P(a2)}" fill="none" stroke="${C.green}" stroke-width="7"/>${T(300,228,"detector screen",{s:12.5,w:700,c:C.green})}
+   <rect x="20" y="${cy-23}" width="64" height="46" fill="#6d7b85" stroke="#000" stroke-width="1.3"/><circle cx="52" cy="${cy}" r="8" fill="${C.yellow}" stroke="#000"/>${T(52,cy-32,"alpha source",{s:12,w:700})}${T(52,cy+40,"(lead box)",{s:11,c:C.gray})}
+   <rect x="296" y="${cy-45}" width="8" height="90" fill="#ffd966" stroke="#000"/>${T(300,cy+62,"gold foil",{s:12.5,w:800})}
+   ${arr(86,cy-4,386,cy-4,C.red,2,8)}${arr(86,cy+4,386,cy+4,C.red,2,8)}
+   <path d="M86 ${cy} L300 ${cy}" stroke="${C.red}" stroke-width="2"/>${arr(300,cy,358,cy-62,C.red,2,8)}
+   ${arr(298,cy+2,232,cy+38,C.red,2,8)}
+   ${T(410,cy-6,"most go",{s:12,w:700,a:"start",c:C.red})}${T(410,cy+9,"straight",{s:12,w:700,a:"start",c:C.red})}${T(374,cy-66,"a few bend",{s:12,w:700,a:"start",c:C.red})}
+   ${T(184,cy+42,"a very few",{s:12,w:700,c:C.red,a:"end"})}${T(184,cy+57,"bounce back",{s:12,w:700,c:C.red,a:"end"})}`,"gold foil experiment"); }});
+
+/* 35 Ionic or covalent: salt fills the shaker */
+add(35,{box:"Look for a metal or a polyatomic ion. NaCl (table salt) has a metal, so it is ionic. CO₂ (dry ice) has only nonmetals, so it is covalent. NH₄Cl, used in some batteries, has no metal, but NH₄⁺ is a polyatomic ion, so it is ionic.",
+ alt:"Three examples. A salt shaker: NaCl, sodium is a metal, ionic. A block of dry ice giving off fog: CO2, only nonmetals, covalent. A battery: NH4Cl, NH4+ is a polyatomic ion, ionic.",
+ art:()=>{ const chip=(t,f,poly)=>`<span class="p5-chip${poly?" poly":""}" style="background:${f}">${t}</span>`;
+  let grains="", sd=7; const rnd=()=>{ sd=(sd*9301+49297)%233280; return sd/233280; }; for(let i=0;i<26;i++){ const y=60+rnd()*26, lo=24+(90-y)*6/60+4, hi=66-(90-y)*6/60-6, x=lo+rnd()*(hi-lo); grains+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="3.2" height="3.2" transform="rotate(${(rnd()*40).toFixed(0)} ${(x+1.6).toFixed(1)} ${(y+1.6).toFixed(1)})" fill="#fff" stroke="#8a949a" stroke-width=".6"/>`; }
+  const shaker=svg(90,96,`<path d="M30 30 h30 l6 60 h-42z" fill="#eef9ff" stroke="#000" stroke-width="1.3"/>${grains}<path d="M30 30 h30 l6 60 h-42z" fill="none" stroke="#000" stroke-width="1.3"/><path d="M28 18 h34 v12 h-34z" fill="#c9c9c9" stroke="#000"/><path d="M28 18 q17 -16 34 0" fill="#c9c9c9" stroke="#000"/>${[[38,10],[45,7],[52,10]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.3" fill="#000"/>`).join("")}`,"salt shaker");
+  const ice=svg(90,96,`<path d="M18 50 l40 -10 l20 10 l-40 12z" fill="#f4f8fa" stroke="#000"/><path d="M18 50 v28 l20 12 v-28z" fill="#e3edf2" stroke="#000"/><path d="M38 62 v28 l40 -12 v-28z" fill="#d2e1e8" stroke="#000"/><path d="M14 40 q10 -14 22 -6 q8 -14 22 -4 q12 -10 22 4" fill="none" stroke="#b8c4ca" stroke-width="3" stroke-linecap="round"/><path d="M20 26 q14 -12 30 -2" fill="none" stroke="#d3dbdf" stroke-width="3" stroke-linecap="round"/>`,"dry ice");
+  const bat=svg(90,96,`<rect x="26" y="20" width="38" height="70" rx="4" fill="#3c4449" stroke="#000"/><rect x="38" y="12" width="14" height="9" rx="2" fill="#c9c9c9" stroke="#000"/><rect x="26" y="20" width="38" height="24" fill="${C.orange}" stroke="#000"/>${T(45,72,"+",{s:18,w:800,c:"#fff"})}`,"battery");
+  return rowB(col(shaker,`<div class="p5-f">${chip("Na",C.metal)}${chip("Cl",C.non)}</div>`,`<div class="p5-tag" style="color:${C.red}">ionic</div>`,cap("table salt")),
+             col(ice,`<div class="p5-f">${chip("C",C.non)}${chip("O₂",C.non)}</div>`,`<div class="p5-tag" style="color:${C.blue}">covalent</div>`,cap("dry ice")),
+             col(bat,`<div class="p5-f">${chip("NH₄",C.non,1)}${chip("Cl",C.non)}</div>`,`<div class="p5-tag" style="color:${C.red}">ionic</div>`,cap("NH₄⁺ is a polyatomic ion",{c:C.purple})),
+             `<div class="p5-key vert"><span><i style="background:${C.metal}"></i>metal</span><span><i style="background:${C.non}"></i>nonmetal</span></div>`); }});
+
+/* 40 Open, closed, isolated: straight arrows that cross the boundary and stop in the gap */
+add(40,{box:"Steam escapes from an open pot, so matter and energy both leave. A sealed can keeps its soda in but lets heat in or out. An insulated bottle keeps both in for hours, so it is close to an isolated system.",
+ alt:"Three containers, each inside a dashed boundary. Open pot on a burner: a blue arrow for steam (matter) and a red arrow for heat cross the boundary. Sealed soda can: only red heat arrows cross. Insulated bottle: no arrows cross.",
+ art:()=>{ const bd=(x)=>`<rect x="${x}" y="40" width="150" height="140" rx="10" fill="none" stroke="${C.gray}" stroke-width="1.6" stroke-dasharray="6 4"/>`;
+  return scale(svg(600,250,`${bd(20)}${bd(225)}${bd(430)}
+   <path d="M48 110 h94 v46 a8 8 0 0 1 -8 8 h-78 a8 8 0 0 1 -8 -8z" fill="#7d878c" stroke="#000" stroke-width="1.3"/><rect x="52" y="116" width="86" height="11" fill="${C.orange}"/><rect x="42" y="106" width="106" height="7" rx="3" fill="#56626a"/>
+   <path d="M70 172 q5 -9 10 0 q5 -9 10 0 q5 -9 10 0 q5 -9 10 0" fill="${C.blue}" stroke="#1b4f8a"/>
+   <path d="M72 98 q-6 -8 0 -16 q6 -8 0 -16 M95 98 q-6 -8 0 -16 q6 -8 0 -16 M118 98 q-6 -8 0 -16 q6 -8 0 -16" fill="none" stroke="#9aa7ad" stroke-width="2.2"/>
+   ${arr(95,60,95,22,C.blue,3,10)}${T(103,28,"steam (matter)",{s:11,w:700,c:C.blue,a:"start"})}
+   ${arr(146,136,210,136,C.red,3,10)}${T(197,128,"heat",{s:11,w:700,c:C.red})}
+   <rect x="275" y="78" width="50" height="86" rx="7" fill="${C.red}" stroke="#000" stroke-width="1.3"/><rect x="279" y="72" width="42" height="9" rx="4" fill="#c9c9c9" stroke="#000"/><rect x="280" y="106" width="40" height="24" fill="#fff" stroke="#000"/>${T(300,123,"soda",{s:11,w:800,c:C.red})}
+   ${arr(330,100,415,100,C.red,3,10)}${T(402,92,"heat",{s:11,w:700,c:C.red})}${arr(415,146,330,146,C.red,3,10)}${T(402,162,"heat",{s:11,w:700,c:C.red})}
+   <rect x="479" y="66" width="52" height="104" rx="12" fill="${C.teal}" stroke="#000" stroke-width="1.3"/><rect x="487" y="52" width="36" height="16" rx="4" fill="#3c4449" stroke="#000"/><rect x="485" y="72" width="40" height="92" rx="9" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 3"/>
+   ${T(465,124,"",{})}
+   ${T(95,204,"Open",{s:15,w:800})}${T(95,222,"matter + energy cross",{s:12,c:C.gray})}
+   ${T(300,204,"Closed",{s:15,w:800})}${T(300,222,"only energy crosses",{s:12,c:C.gray})}
+   ${T(505,204,"Close to isolated",{s:15,w:800})}${T(505,222,"nothing crosses",{s:12,c:C.gray})}
+   ${T(300,244,"dashed line = the system’s boundary",{s:12,w:700,c:C.gray})}`,"open, closed and isolated systems"),.86); }});
+
+/* merge: replace the round-1 entries */
+const P=window.PICS05;
+X.forEach(x=>{ const i=P.findIndex(p=>p.n===x.n); const base=i>=0?P[i]:{}; const merged=Object.assign({},base,{box:x.box,alt:x.alt,art:x.art}); delete merged.svg; if(i>=0) P[i]=merged; else P.push(merged); });
+P.forEach(p=>{ if(!p.art){ const s=p.svg; p.art=()=>s; } });
+})();
+
+/* ---------- put each picture at the top of its section ---------- */
+(function(){ const A=window.AS; if(!A||!window.PICS05) return;
+  const norm=t=>String(t||"").replace(/\s+/g," ").trim().toLowerCase();
+  A.addPics=function(slug){
+    window.PICS05.filter(p=>p.slug===slug).forEach(p=>{
+      const sec=[...document.querySelectorAll("section.note")].find(s=>{ const h=s.querySelector(".tile h2"); return h&&norm(h.textContent)===norm(p.sec); });
+      const body=sec&&sec.querySelector(".body"); if(!body||body.querySelector(`.pic5[data-pic="${p.n}"]`)) return;
+      let art=""; try{ art=p.art(); }catch(e){ return; }
+      const d=document.createElement("div"); d.className="pic5"; d.dataset.pic=p.n; d.setAttribute("role","group"); d.setAttribute("aria-label",p.alt||p.sec);
+      d.innerHTML=`<div class="pic5-art">${art}</div><div class="pic5-tb">${p.box}</div>`;
+      body.insertBefore(d,body.firstChild); }); };
 })();

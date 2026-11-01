@@ -49,6 +49,13 @@
     </div>
   </section>
 
+  <p class="bridge enr">Find the limiting reagent: how much product could each reactant make?</p>
+
+  <section class="lab enr" id="lim">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Limiting Reagent Calculator</h3></div>
+    <div id="lr-host"></div>
+  </section>
+
   <div class="part enr" id="p2" data-short="Yield"><div class="pn"><small>Part</small><span>2</span></div><h2>Theoretical Yield, Leftover Excess and Percent Yield</h2><p>How much product, really?</p></div>
 
   <section class="note enr">
@@ -68,6 +75,7 @@
           <li>Using mole ratios, convert moles of the limiting reagent into moles of excess reagent consumed.</li>
           <li>Subtract the moles of excess reagent consumed from the starting moles of excess reagent. Using molar mass, convert moles of excess reagent into mass, if necessary.</li></ol></li>
       </ul>
+      <div class="center" id="ty-art"></div>
     </div>
   </section>
 
@@ -79,14 +87,15 @@
         <li>% yield = (actual yield ÷ theoretical yield) × 100</li>
         <li>Ex: A reaction has a theoretical yield of 20.0 g of product, but only 17.0 g is collected. % yield = (17.0 g ÷ 20.0 g) × 100 = 85.0%</li>
       </ul>
+      <div class="center" id="py-art"></div>
     </div>
   </section>
 
   <p class="bridge enr">Find the limiting reagent, then the theoretical and percent yield.</p>
 
-  <section class="lab enr" id="lim">
-    <div class="lab-h"><span class="tag game">Game</span><h3>Limiting Reagent Calculator</h3></div>
-    <div id="lr-host"></div>
+  <section class="lab enr" id="yld">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Percent Yield Calculator</h3></div>
+    <div id="py-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -102,7 +111,10 @@ const A=AS, S=A.U6;
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:8px;width:320px" id="hero-b"></div>`;
 S.BurgerLab(A.$("#burger-host"));
 S.LimitSim(A.$("#sim-host"));
+A.$("#ty-art").innerHTML=S.yieldArt("20.0","17.0","product").replace(/<text[^>]*>% yield[^<]*<\/text>/,"");
+A.$("#py-art").innerHTML=S.yieldArt("20.0","17.0","product");
 S.LimitingGame(A.$("#lr-host"));
+S.LimitingGame(A.$("#py-host"),{mode:"yield"});
 (function(){ const h=A.$("#hero-b"); S.BurgerLab(h); A.$$(".controls",h).forEach(c=>c.remove()); A.$$(".status",h).forEach(c=>c.remove()); A.$$("p",h).forEach(c=>c.remove()); const sv=h.querySelector("svg"); if(sv){ sv.setAttribute("viewBox","0 0 330 200"); sv.setAttribute("width","330"); } })();
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Each sandwich needs 2 slices of bread and 1 slice of cheese. With 10 slices of bread and 7 slices of cheese, which is the limiting reagent?",choices:["bread, because 5 sandwiches can be made","cheese, because 7 sandwiches can be made","bread, because there are more slices of it","cheese, because there are fewer slices of it"],ans:1,explain:"10 slices of bread make only 5 sandwiches; 7 slices of cheese could make 7. Bread runs out first."},

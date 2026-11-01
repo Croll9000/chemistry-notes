@@ -49,6 +49,7 @@
         <li>When entering numbers in scientific notation into your calculator, make sure to surround them with parentheses, ( ).</li>
         <li>Dimensional analysis can be used to convert between different magnitude units of the same quantity within the metric system. See <a href="l-convert.html">Unit 0: Dimensional Analysis</a> for worked examples.</li>
       </ul>
+      <div id="da-ex" style="margin-top:10px"></div>
     </div>
   </section>
 
@@ -125,6 +126,10 @@
 const A=AS, S=A.U6, L=A.U0;
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:8px">${S.dozenArt()}</div>`;
 A.$("#eq-ft").innerHTML=S.eqFig([1,"foot"],[12,"inches"]);
+A.$("#da-ex").innerHTML=S.worked("Ex: How many inches are in 3.5 feet?",[
+ ["<b>Steps 1–2:</b> Write the given quantity and the desired unit.",`${S.q("3.5","foot")} = ___ ${S.u("inches")}`],
+ ["<b>Steps 3–5:</b> Use 1 foot = 12 inches, with feet on the bottom so they cancel.",`${S.q("3.5","foot","",1)}${S.cf(12,"inches","",1,"foot","",0,1)}`],
+ ["<b>Steps 6–7:</b> Multiply and check the unit.",`3.5 × 12 = 42 ${S.u("inches")}`]]);
 A.$("#dozen-art").innerHTML=S.dozenArt();
 A.$("#eq-mol").innerHTML=S.eqFig([1,"mol"],[S.AVH,"particles"],"The particles can be atoms, molecules or formula units, depending on the substance.");
 A.$("#pm-art").innerHTML=S.pairArt("Particles","Moles",`÷ 6.02 × 10²³`,`× 6.02 × 10²³`);

@@ -72,6 +72,7 @@
           <li>Identify the number of water molecules per formula unit from the prefix, and write it after a dot: •<i>n</i>H<sub>2</sub>O.</li></ol></li>
         <li>Ex: copper(II) chloride pentahydrate → CuCl<sub>2</sub> + penta- (5) → CuCl<sub>2</sub>•5H<sub>2</sub>O</li>
       </ul>
+      <div class="center" id="hn-art" style="flex-direction:column"></div>
       <div class="tbl-wrap"><table class="nt" style="max-width:520px;margin:6px auto"><tr><th>Prefix</th><th>Number</th><th>Prefix</th><th>Number</th></tr><tr><td>Mono-</td><td>1</td><td>Hexa-</td><td>6</td></tr><tr><td>Di-</td><td>2</td><td>Hepta-</td><td>7</td></tr><tr><td>Tri-</td><td>3</td><td>Octa-</td><td>8</td></tr><tr><td>Tetra-</td><td>4</td><td>Nona-</td><td>9</td></tr><tr><td>Penta-</td><td>5</td><td>Deca-</td><td>10</td></tr></table></div>
     </div>
   </section>
@@ -93,6 +94,7 @@
           <li>From the formula: % water = (mass of water in one mole of the hydrate ÷ molar mass of the hydrate) × 100</li></ul></li>
         <li>Ex: CuSO<sub>4</sub>•5H<sub>2</sub>O (249.71 g/mol) contains 5 × 18.02 = 90.10 g of water per mole: (90.10 ÷ 249.71) × 100 = 36.1% water</li>
       </ul>
+      <div class="center" id="hb-art"></div>
     </div>
   </section>
 
@@ -117,6 +119,8 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
 A.$("#bar-art").innerHTML=S.pctBar("H2O")+S.pctBar("C6H12O6");
 S.PercentGame(A.$("#pc-host"));
 A.$("#hyd-art").innerHTML=S.hydrateArt();
+A.$("#hn-art").innerHTML=S.hydPic("MgSO4",7)+`<p class="muted center" style="margin:2px 0 0;font-size:14px">MgSO<sub>4</sub>•7H<sub>2</sub>O: 7 water molecules for every formula unit of magnesium sulfate</p>`;
+A.$("#hb-art").innerHTML=S.hydBar("CuSO4",5);
 S.HydrateName(A.$("#hn-host"));
 S.HydrateLab(A.$("#hl-host"));
 A.QSet(A.$("#qs"),[

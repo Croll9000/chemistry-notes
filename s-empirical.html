@@ -49,6 +49,7 @@
           <li>92 ÷ 46.01 = 2</li>
           <li>NO<sub>2</sub> × 2 → N<sub>2</sub>O<sub>4</sub></li></ul></li>
       </ul>
+      <div class="center" id="mol-art" style="flex-direction:column"></div>
     </div>
   </section>
 
@@ -97,6 +98,7 @@ const pair=(m,e)=>`<div class="col" style="gap:6px;align-items:center"><div styl
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:8px">${pair("C2H6","CH3")}</div>`;
 A.$("#emp-art").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center">${pair("H2O2","HO")}${pair("C2H6","CH3")}</div>`;
 S.EmpiricalGame(A.$("#em-host"));
+A.$("#mol-art").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center">${pair("C2H4","CH2")}</div><p class="muted center" style="margin:2px 0 0;font-size:14px">The molecular formula C<sub>2</sub>H<sub>4</sub> is the empirical formula CH<sub>2</sub> × 2.</p>`;
 A.$("#ex1").innerHTML=`<div class="exbox">Ex: A compound is found to be 25.2% hydrogen and 74.8% carbon by mass. Determine the compound’s empirical formula.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Step 1: grams in 100 g</th><th>Step 2: moles</th><th>Step 3: ÷ smallest</th><th>Subscript</th></tr><tr><td><b>C</b></td><td>74.8 g</td><td>74.8 ÷ 12.01 = 6.23 mol</td><td>6.23 ÷ 6.23 = 1.00</td><td>1</td></tr><tr><td><b>H</b></td><td>25.2 g</td><td>25.2 ÷ 1.01 = 25.0 mol</td><td>25.0 ÷ 6.23 = 4.01</td><td>4</td></tr></table></div><p class="center"><b>Step 4:</b> the empirical formula is CH<sub>4</sub>.</p>`;
 S.PctEmpGame(A.$("#pe-host"));
 A.QSet(A.$("#qs"),[
