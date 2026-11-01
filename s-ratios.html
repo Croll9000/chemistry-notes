@@ -52,7 +52,6 @@
       </ul>
       <div class="center" id="eq-r"></div>
       <div id="ex1" style="margin-top:12px"></div>
-      <div id="ex2" style="margin-top:14px"></div>
     </div>
   </section>
 
@@ -77,14 +76,15 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
 S.RatioMachine(A.$("#rm-host"));
 S.RatioPick(A.$("#rp-host"));
 A.$("#eq-r").innerHTML=`<div class="s6-eqfig"><div><b>Equation</b><div class="s6-eq">N<sub>2</sub> + <b class="s6-co">3</b>H<sub>2</sub> → <b class="s6-co">2</b>NH<sub>3</sub></div></div><div><b>Mole ratio of N<sub>2</sub> to NH<sub>3</sub></b><div class="mth" style="font-size:22px;gap:18px;display:flex;justify-content:center">${S.cf(2,"mol","NH3",1,"mol","N2")}${S.cf(1,"mol","N2",2,"mol","NH3")}</div></div></div>`;
-A.$("#ex1").innerHTML=S.worked("Ex: Given N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>, how many moles of NH<sub>3</sub> are produced when 1.5 moles of N<sub>2</sub> are consumed?",[
+const W1=S.wk("Ex: Given N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>, how many moles of NH<sub>3</sub> are produced when 1.5 moles of N<sub>2</sub> are consumed?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("1.5","mol","N2")} = ___ ${S.u("mol","NH3")}`],
  ["<b>Step 2:</b> Set up the mole ratio with the given substance (N<sub>2</sub>) on the bottom.",`${S.q("1.5","mol","N2",1)}${S.cf(2,"mol","NH3",1,"mol","N2",0,1)}`],
  ["<b>Step 3:</b> Multiply and divide.",`1.5 × 2 ÷ 1 = 3.0 ${S.u("mol","NH3")}`]]);
-A.$("#ex2").innerHTML=S.worked("Ex: Given N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>, how many moles of N<sub>2</sub> must be consumed to produce 0.5 moles of NH<sub>3</sub>?",[
+const W2=S.wk("Ex: Given N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>, how many moles of N<sub>2</sub> must be consumed to produce 0.5 moles of NH<sub>3</sub>?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("0.5","mol","NH3")} = ___ ${S.u("mol","N2")}`],
  ["<b>Step 2:</b> Set up the mole ratio with the given substance (NH<sub>3</sub>) on the bottom.",`${S.q("0.5","mol","NH3",1)}${S.cf(1,"mol","N2",2,"mol","NH3",0,1)}`],
  ["<b>Step 3:</b> Multiply and divide.",`0.5 × 1 ÷ 2 = 0.25 ${S.u("mol","N2")}`]]);
+S.workedTabs(A.$("#ex1"),[{label:"Moles of N₂ → moles of NH₃",...W1},{label:"Moles of NH₃ → moles of N₂",...W2}]);
 S.Converter(A.$("#mr-host"),{make:()=>S.mkRatio()});
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Given the balanced equation: 2NO + O<sub>2</sub> → 2NO<sub>2</sub> + energy. The mole ratio of NO to NO<sub>2</sub> is",choices:["1 to 1","2 to 1","3 to 2","5 to 2"],ans:1,explain:"The coefficients of NO and NO₂ are both 2: 2 : 2 = 1 : 1."},

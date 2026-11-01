@@ -2482,7 +2482,7 @@ const UCOL={miles:"#2E75D6",mile:"#2E75D6",feet:"#00B050",foot:"#00B050",inches:
 const uc=u=>UCOL[u]||"#2E75D6";
 const un=(u,x)=>`<i class="${x?"xu":""}" style="color:${uc(u)}">${u}</i>`;
 const q=(n,u,x)=>`${n}&thinsp;${un(u,x)}`;
-const cf=(tn,tu,bn,bu,xt,xb)=>`<span class="cf"><span class="pr">(</span><span class="fr"><span>${q(tn,tu,xt)}</span><span>${q(bn,bu,xb)}</span></span><span class="pr">)</span></span>`;
+const cf=(tn,tu,bn,bu,xt,xb)=>`<span class="cf"><span class="pr pl">(</span><span class="fr"><span>${q(tn,tu,xt)}</span><span>${q(bn,bu,xb)}</span></span><span class="pr pR">)</span></span>`;
 const P=e=>`10<sup>${e<0?"−"+(-e):e}</sup>`;
 const EQ={ /* name: [a, b] meaning a = b */
  mift:[[1,"mi"],[5280,"ft"]], ftin:[[1,"ft"],[12,"in"]], ydft:[[1,"yd"],[3,"ft"]], dayh:[[1,"day"],[24,"h"]], hmin:[[1,"h"],[60,"min"]], mins:[[1,"min"],[60,"s"]],
@@ -2515,7 +2515,7 @@ L.DABuilder=function(host,opt={}){
     A.$("#da-q").innerHTML=`Convert <span class="mth" style="font-size:22px">${from==="day"? vTxt+"&thinsp;"+un("days") : q(vTxt,from)}</span> to <span class="mth" style="font-size:22px">${un(to)}</span>.`;
     const eqs=A.shuffle([...path,...dis]);
     A.$("#da-eqs").innerHTML=eqs.map(k=>{ const [[a,au],[b,bu]]=EQ[k]; return `<span class="e">${fmtN(a)} ${un(au)} = ${fmtN(b)} ${un(bu)}</span>`; }).join("");
-    let fr=""; for(let i=0;i<P0.k;i++) fr+=`<span class="da-fr"><span class="pr">(</span><span class="st"><span class="da-slot top" data-s="t${i}"></span><span class="da-bar"></span><span class="da-slot bot" data-s="b${i}"></span></span><span class="pr">)</span></span>`;
+    let fr=""; for(let i=0;i<P0.k;i++) fr+=`<span class="da-fr"><span class="pr pl">(</span><span class="st"><span class="da-slot top" data-s="t${i}"></span><span class="da-bar"></span><span class="da-slot bot" data-s="b${i}"></span></span><span class="pr pR">)</span></span>`;
     A.$("#da-eq").innerHTML=`<span class="da-given" id="da-given">${from==="day"? vTxt+"&thinsp;"+un("days") : q(vTxt,from)}</span>${fr}<span class="da-want">= <span class="blank">?</span> ${un(to)}</span>`;
     cards=[]; eqs.forEach(k=>{ EQ[k].forEach(([n,u],side)=>cards.push({id:k+"_"+side,eq:k,n,u,html:`${fmtN(n)}<i style="color:${uc(u)}">${u}</i>`})); });
     const pool=A.$("#da-pool"); dd=A.DragDrop({root:g.root,pool,mode:"later",targets:A.$$("#da-eq .da-slot").map(el=>({el,id:el.dataset.s})),cards:A.shuffle(cards).map(c=>({id:c.id,html:c.html,label:`${c.n} ${c.u}`})),onChange:()=>{}});
@@ -5246,7 +5246,7 @@ B.FLOW={
 B.wrapText=(t,w,fs)=>{ const max=Math.max(8,Math.floor(w/(fs*.55))), words=t.split(" "), lines=[]; let cur=""; words.forEach(wd=>{ if((cur+" "+wd).trim().length>max){ if(cur) lines.push(cur); cur=wd; } else cur=(cur+" "+wd).trim(); }); if(cur) lines.push(cur); return lines; };
 B.flowSVG=(key,st={})=>{ const F=B.FLOW[key], N=F.nodes; let s=`<svg viewBox="0 0 ${F.W} ${F.H}" width="${F.W}" style="max-width:100%;height:auto" role="img" aria-label="Flowchart for ${key==="name"?"naming a compound from its formula":"writing a formula from a name"}"><defs><marker id="fa-${key}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7a868c"/></marker><marker id="fh-${key}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F28C28"/></marker></defs>`;
   const edgeOn=(a,b)=>st[a]&&st[b];
-  F.edges.forEach(([a,b,lab])=>{ const A1=N[a], B1=N[b], x1=A1[0], y1=A1[1]+A1[3]/2, x2=B1[0], y2=B1[1]-B1[3]/2, on=edgeOn(a,b); const mid=(y1+y2)/2;
+  F.edges.forEach(([a,b,lab])=>{ const A1=N[a], B1=N[b], x1=A1[0], y1=A1[1]+A1[3]/2, x2=B1[0], y2=B1[1]-B1[3]/2, on=edgeOn(a,b); const ys=F.edges.filter(e=>e[0]===a).map(e=>N[e[1]][1]-N[e[1]][3]/2), mid=y1+(Math.min(...ys)-y1)/2; /* branches from one box share one horizontal line */
     const d= Math.abs(x1-x2)<2? `M${x1} ${y1}V${y2}` : `M${x1} ${y1}V${mid}H${x2}V${y2}`;
     s+=`<path d="${d}" fill="none" stroke="${on?"#F28C28":"#9aa7ad"}" stroke-width="${on?3.2:1.8}" marker-end="url(#${on?"fh":"fa"}-${key})"/>`;
     if(lab) s+=`<text x="${Math.abs(x1-x2)<2?x2+8:(x1+x2)/2}" y="${Math.abs(x1-x2)<2?mid+5:mid-7}" text-anchor="${Math.abs(x1-x2)<2?"start":"middle"}" font-family="Inter,Arial" font-size="14" font-weight="800" fill="${on?"#b45f06":"#5f6b72"}" stroke="#fff" stroke-width="4" paint-order="stroke">${lab==="yes"?"Yes":lab==="no"?"No":lab}</text>`; });
@@ -7560,7 +7560,7 @@ S.rndLog=(lo,hi,sf=3)=>+(lo*Math.pow(hi/lo,Math.random())).toPrecision(sf);
 S.UCOL={mol:"#E00000",g:"#00B050",kg:"#2E75D6",mg:"#7030A0",L:"#F28C28",mL:"#7030A0",atoms:"#2E75D6",molecules:"#2E75D6","formula units":"#2E75D6",particles:"#2E75D6",foot:"#00B050",inches:"#E00000"};
 S.u=(u,sp,x)=>`<i class="${x?"xu":""}" style="color:${S.UCOL[u]||"#2E75D6"}">${u}</i>${sp?`&nbsp;<span class="s6-sp${x?" xu":""}">${S.f(sp)}</span>`:""}`;
 S.q=(n,u,sp,x)=>`${n}&thinsp;${S.u(u,sp,x)}`;
-S.cf=(tn,tu,ts,bn,bu,bs,xt,xb)=>`<span class="cf"><span class="pr">(</span><span class="fr"><span>${S.q(tn,tu,ts,xt)}</span><span>${S.q(bn,bu,bs,xb)}</span></span><span class="pr">)</span></span>`;
+S.cf=(tn,tu,ts,bn,bu,bs,xt,xb)=>`<span class="cf"><span class="pr pl">(</span><span class="fr"><span>${S.q(tn,tu,ts,xt)}</span><span>${S.q(bn,bu,bs,xb)}</span></span><span class="pr pR">)</span></span>`;
 S.AV=6.02e23; S.AVH=`6.02 × ${S.sup(23)}`;
 })();
 
@@ -7579,44 +7579,101 @@ S.EQ=EQ;
 /* the step that turns unit u of a substance into moles (and back) */
 const toMol=(u,sp)=>u==="g"?EQ.mm(sp):u==="L"?EQ.mv(sp):u==="mol"?null:EQ.av(sp);
 S.toMol=toMol;
-S.Converter=function(host,o){ let done=0;
+/* particle words (atoms, molecules, formula units, particles) all count the same thing */
+const PW=["atoms","molecules","formula units","particles"]; const ucl=u=>PW.includes(u)?"particles":u;
+/* small pictures for each kind of quantity (used on the road map and in the answer strip) */
+S.qIcon=(u,sz=34)=>{ const k=ucl(u), v=`<svg viewBox="0 0 40 40" width="${sz}" height="${sz}" aria-hidden="true" class="s6-ic">`;
+  if(k==="g") return v+`<path d="M8 25h24l-3 8H11z" fill="#c9cdd1" stroke="#5f6b72"/><path d="M12 24Q20 12 28 24z" fill="#9be3b0" stroke="#00B050"/><rect x="6" y="33" width="28" height="4" rx="1" fill="#5f6b72"/></svg>`;
+  if(k==="L") return v+`<path d="M12 6h16v4l3 4v20a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V14l3-4z" fill="#fff3e6" stroke="#F28C28" stroke-width="1.6"/>${[[16,20],[24,24],[18,30],[25,16]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.2" fill="#F28C28"/>`).join("")}</svg>`;
+  if(k==="particles") return v+[[10,12],[22,9],[31,16],[14,24],[26,24],[9,33],[20,33],[32,31]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4" fill="#2E75D6" stroke="#174f99"/>`).join("")+`</svg>`;
+  if(k==="mol") return v+`<rect x="5" y="9" width="30" height="24" rx="3" fill="#fde7e7" stroke="#c40000" stroke-width="1.6"/><text x="20" y="25" text-anchor="middle" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#c40000">mol</text></svg>`;
+  return v+`</svg>`; };
+S.Converter=function(host,o){ let done=0, mode="drag";
   const g=A.Game(host,{how:o.how||"Read the problem. Drag a card into each box (or tap a card, then tap a box). Each conversion factor uses the two sides of one equivalence: put the unit you want to cancel on the bottom.",scoreText:()=>`Solved: ${done}`});
-  let P0=null, dd=null, cards=[], lvl=o.levels?o.levels[0][0]:null;
+  let P0=null, dd=null, cards=[], eqs=[], lvl=o.levels?o.levels[0][0]:null;
   if(o.levels) g.seg(o.levelLabel||"Problems",o.levels,lvl,v=>{ lvl=v; next(); });
+  if(o.typed!==false) g.seg("Setup",[["drag","Drag the cards"],["type","Type it in"]],mode,v=>{ mode=v; buildSetup(); });
   g.button("New problem",()=>next(),"ghost");
   g.stage.innerHTML=`<div class="dab"><div class="qp"><small>Problem</small><div class="qp-t txt" data-r="q"></div></div>
    <div class="s6-map" data-r="map"></div>
    <div class="da-step"><h4><b>1</b>Equivalences you can use (not all of them are needed):</h4><div class="da-eqlist" data-r="eqs"></div></div>
-   <div class="da-step"><h4><b>2</b>Set up the conversion factor(s): the unit you want to cancel on the bottom, the unit you want on top.</h4><div class="da-eq" data-r="eq"></div><div class="dd-pool" data-r="pool" style="margin-top:8px;justify-content:center"></div><div class="center" style="margin-top:8px"><button class="btn" type="button" data-r="chk">Check setup</button></div></div>
-   <div class="da-step locked" data-r="s3"><h4><b>3</b>Multiply by the numbers on top, divide by the numbers on the bottom.</h4><div class="mth" data-r="math" style="font-size:19px"></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap"><span class="cx-slot"><input class="cx-in" data-r="ans" style="width:220px" inputmode="decimal" autocomplete="off" aria-label="answer"><small data-r="ansu">answer</small></span><button class="btn sm" type="button" data-r="go" style="margin-left:6px">Check answer</button></div><p class="muted" style="margin:18px 0 0;font-size:13px">For scientific notation, type 1.05e24 or 1.05 x 10^24.</p></div></div>`;
+   <div class="da-step" data-r="smm" hidden><h4><b>1b</b>Calculate the molar mass you need (use the periodic table).</h4><div data-r="mm" class="s6-mmwrap"></div></div>
+   <div class="da-step" data-r="s2"><h4><b>2</b><span data-r="s2h">Set up the conversion factor(s): the unit you want to cancel on the bottom, the unit you want on top.</span></h4><div class="da-eq" data-r="eq"></div><div class="dd-pool" data-r="pool" style="margin-top:8px;justify-content:center"></div><p class="muted center" data-r="tyhelp" style="font-size:13.5px;margin:6px 0 0" hidden>Type a number and a unit in each box, for example <b>1</b> and <b>mol H2O</b>, or <b>6.02e23</b> and <b>molecules H2O</b>.</p><div class="center" style="margin-top:8px"><button class="btn" type="button" data-r="chk">Check setup</button></div></div>
+   <div class="da-step locked" data-r="s3"><h4><b>3</b>Multiply by the numbers on top, divide by the numbers on the bottom.</h4><div class="mth" data-r="math" style="font-size:19px"></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap"><span class="cx-slot"><input class="cx-in" data-r="ans" style="width:220px" inputmode="decimal" autocomplete="off" aria-label="answer"><small data-r="ansu">answer</small></span><button class="btn sm" type="button" data-r="go" style="margin-left:6px">Check answer</button></div><p class="muted" style="margin:18px 0 0;font-size:13px">For scientific notation, type 1.05e24 or 1.05 x 10^24.</p><div data-r="flair"></div></div></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
-  const key=(u,sp)=>u+"|"+(sp||"");
-  const roadmap=()=>{ if(!o.map||!P0.map) { $("map").innerHTML=""; return; } $("map").innerHTML=`<div class="s6-road">${P0.map.map((t,i)=>`${i?`<span class="s6-ar">→</span>`:""}<span class="s6-st" data-i="${i}">${t}</span>`).join("")}</div>`; };
-  function next(){ g.fresh(); g.msg(""); P0=o.make(lvl); P0.k=P0.path.length;
-    $("q").innerHTML=P0.text; roadmap();
-    const eqs=A.shuffle([...P0.path,...(P0.extra||[])]).filter((e,i,a)=>a.findIndex(x=>x.id===e.id)===i);
-    $("eqs").innerHTML=eqs.map(e=>`<span class="e">${S.q(e.a[1],e.a[2],e.a[3])} = ${S.q(e.b[1],e.b[2],e.b[3])}</span>`).join("");
-    let fr=""; for(let i=0;i<P0.k;i++) fr+=`<span class="da-fr"><span class="pr">(</span><span class="st"><span class="da-slot top" data-s="t${i}"></span><span class="da-bar"></span><span class="da-slot bot" data-s="b${i}"></span></span><span class="pr">)</span></span>`;
+  const key=(u,sp)=>ucl(u)+"|"+(sp||"");
+  const subs=()=>[...new Set(eqs.flatMap(e=>[e.a[3],e.b[3]]).concat([P0.given[2],P0.want[1]]).filter(Boolean))];
+  const roadmap=()=>{ if(!o.map||!P0.map) { $("map").innerHTML=""; return; } const us=[P0.given[1]].concat(P0.map.length===4?["mol","mol"]:P0.map.length===3?["mol"]:[]).concat([P0.want[0]]);
+    $("map").innerHTML=`<div class="s6-road">${P0.map.map((t,i)=>`${i?`<span class="s6-ar">→</span>`:""}<span class="s6-st" data-i="${i}">${S.qIcon(us[i]||"mol",24)}<span>${t}</span></span>`).join("")}</div>`; };
+  const needMM=()=>o.mmStep===false? [] : [...new Set(P0.path.filter(e=>e.id.startsWith("mm-")).map(e=>e.a[3]))];
+  /* the equivalences, with any molar mass the student calculated in place of the table value */
+  const curEqs=()=>eqs.map(e=>{ if(!e.id.startsWith("mm-")||!P0.need.includes(e.a[3])) return e; const v=P0.mmv[e.a[3]]; return v==null? Object.assign({},e,{hide:true}) : Object.assign({},e,{b:[v,S.num(v,v>=100?5:4).replace(/,/g,""),"g",e.b[3]]}); });
+  function chips(){ $("eqs").innerHTML=curEqs().map(e=>`<span class="e">${S.q(e.a[1],e.a[2],e.a[3])} = ${e.hide?`<b class="s6-qm">?</b>&thinsp;${S.u("g",e.b[3])}`:S.q(e.b[1],e.b[2],e.b[3])}</span>`).join(""); }
+  function next(){ g.fresh(); g.msg(""); P0=o.make(lvl); P0.k=P0.path.length; P0.mmv={}; P0.need=needMM();
+    $("q").innerHTML=P0.text; roadmap(); $("flair").innerHTML="";
+    eqs=A.shuffle([...P0.path,...(P0.extra||[])]).filter((e,i,a)=>a.findIndex(x=>x.id===e.id)===i);
+    chips(); mmStep();
     const [gv,gu,gs]=P0.given; P0.gTxt=P0.gTxt||S.num(gv,P0.sf||3);
-    $("eq").innerHTML=`<span class="da-given" data-r="given">${S.q(P0.gTxt,gu,gs)}</span>${fr}<span class="da-want">= <span class="blank">?</span> ${S.u(P0.want[0],P0.want[1])}</span>`;
-    cards=[]; eqs.forEach(e=>[e.a,e.b].forEach((sd,side)=>cards.push({id:e.id+"_"+side,eq:e.id,n:sd[0],nh:sd[1],u:sd[2],sp:sd[3],html:`${sd[1]}<i style="color:${S.UCOL[sd[2]]||"#2E75D6"}">${sd[2]}</i>${sd[3]?`<span class="s6-sp">${S.f(sd[3])}</span>`:""}`})));
+    $("s3").classList.add("locked"); $("math").innerHTML=""; $("ans").value=""; $("ans").classList.remove("ok","no"); $("ansu").textContent=`answer (${P0.want[0]}${P0.want[1]?" "+P0.want[1]:""})`;
+    buildSetup(); }
+  /* step 1b: molar mass scaffold — count × atomic mass for each element, then add (rounded whole-number masses are accepted too) */
+  function mmStep(){ const box=$("smm"); if(!P0.need.length){ box.hidden=true; $("s2").classList.remove("locked"); return; } box.hidden=false; $("s2").classList.add("locked");
+    $("mm").innerHTML=P0.need.map(sp=>{ const els=S.order(sp); return `<div class="s6-mmcalc" data-sp="${sp}"><div class="s6-mmh">Molar mass of ${S.f(sp)}</div><table class="nt calc-t"><tr><th>Element</th><th>Atoms</th><th></th><th>Atomic mass</th><th></th><th>Mass (g)</th></tr>${els.map(e=>`<tr data-e="${e}"><td><b>${e}</b></td><td><input class="inp id-bx" data-k="n" style="width:52px" inputmode="numeric" aria-label="number of ${e} atoms"></td><td class="op">×</td><td><input class="inp id-bx" data-k="m" style="width:76px" inputmode="decimal" aria-label="atomic mass of ${e}"></td><td class="op">=</td><td class="s6-prod" data-k="p">—</td></tr>`).join("")}<tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Total</b> (add the last column)</td><td><input class="inp id-bx" data-k="sum" style="width:86px" inputmode="decimal" aria-label="molar mass of ${sp}"> g/mol</td></tr></table><div class="center"><button class="btn sm" type="button" data-r="mmgo">Check molar mass</button></div></div>`; }).join("");
+    A.$$(".s6-mmcalc",$("mm")).forEach(c=>{ const upd=()=>A.$$("tr[data-e]",c).forEach(tr=>{ const n=A.parseTyped(tr.querySelector('[data-k="n"]').value), m=A.parseTyped(tr.querySelector('[data-k="m"]').value); tr.querySelector('[data-k="p"]').textContent= n&&m? (+(n.v*m.v).toFixed(2)).toString() : "—"; });
+      A.$$("input",c).forEach(i=>i.addEventListener("input",upd)); c.querySelector('[data-r="mmgo"]').addEventListener("click",()=>checkMM(c)); }); }
+  function checkMM(c){ const sp=c.dataset.sp, p=S.parse(sp); let tot=0;
+    for(const tr of A.$$("tr[data-e]",c)){ const e=tr.dataset.e, n=A.parseTyped(tr.querySelector('[data-k="n"]').value), m=A.parseTyped(tr.querySelector('[data-k="m"]').value), am=S.am(e);
+      if(!n||n.v!==p[e]){ g.lose(); g.msg(`Count the ${e} atoms in ${S.f(sp)}.${/\(/.test(sp)?" A subscript after parentheses multiplies every atom inside them.":""}`,"bad"); return; }
+      if(!m||!(Math.abs(m.v-am)<=.006||m.v===Math.round(am))){ g.lose(); g.msg(`Look up ${e} on the periodic table: its atomic mass is ${am.toFixed(2)} (or ${Math.round(am)} rounded to a whole number).`,"bad"); return; }
+      tot+=n.v*m.v; }
+    A.$$("input",c)[0].dispatchEvent(new Event("input")); const sm=A.parseTyped(c.querySelector('[data-k="sum"]').value); if(!sm||Math.abs(sm.v-tot)>.02+tot*1e-4){ g.lose(); g.msg("Add up the last column to get the molar mass.","bad"); return; }
+    P0.mmv[sp]=+sm.v; c.classList.add("ok"); A.$$("input,button",c).forEach(x=>x.disabled=true); c.querySelector(".s6-mmh").innerHTML=`✔ Molar mass of ${S.f(sp)} = ${S.num(sm.v,sm.v>=100?5:4).replace(/,/g,"")} g/mol`;
+    chips(); if(P0.need.every(x=>P0.mmv[x]!=null)){ $("s2").classList.remove("locked"); g.msg("✔ Molar mass done. Now set up the conversion factors (Step 2).","good"); buildSetup(); } else g.msg(`✔ ${S.f(sp)} done. Now the next molar mass.`,"good"); }
+  /* step 2: the setup, either drag-and-drop cards or typed boxes */
+  function buildSetup(){ if(!P0) return; $("chk").disabled=false; $("s3").classList.add("locked"); $("math").innerHTML="";
+    let fr=""; for(let i=0;i<P0.k;i++) fr+=`<span class="da-fr"><span class="pr pl">(</span><span class="st"><span class="da-slot top${mode==="type"?" ty":""}" data-s="t${i}"></span><span class="da-bar"></span><span class="da-slot bot${mode==="type"?" ty":""}" data-s="b${i}"></span></span><span class="pr pR">)</span></span>`;
+    $("eq").innerHTML=`<span class="da-given" data-r="given">${S.q(P0.gTxt,P0.given[1],P0.given[2])}</span>${fr}<span class="da-want">= <span class="blank">?</span> ${S.u(P0.want[0],P0.want[1])}</span>`;
+    $("pool").innerHTML=""; $("tyhelp").hidden=mode!=="type"; $("pool").hidden=mode==="type";
+    if(mode==="type"){ dd=null; A.$$(".da-slot",$("eq")).forEach((sl,k)=>{ sl.innerHTML=`<input class="ty-n" inputmode="decimal" autocomplete="off" placeholder="number" aria-label="number"><input class="ty-u" autocomplete="off" placeholder="unit" aria-label="unit and substance">`; }); return; }
+    /* one card per distinct quantity (more copies only when the setup really needs the same card twice) */
+    const need={}; P0.path.forEach(e=>[e.a,e.b].forEach(sd=>{ const k=sd[0]+"|"+sd[2]+"|"+sd[3]; need[k]=(need[k]||0)+1; }));
+    const ce=curEqs().filter(e=>!e.hide), seen={}; cards=[];
+    ce.forEach(e=>[e.a,e.b].forEach(sd=>{ const k=(e.id.startsWith("mm-")&&sd[2]==="g"? S.mm(sd[3]) : sd[0])+"|"+sd[2]+"|"+sd[3], kk=sd[0]+"|"+sd[2]+"|"+sd[3]; const max=Math.max(1,need[k]||need[kk]||0); seen[kk]=(seen[kk]||0); if(seen[kk]>=max) return; seen[kk]++;
+      cards.push({id:kk.replace(/[^A-Za-z0-9]/g,"_")+"_"+seen[kk],k:kk,n:sd[0],nh:sd[1],u:sd[2],sp:sd[3],html:`${sd[1]}<i style="color:${S.UCOL[sd[2]]||"#2E75D6"}">${sd[2]}</i>${sd[3]?`<span class="s6-sp">${S.f(sd[3])}</span>`:""}`}); }));
     dd=A.DragDrop({root:g.root,pool:$("pool"),mode:"later",targets:A.$$(".da-slot",$("eq")).map(el=>({el,id:el.dataset.s})),cards:A.shuffle(cards).map(c=>({id:c.id,html:c.html,label:`${c.n} ${c.u} ${c.sp||""}`})),onChange:()=>{}});
-    A.$$(".dd-card",$("pool")).forEach(c=>c.classList.add("qcard"));
-    $("s3").classList.add("locked"); $("math").innerHTML=""; $("ans").value=""; $("ans").classList.remove("ok","no"); $("ansu").textContent=`answer (${P0.want[0]}${P0.want[1]?" "+P0.want[1]:""})`; $("chk").disabled=false; }
-  function check(){ const pl=dd.placement(), at={}; Object.entries(pl).forEach(([cid,s])=>{ if(s) at[s]=cards.find(c=>c.id===cid); });
-    for(let i=0;i<P0.k;i++) if(!at["t"+i]||!at["b"+i]){ g.msg("Fill every box first: each conversion factor needs a top and a bottom.","warn"); return; }
-    let cur=key(P0.given[1],P0.given[2]), bad=null;
+    A.$$(".dd-card",$("pool")).forEach(c=>c.classList.add("qcard")); }
+  const UNORM={mol:"mol",mole:"mol",moles:"mol",mols:"mol",g:"g",gram:"g",grams:"g",l:"L",liter:"L",liters:"L",litre:"L",litres:"L",atom:"atoms",atoms:"atoms",molecule:"molecules",molecules:"molecules","formula unit":"formula units","formula units":"formula units",fu:"formula units",particle:"particles",particles:"particles",kg:"kg",ml:"mL"};
+  function readTyped(sl,label){ const nv=A.parseTyped(sl.querySelector(".ty-n").value); if(!nv) return `Type a number in the ${label} box.`;
+    let t=sl.querySelector(".ty-u").value.replace(/[₀-₉]/g,c=>"₀₁₂₃₄₅₆₇₈₉".indexOf(c)).trim(); if(!t) return `Type a unit in the ${label} box.`;
+    let sp=""; const S2=subs().sort((a,b)=>b.length-a.length);
+    for(const f of S2){ const re=new RegExp("\\s*(of\\s+)?"+f.replace(/[()]/g,"\\$&")+"$"); if(re.test(t)){ sp=f; t=t.replace(re,""); break; } }
+    if(!sp){ for(const f of S2){ const nm=S.name(f); if(nm&&t.toLowerCase().endsWith(nm)){ sp=f; t=t.slice(0,-nm.length).replace(/\s*of\s*$/i,""); break; } } }
+    if(!sp&&S2.length===1) sp=S2[0];
+    const u=UNORM[t.trim().toLowerCase().replace(/\s+/g," ")]; if(!u) return `I don’t recognize the unit in the ${label} box. Use mol, g, L, atoms, molecules or formula units, then the formula (for example: mol ${S2[0]||"H2O"}).`;
+    if(!sp) return `Add the formula after the unit in the ${label} box (for example: ${u} ${S2[0]}).`;
+    const n=nv.v, nh= (Math.abs(n)>=1e5||Math.abs(n)<1e-3&&n!==0)? S.sci(n,3) : String(+n.toPrecision(6)); return {n,nh,u,sp}; }
+  function placed(){ const at={};
+    if(mode==="type"){ for(const sl of A.$$(".da-slot",$("eq"))){ const i=+sl.dataset.s.slice(1)+1, r=readTyped(sl,`${sl.dataset.s[0]==="t"?"top":"bottom"} of factor ${i}`); if(typeof r==="string") return r; at[sl.dataset.s]=r; } return at; }
+    const pl=dd.placement(); Object.entries(pl).forEach(([cid,s])=>{ if(s) at[s]=cards.find(c=>c.id===cid); });
+    for(let i=0;i<P0.k;i++) if(!at["t"+i]||!at["b"+i]) return "Fill every box first: each conversion factor needs a top and a bottom.";
+    return at; }
+  function check(){ if($("s2").classList.contains("locked")){ g.msg("Finish the molar mass (Step 1b) first.","warn"); return; }
+    const at=placed(); if(typeof at==="string"){ g.msg(at,"warn"); return; }
+    let cur=key(P0.given[1],P0.given[2]), bad=null; const all=curEqs().map(e=>e.hide? Object.assign({},e,{b:[S.mm(e.b[3]),"","g",e.b[3]]}) : e);
+    const numOK=(c,sd)=>{ if(Math.abs(c.n-sd[0])<=Math.abs(sd[0])*1e-6) return true; if(sd[2]==="g"&&mode==="type"){ const M=S.mm(sd[3]); return Math.abs(c.n-M)<=.011||c.n===Math.round(M)||Math.abs(c.n-sd[0])<=.011; } return false; };
+    const same=(c,sd)=>ucl(c.u)===ucl(sd[2])&&(c.sp||"")===(sd[3]||"")&&numOK(c,sd);
     for(let i=0;i<P0.k;i++){ const t=at["t"+i], b=at["b"+i];
-      const same=(c,sd)=>c.u===sd[2]&&(c.sp||"")===(sd[3]||"")&&Math.abs(c.n-sd[0])<=Math.abs(sd[0])*1e-9; const pairOK=[...P0.path,...(P0.extra||[])].some(e=>(same(t,e.a)&&same(b,e.b))||(same(t,e.b)&&same(b,e.a)));
+      const pairOK=all.some(e=>(same(t,e.a)&&same(b,e.b))||(same(t,e.b)&&same(b,e.a)));
       if(!pairOK){ bad=`In conversion factor ${i+1}, the top and bottom must be the two sides of the same equivalence (equal amounts).`; break; }
       if(key(b.u,b.sp)!==cur){ const [cu,cs]=cur.split("|"); bad= key(t.u,t.sp)===cur? `Conversion factor ${i+1} is upside down. The unit you are canceling (${cu}${cs?" of "+cs:""}) must be on the bottom.` : `The bottom of conversion factor ${i+1} must have the unit you need to cancel: ${cu}${cs?" of "+cs:""}.`; break; }
       if(o.order&&o.order(i,t,b,P0)){ bad=o.order(i,t,b,P0); break; }
       cur=key(t.u,t.sp); }
     if(!bad&&cur!==key(P0.want[0],P0.want[1])){ const [cu,cs]=cur.split("|"); bad=`After canceling, you are left with ${cu}${cs?" of "+cs:""}, but you want ${P0.want[0]}${P0.want[1]?" of "+P0.want[1]:""}.${P0.k>1?" Go through moles: convert to moles first.":""}`; }
-    if(bad){ g.lose(); g.msg(bad,"bad"); dd.mark(()=>false); return; }
-    dd.mark(()=>true); $("chk").disabled=true; g.msg("✔ The setup is correct. Watch the units cancel, then calculate (Step 3).","good");
+    if(bad){ g.lose(); g.msg(bad,"bad"); dd&&dd.mark(()=>false); A.$$(".da-slot.ty",$("eq")).forEach(x=>x.classList.add("bad")); return; }
+    A.$$(".da-slot.ty",$("eq")).forEach(x=>{ x.classList.remove("bad"); x.classList.add("good"); A.$$("input",x).forEach(i=>i.disabled=true); });
+    dd&&dd.mark(()=>true); $("chk").disabled=true; g.msg("✔ The setup is correct. Watch the units cancel, then calculate (Step 3).","good");
     A.$$("i, .s6-sp",$("given")).forEach(x=>x.classList.add("xu"));
-    for(let i=0;i<P0.k;i++){ const bs=A.$$(`.da-slot[data-s="b${i}"] i, .da-slot[data-s="b${i}"] .s6-sp`,$("eq")); setTimeout(()=>bs.forEach(x=>x.classList.add("xu")),200+i*350); if(i<P0.k-1){ const ts=A.$$(`.da-slot[data-s="t${i}"] i, .da-slot[data-s="t${i}"] .s6-sp`,$("eq")); setTimeout(()=>ts.forEach(x=>x.classList.add("xu")),380+i*350); }
+    for(let i=0;i<P0.k;i++){ const bs=A.$$(`.da-slot[data-s="b${i}"] i, .da-slot[data-s="b${i}"] .s6-sp, .da-slot[data-s="b${i}"] .ty-u`,$("eq")); setTimeout(()=>bs.forEach(x=>x.classList.add("xu")),200+i*350); if(i<P0.k-1){ const ts=A.$$(`.da-slot[data-s="t${i}"] i, .da-slot[data-s="t${i}"] .s6-sp, .da-slot[data-s="t${i}"] .ty-u`,$("eq")); setTimeout(()=>ts.forEach(x=>x.classList.add("xu")),380+i*350); }
       const st=g.stage.querySelector(`.s6-st[data-i="${i+1}"]`); st&&setTimeout(()=>st.classList.add("on"),200+i*350); }
     const st0=g.stage.querySelector('.s6-st[data-i="0"]'); st0&&st0.classList.add("on");
     const tops=[...Array(P0.k).keys()].map(i=>at["t"+i]), bots=[...Array(P0.k).keys()].map(i=>at["b"+i]);
@@ -7624,12 +7681,22 @@ S.Converter=function(host,o){ let done=0;
     const pw=t=>/×|sup/.test(t)? `(${t})` : t;
     $("math").innerHTML=`${pw(P0.gTxt)} × ${tops.map(c=>pw(c.nh)).join(" × ")} ÷ ${bots.length>1? "("+bots.map(c=>pw(c.nh)).join(" × ")+")" : pw(bots[0].nh)} = ?`;
     $("s3").classList.remove("locked"); }
+  /* the answer strip: the given quantity turns into moles, then into the wanted quantity */
+  function flair(){ const st=[[P0.given[1],P0.given[2],S.q(P0.gTxt,P0.given[1],P0.given[2])]], hasR=P0.path.some(e=>e.id.startsWith("r-"));
+    if(ucl(P0.given[1])!=="mol") st.push(["mol",P0.given[2],S.u("mol",P0.given[2])]);
+    if(hasR) st.push(["mol",P0.want[1],S.u("mol",P0.want[1])]);
+    if(ucl(P0.want[0])!=="mol") st.push([P0.want[0],P0.want[1],""]);
+    const L=st.length-1; st[L][2]=S.q(S.num(P0.ans,P0.sf||3),P0.want[0],P0.want[1]);
+    $("flair").innerHTML=`<div class="s6-flair">${st.map(([u,sp,t],i)=>`${i?`<span class="s6-far" style="animation-delay:${i*.35-.15}s">➜</span>`:""}<span class="s6-fi" style="animation-delay:${i*.35}s">${S.qIcon(u,46)}<small>${t}</small></span>`).join("")}</div>`; }
   function go(){ const raw=$("ans").value, r=A.lenient(raw,P0.ans,{sf:P0.sf||3}); if(typeof r==="string"){ g.lose(); g.msg(r,"warn"); return; }
     const ok=r===true, i=$("ans"); i.classList.toggle("ok",ok); i.classList.toggle("no",!ok);
-    if(ok){ done++; g.win(); g.paint(); g.stage.querySelector(".da-want .blank").innerHTML=S.num(P0.ans,P0.sf||3); g.msg(`✔ ${S.q(P0.gTxt,P0.given[1],P0.given[2])} = ${S.q(S.num(P0.ans,P0.sf||3),P0.want[0],P0.want[1])}. ${P0.after||"The answer has the desired unit."}`,"good"); }
+    if(ok){ done++; g.win(); g.paint(); g.stage.querySelector(".da-want .blank").innerHTML=S.num(P0.ans,P0.sf||3); g.msg(`✔ ${S.q(P0.gTxt,P0.given[1],P0.given[2])} = ${S.q(S.num(P0.ans,P0.sf||3),P0.want[0],P0.want[1])}. ${P0.after||"The answer has the desired unit."}`,"good"); flair(); }
     else { const v=A.parseTyped(raw); g.lose(); g.msg(!v? "Type a number." : Math.abs(Math.log10(Math.abs(v.v/P0.ans)))>1.5? "That’s off by a power of 10. Put parentheses around numbers in scientific notation, and divide by everything on the bottom." : "Recheck the multiplication and division.","bad"); } }
   $("chk").addEventListener("click",check); $("go").addEventListener("click",go); $("ans").addEventListener("keydown",e=>{ if(e.key==="Enter") go(); });
-  host._conv={P:()=>P0,auto:()=>{ /* test hook: place the right cards */ const ids=[]; let cur=key(P0.given[1],P0.given[2]); P0.path.forEach((e,i)=>{ const side=key(e.a[2],e.a[3])===cur?0:1; ids.push([`${e.id}_${1-side}`,"t"+i],[`${e.id}_${side}`,"b"+i]); cur=key((side?e.a:e.b)[2],(side?e.a:e.b)[3]); }); return ids; }};
+  host._conv={P:()=>P0,mode:m=>{ mode=m; buildSetup(); },
+    fillMM:(rounded)=>{ A.$$(".s6-mmcalc",$("mm")).forEach(c=>{ const p=S.parse(c.dataset.sp); let t=0; A.$$("tr[data-e]",c).forEach(tr=>{ const e=tr.dataset.e, m=rounded?Math.round(S.am(e)):S.am(e); tr.querySelector('[data-k="n"]').value=p[e]; tr.querySelector('[data-k="m"]').value=m; t+=p[e]*m; }); c.querySelector('[data-k="sum"]').value=+t.toFixed(2); checkMM(c); }); },
+    auto:()=>{ /* test hook: the right card for each slot */ const ids=[], used={}; let cur=key(P0.given[1],P0.given[2]); const ce=curEqs(); P0.path.forEach((e0,i)=>{ const e=ce.find(x=>x.id===e0.id); const side=key(e.a[2],e.a[3])===cur?0:1; const top=side?e.a:e.b, bot=side?e.b:e.a; [[top,"t"+i],[bot,"b"+i]].forEach(([sd,sl])=>{ const kk=sd[0]+"|"+sd[2]+"|"+sd[3]; used[kk]=(used[kk]||0)+1; const c=cards.filter(c=>c.k===kk)[used[kk]-1]||cards.find(c=>c.k===kk); ids.push([c.id,sl]); }); cur=key(top[2],top[3]); }); return ids; },
+    typed:()=>{ /* test hook: the right typed values for each slot */ const out=[]; let cur=key(P0.given[1],P0.given[2]); const ce=curEqs(); P0.path.forEach((e0,i)=>{ const e=ce.find(x=>x.id===e0.id); const side=key(e.a[2],e.a[3])===cur?0:1; const top=side?e.a:e.b, bot=side?e.b:e.a; out.push(["t"+i,top[0],top[2]+" "+top[3]],["b"+i,bot[0],bot[2]+" "+bot[3]]); cur=key(top[2],top[3]); }); return out; }};
   next(); };
 
 /* ---------- problem makers ---------- */
@@ -7639,11 +7706,11 @@ S.MASS=["H2O","CO2","NaCl","NH3","C6H12O6","CaCO3","Fe","Al","O2","NaOH","H2SO4"
 S.GAS=["Ne","H2","O2","N2","CO2","CH4","He","Cl2","NH3","Ar"];
 const nm=f=>S.name(f)?`${S.name(f)} (${S.f(f)})`:S.f(f);
 S.mkParticles=()=>{ const sp=pick(S.PART), w=S.pword(sp), toPart=Math.random()<.5; const eq=EQ.av(sp);
-  if(toPart){ const v=S.rnd(0.15,4.9); return {text:`How many ${w} are in ${S.num(v)} moles of ${nm(sp)}?`,given:[v,"mol",sp],want:[w,sp],path:[eq],extra:[EQ.mm(sp),EQ.mv(sp)]}; }
-  const v=S.rndLog(1.2e22,9.5e24); return {text:`How many moles are in ${S.sci(v)} ${w} of ${nm(sp)}?`,given:[v,w,sp],want:["mol",sp],path:[eq],extra:[EQ.mm(sp),EQ.mv(sp)],gTxt:S.sci(v)}; };
+  if(toPart){ const v=S.rnd(0.15,4.9); return {text:`How many ${w} are in ${S.num(v)} moles of ${nm(sp)}?`,given:[v,"mol",sp],want:[w,sp],path:[eq],extra:[EQ.mm(sp)].concat(S.GAS.includes(sp)?[EQ.mv(sp)]:[])}; }
+  const v=S.rndLog(1.2e22,9.5e24); return {text:`How many moles are in ${S.sci(v)} ${w} of ${nm(sp)}?`,given:[v,w,sp],want:["mol",sp],path:[eq],extra:[EQ.mm(sp)].concat(S.GAS.includes(sp)?[EQ.mv(sp)]:[]),gTxt:S.sci(v)}; };
 S.mkMass=()=>{ const sp=pick(S.MASS), toG=Math.random()<.5, eq=EQ.mm(sp);
-  if(toG){ const v=S.rnd(0.12,4.9); return {text:`What is the mass, in grams, of ${S.num(v)} moles of ${nm(sp)}?`,given:[v,"mol",sp],want:["g",sp],path:[eq],extra:[EQ.av(sp),EQ.mv(sp)]}; }
-  const v=S.rnd(4.5,180); return {text:`How many moles are in ${S.num(v)} g of ${nm(sp)}?`,given:[v,"g",sp],want:["mol",sp],path:[eq],extra:[EQ.av(sp),EQ.mv(sp)]}; };
+  if(toG){ const v=S.rnd(0.12,4.9); return {text:`What is the mass, in grams, of ${S.num(v)} moles of ${nm(sp)}?`,given:[v,"mol",sp],want:["g",sp],path:[eq],extra:[EQ.av(sp)].concat(S.GAS.includes(sp)?[EQ.mv(sp)]:[])}; }
+  const v=S.rnd(4.5,180); return {text:`How many moles are in ${S.num(v)} g of ${nm(sp)}?`,given:[v,"g",sp],want:["mol",sp],path:[eq],extra:[EQ.av(sp)].concat(S.GAS.includes(sp)?[EQ.mv(sp)]:[])}; };
 S.mkVolume=()=>{ const sp=pick(S.GAS), toL=Math.random()<.5, eq=EQ.mv(sp);
   if(toL){ const v=S.rnd(0.12,4.9); return {text:`How much volume, in liters, will ${S.num(v)} moles of ${nm(sp)} gas occupy at STP?`,given:[v,"mol",sp],want:["L",sp],path:[eq],extra:[EQ.av(sp),EQ.mm(sp)]}; }
   const v=S.rnd(2.5,95); return {text:`How many moles of ${nm(sp)} gas are in a ${S.num(v)}-liter container at STP?`,given:[v,"L",sp],want:["mol",sp],path:[eq],extra:[EQ.av(sp),EQ.mm(sp)]}; };
@@ -7694,20 +7761,22 @@ S.dozenArt=()=>{ const W=560, H=170; let s=`<svg viewBox="0 0 ${W} ${H}" width="
   s+=`<rect x="326" y="36" width="214" height="98" rx="10" fill="none" stroke="#5f6b72" stroke-dasharray="6 4"/>`+T(433,30,"1 mole of carbon atoms",{fs:15,w:800})+T(433,154,"= 6.02 × 10²³ atoms",{fs:14,c:"#c40000"});
   return s+`</svg>`; };
 /* moles and equations: the same equation read at the atomic level and at the macroscopic level */
-S.levelsArt=(e)=>{ e=e||{r:["H2","O2"],p:["H2O"],c:[2,1,2]}; const all=e.r.concat(e.p), n=e.r.length, W=640, cw=W/all.length;
-  let s=`<svg viewBox="0 0 ${W} 300" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Atomic level: ${e.c.map((c,i)=>c+" "+all[i]).join(", ")} particles. Macroscopic level: the same numbers of moles."><rect width="${W}" height="300" fill="#fff"/>`;
-  s+=T(10,18,"Atomic level: particles",{a:"start",fs:13,w:800,c:"#005ea3"})+T(10,170,"Macroscopic level: moles",{a:"start",fs:13,w:800,c:"#c40000"});
-  all.forEach((f,i)=>{ const cx=cw*(i+.5); s+=`<g transform="translate(${cx-60} 28)">${R.molBox(f,e.c[i],{w:120,h:90,max:1.6}).replace(/^<svg[^>]*>/,"").replace(/<\/svg>$/,"")}</g>`;
-    s+=T(cx,136,`${e.c[i]} ${R.pnames?R.pnames(f,e.c[i]):"molecules"}`,{fs:12.5,w:700});
-    for(let k=0;k<e.c[i];k++){ const bx=cx-(e.c[i]-1)*30+k*60; s+=`<rect x="${bx-24}" y="190" width="48" height="58" rx="8" fill="#eef7fc" stroke="#5aa5d6" stroke-width="1.5"/>`+T(bx,214,"1 mol",{fs:11.5,w:800,c:"#c40000"})+T(bx,232,S.f(f),{fs:12}); }
-    s+=T(cx,272,`${e.c[i]} mole${e.c[i]>1?"s":""} of ${S.f(f)}`,{fs:12.5,w:700});
-    if(i) s+=T(cw*i,80,i===n?"→":"+",{fs:24,c:"#5f6b72"})+T(cw*i,228,i===n?"→":"+",{fs:24,c:"#5f6b72"}); });
+S.levelsArt=(e)=>{ e=e||{r:["H2","O2"],p:["H2O"],c:[2,1,2]}; const all=e.r.concat(e.p), n=e.r.length, W=800, H=380, cw=W/all.length;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Atomic level: ${e.c.map((c,i)=>c+" "+all[i]).join(", ")} particles. Macroscopic level: the same numbers of moles."><rect width="${W}" height="${H}" fill="#fff"/>`;
+  s+=`<rect x="4" y="4" width="${W-8}" height="178" rx="12" fill="#f3f9fd" stroke="#bcd9ea"/><rect x="4" y="194" width="${W-8}" height="182" rx="12" fill="#fdf3f3" stroke="#efc6c6"/>`;
+  s+=T(18,28,"Atomic level: particles",{a:"start",fs:17,w:800,c:"#005ea3"})+T(18,220,"Macroscopic level: moles",{a:"start",fs:17,w:800,c:"#c40000"});
+  all.forEach((f,i)=>{ const cx=cw*(i+.5); s+=`<g transform="translate(${cx-85} 36)">${R.molBox(f,e.c[i],{w:170,h:110,max:2}).replace(/^<svg[^>]*>/,"").replace(/<\/svg>$/,"")}</g>`;
+    s+=T(cx,168,`${e.c[i]} ${R.pnames?R.pnames(f,e.c[i]):"molecules"}`,{fs:16,w:700});
+    for(let k=0;k<e.c[i];k++){ const bx=cx-(e.c[i]-1)*38+k*76; s+=`<rect x="${bx-32}" y="238" width="64" height="76" rx="10" fill="#fff" stroke="#c40000" stroke-width="2"/>`+T(bx,268,"1 mol",{fs:15,w:800,c:"#c40000"})+T(bx,294,S.f(f),{fs:16}); }
+    s+=T(cx,350,`${e.c[i]} mole${e.c[i]>1?"s":""} of ${S.f(f)}`,{fs:16,w:700});
+    if(i) s+=T(cw*i,100,i===n?"→":"+",{fs:32,c:"#5f6b72"})+T(cw*i,286,i===n?"→":"+",{fs:32,c:"#5f6b72"}); });
   return s+`</svg>`; };
 /* equal volumes of gases at the same temperature and pressure hold the same number of particles */
 S.avogadroArt=(t,gases)=>{ gases=gases||["H2","O2","Ne"]; const W=630, H=270, bw=170, bh=170; let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Three identical containers at the same temperature and pressure, holding hydrogen, oxygen and neon. Each holds the same number of particles."><rect width="${W}" height="${H}" fill="#fff"/>`;
   gases.forEach((f,i)=>{ const x0=20+i*205, y0=40; s+=`<rect x="${x0}" y="${y0}" width="${bw}" height="${bh}" rx="8" fill="#f7fbfd" stroke="#1b2328" stroke-width="2.5"/>`;
-    for(let k=0;k<8;k++){ const fx=((k*0.37+i*.13)%1), fy=((k*0.61+i*.29)%1), vx=Math.sin(k*2.1+i)*.9, vy=Math.cos(k*1.7+i*2)*.9; let x=fx+vx*t*.06, y=fy+vy*t*.06; x=Math.abs(((x%2)+2)%2); x=x>1?2-x:x; y=Math.abs(((y%2)+2)%2); y=y>1?2-y:y;
-      s+=R.molSVG(f,x0+22+x*(bw-44),y0+22+y*(bh-44),{k:f==="Ne"?1.1:1}); }
+    const cells=[[0,0],[1,0],[2,0],[0,1],[2,1],[0,2],[1,2],[2,2]]; /* each particle wanders inside its own cell, so they never overlap and stay easy to count */
+    cells.forEach(([cx,cy],k)=>{ const ph=k*1.7+i*2.3, ax=7*Math.sin(t*.9+ph), ay=7*Math.cos(t*1.13+ph*1.3), jx=((k*13+i*7)%9)-4, jy=((k*11+i*5)%9)-4;
+      s+=R.molSVG(f,x0+33+cx*52+jx+ax,y0+33+cy*52+jy+ay,{k:f==="Ne"?1.1:1}); });
     s+=T(x0+bw/2,28,`${S.name(f)} (${S.f(f)})`,{fs:14,w:800})+T(x0+bw/2,y0+bh+20,"8 particles",{fs:12.5,c:"#c40000"}); });
   s+=T(W/2,H-12,"Same volume, same temperature, same pressure → same number of particles",{fs:13,w:800,c:"#005ea3"});
   return s+`</svg>`; };
@@ -7727,42 +7796,71 @@ const near=(v,x,tol)=>{ const n=A.parseTyped(String(v)); return !!n&&Math.abs(n.
 
 /* ---------- Molar mass calculator: number of atoms × atomic mass for each element, then add ---------- */
 S.MOLMASS=["H2O","CO2","NH3","CH4","NaCl","MgCl2","CaCO3","NaOH","H2SO4","C6H12O6","Ca(OH)2","Al2(SO4)3","Fe2O3","KClO3","C3H8","(NH4)2SO4","Mg(NO3)2","CuSO4"];
-S.MolarMassGame=function(host,o={}){ let done=0, f=null;
-  const g=A.Game(host,{how:"Fill in the numbered boxes in order. For each element: count its atoms in the formula, look up its atomic mass on the periodic table, and multiply. Then add the masses to get the molar mass.",scoreText:()=>`Molar masses: ${done}`});
+S.MolarMassGame=function(host,o={}){ let done=0, f=null, shown=0, raf=0;
+  const ECOL=e=>(B&&B.ATC&&B.ATC[e])||(R&&R.col?R.col(e):"#9aa7ad");
+  const g=A.Game(host,{how:"Fill in the numbered boxes in order. For each element: count its atoms in the formula, look up its atomic mass on the periodic table (the full value or rounded to a whole number), and multiply. Each correct row drops that element onto the balance. Then add the masses to get the molar mass.",scoreText:()=>`Molar masses: ${done}`});
   g.button("Check",()=>check()); g.button("New compound",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="qp"><small>Find the molar mass of</small><div class="qp-t" data-r="q"></div></div><div class="tbl-wrap" data-r="t" style="margin-top:10px"></div>`;
+  g.stage.innerHTML=`<div class="qp"><small>Find the molar mass of</small><div class="qp-t" data-r="q"></div></div><div class="s6-mmg"><div class="tbl-wrap" data-r="t"></div><div class="s6-mmbal" data-r="bal"></div></div><div data-r="party"></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
-  function next(){ let n; do{ n=pick(o.list||S.MOLMASS); } while(n===f); f=n; g.fresh(); g.msg(""); const els=S.order(f), p=S.parse(f); let k=0; const bx=(key,w=72)=>`<span class="calc-n">${++k}</span><input class="inp id-bx" data-k="${key}" style="width:${w}px" inputmode="decimal" autocomplete="off" aria-label="box ${k}">`;
+  const val=k=>{ const el=$("t").querySelector(`[data-k="${k}"]`); const n=el&&A.parseTyped(el.value); return n?n.v:null; };
+  const amOK=(e,m)=>m!=null&&(Math.abs(m-S.am(e))<=.006||m===Math.round(S.am(e)));
+  /* rows that are correct so far (count, atomic mass and product) */
+  const rowsOK=()=>{ const p=S.parse(f); return S.order(f).filter(e=>{ const n=val("n"+e), m=val("m"+e), t=val("t"+e); return n===p[e]&&amOK(e,m)&&t!=null&&Math.abs(t-n*m)<=.011; }); };
+  function bal(target){ const p=S.parse(f), ok=rowsOK(), W=300, H=330, Bl=U.balanceAt(10,140,(shown).toFixed(2)+" g",1);
+    let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Balance showing ${shown.toFixed(2)} grams"><rect width="${W}" height="${H}" fill="#fff"/>`+Bl.svg;
+    const M=S.order(f).reduce((t,e)=>t+p[e]*S.am(e),0); let y=Bl.panY-2;
+    ok.forEach(e=>{ const m=val("t"+e), h=Math.max(16,110*(m/M)); y-=h; s+=`<g class="s6-drop"><rect x="${Bl.cx-60}" y="${y}" width="120" height="${h-2}" rx="5" fill="${ECOL(e)}" stroke="#1b2328" stroke-width="1.2"/>${T(Bl.cx,y+h/2+5,`${p[e]} ${e}: ${(+m.toFixed(2))} g`,{fs:12.5,w:800,c:/^(C|Fe|Cu|Al|Mg|Ca|Na|K|S)$/.test(e)?"#fff":"#1b2328"})}</g>`; });
+    s+=T(W/2,22,ok.length?`${ok.length} of ${S.order(f).length} elements on the balance`:"Correct rows go on the balance",{fs:13,w:800,c:"#5f6b72"});
+    $("bal").innerHTML=s+`</svg>`; }
+  function roll(target){ cancelAnimationFrame(raf); const start=shown, t0=performance.now(); const step=()=>{ const k=Math.min(1,(performance.now()-t0)/500); shown=start+(target-start)*(1-Math.pow(1-k,3)); bal(); if(k<1) raf=requestAnimationFrame(step); }; step(); }
+  const live=()=>{ const ok=rowsOK(); roll(ok.reduce((t,e)=>t+val("t"+e),0)); S.order(f).forEach(e=>{ const tr=$("t").querySelector(`tr[data-e="${e}"]`); tr&&tr.classList.toggle("s6-rowok",ok.includes(e)); }); };
+  function next(){ let n; do{ n=pick(o.list||S.MOLMASS); } while(n===f); f=n; g.fresh(); g.msg(""); shown=0; $("party").innerHTML=""; const els=S.order(f); let k=0; const bx=(key,w=72)=>`<span class="calc-n">${++k}</span><input class="inp id-bx" data-k="${key}" style="width:${w}px" inputmode="decimal" autocomplete="off" aria-label="box ${k}">`;
     $("q").innerHTML=`${S.f(f)}${S.name(f)?` <span class="muted" style="font-size:15px">(${S.name(f)})</span>`:""}`;
-    $("t").innerHTML=`<table class="nt calc-t"><tr><th>Element</th><th>Number of atoms</th><th></th><th>Atomic mass (g/mol)</th><th></th><th>Mass (g/mol)</th></tr>${els.map(e=>`<tr><td><b>${e}</b></td><td>${bx("n"+e,54)}</td><td class="op">×</td><td>${bx("m"+e)}</td><td class="op">=</td><td>${bx("t"+e,86)}</td></tr>`).join("")}<tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Molar mass of ${S.f(f)}</b> (add the last column)</td><td>${bx("sum",86)} <b>g/mol</b></td></tr></table>`;
-    B.orderBoxes($("t")); }
-  function check(){ const p=S.parse(f), v=k=>$("t").querySelector(`[data-k="${k}"]`).value;
-    for(const e of S.order(f)){ const n=p[e], m=S.am(e);
-      if(+v("n"+e)!==n){ g.lose(); return g.msg(`Count the ${e} atoms in ${S.f(f)}. ${/\(/.test(f)?"A subscript after parentheses multiplies every atom inside them.":""}`,"bad"); }
-      if(!near(v("m"+e),m,.006)){ g.lose(); return g.msg(`Look up ${A.bySym[e.toLowerCase()].name.toLowerCase()} on the periodic table: its atomic mass is ${m.toFixed(2)}.`,"bad"); }
-      if(!near(v("t"+e),n*m,.011)){ g.lose(); return g.msg(`${n} × ${m.toFixed(2)} = ?`,"bad"); } }
-    if(!near(v("sum"),S.mm(f),.021)){ g.lose(); return g.msg("Add up the last column.","bad"); }
-    done++; g.win(); g.paint(); g.msg(`✔ The molar mass of ${S.f(f)} is ${S.mm(f).toFixed(2)} g/mol: 1 mole of ${S.f(f)} has a mass of ${S.mm(f).toFixed(2)} g.`,"good"); }
+    $("t").innerHTML=`<table class="nt calc-t"><tr><th>Element</th><th>Number of atoms</th><th></th><th>Atomic mass (g/mol)</th><th></th><th>Mass (g/mol)</th></tr>${els.map(e=>`<tr data-e="${e}"><td><b>${e}</b></td><td>${bx("n"+e,54)}</td><td class="op">×</td><td>${bx("m"+e)}</td><td class="op">=</td><td>${bx("t"+e,86)}</td></tr>`).join("")}<tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Molar mass of ${S.f(f)}</b> (add the last column)</td><td>${bx("sum",86)} <b>g/mol</b></td></tr></table>`;
+    B.orderBoxes($("t")); A.$$("input",$("t")).forEach(i=>i.addEventListener("input",live)); bal(); }
+  function check(){ const p=S.parse(f); let tot=0;
+    for(const e of S.order(f)){ const n=p[e], m=S.am(e), vm=val("m"+e);
+      if(val("n"+e)!==n){ g.lose(); return g.msg(`Count the ${e} atoms in ${S.f(f)}. ${/\(/.test(f)?"A subscript after parentheses multiplies every atom inside them.":""}`,"bad"); }
+      if(!amOK(e,vm)){ g.lose(); return g.msg(`Look up ${A.bySym[e.toLowerCase()].name.toLowerCase()} on the periodic table: its atomic mass is ${m.toFixed(2)} (or ${Math.round(m)} rounded to a whole number).`,"bad"); }
+      if(val("t"+e)==null||Math.abs(val("t"+e)-n*vm)>.011){ g.lose(); return g.msg(`${n} × ${vm} = ?`,"bad"); } tot+=n*vm; }
+    if(val("sum")==null||Math.abs(val("sum")-tot)>.021){ g.lose(); return g.msg("Add up the last column.","bad"); }
+    done++; g.win(); g.paint(); const M=+tot.toFixed(2); g.msg(`✔ The molar mass of ${S.f(f)} is ${M} g/mol: 1 mole of ${S.f(f)} (6.02 × 10²³ ${S.pword(f)}) has a mass of ${M} g.`,"good");
+    $("party").innerHTML=`<div class="s6-party">${S.order(f).flatMap(e=>Array.from({length:Math.min(p[e],8)},(_,i)=>`<span style="background:${ECOL(e)};animation-delay:${(Math.random()*.5).toFixed(2)}s;left:${(5+Math.random()*90).toFixed(1)}%">${e}</span>`)).join("")}</div>`; }
   host._mm={f:()=>f}; next(); };
 
 /* ---------- the mole map: moles in the middle, mass, particles and volume around it ---------- */
 S.MoleMap=function(host,o={}){ const two=!!o.two; let from=null, to=null;
-  const W=two?720:420, H=two?330:330;
-  host.innerHTML=`<div class="s6-mmap"><p class="muted" style="margin:0 0 6px;text-align:center">Click the <b>given</b> quantity, then the <b>wanted</b> quantity. The path and the math for each step light up.</p><div class="center" data-r="svg"></div><div class="s6-steps" data-r="steps"></div></div>`;
+  const W=two?1100:640, H=two?500:470;
+  host.innerHTML=`<div class="s6-mmap"><p class="muted" style="margin:0 0 6px;text-align:center">Click the <b>given</b> quantity, then the <b>wanted</b> quantity. The arrows you follow and the math for each step light up.</p><div class="center" data-r="svg"></div><div class="s6-steps" data-r="steps"></div></div>`;
   const sv=host.querySelector('[data-r="svg"]'), st=host.querySelector('[data-r="steps"]');
-  const NODES={}; const tri=(cx,cy,tag,lab)=>{ NODES[tag+"mol"]=[cx,cy,`Moles${lab}`]; NODES[tag+"g"]=[cx,cy-112,`Mass (g)${lab}`]; NODES[tag+"p"]=[cx-(tag==="B"?-120:120),cy+86,`Particles${lab}`]; NODES[tag+"L"]=[cx+(tag==="B"?-120:120),cy+86,`Volume (L at STP)${lab}`]; };
-  if(two){ tri(200,170,"A"," of A"); tri(520,170,"B"," of B"); } else tri(210,170,"A","");
-  const OPS={g:["× molar mass","÷ molar mass"],p:[`× 6.02 × 10²³`,`÷ 6.02 × 10²³`],L:["× 22.4 L","÷ 22.4 L"]};
+  const NODES={}; const tri=(cx,cy,tag,lab,flip,dx)=>{ NODES[tag+"mol"]=[cx,cy,`Moles${lab}`]; NODES[tag+"g"]=[cx,cy-170,`Mass (g)${lab}`]; NODES[tag+"p"]=[cx+(flip?dx:-dx),cy+150,`Particles${lab}`]; NODES[tag+"L"]=[cx+(flip?-dx:dx),cy+150,`Volume (L)${lab}`]; };
+  if(two){ tri(290,260,"A"," of A",false,170); tri(810,260,"B"," of B",true,170); } else tri(320,250,"A","",false,200);
+  /* [operation going OUT of moles, operation going INTO moles] */
+  const OPS={g:["× molar mass","÷ molar mass"],p:["× 6.02 × 10²³","÷ 6.02 × 10²³"],L:["× 22.4 L","÷ 22.4 L"]};
   const route=()=>{ if(!from||!to) return []; const s1=from.slice(1), s2=to.slice(1), a=from[0], b=to[0]; const path=[from]; if(s1!=="mol") path.push(a+"mol"); if(a!==b) path.push(b+"mol"); if(s2!=="mol") path.push(to); return path.filter((x,i,arr)=>i===0||x!==arr[i-1]); };
-  const opOf=(x,y)=>{ if(x[0]!==y[0]) return "× mole ratio (from the balanced equation)"; const k=x.slice(1)==="mol"?y.slice(1):x.slice(1); return x.slice(1)==="mol"? OPS[k][0] : OPS[k][1]; };
-  function draw(){ const P=route(); let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Mole map"><defs><marker id="mmh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F28C28"/></marker></defs><rect width="${W}" height="${H}" fill="#fff"/>`;
-    const tags=two?["A","B"]:["A"]; tags.forEach(t=>["g","p","L"].forEach(k=>{ const [x1,y1]=NODES[t+"mol"], [x2,y2]=NODES[t+k]; s+=`<path d="M${x1} ${y1}L${x2} ${y2}" stroke="#c9d6dc" stroke-width="10" stroke-linecap="round"/>`; }));
-    if(two) s+=`<path d="M${NODES.Amol[0]} ${NODES.Amol[1]}H${NODES.Bmol[0]}" stroke="#c9d6dc" stroke-width="10" stroke-linecap="round"/>`+T((NODES.Amol[0]+NODES.Bmol[0])/2,NODES.Amol[1]-14,"mole ratio",{fs:12,c:"#5f6b72"});
-    for(let i=1;i<P.length;i++){ const [x1,y1]=NODES[P[i-1]], [x2,y2]=NODES[P[i]], d=Math.hypot(x2-x1,y2-y1), ux=(x2-x1)/d, uy=(y2-y1)/d; s+=`<path d="M${x1+ux*44} ${y1+uy*30}L${x2-ux*46} ${y2-uy*32}" stroke="#F28C28" stroke-width="5" marker-end="url(#mmh)"/>`+`<circle cx="${(x1+x2)/2}" cy="${(y1+y2)/2}" r="13" fill="#F28C28"/>`+T((x1+x2)/2,(y1+y2)/2+5,i,{fs:13,c:"#fff",w:800}); }
-    Object.entries(NODES).forEach(([id,[x,y,lab]])=>{ const isM=id.endsWith("mol"), on=P.includes(id), sel=id===from||id===to; s+=`<g data-n="${id}" style="cursor:pointer" tabindex="0" role="button" aria-label="${lab}"><rect x="${x-(isM?52:62)}" y="${y-22}" width="${isM?104:124}" height="44" rx="${isM?22:10}" fill="${sel?"#ffe9a8":on?"#fff3e0":isM?"#fde7e7":"#eef7fc"}" stroke="${sel?"#F28C28":isM?"#c40000":"#2E75D6"}" stroke-width="${sel?3:2}"/>${T(x,y+(lab.length>14?-2:5),lab.split(" of ")[0],{fs:lab.length>14?12:14,w:800})}${lab.includes(" of ")?T(x,y+14,"of "+lab.split(" of ")[1],{fs:11,c:"#5f6b72"}):""}</g>`; });
+  const opOf=(x,y)=>{ if(x[0]!==y[0]) return "× mole ratio (coefficients from the balanced equation)"; const k=x.slice(1)==="mol"?y.slice(1):x.slice(1); return x.slice(1)==="mol"? OPS[k][0] : OPS[k][1]; };
+  const box=id=>{ const isM=id.endsWith("mol"); return [isM?70:(two?76:84),30]; };
+  /* one arrow from node x to node y, shifted sideways by off, with its operation label */
+  const arrow=(x,y,lab,off,on,num)=>{ const [x1,y1]=NODES[x], [x2,y2]=NODES[y], d=Math.hypot(x2-x1,y2-y1), ux=(x2-x1)/d, uy=(y2-y1)/d, nx=-uy*off, ny=ux*off;
+    const trim=(id,ux2,uy2)=>{ const [bw,bh]=box(id); return Math.min(Math.abs(ux2)>1e-6?bw/Math.abs(ux2):1e9, Math.abs(uy2)>1e-6?bh/Math.abs(uy2):1e9)+8; };
+    const t1=trim(x,ux,uy), t2=trim(y,ux,uy), sx=x1+ux*t1+nx, sy=y1+uy*t1+ny, ex=x2-ux*t2+nx, ey=y2-uy*t2+ny, mx=(sx+ex)/2+nx*2.2, my=(sy+ey)/2+ny*2.2;
+    const col=on?"#F28C28":"#9aa7ad", vert=Math.abs(uy)>.85, tw=S.svgTxt(lab).length*(on?8.6:7.6);
+    const lx= vert? (nx>0? (sx+ex)/2+14 : (sx+ex)/2-14) : mx, anc= vert? (nx>0?"start":"end") : "middle", ly=vert? (sy+ey)/2+5 : my+5;
+    const bxx= vert? (nx>0? lx+tw+16 : lx-tw-16) : mx-tw/2-16;
+    return `<path d="M${sx.toFixed(1)} ${sy.toFixed(1)}L${ex.toFixed(1)} ${ey.toFixed(1)}" stroke="${col}" stroke-width="${on?5:2.4}" marker-end="url(#${on?"mmh":"mmg"})"/>`+
+      `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anc}" font-family="Inter,Arial" font-size="${on?16:14}" font-weight="800" fill="${on?"#b45f06":"#5f6b72"}" stroke="#fff" stroke-width="5" paint-order="stroke">${S.svgTxt(lab)}</text>`+
+      (on&&num?`<circle cx="${bxx.toFixed(1)}" cy="${(ly-5).toFixed(1)}" r="12" fill="#F28C28" stroke="#fff" stroke-width="2"/>`+T(bxx,ly,num,{fs:13,c:"#fff",w:800}):""); };
+  function draw(){ const P=route(), used={}; for(let i=1;i<P.length;i++) used[P[i-1]+">"+P[i]]=i;
+    let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Mole map: moles in the middle, connected to mass, particles and volume${two?", and a mole ratio between substance A and substance B":""}"><defs><marker id="mmh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F28C28"/></marker><marker id="mmg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9aa7ad"/></marker></defs><rect width="${W}" height="${H}" fill="#fff"/>`;
+    const tags=two?["A","B"]:["A"]; tags.forEach(t=>["g","p","L"].forEach(k=>{ const m=t+"mol", q=t+k, flip=k==="g"?1:(t==="B"?-1:1)*(k==="p"?1:-1);
+      s+=arrow(m,q,OPS[k][0],16*flip,!!used[m+">"+q],used[m+">"+q])+arrow(q,m,OPS[k][1],16*flip,!!used[q+">"+m],used[q+">"+m]); }));
+    if(two) s+=arrow("Amol","Bmol","× mole ratio",-16,!!used["Amol>Bmol"],used["Amol>Bmol"])+arrow("Bmol","Amol","× mole ratio",-16,!!used["Bmol>Amol"],used["Bmol>Amol"]);
+    Object.entries(NODES).forEach(([id,[x,y,lab]])=>{ const isM=id.endsWith("mol"), on=P.includes(id), sel=id===from||id===to, [bw,bh]=box(id), k=id.slice(1);
+      s+=`<g data-n="${id}" style="cursor:pointer" tabindex="0" role="button" aria-label="${lab}"><rect x="${x-bw}" y="${y-bh}" width="${bw*2}" height="${bh*2}" rx="${isM?bh:12}" fill="${sel?"#ffe9a8":on?"#fff3e0":isM?"#fde7e7":"#eef7fc"}" stroke="${sel?"#F28C28":isM?"#c40000":"#2E75D6"}" stroke-width="${sel?3.5:2.2}"/><g transform="translate(${x-bw+8} ${y-15})">${S.qIcon(isM?"mol":k==="p"?"particles":k,30).replace('class="s6-ic"','')}</g>${T(x+16,y+(lab.includes(" of ")?-1:6),lab.split(" of ")[0],{fs:16,w:800})}${lab.includes(" of ")?T(x+16,y+17,"of "+lab.split(" of ")[1],{fs:12.5,c:"#5f6b72"}):""}</g>`; });
     sv.innerHTML=s+`</svg>`;
     A.$$("[data-n]",sv).forEach(gn=>{ const go=()=>{ const id=gn.dataset.n; if(!from||to){ from=id; to=null; } else if(id!==from){ to=id; } draw(); }; gn.addEventListener("click",go); gn.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }); });
     st.innerHTML= !from? "" : !to? `<p class="muted" style="text-align:center;margin:6px 0">Given: <b>${NODES[from][2]}</b>. Now click the wanted quantity.</p>` : `<ol class="s6-ol">${P.slice(1).map((id,i)=>`<li><b>${NODES[P[i]][2]} → ${NODES[id][2]}</b>: ${opOf(P[i],id)}</li>`).join("")}</ol>${P.length===1?"":`<p class="muted" style="text-align:center;margin:4px 0">${P.length-1} step${P.length>2?"s":""}. ${P.length>2?"Every route goes through moles.":""}</p>`}`; }
+  host._mmap={pick:(a,b)=>{ from=a; to=b; draw(); }};
   draw(); };
 
 /* ---------- mole ratio machine: run the reaction more times, the ratio stays the same ---------- */
@@ -7803,23 +7901,37 @@ S.pctBar=(f,o={})=>{ const p=S.parse(f), M=S.mm(f), els=S.order(f), W=o.w||560; 
 /* percent composition by mass: (mass of part ÷ mass of whole) × 100 */
 S.PCTLIST=["H2O","CO2","NaCl","NH3","CaCO3","C6H12O6","MgO","Fe2O3","(NH4)2CO3","NaOH","CH4","H2SO4","KClO3","Al2O3"];
 S.PercentGame=function(host,o={}){ let done=0, f=null, e=null;
-  const g=A.Game(host,{how:"Find the percent by mass of one element. Fill in the numbered boxes in order: the mass of that element in one mole, the molar mass of the whole compound, then divide and multiply by 100.",scoreText:()=>`Solved: ${done}`});
+  const g=A.Game(host,{how:"Find the percent by mass of one element. Step 1: find the mass of every element in one mole (atoms × atomic mass); the highlighted row is the part. Step 2: add them for the whole (the molar mass). Step 3: divide the part by the whole and multiply by 100. Rounded whole-number atomic masses are accepted too.",scoreText:()=>`Solved: ${done}`});
   g.button("Check",()=>check()); g.button("New compound",()=>next(),"ghost");
   g.stage.innerHTML=`<div class="qp"><small>Percent composition</small><div class="qp-t" data-r="q"></div></div><div data-r="t" style="margin-top:10px"></div><div class="center" data-r="bar"></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
-  function next(){ let n; do{ n=pick(o.list||S.PCTLIST); } while(n===f); f=n; const els=S.order(f); e=pick(els); g.fresh(); g.msg(""); $("bar").innerHTML="";
+  const val=k=>{ const el=$("t").querySelector(`[data-k="${k}"]`); const n=el&&A.parseTyped(el.value); return n?n.v:null; };
+  const amOK=(x,m)=>m!=null&&(Math.abs(m-S.am(x))<=.006||m===Math.round(S.am(x)));
+  /* a live bar: each finished row adds its slice; the part is outlined */
+  function bar(){ const p=S.parse(f), els=S.order(f), W=560; const rows=els.map(x=>{ const n=val("n"+x), m=val("m"+x), t=val("t"+x); return n===p[x]&&amOK(x,m)&&t!=null&&Math.abs(t-n*m)<=.011? [x,t] : null; });
+    const M=els.reduce((s0,x)=>s0+p[x]*S.am(x),0); let xx=10, sv=`<svg viewBox="0 0 ${W} 96" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Mass of each element in one mole of ${f}"><rect width="${W}" height="96" fill="#fff"/><rect x="10" y="26" width="${W-20}" height="40" fill="#f3f6f7" stroke="#c9d6dc" stroke-dasharray="5 4"/>`;
+    const ECOL=x=>(B&&B.ATC&&B.ATC[x])||(R&&R.col?R.col(x):"#9aa7ad");
+    els.forEach((x,i)=>{ const w=(W-20)*p[x]*S.am(x)/M; if(rows[i]){ sv+=`<rect x="${xx}" y="26" width="${w}" height="40" fill="${ECOL(x)}" stroke="${x===e?"#F28C28":"#fff"}" stroke-width="${x===e?4:2}" class="s6-grow"/>`; if(w>30) sv+=T(xx+w/2,51,x,{fs:15,w:800,c:"#1b2328"}); sv+=T(xx+w/2,84,`${+rows[i][1].toFixed(2)} g`,{fs:12,w:700}); } xx+=w; });
+    sv+=T(W/2,17,`One mole of ${S.svgTxt(S.f(f))}: the ${e} part is outlined in orange`,{fs:12.5,w:800,c:"#5f6b72"}); $("bar").innerHTML=sv+`</svg>`; }
+  function next(){ let n; do{ n=pick(o.list||S.PCTLIST); } while(n===f); f=n; const els=S.order(f); e=pick(els); g.fresh(); g.msg("");
     $("q").innerHTML=`What is the percent by mass of <b>${e}</b> in ${S.f(f)}?`;
-    let k=0; const bx=(key,w=82)=>`<span class="calc-n">${++k}</span><input class="inp id-bx" data-k="${key}" style="width:${w}px" inputmode="decimal" autocomplete="off" aria-label="box ${k}">`;
-    $("t").innerHTML=`<div class="tbl-wrap"><table class="nt calc-t"><tr><th></th><th>Number of atoms</th><th></th><th>Atomic mass</th><th></th><th>Mass (g/mol)</th></tr><tr><td>Part: <b>${e}</b></td><td>${bx("n",54)}</td><td class="op">×</td><td>${S.am(e).toFixed(2)}</td><td class="op">=</td><td>${bx("part")}</td></tr><tr><td colspan="5" style="text-align:right">Whole: molar mass of ${S.f(f)}</td><td>${bx("whole")}</td></tr></table></div>
-      <div class="s6-frac"><span>% ${e} =</span><span class="s6-fr"><span>${"mass of part"}</span><span>mass of whole</span></span><span>× 100 =</span>${bx("pct",90)}<b>%</b></div>`;
-    B.orderBoxes($("t")); }
-  function check(){ const p=S.parse(f), v=k=>$("t").querySelector(`[data-k="${k}"]`).value, part=p[e]*S.am(e), M=S.mm(f), pct=part/M*100;
-    if(+v("n")!==p[e]){ g.lose(); return g.msg(`Count the ${e} atoms in ${S.f(f)}.`,"bad"); }
-    if(!near(v("part"),part,.02)){ g.lose(); return g.msg(`${p[e]} × ${S.am(e).toFixed(2)} = ?`,"bad"); }
-    if(!near(v("whole"),M,.03)){ g.lose(); return g.msg(`Add up the masses of all the atoms in ${S.f(f)} (use the periodic table).`,"bad"); }
-    if(!near(v("pct"),pct,.15)){ g.lose(); return g.msg(`(${part.toFixed(2)} ÷ ${M.toFixed(2)}) × 100 = ?`,"bad"); }
-    done++; g.win(); g.paint(); g.msg(`✔ ${S.f(f)} is ${pct.toFixed(1)}% ${e} by mass.`,"good"); $("bar").innerHTML=S.pctBar(f); }
-  next(); };
+    let k=0; const bx=(key,w=78)=>`<span class="calc-n">${++k}</span><input class="inp id-bx" data-k="${key}" style="width:${w}px" inputmode="decimal" autocomplete="off" aria-label="box ${k}">`;
+    $("t").innerHTML=`<div class="tbl-wrap"><table class="nt calc-t"><tr><th>Element</th><th>Number of atoms</th><th></th><th>Atomic mass</th><th></th><th>Mass in 1 mole (g)</th></tr>${els.map(x=>`<tr data-e="${x}" class="${x===e?"s6-part":""}"><td><b>${x}</b>${x===e?` <small class="s6-tag">part</small>`:""}</td><td>${bx("n"+x,52)}</td><td class="op">×</td><td>${bx("m"+x)}</td><td class="op">=</td><td>${bx("t"+x,86)}</td></tr>`).join("")}<tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Whole:</b> molar mass of ${S.f(f)} (add the last column)</td><td>${bx("whole",86)}</td></tr></table></div>
+      <div class="s6-frac"><span>% ${e} =</span><span class="s6-fr"><span>${bx("part",80)} <small>part (${e})</small></span><span>${bx("whole2",80)} <small>whole</small></span></span><span>× 100 =</span>${bx("pct",90)}<b>%</b></div>`;
+    B.orderBoxes($("t")); A.$$("input",$("t")).forEach(i=>i.addEventListener("input",bar)); bar(); }
+  function check(){ const p=S.parse(f); let tot=0;
+    for(const x of S.order(f)){ const vm=val("m"+x);
+      if(val("n"+x)!==p[x]){ g.lose(); return g.msg(`Count the ${x} atoms in ${S.f(f)}.${/\(/.test(f)?" A subscript after parentheses multiplies every atom inside them.":""}`,"bad"); }
+      if(!amOK(x,vm)){ g.lose(); return g.msg(`Look up ${x} on the periodic table: ${S.am(x).toFixed(2)} (or ${Math.round(S.am(x))} rounded).`,"bad"); }
+      if(val("t"+x)==null||Math.abs(val("t"+x)-p[x]*vm)>.011){ g.lose(); return g.msg(`${p[x]} × ${vm} = ?`,"bad"); } tot+=p[x]*vm; }
+    if(val("whole")==null||Math.abs(val("whole")-tot)>.021){ g.lose(); return g.msg("The whole is the sum of the last column (the molar mass).","bad"); }
+    const part=p[e]*val("m"+e);
+    if(val("part")==null||Math.abs(val("part")-part)>.011){ g.lose(); return g.msg(`The part is the mass of ${e} in one mole: the highlighted row (${+part.toFixed(2)}).`,"bad"); }
+    if(val("whole2")==null||Math.abs(val("whole2")-val("whole"))>.021){ g.lose(); return g.msg("The whole is the molar mass you just added up.","bad"); }
+    const pct=part/val("whole")*100;
+    if(val("pct")==null||Math.abs(val("pct")-pct)>.15){ g.lose(); return g.msg(`(${+part.toFixed(2)} ÷ ${val("whole")}) × 100 = ?`,"bad"); }
+    done++; g.win(); g.paint(); g.msg(`✔ ${S.f(f)} is ${pct.toFixed(1)}% ${e} by mass: in every 100 g of ${S.f(f)}, about ${pct.toFixed(1)} g is ${e}.`,"good"); $("bar").innerHTML=S.pctBar(f); }
+  host._pc={f:()=>f,e:()=>e}; next(); };
 
 /* ---------- hydrated compounds ---------- */
 S.PREFIX=["","mono","di","tri","tetra","penta","hexa","hepta","octa","nona","deca"];
@@ -7877,6 +7989,47 @@ S.HydrateLab=function(host){ let t=-1, cur=null, last=performance.now(), said=fa
     s+=S.T(20,28,`${S.f(S.hydF(f,n))}`,{a:"start",fs:16,w:800})+S.T(20,48,t<0?"Before heating":t<4.4?"Heating: water vapor leaves":"After heating: the mass stopped changing",{a:"start",fs:13,c:"#5f6b72"});
     if(t>=4.4&&!said){ said=true; g.msg("The mass stopped changing: all of the water is gone. Record the mass after heating.",""); }
     svg.innerHTML=s; requestAnimationFrame(draw); }
+  reset(); requestAnimationFrame(draw); };
+
+/* ---------- steel wool + battery: iron combines with oxygen from the air, so the mass goes UP ---------- */
+S.SteelWoolLab=function(host){ let t=-1, last=performance.now(), said=false, M0=0, MA=0, bx=0;
+  const g=A.Game(host,{how:"Read the balance, then press “Touch the battery.” The battery’s current heats the thin iron wires, and the iron reacts with oxygen from the air to form iron oxide. Record the masses, find the mass of oxygen that combined with the iron, then convert it to moles of O₂ (32.00 g/mol).",score:false});
+  g.button("Touch the battery",()=>{ if(t<0) t=0; }); g.button("Reset",()=>reset(),"ghost");
+  g.stage.innerHTML=`<div class="fl-wrap"><svg class="sim" viewBox="0 0 520 330" role="img" aria-label="Steel wool in a dish on a balance. A 9-volt battery touches the wool, the wool glows and turns dark as iron oxide forms, and the mass increases."></svg><div class="nb fl-nb"><h4>Lab notebook</h4><table>
+    <tr><td>Mass of steel wool (before)</td><td><input data-k="b" inputmode="decimal" aria-label="mass before"> g</td></tr>
+    <tr><td>Mass of product (after)</td><td><input data-k="a" inputmode="decimal" aria-label="mass after"> g</td></tr>
+    <tr><td>Mass of oxygen that combined (after − before)</td><td><input data-k="o" inputmode="decimal" aria-label="mass of oxygen"> g</td></tr>
+    <tr><td>Moles of O<sub>2</sub> that reacted</td><td><input data-k="n" inputmode="decimal" aria-label="moles of oxygen"> mol</td></tr></table><div data-r="da" class="mth" style="font-size:15px;margin:6px 0"></div><button class="btn sm" type="button" data-r="chk">Check</button></div></div>`;
+  const svg=g.stage.querySelector("svg"), nb=g.stage.querySelector(".nb"), inp=k=>nb.querySelector(`[data-k="${k}"]`);
+  function reset(){ t=-1; said=false; M0=+S.rnd(2.1,3.4,3).toFixed(2); MA=+(M0+S.rnd(.18,.46,2)).toFixed(2); ["b","a","o","n"].forEach(k=>{ inp(k).value=""; inp(k).classList.remove("ok","no"); }); nb.querySelector('[data-r="da"]').innerHTML=""; g.msg(""); }
+  nb.querySelector('[data-r="chk"]').addEventListener("click",()=>{ const v=k=>A.parseTyped(inp(k).value), mark=(k,ok)=>{ inp(k).classList.toggle("ok",ok); inp(k).classList.toggle("no",!ok); return ok; };
+    if(!mark("b",!!v("b")&&Math.abs(v("b").v-M0)<.006)) return g.msg("Read the balance before touching the battery to the steel wool.","bad");
+    if(t<4.6) return g.msg("Touch the battery to the steel wool and wait until the reaction stops.","warn");
+    if(!mark("a",!!v("a")&&Math.abs(v("a").v-MA)<.006)) return g.msg("Read the balance after the reaction stops.","bad");
+    const dm=+(MA-M0).toFixed(2); if(!mark("o",!!v("o")&&Math.abs(v("o").v-dm)<.006)) return g.msg("Subtract: mass after − mass before. The extra mass is the oxygen that combined with the iron.","bad");
+    const mol=dm/32.00, ok=!!v("n")&&(Math.abs(v("n").v-mol)<=Math.abs(mol)*.012||Math.abs(v("n").v-dm/32)<=Math.abs(mol)*.012); mark("n",ok);
+    nb.querySelector('[data-r="da"]').innerHTML=`${S.q(dm.toFixed(2),"g","O2",1)}${S.cf(1,"mol","O2","32.00","g","O2",0,1)} = ${S.q(S.num(mol,2),"mol","O2")}`;
+    if(!ok) return g.msg(`Convert grams of O₂ to moles: divide by the molar mass of O₂ (2 × 16.00 = 32.00 g/mol).`,"bad");
+    g.msg(`✔ ${dm.toFixed(2)} g of oxygen combined with the iron: ${S.num(mol,2)} mol of O₂ (about ${S.sci(mol*S.AV,2)} molecules). The mass increased because atoms from the air joined the solid. Mass is still conserved: the oxygen came from the air around the dish.`,"good"); });
+  /* a tangle of thin wires */
+  const wool=(cx,cy,col,glow)=>{ let d=""; for(let i=0;i<60;i++){ const a=i*2.39, r=6+((i*7)%26); d+=`M${(cx+Math.cos(a)*r*1.6).toFixed(1)} ${(cy+Math.sin(a)*r*.55).toFixed(1)}q${((i*13)%30)-15} ${((i*7)%16)-12} ${((i*17)%40)-20} ${((i*5)%10)-3}`; }
+    return (glow?`<ellipse cx="${cx}" cy="${cy}" rx="62" ry="22" fill="#ff8a1e" opacity="${glow}" filter="url(#swg)"/>`:"")+`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round"/>`; };
+  const mix=(a,b,k)=>{ const h=x=>[1,3,5].map(i=>parseInt(x.slice(i,i+2),16)); const A1=h(a),B1=h(b); return "#"+A1.map((v,i)=>Math.round(v+(B1[i]-v)*k).toString(16).padStart(2,"0")).join(""); };
+  function draw(now){ if(!host.isConnected) return; const dt=Math.min(.05,(now-last)/1000); last=now; if(t>=0&&t<6) t+=dt;
+    const u=Math.max(0,Math.min(1,(t-1)/3.4)), mass=M0+(MA-M0)*u, touch=t>=0&&t<1.2? Math.min(1,t/.8) : t>=1.2&&t<4.6? 1 : t>=4.6? Math.max(0,1-(t-4.6)/.8) : 0;
+    let s=`<defs><filter id="swg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter></defs><rect width="520" height="330" fill="#fbf7f0"/><rect x="0" y="300" width="520" height="30" fill="#d9c9ac"/>`;
+    const Bl=U.balanceAt(110,120,mass.toFixed(2)+" g",.95); s+=Bl.svg; const cx=Bl.cx, by=Bl.panY-4;
+    s+=`<path d="M${cx-74} ${by-18}Q${cx} ${by+8} ${cx+74} ${by-18}" fill="#eceae4" stroke="#5f6b72" stroke-width="2.5"/>`;
+    const glow= t>=1&&t<4.4? (.35+.25*Math.sin(now/90))*(1-u*.6) : 0;
+    s+=wool(cx,by-26,mix("#b9bec2","#3a2c26",u),glow);
+    if(glow) for(let i=0;i<10;i++){ const p=((now/600+i/10)%1); s+=`<circle cx="${(cx-50+((i*37)%100)+Math.sin(i*3+now/200)*6).toFixed(1)}" cy="${(by-30-p*40).toFixed(1)}" r="${(2.4*(1-p)).toFixed(2)}" fill="#ffb02e" opacity="${(1-p).toFixed(2)}"/>`; }
+    const bxp=430-(430-cx)*touch, byp=(by-60)-(15)*touch; s+=`<g transform="rotate(90 ${bxp} ${byp})">${B.battery(bxp,byp,{w:70,h:30})}</g>`+S.T(430,by-108,"9-volt battery",{fs:12,c:"#5f6b72"});
+    if(t>=0&&t<4.6) for(let i=0;i<4;i++){ const p=((now/1400+i/4)%1); s+=`<g opacity="${Math.min(1,(1-p)*1.4).toFixed(2)}">${R.molSVG("O2",cx-110+i*30,by-130+p*90,{k:.75})}</g>`; }
+    s+=S.T(20,28,"Steel wool (iron, Fe)",{a:"start",fs:16,w:800})+S.T(20,48,t<0?"Before the reaction":t<4.6?"Reacting: O₂ from the air combines with the iron":"After: iron oxide formed, the mass stopped changing",{a:"start",fs:13,c:"#5f6b72"});
+    if(t>=0&&t<4.6) s+=S.T(cx-170,by-95,"O₂ from the air",{fs:12,c:"#c40000"});
+    if(t>=4.6&&!said){ said=true; g.msg("The reaction stopped. Read the balance again and record the mass after.",""); }
+    svg.innerHTML=s; requestAnimationFrame(draw); }
+  host._sw={m:()=>[M0,MA],t:()=>t,go:()=>{ t=5; }};
   reset(); requestAnimationFrame(draw); };
 
 /* ---------- empirical and molecular formulas ---------- */
@@ -7982,13 +8135,18 @@ S.LimitingGame=function(host){ let done=0, cur=null, mode="lim";
 
 /* two quantities with the operations that convert between them (as in the notes: Particles ⇄ Moles) */
 (function(){ const A=window.AS, S=A&&A.U6; if(!S) return;
-S.pairArt=(left,right,toRight,toLeft,o={})=>{ const W=520, H=150, T=S.T; return `<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="${left} to ${right}: ${toRight}. ${right} to ${left}: ${toLeft}."><rect width="${W}" height="${H}" fill="#fff"/>
-  <rect x="20" y="45" width="150" height="60" rx="12" fill="${o.lc||"#eef7fc"}" stroke="${o.ls||"#2E75D6"}" stroke-width="2.5"/>${T(95,81,left,{fs:17,w:800})}
-  <rect x="350" y="45" width="150" height="60" rx="30" fill="#fde7e7" stroke="#c40000" stroke-width="2.5"/>${T(425,81,right,{fs:17,w:800})}
-  <path d="M180 58C240 22 290 22 340 58" fill="none" stroke="#E00000" stroke-width="3"/><path d="M340 58l-12 -2l6 -10z" fill="#E00000"/>${T(260,26,toRight,{fs:15,w:800,c:"#c40000"})}
-  <path d="M340 92C290 128 240 128 180 92" fill="none" stroke="#005ea3" stroke-width="3"/><path d="M180 92l12 2l-6 10z" fill="#005ea3"/>${T(260,140,toLeft,{fs:15,w:800,c:"#005ea3"})}</svg>`; };
+S.pairArt=(left,right,toRight,toLeft,o={})=>{ const W=620, H=210, T=S.T; return `<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="${left} to ${right}: ${toRight.replace("÷","divide by").replace("×","multiply by")}. ${right} to ${left}: ${toLeft.replace("÷","divide by").replace("×","multiply by")}."><rect width="${W}" height="${H}" fill="#fff"/>
+  <rect x="16" y="68" width="180" height="74" rx="14" fill="${o.lc||"#eef7fc"}" stroke="${o.ls||"#2E75D6"}" stroke-width="3"/>${T(106,113,left,{fs:22,w:800})}
+  <rect x="424" y="68" width="180" height="74" rx="37" fill="#fde7e7" stroke="#c40000" stroke-width="3"/>${T(514,113,right,{fs:22,w:800})}
+  <path d="M206 78C270 30 350 30 414 78" fill="none" stroke="#E00000" stroke-width="3.5"/><path d="M416 80l-15 -3l8 -12z" fill="#E00000"/>${T(310,34,toRight,{fs:22,w:800,c:"#c40000"})}
+  <path d="M414 132C350 180 270 180 206 132" fill="none" stroke="#005ea3" stroke-width="3.5"/><path d="M204 130l15 3l-8 12z" fill="#005ea3"/>${T(310,196,toLeft,{fs:22,w:800,c:"#005ea3"})}</svg>`; };
+S.wk=(title,steps)=>({title,steps});
+/* several worked examples behind labeled tabs, so only one shows at a time */
+S.workedTabs=(host,list)=>{ host.innerHTML=`<div class="controls s6-wtabs" style="justify-content:center"><span class="ctl-label">Worked example</span><div class="seg" role="group" aria-label="Worked examples">${list.map((x,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===0}">${x.label}</button>`).join("")}</div></div><div data-r="w"></div>`;
+  const w=host.querySelector('[data-r="w"]'); const show=i=>{ w.innerHTML=S.worked(list[i].title,list[i].steps); A.$$(".seg button",host).forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.i===i))); };
+  A.$$(".seg button",host).forEach(b=>b.addEventListener("click",()=>show(+b.dataset.i))); show(0); };
 /* a worked example in numbered step boxes (same layout as Unit 0) */
 S.worked=(title,steps)=>`<div class="exbox">${title}</div>`+steps.map(([t,m],i)=>`${i?`<div class="sarr"><svg width="34" height="26" viewBox="0 0 34 26" aria-hidden="true"><path d="M10 0h14v12h8L17 26 2 12h8z" fill="#2E75D6"/></svg></div>`:""}<div class="sbox" style="grid-template-columns:minmax(150px,260px) minmax(0,1fr)"><div class="st">${t}</div><div class="sm"><span class="mth">${m}</span></div></div>`).join("");
 /* an equivalence and the two conversion factors made from it */
-S.eqFig=(a,b,note)=>`<div class="s6-eqfig"><div><b>Equivalence</b><div class="mth" style="font-size:22px">${S.q(a[0],a[1],a[2])} = ${S.q(b[0],b[1],b[2])}</div></div><div><b>Conversion factors</b><div class="mth" style="font-size:22px;gap:18px;display:flex;justify-content:center">${S.cf(b[0],b[1],b[2],a[0],a[1],a[2])}${S.cf(a[0],a[1],a[2],b[0],b[1],b[2])}</div></div>${note?`<p class="muted" style="margin:4px 0 0;font-size:14px">${note}</p>`:""}</div>`;
+S.eqFig=(a,b,note)=>`<div class="s6-eqfig"><div><b>Equivalence</b><div class="mth" style="font-size:22px;justify-content:center">${S.q(a[0],a[1],a[2])} = ${S.q(b[0],b[1],b[2])}</div></div><div><b>Conversion factors</b><div class="mth" style="font-size:22px;gap:28px;display:flex;flex-wrap:wrap;justify-content:center">${S.cf(b[0],b[1],b[2],a[0],a[1],a[2])}${S.cf(a[0],a[1],a[2],b[0],b[1],b[2])}</div></div>${note?`<p class="muted" style="margin:4px 0 0;font-size:14px">${note}</p>`:""}</div>`;
 })();

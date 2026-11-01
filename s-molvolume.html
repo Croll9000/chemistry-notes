@@ -61,7 +61,6 @@
       <div class="center" id="pm-art"></div>
       <div class="center" id="eq-mv"></div>
       <div id="ex1" style="margin-top:12px"></div>
-      <div id="ex2" style="margin-top:14px"></div>
     </div>
   </section>
 
@@ -87,14 +86,15 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
 A.$("#mv-art").innerHTML=S.molarVolumeArt();
 A.$("#pm-art").innerHTML=S.pairArt("Volume (L)","Moles","÷ 22.4 L","× 22.4 L",{lc:"#fff3e6",ls:"#F28C28"});
 A.$("#eq-mv").innerHTML=S.eqFig([1,"mol"],["22.4","L"],"For a gas at STP.");
-A.$("#ex1").innerHTML=S.worked("Ex: How much volume, in liters, will 0.75 moles of neon gas occupy at STP?",[
+const W1=S.wk("Ex: How much volume, in liters, will 0.75 moles of neon gas occupy at STP?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("0.75","mol","Ne")} = ___ ${S.u("L","Ne")}`],
  ["<b>Step 2:</b> Set up the molar volume as a conversion factor with moles on the bottom.",`${S.q("0.75","mol","Ne",1)}${S.cf("22.4","L","Ne",1,"mol","Ne",0,1)}`],
  ["<b>Step 3:</b> Multiply and write the answer with units.",`0.75 × 22.4 = 17 ${S.u("L","Ne")}`]]);
-A.$("#ex2").innerHTML=S.worked("Ex: How many moles of hydrogen gas are in a 12.2-liter container at STP?",[
+const W2=S.wk("Ex: How many moles of hydrogen gas are in a 12.2-liter container at STP?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("12.2","L","H2")} = ___ ${S.u("mol","H2")}`],
  ["<b>Step 2:</b> Set up the molar volume as a conversion factor with liters on the bottom.",`${S.q("12.2","L","H2",1)}${S.cf(1,"mol","H2","22.4","L","H2",0,1)}`],
  ["<b>Step 3:</b> Divide and write the answer with units.",`12.2 ÷ 22.4 = 0.545 ${S.u("mol","H2")}`]]);
+S.workedTabs(A.$("#ex1"),[{label:"Moles → liters (neon)",...W1},{label:"Liters → moles (hydrogen)",...W2}]);
 S.Converter(A.$("#mv-host"),{make:()=>S.mkVolume()});
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"At STP, which sample contains the same number of molecules as 22.4 L of O<sub>2</sub>(g)?",choices:["11.2 L of N<sub>2</sub>(g)","22.4 L of CO<sub>2</sub>(g)","44.8 L of H<sub>2</sub>(g)","32.0 L of He(g)"],ans:2,explain:"Avogadro’s law: equal volumes at the same temperature and pressure contain equal numbers of particles."},

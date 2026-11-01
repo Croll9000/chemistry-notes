@@ -69,7 +69,6 @@
       <div class="center" id="pm-art"></div>
       <div class="center" id="eq-mm"></div>
       <div id="ex1" style="margin-top:12px"></div>
-      <div id="ex2" style="margin-top:14px"></div>
     </div>
   </section>
 
@@ -78,6 +77,13 @@
   <section class="lab" id="conv">
     <div class="lab-h"><span class="tag game">Game</span><h3>Mole–Mass Converter</h3></div>
     <div id="mc-host"></div>
+  </section>
+
+  <p class="bridge">Weigh steel wool before and after it reacts with oxygen, then convert the mass of oxygen to moles.</p>
+
+  <section class="lab" id="wool">
+    <div class="lab-h"><span class="tag">Lab</span><h3>Burning Steel Wool</h3></div>
+    <div id="sw-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -94,16 +100,18 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
 A.$("#scale-art").innerHTML=S.moleScaleArt();
 A.$("#mm-ex").innerHTML=`<div class="exbox">Ex: Calculate the molar mass of water, H<sub>2</sub>O.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Number of atoms</th><th></th><th>Atomic mass (g/mol)</th><th></th><th>Mass (g/mol)</th></tr><tr><td><b>H</b></td><td>2</td><td>×</td><td>1.01</td><td>=</td><td>2.02</td></tr><tr><td><b>O</b></td><td>1</td><td>×</td><td>16.00</td><td>=</td><td>16.00</td></tr><tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Molar mass of H<sub>2</sub>O</b></td><td><b>18.02 g/mol</b></td></tr></table></div>`;
 S.MolarMassGame(A.$("#mm-host"));
+S.SteelWoolLab(A.$("#sw-host"));
 A.$("#pm-art").innerHTML=S.pairArt("Mass (g)","Moles","÷ molar mass","× molar mass",{lc:"#e9f7ee",ls:"#00B050"});
 A.$("#eq-mm").innerHTML=S.eqFig([1,"mol","H2O"],["18.02","g","H2O"]);
-A.$("#ex1").innerHTML=S.worked("Ex: What is the mass, in grams, of 1.60 moles of H<sub>2</sub>O?",[
+const W1=S.wk("Ex: What is the mass, in grams, of 1.60 moles of H<sub>2</sub>O?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("1.60","mol","H2O")} = ___ ${S.u("g","H2O")}`],
  ["<b>Step 2:</b> Set up the molar mass as a conversion factor with moles on the bottom.",`${S.q("1.60","mol","H2O",1)}${S.cf("18.02","g","H2O",1,"mol","H2O",0,1)}`],
  ["<b>Step 3:</b> Multiply and write the answer with units.",`1.60 × 18.02 = 28.8 ${S.u("g","H2O")}`]]);
-A.$("#ex2").innerHTML=S.worked("Ex: How many moles are in 45.30 g of H<sub>2</sub>O?",[
+const W2=S.wk("Ex: How many moles are in 45.30 g of H<sub>2</sub>O?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("45.30","g","H2O")} = ___ ${S.u("mol","H2O")}`],
  ["<b>Step 2:</b> Set up the molar mass as a conversion factor with grams on the bottom.",`${S.q("45.30","g","H2O",1)}${S.cf(1,"mol","H2O","18.02","g","H2O",0,1)}`],
  ["<b>Step 3:</b> Divide and write the answer with units.",`45.30 ÷ 18.02 = 2.514 ${S.u("mol","H2O")}`]]);
+S.workedTabs(A.$("#ex1"),[{label:"Moles → grams (H₂O)",...W1},{label:"Grams → moles (H₂O)",...W2}]);
 S.Converter(A.$("#mc-host"),{make:()=>S.mkMass()});
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What is the molar mass of CO<sub>2</sub>?",choices:["28.01 g/mol","32.00 g/mol","44.01 g/mol","56.02 g/mol"],ans:3,explain:"12.01 + 2(16.00) = 44.01 g/mol."},

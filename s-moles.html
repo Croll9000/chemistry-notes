@@ -87,7 +87,6 @@
       </ul>
       <div class="center" id="pm-art"></div>
       <div id="ex1"></div>
-      <div id="ex2" style="margin-top:14px"></div>
     </div>
   </section>
 
@@ -129,21 +128,22 @@ A.$("#eq-ft").innerHTML=S.eqFig([1,"foot"],[12,"inches"]);
 A.$("#dozen-art").innerHTML=S.dozenArt();
 A.$("#eq-mol").innerHTML=S.eqFig([1,"mol"],[S.AVH,"particles"],"The particles can be atoms, molecules or formula units, depending on the substance.");
 A.$("#pm-art").innerHTML=S.pairArt("Particles","Moles",`÷ 6.02 × 10²³`,`× 6.02 × 10²³`);
-A.$("#ex1").innerHTML=S.worked("Ex: How many molecules are in 1.75 moles of HCl?",[
+const W1=S.wk("Ex: How many molecules are in 1.75 moles of HCl?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("1.75","mol","HCl")} = ___ ${S.u("molecules","HCl")}`],
  ["<b>Step 2:</b> Set up the conversion factor with moles on the bottom.",`${S.q("1.75","mol","HCl",1)}${S.cf(S.AVH,"molecules","HCl",1,"mol","HCl",0,1)}`],
  ["<b>Step 3:</b> Multiply and write the answer with units.",`1.75 × (6.02 × 10<sup>23</sup>) = 1.05 × 10<sup>24</sup> ${S.u("molecules","HCl")}`]]);
-A.$("#ex2").innerHTML=S.worked("Ex: How many moles are in 1.95 × 10<sup>25</sup> atoms of carbon?",[
+const W2=S.wk("Ex: How many moles are in 1.95 × 10<sup>25</sup> atoms of carbon?",[
  ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q(S.sci(1.95e25),"atoms","C")} = ___ ${S.u("mol","C")}`],
  ["<b>Step 2:</b> Set up the conversion factor with atoms on the bottom.",`${S.q(S.sci(1.95e25),"atoms","C",1)}${S.cf(1,"mol","C",S.AVH,"atoms","C",0,1)}`],
  ["<b>Step 3:</b> Divide and write the answer with units.",`(1.95 × 10<sup>25</sup>) ÷ (6.02 × 10<sup>23</sup>) = 32.4 ${S.u("mol","C")}`]]);
+S.workedTabs(A.$("#ex1"),[{label:"Moles → molecules (HCl)",...W1},{label:"Atoms → moles (carbon)",...W2}]);
 L.DABuilder(A.$("#da-host"));
 S.Converter(A.$("#pc-host"),{make:()=>S.mkParticles(),how:"Read the problem. Drag the two sides of the equivalence into the conversion factor: the unit you want to cancel goes on the bottom. Then calculate."});
 A.$("#lv-art").innerHTML=S.levelsArt();
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"How many molecules are in 2.00 moles of H<sub>2</sub>O?",choices:["2.00 molecules","3.01 × 10<sup>23</sup> molecules","6.02 × 10<sup>23</sup> molecules","1.20 × 10<sup>24</sup> molecules"],ans:4,explain:"2.00 mol × (6.02 × 10²³ molecules / 1 mol) = 1.20 × 10²⁴ molecules."},
  {type:"mc",stem:"Which conversion factor is used to change a number of atoms into moles?",choices:[`<span class="mth">${S.cf(S.AVH,"atoms","",1,"mol","")}</span>`,`<span class="mth">${S.cf(1,"mol","",S.AVH,"atoms","")}</span>`,`<span class="mth">${S.cf(1,"atoms","",S.AVH,"mol","")}</span>`,`<span class="mth">${S.cf(S.AVH,"mol","",1,"atoms","")}</span>`],ans:2,explain:"Atoms (the given unit) go on the bottom so they cancel, and moles go on top: 1 mol = 6.02 × 10²³ atoms."},
- {type:"text",stem:"How many moles of carbon are in 3.01 × 10<sup>23</sup> atoms of carbon?",unit:"mol",width:120,check:v=>{ const r=A.lenient(v,0.5,{sf:3}); return r; },explain:"(3.01 × 10²³ atoms) ÷ (6.02 × 10²³ atoms/mol) = 0.500 mol."},
+ {type:"text",stem:"How many moles of carbon are in 3.01 × 10<sup>23</sup> atoms of carbon?",unit:"mol",width:120,check:v=>{ const n=A.parseTyped(String(v)); return !n? "Type a number." : Math.abs(n.v-0.5)<0.006; },explain:"(3.01 × 10²³ atoms) ÷ (6.02 × 10²³ atoms/mol) = 0.500 mol."},
  {type:"mc",stem:"The equation 2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O can be read as",choices:["2 grams of hydrogen react with 1 gram of oxygen","2 moles of hydrogen react with 1 mole of oxygen","2 atoms of hydrogen react with 1 atom of oxygen","2 liters of water are produced"],ans:2,explain:"Coefficients give numbers of molecules or moles, not grams."},
  {type:"cr",stem:"Explain why chemists count atoms in moles instead of one at a time.",parts:["Explanation"],model:["Atoms are extremely small, so even a tiny sample contains a huge number of them (about 6.02 × 10²³ in one mole). Counting in moles groups the particles into a usable number, like counting eggs by the dozen."],noCredit:"An answer that does not mention the very large number of particles in a sample."}]);
 
