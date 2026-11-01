@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Percent Composition & Hydrates</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Stoichiometry · 6</span><h1>Percent Composition &amp; Hydrates</h1><p>How much of a compound’s mass comes from each element, and how water molecules become part of an ionic crystal.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Scale, Proportion &amp; Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Percent composition"><div class="pn"><small>Part</small><span>1</span></div><h2>Percent Composition</h2><p>Each element’s share of the mass.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Percent Composition</h2></div>
+    <div class="body">
+      <p class="intro">Mining companies need to know how much metal they can extract from a ton of ore, and nutrition labels list how much of a food is protein or fat. Both are percent composition problems. Because every compound has a fixed formula, each element always makes up the same percent of its mass.</p>
+      <ul>
+        <li><span class="def">Percent Composition</span> – the percent by mass of each element in a compound.</li>
+        <li class="formula-li">% composition = (mass of part ÷ mass of whole) × 100
+          <ul><li>Mass of part: the mass of one element in one mole of the compound (number of atoms × atomic mass).</li>
+          <li>Mass of whole: the molar mass of the compound.</li></ul></li>
+        <li>Ex: Water, H<sub>2</sub>O (18.02 g/mol): % H = (2.02 ÷ 18.02) × 100 = 11.2%; % O = (16.00 ÷ 18.02) × 100 = 88.8%</li>
+      </ul>
+      <div class="center" id="bar-art"></div>
+    </div>
+  </section>
+
+  <p class="bridge">Find the mass of the part and the mass of the whole, then divide.</p>
+
+  <section class="lab" id="pct">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Percent Composition Calculator</h3></div>
+    <div id="pc-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Hydrates"><div class="pn"><small>Part</small><span>2</span></div><h2>Hydrated Compounds</h2><p>Water locked inside a crystal.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Hydrated Compounds</h2></div>
+    <div class="body">
+      <p class="intro">Bright blue copper(II) sulfate crystals turn white when they are heated, and the white powder turns blue again when a drop of water is added. The color change comes from water molecules that are built into the crystal itself. Desiccant packets in shoe boxes work the same way: their crystals soak up water from the air.</p>
+      <ul>
+        <li>Ionic compounds exist as crystal lattices, geometric arrangements of alternating cations and anions. Sometimes molecules of water become embedded in the crystal lattice structure. These are known as hydrated compounds. Ionic lattices without water are known as anhydrous compounds.
+          <ul><li><span class="def">Hydrated Compound (Hydrate)</span> – compound (usually ionic) that contains water.</li>
+          <li><span class="def">Anhydrous Compound</span> – compound that does not contain water.</li></ul></li>
+        <li>Copper(II) chloride can become hydrated by absorbing water molecules into its lattice structure.</li>
+      </ul>
+      <div class="center" id="hyd-art"></div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Naming Hydrated Compounds</h2></div>
+    <div class="body">
+      <ul>
+        <li>When water becomes part of the crystal lattice of a hydrate, it does so in a fixed ratio. When naming hydrated compounds it is necessary to specify the ratio of ionic formula units to water molecules.</li>
+        <li>Steps for Naming Hydrated Compounds:
+          <ol><li>Name the ionic compound.</li>
+          <li>Include a prefix to show the number of water molecules for every formula unit of the ionic compound.</li>
+          <li>Attach the ending “-hydrate” after the prefix.</li></ol></li>
+        <li>Ex: MgSO<sub>4</sub>•7H<sub>2</sub>O: magnesium sulfate → hepta- (7) → magnesium sulfate heptahydrate</li>
+        <li>Steps for Writing the Formula of a Hydrate:
+          <ol><li>Write the formula for the ionic compound.</li>
+          <li>Identify the number of water molecules per formula unit from the prefix, and write it after a dot: •<i>n</i>H<sub>2</sub>O.</li></ol></li>
+        <li>Ex: copper(II) chloride pentahydrate → CuCl<sub>2</sub> + penta- (5) → CuCl<sub>2</sub>•5H<sub>2</sub>O</li>
+      </ul>
+      <div class="tbl-wrap"><table class="nt" style="max-width:520px;margin:6px auto"><tr><th>Prefix</th><th>Number</th><th>Prefix</th><th>Number</th></tr><tr><td>Mono-</td><td>1</td><td>Hexa-</td><td>6</td></tr><tr><td>Di-</td><td>2</td><td>Hepta-</td><td>7</td></tr><tr><td>Tri-</td><td>3</td><td>Octa-</td><td>8</td></tr><tr><td>Tetra-</td><td>4</td><td>Nona-</td><td>9</td></tr><tr><td>Penta-</td><td>5</td><td>Deca-</td><td>10</td></tr></table></div>
+    </div>
+  </section>
+
+  <p class="bridge">Name the hydrate or write its formula.</p>
+
+  <section class="lab" id="hname">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Name the Hydrate</h3></div>
+    <div id="hn-host"></div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Percent of Water in a Hydrate</h2></div>
+    <div class="body">
+      <ul>
+        <li>Heating a hydrate drives the water out of the crystal as water vapor. The anhydrous compound is left behind.</li>
+        <li>The percent of water by mass can be found from a lab measurement or from the formula:
+          <ul><li>From the lab: % water = (mass of water lost ÷ mass of hydrate) × 100</li>
+          <li>From the formula: % water = (mass of water in one mole of the hydrate ÷ molar mass of the hydrate) × 100</li></ul></li>
+        <li>Ex: CuSO<sub>4</sub>•5H<sub>2</sub>O (249.71 g/mol) contains 5 × 18.02 = 90.10 g of water per mole: (90.10 ÷ 249.71) × 100 = 36.1% water</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="bridge">Heat a hydrate and measure how much water it loses.</p>
+
+  <section class="lab" id="hlab">
+    <div class="lab-h"><span class="tag">Lab</span><h3>Heating a Hydrate</h3></div>
+    <div id="hl-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, S=A.U6;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${S.pctBar("H2O",{w:320})}</div>`;
+A.$("#bar-art").innerHTML=S.pctBar("H2O")+S.pctBar("C6H12O6");
+S.PercentGame(A.$("#pc-host"));
+A.$("#hyd-art").innerHTML=S.hydrateArt();
+S.HydrateName(A.$("#hn-host"));
+S.HydrateLab(A.$("#hl-host"));
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"What is the percent composition by mass of nitrogen in (NH<sub>4</sub>)<sub>2</sub>CO<sub>3</sub> (molar mass = 96.0 g/mol)?",choices:["14.6%","29.2%","58.4%","87.5%"],ans:2,explain:"2 N × 14.01 = 28.02 g; (28.02 ÷ 96.0) × 100 = 29.2%."},
+ {type:"mc",stem:"The percent by mass of water in the hydrate Na<sub>2</sub>SO<sub>4</sub>•10H<sub>2</sub>O is closest to",choices:["18%","44%","56%","76%"],ans:3,explain:"10 × 18.02 = 180.2 g of water; molar mass 322.2 g/mol; (180.2 ÷ 322.2) × 100 = 56%."},
+ {type:"mc",stem:"Which compound has the greatest percent composition by mass of sulfur?",choices:["BaS","CaS","MgS","SrS"],ans:3,explain:"Each has one S atom (32.06). The lightest metal (Mg) gives the smallest molar mass, so S makes up the largest share."},
+ {type:"mc",stem:"What is the name of CuSO<sub>4</sub>•5H<sub>2</sub>O?",choices:["copper sulfate hydrate","copper(II) sulfate pentahydrate","copper(II) sulfate heptahydrate","copper pentasulfate hydrate"],ans:2,explain:"Copper(II) sulfate + penta- (5 waters) + -hydrate."},
+ {type:"text",stem:"A 5.00 g sample of a hydrate is heated until all of the water is driven off. The anhydrous compound has a mass of 3.20 g. What is the percent of water by mass in the hydrate?",unit:"%",width:100,check:v=>A.lenient(v,36.0,{sf:3}),explain:"Water lost = 5.00 − 3.20 = 1.80 g; (1.80 ÷ 5.00) × 100 = 36.0%."},
+ {type:"mc",stem:"A product is prepared using a solution that is 37% formaldehyde by mass. What is the mass of formaldehyde in 1.5 × 10<sup>3</sup> g of the solution?",choices:["2.5 × 10<sup>−2</sup> g","2.5 × 10<sup>1</sup> g","5.6 × 10<sup>−1</sup> g","5.6 × 10<sup>2</sup> g"],ans:4,explain:"0.37 × 1500 g = 555 g ≈ 5.6 × 10² g."}]);
+
+})();</script>
+<script>AS.U3.addSources("s-percent");AS.completion(document.querySelector(".wrap"),"s-percent");AS.chrome("s-percent");</script>
+</body>
+</html>

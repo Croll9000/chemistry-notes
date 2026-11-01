@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Molar Mass</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Stoichiometry · 2</span><h1>Molar Mass</h1><p>Particles cannot be counted on a balance, but they can be weighed. The molar mass connects the mass of a sample to the number of moles in it.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Scale, Proportion &amp; Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Molar mass"><div class="pn"><small>Part</small><span>1</span></div><h2>Molar Mass</h2><p>The mass of one mole of a substance.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Significance of a Mole</h2></div>
+    <div class="body">
+      <p class="intro">Nobody can count out 6.02 × 10<sup>23</sup> atoms, but anyone can weigh a sample on a balance. The number 6.02 × 10<sup>23</sup> was chosen so that the mass of one mole of any substance, in grams, matches its atomic mass on the periodic table. That choice turns every balance in a lab into a particle counter.</p>
+      <ul>
+        <li>The unit of a mole has significance because it represents the number of atoms in 12 g of C-12. Recall that C-12 has a mass of 12 u. This means that if you possess 1 mole of a substance, the mass, in grams (g), of that substance is equal to its atomic mass in unified atomic mass units (u).</li>
+        <li>The mass of 1 mole of any atom or molecule, in grams, is equal to its atomic mass (or the total mass of its atoms).</li>
+      </ul>
+      <div class="center" id="scale-art"></div>
+      <div class="center"><div class="callout">Each sample contains the same number of particles, 6.02 × 10<sup>23</sup>, but the masses are different because the particles have different masses.</div></div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Molar Mass</h2></div>
+    <div class="body">
+      <p class="intro">When carrying out reactions, chemists must measure out the right number of moles of each substance. To do that with a balance, they need to know the mass of one mole of each substance.</p>
+      <ul>
+        <li><span class="def">Molar Mass</span> – mass of one mole of a substance.
+          <ul><li><i>Unit</i> – grams/mole (g/mol)</li></ul></li>
+        <li>Calculating molar mass:
+          <ul><li>Elements: look up the atomic mass of the element on the periodic table. The value of the atomic mass in “u” is equal to the mass of 1 mole in “g.” Ex: 1 mole of Mg = 24.31 g</li>
+          <li>Compounds: add up the masses from the periodic table of the individual atoms that make up the compound.</li></ul></li>
+      </ul>
+      <div id="mm-ex"></div>
+    </div>
+  </section>
+
+  <p class="bridge">Count the atoms, look up their masses and add.</p>
+
+  <section class="lab" id="mmcalc">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Molar Mass Calculator</h3></div>
+    <div id="mm-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Mole–mass conversions"><div class="pn"><small>Part</small><span>2</span></div><h2>Mole–Mass Conversions</h2><p>Multiply or divide by the molar mass.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Mole–Mass Conversions</h2></div>
+    <div class="body">
+      <p class="intro">A pharmacist preparing a medicine and a chemist running a reaction both work in moles, but their balances read in grams. Converting between moles and mass is the most common calculation in a chemistry lab.</p>
+      <ul>
+        <li>It is often necessary to convert from moles to mass or from mass to moles. To do so we use the molar mass of the substance.
+          <ul><li>To convert from number of moles to mass, multiply by the molar mass of the substance.</li>
+          <li>To convert from mass to number of moles, divide by the molar mass of the substance.</li></ul></li>
+        <li>The molar mass of a substance can be used as a conversion factor.</li>
+      </ul>
+      <div class="center" id="pm-art"></div>
+      <div class="center" id="eq-mm"></div>
+      <div id="ex1" style="margin-top:12px"></div>
+      <div id="ex2" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+  <p class="bridge">Use the molar mass as a conversion factor.</p>
+
+  <section class="lab" id="conv">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Mole–Mass Converter</h3></div>
+    <div id="mc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, S=A.U6, B=A.U4;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${S.moleScaleArt([["C","12.01 g","#3b4148","#111","carbon"],["Mg","24.31 g","#c9cdd1","#7d878e","magnesium"]])}</div>`;
+A.$("#scale-art").innerHTML=S.moleScaleArt();
+A.$("#mm-ex").innerHTML=`<div class="exbox">Ex: Calculate the molar mass of water, H<sub>2</sub>O.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Number of atoms</th><th></th><th>Atomic mass (g/mol)</th><th></th><th>Mass (g/mol)</th></tr><tr><td><b>H</b></td><td>2</td><td>×</td><td>1.01</td><td>=</td><td>2.02</td></tr><tr><td><b>O</b></td><td>1</td><td>×</td><td>16.00</td><td>=</td><td>16.00</td></tr><tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Molar mass of H<sub>2</sub>O</b></td><td><b>18.02 g/mol</b></td></tr></table></div>`;
+S.MolarMassGame(A.$("#mm-host"));
+A.$("#pm-art").innerHTML=S.pairArt("Mass (g)","Moles","÷ molar mass","× molar mass",{lc:"#e9f7ee",ls:"#00B050"});
+A.$("#eq-mm").innerHTML=S.eqFig([1,"mol","H2O"],["18.02","g","H2O"]);
+A.$("#ex1").innerHTML=S.worked("Ex: What is the mass, in grams, of 1.60 moles of H<sub>2</sub>O?",[
+ ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("1.60","mol","H2O")} = ___ ${S.u("g","H2O")}`],
+ ["<b>Step 2:</b> Set up the molar mass as a conversion factor with moles on the bottom.",`${S.q("1.60","mol","H2O",1)}${S.cf("18.02","g","H2O",1,"mol","H2O",0,1)}`],
+ ["<b>Step 3:</b> Multiply and write the answer with units.",`1.60 × 18.02 = 28.8 ${S.u("g","H2O")}`]]);
+A.$("#ex2").innerHTML=S.worked("Ex: How many moles are in 45.30 g of H<sub>2</sub>O?",[
+ ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("45.30","g","H2O")} = ___ ${S.u("mol","H2O")}`],
+ ["<b>Step 2:</b> Set up the molar mass as a conversion factor with grams on the bottom.",`${S.q("45.30","g","H2O",1)}${S.cf(1,"mol","H2O","18.02","g","H2O",0,1)}`],
+ ["<b>Step 3:</b> Divide and write the answer with units.",`45.30 ÷ 18.02 = 2.514 ${S.u("mol","H2O")}`]]);
+S.Converter(A.$("#mc-host"),{make:()=>S.mkMass()});
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"What is the molar mass of CO<sub>2</sub>?",choices:["28.01 g/mol","32.00 g/mol","44.01 g/mol","56.02 g/mol"],ans:3,explain:"12.01 + 2(16.00) = 44.01 g/mol."},
+ {type:"mc",stem:"What is the molar mass of Ca(OH)<sub>2</sub>?",choices:["57.09 g/mol","74.10 g/mol","58.09 g/mol","114.18 g/mol"],ans:2,explain:"40.08 + 2(16.00) + 2(1.01) = 74.10 g/mol. The subscript 2 multiplies both O and H."},
+ {type:"text",stem:"What is the mass of 2.50 moles of NaCl (molar mass 58.44 g/mol)?",unit:"g",width:120,check:v=>A.lenient(v,146.1,{sf:3}),explain:"2.50 mol × 58.44 g/mol = 146 g."},
+ {type:"mc",stem:"How many moles are in 9.01 g of H<sub>2</sub>O?",choices:["0.500 mol","2.00 mol","9.01 mol","162 mol"],ans:1,explain:"9.01 g ÷ 18.02 g/mol = 0.500 mol."},
+ {type:"cr",stem:"One mole of carbon has a mass of 12.01 g and one mole of magnesium has a mass of 24.31 g. Explain how both samples can contain the same number of atoms.",parts:["Explanation"],model:["Both samples contain one mole, 6.02 × 10²³ atoms. Each magnesium atom has about twice the mass of a carbon atom, so the same number of magnesium atoms has about twice the mass."],noCredit:"An answer that says the samples contain different numbers of atoms."}]);
+
+})();</script>
+<script>AS.U3.addSources("s-molarmass");AS.completion(document.querySelector(".wrap"),"s-molarmass");AS.chrome("s-molarmass");</script>
+</body>
+</html>

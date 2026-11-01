@@ -133,7 +133,7 @@
 
 const A=AS, B=A.U4, L=B.lewis;
 const fp=(sk)=>["t","r","b","l"].filter(d=>!sk.includes(d)).map(d=>({d,n:2}));
-const bf3=(o={})=>L({atoms:[{s:"B",x:0,y:0},{s:"F",x:0,y:-1.25,dots:fp(["b"])},{s:"F",x:-1.3,y:.75,dots:fp(["r"])},{s:"F",x:1.3,y:.75,dots:fp(["l"])}],bonds:[{a:0,b:1,n:1},{a:0,b:2,n:1},{a:0,b:3,n:1}]},Object.assign({label:"Lewis structure of BF3"},o));
+const bf3=(o={})=>L({atoms:[{s:"B",x:0,y:0},{s:"F",x:0,y:-1.25,dots:fp(["b"])},{s:"F",x:-1.08,y:.625,dots:fp(["r"])},{s:"F",x:1.08,y:.625,dots:fp(["l"])}],bonds:[{a:0,b:1,n:1},{a:0,b:2,n:1},{a:0,b:3,n:1}]},Object.assign({label:"Lewis structure of BF3"},o));
 const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" text-anchor="middle" font-family="Inter,Arial" font-size="${o.fs||24}" font-weight="800" fill="${o.c||"#1b2328"}">${t}</text>`;
 const wedge=(x1,y1,x2,y2)=>{ const dx=x2-x1, dy=y2-y1, L2=Math.hypot(dx,dy), px=-dy/L2*7, py=dx/L2*7; return `<path d="M${x1} ${y1}L${x2+px} ${y2+py}L${x2-px} ${y2-py}Z" fill="#1b2328"/>`; };
 const dash=(x1,y1,x2,y2)=>{ let s=""; for(let i=1;i<=7;i++){ const t=i/8, x=x1+(x2-x1)*t, y=y1+(y2-y1)*t, dx=x2-x1, dy=y2-y1, L2=Math.hypot(dx,dy), w=1.5+6*t, px=-dy/L2*w, py=dx/L2*w; s+=`<line x1="${x+px}" y1="${y+py}" x2="${x-px}" y2="${y-py}" stroke="#1b2328" stroke-width="2.5"/>`; } return s; };

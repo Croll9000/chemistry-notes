@@ -161,7 +161,7 @@
 const A=AS, B=A.U4, L=B.lewis, sy=Z=>A.EL[Z].sym, v=Z=>A.valence(Z);
 const box=(t,art,note)=>`<div class="ex-box"><p><b>${t}</b></p>${art?`<div class="center">${art}</div>`:""}${note?`<p class="muted" style="font-size:14px">${note}</p>`:""}</div>`;
 const M=f=>B.COVMOL.find(m=>m.f===f);
-const lone=Z=>`<div class="lw-box">${L({atoms:[{s:sy(Z),x:0,y:0,dots:B.atomDots(v(Z))}]},{scale:.85})}</div>`;
+const lone=Z=>`<div>${L({atoms:[{s:sy(Z),x:0,y:0,dots:B.atomDots(v(Z))}]},{scale:.85})}</div>`;
 const place=(m)=>L(B.covSpec(m,m.o.map(()=>0)),{scale:.85});
 const circ=(m,ord)=>L(B.covSpec(m,ord,{circles:true}),{style:"dot",scale:.85});
 const lines=(m)=>L(B.covSpec(m,m.b,{lines:true}),{scale:.9});
@@ -191,8 +191,8 @@ const lp3=(i,n)=>{ const f=B.FACE[["t","l","r"][i-1]]; return ["t","r","b","l"].
 A.$("#co3-art").innerHTML=[
  box("Step 1: Count up the total number of valence electrons.",`<p style="text-align:center;margin:0;font-size:16px;line-height:1.7">C = 4 valence electrons<br>O = (6 valence electrons) × 3 = 18<br>2− charge = +2 extra electrons<br><b>Total = 24 electrons</b></p>`),
  box("Step 2: Place the atom that can form the greatest number of bonds in the center.",co3([0,0,0],{outer:()=>[]}),"Carbon can form 4 bonds and oxygen can form 2, so carbon goes in the center."),
- box("Step 3: Draw a single bond to every other atom.",co3([1,1,1],{outer:()=>[]}),"Total = 24 − 6 = 18 electrons"),
- box("Step 4: Place remaining electrons around outer atoms.",co3([1,1,1],{outer:(i)=>lp3(i,3)}),"Total = 18 − 18 = 0 electrons"),
+ box("Step 3: Draw a single bond to every other atom.",co3([1,1,1],{outer:()=>[],dotsC:[]}),"Total = 24 − 6 = 18 electrons"),
+ box("Step 4: Place remaining electrons around outer atoms.",co3([1,1,1],{outer:(i)=>lp3(i,3),dotsC:[]}),"Total = 18 − 18 = 0 electrons"),
  box("Step 5: Add remaining electrons to the central atom.","","No electrons remain at this point."),
  box("Step 6: Double/triple bond if necessary.",co3([2,1,1],{outer:(i,n)=>lp3(i,n===2?2:3),br:true}),"Carbon only has 6 electrons, so a lone pair from oxygen must become a second pair of shared electrons.")].join("");
 

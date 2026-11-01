@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Limiting Reagents & Percent Yield</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Stoichiometry · 8 · Enrichment</span><h1>Limiting Reagents &amp; Percent Yield</h1><p>One reactant usually runs out first and limits how much product can form. Real reactions rarely make as much product as the calculations predict.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Limiting and excess"><div class="pn"><small>Part</small><span>1</span></div><h2>Limiting and Excess Reagents</h2><p>Which reactant runs out first?</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Limiting and Excess Reagents</h2></div>
+    <div class="body">
+      <p class="intro">Car engines are tuned so that fuel and air mix in just the right ratio. Too little air, and some fuel goes unburned and pollutes; too much, and the engine loses power. In almost every real reaction, one reactant runs out before the other, and that reactant decides how much product can form.</p>
+      <ul>
+        <li>Since substances must react in specific mole ratios given by the balanced chemical equation, if random amounts of 2 reactants are combined, there is a high chance that one substance will be completely consumed before the other.
+          <ul><li><span class="def">Limiting Reagent</span> – reactant that is completely used up and therefore restricts how much product is formed.</li>
+          <li><span class="def">Excess Reagent</span> – reactant that is left over after the reaction is finished.</li></ul></li>
+        <li>Imagine that you are making hamburgers at a barbecue. Each burger requires 2 buns and 1 patty. Buns come in packages of 12 while patties come in packages of 3. You will only be able to make 3 burgers, leaving you with 6 leftover buns.
+          <ul><li>The patties are the limiting reagent, since they are completely used up.</li>
+          <li>The buns are the excess reagent, since some are left over.</li></ul></li>
+      </ul>
+      <div id="burger-host"></div>
+    </div>
+  </section>
+
+  <section class="note enr">
+    <div class="tile"><h2>Determining Limiting and Excess Reagents</h2></div>
+    <div class="body">
+      <ul>
+        <li>Steps to Determine Limiting and Excess Reagents:
+          <ol><li>Make sure the chemical equation is balanced.</li>
+          <li>Convert the starting amount of every reactant to moles.</li>
+          <li>Using mole ratios, convert the moles of every reactant into moles of one of the products.</li>
+          <li>The reactant that yields the smaller amount of product is the limiting reagent. The reactant that yields the larger amount of product is the excess reagent.</li></ol></li>
+      </ul>
+      <div id="sim-host"></div>
+    </div>
+  </section>
+
+  <div class="part enr" id="p2" data-short="Yield"><div class="pn"><small>Part</small><span>2</span></div><h2>Theoretical Yield, Leftover Excess and Percent Yield</h2><p>How much product, really?</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Theoretical and Actual Yield</h2></div>
+    <div class="body">
+      <p class="intro">A company that makes aspirin is paid for the product it actually collects, not the product it calculated on paper. Side reactions, spills and incomplete reactions all mean that real reactions make less than the maximum. Comparing the two tells chemists how efficient their process is.</p>
+      <ul>
+        <li>Not every chemical reaction will yield the amount of product that stoichiometric calculations predict. Side products can form and experimental errors can lead to less product than expected.
+          <ul><li><span class="def">Theoretical Yield</span> – maximum amount of product that can be created in a reaction.</li>
+          <li><span class="def">Actual Yield</span> – the amount of product that is truly produced in a reaction.</li></ul></li>
+        <li>Steps to Calculating Theoretical Yield:
+          <ol><li>Determine the limiting and excess reagents.</li>
+          <li>Using mole ratios, convert moles of the limiting reagent into moles of each product.</li>
+          <li>Using molar mass, convert moles of products into mass of products (if necessary).</li></ol></li>
+        <li>Steps to Calculate the Leftover Excess Reagent:
+          <ol><li>Determine the limiting and excess reagents.</li>
+          <li>Using mole ratios, convert moles of the limiting reagent into moles of excess reagent consumed.</li>
+          <li>Subtract the moles of excess reagent consumed from the starting moles of excess reagent. Using molar mass, convert moles of excess reagent into mass, if necessary.</li></ol></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="note enr">
+    <div class="tile"><h2>Percent Yield</h2></div>
+    <div class="body">
+      <ul>
+        <li><span class="def">Percent Yield</span> – the actual yield as a percent of the theoretical yield.</li>
+        <li>% yield = (actual yield ÷ theoretical yield) × 100</li>
+        <li>Ex: A reaction has a theoretical yield of 20.0 g of product, but only 17.0 g is collected. % yield = (17.0 g ÷ 20.0 g) × 100 = 85.0%</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="bridge enr">Find the limiting reagent, then the theoretical and percent yield.</p>
+
+  <section class="lab enr" id="lim">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Limiting Reagent Calculator</h3></div>
+    <div id="lr-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, S=A.U6;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:8px;width:320px" id="hero-b"></div>`;
+S.BurgerLab(A.$("#burger-host"));
+S.LimitSim(A.$("#sim-host"));
+S.LimitingGame(A.$("#lr-host"));
+(function(){ const h=A.$("#hero-b"); S.BurgerLab(h); A.$$(".controls",h).forEach(c=>c.remove()); A.$$(".status",h).forEach(c=>c.remove()); A.$$("p",h).forEach(c=>c.remove()); const sv=h.querySelector("svg"); if(sv){ sv.setAttribute("viewBox","0 0 330 200"); sv.setAttribute("width","330"); } })();
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Each sandwich needs 2 slices of bread and 1 slice of cheese. With 10 slices of bread and 7 slices of cheese, which is the limiting reagent?",choices:["bread, because 5 sandwiches can be made","cheese, because 7 sandwiches can be made","bread, because there are more slices of it","cheese, because there are fewer slices of it"],ans:1,explain:"10 slices of bread make only 5 sandwiches; 7 slices of cheese could make 7. Bread runs out first."},
+ {type:"mc",stem:"Given 2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O, 4 moles of H<sub>2</sub> react with 4 moles of O<sub>2</sub>. Which is the limiting reagent?",choices:["H<sub>2</sub>","O<sub>2</sub>","H<sub>2</sub>O","neither"],ans:1,explain:"4 mol H₂ makes 4 mol H₂O; 4 mol O₂ could make 8 mol H₂O. H₂ makes less product."},
+ {type:"text",stem:"A reaction has a theoretical yield of 42.0 g, and 35.7 g of product is collected. What is the percent yield?",unit:"%",width:100,check:v=>A.lenient(v,85.0,{sf:3}),explain:"(35.7 ÷ 42.0) × 100 = 85.0%."},
+ {type:"mc",stem:"Which statement describes the theoretical yield?",choices:["the amount of product collected in the lab","the maximum amount of product that can form from the limiting reagent","the amount of excess reagent left over","the mass of all of the reactants"],ans:2,explain:"Theoretical yield is the maximum product, calculated from the limiting reagent."}]);
+
+})();</script>
+<script>AS.U3.addSources("s-limiting");AS.completion(document.querySelector(".wrap"),"s-limiting");AS.chrome("s-limiting");</script>
+</body>
+</html>

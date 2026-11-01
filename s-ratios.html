@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Mole Ratios</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Stoichiometry · 4</span><h1>Mole Ratios</h1><p>The coefficients of a balanced equation give the ratio in which substances react and form. That ratio is a conversion factor between any two substances in the reaction.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Mole ratios"><div class="pn"><small>Part</small><span>1</span></div><h2>Mole Ratios</h2><p>Coefficients as a recipe.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Mole Ratios</h2></div>
+    <div class="body">
+      <p class="intro">Fertilizer plants make millions of tons of ammonia, NH<sub>3</sub>, every year by combining nitrogen and hydrogen. To avoid wasting either gas, engineers have to feed them into the reactor in exactly the right proportions. The balanced equation gives those proportions, just as a recipe tells a baker how many eggs to use for each cup of flour.</p>
+      <ul>
+        <li>The coefficients in a balanced chemical equation represent the moles of substances taking part in the reaction. The ratio between the moles in the equation can be used as a conversion factor to determine the amount of a substance that will be produced or consumed in the reaction.
+          <ul><li><span class="def">Mole Ratio</span> – ratio between the moles of any two substances in a balanced chemical equation.</li></ul></li>
+        <li>Ex: N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>
+          <ul><li>The mole ratio of N<sub>2</sub> to H<sub>2</sub> is 1 : 3. The mole ratio of N<sub>2</sub> to NH<sub>3</sub> is 1 : 2. The mole ratio of H<sub>2</sub> to NH<sub>3</sub> is 3 : 2.</li></ul></li>
+      </ul>
+      <div id="rm-host"></div>
+    </div>
+  </section>
+
+  <p class="bridge">Read the mole ratio from the coefficients.</p>
+
+  <section class="lab" id="pick">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Which Mole Ratio?</h3></div>
+    <div id="rp-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Mole ratio conversions"><div class="pn"><small>Part</small><span>2</span></div><h2>Mole Ratio Conversions</h2><p>Moles of one substance to moles of another.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Mole Ratio Conversions</h2></div>
+    <div class="body">
+      <p class="intro">A chemist who knows how much of one substance reacts can predict how much of every other substance is used or made. This is how manufacturers decide how much raw material to order and how much product to expect.</p>
+      <ul>
+        <li>The mole ratio between any 2 substances in a reaction can be treated as a conversion factor. This conversion factor can then be used to predict the amount of a substance consumed or produced in the reaction.</li>
+        <li>Place the substance you are given on the bottom of the mole ratio and the substance you want on top.</li>
+      </ul>
+      <div class="center" id="eq-r"></div>
+      <div id="ex1" style="margin-top:12px"></div>
+      <div id="ex2" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+  <p class="bridge">Use the coefficients to build the mole ratio, then calculate.</p>
+
+  <section class="lab" id="conv">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Mole Ratio Converter</h3></div>
+    <div id="mr-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, S=A.U6, R=A.U5;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px" id="hero-a"></div>`; R.RxnPlayer(A.$("#hero-a"),{r:["N2","H2"],p:["NH3"],c:[1,3,2]},{w:320,h:170});
+S.RatioMachine(A.$("#rm-host"));
+S.RatioPick(A.$("#rp-host"));
+A.$("#eq-r").innerHTML=`<div class="s6-eqfig"><div><b>Equation</b><div class="s6-eq">N<sub>2</sub> + <b class="s6-co">3</b>H<sub>2</sub> → <b class="s6-co">2</b>NH<sub>3</sub></div></div><div><b>Mole ratio of N<sub>2</sub> to NH<sub>3</sub></b><div class="mth" style="font-size:22px;gap:18px;display:flex;justify-content:center">${S.cf(2,"mol","NH3",1,"mol","N2")}${S.cf(1,"mol","N2",2,"mol","NH3")}</div></div></div>`;
+A.$("#ex1").innerHTML=S.worked("Ex: Given N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>, how many moles of NH<sub>3</sub> are produced when 1.5 moles of N<sub>2</sub> are consumed?",[
+ ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("1.5","mol","N2")} = ___ ${S.u("mol","NH3")}`],
+ ["<b>Step 2:</b> Set up the mole ratio with the given substance (N<sub>2</sub>) on the bottom.",`${S.q("1.5","mol","N2",1)}${S.cf(2,"mol","NH3",1,"mol","N2",0,1)}`],
+ ["<b>Step 3:</b> Multiply and divide.",`1.5 × 2 ÷ 1 = 3.0 ${S.u("mol","NH3")}`]]);
+A.$("#ex2").innerHTML=S.worked("Ex: Given N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>, how many moles of N<sub>2</sub> must be consumed to produce 0.5 moles of NH<sub>3</sub>?",[
+ ["<b>Step 1:</b> Write down the given quantity and the desired unit.",`${S.q("0.5","mol","NH3")} = ___ ${S.u("mol","N2")}`],
+ ["<b>Step 2:</b> Set up the mole ratio with the given substance (NH<sub>3</sub>) on the bottom.",`${S.q("0.5","mol","NH3",1)}${S.cf(1,"mol","N2",2,"mol","NH3",0,1)}`],
+ ["<b>Step 3:</b> Multiply and divide.",`0.5 × 1 ÷ 2 = 0.25 ${S.u("mol","N2")}`]]);
+S.Converter(A.$("#mr-host"),{make:()=>S.mkRatio()});
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Given the balanced equation: 2NO + O<sub>2</sub> → 2NO<sub>2</sub> + energy. The mole ratio of NO to NO<sub>2</sub> is",choices:["1 to 1","2 to 1","3 to 2","5 to 2"],ans:1,explain:"The coefficients of NO and NO₂ are both 2: 2 : 2 = 1 : 1."},
+ {type:"mc",stem:"Given 2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O, how many moles of O<sub>2</sub> are needed to react completely with 4.0 moles of H<sub>2</sub>?",choices:["1.0 mol","2.0 mol","4.0 mol","8.0 mol"],ans:2,explain:"4.0 mol H₂ × (1 mol O₂ / 2 mol H₂) = 2.0 mol O₂."},
+ {type:"text",stem:"Given CH<sub>4</sub> + 2O<sub>2</sub> → CO<sub>2</sub> + 2H<sub>2</sub>O, how many moles of H<sub>2</sub>O are produced from 1.5 moles of CH<sub>4</sub>?",unit:"mol",width:110,check:v=>A.lenient(v,3.0,{sf:2}),explain:"1.5 mol CH₄ × (2 mol H₂O / 1 mol CH₄) = 3.0 mol H₂O."},
+ {type:"mc",stem:"Which statement explains why the mole ratio can be used as a conversion factor?",choices:["The masses of the reactants are always equal.","The coefficients of a balanced equation give the ratio in which moles of substances react and form.","Every substance has the same molar mass.","Equal volumes of gases contain equal masses."],ans:2,explain:"The coefficients give the ratio of moles (and particles) that react and form."}]);
+
+})();</script>
+<script>AS.U3.addSources("s-ratios");AS.completion(document.querySelector(".wrap"),"s-ratios");AS.chrome("s-ratios");</script>
+</body>
+</html>

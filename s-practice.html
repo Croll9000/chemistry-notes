@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Stoichiometry Practice Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Stoichiometry · Practice</span><h1>Practice Arcade</h1><p>Games from the whole unit in one place, plus Regents-style questions. These games are for practice and do not give a completion code.</p></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <nav class="controls" aria-label="Jump to a game"><span class="ctl-label">Jump to:</span><a class="btn ghost sm" href="#g-conv">Conversion Builder</a><a class="btn ghost sm" href="#g-mm">Molar Mass</a><a class="btn ghost sm" href="#g-pct">Percent Composition</a><a class="btn ghost sm" href="#g-emp">Empirical Formulas</a><a class="btn ghost sm" href="#g-reg">Regents Practice</a></nav>
+
+  <section class="lab" id="g-conv"><div class="lab-h"><span class="tag game">Game</span><h3>Conversion Builder: Every Type</h3></div><div id="h-conv"></div></section>
+  <section class="lab" id="g-mm"><div class="lab-h"><span class="tag game">Game</span><h3>Molar Mass Calculator</h3></div><div id="h-mm"></div></section>
+  <section class="lab" id="g-pct"><div class="lab-h"><span class="tag game">Game</span><h3>Percent Composition Calculator</h3></div><div id="h-pct"></div></section>
+  <section class="lab" id="g-emp"><div class="lab-h"><span class="tag game">Game</span><h3>Empirical or Molecular?</h3></div><div id="h-emp"></div></section>
+
+  <div class="part lc" id="g-reg" data-short="Regents practice"><div class="pn"><small>Set</small><span>✓</span></div><h2>Regents Practice</h2><p>Question clusters from the whole unit.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, S=A.U6;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:10px;font-size:15px"><div class="s6-road"><span class="s6-st on">g</span><span class="s6-ar">→</span><span class="s6-st on">mol</span><span class="s6-ar">→</span><span class="s6-st on">mol</span><span class="s6-ar">→</span><span class="s6-st on">L</span></div></div>`;
+S.Converter(A.$("#h-conv"),{make:l=>l==="part"?S.mkParticles():l==="mass"?S.mkMass():l==="vol"?S.mkVolume():l==="tri"?S.mkTriangle():l==="ratio"?S.mkRatio():S.mkStoich("mixed"),levels:[["mix","Stoichiometry"],["part","Particles"],["mass","Mass"],["vol","Volume"],["tri","Two steps"],["ratio","Mole ratio"]],levelLabel:"Type",map:true});
+S.MolarMassGame(A.$("#h-mm"));
+S.PercentGame(A.$("#h-pct"));
+S.EmpiricalGame(A.$("#h-emp"));
+const tbl=(cap,head,rows)=>A.tbl(cap,head,rows);
+A.RegentsSet(A.$("#qs"),[
+ {title:"Airbag Chemistry",intro:"<p>When a car crashes, a sensor triggers a small electrical spark inside the airbag. The spark causes solid sodium azide, NaN<sub>3</sub>, to decompose rapidly into sodium metal and nitrogen gas. The nitrogen gas inflates the airbag in less than 0.05 second. Equation 1 represents this reaction, and Figure 1 lists molar masses.</p><p style=\"text-align:center\">Equation 1: 2NaN<sub>3</sub>(s) → 2Na(s) + 3N<sub>2</sub>(g)</p>",fig:tbl("Figure 1: Molar Masses",["Substance","NaN<sub>3</sub>","Na","N<sub>2</sub>"],[["Molar mass (g/mol)","65.02","22.99","28.02"]]),
+  qs:[{type:"mc",stem:"What is the mole ratio of NaN<sub>3</sub> consumed to N<sub>2</sub> produced?",choices:["1 : 1","2 : 3","3 : 2","2 : 5"],ans:2,explain:"The coefficients are 2 for NaN₃ and 3 for N₂."},
+   {type:"text",stem:"An airbag contains 130.0 g of NaN<sub>3</sub>. Calculate the number of moles of NaN<sub>3</sub> in the airbag.",unit:"mol",width:110,check:v=>A.lenient(v,2.000,{sf:4}),explain:"130.0 g ÷ 65.02 g/mol = 2.000 mol."},
+   {type:"mc",stem:"What volume of N<sub>2</sub>(g) at STP is produced when 2.000 moles of NaN<sub>3</sub> decompose completely?",choices:["22.4 L","44.8 L","67.2 L","134 L"],ans:3,explain:"2.000 mol NaN₃ × (3 mol N₂ / 2 mol NaN₃) = 3.000 mol N₂; 3.000 mol × 22.4 L/mol = 67.2 L."},
+   {type:"cr",stem:"A student claims that the mass of N<sub>2</sub> produced equals the mass of NaN<sub>3</sub> that decomposed. State whether you support or refute the claim, and justify your answer using the conservation of mass.",parts:["Support or refute","Justification"],model:["Refute.","The total mass of the products (Na and N₂) equals the mass of NaN₃. Some of the mass becomes sodium, so the N₂ alone has less mass than the NaN₃."],noCredit:"Support, or a justification that ignores the sodium produced."}]},
+ {title:"Iron Supplements",intro:"<p>Iron is needed to make hemoglobin, the protein that carries oxygen in the blood. Many iron supplements contain iron(II) sulfate heptahydrate, FeSO<sub>4</sub>•7H<sub>2</sub>O. Figure 1 lists information about this compound.</p>",fig:tbl("Figure 1: Iron(II) Sulfate Heptahydrate",["Formula","Molar mass (g/mol)","Mass of water per mole (g)"],[["FeSO<sub>4</sub>•7H<sub>2</sub>O","278.05","126.14"]]),
+  qs:[{type:"mc",stem:"The prefix in “heptahydrate” indicates that each formula unit of FeSO<sub>4</sub> is combined with",choices:["5 water molecules","6 water molecules","7 water molecules","8 water molecules"],ans:3,explain:"Hepta- means 7."},
+   {type:"text",stem:"Calculate the percent by mass of water in FeSO<sub>4</sub>•7H<sub>2</sub>O.",unit:"%",width:100,check:v=>A.lenient(v,45.37,{sf:3}),explain:"(126.14 ÷ 278.05) × 100 = 45.4%."},
+   {type:"mc",stem:"What is the percent by mass of iron in FeSO<sub>4</sub>•7H<sub>2</sub>O?",choices:["7.0%","20.1%","36.8%","55.9%"],ans:2,explain:"(55.85 ÷ 278.05) × 100 = 20.1%."},
+   {type:"mc",stem:"A sample of the hydrate is heated until its mass stops changing. Which statement explains the decrease in mass?",choices:["Iron atoms are destroyed by heating.","Water leaves the crystal as a gas.","Sulfate ions turn into water.","The heat adds mass to the crystal."],ans:2,explain:"Heating drives the water out of the lattice as water vapor; the anhydrous compound remains."}]},
+ {title:"Nitrogen Fertilizers",intro:"<p>Plants need nitrogen to grow, but most plants cannot use nitrogen gas from the air. Farmers add nitrogen fertilizers to soil. Ammonia, NH<sub>3</sub>, is made by combining nitrogen and hydrogen (Equation 1). Ammonia is then used to make solid fertilizers such as ammonium nitrate and urea (Figure 1).</p><p style=\"text-align:center\">Equation 1: N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g)</p>",fig:tbl("Figure 1: Two Solid Fertilizers",["Fertilizer","Formula","Molar mass (g/mol)"],[["Ammonium nitrate","NH<sub>4</sub>NO<sub>3</sub>","80.06"],["Urea","CO(NH<sub>2</sub>)<sub>2</sub>","60.07"]]),
+  qs:[{type:"mc",stem:"How many moles of H<sub>2</sub> are needed to react completely with 4.0 moles of N<sub>2</sub>?",choices:["1.3 mol","4.0 mol","8.0 mol","12 mol"],ans:4,explain:"4.0 mol N₂ × (3 mol H₂ / 1 mol N₂) = 12 mol H₂."},
+   {type:"text",stem:"Calculate the mass of NH<sub>3</sub> (molar mass 17.04 g/mol) produced from 56.04 g of N<sub>2</sub> (molar mass 28.02 g/mol).",unit:"g",width:110,check:v=>A.lenient(v,68.16,{sf:4}),explain:"56.04 g ÷ 28.02 g/mol = 2.000 mol N₂ → × 2 = 4.000 mol NH₃ → × 17.04 g/mol = 68.16 g."},
+   {type:"cr",stem:"A farmer wants the fertilizer with the greater percent nitrogen by mass. Make a claim about which fertilizer in Figure 1 to choose, and support it with calculations.",parts:["Claim","Evidence"],model:["Urea.","Ammonium nitrate: (2 × 14.01 ÷ 80.06) × 100 = 35.0% N. Urea: (2 × 14.01 ÷ 60.07) × 100 = 46.6% N. Urea has the greater percent nitrogen."],noCredit:"A claim without both percents, or ammonium nitrate."}]},
+ {title:"Carbonated Water",intro:"<p>Sparkling water is made by dissolving carbon dioxide gas under pressure. A 0.50-liter bottle of sparkling water contains 3.5 g of dissolved CO<sub>2</sub> (molar mass 44.01 g/mol). When the bottle is opened, the gas slowly escapes.</p>",fig:"",
+  qs:[{type:"mc",stem:"How many moles of CO<sub>2</sub> are dissolved in the bottle?",choices:["0.080 mol","0.16 mol","1.5 mol","13 mol"],ans:1,explain:"3.5 g ÷ 44.01 g/mol = 0.080 mol."},
+   {type:"mc",stem:"How many molecules of CO<sub>2</sub> are dissolved in the bottle?",choices:["4.8 × 10<sup>22</sup>","2.1 × 10<sup>24</sup>","6.0 × 10<sup>23</sup>","1.3 × 10<sup>21</sup>"],ans:1,explain:"0.080 mol × 6.02 × 10²³ = 4.8 × 10²² molecules."},
+   {type:"text",stem:"Calculate the volume, in liters, that this CO<sub>2</sub> would occupy as a gas at STP.",unit:"L",width:100,check:v=>A.lenient(v,1.78,{sf:2}),explain:"0.0795 mol × 22.4 L/mol = 1.8 L."},
+   {type:"cr",stem:"Explain, in terms of the particles, why the gas released from the bottle takes up much more space than the dissolved CO<sub>2</sub>.",parts:["Explanation"],model:["In the gas phase the CO₂ molecules are far apart and move freely, while dissolved CO₂ molecules are close together surrounded by water molecules. The same number of molecules spreads out over a much larger volume as a gas."],noCredit:"An answer that says the number of molecules increases."}]}],{n:2});
+
+})();</script>
+<script>AS.U3.addSources("s-practice");AS.completion(document.querySelector(".wrap"),"s-practice");AS.chrome("s-practice");</script>
+</body>
+</html>

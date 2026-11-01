@@ -28,7 +28,7 @@
         <li>Bond Strength: <b>Triple Bond &gt; Double Bond &gt; Single Bond</b></li>
         <li class="added"><span class="def">Bond Order</span> – the number of shared pairs of electrons between two atoms (single = 1, double = 2, triple = 3).</li>
       </ul>
-      <p class="muted" style="font-size:14px">See <a href="b-covalent.html#p3">Covalent Bonding</a> for bond lengths and energies of single, double and triple bonds.</p>
+      <div class="center" id="order-art"></div>
     </div>
   </section>
 
@@ -40,6 +40,7 @@
           <ul><li>In a polar bond, the partially positive (δ+) and partially negative (δ−) ends attract each other. This adds to the attraction of both nuclei for the shared electrons.</li>
           <li>The more polar the bond, the larger this extra strength.</li></ul></li>
       </ul>
+      <div class="center" id="polstr-art"></div>
       <div class="tbl-wrap"><table class="nt" style="max-width:640px;margin:0 auto"><tr><th>Polar bond</th><th>Electronegativity difference</th><th>Energy (kJ/mol)</th><th>Nonpolar bonds (kJ/mol)</th><th>Average of the nonpolar bonds</th></tr>
         <tr><td><b>H–F</b></td><td>1.78</td><td><b>570</b></td><td>H–H 436, F–F 159</td><td>298</td></tr>
         <tr><td><b>H–Cl</b></td><td>0.96</td><td><b>431</b></td><td>H–H 436, Cl–Cl 242</td><td>339</td></tr>
@@ -102,6 +103,8 @@
 <script src="site.js"></script>
 <script>(function(){
 
+AS.$("#order-art").innerHTML=AS.U4.bondTrendArt("str");
+AS.$("#polstr-art").innerHTML=AS.U4.polBondArt();
 const A=AS, B=A.U4, L=B.lewis;
 const fp=sk=>["t","r","b","l"].filter(d=>!sk.includes(d)).map(d=>({d,n:2}));
 const x2=(s,sc)=>L({atoms:[{s,x:0,y:0,dots:fp(["r"])},{s,x:1.35,y:0,dots:fp(["l"])}],bonds:[{a:0,b:1,n:1}]},{scale:sc});

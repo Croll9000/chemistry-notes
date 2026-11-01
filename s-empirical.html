@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Empirical & Molecular Formulas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Stoichiometry · 7</span><h1>Empirical &amp; Molecular Formulas</h1><p>A molecular formula gives the exact number of each atom in a molecule. An empirical formula gives only the simplest ratio.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Patterns</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Empirical and molecular"><div class="pn"><small>Part</small><span>1</span></div><h2>Empirical and Molecular Formulas</h2><p>Exact numbers or the simplest ratio.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Empirical and Molecular Formulas</h2></div>
+    <div class="body">
+      <p class="intro">When chemists discover a new substance, such as a compound from a plant that might become a medicine, the first thing a lab can measure is how much of each element it contains. That measurement gives the ratio of the atoms, but not their exact numbers. The two kinds of formulas describe what is known at each stage.</p>
+      <ul>
+        <li>A molecular formula indicates exactly how many atoms of each element are present in a compound. Another type of formula, known as an empirical formula, conveys only the simplest ratio of elements in a compound. Data collected in a lab will often give information about the empirical but not the molecular formula.
+          <ul><li><span class="def">Molecular Formula</span> – indicates how many atoms of each element are present in a compound.</li>
+          <li><span class="def">Empirical Formula</span> – indicates the simplest (lowest whole-number) ratio of elements in a compound.</li></ul></li>
+        <li>Ex: glucose, C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> ÷ 6 → CH<sub>2</sub>O (empirical formula)</li>
+      </ul>
+      <div class="center" id="emp-art"></div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Converting Between Empirical and Molecular Formulas</h2></div>
+    <div class="body">
+      <ul>
+        <li>Steps for Finding the Empirical Formula from a Molecular Formula:
+          <ol><li>Find the largest number that divides every subscript evenly.</li>
+          <li>Divide every subscript by that number.</li></ol></li>
+        <li>Steps for Finding the Molecular Formula from an Empirical Formula:
+          <ol><li>Determine the mass of the empirical formula.</li>
+          <li>Divide the molar mass of the compound by the mass of the empirical formula.</li>
+          <li>Multiply the subscripts in the empirical formula by the answer from step 2.</li></ol></li>
+        <li>Ex: The molar mass of a compound with an empirical formula of NO<sub>2</sub> is 92 g/mol. What is the molecular formula?
+          <ul><li>Mass of NO<sub>2</sub> = 14.01 + 2(16.00) = 46.01 g/mol</li>
+          <li>92 ÷ 46.01 = 2</li>
+          <li>NO<sub>2</sub> × 2 → N<sub>2</sub>O<sub>4</sub></li></ul></li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="bridge">Simplify a molecular formula, or build one from its empirical formula.</p>
+
+  <section class="lab" id="emp">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Empirical or Molecular?</h3></div>
+    <div id="em-host"></div>
+  </section>
+
+  <div class="part enr" id="p2" data-short="Enrichment: % to formula"><div class="pn"><small>Part</small><span>2</span></div><h2>Percent Composition to Empirical Formula</h2><p>From lab data to a formula.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Converting Percent Composition to Empirical Formula</h2></div>
+    <div class="body">
+      <p class="intro">When a new compound is burned or broken down in an analysis lab, the result is a list of percents by mass. Turning those percents into a formula is how chemists identify unknown substances, from pollutants in water to new materials.</p>
+      <ul>
+        <li>Steps for Converting Percent Composition to Empirical Formula:
+          <ol><li>Assume 100 g of the substance, so each percent becomes a mass in grams.</li>
+          <li>Convert the mass of each element to moles (divide by its atomic mass).</li>
+          <li>Divide all mole values by the smallest number from step 2.</li>
+          <li>If the resulting values are whole numbers, use them as the subscripts of the empirical formula. If a value ends in about .5, multiply every value by 2.</li></ol></li>
+      </ul>
+      <div id="ex1"></div>
+    </div>
+  </section>
+
+  <p class="bridge enr">Assume 100 g, convert to moles, divide by the smallest.</p>
+
+  <section class="lab enr" id="pemp">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Percent to Formula</h3></div>
+    <div id="pe-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, S=A.U6, R=A.U5;
+const pair=(m,e)=>`<div class="col" style="gap:6px;align-items:center"><div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center"><div class="center" style="flex-direction:column;gap:2px">${R.molBox(m,1,{w:170,h:120,max:2})}<b>Molecular: ${S.f(m)}</b></div><span style="font-size:26px;color:#5f6b72">→</span><div class="center" style="flex-direction:column;gap:2px;font-size:26px;font-weight:800;min-height:120px;white-space:nowrap">${S.f(e)}<b style="font-size:16px;white-space:nowrap">Empirical: ${S.f(e)}</b></div></div></div>`;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:8px">${pair("C2H6","CH3")}</div>`;
+A.$("#emp-art").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center">${pair("H2O2","HO")}${pair("C2H6","CH3")}</div>`;
+S.EmpiricalGame(A.$("#em-host"));
+A.$("#ex1").innerHTML=`<div class="exbox">Ex: A compound is found to be 25.2% hydrogen and 74.8% carbon by mass. Determine the compound’s empirical formula.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Step 1: grams in 100 g</th><th>Step 2: moles</th><th>Step 3: ÷ smallest</th><th>Subscript</th></tr><tr><td><b>C</b></td><td>74.8 g</td><td>74.8 ÷ 12.01 = 6.23 mol</td><td>6.23 ÷ 6.23 = 1.00</td><td>1</td></tr><tr><td><b>H</b></td><td>25.2 g</td><td>25.2 ÷ 1.01 = 25.0 mol</td><td>25.0 ÷ 6.23 = 4.01</td><td>4</td></tr></table></div><p class="center"><b>Step 4:</b> the empirical formula is CH<sub>4</sub>.</p>`;
+S.PctEmpGame(A.$("#pe-host"));
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Which formula is an empirical formula?",choices:["N<sub>2</sub>O<sub>4</sub>","NH<sub>3</sub>","C<sub>3</sub>H<sub>6</sub>","P<sub>4</sub>O<sub>10</sub>"],ans:2,explain:"NH₃ cannot be simplified. The others can be divided by 2."},
+ {type:"mc",stem:"What is the empirical formula of a compound that has a carbon-to-hydrogen ratio of 2 to 6?",choices:["CH<sub>3</sub>","C<sub>2</sub>H<sub>6</sub>","C<sub>3</sub>H","C<sub>6</sub>H<sub>2</sub>"],ans:1,explain:"2 : 6 reduces to 1 : 3: CH₃."},
+ {type:"mc",stem:"A compound has the empirical formula CH<sub>2</sub>O and a molar mass of 60. g/mol. What is the molecular formula?",choices:["CH<sub>2</sub>O","C<sub>2</sub>H<sub>4</sub>O<sub>2</sub>","C<sub>3</sub>H<sub>8</sub>O","C<sub>4</sub>H<sub>8</sub>O<sub>4</sub>"],ans:2,explain:"CH₂O = 30. g/mol; 60. ÷ 30. = 2; CH₂O × 2 = C₂H₄O₂."},
+ {type:"mc",stem:"What is the molecular formula of a compound that has a molar mass of 54 g/mol and the empirical formula C<sub>2</sub>H<sub>3</sub>?",choices:["C<sub>2</sub>H<sub>3</sub>","C<sub>4</sub>H<sub>6</sub>","C<sub>6</sub>H<sub>9</sub>","C<sub>8</sub>H<sub>12</sub>"],ans:2,explain:"C₂H₃ = 27 g/mol; 54 ÷ 27 = 2; C₄H₆."},
+ {type:"text",stem:"Write the empirical formula of C<sub>8</sub>H<sub>18</sub>.",width:120,check:v=>A.U4.normF(v)==="C4H9"||"Divide both subscripts by 2.",explain:"8 and 18 are both divisible by 2: C₄H₉."}]);
+
+})();</script>
+<script>AS.U3.addSources("s-empirical");AS.completion(document.querySelector(".wrap"),"s-empirical");AS.chrome("s-empirical");</script>
+</body>
+</html>

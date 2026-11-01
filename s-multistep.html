@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Multistep Conversions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Stoichiometry · 5</span><h1>Multistep Conversions</h1><p>Mass, volume and particles can all be converted into each other by going through moles. With the mole ratio, a mass of one substance can be turned into a mass of another.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Mole triangle"><div class="pn"><small>Part</small><span>1</span></div><h2>The Mole Triangle</h2><p>Every route goes through moles.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Mole Triangle</h2></div>
+    <div class="body">
+      <p class="intro">Mass, volume and number of particles are three different ways to describe how much of a substance there is. None of them can be converted directly into another. Moles are the hub that connects all three, so every conversion in this unit passes through moles.</p>
+      <ul>
+        <li>The “mole triangle” is a visual aid to help convert between different stoichiometric quantities.</li>
+        <li>Steps to Use the Mole Triangle:
+          <ol><li>Start at the given unit on the mole triangle.</li>
+          <li>Move in the direction of the desired unit.</li>
+          <li>Follow the calculation shown on each arrow.</li></ol></li>
+      </ul>
+      <div id="map1"></div>
+    </div>
+  </section>
+
+  <p class="bridge">Two conversion factors: into moles, then out of moles.</p>
+
+  <section class="lab" id="tri">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Mole Triangle Converter</h3></div>
+    <div id="tr-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Mass–mass"><div class="pn"><small>Part</small><span>2</span></div><h2>Mass–Mass Conversions</h2><p>Grams of one substance to grams of another.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Mass–Mass Conversions</h2></div>
+    <div class="body">
+      <p class="intro">An airbag must fill with exactly the right amount of gas in a fraction of a second, and a pharmaceutical company must know how many grams of each ingredient to buy. Both problems start with a mass of one substance and end with a mass of another. Because substances react in mole ratios, not mass ratios, the route always goes through moles.</p>
+      <ul>
+        <li>If we are given the mass of a substance consumed or produced in a reaction, we can determine the corresponding mass of another substance consumed or produced in the same reaction. However, their masses are not necessarily equal. Substances must react with one another in the mole ratio given by the balanced equation.</li>
+        <li>Steps to Performing Mass–Mass Conversions:
+          <ol><li>Convert the mass of the given substance into moles using its molar mass.</li>
+          <li>Convert the moles of the given substance into moles of the target substance using the mole ratio.</li>
+          <li>Convert the moles of the target substance into mass using its molar mass.</li></ol></li>
+      </ul>
+      <div class="center"><div class="s6-road" style="font-size:16px"><span class="s6-st on">Given mass</span><span class="s6-ar">→</span><span class="s6-st on">Moles of given</span><span class="s6-ar">→</span><span class="s6-st on">Moles of target</span><span class="s6-ar">→</span><span class="s6-st on">Target mass</span></div></div>
+      <div id="ex1" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <div class="part" id="p3" data-short="Multistep"><div class="pn"><small>Part</small><span>3</span></div><h2>Multistep Mole Conversions</h2><p>Any unit of one substance to any unit of another.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Multistep Mole Conversions</h2></div>
+    <div class="body">
+      <p class="intro">Real problems mix units: a chemist may know the mass of a solid reactant and need the volume of gas it will produce. Joining two mole triangles with the mole ratio covers every possible combination.</p>
+      <ul>
+        <li>Steps to Performing Multistep Mole Conversions:
+          <ol><li>Convert the given unit into moles.</li>
+          <li>Convert moles of the given substance into moles of the target substance (if necessary).</li>
+          <li>Convert moles of the target substance into the desired unit.</li></ol></li>
+      </ul>
+      <div id="map2"></div>
+    </div>
+  </section>
+
+  <p class="bridge">Three conversion factors: into moles, mole ratio, out of moles.</p>
+
+  <section class="lab" id="stoich">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Stoichiometry Builder</h3></div>
+    <div id="st-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, S=A.U6;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:10px;font-size:15px"><div class="s6-road"><span class="s6-st on">g</span><span class="s6-ar">→</span><span class="s6-st on">mol</span><span class="s6-ar">→</span><span class="s6-st on">mol</span><span class="s6-ar">→</span><span class="s6-st on">g</span></div></div>`;
+S.MoleMap(A.$("#map1"));
+S.Converter(A.$("#tr-host"),{make:()=>S.mkTriangle(),map:true});
+A.$("#ex1").innerHTML=S.worked("Ex: Given 2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O, how many grams of H<sub>2</sub>O are produced from 8.00 g of H<sub>2</sub>?",[
+ ["<b>Step 1:</b> Convert the mass of the given substance (H<sub>2</sub>) into moles using its molar mass.",`${S.q("8.00","g","H2",1)}${S.cf(1,"mol","H2","2.02","g","H2",0,1)} = 3.96 ${S.u("mol","H2")}`],
+ ["<b>Step 2:</b> Convert moles of H<sub>2</sub> into moles of H<sub>2</sub>O using the mole ratio.",`${S.q("3.96","mol","H2",1)}${S.cf(2,"mol","H2O",2,"mol","H2",0,1)} = 3.96 ${S.u("mol","H2O")}`],
+ ["<b>Step 3:</b> Convert moles of H<sub>2</sub>O into mass using its molar mass.",`${S.q("3.96","mol","H2O",1)}${S.cf("18.02","g","H2O",1,"mol","H2O",0,1)} = 71.4 ${S.u("g","H2O")}`],
+ ["<b>All three steps in one line:</b>",`${S.q("8.00","g","H2",1)}${S.cf(1,"mol","H2","2.02","g","H2",1,1)}${S.cf(2,"mol","H2O",2,"mol","H2",1,1)}${S.cf("18.02","g","H2O",1,"mol","H2O",0,1)} = 71.4 ${S.u("g","H2O")}`]]);
+S.MoleMap(A.$("#map2"),{two:true});
+S.Converter(A.$("#st-host"),{make:l=>S.mkStoich(l),levels:[["mass","Mass to mass"],["mixed","Mixed units"]],map:true,how:"Read the problem. Fill each conversion factor in order: into moles of the given substance, the mole ratio, then out of moles of the target substance. Put the unit you want to cancel on the bottom."});
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Which sequence of steps converts the mass of one substance into the mass of another substance in a reaction?",choices:["mass → mass","mass → moles → mass","mass → moles → moles → mass","mass → volume → mass"],ans:3,explain:"Mass of given → moles of given (molar mass) → moles of target (mole ratio) → mass of target (molar mass)."},
+ {type:"text",stem:"How many liters of O<sub>2</sub>(g) at STP are in 64.0 g of O<sub>2</sub> (molar mass 32.00 g/mol)?",unit:"L",width:110,check:v=>A.lenient(v,44.8,{sf:3}),explain:"64.0 g ÷ 32.00 g/mol = 2.00 mol; 2.00 mol × 22.4 L/mol = 44.8 L."},
+ {type:"mc",stem:"How many molecules are present in 11.2 L of N<sub>2</sub>(g) at STP?",choices:["3.01 × 10<sup>23</sup>","6.02 × 10<sup>23</sup>","1.20 × 10<sup>24</sup>","6.74 × 10<sup>24</sup>"],ans:1,explain:"11.2 L ÷ 22.4 L/mol = 0.500 mol; 0.500 mol × 6.02 × 10²³ = 3.01 × 10²³ molecules."},
+ {type:"text",stem:"A self-inflating balloon contains 1.439 g of NaHCO<sub>3</sub> (molar mass 84.01 g/mol). Given C<sub>6</sub>H<sub>8</sub>O<sub>7</sub> + 3NaHCO<sub>3</sub> → 3CO<sub>2</sub> + 3H<sub>2</sub>O + Na<sub>3</sub>C<sub>6</sub>H<sub>5</sub>O<sub>7</sub>, calculate the mass of CO<sub>2</sub> (molar mass 44.01 g/mol) produced.",unit:"g CO₂",width:110,check:v=>A.lenient(v,0.7538,{sf:3}),explain:"1.439 g ÷ 84.01 g/mol = 0.01713 mol NaHCO₃ → × (3 mol CO₂ / 3 mol NaHCO₃) = 0.01713 mol CO₂ → × 44.01 g/mol = 0.754 g CO₂."},
+ {type:"cr",stem:"Explain why 2.0 g of H<sub>2</sub> does not produce 2.0 g of H<sub>2</sub>O, even though the mole ratio of H<sub>2</sub> to H<sub>2</sub>O is 1 : 1.",parts:["Explanation"],model:["The mole ratio compares moles, not grams. One mole of H₂O (18.02 g) has a much greater mass than one mole of H₂ (2.02 g), so the same number of moles of water has a greater mass."],noCredit:"An answer that treats the mole ratio as a mass ratio."}]);
+
+})();</script>
+<script>AS.U3.addSources("s-multistep");AS.completion(document.querySelector(".wrap"),"s-multistep");AS.chrome("s-multistep");</script>
+</body>
+</html>
