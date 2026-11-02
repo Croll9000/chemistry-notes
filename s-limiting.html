@@ -113,7 +113,7 @@ S.BurgerLab(A.$("#burger-host"));
 S.LimitSim(A.$("#sim-host"));
 A.$("#ty-art").innerHTML=S.yieldArt("20.0","17.0","product").replace(/<text[^>]*>% yield[^<]*<\/text>/,"");
 A.$("#py-art").innerHTML=S.yieldArt("20.0","17.0","product");
-S.LimitingGame(A.$("#lr-host"));
+S.LimitingGame(A.$("#lr-host"),{mode:"lim"});
 S.LimitingGame(A.$("#py-host"),{mode:"yield"});
 (function(){ const h=A.$("#hero-b"); S.BurgerLab(h); A.$$(".controls",h).forEach(c=>c.remove()); A.$$(".status",h).forEach(c=>c.remove()); A.$$("p",h).forEach(c=>c.remove()); const sv=h.querySelector("svg"); if(sv){ sv.setAttribute("viewBox","0 0 330 200"); sv.setAttribute("width","330"); } })();
 A.QSet(A.$("#qs"),[

@@ -1362,8 +1362,8 @@ body.enr-page{--teal:#8a4fc4;--teal-deep:#6a2c9a;--teal-ink:#4b1d70;--row:#f4edf
 .calc-t tr.calc-op .opsym{font-size:19px;font-weight:800}
 .calc-t tr.calc-res td{border-top:3px solid #1b2328}
 .calc-t tr.calc-tot td{border-top:3px solid #1b2328}
-.calc-t tr.calc-tot td:last-child{position:relative}
-.calc-t tr.calc-tot td:last-child::before{content:"+";position:absolute;left:-2px;top:-15px;font-size:20px;font-weight:800;color:#1b2328;background:#fff;line-height:1;padding:0 2px}
+.calc-t tr:has(+ tr.calc-tot) td:last-child{position:relative;padding-left:26px}
+.calc-t tr:has(+ tr.calc-tot) td:last-child::before{content:"+";position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:20px;font-weight:800;color:#1b2328;line-height:1;background:none}
 .s6-dg{font-weight:700;color:var(--ink)}
 .s6-da{justify-content:flex-start;margin:4px 0}
 .hl-wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;justify-content:center}
@@ -1385,7 +1385,6 @@ body.enr-page{--teal:#8a4fc4;--teal-deep:#6a2c9a;--teal-ink:#4b1d70;--row:#f4edf
 .s6-ftitle{background:linear-gradient(90deg,var(--teal) 0,var(--teal-deep) 100%);color:#fff;border-radius:12px;padding:12px 16px;font-size:18px;font-weight:600;line-height:1.45}
 .s6-ftitle b{color:#fff}.s6-ftitle .s6-fq{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;font-weight:800;margin-bottom:2px}
 .s6-fsteps{list-style:none;margin:0;padding:0 0 0 22px;position:relative;display:flex;flex-direction:column;gap:12px}
-.s6-fsteps::before{content:"";position:absolute;left:21px;top:16px;bottom:16px;width:3px;background:repeating-linear-gradient(var(--teal) 0 8px,transparent 8px 13px);border-radius:2px}
 .s6-fstep{position:relative;display:grid;grid-template-columns:minmax(170px,300px) minmax(0,1fr);gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:12px;padding:12px 16px 12px 30px;box-shadow:0 4px 12px rgba(14,95,114,.07)}
 .s6-fnum{position:absolute;left:-22px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--teal-deep);color:#fff;font-weight:800;font-size:17px;display:grid;place-items:center;border:3px solid #fff;box-shadow:0 0 0 2px var(--teal)}
 .s6-ftext{font-size:17px;line-height:1.45;color:var(--ink);font-weight:600}
@@ -1393,3 +1392,27 @@ body.enr-page{--teal:#8a4fc4;--teal-deep:#6a2c9a;--teal-ink:#4b1d70;--row:#f4edf
 .s6-fmath .mth{font-size:21px;flex-wrap:wrap}
 @media (max-width:720px){.s6-fstep{grid-template-columns:1fr}}
 .s6-mmcalc{overflow-x:auto;max-width:100%}.s6-eqfig{max-width:100%;overflow-x:auto}
+/* one rule for every game: after Check, a right box turns light green and a box that needs fixing turns red */
+.game input.ok:not([type=checkbox]):not([type=radio]),.lab-b input.ok:not([type=checkbox]):not([type=radio]),.skf input.ok,.ch input.ok{border-style:solid!important;border-color:var(--good)!important;background:var(--good-bg)!important}
+.game input.no:not([type=checkbox]):not([type=radio]),.lab-b input.no:not([type=checkbox]):not([type=radio]),.skf input.no,.ch input.no{border-style:solid!important;border-color:var(--bad)!important;background:var(--bad-bg)!important}
+.da-slot.good{border-color:var(--good)!important;background:var(--good-bg)!important}.da-slot.bad{border-color:var(--bad)!important;background:var(--bad-bg)!important}
+/* round 13: calculation equations stay on one line (scroll sideways on a narrow screen) */
+.lr-eq,.ch-line,.da-eq{flex-wrap:nowrap!important;justify-content:safe center;overflow-x:auto;overflow-y:hidden;white-space:nowrap}
+.lr-eq{padding:6px 4px}
+.ch-chain{flex-wrap:nowrap!important}
+.ch-line>*,.lr-eq>*,.da-eq>*{flex-shrink:0}
+/* step cards made from the older example boxes */
+.s6-fnote{font-weight:500;font-size:15px;color:#4a5257;margin-top:6px}
+.s6-fstep.s6-nomath{grid-template-columns:1fr}
+.s6-fart{display:flex;justify-content:center;align-items:center;background:#f6fafb}
+.s6-fart>.center{width:100%}
+.s6-fart svg{max-width:100%;height:auto}
+.s6-fmath .mth{flex-wrap:nowrap!important;white-space:nowrap}
+/* 1-mole samples: magnifier and balance */
+.ml{display:flex;flex-direction:column;gap:8px}
+.ml-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.ml-chip{border:2px solid #1b2328;background:#fff;border-radius:10px;padding:6px 12px;font:inherit;font-weight:800;cursor:grab;touch-action:none;color:var(--ink)}
+.ml-chip small{font-weight:600;color:#5f6b72}
+.ml-chip.sel{background:#e3f5fa;border-color:var(--teal)}
+.ml-ghost{position:fixed;z-index:999;pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.ml-t{margin:0 auto}.ml-t tr.ml-done td{background:#eaf7ee}

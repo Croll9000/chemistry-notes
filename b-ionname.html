@@ -183,7 +183,8 @@ A.$("#t2-art").innerHTML=[
 /* worked example: Fe2O3 */
 const eq=t=>`<p style="text-align:center;font-size:18px;margin:4px 0">${t}</p>`;
 A.$("#fe2o3-art").innerHTML=[
- box("Ex: Name Fe<sub>2</sub>O<sub>3</sub>. Step 1: Write the charge of the nonmetal ion.",eq(`Oxygen (group 16): <b style="color:#c40000">O<sup>2−</sup></b>`)),
+ box("Ex: Name Fe<sub>2</sub>O<sub>3</sub>.",""),
+ box("Step 1: Write the charge of the nonmetal ion.",eq(`Oxygen (group 16): <b style="color:#c40000">O<sup>2−</sup></b>`)),
  box("Step 2: Count the ions of each kind.",eq(`<b style="color:#005ea3">2 Fe ions</b> &nbsp; <b style="color:#c40000">3 O ions</b>`)),
  box("Step 3: Set the total charges equal to each other.",B.rods([{lab:"2 Fe ions: ? total",q:6,n:1,dash:true}],[{lab:"O²⁻",q:-2,n:3}],{U:30})+eq(`3 × (−2) = <b style="color:#c40000">6−</b><br>so the Fe ions must total <b style="color:#005ea3">6+</b>`)),
  box("Step 4: Find the charge of each metal ion and name the compound.",B.rods([{lab:"Fe³⁺",q:3,n:2}],[{lab:"O²⁻",q:-2,n:3}],{U:30})+eq(`6+ ÷ 2 = <b style="color:#005ea3">3+</b> → <b>iron(III) oxide</b>`))].join("");

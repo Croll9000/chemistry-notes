@@ -70,10 +70,16 @@
         <li>Similarly to how a “dozen” represents 12 of something, 1 <span class="def">mole</span> represents 6.02 × 10<sup>23</sup> of something.
           <ul><li>1 mole = 6.02 × 10<sup>23</sup> particles (atoms, molecules or formula units).</li>
           <li>The Reference Table lists this equivalence: 1 mole = 6.02 × 10<sup>23</sup>.</li></ul></li>
+        <li><span class="def">Avogadro’s Number</span> – the number of particles in one mole of any substance: 6.02 × 10<sup>23</sup>.</li>
       </ul>
       <div class="center" id="dozen-art"></div>
       <div class="center" id="eq-mol"></div>
     </div>
+  </section>
+
+  <section class="lab" id="mag">
+    <div class="lab-h"><span class="tag game">Game</span><h3>1 Mole Under the Magnifying Glass</h3></div>
+    <div id="ml-host"></div>
   </section>
 
   <div class="part" id="p3" data-short="Mole–particle conversions"><div class="pn"><small>Part</small><span>3</span></div><h2>Mole–Particle Conversions</h2><p>Multiply or divide by 6.02 × 10<sup>23</sup>.</p></div>
@@ -131,6 +137,7 @@ A.$("#da-ex").innerHTML=S.worked("Ex: How many inches are in 3.5 feet?",[
  ["<b>Steps 3–5:</b> Use 1 foot = 12 inches, with feet on the bottom so they cancel.",`${S.q("3.5","foot","",1)}${S.cf(12,"inches","",1,"foot","",0,1)}`],
  ["<b>Steps 6–7:</b> Multiply and check the unit.",`3.5 × 12 = 42 ${S.u("inches")}`]]);
 A.$("#dozen-art").innerHTML=S.dozenArt();
+S.MoleLab(A.$("#ml-host"));
 A.$("#eq-mol").innerHTML=S.eqFig([1,"mol"],[S.AVH,"particles"],"The particles can be atoms, molecules or formula units, depending on the substance.");
 A.$("#pm-art").innerHTML=S.pairArt("Particles","Moles",`÷ 6.02 × 10²³`,`× 6.02 × 10²³`);
 const W1=S.wk("Ex: How many molecules are in 1.75 moles of HCl?",[
