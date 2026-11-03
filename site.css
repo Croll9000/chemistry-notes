@@ -1416,3 +1416,8 @@ body.enr-page{--teal:#8a4fc4;--teal-deep:#6a2c9a;--teal-ink:#4b1d70;--row:#f4edf
 .ml-chip.sel{background:#e3f5fa;border-color:var(--teal)}
 .ml-ghost{position:fixed;z-index:999;pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 8px 20px rgba(0,0,0,.25)}
 .ml-t{margin:0 auto}.ml-t tr.ml-done td{background:#eaf7ee}
+.s6-qb{margin:8px 0;text-align:left}
+/* round 14: every step-by-step game question sits in the same bubble as the Unit 6 problems */
+.id-title{background:#fff;border:2px solid var(--teal);border-radius:12px;padding:14px 16px;margin:2px 0 12px;text-align:center}
+.id-title::before{content:"Problem";display:block;font-size:16px;font-weight:700;color:var(--teal-ink);margin-bottom:4px;font-style:normal}
+.skf-m:empty{display:none}

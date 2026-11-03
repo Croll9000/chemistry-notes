@@ -1615,7 +1615,7 @@ const U = A.U1 = {};
 U.COL = {A:"#2E75D6",B:"#E00000",C:"#00B050",D:"#FFD200",
   /* one color per element, used on every page: H blue, O red, C green (as in the notes), N purple, S yellow, Cl orange */
   H:"#2E75D6",O:"#E00000",Cg:"#00B050",N:"#7030A0",S:"#FFD200",P:"#FF9EC4",Cl:"#F28C28",F:"#9EE6E6",Br:"#8B2E1A",I:"#4B2A7A",
-  He:"#FFE0B3",Ne:"#FF6F61",Ar:"#A6A6A6",Kr:"#7A7A7A",Na:"#B7B7B7",Mg:"#9FA8B0",Fe:"#8A929A",Cu:"#D2843B",Al:"#C9CDD1",Zn:"#A9B4BE",Ag:"#D9D9D9",Au:"#F2C230",Si:"#C8A27A",Ca:"#E6E6E6",K:"#B39DDB",Li:"#CCCCCC",Hg:"#B8C4CC"};
+  He:"#FFE0B3",Ne:"#FF6F61",Ar:"#A6A6A6",Kr:"#7A7A7A",Na:"#A98BDB",Mg:"#9FA8B0",Fe:"#8A929A",Cu:"#D2843B",Al:"#C9CDD1",Zn:"#A9B4BE",Ag:"#D9D9D9",Au:"#F2C230",Si:"#C8A27A",Ca:"#E6E6E6",K:"#B7B7B7",Li:"#CCCCCC",Hg:"#B8C4CC"};
 U.colOf = s => s==="C"? U.COL.Cg : (U.COL[s] || "#9aa7ad");
 const DARKTXT = new Set(["S","D","Fe","He","Ag","Al","Au","P","Na","Zn","Mg","F","Si","Ca","Li","Hg","K"]);
 
@@ -3326,7 +3326,7 @@ P.addSources=(slug)=>{ const keys=PAGE_SRC[slug]; if(!keys) return; const wrap=d
 })();
 
 /* Unit 4: Chemical Bonding — shared games and simulations (A.U4).
-   Colors follow the notes: metal ions blue with "+", electrons red with "−", Na⁺ blue / Cl⁻ red in lattices,
+   Colors follow the notes: metal ions blue with "+", electrons red with "−", Na⁺ lavender / Cl⁻ orange (element colors) in lattices,
    metals pink / nonmetals blue / metalloids green on periodic tables. */
 (function(){
 "use strict";
@@ -3675,7 +3675,8 @@ B.IonicDrawer=function(host,o={}){
 };
 
 /* ---------- ions drawn as in the notes' lattice slides: Na⁺ blue, Cl⁻ red (larger), symbol inside ---------- */
-B.ion=(x,y,pos,o={})=>{ const r=o.r||(pos?15:21), lab=o.lab||(pos?"Na⁺":"Cl⁻"); return `<g><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${o.fill||(pos?"#2E75D6":"#E00000")}" stroke="#000" stroke-width="1.6"/>${o.text===false?"":`<text x="${x.toFixed(1)}" y="${(y+r*.33).toFixed(1)}" text-anchor="middle" font-size="${(r*.78).toFixed(1)}" font-weight="800" fill="${o.tc||"#fff"}" font-family="Inter,Arial">${lab}</text>`}</g>`; };
+const IONCOL={Na:"#A98BDB",Cl:"#F28C28"};
+B.ion=(x,y,pos,o={})=>{ const r=o.r||(pos?15:21), lab=o.lab||(pos?"Na⁺":"Cl⁻"), sy=(/^([A-Z][a-z]?)[⁺⁻²³+\-−]/.exec(lab)||[])[1], ec=!o.fill&&IONCOL[sy]; if(ec&&!o.tc) o=Object.assign({},o,{tc:"#1b2328"}); return `<g><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${o.fill||ec||(pos?"#2E75D6":"#E00000")}" stroke="#000" stroke-width="1.6"/>${o.text===false?"":`<text x="${x.toFixed(1)}" y="${(y+r*.33).toFixed(1)}" text-anchor="middle" font-size="${(r*.78).toFixed(1)}" font-weight="800" fill="${o.tc||"#fff"}" font-family="Inter,Arial">${lab}</text>`}</g>`; };
 /* one battery drawing for every circuit on the site: a cell with − (left) and + (right, copper cap) */
 B.battery=(cx,cy,o={})=>{ const w=o.w||64, h=o.h||26, x=cx-w/2, y=cy-h/2; return `<g><rect x="${x}" y="${y}" width="${w-8}" height="${h}" rx="5" fill="#2c3438" stroke="#111" stroke-width="1.5"/><rect x="${x+w-10}" y="${y+3}" width="10" height="${h-6}" rx="2" fill="#c8743f" stroke="#6b3618" stroke-width="1.2"/><text x="${x+12}" y="${cy+5.5}" text-anchor="middle" font-family="Inter,Arial" font-size="16" font-weight="900" fill="#fff">−</text><text x="${x+w-22}" y="${cy+5.5}" text-anchor="middle" font-family="Inter,Arial" font-size="16" font-weight="900" fill="#fff">+</text>${o.label===false?"":`<text x="${cx}" y="${y+h+14}" text-anchor="middle" font-family="Inter,Arial" font-size="11" fill="#5f6b72">${o.label||"battery"}</text>`}</g>`; };
 /* potassium iodide for the dissolving animations: ion colors that do not match water's red O and blue H */
@@ -4665,7 +4666,7 @@ const sub=s=>String(s).replace(/(\d+)/g,"<sub>$1</sub>");
 const SUBS="₀₁₂₃₄₅₆₇₈₉";
 const svgNS="http://www.w3.org/2000/svg";
 /* one color per element on every page (same as the Unit 1 particle drawings): H blue, O red, C green, N purple, S yellow, Cl orange */
-B.ATC={H:"#2E75D6",O:"#E00000",C:"#00B050",N:"#7030A0",S:"#FFD200",P:"#FF9EC4",Cl:"#F28C28",F:"#9EE6E6",Br:"#8B2E1A",I:"#4B2A7A",Si:"#C8A27A",B:"#f4b183",Xe:"#7fd3e8",Be:"#c7d9a7",Na:"#B7B7B7"};
+B.ATC={H:"#2E75D6",O:"#E00000",C:"#00B050",N:"#7030A0",S:"#FFD200",P:"#FF9EC4",Cl:"#F28C28",F:"#9EE6E6",Br:"#8B2E1A",I:"#4B2A7A",Si:"#C8A27A",B:"#f4b183",Xe:"#7fd3e8",Be:"#c7d9a7",Na:"#A98BDB",K:"#B7B7B7"};
 /* one style for each intermolecular force on every page: color = type, thickness and dash = strength */
 B.IMFSTY={id:{c:"#7030A0",w:5,da:"8 4"},hb:{c:"#E00000",w:3.4,da:"6 4"},dd:{c:"#F28C28",w:2.4,da:"5 4"},ldf:{c:"#5f6b72",w:1.4,da:"2 4"}};
 B.imfLine=(x1,y1,x2,y2,t,o={})=>{ const S=B.IMFSTY[t]; return `<line x1="${(+x1).toFixed(1)}" y1="${(+y1).toFixed(1)}" x2="${(+x2).toFixed(1)}" y2="${(+y2).toFixed(1)}" stroke="${S.c}" stroke-width="${S.w*(o.k||1)}" stroke-dasharray="${S.da}" stroke-linecap="round"${o.op!==undefined?` opacity="${o.op}"`:""}/>`; };
@@ -5682,7 +5683,7 @@ B.Bench=function(host){
     if(heating&&F().melt!==true){ const u=Math.min(1,(now-anim.t0)/1500); s+=`<defs><radialGradient id="bglow"><stop offset="0" stop-color="#ff7b39" stop-opacity=".55"/><stop offset="1" stop-color="#ff7b39" stop-opacity="0"/></radialGradient></defs><ellipse cx="${SX}" cy="${SY-8}" rx="80" ry="46" fill="url(#bglow)" opacity="${(u*.9).toFixed(2)}"/>`; }
     if(heating) for(let w=0;w<3;w++){ const ph=now/220+w*2; s+=`<path d="M${SX-30+w*30} ${SY-40}q6 -10 0 -20t0 -20" fill="none" stroke="#f28c28" stroke-width="1.6" opacity="${(.25+.2*Math.sin(ph)).toFixed(2)}" transform="translate(${(Math.sin(ph)*3).toFixed(1)} ${(-((now/30+w*20)%20)).toFixed(1)})"/>`; }
     /* dissolving: particles spread through the water */
-    if(st.aq&&F().dis){ const age=Math.min(1,(now-(st.aqT||0))/1200), IC={nacl:["Na","Cl"],kcl:["K","Cl"]}[k]||["Na","Cl"]; for(let q=0;q<26;q++){ const fr=v=>v-Math.floor(v), r1=fr(Math.sin(q*12.9898+1)*43758.5), r2=fr(Math.sin(q*78.233+3)*24634.6), px=SX-52+104*fr(r1+now/9000*(q%2?1:-1)), py=SY-42+54*fr(r2+Math.sin(now/700+q)*.03); const x=SX+(px-SX)*age, y=SY+4+(py-SY-4)*age; s+=T==="ionic"?`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${q%2?"#2E75D6":"#E00000"}" stroke="#000" stroke-width=".6"/>`:`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="#fff" stroke="#7a8fa0" stroke-width=".8"/>`; } }
+    if(st.aq&&F().dis){ const age=Math.min(1,(now-(st.aqT||0))/1200), IC={nacl:["Na","Cl"],kcl:["K","Cl"]}[k]||["Na","Cl"]; for(let q=0;q<26;q++){ const fr=v=>v-Math.floor(v), r1=fr(Math.sin(q*12.9898+1)*43758.5), r2=fr(Math.sin(q*78.233+3)*24634.6), px=SX-52+104*fr(r1+now/9000*(q%2?1:-1)), py=SY-42+54*fr(r2+Math.sin(now/700+q)*.03); const x=SX+(px-SX)*age, y=SY+4+(py-SY-4)*age; s+=T==="ionic"?`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${({Na:"#A98BDB",K:"#B7B7B7",Cl:"#F28C28"})[IC[q%2?0:1]]||(q%2?"#2E75D6":"#E00000")}" stroke="#000" stroke-width=".6"/>`:`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="#fff" stroke="#7a8fa0" stroke-width=".8"/>`; } }
     if(F().melt==="burn"&&rec[k]&&rec[k].heat&&rec[k].heat.startsWith("burns")&&!st.aq) s+=`<circle cx="${SX}" cy="${SY-10}" r="${30+Math.sin(now/50)*4}" fill="#fff" opacity=".9"/><circle cx="${SX}" cy="${SY-10}" r="50" fill="#fffbe0" opacity=".5"/>`;
     /* hammer swing */
     if(anim&&anim.t==="hammer"&&now-anim.t0<1100){ /* raised overhead (0–250 ms), strikes the top of the sample (250–420 ms), lifts back up (420–1100 ms) */
@@ -7235,7 +7236,7 @@ R.oxideArt=()=>{ const W=620, H=280; let s=`<svg viewBox="0 0 ${W} ${H}" width="
 
 /* ---------- double replacement: pour one clear solution into another; a zoom shows the ions swap partners and AgCl forms a solid ---------- */
 (function(){ const A=window.AS, B=A.U4, U=A.U1, R=A.U5; if(!R) return;
-const ION={Ag:["Ag⁺","#B7BEC3","#1b2328",11],NO3:["NO₃⁻","#7030A0","#fff",14],Na:["Na⁺","#9aa7ad","#1b2328",10],Cl:["Cl⁻","#F28C28","#1b2328",14]};
+const ION={Ag:["Ag⁺","#B7BEC3","#1b2328",11],NO3:["NO₃⁻","#7030A0","#fff",14],Na:["Na⁺","#A98BDB","#1b2328",10],Cl:["Cl⁻","#F28C28","#1b2328",14]};
 const ion=(x,y,k)=>{ const [lab,f,tc,r]=ION[k]; return B.ion(x,y,k==="Ag"||k==="Na",{r,lab,fill:f,tc}); };
 R.pptArt=(t)=>{ const W=640, H=300, T=8, u=t%T, pour=Math.min(1,u/1.6), mix=Math.max(0,Math.min(1,(u-1.4)/3.2));
   let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Silver nitrate solution is poured into sodium chloride solution. In the zoomed view, silver ions and chloride ions join into solid silver chloride while sodium and nitrate ions stay dissolved."><rect width="${W}" height="${H}" fill="#fff"/>`;
@@ -7899,7 +7900,7 @@ S.MoleMap=function(host,o={}){ const two=!!o.two; let from=null, to=null;
     const col=on?"#F28C28":"#9aa7ad", vert=Math.abs(uy)>.85, tw=S.svgTxt(lab).length*(on?8.6:7.6);
     const lx= vert? (nx>0? (sx+ex)/2+14 : (sx+ex)/2-14) : mx, anc= vert? (nx>0?"start":"end") : "middle", ly=vert? (sy+ey)/2+5 : my+5;
     const bxx= vert? (nx>0? lx+tw+16 : lx-tw-16) : mx-tw/2-16;
-    return `<path d="M${sx.toFixed(1)} ${sy.toFixed(1)}L${ex.toFixed(1)} ${ey.toFixed(1)}" stroke="${col}" stroke-width="${on?5:2.4}" marker-end="url(#${on?"mmh":"mmg"})"/>`+(()=>{ TOP.push(`<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anc}" font-family="Inter,Arial" font-size="${on?16:14}" font-weight="800" fill="${on?"#b45f06":"#5f6b72"}" stroke="#fff" stroke-width="5" paint-order="stroke">${S.svgTxt(lab)}</text>`+
+    return `<path d="M${sx.toFixed(1)} ${sy.toFixed(1)}L${ex.toFixed(1)} ${ey.toFixed(1)}" stroke="${col}" stroke-width="${on?5:2.4}" marker-end="url(#${on?"mmh":"mmg"})"/>`+(()=>{ TOP.push((()=>{ const a=`x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anc}" font-family="Inter,Arial" font-size="${on?16:14}" font-weight="800"`; return `<text ${a} fill="#fff" stroke="#fff" stroke-width="6" stroke-linejoin="round" aria-hidden="true">${S.svgTxt(lab)}</text><text ${a} fill="${on?"#b45f06":"#5f6b72"}">${S.svgTxt(lab)}</text>`; })()+
       (on&&num?(()=>{ const bx2= vert? (anc==="start"? lx+tw/2 : lx-tw/2) : lx, by2=ly-30; return `<circle cx="${bx2.toFixed(1)}" cy="${by2.toFixed(1)}" r="12" fill="#F28C28" stroke="#fff" stroke-width="2"/>`+T(bx2,by2+5,num,{fs:13,c:"#fff",w:800}); })():"")); return ""; })(); };
   let TOP=[];
   function draw(){ TOP=[]; const P=route(), used={}; for(let i=1;i<P.length;i++) used[P[i-1]+">"+P[i]]=i;
@@ -8385,7 +8386,7 @@ S.workedTabs=(host,list)=>{ host.innerHTML=`<div class="controls s6-wtabs" style
   const w=host.querySelector('[data-r="w"]'); const show=i=>{ w.innerHTML=S.worked(list[i].title,list[i].steps); A.$$(".seg button",host).forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.i===i))); };
   A.$$(".seg button",host).forEach(b=>b.addEventListener("click",()=>show(+b.dataset.i))); show(0); };
 /* a worked example in numbered step boxes (same layout as Unit 0) */
-S.worked=(title,steps)=>`<div class="s6-flow"><div class="s6-ftitle"><span class="s6-fq">Example</span>${title}</div><ol class="s6-fsteps">${steps.map(([t,m],i)=>`<li class="s6-fstep"><span class="s6-fnum">${i+1}</span><div class="s6-ftext">${t}</div><div class="s6-fmath"><span class="mth">${m}</span></div></li>`).join("")}</ol></div>`;
+S.worked=(title,steps)=>`<div class="s6-flow"><div class="s6-ftitle"><span class="s6-fq">Example</span>${String(title).replace(/^\s*Ex[:.]\s*/,"")}</div><ol class="s6-fsteps">${steps.map(([t,m],i)=>`<li class="s6-fstep"><span class="s6-fnum">${i+1}</span><div class="s6-ftext">${String(t).replace(/^\s*(<b>)?\s*Step\s+\d+\s*:?\s*(<\/b>)?\s*/i,"")}</div><div class="s6-fmath"><span class="mth">${m}</span></div></li>`).join("")}</ol></div>`;
 /* an equivalence and the two conversion factors made from it */
 S.eqFig=(a,b,note)=>`<div class="s6-eqfig"><div><b>Equivalence</b><div class="mth" style="font-size:22px;justify-content:center">${S.q(a[0],a[1],a[2])} = ${S.q(b[0],b[1],b[2])}</div></div><div><b>Conversion factors</b><div class="mth" style="font-size:22px;gap:28px;display:flex;flex-wrap:wrap;justify-content:center">${S.cf(b[0],b[1],b[2],a[0],a[1],a[2])}${S.cf(a[0],a[1],a[2],b[0],b[1],b[2])}</div></div>${note?`<p class="muted" style="margin:4px 0 0;font-size:14px">${note}</p>`:""}</div>`;
 })();
@@ -8970,6 +8971,9 @@ S.validQ=(t,b,rxn)=>{ const molOf=x=>{ const u=ucl(x.u); if(u==="mol") return [x
    Too few significant figures gets a hint instead of a silent miss. Returns true, false or a hint. */
 S.chk=(raw,want,o={})=>{ const p=A.parseTyped(String(raw==null?"":raw).replace(/−/g,"-")); if(!p) return false; const tol=o.tol??.015, minSf=o.minSf??2;
   const err=Math.abs(p.v-want);
+  /* any correct rounding of the value made from the student's own numbers counts, at minSf significant figures or more
+     (so 40 for 39.66 at 2 sig figs, even though "40" looks like 1 sig fig) */
+  if(want!==0){ for(let n=Math.max(1,minSf);n<=8;n++){ const r=+Number(want).toPrecision(n); if(Math.abs(p.v-r)<=Math.abs(r)*1e-9+1e-12) return true; } }
   if(p.sf<minSf){ if(err<=p.unit*1.01||err<=Math.abs(want)*.2) return `Round to at least ${minSf} significant figures.`; return false; }
   if(err<=Math.abs(want)*tol+1e-12) return true;
   if(err<=p.unit*1.01) return "Almost: check your rounding.";
@@ -9097,7 +9101,7 @@ S.HydrateName=function(host){ let done=0, mode="f2n", cur=null;
 
 /* the lattice picture: Cl⁻ in the site's chlorine color; each water sits in a gap between four ions */
 S.hydrateArt=()=>{ const W=560, H=262; let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Anhydrous copper(II) chloride is a lattice of ions with one Cu2+ ion for every two Cl- ions and no water. In the hydrate CuCl2•2H2O, two water molecules sit in the spaces between the ions for every Cu2+ ion."><rect width="${W}" height="${H}" fill="#fff"/>`;
-  const ion=(x,y,cat)=>B.ion(x,y,cat,{r:cat?13:16,lab:cat?"Cu²⁺":"Cl⁻",fill:cat?"#2E75D6":R.col("Cl")});
+  const ion=(x,y,cat)=>B.ion(x,y,cat,{r:cat?13:16,lab:cat?"Cu²⁺":"Cl⁻",fill:cat?"#138D90":"#F28C28",tc:cat?"#fff":"#1b2328"});
   const lat=(x0,y0,dx,dy)=>{ let q=""; for(let r=0;r<3;r++) for(let c=0;c<3;c++){ const cat=(c+r)%3===1; q+=ion(x0+c*dx,y0+r*dy,cat); } return q; };
   s+=lat(62,62,44,44);
   /* the hydrate lattice is spread out: the ions are farther apart because water molecules fill the spaces */
@@ -9172,7 +9176,8 @@ S.HydrateLab=function(host){ let cur=HYD[0], where="bench", heat=0, heated=false
 /* round 13: every numbered worked example uses the step-card layout (number badge, words on the left, work on the right).
    Turns runs of .ex-box "Step N: ..." boxes into the same cards S.worked makes. */
 (function(){ const A=window.AS;
-A.stepCards=(root)=>{ A.$$(".ex-grid",root).forEach(gr=>{ const kids=[...gr.children]; if(!kids.some(k=>k.matches(".ex-box")&&/^\s*Step\s+\d+/i.test((k.querySelector("p b")||{}).textContent||""))) return;
+A.stepCards=(root)=>{ A.$$(".exbox",root).forEach(b=>{ const d=document.createElement("div"); d.className="s6-ftitle s6-qb"; d.innerHTML=`<span class="s6-fq">Example</span>${b.innerHTML.replace(/^\s*Ex[:.]\s*/,"")}`; b.replaceWith(d); });
+  A.$$(".ex-grid",root).forEach(gr=>{ const kids=[...gr.children]; if(!kids.some(k=>k.matches(".ex-box")&&/^\s*Step\s+\d+/i.test((k.querySelector("p b")||{}).textContent||""))) return;
     gr.classList.remove("ex-grid"); gr.classList.add("s6-flow","s6-auto"); gr.style.gridTemplateColumns=""; let ol=null;
     kids.forEach(k=>{ const b=k.matches(".ex-box")&&k.querySelector("p b"), m=b&&/^\s*Step\s+(\d+)\s*[:.]?\s*/i.exec(b.textContent);
       if(!m){ ol=null; if(b&&/^\s*Ex[:.]/.test(b.textContent)&&!k.querySelector(":scope > .center")){ const d=document.createElement("div"); d.className="s6-ftitle"; d.innerHTML=`<span class="s6-fq">Example</span>${b.innerHTML.replace(/^\s*Ex[:.]\s*/,"")}`; gr.replaceChild(d,k); } return; }
@@ -9255,7 +9260,7 @@ S.MoleLab=function(host,o={}){ const scale=!!o.scale, list=o.items?SAMP.filter(s
 const F='font-family="InterSupSub,Inter,Arial,sans-serif"';
 const C={blue:"#2E75D6",red:"#E00000",green:"#00B050",purple:"#7030A0",orange:"#F28C28",teal:"#40BAD2",tealD:"#1f8fa8",yellow:"#FFD200",gray:"#8a949a",ink:"#1b2328",
   metal:"#f6c3cc",non:"#bfe3f5",mtd:"#d9ec9f"};
-const ATC={H:"#2E75D6",O:"#E00000",C:"#00B050",N:"#7030A0",S:"#FFD200",Cl:"#F28C28",F:"#9EE6E6",Na:"#B7B7B7",K:"#B7B7B7",Pb:"#6d7b85",I:"#4B2A7A",Al:"#c9c9c9",Mg:"#c9c9c9"};
+const ATC={H:"#2E75D6",O:"#E00000",C:"#00B050",N:"#7030A0",S:"#FFD200",Cl:"#F28C28",F:"#9EE6E6",Na:"#A98BDB",K:"#B7B7B7",Pb:"#6d7b85",I:"#4B2A7A",Al:"#c9c9c9",Mg:"#c9c9c9"};
 const DARK=new Set(["H","O","C","N","I","Pb"]);
 const svg=(W,H,body,alt)=>`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="${alt.replace(/"/g,"&quot;")}" ${F}><rect width="${W}" height="${H}" fill="#fff"/>${body}</svg>`;
 const T=(x,y,s,o={})=>`<text x="${x}" y="${y}" font-size="${o.s||14}" font-weight="${o.w||500}" fill="${o.c||C.ink}" text-anchor="${o.a||"middle"}"${o.it?' font-style="italic"':""}>${s}</text>`;
@@ -9583,7 +9588,7 @@ add(26,"p-families","Hydrogen: A Family of Its Own",
  add(29,"p-ionic","Atoms and Their Ions",
  "A sodium atom loses its whole outer shell when it becomes Na⁺, so the ion is much smaller. A chlorine atom gains an electron but no protons when it becomes Cl⁻, so the ion is larger. Circles are drawn to scale.",
  "Circles drawn to scale: a sodium atom (160 pm) shrinks to a smaller Na+ ion (102 pm). A chlorine atom (100 pm) grows into a larger Cl− ion (181 pm).",470,200,
- c(60,160,"#d6dcdf","Na","160 pm")+arr(116,100,146,100)+c(180,102,"#d6dcdf","Na⁺","102 pm")+c(290,100,C.orange,"Cl","100 pm")+arr(326,100,356,100)+c(410,181,C.orange,"Cl⁻","181 pm")
+ c(60,160,"#A98BDB","Na","160 pm")+arr(116,100,146,100)+c(180,102,"#A98BDB","Na⁺","102 pm")+c(290,100,C.orange,"Cl","100 pm")+arr(326,100,356,100)+c(410,181,C.orange,"Cl⁻","181 pm")
  +T(120,30,"metal: ion is smaller",{s:13,w:800,c:C.red})+T(350,30,"nonmetal: ion is larger",{s:13,w:800,c:C.blue})+T(235,192,"",{})); })();
 
 /* 30 Lewis structure, ionic: NaCl */

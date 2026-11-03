@@ -150,8 +150,8 @@ A.$("#brittle-art").innerHTML=`<div class="lw-row" style="gap:10px;flex-wrap:wra
 A.$("#elec-art").innerHTML=(()=>{ let s=`<svg viewBox="0 0 360 260" width="360" style="max-width:100%;height:auto" role="img" aria-label="NaCl solution with two electrodes: Na+ ions move to the negative electrode and Cl- ions move to the positive electrode"><rect width="360" height="260" fill="#fff"/>`;
   s+=`<path d="M90 120V40H160M200 40H270V120" fill="none" stroke="#1b2328" stroke-width="3"/><rect x="158" y="26" width="12" height="28" fill="#1b2328"/><rect x="176" y="18" width="6" height="44" fill="#1b2328"/>${T(150,20,"−",{fs:18,fw:800})}${T(194,16,"+",{fs:18,fw:800})}${T(179,78,"battery",{fs:11,fw:600,c:"#5f6b72"})}`;
   s+=`<path d="M50 100V240H310V100" fill="#cfe9f8" stroke="#1b2328" stroke-width="3"/><rect x="82" y="110" width="16" height="115" fill="#5f6b72"/><rect x="262" y="110" width="16" height="115" fill="#5f6b72"/>${T(90,106,"−",{fs:18,fw:800})}${T(270,106,"+",{fs:18,fw:800})}`;
-  [[140,140],[130,200],[175,170]].forEach(([x,y])=>{ s+=`<path d="M${x-16} ${y}H${x-44}M${x-38} ${y-6}l-7 6 7 6" stroke="#2E75D6" stroke-width="2.5" fill="none"/>`+B.ion(x,y,true,{r:12,lab:"Na⁺"}); });
-  [[215,150],[230,205],[200,195]].forEach(([x,y])=>{ s+=`<path d="M${x+18} ${y}H${x+44}M${x+38} ${y-6}l7 6 -7 6" stroke="#E00000" stroke-width="2.5" fill="none"/>`+B.ion(x,y,false,{r:15,lab:"Cl⁻"}); });
+  [[140,140],[130,200],[175,170]].forEach(([x,y])=>{ s+=`<path d="M${x-16} ${y}H${x-44}M${x-38} ${y-6}l-7 6 7 6" stroke="#7d5fc0" stroke-width="2.5" fill="none"/>`+B.ion(x,y,true,{r:12,lab:"Na⁺"}); });
+  [[215,150],[230,205],[200,195]].forEach(([x,y])=>{ s+=`<path d="M${x+18} ${y}H${x+44}M${x+38} ${y-6}l7 6 -7 6" stroke="#F28C28" stroke-width="2.5" fill="none"/>`+B.ion(x,y,false,{r:15,lab:"Cl⁻"}); });
   s+=T(180,255,"NaCl(aq)",{fs:13}); return s+`</svg>`; })();
 
 /* labs */

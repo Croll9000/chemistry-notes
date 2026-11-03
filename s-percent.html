@@ -66,12 +66,11 @@
           <ol><li>Name the ionic compound.</li>
           <li>Include a prefix to show the number of water molecules for every formula unit of the ionic compound.</li>
           <li>Attach the ending “-hydrate” after the prefix.</li></ol></li>
-        <li>Ex: MgSO<sub>4</sub>•7H<sub>2</sub>O: magnesium sulfate → hepta- (7) → magnesium sulfate heptahydrate</li>
         <li>Steps for Writing the Formula of a Hydrate:
           <ol><li>Write the formula for the ionic compound.</li>
           <li>Identify the number of water molecules per formula unit from the prefix, and write it after a dot: •<i>n</i>H<sub>2</sub>O.</li></ol></li>
-        <li>Ex: copper(II) chloride pentahydrate → CuCl<sub>2</sub> + penta- (5) → CuCl<sub>2</sub>•5H<sub>2</sub>O</li>
       </ul>
+      <div id="hn-ex" style="margin:10px 0"></div>
       <div class="center" id="hn-art" style="flex-direction:column"></div>
       <div class="tbl-wrap"><table class="nt" style="max-width:520px;margin:6px auto"><tr><th>Prefix</th><th>Number</th><th>Prefix</th><th>Number</th></tr><tr><td>Mono-</td><td>1</td><td>Hexa-</td><td>6</td></tr><tr><td>Di-</td><td>2</td><td>Hepta-</td><td>7</td></tr><tr><td>Tri-</td><td>3</td><td>Octa-</td><td>8</td></tr><tr><td>Tetra-</td><td>4</td><td>Nona-</td><td>9</td></tr><tr><td>Penta-</td><td>5</td><td>Deca-</td><td>10</td></tr></table></div>
     </div>
@@ -92,8 +91,8 @@
         <li>The percent of water by mass can be found from a lab measurement or from the formula:
           <ul><li>From the lab: % water = (mass of water lost ÷ mass of hydrate) × 100</li>
           <li>From the formula: % water = (mass of water in one mole of the hydrate ÷ molar mass of the hydrate) × 100</li></ul></li>
-        <li>Ex: CuSO<sub>4</sub>•5H<sub>2</sub>O (249.71 g/mol) contains 5 × 18.02 = 90.10 g of water per mole: (90.10 ÷ 249.71) × 100 = 36.1% water</li>
       </ul>
+      <div id="hw-ex" style="margin:10px 0"></div>
       <div class="center" id="hb-art"></div>
     </div>
   </section>
@@ -121,6 +120,27 @@ S.PercentGame(A.$("#pc-host"));
 A.$("#hyd-art").innerHTML=S.hydrateArt();
 A.$("#hn-art").innerHTML=S.hydPic("MgSO4",7)+`<p class="muted center" style="margin:2px 0 0;font-size:14px">MgSO<sub>4</sub>•7H<sub>2</sub>O: 7 water molecules for every formula unit of magnesium sulfate</p>`;
 A.$("#hb-art").innerHTML=S.hydBar("CuSO4",5);
+
+/* worked examples: naming hydrates and percent water */
+{ const big=t=>`<span style="font-size:22px;font-weight:800">${t}</span>`;
+  S.workedTabs(A.$("#hn-ex"),[
+   {label:"Formula → name (MgSO₄•7H₂O)",title:"Name MgSO<sub>4</sub>•7H<sub>2</sub>O.",steps:[
+    ["Name the ionic compound.",`MgSO<sub>4</sub> → Mg<sup>2+</sup> + SO<sub>4</sub><sup>2−</sup> → magnesium sulfate`],
+    ["Use a prefix for the number of water molecules per formula unit.",`•7H<sub>2</sub>O → 7 → hepta-`],
+    ["Attach the ending “-hydrate” after the prefix.",big("magnesium sulfate heptahydrate")]]},
+   {label:"Name → formula (copper(II) chloride pentahydrate)",title:"Write the formula of copper(II) chloride pentahydrate.",steps:[
+    ["Write the formula for the ionic compound.",`Cu<sup>2+</sup> + Cl<sup>−</sup> → criss-cross → CuCl<sub>2</sub>`],
+    ["Find the number of water molecules from the prefix.",`penta- → 5 → 5H<sub>2</sub>O`],
+    ["Write the water after a dot.",big("CuCl<sub>2</sub>•5H<sub>2</sub>O")]]}]);
+  const ma=S.mm("CuSO4"), mw=5*S.mm("H2O"), mt=ma+mw;
+  S.workedTabs(A.$("#hw-ex"),[
+   {label:"From the formula (CuSO₄•5H₂O)",title:"What is the percent of water by mass in CuSO<sub>4</sub>•5H<sub>2</sub>O?",steps:[
+    ["Find the mass of water in one mole of the hydrate.",`5 × 18.02 g = ${mw.toFixed(2)} g H<sub>2</sub>O`],
+    ["Find the molar mass of the hydrate: the ionic compound plus the water.",`${ma.toFixed(2)} g + ${mw.toFixed(2)} g = ${mt.toFixed(2)} g`],
+    ["Divide the part (water) by the whole (hydrate) and multiply by 100.",`(${mw.toFixed(2)} g ÷ ${mt.toFixed(2)} g) × 100 = ${(mw/mt*100).toFixed(1)}% water`]]},
+   {label:"From lab data",title:"A 4.00 g sample of CuSO<sub>4</sub>•5H<sub>2</sub>O is heated until all of the water is driven off. 2.56 g of anhydrous CuSO<sub>4</sub> is left. What is the percent of water by mass?",steps:[
+    ["Find the mass of water lost: mass before heating minus mass after heating.",`4.00 g − 2.56 g = 1.44 g H<sub>2</sub>O`],
+    ["Divide the part (water lost) by the whole (hydrate) and multiply by 100.",`(1.44 g ÷ 4.00 g) × 100 = 36.0% water`]]}]); }
 S.HydrateName(A.$("#hn-host"));
 S.HydrateLab(A.$("#hl-host"));
 A.QSet(A.$("#qs"),[
