@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Ionic bonds"><div class="pn"><small>Part</small><span>1</span></div><h2>Ionic Bonds</h2><p>A metal transfers electrons to a nonmetal.</p></div>
+  <div class="part" id="p1" data-short="Ionic bonds"><div class="pn"><small>Part</small><span>1</span></div><h2>Ionic Bonds</h2><p>Magnesium oxide, MgO, melts at 2852 °C and is used to line the inside of steel-making furnaces. Each magnesium atom gives its 2 valence electrons to an oxygen atom, forming Mg²⁺ and O²⁻ ions whose opposite charges attract strongly. In this section, we will discuss how ionic bonds form when a metal transfers electrons to a nonmetal.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ionic Bonds</h2></div>
@@ -36,7 +36,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Drawing ionic structures"><div class="pn"><small>Part</small><span>2</span></div><h2>Drawing Lewis Structures for Ionic Compounds</h2><p>Arrows show each electron moving from the metal to the nonmetal.</p></div>
+  <div class="part" id="p2" data-short="Drawing ionic structures"><div class="pn"><small>Part</small><span>2</span></div><h2>Drawing Lewis Structures for Ionic Compounds</h2><p>Potassium chloride, KCl, is sold as a salt substitute for people who need to limit the sodium in their diet. Its formula follows directly from its Lewis structure: potassium has 1 valence electron to give, and chlorine needs exactly 1 electron to complete its octet. In this section, we will draw Lewis structures for ionic compounds, using arrows to show each electron moving from the metal to the nonmetal.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Drawing Lewis Structures (Ionic)</h2></div>
@@ -63,7 +63,7 @@
     <div class="body"><div class="ex-grid" id="na2s-art"></div></div>
   </section>
 
-  <div class="part" id="p3" data-short="Net charge"><div class="pn"><small>Part</small><span>3</span></div><h2>Ionic Compounds and Charge</h2><p>The positive and negative charges always cancel.</p></div>
+  <div class="part" id="p3" data-short="Net charge"><div class="pn"><small>Part</small><span>3</span></div><h2>Ionic Compounds and Charge</h2><p>Fertilizer labels list their potassium content as K₂O, potassium oxide, which contains two potassium ions for every oxide ion. Two K⁺ ions, each with a charge of 1+, are needed to balance the 2− charge of one O²⁻ ion. In this section, we will discuss why the positive and negative charges in every ionic compound cancel, and how this determines the number of each ion.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ionic Compounds and Charge</h2></div>
@@ -86,7 +86,12 @@
     <div id="id-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -121,6 +126,7 @@ A.$("#na2s-art").innerHTML=[
 /* K3P: three K+ and one P3− with the charges summed */
 A.$("#k3p-art").innerHTML=`<div class="col" style="gap:8px"><div class="lw-row" style="gap:10px">${ion("K",0,1)}${ion("K",0,1)}${ion("K",0,1)}<span style="font-size:26px;font-weight:800;color:#0a7a2f">+</span>${ion("P",8,-3)}</div><div class="id-eq" style="font-size:22px"><b style="color:#005ea3">3(+1)</b> + <b style="color:#c40000">(−3)</b> = <b>0</b></div></div>`;
 B.IonicDrawer(A.$("#id-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "A strong attraction between two oppositely charged ions is an ___.", "a": "ionic bond"}, {"s": "A compound that contains ionic bonds is an ___.", "a": "ionic compound"}, {"s": "In an ionic bond, the metal atom ___ electrons to the nonmetal atom.", "a": "donates"}, {"s": "An ionic bond forms between two oppositely charged ___.", "a": "ions"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"When a sodium atom and a chlorine atom form an ionic bond, the sodium atom",choices:["gains one electron and becomes a negative ion","loses one electron and becomes a positive ion","shares one electron with chlorine","gains one proton and becomes a positive ion"],ans:2,explain:"Sodium (a metal with 1 valence electron) donates it to chlorine and becomes Na⁺."},
  {type:"mc",stem:"Which statement explains why a metal atom transfers electrons to a nonmetal atom?",choices:["The metal has a higher electronegativity than the nonmetal.","The nonmetal has a stronger attraction for electrons than the metal.","The metal has more valence electrons than the nonmetal.","The nonmetal has fewer protons than the metal."],ans:2,explain:"Nonmetals have high electronegativities, so they pull electrons away from metals."},

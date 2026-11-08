@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p0" data-short="Five types"><div class="pn"><small>Part</small><span>1</span></div><h2>Types of Reactions</h2><p>Five patterns.</p></div>
+  <div class="part" id="p0" data-short="Five types"><div class="pn"><small>Part</small><span>1</span></div><h2>Types of Reactions</h2><p>Propane burning in a gas grill and silver crystals growing on a copper wire dipped in silver nitrate solution are very different reactions, yet each follows one of only five common patterns. Recognizing which pattern a reaction follows makes it possible to predict its products. In this section, we will discuss synthesis, decomposition, single replacement, double replacement and combustion reactions.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Types of Reactions</h2></div>
@@ -108,7 +108,12 @@
     <div id="nr-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -138,6 +143,7 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
       if(k===cur[1]){ b.classList.add("right"); O.dataset.done=1; right++; streak++; g.win(); g.paint(); g.msg(`✔ ${NAME[k]}: ${WHY[k]}`,"good"); $("pat").innerHTML=`<div class="pat pop">${PAT[k]}</div>`; g.later(next,2600); }
       else { b.classList.add("wrong"); streak=0; g.lose(); g.paint(); g.msg(`Not ${NAME[k].toLowerCase()}: that pattern is ${WHY[k].charAt(0).toLowerCase()+WHY[k].slice(1)} Count the reactants and products, and look for a lone element.`,"bad"); } }); O.appendChild(b); }); }
   next(); })();
+A.VocabCheck(A.$("#vc-host"),[{"s": "Two or more simple reactants combine into a more complex product in a ___ reaction.", "a": "synthesis"}, {"s": "A single reactant breaks down into two or more simple products in a ___ reaction.", "a": "decomposition"}, {"s": "One element exchanges places with another element in a compound in a ___ reaction.", "a": "single replacement"}, {"s": "Ions in two compounds exchange partners in a ___ reaction.", "a": "double replacement"}, {"s": "A hydrocarbon reacts with oxygen to produce carbon dioxide and water in a ___ reaction.", "a": "combustion"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Given the reaction: 2KClO<sub>3</sub> → 2KCl + 3O<sub>2</sub>. Which type of reaction is this?",choices:["synthesis","decomposition","single replacement","double replacement"],ans:2,explain:"One reactant breaks down into two products."},
  {type:"mc",stem:"Which equation represents a single replacement reaction?",choices:["2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O","Zn + 2HCl → ZnCl<sub>2</sub> + H<sub>2</sub>","AgNO<sub>3</sub> + NaCl → AgCl + NaNO<sub>3</sub>","CaCO<sub>3</sub> → CaO + CO<sub>2</sub>"],ans:2,explain:"A lone element (Zn) replaces hydrogen in a compound."},

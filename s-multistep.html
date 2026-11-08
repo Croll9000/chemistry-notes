@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Mole triangle"><div class="pn"><small>Part</small><span>1</span></div><h2>The Mole Triangle</h2><p>Every route goes through moles.</p></div>
+  <div class="part" id="p1" data-short="Mole triangle"><div class="pn"><small>Part</small><span>1</span></div><h2>The Mole Triangle</h2><p>A 1.00-kg bag of table salt contains 17.1 moles, or 1.03 × 10²⁵ formula units, of sodium chloride. Mass, number of particles and, for gases, volume all describe the amount of a substance, and the mole connects every one of them. In this section, we will use the mole as the hub for converting between mass, particles and volume.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mole Triangle</h2></div>
@@ -41,7 +41,7 @@
     <div id="tr-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Mass–mass"><div class="pn"><small>Part</small><span>2</span></div><h2>Mass–Mass Conversions</h2><p>Grams of one substance to grams of another.</p></div>
+  <div class="part" id="p2" data-short="Mass–mass"><div class="pn"><small>Part</small><span>2</span></div><h2>Mass–Mass Conversions</h2><p>Burning 1.00 kg of charcoal (carbon) produces 3.66 kg of carbon dioxide. The mass increases because each carbon atom combines with two oxygen atoms from the air, and finding that mass requires converting grams of carbon to moles, applying the mole ratio, and converting back to grams. In this section, we will solve mass–mass problems in three steps.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mass–Mass Conversions</h2></div>
@@ -60,7 +60,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Multistep"><div class="pn"><small>Part</small><span>3</span></div><h2>Multistep Mole Conversions</h2><p>Any unit of one substance to any unit of another.</p></div>
+  <div class="part" id="p3" data-short="Multistep"><div class="pn"><small>Part</small><span>3</span></div><h2>Multistep Mole Conversions</h2><p>When heated, a teaspoon (4.6 g) of baking soda releases about 0.6 L of carbon dioxide, measured at STP, which helps quick breads rise. Finding that volume connects three different units: grams of baking soda, moles of each substance and liters of gas. In this section, we will combine mole–mass, mole ratio and mole–volume conversions into a single calculation.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Multistep Mole Conversions</h2></div>
@@ -83,7 +83,12 @@
     <div id="st-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -103,6 +108,7 @@ A.$("#ex1").innerHTML=S.worked("Ex: Given 2H<sub>2</sub> + O<sub>2</sub> → 2H<
  ["<b>All three steps in one line:</b>",`${S.q("8.00","g","H2",1)}${S.cf(1,"mol","H2","2.02","g","H2",1,1)}${S.cf(2,"mol","H2O",2,"mol","H2",1,1)}${S.cf("18.02","g","H2O",1,"mol","H2O",0,1)} = 71.4 ${S.u("g","H2O")}`]]);
 S.MoleMap(A.$("#map2"),{two:true});
 S.Converter(A.$("#st-host"),{make:l=>S.mkStoich(l),levels:[["mass","Mass to mass"],["mixed","Mixed units"]],map:true,how:"Read the problem. Fill each conversion factor in order: into moles of the given substance, the mole ratio, then out of moles of the target substance. Put the unit you want to cancel on the bottom."});
+A.VocabCheck(A.$("#vc-host"),[{"s": "Converting grams of one substance to grams of another uses the ___ ratio from the balanced equation.", "a": "mole"}, {"s": "Grams are converted to moles by dividing by the ___.", "a": "molar mass"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which sequence of steps converts the mass of one substance into the mass of another substance in a reaction?",choices:["mass → mass","mass → moles → mass","mass → moles → moles → mass","mass → volume → mass"],ans:3,explain:"Mass of given → moles of given (molar mass) → moles of target (mole ratio) → mass of target (molar mass)."},
  {type:"text",stem:"How many liters of O<sub>2</sub>(g) at STP are in 64.0 g of O<sub>2</sub> (molar mass 32.00 g/mol)?",unit:"L",width:110,check:v=>A.lenient(v,44.8,{sf:3}),explain:"64.0 g ÷ 32.00 g/mol = 2.00 mol; 2.00 mol × 22.4 L/mol = 44.8 L."},

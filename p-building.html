@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Mendeleev"><div class="pn"><small>Part</small><span>1</span></div><h2>Mendeleev’s Table</h2><p>Properties repeat when the elements are placed in order.</p></div>
+  <div class="part" id="p1" data-short="Mendeleev"><div class="pn"><small>Part</small><span>1</span></div><h2>Mendeleev’s Table</h2><p>In 1869, Dmitri Mendeleev wrote the properties of the 63 elements known at the time on cards and arranged them in order of increasing atomic mass. He noticed that similar properties appeared again and again at regular intervals: chlorine, bromine and iodine, for example, each combine with sodium in a 1 : 1 ratio (NaCl, NaBr and NaI). By placing these repeating elements in the same column, Mendeleev produced a table that chemists could use to predict how elements, even undiscovered ones, would behave.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Dmitri Mendeleev</h2></div>
@@ -54,11 +54,12 @@
     <div id="pg-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Periodic law"><div class="pn"><small>Part</small><span>2</span></div><h2>The Modern Periodic Table</h2><p>Ordered by atomic number, not mass.</p></div>
+  <div class="part" id="p2" data-short="Periodic law"><div class="pn"><small>Part</small><span>2</span></div><h2>The Modern Periodic Table</h2><p>Today’s periodic table holds 118 elements, and the four most recent, including tennessine and oganesson, were officially named in 2016. Every one of them was ordered by its atomic number, the number of protons in its nucleus, rather than by its mass. In this section, we will discuss why ordering the elements by atomic number places every element in the same column as the elements it most resembles.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Periodic Law</h2></div>
     <div class="body">
+      <p class="intro">Mendeleev ordered his table by atomic mass, but a few elements did not fit. Cobalt (58.93 u) is slightly heavier than nickel (58.69 u), yet cobalt’s properties place it before nickel. In this section we will discuss the property, other than mass, that sets the true order of the elements.</p>
       <ul>
         <li>The modern periodic table is arranged in order of <span class="kr">increasing atomic number</span>.</li>
         <li>Chemical and physical properties repeat because of similarities in the valence (outermost) shell electron configuration.</li>
@@ -90,7 +91,12 @@
     <div id="pt-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -118,6 +124,7 @@ A.$("#swap-art").innerHTML=(()=>{ const box=(x,Z)=>{ const e=A.EL[Z]; return `<r
 P.CardSort(A.$("#pg-host"));
 A.PTExplorer(A.$("#pt-host"),{modes:["bohr","shell"],mode:"bohr",start:32});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Mendeleev arranged the elements in order of increasing atomic ___.", "a": "mass"}, {"s": "The modern periodic table is arranged in order of increasing atomic ___.", "a": "number"}, {"s": "The properties of the elements recur in regular patterns when they are arranged by atomic number. This is the ___.", "a": "periodic law"}, {"s": "Mendeleev left ___ in his table for elements that had not yet been discovered.", "a": "gaps"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"The elements on the modern Periodic Table are arranged in order of increasing",choices:["atomic mass","atomic number","number of neutrons","number of valence electrons"],ans:2,explain:"The modern table is ordered by atomic number, the number of protons."},
  {type:"mc",stem:"The chemical and physical properties of the elements are periodic functions of their",choices:["atomic masses","atomic numbers","mass numbers","numbers of neutrons"],ans:2,explain:"Periodic Law: properties recur in regular patterns when the elements are arranged in order of increasing atomic number."},

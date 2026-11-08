@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Temperature"><div class="pn"><small>Part</small><span>1</span></div><h2>Temperature</h2><p>Heat and temperature are often used interchangeably in everyday speech, but they are different quantities. Temperature is a measurement that reflects the average kinetic energy of the particles in a sample.</p></div>
+  <div class="part" id="p1" data-short="Temperature"><div class="pn"><small>Part</small><span>1</span></div><h2>Temperature</h2><p>A thermometer in a swimming pool and a thermometer in a cup of water taken from that pool both read 26 °C, even though the pool contains far more energy. Temperature depends on the average kinetic energy of the particles, not on how many particles there are. In this section, we will define temperature and distinguish it from heat.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Temperature</h2></div>
@@ -59,7 +59,7 @@
     <div id="hvt-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Temperature scales"><div class="pn"><small>Part</small><span>2</span></div><h2>Temperature Scales</h2><p>Temperature can be measured on several different scales. In chemistry we prefer the Celsius and Kelvin scales, which are related by a single equation.</p></div>
+  <div class="part" id="p2" data-short="Temperature scales"><div class="pn"><small>Part</small><span>2</span></div><h2>Temperature Scales</h2><p>Scientists have cooled atoms to within a billionth of a degree of absolute zero, 0 K. The Kelvin scale begins at absolute zero, so its values are directly proportional to the average kinetic energy of particles, while the Celsius scale is set by the freezing and boiling points of water. In this section, we will compare temperature scales and the equation that relates them.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Temperature Scales</h2></div>
@@ -100,7 +100,7 @@
     <div id="tc-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Important temperatures"><div class="pn"><small>Part</small><span>3</span></div><h2>Some Important Temperatures</h2><p>Since substances behave differently at different temperatures, chemists rely on a set of agreed-upon reference temperatures to describe and compare their observations.</p></div>
+  <div class="part" id="p3" data-short="Important temperatures"><div class="pn"><small>Part</small><span>3</span></div><h2>Some Important Temperatures</h2><p>A sample of gas measured on a 35 °C summer afternoon takes up about 13% more space than the same sample at 0 °C. To compare results fairly, chemists report them at agreed-upon reference temperatures, such as standard temperature, 273 K. In this section, we will discuss these reference temperatures.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Some Important Temperatures</h2></div>
@@ -152,7 +152,7 @@ A.$("#abs-art").innerHTML=T.figAbsZero();
 /* heat vs temperature: bathtub vs cup */
 (function(){ let s=`<path d="M20 70h300v70q0 30-30 30H50q-30 0-30-30z" fill="#9fd3f2" stroke="${INK}" stroke-width="3"/>`+T.t(170,120,"Bathtub: 40 °C, 150 kg of water",{fs:14})+T.t(170,196,"Lower temperature, more heat it can give",{fs:13,c:"#2E75D6"});
   s+=`<path d="M420 80h80v70q0 18-18 18h-44q-18 0-18-18z" fill="#f4a0a0" stroke="${INK}" stroke-width="3"/><path d="M500 95q24 0 24 22t-24 22" fill="none" stroke="${INK}" stroke-width="3"/>`+T.t(460,62,"Cup: 95 °C, 0.25 kg",{fs:14})+T.t(460,196,"Higher temperature, less heat it can give",{fs:13,c:"#E00000"});
-  A.$("#hvt-art").innerHTML=T.svg(560,210,s,"A large bathtub of warm water and a small cup of hot water"); })();
+  A.$("#hvt-art").innerHTML=T.svg(640,210,s,"A large bathtub of warm water and a small cup of hot water"); })();
 P.TapSort(A.$("#hvt-host"),{prompt:"Is this statement about heat or temperature?",how:"Heat is energy that moves (joules). Temperature is a measurement of average kinetic energy (°C or K).",choices:[["h","Heat"],["t","Temperature"]],items:[
  ["Measured with a thermometer","t","A thermometer measures temperature."],
  ["Measured in joules","h","Heat is energy, so it is measured in joules."],

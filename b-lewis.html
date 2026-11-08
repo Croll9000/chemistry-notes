@@ -16,12 +16,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Drawing structures"><div class="pn"><small>Part</small><span>1</span></div><h2>Drawing Lewis Structures</h2><p>Circle shared pairs, count, repeat.</p></div>
+  <div class="part" id="p1" data-short="Drawing structures"><div class="pn"><small>Part</small><span>1</span></div><h2>Drawing Lewis Structures</h2><p>Carbon dioxide makes up about 0.04% of the air, and each of its molecules contains a carbon atom joined to two oxygen atoms by double bonds. A Lewis structure shows exactly how these atoms share their valence electrons so that every atom ends with a full octet. In this section, we will draw Lewis structures for molecules by circling shared pairs of electrons.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Drawing Lewis Structures (Covalent)</h2></div>
     <div class="body">
-      <p class="intro">Lewis dot diagrams show the valence electrons of a single atom. To understand how a molecule is held together, chemists extend these diagrams to show which electrons are shared and which are not.</p>
+      <p class="intro">A water molecule contains 8 valence electrons: 6 from the oxygen atom and 1 from each hydrogen atom. Lewis dot diagrams show the valence electrons of single atoms; in this section we will combine them to show which electrons in a molecule are shared in bonds and which are not.</p>
       <p>Steps for drawing Lewis structures for covalent molecules:</p>
       <ol class="steps">
         <li>Draw the Lewis dot diagram for each atom in the compound.</li>
@@ -62,7 +62,7 @@
     <div id="cd-host"></div>
   </section>
 
-  <div class="part enr" id="p2" data-short="Electron counting"><div class="pn"><small>Part</small><span>2</span></div><h2>The Electron-Counting Method</h2><p>A second way to draw Lewis structures, which also works for polyatomic ions.</p></div>
+  <div class="part enr" id="p2" data-short="Electron counting"><div class="pn"><small>Part</small><span>2</span></div><h2>The Electron-Counting Method</h2><p>The carbonate ion, CO₃²⁻, contains 24 valence electrons: 4 from carbon, 18 from the three oxygen atoms and 2 extra electrons that give the ion its charge. Extra or missing electrons cannot be shown by circling pairs on individual atoms, so chemists count the total number of electrons instead. In this section, we will draw Lewis structures by counting electrons, a method that also works for polyatomic ions.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Drawing Lewis Structures by Counting Electrons</h2></div>
@@ -150,7 +150,12 @@
     </div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -227,6 +232,7 @@ A.$("#res-art").innerHTML=`<div class="lw-row" style="gap:6px">${r3(0)}${dbl}${r
 /* formal charge (draft) */
 A.$("#fc-art").innerHTML=`<div class="col" style="gap:6px">${r3(0)}<div class="tbl-wrap"><table class="nt" style="max-width:520px"><tr><th>Atom</th><th>Valence e⁻</th><th>Lone pair e⁻</th><th>Bonds</th><th>Formal charge</th></tr><tr><td>C</td><td>4</td><td>0</td><td>4</td><td>0</td></tr><tr><td>O (double bond)</td><td>6</td><td>4</td><td>2</td><td>0</td></tr><tr><td>O (single bond)</td><td>6</td><td>6</td><td>1</td><td>1−</td></tr><tr><td>O (single bond)</td><td>6</td><td>6</td><td>1</td><td>1−</td></tr></table></div><p style="text-align:center;margin:0">Sum: 0 + 0 + (1−) + (1−) = <b>2−</b>, the charge of the ion.</p></div>`;
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A pair of valence electrons that is not shared with another atom is a ___.", "a": "lone pair"}, {"s": "A diagram that shows shared pairs of electrons as lines and lone pairs as dots is a ___.", "a": "lewis structure"}, {"s": "Sets of Lewis diagrams with varying positions of electrons and bonds within the same molecule are ___.", "a": "resonance structures"}, {"s": "The charge an atom would have if the electrons in its bonds were shared equally is its ___.", "a": "formal charge"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which Lewis electron-dot diagram represents a molecule of water?",choices:[L(B.covSpec(M("H2O"),[1,1],{lines:true}),{scale:.7}),L({atoms:[{s:"O",x:0,y:0,dots:[{d:"t",n:2},{d:"l",n:2},{d:"b",n:2}]},{s:"H",x:1.3,y:0}],bonds:[{a:0,b:1,n:1}]},{scale:.7}),L({atoms:[{s:"H",x:-1.3,y:0},{s:"O",x:0,y:0},{s:"H",x:1.3,y:0}],bonds:[{a:1,b:0,n:1},{a:1,b:2,n:1}]},{scale:.7}),L({atoms:[{s:"O",x:0,y:0,dots:[{d:"t",n:2},{d:"l",n:2}]},{s:"H",x:1.3,y:0,dots:[{d:"r",n:2}]},{s:"H",x:0,y:1.2}],bonds:[{a:0,b:1,n:1},{a:0,b:2,n:1}]},{scale:.7})],ans:1,explain:"Oxygen in the center with 2 single bonds and 2 lone pairs: 8 electrons on O, 2 on each H."},
  {type:"num",stem:"How many lone pairs of electrons are on the nitrogen atom in a molecule of ammonia, NH<sub>3</sub>?",ans:1,tol:0,explain:"N has 5 valence electrons. 3 are shared with H atoms, leaving 2 electrons: 1 lone pair."},
