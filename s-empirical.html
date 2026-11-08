@@ -34,22 +34,32 @@
   </section>
 
   <section class="note">
-    <div class="tile"><h2>Converting Between Empirical and Molecular Formulas</h2></div>
+    <div class="tile"><h2>Molecular Formula → Empirical Formula</h2></div>
     <div class="body">
       <ul>
+        <li>An empirical formula is found by reducing the subscripts of a molecular formula to the smallest whole-number ratio.</li>
         <li>Steps for Finding the Empirical Formula from a Molecular Formula:
           <ol><li>Find the largest number that divides every subscript evenly.</li>
           <li>Divide every subscript by that number.</li></ol></li>
+        <li>If the only number that divides every subscript evenly is 1, the molecular formula is already an empirical formula.</li>
+      </ul>
+      <div id="me-ex" style="margin:10px 0"></div>
+      <div class="center" id="mol-art" style="flex-direction:column"></div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Empirical Formula → Molecular Formula</h2></div>
+    <div class="body">
+      <ul>
+        <li>A molecular formula is a whole-number multiple of its empirical formula. The molar mass of the compound tells us which multiple.</li>
         <li>Steps for Finding the Molecular Formula from an Empirical Formula:
           <ol><li>Determine the mass of the empirical formula.</li>
           <li>Divide the molar mass of the compound by the mass of the empirical formula.</li>
           <li>Multiply the subscripts in the empirical formula by the answer from step 2.</li></ol></li>
-        <li>Ex: The molar mass of a compound with an empirical formula of NO<sub>2</sub> is 92 g/mol. What is the molecular formula?
-          <ul><li>Mass of NO<sub>2</sub> = 14.01 + 2(16.00) = 46.01 g/mol</li>
-          <li>92 ÷ 46.01 = 2</li>
-          <li>NO<sub>2</sub> × 2 → N<sub>2</sub>O<sub>4</sub></li></ul></li>
       </ul>
-      <div class="center" id="mol-art" style="flex-direction:column"></div>
+      <div id="em-ex" style="margin:10px 0"></div>
+      <div class="center" id="mol-art2" style="flex-direction:column"></div>
     </div>
   </section>
 
@@ -98,7 +108,25 @@ const pair=(m,e)=>`<div class="col" style="gap:6px;align-items:center"><div styl
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:8px">${pair("C2H6","CH3")}</div>`;
 A.$("#emp-art").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center">${pair("H2O2","HO")}${pair("C2H6","CH3")}</div>`;
 S.EmpiricalGame(A.$("#em-host"));
-A.$("#mol-art").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center">${pair("C2H4","CH2")}</div><p class="muted center" style="margin:2px 0 0;font-size:14px">The molecular formula C<sub>2</sub>H<sub>4</sub> is the empirical formula CH<sub>2</sub> × 2.</p>`;
+A.$("#mol-art").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center">${pair("C2H4","CH2")}</div><p class="muted center" style="margin:2px 0 0;font-size:14px">The molecular formula C<sub>2</sub>H<sub>4</sub> reduces to the empirical formula CH<sub>2</sub>.</p>`;
+A.$("#mol-art2").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center">${pair("N2O4","NO2")}</div><p class="muted center" style="margin:2px 0 0;font-size:14px">The empirical formula NO<sub>2</sub> × 2 gives the molecular formula N<sub>2</sub>O<sub>4</sub>.</p>`;
+{ const big=t=>`<span style="font-size:22px;font-weight:800">${t}</span>`, F=S.f, m=x=>S.mm(x).toFixed(2);
+  S.workedTabs(A.$("#me-ex"),[
+   {label:"Glucose (C₆H₁₂O₆)",title:`What is the empirical formula of glucose, C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>?`,steps:[
+     ["Find the largest number that divides every subscript evenly.",`6, 12, 6 → all divide evenly by 6`],
+     ["Divide every subscript by that number.",`C<sub>6÷6</sub>H<sub>12÷6</sub>O<sub>6÷6</sub> → ${big("CH<sub>2</sub>O")}`]]},
+   {label:"Butane (C₄H₁₀)",title:`What is the empirical formula of butane, C<sub>4</sub>H<sub>10</sub>?`,steps:[
+     ["Find the largest number that divides every subscript evenly.",`4, 10 → both divide evenly by 2`],
+     ["Divide every subscript by that number.",`C<sub>4÷2</sub>H<sub>10÷2</sub> → ${big("C<sub>2</sub>H<sub>5</sub>")}`]]}]);
+  S.workedTabs(A.$("#em-ex"),[
+   {label:"NO₂, 92.02 g/mol",title:`The molar mass of a compound with the empirical formula NO<sub>2</sub> is 92.02 g/mol. What is its molecular formula?`,steps:[
+     ["Determine the mass of the empirical formula.",`NO<sub>2</sub>: 14.01 + 2(16.00) = ${m("NO2")} g/mol`],
+     ["Divide the molar mass of the compound by the mass of the empirical formula.",`92.02 g/mol ÷ ${m("NO2")} g/mol = 2`],
+     ["Multiply the subscripts in the empirical formula by the answer from step 2.",`N<sub>1×2</sub>O<sub>2×2</sub> → ${big("N<sub>2</sub>O<sub>4</sub>")}`]]},
+   {label:"CH₂O, 180.18 g/mol",title:`The molar mass of a compound with the empirical formula CH<sub>2</sub>O is 180.18 g/mol. What is its molecular formula?`,steps:[
+     ["Determine the mass of the empirical formula.",`CH<sub>2</sub>O: 12.01 + 2(1.01) + 16.00 = ${m("CH2O")} g/mol`],
+     ["Divide the molar mass of the compound by the mass of the empirical formula.",`180.18 g/mol ÷ ${m("CH2O")} g/mol = 6`],
+     ["Multiply the subscripts in the empirical formula by the answer from step 2.",`C<sub>1×6</sub>H<sub>2×6</sub>O<sub>1×6</sub> → ${big("C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>")}`]]}]); }
 A.$("#ex1").innerHTML=`<div class="exbox">Ex: A compound is found to be 25.2% hydrogen and 74.8% carbon by mass. Determine the compound’s empirical formula.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Step 1: grams in 100 g</th><th>Step 2: moles</th><th>Step 3: ÷ smallest</th><th>Subscript</th></tr><tr><td><b>C</b></td><td>74.8 g</td><td>74.8 ÷ 12.01 = 6.23 mol</td><td>6.23 ÷ 6.23 = 1.00</td><td>1</td></tr><tr><td><b>H</b></td><td>25.2 g</td><td>25.2 ÷ 1.01 = 25.0 mol</td><td>25.0 ÷ 6.23 = 4.01</td><td>4</td></tr></table></div><p class="center"><b>Step 4:</b> the empirical formula is CH<sub>4</sub>.</p>`;
 S.PctEmpGame(A.$("#pe-host"));
 A.QSet(A.$("#qs"),[

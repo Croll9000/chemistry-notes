@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Calculating Heat</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermochemistry · 7</span><h1>Calculating Heat</h1><p>Three equations from the Reference Tables: q = mcΔT for temperature changes, q = mH<sub>f</sub> for melting and freezing, and q = mH<sub>v</sub> for vaporizing and condensing.</p>
+    <div class="pe-chips"><span>HS-PS3-1</span><span>HS-PS3-4</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Heat Calculations</h2></div>
+    <div class="body">
+      <p class="intro">An engineer designing a car radiator, or a cook figuring out how long it takes to boil pasta water, needs to know how much heat a change takes. Chemists use three equations to calculate the heat added to or removed from a substance.</p>
+      <ul>
+        <li>Which equation to use depends on what is happening on the heating curve:
+          <ul><li><span class="kr">Sloped segment</span> (temperature change): <span class="mth">q = mcΔT</span></li>
+          <li><span class="kb">Flat segment at the melting point</span> (melting or freezing): <span class="mth">q = mH<sub>f</sub></span></li>
+          <li><span class="kg">Flat segment at the boiling point</span> (vaporizing or condensing): <span class="mth">q = mH<sub>v</sub></span></li></ul></li>
+      </ul>
+      <div class="t7-fig" id="map-art"></div>
+    </div>
+  </section>
+
+  <div class="part" id="p1" data-short="Temperature changes"><div class="pn"><small>Part</small><span>1</span></div><h2>Heat During Temperature Changes</h2><p>q = mcΔT</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Heat During Temperature Changes</h2></div>
+    <div class="body">
+      <p class="intro">Heating a full pot of water takes longer than heating a half-full one, and heating it to 90 °C takes longer than heating it to 40 °C. The heat needed depends on the mass, the substance and the temperature change.</p>
+      <ul>
+        <li>When the temperature of a substance changes, the kinetic energy of its particles changes. The heat added during these intervals is proportional to the change in temperature.</li>
+        <li><span class="mth" style="font-size:1.2em">q = mcΔT</span>
+          <ul><li><b>q</b> = heat (J)</li>
+          <li><b>m</b> = mass of the sample (g)</li>
+          <li><b>c</b> = specific heat capacity (J/g·K)</li>
+          <li><b>ΔT</b> = change in temperature (K or °C): <span class="mth">ΔT = T<sub>final</sub> − T<sub>initial</sub></span></li></ul></li>
+        <li>If the temperature goes up, ΔT and q are positive (heat absorbed). If the temperature goes down, ΔT and q are negative (heat released).</li>
+      </ul>
+      <div class="t7-fig" id="c-art"></div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Specific Heat Capacity</h2></div>
+    <div class="body">
+      <p class="intro">At the beach on a sunny day, the sand is too hot to walk on while the water stays cool. Different substances change temperature at different rates when they absorb the same amount of heat.</p>
+      <ul>
+        <li>How much the temperature of a substance changes when heat is added depends on the intermolecular forces in the substance, the complexity of its particles and its mass. We describe this with a value called specific heat capacity.
+          <ul><li><span class="def">Specific Heat Capacity (c)</span> – the amount of heat needed to raise the temperature of 1 g of a substance by 1 °C (or 1 K).</li>
+          <li>Unit: J/g·K.</li></ul></li>
+        <li>The specific heat capacity of water (4.18 J/g·K) is much higher than that of aluminum (0.897 J/g·K). If the same amount of heat is added to 1 gram of each, <span class="kr">the temperature of the aluminum rises more</span> than that of the water.</li>
+        <li><span class="kb">The higher the specific heat capacity, the smaller the temperature change for the same amount of heat.</span></li>
+      </ul>
+      <table class="nt t7-tbl" style="margin:10px auto"><tr><th>Substance</th><th>Specific heat capacity (J/g·K)</th></tr><tr><td>Water (liquid)</td><td>4.18</td></tr><tr><td>Ice</td><td>2.09</td></tr><tr><td>Water vapor (steam)</td><td>2.01</td></tr><tr><td>Aluminum</td><td>0.897</td></tr><tr><td>Iron</td><td>0.449</td></tr><tr><td>Copper</td><td>0.385</td></tr></table>
+    </div>
+  </section>
+
+  <section class="lab" id="cap">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Same Heat, Different Substances</h3></div>
+    <div id="cap-host"></div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Thermal Conductivity vs. Specific Heat Capacity</h2></div>
+    <div class="body">
+      <p class="intro">A metal pan heats up fast for two different reasons that are easy to mix up.</p>
+      <ul>
+        <li>Thermal conductivity and specific heat capacity are related, but they measure different properties:
+          <ul><li><span class="kr">Thermal conductivity</span> describes <span class="kr">how quickly an object transfers heat</span> (into and out of itself).</li>
+          <li><span class="kb">Specific heat capacity</span> describes <span class="kb">how much heat is needed to change the temperature</span> of an object.</li></ul></li>
+        <li>Copper has a high thermal conductivity (heat moves through it fast) and a low specific heat capacity (a little heat raises its temperature a lot).</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part" id="p2" data-short="Phase changes"><div class="pn"><small>Part</small><span>2</span></div><h2>Heat During Phase Changes</h2><p>q = mH<sub>f</sub> and q = mH<sub>v</sub></p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Heat During Phase Changes</h2></div>
+    <div class="body">
+      <p class="intro">During a phase change the temperature does not change, so q = mcΔT would give zero heat. A different equation is needed for the flat parts of the heating curve.</p>
+      <ul>
+        <li>During a phase change, the potential energy of the particles changes, not their kinetic energy. To calculate the heat, we use:
+          <ul><li><span class="mth" style="font-size:1.15em">q = mH<sub>f</sub></span> for melting or freezing. H<sub>f</sub> = heat of fusion (J/g)</li>
+          <li><span class="mth" style="font-size:1.15em">q = mH<sub>v</sub></span> for vaporizing or condensing. H<sub>v</sub> = heat of vaporization (J/g)</li>
+          <li>q = heat (J). m = mass of the sample (g).</li></ul></li>
+        <li><span class="def">Heat of Fusion (H<sub>f</sub>)</span> – the amount of heat needed to melt (or released when freezing) 1 gram of a substance at its melting point.</li>
+        <li><span class="def">Heat of Vaporization (H<sub>v</sub>)</span> – the amount of heat needed to vaporize (or released when condensing) 1 gram of a substance at its boiling point.</li>
+        <li>Some substances need more heat to change phase than others, because of differences in their intermolecular forces and the conditions of the surroundings. <span class="kp">The higher the heat of fusion or vaporization, the more energy must be added to separate the particles, or the more energy is released when the particles move closer together.</span></li>
+      </ul>
+      <div class="t7-grid"><div class="t7-fig" id="f-art"></div><div class="t7-fig" id="v-art"></div></div>
+    </div>
+  </section>
+
+  <section class="lab" id="latent">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Melting vs. Warming vs. Boiling</h3></div>
+    <div id="lat-host"></div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Constants for Water</h2></div>
+    <div class="body">
+      <p class="intro">Water is so common and important that its constants are worth knowing. Regents questions give these values in the question.</p>
+      <table class="nt t7-tbl" style="margin:10px auto"><tr><th>Physical constant</th><th>Value for water</th></tr>
+        <tr><td>Specific heat capacity of liquid water (c)</td><td>4.18 J/g·K</td></tr><tr><td>Heat of fusion (H<sub>f</sub>)</td><td>334 J/g</td></tr><tr><td>Heat of vaporization (H<sub>v</sub>)</td><td>2260 J/g</td></tr></table>
+      <div id="ex1" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="game">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Heat Equation Workout</h3></div>
+    <div id="hg-host"></div>
+  </section>
+
+  <section class="lab" id="which">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Which Equation?</h3></div>
+    <div id="which-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, T=A.U7, S=A.U6, P=A.U3;
+/* the heating curve with each segment's equation */
+(function(){ const xs=[60,140,250,340,520,600], ys=[260,200,200,110,110,40], lab=["q = mcΔT","q = mH<tspan dy='4' font-size='11'>f</tspan>","q = mcΔT","q = mH<tspan dy='4' font-size='11'>v</tspan>","q = mcΔT"];
+  let s=`<line x1="50" y1="280" x2="630" y2="280" stroke="#1b2328" stroke-width="2.5"/><line x1="50" y1="280" x2="50" y2="20" stroke="#1b2328" stroke-width="2.5"/><polyline points="${xs.map((x,i)=>x+","+ys[i]).join(" ")}" fill="none" stroke="#E00000" stroke-width="4"/>`;
+  lab.forEach((l,i)=>{ const mx=(xs[i]+xs[i+1])/2, my=(ys[i]+ys[i+1])/2, flat=i%2; s+=`<text x="${flat?mx:mx+12}" y="${flat?my-12:my+18}" text-anchor="${flat?"middle":"start"}" font-family="Inter,Arial" font-size="15" font-weight="800" fill="${["#E00000","#2E75D6","#E00000","#00873c","#E00000"][i]}" stroke="#fff" stroke-width="4" paint-order="stroke">${l}</text>`; });
+  const svg=T.svg(660,310,s+T.t(340,304,"Heat added / time",{fs:14})+`<text transform="translate(18 150) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Temperature</text>`,"A heating curve labeled with the equation for each segment");
+  A.$("#map-art").innerHTML=svg; A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${svg}</div>`; })();
+A.$("#c-art").innerHTML=T.figHeatEq("c");
+A.$("#f-art").innerHTML=T.figHeatEq("f"); A.$("#v-art").innerHTML=T.figHeatEq("v");
+T.CapacityDemo(A.$("#cap-host"));
+T.LatentDemo(A.$("#lat-host"));
+const W1=S.wk("Ex: How much heat is absorbed when 50.0 g of water is heated from 20.0 °C to 80.0 °C? (c = 4.18 J/g·K)",[
+ ["<b>Step 1:</b> Identify the change. The temperature changes, so use q = mcΔT.","q = mcΔT"],
+ ["<b>Step 2:</b> Find ΔT.","ΔT = 80.0 °C − 20.0 °C = 60.0 °C"],
+ ["<b>Step 3:</b> Substitute and multiply.","q = (50.0 g)(4.18 J/g·K)(60.0 K) = 12,540 J (1.25 × 10<sup>4</sup> J)"]]);
+const W2=S.wk("Ex: How much heat is needed to melt 25.0 g of ice at 0 °C? (H<sub>f</sub> = 334 J/g)",[
+ ["<b>Step 1:</b> Identify the change. Melting at the melting point, so use q = mH<sub>f</sub>.","q = mH<sub>f</sub>"],
+ ["<b>Step 2:</b> Substitute.","q = (25.0 g)(334 J/g)"],
+ ["<b>Step 3:</b> Multiply.","q = 8,350 J"]]);
+const W3=S.wk("Ex: How much heat is released when 10.0 g of steam condenses at 100 °C? (H<sub>v</sub> = 2260 J/g)",[
+ ["<b>Step 1:</b> Identify the change. Condensing at the boiling point, so use q = mH<sub>v</sub>.","q = mH<sub>v</sub>"],
+ ["<b>Step 2:</b> Substitute.","q = (10.0 g)(2260 J/g)"],
+ ["<b>Step 3:</b> Multiply. The heat is released.","q = 22,600 J released"]]);
+const W4=S.wk("Ex: A 15.0 g block of aluminum absorbs 270. J of heat. By how much does its temperature rise? (c = 0.897 J/g·K)",[
+ ["<b>Step 1:</b> Identify the change and the unknown: ΔT.","q = mcΔT"],
+ ["<b>Step 2:</b> Rearrange: divide both sides by mc.","ΔT = q ÷ (mc)"],
+ ["<b>Step 3:</b> Substitute and solve.","ΔT = 270. J ÷ ((15.0 g)(0.897 J/g·K)) = 20.1 K (20.1 °C)"]]);
+S.workedTabs(A.$("#ex1"),[{label:"q = mcΔT",...W1},{label:"q = mH<sub>f</sub>",...W2},{label:"q = mH<sub>v</sub>",...W3},{label:"Solve for ΔT",...W4}]);
+T.HeatGame(A.$("#hg-host"));
+P.TapSort(A.$("#which-host"),{prompt:"Which equation would you use?",how:"Temperature changes use q = mcΔT. Melting and freezing use q = mH<sub>f</sub>. Vaporizing and condensing use q = mH<sub>v</sub>.",choices:[["c","q = mcΔT"],["f","q = mH<sub>f</sub>"],["v","q = mH<sub>v</sub>"]],items:[
+ ["Heating water from 25 °C to 60 °C","c","The temperature changes."],["Melting an ice cube at 0 °C","f","Melting at the melting point."],["Boiling water at 100 °C","v","Vaporizing at the boiling point."],
+ ["Cooling a copper pipe from 90 °C to 30 °C","c","The temperature changes."],["Freezing water at 0 °C","f","Freezing uses the heat of fusion."],["Steam condensing on a cold window","v","Condensing uses the heat of vaporization."],
+ ["Warming ice from −20 °C to −5 °C","c","The ice’s temperature changes; no phase change."],["Warming steam from 110 °C to 130 °C","c","The temperature of the gas changes."]]});
+A.QSet(A.$("#qs"),[
+ {type:"text",stem:"How much heat is absorbed by 200. g of water when its temperature increases from 15.0 °C to 35.0 °C? (c = 4.18 J/g·K)",unit:"J",width:120,check:v=>S.chk(v,16720,{minSf:2}),explain:"q = (200. g)(4.18 J/g·K)(20.0 K) = 16,720 J (1.67 × 10<sup>4</sup> J)."},
+ {type:"text",stem:"How much heat is needed to vaporize 5.00 g of water at 100 °C? (H<sub>v</sub> = 2260 J/g)",unit:"J",width:120,check:v=>S.chk(v,11300,{minSf:2}),explain:"q = (5.00 g)(2260 J/g) = 11,300 J."},
+ {type:"mc",stem:"Equal masses of water and aluminum each absorb 500. J of heat. Which statement is true?",choices:["The water’s temperature rises more, because water has a higher specific heat capacity.","The aluminum’s temperature rises more, because aluminum has a lower specific heat capacity.","Both temperatures rise by the same amount.","Neither temperature changes."],ans:2,explain:"Lower specific heat capacity means a larger temperature change for the same heat."},
+ {type:"text",stem:"What mass of ice at 0 °C can be melted by 6680 J of heat? (H<sub>f</sub> = 334 J/g)",unit:"g",width:110,check:v=>S.chk(v,20.0,{minSf:2}),explain:"m = q ÷ H<sub>f</sub> = 6680 J ÷ 334 J/g = 20.0 g."},
+ {type:"mc",stem:"Which equation is used to calculate the heat released when liquid water freezes at 0 °C?",choices:["q = mcΔT","q = mH<sub>f</sub>","q = mH<sub>v</sub>","K = °C + 273.15"],ans:2,explain:"Freezing is the reverse of fusion, so it uses the heat of fusion."},
+ {type:"cr",stem:"Explain why q = mcΔT cannot be used to calculate the heat needed to boil water at 100 °C.",parts:["Explanation"],model:["During boiling, the temperature stays the same (ΔT = 0), because the heat increases the potential energy of the particles, not their kinetic energy. The heat of vaporization equation, q = mH<sub>v</sub>, must be used instead."],noCredit:"An answer that only names a different equation without explaining why."}]);
+
+})();</script>
+<script>AS.U3.addSources("t-calc");AS.completion(document.querySelector(".wrap"),"t-calc");AS.chrome("t-calc");</script>
+</body>
+</html>

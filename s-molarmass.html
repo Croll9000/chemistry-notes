@@ -104,7 +104,7 @@ const A=AS, S=A.U6, B=A.U4;
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${S.moleScaleArt([["C","12.01 g","#3b4148","#111","carbon"],["Mg","24.31 g","#c9cdd1","#7d878e","magnesium"]])}</div>`;
 A.$("#scale-art").innerHTML=S.moleScaleArt();
 S.MoleLab(A.$("#ms-host"),{scale:true,items:["C","H2O","NaCl","Cu","Al"]});
-A.$("#mm-ex").innerHTML=`<div class="exbox">Ex: Calculate the molar mass of water, H<sub>2</sub>O.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Number of atoms</th><th></th><th>Atomic mass (g/mol)</th><th></th><th>Mass (g/mol)</th></tr><tr><td><b>H</b></td><td>2</td><td>×</td><td>1.01</td><td>=</td><td>2.02</td></tr><tr><td><b>O</b></td><td>1</td><td>×</td><td>16.00</td><td>=</td><td>16.00</td></tr><tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Molar mass of H<sub>2</sub>O</b></td><td><b>18.02 g/mol</b></td></tr></table></div>`;
+A.$("#mm-ex").innerHTML=`<div class="exbox">Ex: Calculate the molar mass of water, H<sub>2</sub>O.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Number of atoms</th><th></th><th>Atomic mass (g/mol)</th><th></th><th>Mass (g/mol)</th></tr><tr><td><b>H</b></td><td>2</td><td>×</td><td>1.01</td><td>=</td><td>2.02</td></tr><tr><td><b>O</b></td><td>1</td><td>×</td><td>16.00</td><td>=</td><td>16.00</td></tr><tr class="calc-tot"><td colspan="5" style="text-align:right"><b>Molar mass of H<sub>2</sub>O</b> (g/mol)</td><td><b>18.02</b></td></tr></table></div>`;
 S.MolarMassGame(A.$("#mm-host"));
 S.SteelWoolLab(A.$("#sw-host"));
 A.$("#pm-art").innerHTML=S.pairArt("Mass (g)","Moles","÷ molar mass","× molar mass",{lc:"#e9f7ee",ls:"#00B050"});

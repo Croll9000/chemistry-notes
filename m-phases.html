@@ -92,11 +92,11 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
     <div class="tile"><h2>Temperature</h2></div>
     <div class="body">
       <ul>
-        <li><span class="def">Temperature</span> – measurement of the <span class="kr">average kinetic energy</span> of particles in a sample
-          <ul><li class="qu"><i>Unit</i> – degrees Celsius (°C) and kelvin (K)</li><li class="qu"><i>Measuring device</i> – thermometer</li><li><span class="def">Kinetic Energy</span> – energy possessed by particles in motion.</li>
+        <li><span class="def">Temperature</span> – a measurement of the <span class="kr">average kinetic energy</span> of the particles in a sample.
+          <ul><li class="qu"><i>Unit</i> – degrees Celsius (°C) and kelvin (K)</li><li class="qu"><i>Measuring device</i> – thermometer</li><li><span class="def">Kinetic Energy</span> – energy possessed by an object due to its motion.</li>
           <li>The faster particles move, the more kinetic energy they have.
           <ul><li>Particles at a <span class="kr">high temperature move fast</span>.</li><li>Particles at a <span class="kb">low temperature move slowly</span>.</li></ul></li></ul></li>
-        <li><span class="def">Heat</span> – a <span class="kr">form of energy</span> that flows from a hotter object to a colder one.
+        <li><span class="def">Heat</span> – <span class="kr">energy transferred</span> from a high temperature object to a low temperature object.
           <ul><li class="qu"><i>Unit</i> – joules (J) and kilojoules (kJ)</li><li>Heat and temperature are not the same thing.
             <ul><li><span class="kb">Heat is energy</span>.</li><li><span class="kb">Temperature is a measurement</span> of the average kinetic energy of the particles.</li></ul></li><li>Adding heat usually raises the temperature.</li></ul></li>
         <li>In chemistry we measure temperature in degrees Celsius (°C) or kelvin (K).
@@ -242,7 +242,7 @@ function phaseBox(ph,W=150,H=130,r=11){ let s=`<svg width="${W}" height="${H}" v
   return s+`</svg>`; }
 A.$("#hero").innerHTML=`<div class="ph-row" style="gap:10px">${["s","l","g"].map(p=>`<div class="col" style="color:#fff;font-weight:700;gap:4px">${phaseBox(p,120,104,9)}${p==="s"?"Solid":p==="l"?"Liquid":"Gas"}</div>`).join("")}</div>`;
 A.$("#phase-art").innerHTML=[["s","Solid","NaCl(s)"],["l","Liquid","H₂O(l)"],["g","Gas","CO₂(g)"]].map(([p,n,f])=>`<div class="col" style="gap:6px"><b style="color:${COL[p]}">${n}</b>${phaseBox(p,190,160,13)}<b style="color:var(--ink)">${f}</b></div>`).join("");
-A.$("#ph-table").insertAdjacentHTML("beforeend",[["s","Solid","(s)","Fixed (constant)","Fixed (constant)","Tightly packed","Strong","Vibrate in fixed positions"],["l","Liquid","(l)","Variable (changes)","Fixed (constant)","Loosely packed","Moderate","Slide past each other"],["g","Gas","(g)","Variable (changes)","Variable (changes)","Very far apart","Weak","Move fast in all directions"]].map(([p,...c])=>`<tr><td><b style="color:${COL[p]}">${c[0]}</b></td>${c.slice(1).map(x=>`<td>${x}</td>`).join("")}<td>${phaseBox(p,96,80,7)}</td></tr>`).join(""));
+A.$("#ph-table").insertAdjacentHTML("beforeend",[["s","Solid","(s)","Fixed (constant)","Fixed (constant)","Tightly packed","Strong","Vibrate in fixed positions"],["l","Liquid","(l)","Variable (changes)","Fixed (constant)","Able to flow past each other","Moderate","Slide past each other"],["g","Gas","(g)","Variable (changes)","Variable (changes)","Very far apart","Weak","Move fast in all directions"]].map(([p,...c])=>`<tr><td><b style="color:${COL[p]}">${c[0]}</b></td>${c.slice(1).map(x=>`<td>${x}</td>`).join("")}<td>${phaseBox(p,96,80,7)}</td></tr>`).join(""));
 /* spectrum: particle pictures of gas / liquid / solid above a color-graded arrow, labels outside the arrow */
 let _sp=0;
 const spectrum=(order,from,to,lIcon,rIcon,aria)=>{ const id="spg"+(++_sp); const W=700, xs=[120,350,580]; const name={s:"Solid",l:"Liquid",g:"Gas"};

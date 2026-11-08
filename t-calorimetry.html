@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Calorimetry</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermochemistry · 8</span><h1>Calorimetry</h1><p>We cannot measure the energy of a reaction directly, but we can measure the temperature change of the water around it. In a calorimeter, the heat released or absorbed by a reaction equals the heat gained or lost by the water.</p>
+    <div class="pe-chips"><span>HS-PS3-4</span><span>HS-PS1-4</span><span>SEP: Planning &amp; Carrying Out Investigations</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Calorimetry"><div class="pn"><small>Part</small><span>1</span></div><h2>Calorimetry</h2><p>Measuring heat with water and a thermometer.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Calorimetry</h2></div>
+    <div class="body">
+      <p class="intro">The Calories on a food label were measured by burning the food inside a sealed container surrounded by water and recording how much the water warmed up. That is calorimetry.</p>
+      <ul>
+        <li>The energy in a sample of matter cannot be measured directly. We can only measure energy changes indirectly, through changes in temperature.</li>
+        <li>In calorimetry, a reaction or change is carried out inside an insulated container alongside a substance whose specific heat capacity is known (usually water). By measuring the temperature change of the water, we can calculate the heat absorbed or released by the reaction.
+          <ul><li><span class="def">Calorimetry</span> – process of measuring the heat absorbed or released during a chemical reaction or physical change.</li>
+          <li><span class="def">Calorimeter</span> – an insulated device used to measure the heat absorbed or released during a chemical reaction or physical change.</li></ul></li>
+        <li>Calorimetry assumes that <span class="kr">all of the heat absorbed or released by the reaction is transferred to (or from) the water</span>, and none escapes to the surroundings. That is why the calorimeter is insulated and has a lid.</li>
+        <li>The heat of the reaction is equal in size and opposite in sign to the heat of the water:
+          <ul><li><span class="mth" style="font-size:1.15em">q<sub>reaction</sub> = −q<sub>water</sub> = −m<sub>water</sub>c<sub>water</sub>ΔT<sub>water</sub></span></li>
+          <li>If the water’s temperature <span class="kr">rises</span>, the water gained heat, so the reaction <span class="kr">released</span> heat: it is <span class="kr">exothermic</span>.</li>
+          <li>If the water’s temperature <span class="kb">falls</span>, the water lost heat, so the reaction <span class="kb">absorbed</span> heat: it is <span class="kb">endothermic</span>.</li></ul></li>
+      </ul>
+      <div class="t7-fig" id="cal-art"></div>
+      <div id="ex1" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <div class="part" id="p2" data-short="Phase changes"><div class="pn"><small>Part</small><span>2</span></div><h2>Calorimetry and Phase Changes</h2><p>Measuring the heat of fusion of ice.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Calorimetry and Phase Changes</h2></div>
+    <div class="body">
+      <p class="intro">Drop ice into a cup of warm water and the water cools. The heat the water loses is exactly the heat the ice uses to melt, so a calorimeter can measure a heat of fusion.</p>
+      <ul>
+        <li>The heat of fusion (H<sub>f</sub>) or heat of vaporization (H<sub>v</sub>) of a substance can be measured with calorimetry:
+          <ul><li><span class="mth">q<sub>phase change</sub> = −q<sub>water</sub></span></li>
+          <li><span class="mth">m<sub>x</sub>H<sub>f</sub> = −m<sub>water</sub>c<sub>water</sub>ΔT<sub>water</sub></span></li>
+          <li>m<sub>x</sub> = mass of the substance that changes phase (g); m<sub>water</sub> = mass of the water (g); ΔT<sub>water</sub> = change in temperature of the water.</li></ul></li>
+        <li>For ice: if the warm water is cooled exactly to 0 °C, the melted ice stays at 0 °C, so all of the heat lost by the water went into melting the ice. Then <span class="mth">H<sub>f</sub> = −q<sub>water</sub> ÷ m<sub>ice melted</sub></span>.</li>
+        <li>The mass of ice that melted is found by weighing: (mass of water after the leftover ice is removed) − (mass of the warm water at the start).</li>
+      </ul>
+      <div id="ex2" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="lab">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Calorimetry Lab</h3></div>
+    <div id="lab-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, T=A.U7, S=A.U6;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figCalorimeter()}</div>`;
+A.$("#cal-art").innerHTML=T.figCalorimeter();
+const W1=S.wk("Ex: 2.00 g of NaOH dissolves in 100.0 g of water in a calorimeter. The water’s temperature rises from 21.0 °C to 26.3 °C. Calculate the heat of the reaction. (c = 4.18 J/g·K)",[
+ ["<b>Step 1:</b> Find ΔT of the water.","ΔT = 26.3 °C − 21.0 °C = 5.3 °C"],
+ ["<b>Step 2:</b> Calculate the heat gained by the water.","q<sub>water</sub> = (100.0 g)(4.18 J/g·K)(5.3 K) = 2,215 J"],
+ ["<b>Step 3:</b> The reaction’s heat is the opposite.","q<sub>reaction</sub> = −2,215 J (about −2.2 × 10<sup>3</sup> J)"],
+ ["<b>Step 4:</b> Classify. The water warmed up, so the reaction released heat.","Exothermic"]]);
+const W2=S.wk("Ex (enrichment): Convert the result above to kJ per mole of NaOH (molar mass 40.00 g/mol).",[
+ ["<b>Step 1:</b> Moles of NaOH.","2.00 g ÷ 40.00 g/mol = 0.0500 mol"],
+ ["<b>Step 2:</b> Divide the heat by the moles and convert J to kJ.","ΔH = −2,215 J ÷ 0.0500 mol = −44,300 J/mol = −44.3 kJ/mol"],
+ ["<b>Step 3:</b> Compare with the accepted value.","Accepted: −44.51 kJ/mol"]]);
+S.workedTabs(A.$("#ex1"),[{label:"Heat of a reaction",...W1},{label:"Per mole",...W2}]);
+const W3=S.wk("Ex: Ice is added to 120.0 g of water at 32.0 °C. When the water reaches 0.0 °C, the leftover ice is removed. The water now has a mass of 168.1 g. Calculate the heat of fusion of ice.",[
+ ["<b>Step 1:</b> Heat lost by the warm water.","q<sub>water</sub> = (120.0 g)(4.18 J/g·K)(0.0 °C − 32.0 °C) = −16,051 J"],
+ ["<b>Step 2:</b> Heat absorbed by the melting ice.","q<sub>ice</sub> = −q<sub>water</sub> = +16,051 J"],
+ ["<b>Step 3:</b> Mass of ice that melted.","168.1 g − 120.0 g = 48.1 g"],
+ ["<b>Step 4:</b> Heat of fusion.","H<sub>f</sub> = 16,051 J ÷ 48.1 g = 334 J/g"]]);
+S.workedTabs(A.$("#ex2"),[{label:"Heat of fusion of ice",...W3}]);
+T.CalLab(A.$("#lab-host"));
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Why is a calorimeter insulated?",choices:["to keep the reaction from happening too fast","so that heat is not exchanged with the surroundings","to keep the water from evaporating","to increase the specific heat capacity of the water"],ans:2,explain:"Calorimetry assumes all the heat goes between the reaction and the water, so heat must not escape."},
+ {type:"mc",stem:"A solid dissolves in water in a calorimeter and the temperature of the water decreases. The dissolving is",choices:["exothermic, because the water lost heat","endothermic, because the water lost heat","exothermic, because the water gained heat","endothermic, because the water gained heat"],ans:2,explain:"The water lost heat to the dissolving solid, so the process absorbed heat: endothermic."},
+ {type:"text",stem:"In a calorimeter, 150.0 g of water warms from 22.0 °C to 28.0 °C during a reaction. How much heat did the water gain? (c = 4.18 J/g·K)",unit:"J",width:120,check:v=>S.chk(v,3762,{minSf:2}),explain:"q = (150.0 g)(4.18 J/g·K)(6.0 K) = 3,762 J (3.8 × 10<sup>3</sup> J)."},
+ {type:"mc",stem:"For the reaction in the previous question, the heat of the reaction is",choices:["+3,762 J, endothermic","−3,762 J, exothermic","+3,762 J, exothermic","−3,762 J, endothermic"],ans:2,explain:"q<sub>reaction</sub> = −q<sub>water</sub>. The water gained heat, so the reaction released it."},
+ {type:"cr",stem:"A student measures the heat of fusion of ice as 301 J/g. The accepted value is 334 J/g. State one error in the procedure that could explain the low result.",parts:["Possible error"],model:["Heat from the room leaked into the calorimeter (the lid was off or the cup was not insulated), so some of the ice was melted by the surroundings instead of the water. Or: the ice had liquid water on its surface, which was added to the cup and counted as melted ice."],noCredit:"“Human error” or “measured wrong” with no specific error."}]);
+
+})();</script>
+<script>AS.U3.addSources("t-calorimetry");AS.completion(document.querySelector(".wrap"),"t-calorimetry");AS.chrome("t-calorimetry");</script>
+</body>
+</html>
