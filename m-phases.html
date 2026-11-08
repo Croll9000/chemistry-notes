@@ -144,9 +144,9 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
           <ul><li>The substance is more likely to be in a <span class="kg">condensed phase (liquid or solid)</span>.</li></ul></li>
         <li>The <span class="kr">lower the pressure</span> pushing down on a substance, the farther apart the particles will be.
           <ul><li>The substance is more likely to be a <span class="kr">gas</span>.</li></ul></li>
-        <li class="added">Ex: the boiling point of water changes with pressure.
-          <ul><li>100 °C at 1 atm</li><li>About 81 °C at 0.5 atm (high in the mountains)</li><li>About 120 °C at 2 atm (inside a pressure cooker)</li></ul></li>
-      </ul>
+        
+      </ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">The boiling point of water changes with pressure.
+          <ul><li>100 °C at 1 atm</li><li>About 81 °C at 0.5 atm (high in the mountains)</li><li>About 120 °C at 2 atm (inside a pressure cooker)</li></ul></div></div></div>
       <div class="center" id="press-arrow"></div>
     </div>
   </section>
@@ -161,7 +161,7 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
         <ul><li><span class="def">Melting Point</span> – the temperature at which a solid turns into a liquid. It is the same temperature at which the liquid freezes.</li>
         <li><span class="def">Boiling Point</span> – the temperature at which a liquid turns into a gas throughout the liquid. It is the same temperature at which the gas condenses.</li></ul></li>
         <li>While a substance is changing phase, its <span class="kr">temperature stays the same</span>.
-          <ul><li>The added (or removed) energy goes into pulling the particles apart (or letting them come together), not into changing how fast they move.</li><li>Ex: ice stays at 0 °C until it has all melted.</li><li>Ex: boiling water stays at 100 °C until it has all boiled away.</li></ul></li>
+          <ul><li>The added (or removed) energy goes into pulling the particles apart (or letting them come together), not into changing how fast they move.</li></ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Ice stays at 0 °C until it has all melted.</div><div class="xl">boiling water stays at 100 °C until it has all boiled away.</div></div></div></li>
         <li class="added">Comparing the temperature to a substance’s melting and boiling points tells its phase.
           <ul><li>Below the melting point: <span class="kg">solid</span></li><li>Between the melting point and the boiling point: <span class="kb">liquid</span></li><li>Above the boiling point: <span class="kr">gas</span></li></ul></li></ul>
       <div class="center" id="cycle-art"></div>
@@ -457,7 +457,7 @@ A.$("#highT").innerHTML=`<div style="display:flex;gap:10px;align-items:center">$
   function info(){ const K=C+273.15;
     A.$("#t-therm").innerHTML=`<div style="display:flex;gap:12px;align-items:center">${thermo((K)/(673.15),70,260)}<div class="t-read"><span style="font-size:26px;font-weight:800">${C.toFixed(2)} °C</span><span style="font-size:26px;font-weight:800;color:var(--teal-ink)">${K.toFixed(2)} K</span><span class="math">K = ${C.toFixed(2)} + 273.15</span></div></div>`;
     const m=A.$("#t-msg"); m.className="status";
-    m.innerHTML= K<0.5? "<b>Absolute zero (0 K):</b> the particles have their minimum energy and stop moving. Nothing can be colder." : C<=0.05&&C>=-0.05? "0 °C = 273.15 K: the freezing point of water and standard temperature." : Math.abs(C-100)<0.06? "100 °C = 373.15 K: the boiling point of water at standard pressure." : `Higher temperature → faster particles → more kinetic energy. The average speed now is about ${Math.round(Math.sqrt(K/298.15)*100)}% of the speed at room temperature.`;
+    m.innerHTML= K<0.5? "<b>Absolute zero (0 K):</b> the particles have the least possible kinetic energy. Nothing can be colder." : C<=0.05&&C>=-0.05? "0 °C = 273.15 K: the freezing point of water and standard temperature." : Math.abs(C-100)<0.06? "100 °C = 373.15 K: the boiling point of water at standard pressure." : `Higher temperature → faster particles → more kinetic energy. The average speed now is about ${Math.round(Math.sqrt(K/298.15)*100)}% of the speed at room temperature.`;
   }
   r.addEventListener("input",()=>setC(+r.value));
   A.$("#t-0").addEventListener("click",()=>setC(-273.15)); A.$("#t-std").addEventListener("click",()=>setC(0)); A.$("#t-boil").addEventListener("click",()=>setC(100));

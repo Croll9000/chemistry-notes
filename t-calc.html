@@ -20,7 +20,7 @@
   <section class="note">
     <div class="tile"><h2>Heat Calculations</h2></div>
     <div class="body">
-      <p class="intro">An engineer designing a car radiator, or a cook figuring out how long it takes to boil pasta water, needs to know how much heat a change takes. Chemists use three equations to calculate the heat added to or removed from a substance.</p>
+      <p class="intro">The operator of an ice rink must calculate how much heat to remove to freeze a sheet of water, and an engineer designing a car’s cooling system must know how much heat the coolant can absorb before it boils. Questions like these are answered with three equations. Which one to use depends on whether the substance is changing temperature or changing phase.</p>
       <ul>
         <li>Which equation to use depends on what is happening on the heating curve:
           <ul><li><span class="kr">Sloped segment</span> (temperature change): <span class="mth">q = mcΔT</span></li>
@@ -31,21 +31,18 @@
     </div>
   </section>
 
-  <div class="part" id="p1" data-short="Temperature changes"><div class="pn"><small>Part</small><span>1</span></div><h2>Heat During Temperature Changes</h2><p>q = mcΔT</p></div>
+  <div class="part" id="p1" data-short="Temperature changes"><div class="pn"><small>Part</small><span>1</span></div><h2>Heat During Temperature Changes</h2><p>Chemists must often determine how much heat is needed to reach a desired temperature. During a temperature change, this heat depends on the mass of the sample, its specific heat capacity and its change in temperature.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Heat During Temperature Changes</h2></div>
     <div class="body">
-      <p class="intro">Heating a full pot of water takes longer than heating a half-full one, and heating it to 90 °C takes longer than heating it to 40 °C. The heat needed depends on the mass, the substance and the temperature change.</p>
+      <p class="intro">A backyard swimming pool takes days to warm up in the spring, while a cup of water in a microwave is hot in a minute. Both are water, so the difference is the amount of matter being heated. The heat needed to change the temperature of a sample depends on three things: its mass, the substance it is made of and how much its temperature changes.</p>
       <ul>
         <li>When the temperature of a substance changes, the kinetic energy of its particles changes. The heat added during these intervals is proportional to the change in temperature.</li>
-        <li><span class="mth" style="font-size:1.2em">q = mcΔT</span>
-          <ul><li><b>q</b> = heat (J)</li>
-          <li><b>m</b> = mass of the sample (g)</li>
-          <li><b>c</b> = specific heat capacity (J/g·K)</li>
-          <li><b>ΔT</b> = change in temperature (K or °C): <span class="mth">ΔT = T<sub>final</sub> − T<sub>initial</sub></span></li></ul></li>
+        <li>The heat needed depends on three things: the mass of the sample, the substance (its specific heat capacity) and the change in temperature.</li>
         <li>If the temperature goes up, ΔT and q are positive (heat absorbed). If the temperature goes down, ΔT and q are negative (heat released).</li>
       </ul>
+      <div class="center"><div class="fbox"><span>q</span><span>=</span><span>mcΔT</span></div><div class="mathbox" style="font-size:16px"><span>q – heat (J)</span><span>m – mass of the sample (g)</span><span>c – specific heat capacity (J/g·K)</span><span>ΔT – change in temperature (K or °C) = T<sub>final</sub> − T<sub>initial</sub></span></div></div>
       <div class="t7-fig" id="c-art"></div>
     </div>
   </section>
@@ -53,14 +50,16 @@
   <section class="note">
     <div class="tile"><h2>Specific Heat Capacity</h2></div>
     <div class="body">
-      <p class="intro">At the beach on a sunny day, the sand is too hot to walk on while the water stays cool. Different substances change temperature at different rates when they absorb the same amount of heat.</p>
+      <p class="intro">At the beach on a sunny afternoon, the sand is too hot to walk on barefoot while the ocean still feels cool, even though the same sunlight has been falling on both all day. Different substances change temperature by different amounts when they absorb the same amount of heat. Water is especially hard to heat up, which is why coastal towns have milder weather than inland towns.</p>
       <ul>
         <li>How much the temperature of a substance changes when heat is added depends on the intermolecular forces in the substance, the complexity of its particles and its mass. We describe this with a value called specific heat capacity.
           <ul><li><span class="def">Specific Heat Capacity (c)</span> – the amount of heat needed to raise the temperature of 1 g of a substance by 1 °C (or 1 K).</li>
-          <li>Unit: J/g·K.</li></ul></li>
+          <li class="qu"><i>Unit</i> – joules per gram-kelvin (J/g·K)</li></ul></li>
         <li>The specific heat capacity of water (4.18 J/g·K) is much higher than that of aluminum (0.897 J/g·K). If the same amount of heat is added to 1 gram of each, <span class="kr">the temperature of the aluminum rises more</span> than that of the water.</li>
         <li><span class="kb">The higher the specific heat capacity, the smaller the temperature change for the same amount of heat.</span></li>
       </ul>
+      <div class="t7-fig" id="beach-art"></div>
+      <div class="rw"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Beach_ocean_waves_sand.jpg/960px-Beach_ocean_waves_sand.jpg" alt="Waves washing onto a sandy beach" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption><b>Sand and sea</b>Under the same sun, dry sand heats up much faster than the ocean because water has a much higher specific heat capacity.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Beach_ocean_waves_sand.jpg" target="_blank" rel="noopener">Jon Sullivan</a>, Wikimedia Commons (public domain)</span></figcaption></figure></div>
       <table class="nt t7-tbl" style="margin:10px auto"><tr><th>Substance</th><th>Specific heat capacity (J/g·K)</th></tr><tr><td>Water (liquid)</td><td>4.18</td></tr><tr><td>Ice</td><td>2.09</td></tr><tr><td>Water vapor (steam)</td><td>2.01</td></tr><tr><td>Aluminum</td><td>0.897</td></tr><tr><td>Iron</td><td>0.449</td></tr><tr><td>Copper</td><td>0.385</td></tr></table>
     </div>
   </section>
@@ -73,37 +72,64 @@
   <section class="note">
     <div class="tile"><h2>Thermal Conductivity vs. Specific Heat Capacity</h2></div>
     <div class="body">
-      <p class="intro">A metal pan heats up fast for two different reasons that are easy to mix up.</p>
+      <p class="intro">A copper pan heats up quickly on a stove for two different reasons that are easy to mix up: heat moves through copper fast, and copper needs only a little heat to get hot. These are two different properties with two different names.</p>
       <ul>
         <li>Thermal conductivity and specific heat capacity are related, but they measure different properties:
           <ul><li><span class="kr">Thermal conductivity</span> describes <span class="kr">how quickly an object transfers heat</span> (into and out of itself).</li>
           <li><span class="kb">Specific heat capacity</span> describes <span class="kb">how much heat is needed to change the temperature</span> of an object.</li></ul></li>
         <li>Copper has a high thermal conductivity (heat moves through it fast) and a low specific heat capacity (a little heat raises its temperature a lot).</li>
       </ul>
+      <div class="t7-fig" id="kc-art"></div>
+      <div class="tbl-wrap"><table class="nt t7-tbl" style="margin:10px auto"><tr><th></th><th style="background:#c40000">Thermal conductivity (k)</th><th style="background:#005ea3">Specific heat capacity (c)</th></tr>
+        <tr><td><b>Question it answers</b></td><td>How fast does heat move through it?</td><td>How much heat changes its temperature?</td></tr>
+        <tr><td><b>Unit</b></td><td>W/m·K</td><td>J/g·K</td></tr>
+        <tr><td><b>Copper</b></td><td>401 (high: heat moves fast)</td><td>0.385 (low: heats up easily)</td></tr>
+        <tr><td><b>Water</b></td><td>0.606 (low: heat moves slowly)</td><td>4.18 (high: hard to heat up)</td></tr></table></div>
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Phase changes"><div class="pn"><small>Part</small><span>2</span></div><h2>Heat During Phase Changes</h2><p>q = mH<sub>f</sub> and q = mH<sub>v</sub></p></div>
+  <div class="part" id="p2" data-short="Phase changes"><div class="pn"><small>Part</small><span>2</span></div><h2>Heat During Phase Changes</h2><p>During a phase change, added heat increases the potential energy of the particles rather than the temperature. A different equation is therefore needed to calculate the heat involved.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Heat During Phase Changes</h2></div>
     <div class="body">
-      <p class="intro">During a phase change the temperature does not change, so q = mcΔT would give zero heat. A different equation is needed for the flat parts of the heating curve.</p>
+      <p class="intro">Sweating cools you down on a hot day because every gram of sweat that evaporates carries away 2260 joules from your skin, without the sweat getting any hotter. During a phase change the temperature does not change, so q = mcΔT would give zero heat. A different equation is needed for the flat parts of the heating curve.</p>
       <ul>
-        <li>During a phase change, the potential energy of the particles changes, not their kinetic energy. To calculate the heat, we use:
-          <ul><li><span class="mth" style="font-size:1.15em">q = mH<sub>f</sub></span> for melting or freezing. H<sub>f</sub> = heat of fusion (J/g)</li>
-          <li><span class="mth" style="font-size:1.15em">q = mH<sub>v</sub></span> for vaporizing or condensing. H<sub>v</sub> = heat of vaporization (J/g)</li>
-          <li>q = heat (J). m = mass of the sample (g).</li></ul></li>
+        <li>During a phase change, the potential energy of the particles changes, not their kinetic energy. To calculate the heat, we use q = mH<sub>f</sub> for melting or freezing, and q = mH<sub>v</sub> for vaporizing or condensing.</li>
         <li><span class="def">Heat of Fusion (H<sub>f</sub>)</span> – the amount of heat needed to melt (or released when freezing) 1 gram of a substance at its melting point.</li>
         <li><span class="def">Heat of Vaporization (H<sub>v</sub>)</span> – the amount of heat needed to vaporize (or released when condensing) 1 gram of a substance at its boiling point.</li>
-        <li>Some substances need more heat to change phase than others, because of differences in their intermolecular forces and the conditions of the surroundings. <span class="kp">The higher the heat of fusion or vaporization, the more energy must be added to separate the particles, or the more energy is released when the particles move closer together.</span></li>
+        <li>Some substances need more heat to change phase than others, because of differences in their intermolecular forces and the conditions of the surroundings. <span class="kr">The higher the heat of fusion or vaporization, the more energy must be added to separate the particles, or the more energy is released when the particles move closer together.</span></li>
       </ul>
+      <div class="center"><div class="fbox"><span>q</span><span>=</span><span>mH<sub>f</sub></span></div><div class="fbox"><span>q</span><span>=</span><span>mH<sub>v</sub></span></div><div class="mathbox" style="font-size:16px"><span>q – heat (J)</span><span>m – mass of the sample (g)</span><span>H<sub>f</sub> – heat of fusion (J/g)</span><span>H<sub>v</sub> – heat of vaporization (J/g)</span></div></div>
       <div class="t7-grid"><div class="t7-fig" id="f-art"></div><div class="t7-fig" id="v-art"></div></div>
     </div>
   </section>
 
+  <section class="note">
+    <div class="tile"><h2>Phase Changes in Everyday Life</h2></div>
+    <div class="body">
+      <p class="intro">Because phase changes absorb or release large amounts of heat without changing temperature, people rely on them every day, often without realizing it. Your body, your refrigerator and even farmers protecting their crops on a frosty night all take advantage of the heat of fusion and the heat of vaporization.</p>
+      <ul>
+        <li><span class="kr">Sweating cools the body.</span>
+          <ul><li>As sweat evaporates from your skin, every gram absorbs about 2260 J of heat from your body.</li>
+          <li>On a humid day sweat evaporates slowly, so it cools you less.</li></ul></li>
+        <li><span class="kb">Ice keeps a cooler cold.</span>
+          <ul><li>Melting ice absorbs 334 J for every gram that melts, while staying at 0 °C.</li>
+          <li>This is why a cooler stays cold until the ice is gone, and why ice cools a drink better than the same mass of cold water.</li></ul></li>
+        <li><span class="kg">Steam causes worse burns than boiling water at the same temperature.</span>
+          <ul><li>When steam touches your skin, it first condenses, releasing 2260 J of heat per gram.</li>
+          <li>Only then does the hot water cool to body temperature, releasing more heat.</li></ul></li>
+        <li><span class="kp">Freezing water can protect crops.</span>
+          <ul><li>On frosty nights, citrus farmers spray their trees with water.</li>
+          <li>As the water freezes on the fruit, it releases 334 J of heat per gram, which keeps the fruit itself from dropping much below 0 °C.</li></ul></li>
+        <li>A refrigerator works by letting a liquid refrigerant evaporate inside the coils. The evaporating refrigerant absorbs heat from the food, and the heat is released outside the refrigerator when the refrigerant condenses again.</li>
+      </ul>
+      <div class="t7-fig" id="steam-art"></div>
+    </div>
+  </section>
+
   <section class="lab" id="latent">
-    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Melting vs. Warming vs. Boiling</h3></div>
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Melting vs. Boiling</h3></div>
     <div id="lat-host"></div>
   </section>
 
@@ -143,6 +169,9 @@ const A=AS, T=A.U7, S=A.U6, P=A.U3;
   lab.forEach((l,i)=>{ const mx=(xs[i]+xs[i+1])/2, my=(ys[i]+ys[i+1])/2, flat=i%2; s+=`<text x="${flat?mx:mx+12}" y="${flat?my-12:my+18}" text-anchor="${flat?"middle":"start"}" font-family="Inter,Arial" font-size="15" font-weight="800" fill="${["#E00000","#2E75D6","#E00000","#00873c","#E00000"][i]}" stroke="#fff" stroke-width="4" paint-order="stroke">${l}</text>`; });
   const svg=T.svg(660,310,s+T.t(340,304,"Heat added / time",{fs:14})+`<text transform="translate(18 150) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Temperature</text>`,"A heating curve labeled with the equation for each segment");
   A.$("#map-art").innerHTML=svg; A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${svg}</div>`; })();
+A.$("#beach-art").innerHTML=T.figBeach();
+A.$("#kc-art").innerHTML=T.figKC();
+A.$("#steam-art").innerHTML=T.figSteam();
 A.$("#c-art").innerHTML=T.figHeatEq("c");
 A.$("#f-art").innerHTML=T.figHeatEq("f"); A.$("#v-art").innerHTML=T.figHeatEq("v");
 T.CapacityDemo(A.$("#cap-host"));
