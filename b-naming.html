@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Which rules?"><div class="pn"><small>Part</small><span>1</span></div><h2>Which Set of Rules?</h2><p>The type of compound decides how it is named.</p></div>
+  <div class="part" id="p1" data-short="Which rules?"><div class="pn"><small>Part</small><span>1</span></div><h2>Which Set of Rules?</h2><p>FeCl₃ is named iron(III) chloride, while PCl₃ is named phosphorus trichloride, even though their formulas follow the same pattern. Iron is a metal, so FeCl₃ is ionic and its formula is fixed by the charges of its ions; phosphorus is a nonmetal, so PCl₃ is covalent and its name needs prefixes. In this section, we will decide which set of naming rules applies to a compound before naming it.</p></div>
 
   <section class="note added">
     <div class="tile"><h2>Deciding: Ionic or Covalent</h2></div>
@@ -39,7 +39,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Naming flowchart"><div class="pn"><small>Part</small><span>2</span></div><h2>From Formula to Name</h2><p>Follow the flowchart from the top.</p></div>
+  <div class="part" id="p2" data-short="Naming flowchart"><div class="pn"><small>Part</small><span>2</span></div><h2>From Formula to Name</h2><p>Tin(II) fluoride, SnF₂, is the ingredient listed as “stannous fluoride” on many toothpaste tubes. Reaching that name takes several decisions in a fixed order: whether the compound is ionic or covalent, whether the metal can form more than one ion, and whether a polyatomic ion is present. In this section, we will follow a flowchart that makes these decisions in order.</p></div>
 
   <section class="note added">
     <div class="tile"><h2>Naming Flowchart</h2></div>
@@ -56,7 +56,7 @@
     <div id="fn-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Formula flowchart"><div class="pn"><small>Part</small><span>3</span></div><h2>From Name to Formula</h2><p>The same decision comes first.</p></div>
+  <div class="part" id="p3" data-short="Formula flowchart"><div class="pn"><small>Part</small><span>3</span></div><h2>From Name to Formula</h2><p>Aluminum hydroxide, an ingredient in some antacids, has the formula Al(OH)₃: three hydroxide ions for every aluminum ion. Writing that formula from its name starts with the same decision as naming: the compound contains a metal and a polyatomic ion, so it is ionic, and the charges of its ions, 3+ and 1−, must cancel. In this section, we will follow a flowchart to write formulas from names.</p></div>
 
   <section class="note added">
     <div class="tile"><h2>Formula-Writing Flowchart</h2></div>
@@ -81,7 +81,12 @@
     <div id="ff-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -109,6 +114,7 @@ B.WorkedFlow(A.$("#wf-formula"),"formula",[
  {lab:"sulfur hexafluoride",path:["s","d1","c1","c2","c3","c4"],steps:["Sulfur and fluorine are both nonmetals: <b>covalent</b>.","Write the symbols: S, then F.","No prefix on sulfur = 1 S; hexa- = 6 F.","Do not reduce."],ans:"SF<sub>6</sub>"}]);
 B.FlowNamer(A.$("#fn-host"),{mode:"name"});
 B.FlowNamer(A.$("#ff-host"),{mode:"formula"});
+A.VocabCheck(A.$("#vc-host"),[{"s": "A compound made of a metal and a nonmetal is named with the ___ rules.", "a": "ionic"}, {"s": "A compound made of two nonmetals is named with ___.", "a": "prefixes"}, {"s": "Roman numerals are used for metals that can form more than one ___.", "a": "charge"}, {"s": "In an ionic formula, the subscripts come from the ___ of the ions.", "a": "charges"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which compound is named using prefixes?",choices:["K<sub>2</sub>O","CaCl<sub>2</sub>","PCl<sub>3</sub>","Al<sub>2</sub>O<sub>3</sub>"],ans:3,explain:"P and Cl are both nonmetals, so PCl₃ is covalent: phosphorus trichloride. The others start with metals (ionic)."},
  {type:"mc",stem:"What is the correct name for FeO?",choices:["iron oxide","iron(I) oxide","iron(II) oxide","iron monoxide"],ans:3,explain:"Iron can be 2+ or 3+. O²⁻ balances one Fe²⁺, so it is iron(II) oxide. Ionic names never use prefixes."},

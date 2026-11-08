@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part enr" id="p1" data-short="Octet exceptions"><div class="pn"><small>Part</small><span>1</span></div><h2>Exceptions to the Octet Rule</h2><p>Fewer than 8, or more than 8.</p></div>
+  <div class="part enr" id="p1" data-short="Octet exceptions"><div class="pn"><small>Part</small><span>1</span></div><h2>Exceptions to the Octet Rule</h2><p>Xenon tetrafluoride, XeF₄, one of the first noble gas compounds, made in 1962, has 12 electrons around its xenon atom instead of 8. Large atoms in period 3 and below have room for more than eight electrons around them, while small atoms such as boron can be stable with fewer. In this section, we will discuss these exceptions to the octet rule.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Fewer Than 8: Boron</h2></div>
@@ -52,7 +52,7 @@
     <div id="ob-host"></div>
   </section>
 
-  <div class="part enr" id="p2" data-short="Geometry"><div class="pn"><small>Part</small><span>2</span></div><h2>Molecular Geometry</h2><p>Molecules are 3-dimensional.</p></div>
+  <div class="part enr" id="p2" data-short="Geometry"><div class="pn"><small>Part</small><span>2</span></div><h2>Molecular Geometry</h2><p>The three hydrogen atoms in an ammonia molecule form a pyramid, with an angle of 107° between each pair of bonds, rather than lying flat as a Lewis structure suggests. Electron pairs around the nitrogen atom, both the three bonding pairs and one lone pair, repel one another and spread as far apart as possible in three dimensions. In this section, we will use VSEPR theory to predict the shapes of molecules.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Molecular Geometry</h2></div>
@@ -122,7 +122,12 @@
     <div id="sf-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -176,6 +181,7 @@ A.QSet(A.$("#lq-vs"),[
 ],{id:"lq-vs",title:"Lab Questions"});
 B.RepelSim(A.$("#rp-host"),{enr:true});
 B.ShapeFinder(A.$("#sf-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "The 3-dimensional arrangement of atoms in a molecule is its ___.", "a": "molecular geometry"}, {"s": "Bonds and lone pairs arrange themselves to be as far apart as possible, according to ___ theory.", "a": "vsepr"}, {"s": "According to VSEPR theory, electron pairs ___ one another.", "a": "repel"}, {"s": "Shared pairs and lone pairs around the ___ determine the shape of a molecule.", "a": "central atom"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"According to VSEPR theory, the shape of a molecule is determined by",choices:["the mass of the central atom","the repulsion between electron pairs around the central atom","the number of protons in the central atom","the phase of the substance"],ans:2,explain:"Electron pairs (bonds and lone pairs) repel and spread as far apart as possible."},
  {type:"mc",stem:"What is the shape of a molecule of water, H<sub>2</sub>O?",choices:["linear","bent","trigonal planar","tetrahedral"],ans:2,explain:"2 bonded atoms and 2 lone pairs on oxygen: bent."},

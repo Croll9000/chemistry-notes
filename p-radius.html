@@ -16,12 +16,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Measuring an Atom</h2><p>The distance from the nucleus to the outermost energy level.</p></div>
+  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Measuring an Atom</h2><p>A gold atom has a radius of about 130 pm, so nearly 4 million gold atoms lined up side by side would span a single millimeter. Measurements like this are possible because chemists define the size of an atom as the distance from its nucleus to its outermost energy level, a quantity known as the atomic radius. In this section, we will define atomic radius and the unit used to express it.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atomic Radius</h2></div>
     <div class="body">
-      <p class="intro">One of the most important factors in determining the physical and chemical properties of an element is the radius of its atoms. Trends in atomic radius exist in both the groups and periods of the Periodic Table.</p>
+      <p class="intro">Atoms are far too small to measure directly, so chemists measure the distance between the nuclei of two bonded atoms. In a chlorine molecule (Cl<sub>2</sub>), the two nuclei are 199 pm apart, so each chlorine atom has a radius of about 100 pm. In this section we will define atomic radius and the unit used to express it.</p>
       <ul>
         <li><span class="def">Atomic Radius</span> – the distance from the nucleus to the outermost energy level in an atom.
           <ul><li class="qu"><i>Unit</i> – picometers (pm)</li>
@@ -31,7 +31,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="The trends"><div class="pn"><small>Part</small><span>2</span></div><h2>The Trends</h2><p>Atomic radius across a period and down a group.</p></div>
+  <div class="part" id="p2" data-short="The trends"><div class="pn"><small>Part</small><span>2</span></div><h2>The Trends</h2><p>Helium atoms, among the smallest of all atoms, slip through the walls of a latex balloon so quickly that most helium balloons sink within a day. Helium atoms are small because they have only one energy level, and their two electrons are held close to the nucleus. In this section, we will discuss how atomic radius changes across a period and down a group, and how nuclear charge and the number of energy levels cause these trends.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atomic Radius in Periods</h2></div>
@@ -92,7 +92,7 @@
     <div class="labq" id="lq-down"></div>
   </section>
 
-  <div class="part" id="p3" data-short="The data"><div class="pn"><small>Part</small><span>3</span></div><h2>Looking at the Data</h2><p>The same pattern repeats in every period.</p></div>
+  <div class="part" id="p3" data-short="The data"><div class="pn"><small>Part</small><span>3</span></div><h2>Looking at the Data</h2><p>Graphed against atomic number, atomic radius shrinks across each period and then jumps at the start of the next, from 101 pm for argon to 200 pm for potassium. The jump occurs because potassium is the first element with electrons in a fourth energy level. In this section, we will use measured data to show that this repeating rise and fall, evidence for the periodic law, appears in every period.</p></div>
 
   <p class="bridge">Atomic radius vs. atomic number. Each period begins with a large alkali metal (red) and decreases toward the halogen (orange).</p>
 
@@ -113,7 +113,12 @@
     <div id="og"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -143,6 +148,7 @@ P.TrendGraph(A.$("#tg"),{prop:"radius",choose:false});
 A.PTExplorer(A.$("#pt-host"),{modes:["radius"],mode:"radius",start:11,maxZ:89,skipF:true});
 P.OrderGame(A.$("#og"),{props:["radius"]});
 const circ=(rs)=>`<svg viewBox="0 0 60 ${rs.reduce((a,r)=>a+2*r+6,0)}" width="44" aria-hidden="true">${(()=>{ let y=0,s=""; rs.forEach(r=>{ y+=r+3; s+=`<circle cx="30" cy="${y}" r="${r}" fill="none" stroke="#1b2328" stroke-width="2"/>`; y+=r+3; }); return s; })()}</svg>`;
+A.VocabCheck(A.$("#vc-host"),[{"s": "The distance from the nucleus to the outermost energy level is the ___.", "a": "atomic radius"}, {"s": "Atomic radius is measured in ___.", "a": "picometers"}, {"s": "From left to right across a period, atomic radius ___.", "a": "decreases"}, {"s": "From top to bottom down a group, atomic radius ___.", "a": "increases"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which element in Period 3 has the largest atomic radius?",choices:["Cl","Al","Na","P"],ans:3,explain:"Atomic radius decreases across a period, so sodium, farthest left, is the largest."},
  {type:"mc",stem:"Which grouping of circles, when considered in order from the top to the bottom, best represents the relative size of the atoms of Li, Na, K, and Rb, respectively?",choices:[circ([7,9,12,15]),circ([10,8,12,9]),circ([12,15,6,8]),circ([15,12,9,7])],ans:1,explain:"Atomic radius increases down a group, so the circles should get larger from Li to Rb."},

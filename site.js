@@ -833,7 +833,11 @@ document.addEventListener("DOMContentLoaded",()=>{ const m=document.querySelecto
     if(factor) t=t.replace(/^\s*10(?:\s+|\^)\(?([-−–]?\d+)\)?/,(m,e)=>`10${toSup(e)}`);
     t=t.replace(/([⁰¹²³⁴⁵⁶⁷⁸⁹⁻])([-−–]?\d+)/g,(m,a,d)=>a+toSup(d));
     return t; };
+  /* unit boxes: "deg" or "^o" types a degree sign, so "degC" becomes "°C" (and "J/gdegC" becomes "J/g°C") */
+  A.degify = s => String(s).replace(/deg\s*/gi,"°").replace(/\^\s*o/g,"°").replace(/°\s*c\b/g,"°C").replace(/°\s*c$/,"°C");
+  const isUnit=el=>el.dataset.unit||el.classList.contains("ty-u")||el.classList.contains("st-unit")||/\bunit\b/i.test(el.getAttribute("aria-label")||"");
   document.addEventListener("input",e=>{ const el=e.target; if(!(el instanceof HTMLInputElement)) return;
+    if(isUnit(el)&&el.selectionStart===el.value.length){ const t=A.degify(el.value); if(t!==el.value){ el.value=t; el.setSelectionRange(t.length,t.length); } }
     if(!(el.classList.contains("cx-in")||el.dataset.sup)) return;
     if(el.selectionStart!==el.value.length) return;          /* only when typing at the end */
     const t=A.supify(el.value, el.dataset.sup==="factor"); if(t!==el.value){ el.value=t; el.setSelectionRange(t.length,t.length); }
@@ -1874,17 +1878,22 @@ U.DENSITY = [["Aluminum","Al",2.70],["Iron","Fe",7.87],["Copper","Cu",8.96],["Zi
 U.Calc = (host, spec)=>{
   const box=(t,i)=>`<span class="cx-slot"><input class="cx-in" data-i="${i}"${t.factor?' data-sup="factor"':""} inputmode="text" autocomplete="off" aria-label="${t.name} (${t.unit})"><small>${t.name}${t.unit?` (${t.unit})`:""}</small></span>`;
   const symb=(t)=> /^[\d°]/.test(t.sym)? `<b class="cx-op">${t.sym}</b>` : `<i>${t.sym}</i>`;
-  const terms= spec.form==="frac"? [spec.num,spec.den] : spec.terms.filter(t=>typeof t!=="string");
-  let fsym, fbox, k=0;
-  if(spec.form==="frac"){ fsym=`<span class="cx-frac"><span>${symb(spec.num)}</span><span>${symb(spec.den)}</span></span>`; fbox=`<span class="cx-frac"><span>${box(spec.num,0)}</span><span>${box(spec.den,1)}</span></span>`; }
-  else { fsym=spec.terms.map(t=>typeof t==="string"?`<b class="cx-op">${t}</b>`:symb(t)).join(""); fbox=spec.terms.map(t=>typeof t==="string"?`<b class="cx-op">${t}</b>`:box(t,k++)).join(""); }
+  /* solving for a quantity that is not on the left: the equation stays as written, the unknown shows "?" and the student does the algebra */
+  const all= spec.form==="frac"? [spec.num,spec.den] : spec.terms.filter(t=>typeof t!=="string"), unkT=all.find(t=>t.unk), solving=!!unkT;
+  const terms=(solving?[spec.lhs]:[]).concat(all.filter(t=>!t.unk));
+  const qbox=t=>`<span class="cx-slot"><span class="cx-q">?</span><small>${t.name}${t.unit?` (${t.unit})`:""}</small></span>`;
+  let fsym, fbox, k=solving?1:0; const bx=t=>t.unk? qbox(t) : box(t,k++);
+  if(spec.form==="frac"){ fsym=`<span class="cx-frac"><span>${symb(spec.num)}</span><span>${symb(spec.den)}</span></span>`; fbox=`<span class="cx-frac"><span>${bx(spec.num)}</span><span>${bx(spec.den)}</span></span>`; }
+  else { fsym=spec.terms.map(t=>typeof t==="string"?`<b class="cx-op">${t}</b>`:symb(t)).join(""); fbox=spec.terms.map(t=>typeof t==="string"?`<b class="cx-op">${t}</b>`:bx(t)).join(""); }
+  const ansT=solving?unkT:spec.lhs;
   if(spec.tail){ fsym+=`<b class="cx-op">${spec.tail}</b>`; fbox+=`<b class="cx-op">${spec.tail}</b>`; }
   const root=A.h("div",{class:"cx"});
   root.innerHTML=`<div class="cx-row cx-sym">${symb(spec.lhs)}<b class="cx-op">=</b>${fsym}</div>
-   <div class="cx-row">${symb(spec.lhs)}<b class="cx-op">=</b>${fbox}<b class="cx-op">=</b><span class="cx-slot"><input class="cx-in cx-ans" inputmode="text" autocomplete="off" aria-label="${spec.lhs.name}"><small>${spec.lhs.name}${spec.lhs.unit?` (${spec.lhs.unit})`:""}</small></span></div>
+   ${solving? `<div class="cx-row">${box(spec.lhs,0)}<b class="cx-op">=</b>${fbox}</div><div class="cx-row cx-solve">${symb(unkT)}<b class="cx-op">=</b><span class="cx-slot"><input class="cx-in cx-ans" inputmode="text" autocomplete="off" aria-label="${unkT.name}"><small>${unkT.name}${unkT.unit?` (${unkT.unit})`:""}</small></span></div>`
+     : `<div class="cx-row">${symb(spec.lhs)}<b class="cx-op">=</b>${fbox}<b class="cx-op">=</b><span class="cx-slot"><input class="cx-in cx-ans" inputmode="text" autocomplete="off" aria-label="${spec.lhs.name}"><small>${spec.lhs.name}${spec.lhs.unit?` (${spec.lhs.unit})`:""}</small></span></div>`}
    <div class="cx-btns"><button type="button" class="btn sm">Check</button></div><div class="status cx-msg" aria-live="polite"></div>`;
   host.innerHTML=""; host.appendChild(root);
-  const ins=[...root.querySelectorAll(".cx-in:not(.cx-ans)")], ans=root.querySelector(".cx-ans"), msg=root.querySelector(".cx-msg");
+  const ins=[...root.querySelectorAll(".cx-in:not(.cx-ans)")].sort((a,b)=>a.dataset.i-b.dataset.i), ans=root.querySelector(".cx-ans"), msg=root.querySelector(".cx-msg");
   const num=v=>{ const s=A.unsup(String(v)).trim().replace(/[−–]/g,"-").replace(/,/g,"").replace(/\s+/g,""); const m=s.match(/^(-?[\d.]*)[x×*]?10\^\(?(-?\d+)\)?$/); if(m&&s.includes("^")){ const c=m[1]===""||m[1]==="-"? (m[1]==="-"?-1:1) : parseFloat(m[1]); return c*Math.pow(10,+m[2]); } return /^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)? parseFloat(s) : NaN; };
   const near=(a,b,tol)=>Math.abs(a-b)<=Math.max(Math.abs(b)*tol, Math.abs(b)<0.05? 1e-15 : 1e-9+(tol<0.01?0.005:0.011));
   let done=false;
@@ -1895,8 +1904,8 @@ U.Calc = (host, spec)=>{
     const a=num(ans.value), ck=spec.check? spec.check(ans.value,a) : spec.strict? null : A.lenient(ans.value,spec.ans,spec.round||{sf:spec.sf||3}), ok= ck!=null? ck===true : spec.atol!=null? Math.abs(a-spec.ans)<=spec.atol : near(a,spec.ans,spec.tol??.02);
     if(typeof ck==="string"){ ans.classList.add("no"); msg.className="status cx-msg bad"; msg.innerHTML=ck; spec.onWrong&&spec.onWrong(); return; }
     ans.classList.toggle("ok",ok); ans.classList.toggle("no",!ok);
-    if(ok){ done=true; msg.className="status cx-msg good"; msg.innerHTML=`✔ ${spec.lhs.sym} = ${spec.ansText??spec.ans.toFixed(spec.dp??2)} ${spec.lhs.unit||""}`; spec.onCorrect&&spec.onCorrect(); }
-    else { msg.className="status cx-msg bad"; msg.innerHTML= isNaN(a)? "Now do the math and type the answer in the last box." : `Your numbers are in the right place, but the answer isn’t right. Redo the ${spec.form==="frac"?"division":"math"} (use the calculator in the top bar).`; spec.onWrong&&spec.onWrong(); }
+    if(ok){ done=true; msg.className="status cx-msg good"; msg.innerHTML=`✔ ${ansT.sym} = ${spec.ansText??spec.ans.toFixed(spec.dp??2)} ${ansT.unit||""}`; spec.onCorrect&&spec.onCorrect(); }
+    else { msg.className="status cx-msg bad"; msg.innerHTML= isNaN(a)? "Now do the math and type the answer in the last box." : solving? `Your numbers are in the right place, but the value of ${ansT.sym} isn’t right. Rearrange the equation to get ${ansT.sym} by itself, then calculate (use the calculator in the top bar).` : `Your numbers are in the right place, but the answer isn’t right. Redo the ${spec.form==="frac"?"division":"math"} (use the calculator in the top bar).`; spec.onWrong&&spec.onWrong(); }
   }
   root.querySelector("button").addEventListener("click",check);
   root.addEventListener("keydown",e=>{ if(e.key==="Enter") check(); });
@@ -2499,7 +2508,7 @@ L.TempGame=function(host){
     if(m==="CK"){ const c=+(A.rand(-2500,2500)/10).toFixed(dp); const k=c+273.15; A.$("#tc-q").innerHTML=`${c.toFixed(dp)} °C = ? K`;
       U.Calc(A.$("#tc-c"),{lhs:{sym:"K",name:"temperature",unit:"K"},form:"line",terms:[{sym:"°C",name:"Celsius temperature",unit:"°C",val:c,atol:.001},"+",{sym:"273.15",name:"constant",unit:"",val:273.15,atol:.001}],ans:k,ansText:`${k.toFixed(2)} → ${L.roundDp(k,dp).toFixed(dp)}`,check:v=>chk(v,k,dp),onCorrect:()=>win(`${c.toFixed(dp)} °C + 273.15 = ${k.toFixed(2)} → ${L.roundDp(k,dp).toFixed(dp)} K`),onWrong:()=>g.lose()}); }
     else { const k=+(A.rand(150,6000)/10).toFixed(dp); const c=k-273.15; A.$("#tc-q").innerHTML=`${k.toFixed(dp)} K = ? °C`;
-      U.Calc(A.$("#tc-c"),{lhs:{sym:"°C",name:"Celsius temperature",unit:"°C"},form:"line",terms:[{sym:"K",name:"Kelvin temperature",unit:"K",val:k,atol:.001},"−",{sym:"273.15",name:"constant",unit:"",val:273.15,atol:.001}],ans:c,ansText:`${c.toFixed(2)} → ${L.roundDp(c,dp).toFixed(dp)}`,check:v=>chk(v,c,dp),onCorrect:()=>win(`${k.toFixed(dp)} K − 273.15 = ${c.toFixed(2)} → ${L.roundDp(c,dp).toFixed(dp)} °C`),onWrong:()=>g.lose()}); } }
+      U.Calc(A.$("#tc-c"),{lhs:{sym:"K",name:"Kelvin temperature",unit:"K",val:k,atol:.001},form:"line",terms:[{sym:"°C",name:"Celsius temperature",unit:"°C",unk:true},"+",{sym:"273.15",name:"constant",unit:"",val:273.15,atol:.001}],ans:c,ansText:`${c.toFixed(2)} → ${L.roundDp(c,dp).toFixed(dp)}`,check:v=>chk(v,c,dp),onCorrect:()=>win(`${k.toFixed(dp)} K = °C + 273.15, so °C = ${c.toFixed(2)} → ${L.roundDp(c,dp).toFixed(dp)} °C`),onWrong:()=>g.lose()}); } }
   function chk(v,exact,dp){ const x=L.num(v); if(isNaN(x)) return "Type your answer as a number."; if(Math.abs(x+exact)<0.6&&Math.abs(exact)>1) return "Check the sign. Kelvin is always 273.15 more than Celsius."; return A.lenient(v,exact,{dp}); }
   const win=t=>{ g.win(); g.msg("✔ "+t,"good"); g.later(next,2800); };
   next();
@@ -9764,59 +9773,63 @@ const EQS={c:{lab:"q = mcΔT",use:"temperature changes (no phase change)"},f:{la
 const UN={g:"g",grams:"g",gram:"g",j:"J",joules:"J",joule:"J","j/g":"J/g","j/g·k":"J/g·K","j/gk":"J/g·K","j/g*k":"J/g·K","j/(g·k)":"J/g·K","j/g°c":"J/g·K","j/g·°c":"J/g·K","j/g*°c":"J/g·K","j/(g·°c)":"J/g·K","j/g-k":"J/g·K","j/g.k":"J/g·K","j/g c":"J/g·K","j/gc":"J/g·K","°c":"°C",c:"°C",k:"K","j/g°k":"J/g·K"};
 const normU=u=>UN[String(u).trim().toLowerCase().replace(/\s+/g,"").replace(/\(|\)/g,"").replace("deg","°")]||UN[String(u).trim().toLowerCase()]||null;
 T.HeatGame=function(host,o={}){ let mode=o.mode||"easy", P=null, eq=null, dd=null, done=0;
-  const g=A.Game(host,{how:"Solve each problem in three steps: pick the equation, set it up with the values from the problem, then calculate. Easy: drag the values in. Medium: type each number and its unit. Hard: also choose the equation yourself."});
+  const g=A.Game(host,{how:"Solve each problem in three steps: pick the equation, set it up with the values from the problem, then calculate. Easy: the equation is given; drag the values in. Medium: choose the equation, then drag the values in. Hard: choose the equation, then type each number and its unit."});
   g.seg("Level",[["easy","Easy"],["med","Medium"],["hard","Hard"]],mode,v=>{ mode=v; next(); }); g.button("New problem",()=>next(),"ghost");
-  function slotsFor(e,unk){ /* returns [label, key, unit] for each box, in order */
-    if(e==="c") return unk==="m"? [["q","q"],["c","c"],["ΔT","dT"]] : [["m","m"],["c","c"],["ΔT","dT"]];
-    return unk==="m"? [["q","q"],[e==="f"?"H<sub>f</sub>":"H<sub>v</sub>","H"]] : [["m","m"],[e==="f"?"H<sub>f</sub>":"H<sub>v</sub>","H"]]; }
-  function box(k,lab){ return `<span class="t7-box"><small>${lab}</small><span class="da-slot${mode==="easy"?"":" ty"}" data-s="${k}">${mode==="easy"?"":`<input class="ty-n" data-sup="1" autocomplete="off" placeholder="number" aria-label="${lab.replace(/<[^>]+>/g,"")} number"><input class="ty-u" autocomplete="off" placeholder="unit" aria-label="${lab.replace(/<[^>]+>/g,"")} unit">`}</span></span>`; }
-  function setup(){ const s=slotsFor(eq,P.unk); let h="";
-    if(eq==="c"){ h+=`<div class="t7-eqrow"><b>ΔT</b> = ${box("t2","T<sub>final</sub>")} − ${box("t1","T<sub>initial</sub>")}</div>`; }
-    if(P.unk==="q") h+=`<div class="t7-eqrow"><b>q</b> = ${s.map(([l,k])=>k==="dT"?`<span class="t7-box"><small>ΔT</small><span class="t7-dt" data-r="dt">?</span></span>`:box(k,l)).join(" × ")}</div>`;
-    else h+=`<div class="t7-eqrow"><b>m</b> = ${box("q","q")} ÷ ${eq==="c"? `(${box("c","c")} × <span class="t7-box"><small>ΔT</small><span class="t7-dt" data-r="dt">?</span></span>)` : box("H",s[1][0])}</div>`;
-    g.stage.querySelector('[data-r="setup"]').innerHTML=h+(mode==="easy"?`<div class="dd-pool" data-r="pool"></div>`:`<p class="muted" style="margin:6px 0 0">Units: g, J, J/g, J/g·K, °C.</p>`);
-    if(mode==="easy"){ const keys=Object.keys(P.vals); dd=A.DragDrop({root:g.root,mode:"later",pool:g.stage.querySelector('[data-r="pool"]'),targets:A.$$(".da-slot",g.stage).map(el=>({el,id:el.dataset.s})),
-        cards:A.shuffle(keys.map(k=>({id:k,html:`${P.vals[k][0].toLocaleString()} ${P.vals[k][1]}`}))),onChange:()=>{}}); }
+  const HL=e=>e==="f"?"H<sub>f</sub>":"H<sub>v</sub>", NAME={q:"heat",m:"mass",c:"specific heat",H:"heat of "+"phase change",t1:"T<sub>initial</sub>",t2:"T<sub>final</sub>"};
+  const need=()=>(eq==="c"?["q","m","c","t2","t1"]:["q","m","H"]).filter(k=>k!==P.unk);
+  const op=t=>`<span class="t7-op">${t}</span>`;
+  function box(k,lab){ if(k===P.unk) return `<span class="t7-box"><span class="t7-q">?</span><small>${lab} (unknown)</small></span>`;
+    return `<span class="t7-box"><span class="da-slot${mode==="hard"?" ty":""}" data-s="${k}">${mode==="hard"?`<input class="ty-n" data-sup="1" autocomplete="off" placeholder="number" aria-label="${lab.replace(/<[^>]+>/g,"")} number"><input class="ty-u" data-unit="1" autocomplete="off" placeholder="unit" aria-label="${lab.replace(/<[^>]+>/g,"")} unit">`:""}</span><small>${lab}</small></span>`; }
+  const dtBox=`<span class="t7-box"><span class="t7-dt" data-r="dt">?</span><small>ΔT</small></span>`;
+  function setup(){ let h="";
+    if(eq==="c"){ h+=`<div class="t7-eqrow"><i>ΔT</i>${op("=")}${box("t2","T<sub>final</sub>")}${op("−")}${box("t1","T<sub>initial</sub>")}</div>`;
+      h+=`<div class="t7-eqrow">${box("q","q")}${op("=")}${box("m","m")}${op("×")}${box("c","c")}${op("×")}${dtBox}</div>`; }
+    else h+=`<div class="t7-eqrow">${box("q","q")}${op("=")}${box("m","m")}${op("×")}${box("H",HL(eq))}</div>`;
+    g.stage.querySelector('[data-r="setup"]').innerHTML=`<div class="t7-eqwrap">${h}</div>`+(mode!=="hard"?`<div class="dd-pool" data-r="pool"></div>`:`<p class="muted" style="margin:6px 0 0">Units: g, J, J/g, J/g·K, °C. To type °, type <b>deg</b> (degC becomes °C).</p>`);
+    if(mode!=="hard"){ dd=A.DragDrop({root:g.root,mode:"later",pool:g.stage.querySelector('[data-r="pool"]'),targets:A.$$(".da-slot",g.stage).map(el=>({el,id:el.dataset.s})),
+        cards:A.shuffle(Object.keys(P.vals).map(k=>({id:k,html:`${P.vals[k][0].toLocaleString()} ${P.vals[k][1]}`}))),onChange:()=>{}}); }
     else dd=null;
     g.stage.querySelector('[data-r="s2"]').classList.remove("locked"); }
-  function chooseEq(){ const box=g.stage.querySelector('[data-r="eqs"]');
-    box.innerHTML=Object.entries(EQS).map(([k,e])=>`<button type="button" class="btn ghost t7-eqb" data-e="${k}">${e.lab}<small>${e.use}</small></button>`).join("");
-    A.$$("button",box).forEach(b=>b.addEventListener("click",()=>{ if(b.dataset.e!==P.eq){ g.lose(); A.markBox(b,false); g.msg(P.eq==="c"? "The temperature changes in this problem, and there is no phase change. Which equation uses ΔT?" : `This problem is a phase change at a constant temperature. Use the equation with H${P.eq==="f"?"<sub>f</sub> (melting or freezing)":"<sub>v</sub> (vaporizing or condensing)"}.`,"bad"); return; }
-      A.$$("button",box).forEach(x=>{ x.disabled=true; x.classList.toggle("on",x===b); }); A.markBox(b,true); eq=b.dataset.e; g.msg(`✔ ${EQS[eq].lab}: ${EQS[eq].use}.`,"good"); setup(); })); }
-  function read(k){ if(mode==="easy"){ const pl=dd.placement(); const id=Object.keys(pl).find(i=>pl[i]===k); return id? {k:id,v:P.vals[id][0],u:P.vals[id][1]} : null; }
+  function chooseEq(){ const bx=g.stage.querySelector('[data-r="eqs"]');
+    bx.innerHTML=Object.entries(EQS).map(([k,e])=>`<button type="button" class="btn ghost t7-eqb" data-e="${k}"><span class="t7-line">${e.lab}</span><small>${e.use}</small></button>`).join("");
+    A.$$("button",bx).forEach(b=>b.addEventListener("click",()=>{ if(b.dataset.e!==P.eq){ g.lose(); A.markBox(b,false); g.msg(P.eq==="c"? "The temperature changes in this problem, and there is no phase change. Which equation uses ΔT?" : `This problem is a phase change at a constant temperature. Use the equation with H${P.eq==="f"?"<sub>f</sub> (melting or freezing)":"<sub>v</sub> (vaporizing or condensing)"}.`,"bad"); return; }
+      A.$$("button",bx).forEach(x=>{ x.disabled=true; x.classList.toggle("on",x===b); }); A.markBox(b,true); eq=b.dataset.e; g.msg(`✔ ${EQS[eq].lab}: ${EQS[eq].use}.`,"good"); setup(); })); }
+  function read(k){ if(mode!=="hard"){ const pl=dd.placement(); const id=Object.keys(pl).find(i=>pl[i]===k); return id? {k:id,v:P.vals[id][0],u:P.vals[id][1]} : null; }
     const sl=g.stage.querySelector(`.da-slot[data-s="${k}"]`), n=A.parseTyped(sl.querySelector(".ty-n").value), u=normU(sl.querySelector(".ty-u").value); return n? {v:n.v,u,raw:sl.querySelector(".ty-u").value} : null; }
+  const lab=k=>k==="t1"?"T<sub>initial</sub>":k==="t2"?"T<sub>final</sub>":k==="H"?HL(eq):k;
   function check(){ if(!eq){ g.msg("Choose the equation first (Step 1).","warn"); return; }
-    const need=slotsFor(eq,P.unk).map(x=>x[1]).filter(k=>k!=="dT"); if(eq==="c") need.push("t2","t1");
-    const want={m:P.vals.m,c:P.vals.c,q:P.vals.q,H:P.vals.H,t1:P.vals.t1,t2:P.vals.t2}; let bad=null;
-    for(const k of need){ const r=read(k), sl=g.stage.querySelector(`.da-slot[data-s="${k}"]`), w=want[k];
+    let bad=null;
+    for(const k of need()){ const r=read(k), sl=g.stage.querySelector(`.da-slot[data-s="${k}"]`), w=P.vals[k];
       if(!r){ g.msg("Fill every box first.","warn"); return; }
-      const okV=Math.abs(r.v-w[0])<1e-6, okU=mode==="easy"? true : r.u===w[1]||(w[1]==="°C"&&r.u==="K"&&false);
+      const okV=Math.abs(r.v-w[0])<1e-6, okU=mode!=="hard"? true : r.u===w[1];
       sl.classList.toggle("good",okV&&okU); sl.classList.toggle("bad",!(okV&&okU));
-      if(!bad&&!okV) bad= mode==="easy"&&r.k&&want[r.k]? `The ${r.k==="t1"||r.k==="t2"?"temperature":"value"} in the ${k==="t1"?"T<sub>initial</sub>":k==="t2"?"T<sub>final</sub>":k} box doesn’t belong there. ${k==="t2"?"T<sub>final</sub> is the temperature it ends at.":k==="t1"?"T<sub>initial</sub> is the temperature it starts at.":k==="c"?"c has units of J/g·K.":k==="m"?"Mass has units of grams.":k==="q"?"Heat has units of joules.":"H has units of J/g."}` : `Check the number in the ${k==="t1"?"T<sub>initial</sub>":k==="t2"?"T<sub>final</sub>":k} box against the problem.`;
-      if(!bad&&okV&&!okU) bad= r.raw? `The number in the ${k} box is right, but the unit should be ${w[1]}.` : `Add a unit to the ${k} box (${w[1]}).`; }
+      if(!bad&&!okV) bad= mode!=="hard"&&r.k? `The value in the ${lab(k)} box doesn’t belong there. ${k==="t2"?"T<sub>final</sub> is the temperature it ends at.":k==="t1"?"T<sub>initial</sub> is the temperature it starts at.":k==="c"?"c has units of J/g·K.":k==="m"?"Mass has units of grams.":k==="q"?"Heat has units of joules.":"H has units of J/g."}` : `Check the number in the ${lab(k)} box against the problem.`;
+      if(!bad&&okV&&!okU) bad= r.raw? `The number in the ${lab(k)} box is right, but the unit should be ${w[1]}.` : `Add a unit to the ${lab(k)} box (${w[1]}).`; }
     if(bad){ g.lose(); g.msg(bad,"bad"); dd&&dd.mark(()=>false); return; }
     dd&&dd.mark(()=>true); A.$$(".da-slot input",g.stage).forEach(i=>i.disabled=true);
-    let math=""; if(eq==="c"){ const dT=P.vals.t2[0]-P.vals.t1[0]; g.stage.querySelector('[data-r="dt"]').innerHTML=`${dT} °C`;
-      math= P.unk==="q"? `q = (${P.vals.m[0]} g)(${P.vals.c[0]} J/g·K)(${dT} °C) = ?` : `m = ${P.vals.q[0].toLocaleString()} J ÷ ((${P.vals.c[0]} J/g·K)(${Math.abs(dT)} °C)) = ?`; }
-    else math= P.unk==="q"? `q = (${P.vals.m[0]} g)(${P.vals.H[0]} J/g) = ?` : `m = ${P.vals.q[0].toLocaleString()} J ÷ ${P.vals.H[0]} J/g = ?`;
-    g.stage.querySelector('[data-r="math"]').innerHTML=math+(eq==="c"?`<div class="muted" style="font-size:.9em">A change of 1 °C is the same size as a change of 1 K, so ΔT can be in either unit.</div>`:"");
-    g.stage.querySelector('[data-r="s3"]').classList.remove("locked"); g.msg("✔ Set up correctly. Now calculate (Step 3).","good"); }
+    const v=k=>P.vals[k][0].toLocaleString()+" "+P.vals[k][1], pv=k=>"("+v(k)+")";
+    let math="";
+    if(eq==="c"){ const dT=P.vals.t2[0]-P.vals.t1[0]; g.stage.querySelector('[data-r="dt"]').innerHTML=`${dT} °C`;
+      math= P.unk==="q"? `q = ${pv("m")}${pv("c")}(${dT} °C)` : `${v("q")} = m${pv("c")}(${Math.abs(dT)} °C)`; }
+    else math= P.unk==="q"? `q = ${pv("m")}${pv("H")}` : `${v("q")} = m${pv("H")}`;
+    g.stage.querySelector('[data-r="math"]').innerHTML=`<div class="t7-line">${math}</div>`+(eq==="c"?`<div class="muted" style="font-size:.9em">A change of 1 °C is the same size as a change of 1 K, so ΔT can be in either unit.</div>`:"");
+    g.stage.querySelector('[data-r="s3"]').classList.remove("locked"); g.msg(P.unk==="q"? "✔ Set up correctly. Now calculate q (Step 3)." : "✔ Set up correctly. Now solve the equation for m (Step 3).","good"); }
   function go(){ const inp=g.stage.querySelector('[data-r="ans"]'), raw=inp.value.replace(/^\s*[-−–]/,""), r=S_chk(raw,P.ans);
     if(typeof r==="string"){ g.msg(r,"warn"); return; }
-    A.markBox(inp,r===true); if(r!==true){ g.lose(); g.msg(P.unk==="m"? "Divide the heat by everything else in the equation." : "Recheck the multiplication.","bad"); return; }
+    A.markBox(inp,r===true); if(r!==true){ g.lose(); g.msg(P.unk==="m"? "That value of m doesn’t make the two sides of the equation equal. Check your algebra and your calculation." : "Recheck the multiplication.","bad"); return; }
     done++; g.win(); const neg=/^\s*[-−–]/.test(inp.value);
     g.msg(`✔ ${P.unk==="q"? `q = ${A.U6&&A.U6.num? A.U6.num(P.ans,3) : (+P.ans.toPrecision(3)).toLocaleString()} J ${P.word}.${P.sign<0?` ${neg?"The negative sign shows the heat is released.":"(A calculation gives a negative q when heat is released. The problem asks how much heat, so the size is the answer.)"}`:""}` : `m = ${(+P.ans.toPrecision(3)).toLocaleString()} g.`}`,"good"); }
   const S_chk=(raw,want)=> (A.U6&&A.U6.chk)? A.U6.chk(raw,want,{tol:.01,minSf:2}) : (A.lenient(raw,want,{sf:3}));
-  function next(){ g.fresh(); g.msg(""); P=T.heatProblem(mode==="hard"); eq=mode==="hard"?null:P.eq;
+  function next(){ g.fresh(); g.msg(""); P=T.heatProblem(mode!=="easy"); eq=mode==="easy"?P.eq:null;
     const text=P.text.replace(/<v k="(\w+)">(.*?)<\/v>/g,(_,k,t)=>`<span class="t7-val" data-k="${k}">${t}</span>`);
     g.stage.innerHTML=`<div class="t7-prob">${text}</div>
      <div class="da-step" data-r="s1"><h4>Step 1: The equation</h4><div class="t7-eqs" data-r="eqs"></div></div>
      <div class="da-step locked" data-r="s2"><h4>Step 2: Set it up</h4><div data-r="setup"></div><div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="chk">Check</button></div></div>
-     <div class="da-step locked" data-r="s3"><h4>Step 3: Calculate</h4><div class="t7-math mth" data-r="math"></div><div class="controls"><input class="inp" data-r="ans" data-sup="1" inputmode="decimal" style="width:150px" aria-label="answer"><b>${P.unk==="q"?"J":"g"}</b><button class="btn sm" type="button" data-r="go">Check answer</button></div></div>`;
-    if(mode==="hard") chooseEq(); else { g.stage.querySelector('[data-r="eqs"]').innerHTML=`<div class="t7-eqpick on">${EQS[P.eq].lab} <small>${EQS[P.eq].use}</small></div>`; setup(); }
+     <div class="da-step locked" data-r="s3"><h4>Step 3: ${P.unk==="q"?"Calculate":"Solve for m"}</h4><div class="t7-math mth" data-r="math"></div><div class="controls"><b class="t7-line">${P.unk} =</b><input class="inp" data-r="ans" data-sup="1" inputmode="decimal" style="width:150px" aria-label="answer"><b>${P.unk==="q"?"J":"g"}</b><button class="btn sm" type="button" data-r="go">Check answer</button></div></div>`;
+    if(mode!=="easy") chooseEq(); else { g.stage.querySelector('[data-r="eqs"]').innerHTML=`<div class="t7-eqpick on"><span class="t7-line">${EQS[P.eq].lab}</span> <small>${EQS[P.eq].use}</small></div>`; setup(); }
     g.stage.querySelector('[data-r="chk"]').addEventListener("click",check); g.stage.querySelector('[data-r="go"]').addEventListener("click",go);
     g.stage.querySelector('[data-r="ans"]').addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); }
-  host._heat={P:()=>P,fill:()=>{ const keys=slotsFor(eq,P.unk).map(x=>x[1]).filter(k=>k!=="dT").concat(eq==="c"?["t1","t2"]:[]); keys.forEach(k=>{ const sl=g.stage.querySelector(`.da-slot[data-s="${k}"]`); if(mode!=="easy"){ sl.querySelector(".ty-n").value=P.vals[k][0]; sl.querySelector(".ty-u").value=P.vals[k][1]; } }); }};
+  host._heat={P:()=>P,eq:()=>eq,fill:()=>{ need().forEach(k=>{ const sl=g.stage.querySelector(`.da-slot[data-s="${k}"]`); if(mode==="hard"){ sl.querySelector(".ty-n").value=P.vals[k][0]; sl.querySelector(".ty-u").value=P.vals[k][1]; } }); }};
   next(); };
 })();
 
@@ -9867,13 +9880,14 @@ T.CalLab=function(host,o={}){ let mode=o.mode||"rxn", st=null;
     if(k==="weigh"){ if(!need(["Tf","dT"])) return; st.removed=true; st.inCal=false; st.onBal=true; st.lid=false; }
     if(k==="calc"){ if(!need(mode==="rxn"?["Tf","dT"]:["cw2","mi"])) return; calc(); }
     st.step++; buttons(); draw();
-    if(k!=="stir"&&k!=="calc"){ const nx=(STEPS()[st.step]||[])[1], h=HINT[nx]; const rec=NB().filter(([kk])=>avail[kk]===k).map(r=>r[1].toLowerCase()); g.msg(`✔ Done.${rec.length?` Read the ${k==="therm"?"thermometer":"balance"} and record the ${rec.join(" and ")} in your notebook.`:""} ${h?(typeof h==="function"?h(mode):h):nx==="stir"?"Next: press Stir.":""}`,"good"); } }
+    if(k!=="stir"&&k!=="calc"){ const nx=(STEPS()[st.step]||[])[1], h=HINT[nx]; const rec=NB().filter(([kk])=>avail[kk]===k).map(r=>r[1].toLowerCase()); g.msg(`✔ Done.${rec.length?` Read the ${k==="therm"?"thermometer":"balance"} and record the ${rec.join(" and ")} in your notebook.`:""} ${h?(typeof h==="function"?h(mode):h):nx==="stir"?"Next: click the stirring rod (or press the Stir button).":""}`,"good"); } }
   function record(k){ const i=g.stage.querySelector(`input[data-k="${k}"]`), p=A.parseTyped(i.value.replace(/−/g,"-")), want=truth()[k];
     if(!p){ g.msg("Type the number you read, then press Record.","warn"); return; }
     if(k==="Tf"&&st.T!==st.Tf){ g.msg("The temperature is still changing. Wait until it stops before you record the final temperature.","warn"); return; }
     const ok=Math.abs(p.v-want)<.006;
     A.markBox(i,ok); if(!ok){ g.lose(); g.msg(k==="w"||k==="mi"? `Subtract: ${k==="w"?"(mass of cup + water) − (mass of empty cup)":"(mass of cup + water after melting) − (mass of cup + warm water)"}.` : k==="dT"? "ΔT = T<sub>final</sub> − T<sub>initial</sub>. If the temperature went down, ΔT is negative." : "Read the display again. Record every digit it shows.","bad"); return; }
-    st.rec[k]=p.v; i.disabled=true; g.stage.querySelector(`[data-rec="${k}"]`).disabled=true; g.msg(`✔ Recorded.`,"good"); buttons(); }
+    st.rec[k]=p.v; i.disabled=true; g.stage.querySelector(`[data-rec="${k}"]`).disabled=true; g.msg(`✔ Recorded.`,"good"); buttons();
+    if((STEPS()[st.step]||[])[1]==="calc"&&NB().every(([kk])=>st.rec[kk]!=null)){ act("calc"); g.msg("✔ Lab notebook complete. Now use your data to calculate.","good"); const c=g.stage.querySelector('[data-r="calc"]'); c&&c.scrollIntoView({behavior:"smooth",block:"nearest"}); } }
   /* the bench drawing: every piece of equipment the student can drag is a <g data-drag> */
   const BW=720,BH=340, CAL=560, BY=296;
   function draw(){ let s=`<rect x="0" y="${BY}" width="${BW}" height="${BH-BY}" fill="#e6dccb" stroke="${INK}" stroke-width="2"/>`;
@@ -9900,7 +9914,7 @@ T.CalLab=function(host,o={}){ let mode=o.mode||"rxn", st=null;
     const cx=CAL, by=BY-6; s+=`<g data-zone="cal" class="${want[1]==="cal"?"t7-zone-on":""}"><path d="M${cx-64} ${by-126}L${cx-52} ${by}H${cx+52}L${cx+64} ${by-126}Z" fill="#f4f1ea" stroke="${INK}" stroke-width="2.5"/>${[0,1,2,3].map(k=>`<path d="M${cx-58+k*3} ${by-100+k*24}h${116-k*6}" stroke="#d9d4c7" stroke-width="1.3"/>`).join("")}${T.t(cx,by-8,"calorimeter",{fs:12,w:600,c:"#5f6b72"})}</g>`;
     if(st.inCal){ s+=cupSVG(cx,by-24,true,mode==="fus"&&st.added? Math.max(1,Math.round(5*(1-Math.min(1,(st.prog||0))))+1) : 0);
       if(mode==="rxn"&&st.added&&!(st.prog>=1)) for(let k=0;k<8;k++) s+=`<circle cx="${cx-24+((k*37)%48)}" cy="${by-38-((k*23)%26)}" r="2.5" fill="#fff" stroke="${INK}"/>`;
-      const sx=cx-20+(st.stirring&&!(st.prog>=1)? Math.sin(performance.now()/120)*6:0); s+=`<line x1="${sx}" y1="${by-176}" x2="${sx}" y2="${by-42}" stroke="#7a5a2c" stroke-width="3"/><path d="M${sx-12} ${by-42}h24" stroke="#7a5a2c" stroke-width="3"/>`; }
+      const sx=cx-20+(st.stirring&&!(st.prog>=1)? Math.sin(performance.now()/120)*6:0), canStir=cur==="stir"; s+=`<g data-stir="1" class="t7-stir${canStir?" t7-drag-next":""}" ${canStir?'tabindex="0" role="button" aria-label="Click the stirring rod to stir"':""} style="cursor:${canStir?"pointer":"default"}"><rect x="${sx-16}" y="${by-180}" width="32" height="142" fill="transparent"/><line x1="${sx}" y1="${by-176}" x2="${sx}" y2="${by-42}" stroke="#7a5a2c" stroke-width="4" stroke-linecap="round"/><path d="M${sx-12} ${by-42}h24" stroke="#7a5a2c" stroke-width="3"/>${canStir?T.t(sx-14,by-186,"click to stir",{fs:11.5,c:"#00843c"}):""}</g>`; }
     const probe=cx+22; s+=`<line x1="${probe}" y1="${by-186}" x2="${probe}" y2="${st.inCal?by-40:by-150}" stroke="${INK}" stroke-width="4"/><rect x="${probe-8}" y="${by-246}" width="128" height="60" rx="8" fill="#2b3a42" stroke="${INK}" stroke-width="2"/><rect x="${probe}" y="${by-238}" width="112" height="36" rx="4" fill="#cfe8c6"/>${T.t(probe+56,by-213,st.inCal?st.T.toFixed(1)+" °C":"--.- °C",{fs:20,c:"#14361c"})}${T.t(probe+56,by-252,"thermometer",{fs:11,c:"#5f6b72",w:600})}`;
     if(st.lid) s+=`<rect x="${cx-68}" y="${by-140}" width="136" height="13" rx="3" fill="#5f6b72" stroke="${INK}" stroke-width="2"/>`;
     else s+=dragG("lid",`<rect x="${BW-82}" y="${BY-16}" width="74" height="13" rx="3" fill="#5f6b72" stroke="${INK}" stroke-width="2"/>${T.t(BW-45,BY-24,"lid",{fs:12,c:"#5f6b72"})}`);
@@ -9910,6 +9924,7 @@ T.CalLab=function(host,o={}){ let mode=o.mode||"rxn", st=null;
   /* drag and drop on the bench */
   let ghost=null;
   function wireDrag(){ const svg=g.stage.querySelector('[data-r="bench"] svg'); if(!svg) return;
+    const rod=svg.querySelector("[data-stir]"); if(rod&&(STEPS()[st.step]||[])[1]==="stir"){ rod.addEventListener("click",()=>act("stir")); rod.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); act("stir"); } }); }
     A.$$("[data-drag]",svg).forEach(el=>{ el.addEventListener("pointerdown",e=>startDrag(e,el.dataset.drag,el)); el.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); const cur=(STEPS()[st.step]||[])[1]; if(DRAG[cur]&&DRAG[cur][0]===el.dataset.drag) act(cur); } }); }); }
   function startDrag(e,id,el){ e.preventDefault(); const svg=g.stage.querySelector('[data-r="bench"] svg'); const bb=el.getBoundingClientRect();
     ghost=A.h("div",{class:"t7-ghost"}); const clone=svg.cloneNode(false); const r=svg.getBoundingClientRect(); clone.setAttribute("width",r.width); clone.removeAttribute("style"); clone.style.width=r.width+"px"; clone.style.height=r.height+"px"; clone.appendChild(el.cloneNode(true)); ghost.appendChild(clone);
@@ -9922,7 +9937,7 @@ T.CalLab=function(host,o={}){ let mode=o.mode||"rxn", st=null;
     document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); }
   function drop(id,zone){ if(!zone) return; const cur=(STEPS()[st.step]||[])[1], w=DRAG[cur];
     if(w&&w[0]===id&&w[1]===zone){ act(cur); return; }
-    const h=typeof HINT[cur]==="function"?HINT[cur](mode):HINT[cur]; g.msg(w? `Not yet. ${h}` : cur==="stir"? "Next, press the Stir button." : "Next, use your data to calculate.","warn"); }
+    const h=typeof HINT[cur]==="function"?HINT[cur](mode):HINT[cur]; g.msg(w? `Not yet. ${h}` : cur==="stir"? "Next, click the stirring rod (or press the Stir button)." : "Next, use your data to calculate.","warn"); }
   T.loop(host,()=>{ if(!st||!st.stirring) return; const p=Math.min(1,(performance.now()-st.t0)/6000); st.prog=p; const e=1-Math.pow(1-p,2.2); st.T=p>=1? st.Tf : r1(st.Ti+(st.Tf-st.Ti)*e); if(p>=1) st.stirring=false; draw(); });
   /* calculations with the student's own numbers */
   function calc(){ const R=st.rec, box=g.stage.querySelector('[data-r="calc"]'); const qw=R.w*4.18*R.dT;
@@ -9933,7 +9948,7 @@ T.CalLab=function(host,o={}){ let mode=o.mode||"rxn", st=null;
         ["dh","Heat of reaction per mole (ΔH), in kJ/mol","ΔH = q<sub>reaction</sub> ÷ moles ÷ 1000",-qw/(st.ms/st.salt[3])/1000,"kJ/mol",true]]
       : [["qw","Heat lost by the warm water: q = mcΔT  (c = 4.18 J/g·K)",`q = (${R.w} g)(4.18 J/g·K)(${R.dT} °C)`,qw,"J",true],
         ["qi","Heat absorbed by the melting ice = −q<sub>water</sub>","q<sub>ice</sub> = −(q<sub>water</sub>)",-qw,"J",false],
-        ["hf","Heat of fusion of ice: H<sub>f</sub> = q ÷ m",`H<sub>f</sub> = q<sub>ice</sub> ÷ ${R.mi} g`,-qw/R.mi,"J/g",false],
+        ["hf","Heat of fusion of ice: q = mH<sub>f</sub>. Use q<sub>ice</sub> and the mass of ice that melted.",`q<sub>ice</sub> = (${R.mi} g)H<sub>f</sub>, so H<sub>f</sub>`,-qw/R.mi,"J/g",false],
         ["pe","Percent error (accepted value 334 J/g)","% error = |measured − 334| ÷ 334 × 100",null,"%",false]];
     box.innerHTML=`<div class="da-step"><h4>Calculate with your data</h4>${rows.map(([k,l,m,v,u,sg],i)=>`<div class="t7-calc${i?" locked":""}" data-c="${k}"><div><b>${i+1}.</b> ${l}</div><div class="controls"><span class="mth">${m} =</span><input class="inp" data-sup="1" inputmode="decimal" style="width:130px" aria-label="${l.replace(/<[^>]+>/g,"")}"><b>${u}</b><button class="btn sm" type="button">Check</button></div></div>`).join("")}</div>`;
     const vals={}; rows.forEach(([k,l,m,v,u,sg],i)=>{ const el=box.querySelector(`[data-c="${k}"]`), inp=el.querySelector("input");
@@ -10142,36 +10157,43 @@ const label=(c,x,y,t,o={})=>{ c.font=`${o.w||"bold"} ${o.fs||14}px Inter,Arial`;
 T.label=label;
 
 /* ---------- thermal equilibrium: two blocks touching; particles collide across the boundary ---------- */
-T.EquilSim=function(host,o={}){ const W=o.W||660,H=o.H||330, r=11, gap=5, cols=6, rows=6, d=2*r+gap, bw=cols*d, bh=rows*d, bx=(W-2*bw)/2, by=70;
-  host.innerHTML=`<div class="lab-b">${o.compact?"":`<p class="how">Set the starting temperatures, then press <b>Touch</b>. Particles are colored by their block’s temperature (blue = cold, red = hot). A yellow flash marks a collision across the boundary.</p>
+T.EquilSim=function(host,o={}){ const W=o.W||660,H=o.H||330, r=15, gap=9, cols=4, rows=4, d=2*r+gap, bw=cols*d, bh=rows*d, bx=(W-2*bw)/2, by=o.compact?70:80;
+  host.innerHTML=`<div class="lab-b">${o.compact?"":`<p class="how">Set the starting temperatures, then press <b>Touch</b>. Each block’s color shows its temperature (blue = cold, red = hot). Faster-moving particles have more kinetic energy. A yellow flash marks a collision across the boundary.</p>
     <div class="controls"><span class="ctl-label">Left block</span><input type="range" data-k="h" min="50" max="100" value="90" aria-label="Starting temperature of the left block"><b data-o="h"></b><span class="ctl-label">Right block</span><input type="range" data-k="c" min="0" max="40" value="10" aria-label="Starting temperature of the right block"><b data-o="c"></b></div>`}
-    <div class="controls"><button class="btn" type="button" data-r="go">${o.compact?"▶ Start":"Touch"}</button><button class="btn ghost" type="button" data-r="rs">Reset</button></div>
+    <div class="controls"><button class="btn" type="button" data-r="go">${o.compact?"▶ Start":"Touch"}</button><button class="btn ghost" type="button" data-r="rs">Reset</button>${o.compact?"":`<span class="ctl-label">Speed</span><div class="seg" role="group" aria-label="Speed"><button type="button" data-sp="slow" aria-pressed="true">Slow</button><button type="button" data-sp="norm" aria-pressed="false">Normal</button></div>`}</div>
     <div class="t7-row"><div class="t7-cv-wrap"></div>${o.compact?"":`<div class="t7-svg t7-graph" data-r="g"></div>`}</div><div class="status" aria-live="polite"></div></div>`;
   const cv=T.canvas(W,H,"Two blocks touching; their particles collide at the boundary"), c=cv.getContext("2d"); host.querySelector(".t7-cv-wrap").appendChild(cv);
-  const $=s=>host.querySelector(s), msg=$(".status");
-  let L=null, run=false, t=0, hist=[], sh=0, sc=0, Th0=90, Tc0=10, done=false, apart=o.compact?0:40;
+  const $=s=>host.querySelector(s), msg=$(".status"), go=$('[data-r="go"]');
+  let L=null, run=false, started=false, t=0, hist=[], sh=0, sc=0, Th0=90, Tc0=10, done=false, apart=o.compact?0:40, slow=!o.compact;
+  const tau=()=>slow?7:3.5, tMax=()=>tau()*5.5;
   function reset(){ Th0=o.compact?100:+$('[data-k="h"]').value; Tc0=o.compact?0:+$('[data-k="c"]').value; if(!o.compact){ $('[data-o="h"]').textContent=Th0+" °C"; $('[data-o="c"]').textContent=Tc0+" °C"; }
-    L=T.Lattice({r,gap,k:.06,seed:7,blocks:[{x:bx,y:by,cols,rows},{x:bx+bw+2,y:by,cols,rows}]}); L.setE(0,E_OF(Th0)); L.setE(1,E_OF(Tc0)); sh=Th0; sc=Tc0; run=false; t=0; done=false; apart=o.compact?0:40; hist=[[0,Th0,Tc0]]; graph();
+    L=T.Lattice({r,gap,k:.06,seed:7,blocks:[{x:bx,y:by,cols,rows},{x:bx+bw+2,y:by,cols,rows}]}); L.setE(0,E_OF(Th0)); L.setE(1,E_OF(Tc0)); sh=Th0; sc=Tc0; run=false; started=false; t=0; done=false; apart=o.compact?0:40; hist=[[0,Th0,Tc0]]; graph();
+    go.textContent=o.compact?"▶ Start":"Touch";
     msg.innerHTML=o.compact? "<b>Conduction:</b> the blocks touch. Fast particles in the hot block collide with slow particles in the cold block and pass on some of their energy." : "The blocks start apart. Heat can only flow by conduction once they touch."; }
   host.querySelectorAll("input[type=range]").forEach(x=>x.addEventListener("input",reset));
-  $('[data-r="go"]').addEventListener("click",()=>{ if(done) reset(); run=true; });
+  host.querySelectorAll("[data-sp]").forEach(x=>x.addEventListener("click",()=>{ slow=x.dataset.sp==="slow"; host.querySelectorAll("[data-sp]").forEach(y=>y.setAttribute("aria-pressed",String(y===x))); reset(); }));
+  go.addEventListener("click",()=>{ if(done){ reset(); }
+    if(!run){ run=true; started=true; go.textContent="Pause"; } else { run=false; go.textContent="Resume"; } });
   $('[data-r="rs"]').addEventListener("click",reset);
-  function graph(){ if(o.compact) return; const GW=300,GH=300,x0=48,y0=250,w=236,h=210, X=s=>x0+Math.min(1,s/30)*w, Y=v=>y0-v/100*h;
-    let s=`<line x1="${x0}" y1="${y0}" x2="${x0+w}" y2="${y0}" stroke="${INK}" stroke-width="2"/><line x1="${x0}" y1="${y0}" x2="${x0}" y2="${y0-h}" stroke="${INK}" stroke-width="2"/>${[0,25,50,75,100].map(v=>`<line x1="${x0}" y1="${Y(v)}" x2="${x0+w}" y2="${Y(v)}" stroke="#e6edf0"/>`+T.t(x0-6,Y(v)+4,v,{a:"end",fs:11,w:600})).join("")}${T.t(x0+w/2,y0+32,"Time (s)",{fs:13})}<text transform="translate(14 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13" font-weight="700">Temperature (°C)</text>`;
+  /* keep each block's particle energy in step with its temperature (smooth, no noise in the graph) */
+  function matchE(bi,T0){ const want=E_OF(T0), have=L.avg(bi); if(have<=0) return; const f=Math.sqrt(1+(want/have-1)*.08); L.P.forEach(p=>{ if(p.b===bi){ p.vx*=f; p.vy*=f; } }); }
+  function graph(){ if(o.compact) return; const GW=300,GH=300,x0=48,y0=250,w=236,h=210, X=s=>x0+Math.min(1,s/tMax())*w, Y=v=>y0-v/100*h;
+    let s=`<line x1="${x0}" y1="${y0}" x2="${x0+w}" y2="${y0}" stroke="${INK}" stroke-width="2"/><line x1="${x0}" y1="${y0}" x2="${x0}" y2="${y0-h}" stroke="${INK}" stroke-width="2"/>${[0,25,50,75,100].map(v=>`<line x1="${x0}" y1="${Y(v)}" x2="${x0+w}" y2="${Y(v)}" stroke="#e6edf0"/>`+T.t(x0-6,Y(v)+4,v,{a:"end",fs:11,w:600})).join("")}${T.t(x0+w/2,y0+32,"Time",{fs:13})}<text transform="translate(14 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13" font-weight="700">Temperature (°C)</text>`;
     const line=(i,col)=>`<polyline points="${hist.map(p=>`${X(p[0]).toFixed(1)},${Y(p[i]).toFixed(1)}`).join(" ")}" fill="none" stroke="${col}" stroke-width="3"/>`;
     s+=line(1,HOT)+line(2,COLD)+T.t(x0+8,y0-h-8,"Left block",{a:"start",fs:12,c:HOT})+T.t(x0+w,y0-h-8,"Right block",{a:"end",fs:12,c:COLD});
     $('[data-r="g"]').innerHTML=T.svg(GW,GH,s,"Temperature of both blocks over time",{w:300}); }
-  T.loop(cv,dt=>{ if(run&&apart>0){ apart=Math.max(0,apart-dt*80); }
-    if(run&&apart<=0&&!done){ L.step(3); t+=dt; const a=.022; sh+=(T_OF(L.avg(0))-sh)*a; sc+=(T_OF(L.avg(1))-sc)*a; if(t>.3&&hist.length<2000&&(hist.length<2||t-hist[hist.length-1][0]>.1)){ hist.push([t,sh,sc]); graph(); }
-      if(Math.abs(sh-sc)<2.5&&t>3){ done=true; run=false; const m=(Th0+Tc0)/2; sh=sc=m; hist.push([t,m,m]); graph(); msg.innerHTML=`<b>Thermal equilibrium:</b> both blocks are at about ${m.toFixed(0)} °C. Particles still collide across the boundary and trade energy back and forth, but there is no <i>net</i> flow of heat.`; }
-      else if(!o.compact) msg.innerHTML="Heat flows from the hot block to the cold block. Watch the boundary: fast red particles slow down after collisions, and slow blue particles speed up."; }
-    else if(!run&&!done) L.step(1);
-    else if(done) L.step(2);
+  T.loop(cv,dt=>{ const sub=slow?1:2, hh=slow?.14:.22;
+    if(run&&apart>0){ apart=Math.max(0,apart-dt*(slow?40:80)); }
+    if(run&&apart<=0&&!done){ L.step(sub,hh); t+=dt; const m=(Th0+Tc0)/2, e=Math.exp(-t/tau()); sh=m+(Th0-m)*e; sc=m+(Tc0-m)*e; matchE(0,sh); matchE(1,sc);
+      if(hist.length<2000&&t-hist[hist.length-1][0]>.1){ hist.push([t,sh,sc]); graph(); }
+      if(Math.abs(sh-sc)<1){ done=true; run=false; sh=sc=m; hist.push([t,m,m]); graph(); go.textContent=o.compact?"▶ Start":"Touch"; msg.innerHTML=`<b>Thermal equilibrium:</b> both blocks are at ${m.toFixed(0)} °C. Particles still collide across the boundary and trade energy back and forth, but there is no <i>net</i> flow of heat.`; }
+      else if(!o.compact) msg.innerHTML="Heat flows from the hot block to the cold block. At the boundary, fast particles in the hot block collide with slow particles in the cold block and pass on some of their kinetic energy."; }
+    else if(run||done||!started) L.step(1,slow?.1:.2);
     c.fillStyle="#fff"; c.fillRect(0,0,W,H);
     const pad=8; [[0,sh,bx-pad-apart,bw+pad+1],[1,sc,bx+bw+1+apart,bw+pad+1]].forEach(([i,tt,x,ww])=>{ c.fillStyle=T.hcol(tt); c.globalAlpha=.16; c.fillRect(x,by-pad,ww,bh+2*pad); c.globalAlpha=1; c.lineWidth=3; c.strokeStyle=INK; c.strokeRect(x,by-pad,ww,bh+2*pad);
       label(c,x+ww/2,by-pad-12,`${tt.toFixed(0)} °C`,{fs:20,c:T.hcol(tt)}); label(c,x+ww/2,by+bh+pad+22,o.compact?(i?"Cold object":"Hot object"):(i?"Right block":"Left block"),{fs:14}); });
-    c.save(); L.P.forEach(p=>{ if(apart){ p._ox=p.x; p.x+=p.b?apart:-apart; } }); L.draw(c,{colorOf:p=>T.hcol(p.b?sc:sh)}); L.P.forEach(p=>{ if(apart) p.x=p._ox; }); c.restore();
-    if(!apart){ const diff=sh-sc; if(Math.abs(diff)>2.5&&!done){ const s=Math.min(1,Math.abs(diff)/80); blockArrow(c,W/2-50,by-62,100,22+s*14,"Heat","#F2B705",diff>0?1:-1); }
+    c.save(); L.P.forEach(p=>{ if(apart){ p._ox=p.x; p.x+=p.b?apart:-apart; } }); L.draw(c,{colorOf:p=>T.hcol(p.b?sc:sh),trails:false}); L.P.forEach(p=>{ if(apart) p.x=p._ox; }); c.restore();
+    if(!apart){ const diff=sh-sc; if(Math.abs(diff)>1&&!done){ const s=Math.min(1,Math.abs(diff)/80); blockArrow(c,W/2-50,by-66,100,22+s*14,"Heat","#F2B705",diff>0?1:-1); }
       else if(done) label(c,W/2,H-12,"No net flow of heat",{fs:17,c:"#00843c"}); } });
   reset(); return {reset}; };
 
@@ -10206,10 +10228,13 @@ T.TransferSim=function(host){ const W=660,H=330;
 
 /* ---------- static figures ---------- */
 /* heat flowing between two blocks that touch */
+/* vibration marks: curved arcs on both sides of a particle; n=1 slow, n=2 fast */
+T.vib=(cx,cy,r,n)=>{ let s=""; for(let k=0;k<n;k++){ const d=r+3+k*4, h=r*.75-k; s+=`<path d="M${cx-d} ${cy-h}q-4 ${h} 0 ${2*h}M${cx+d} ${cy-h}q4 ${h} 0 ${2*h}" fill="none" stroke="${INK}" stroke-width="1.5" stroke-linecap="round"/>`; } return s; };
+T.vibKey=(x,y)=>`<g transform="translate(${x-150} ${y-10})">${T.vib(14,0,7,1)}${T.ball(14,0,7,"#bbb")}<text x="30" y="5" font-size="12.5" fill="#5f6b72">slow vibration</text>${T.vib(150,0,7,2)}${T.ball(150,0,7,"#bbb")}<text x="170" y="5" font-size="12.5" fill="#5f6b72">fast vibration</text></g>`;
 T.figHeatFlow=(a="80 °C",b="20 °C")=>{ const ca=T.tcol(parseFloat(a)), cb=T.tcol(parseFloat(b)); const box=(x,col,lab,fast)=>{ let s=`<rect x="${x}" y="60" width="200" height="120" fill="${col}" fill-opacity=".22" stroke="${INK}" stroke-width="3"/>`;
-    for(let j=0;j<3;j++) for(let i=0;i<5;i++){ const cx=x+24+i*38, cy=86+j*36; const L=fast?11:4; s+=`<line x1="${cx-12-L}" y1="${cy}" x2="${cx-12}" y2="${cy}" stroke="${INK}" stroke-width="1.6"/><line x1="${cx+12}" y1="${cy}" x2="${cx+12+L}" y2="${cy}" stroke="${INK}" stroke-width="1.6"/>`+T.ball(cx,cy,11,fast?"#e8553a":"#5b9be0"); }
+    for(let j=0;j<3;j++) for(let i=0;i<4;i++){ const cx=x+28+i*48, cy=86+j*36; s+=T.vib(cx,cy,11,fast?2:1)+T.ball(cx,cy,11,fast?"#e8553a":"#5b9be0"); }
     return s+T.t(x+100,46,lab,{fs:20,c:fast?"#c40000":"#005ea3"}); };
-  return T.svg(520,236,box(60,ca,a,true)+box(260,cb,b,false)+`<line x1="260" y1="52" x2="260" y2="188" stroke="${INK}" stroke-width="3"/>`+T.heatArrow(205,196,110,32,"Heat")+T.t(260,20,"The blocks touch: heat flows from hot to cold",{fs:13,c:"#5f6b72"}),`A ${a} block touching a ${b} block; heat flows from the hot block to the cold block`); };
+  return T.svg(520,262,box(60,ca,a,true)+box(260,cb,b,false)+`<line x1="260" y1="52" x2="260" y2="188" stroke="${INK}" stroke-width="3"/>`+T.heatArrow(205,196,110,32,"Heat")+T.t(260,20,"The blocks touch: heat flows from hot to cold",{fs:13,c:"#5f6b72"})+T.vibKey(260,252),`A ${a} block touching a ${b} block; heat flows from the hot block to the cold block`); };
 
 /* metals vs. a molecular substance: mobile electrons carry energy along a metal bar quickly (animated electrons) */
 T.figConduct=()=>{ let s=`<defs><linearGradient id="t7g-m" x1="0" x2="1"><stop offset="0" stop-color="#E00000"/><stop offset=".55" stop-color="#F28C28"/><stop offset="1" stop-color="#F2B705"/></linearGradient><linearGradient id="t7g-p" x1="0" x2="1"><stop offset="0" stop-color="#E00000"/><stop offset=".18" stop-color="#F2B705"/><stop offset=".32" stop-color="#9cc3ec"/><stop offset="1" stop-color="#9cc3ec"/></linearGradient></defs>`;
@@ -10302,13 +10327,13 @@ T.CoasterGame=function(host){ const W=680,H=360, g=9.8, LEN=60;
     <div class="t7-row"><div class="t7-cv-wrap"></div><div class="t7-meter three" data-r="bars"></div></div>
     <div class="t7-quiz" data-r="q"></div><div class="status" aria-live="polite"></div></div>`;
   const $=s=>host.querySelector(s), cv=T.canvas(W,H,"A cart on a hilly track"), c=cv.getContext("2d"); host.querySelector(".t7-cv-wrap").appendChild(cv); const msg=$(".status"), fr=$('[data-r="fr"]');
-  let x=.02, dir=1, run=false, E=0, heat=0, qi=0, drag=false, ke=0;
-  const reset=()=>{ x=.02; dir=1; run=false; heat=0; ke=0; };
-  $('[data-r="go"]').addEventListener("click",()=>{ if(run) return; E=g*hx(x); heat=0; dir=1; run=true; msg.innerHTML="Going down, potential energy is converted into kinetic energy. Going up, kinetic energy is converted back into potential energy. The total stays the same."; });
+  let x=.02, x0=.02, dir=1, run=false, E=0, heat=0, qi=0, drag=false, ke=0;
+  const reset=()=>{ x=x0; dir=1; run=false; heat=0; ke=0; $('[data-r="go"]').textContent="▶ Let go"; };
+  $('[data-r="go"]').addEventListener("click",()=>{ x=x0; E=g*hx(x)+g*.05; heat=0; ke=0; dir=1; run=true; $('[data-r="go"]').textContent="↻ Run again"; msg.innerHTML=fr.checked? "Friction is on: some energy is converted into heat as the cart rolls, so it cannot climb as high each time." : "Going down, potential energy is converted into kinetic energy. Going up, kinetic energy is converted back into potential energy. The total stays the same."; });
   $('[data-r="rs"]').addEventListener("click",reset);
   const toX=ev=>{ const r=cv.getBoundingClientRect(); return Math.max(0,Math.min(1,((ev.clientX-r.left)*W/r.width-X0)/Xw)); };
   cv.addEventListener("pointerdown",ev=>{ const xx=toX(ev); if(!run&&Math.abs(px(xx)-px(x))<36){ drag=true; try{ cv.setPointerCapture(ev.pointerId); }catch(e){} } else answer(xx); });
-  cv.addEventListener("pointermove",ev=>{ if(drag) x=Math.max(.0,Math.min(.3,toX(ev))); });
+  cv.addEventListener("pointermove",ev=>{ if(drag){ x=Math.max(.0,Math.min(.3,toX(ev))); x0=x; } });
   cv.addEventListener("pointerup",()=>{ drag=false; });
   function quiz(){ if(qi>=Q.length){ $('[data-r="q"]').innerHTML=`<b>✔ Challenge complete.</b> Particles follow the same rules: pulling particles apart stores potential energy, and the faster particles move, the more kinetic energy they have.`; return; }
     const q=Q[qi]; $('[data-r="q"]').innerHTML=`<b>Challenge ${qi+1} of ${Q.length}:</b> ${q[0]} `+(q[1]==="down"? `<span class="controls" style="display:inline-flex;margin:4px 0 0"><button class="btn ghost sm" type="button" data-a="up">It increases</button><button class="btn ghost sm" type="button" data-a="down">It decreases</button><button class="btn ghost sm" type="button" data-a="same">It stays the same</button></span>`
@@ -10317,10 +10342,10 @@ T.CoasterGame=function(host){ const W=680,H=360, g=9.8, LEN=60;
   function check(a,el){ const q=Q[qi]; const ok=a===q[1]; if(el) A.markBox(el,ok); msg.innerHTML=(ok?"✔ "+q[2]:"✘ Not quite. Watch the energy bars as the cart moves, then try again."); if(ok){ qi++; setTimeout(quiz,900); } }
   function answer(xx){ const q=Q[qi]; if(!q||q[1]==="down"||q[1]==="heat") return; const near=PTS.find(([l,p])=>Math.abs(px(p)-px(xx))<40); if(near) check(near[0]); }
   T.loop(cv,dt=>{ if(run){ const n=12, h=Math.min(dt,.04)/n;
-      for(let k=0;k<n;k++){ ke=E-heat-g*hx(x); if(ke<=0){ dir=-dir; ke=1e-4; } const sp=Math.sqrt(2*ke), hp=(hx(x+1e-4)-hx(x-1e-4))/2e-4/LEN;
-        x+=dir*sp/Math.sqrt(1+hp*hp)/LEN*h*2.2; if(fr.checked) heat+=.045*sp*h*2.2;
+      for(let k=0;k<n;k++){ ke=E-heat-g*hx(x); if(ke<=0){ if(hx(x+dir*1e-3)>hx(x)) dir=-dir; ke=1e-4; } const sp=Math.sqrt(2*ke), hp=(hx(x+1e-4)-hx(x-1e-4))/2e-4/LEN;
+        x+=dir*sp/Math.sqrt(1+hp*hp)/LEN*h*2.2; if(fr.checked) heat+=Math.min(3*sp*h*2.2, Math.max(0,(ke-1e-4)*.5));
         if(x>=1){ x=1; dir=-1; } if(x<=0){ x=0; dir=1; } }
-      if(E-heat-g*hx(x)<.02&&fr.checked&&Math.abs(hx(x)-2)<.3){ run=false; } }
+      if(fr.checked){ const right=x>.7&&E-heat<g*14, hmin=right?6:2, xmin=right?1:.45; if(E-heat-g*hmin<g*.3){ x=xmin; heat=E-g*hmin; ke=0; run=false; $('[data-r="go"]').textContent="▶ Let go"; msg.innerHTML=`The cart has stopped at the bottom. Friction converted ${Math.round(heat/E*100)}% of its starting energy into heat. The total energy is still the same: none of it was destroyed. Drag the cart or press <b>Let go</b> to run it again.`; } } }
     else ke=0;
     const pe=g*hx(x), tot=run?E:pe+0;
     c.fillStyle="#eaf5fb"; c.fillRect(0,0,W,H);
@@ -10329,8 +10354,8 @@ T.CoasterGame=function(host){ const W=680,H=360, g=9.8, LEN=60;
     PTS.forEach(([l,p])=>{ const yy=py(hx(p))+28; c.beginPath(); c.arc(px(p),yy,13,0,7); c.fillStyle="#fff"; c.fill(); c.lineWidth=2; c.strokeStyle=INK; c.stroke(); T.label(c,px(p),yy+5,l,{fs:13}); });
     const cx=px(x), cy=py(hx(x)), ang=Math.atan2(py(hx(Math.min(1,x+.01)))-py(hx(Math.max(0,x-.01))),px(Math.min(1,x+.01))-px(Math.max(0,x-.01)));
     c.save(); c.translate(cx,cy); c.rotate(ang); c.fillStyle="#E00000"; c.strokeStyle=INK; c.lineWidth=2; c.fillRect(-22,-34,44,24); c.strokeRect(-22,-34,44,24); [-12,12].forEach(w=>{ c.beginPath(); c.arc(w,-8,7,0,7); c.fillStyle="#5f6b72"; c.fill(); c.stroke(); }); c.restore();
-    if(!run) T.label(c,cx+30,cy-40,"⟵ drag ⟶",{fs:12,c:"#5f6b72",a:"start"});
-    const max=g*30, bars=[["Potential energy",pe,"#2E75D6"],["Kinetic energy",run?Math.max(0,ke):0,"#E00000"]]; if(fr.checked) bars.push(["Heat",heat,"#F28C28"]); bars.push(["Total",run?E:pe,"#6a2c9a"]);
+    if(!run&&x<=.3) T.label(c,cx+30,cy-40,"⟵ drag ⟶",{fs:12,c:"#5f6b72",a:"start"});
+    const max=g*30, bars=[["Potential energy",pe,"#2E75D6"],["Kinetic energy",run?Math.max(0,ke):0,"#E00000"]]; if(fr.checked) bars.push(["Heat",heat,"#F28C28"]); bars.push(["Total",run||heat>0?E:pe,"#6a2c9a"]);
     $('[data-r="bars"]').innerHTML=bars.map(([nm,val,col])=>`<div><div class="t7-bar"><i style="height:${Math.max(1,Math.min(100,val/max*100)).toFixed(1)}%;background:${col}"></i></div><b>${nm}</b></div>`).join(""); });
   reset(); quiz(); };
 })();
@@ -10374,25 +10399,25 @@ T.PhaseExplorer=function(host){ const CW=420, CH=330, N=24;
   diagram(); host.querySelector('[data-r="info"]').innerHTML=`<b>Click an arrow</b><span>Red arrows (inside the triangle) absorb heat: endothermic. Blue arrows (outside the triangle) release heat: exothermic.</span>`; };
 
 /* ---------- phase equilibrium in a closed container ---------- */
-T.PhaseEquil=function(host){ const W=660,H=390, X0=30,X1=330,Y0=60,Y1=350, r=8, cols=14;
-  host.innerHTML=`<div class="lab-b"><p class="how">Water at 100 °C in a container. Molecules that vaporize flash <b style="color:#c40000">red</b>; molecules that condense flash <b style="color:#005ea3">blue</b>. Compare the two rates, and watch the graph.</p>
+T.PhaseEquil=function(host){ const W=660,H=390, X0=30,X1=330,Y0=60,Y1=350, r=10, cols=12;
+  host.innerHTML=`<div class="lab-b"><p class="how">Water at 100 °C in a container. Gas molecules are red and liquid molecules are blue. Compare the rate of vaporization with the rate of condensation, then watch how the amounts of liquid and gas change on the graph.</p>
     <div class="controls"><div class="seg" role="group" aria-label="Condition"><button type="button" data-m="eq" aria-pressed="true">Closed, no heat added</button><button type="button" data-m="heat" aria-pressed="false">Add heat</button><button type="button" data-m="open" aria-pressed="false">Open the lid</button></div><button class="btn ghost sm" type="button" data-r="rs">Reset</button></div>
     <div class="t7-cv-wrap"></div><div class="status" aria-live="polite"></div></div>`;
   const cv=T.canvas(W,H,"Water molecules vaporizing and condensing in a container, with a graph of the number of molecules in each phase"), c=cv.getContext("2d"); host.querySelector(".t7-cv-wrap").appendChild(cv); const msg=host.querySelector(".status");
-  const rnd=T.rng(21); let mode="eq", nl=0, gas=[], hist=[], t=0, evs=[], flashes=[], jit=[];
+  const rnd=T.rng(21); let tw=0, mode="eq", owed=0, t0=0, nl=0, gas=[], hist=[], t=0, evs=[], flashes=[], jit=[];
   const TXT={eq:"<b>Phase equilibrium:</b> molecules keep vaporizing and condensing, but at the <b>same rate</b>. The amounts of liquid and gas stay the same, so both lines on the graph stay flat. This needs a closed system with no heat added or removed.",
     heat:"Adding heat makes molecules vaporize <b>faster</b> than they condense. The amount of liquid goes down and the amount of gas goes up: this is <b>not</b> phase equilibrium.",
     open:"With the lid off, gas molecules escape and never come back to condense. The liquid keeps vaporizing, so this is <b>not</b> phase equilibrium. An open system cannot reach phase equilibrium."};
   const levelY=()=>Y1-Math.ceil(nl/cols)*(2*r+1)-3;
   function step(dt,draw){ t+=dt; const ly=levelY();
-    const rate=(mode==="heat"?3:1.2)*(nl>0?1:0); if(rnd()<rate*dt){ const x=X0+r+4+rnd()*(X1-X0-2*r-8); nl--; const p={x,y:ly-r-1,vx:(rnd()-.5)*3,vy:-2.2-rnd()*1.2}; gas.push(p); evs.push([t,"v"]); if(draw) flashes.push({k:"v",a:1,ref:p}); }
+    const rate=(mode==="heat"?2.4:.8)*(nl>0?1:0); if(rnd()<rate*dt){ const x=X0+r+4+rnd()*(X1-X0-2*r-8); nl--; const p={x,y:ly-r-1,vx:(rnd()-.5)*2,vy:-1.5-rnd()*.8}; gas.push(p); evs.push([t,"v"]); if(mode==="eq") owed++; if(draw) flashes.push({k:"v",a:1,ref:p}); }
     gas.forEach(p=>{ p.x+=p.vx*dt*60; p.y+=p.vy*dt*60; if(p.x<X0+r+3){ p.x=X0+r+3; p.vx=Math.abs(p.vx); } if(p.x>X1-r-3){ p.x=X1-r-3; p.vx=-Math.abs(p.vx); }
       if(p.y<Y0+r+3){ if(mode==="open"){ p.gone="esc"; } else { p.y=Y0+r+3; p.vy=Math.abs(p.vy); } }
-      const lv=levelY(); if(p.y>lv-r&&p.vy>0){ if(rnd()<.16){ p.gone="cond"; nl++; evs.push([t,"c"]); if(draw) flashes.push({k:"c",a:1,x:p.x,y:levelY()-r}); } else { p.y=lv-r; p.vy=-Math.abs(p.vy); } } });
+      const lv=levelY(); if(p.y>lv-r&&p.vy>0){ if(mode==="eq"? owed>0 : mode==="heat"&&rnd()<.2){ if(mode==="eq") owed--; p.gone="cond"; nl++; evs.push([t,"c"]); if(draw) flashes.push({k:"c",a:1,x:p.x,y:levelY()-r}); } else { p.y=lv-r; p.vy=-Math.abs(p.vy); } } });
     gas=gas.filter(p=>!p.gone); evs=evs.filter(e=>t-e[0]<10);
     if(draw&&(!hist.length||t-hist[hist.length-1][0]>.25)){ hist.push([t,nl,gas.length]); } }
-  function reset(){ nl=84; gas=[]; for(let i=0;i<14;i++) gas.push({x:X0+20+rnd()*(X1-X0-40),y:Y0+20+rnd()*120,vx:(rnd()-.5)*4,vy:(rnd()-.5)*4}); const m=mode; mode="eq"; for(let k=0;k<3600;k++) step(1/60,false); mode=m; hist=[]; flashes=[]; jit=[...Array(200)].map(()=>[(rnd()-.5)*3,(rnd()-.5)*3]); }
-  host.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",()=>{ mode=b.dataset.m; host.querySelectorAll("[data-m]").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); msg.innerHTML=TXT[mode]; }));
+  function reset(){ nl=36; owed=0; gas=[]; for(let i=0;i<10;i++) gas.push({x:X0+20+rnd()*(X1-X0-40),y:Y0+20+rnd()*160,vx:(rnd()-.5)*2.4,vy:(rnd()-.5)*2.4}); const m=mode; mode="eq"; for(let k=0;k<900;k++) step(1/60,false); mode=m; evs=[]; hist=[]; t0=t; flashes=[]; jit=[...Array(200)].map(()=>[(rnd()-.5)*3,(rnd()-.5)*3]); }
+  host.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",()=>{ mode=b.dataset.m; owed=0; evs=[]; tw=t; host.querySelectorAll("[data-m]").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); msg.innerHTML=TXT[mode]; }));
   host.querySelector('[data-r="rs"]').addEventListener("click",()=>{ mode="eq"; host.querySelectorAll("[data-m]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.m==="eq"))); msg.innerHTML=TXT.eq; reset(); });
   msg.innerHTML=TXT.eq; reset();
   T.loop(cv,dt=>{ step(dt,true); flashes.forEach(f=>f.a-=dt*1.3); flashes=flashes.filter(f=>f.a>0);
@@ -10400,19 +10425,19 @@ T.PhaseEquil=function(host){ const W=660,H=390, X0=30,X1=330,Y0=60,Y1=350, r=8, 
     c.fillStyle="#d8ecf8"; c.fillRect(X0,lv,X1-X0,Y1-lv);
     const sp=(X1-X0-2*r-8)/(cols-1); for(let i=0;i<nl;i++){ const row=Math.floor(i/cols), col=i%cols, j=jit[i%jit.length], x=X0+r+4+col*sp, y=Y1-r-2-row*(2*r+1); c.beginPath(); c.arc(x+j[0]*Math.sin(t*3+i),y+j[1]*Math.cos(t*3.3+i)*.6,r,0,7); c.fillStyle="#2E75D6"; c.fill(); c.lineWidth=1.2; c.strokeStyle=INK; c.stroke(); }
     gas.forEach(p=>{ c.beginPath(); c.arc(p.x,p.y,r,0,7); c.fillStyle="#E00000"; c.fill(); c.lineWidth=1.2; c.strokeStyle=INK; c.stroke(); });
-    flashes.forEach(f=>{ const x=f.ref?f.ref.x:f.x, y=f.ref?f.ref.y:f.y; c.beginPath(); c.arc(x,y,r+6,0,7); c.lineWidth=3; c.strokeStyle=f.k==="v"?`rgba(196,0,0,${f.a})`:`rgba(0,94,163,${f.a})`; c.stroke(); });
+    flashes.forEach(f=>{ const x=f.ref?f.ref.x:f.x, y=f.ref?f.ref.y:f.y; c.beginPath(); c.arc(x,y,r+3,0,7); c.lineWidth=2.5; c.strokeStyle=f.k==="v"?`rgba(196,0,0,${f.a})`:`rgba(0,94,163,${f.a})`; c.stroke(); });
     c.lineWidth=4; c.strokeStyle=INK; c.beginPath(); c.moveTo(X0,Y0); c.lineTo(X0,Y1); c.lineTo(X1,Y1); c.lineTo(X1,Y0); c.stroke();
     if(mode!=="open"){ c.fillStyle="#9aa7ad"; c.fillRect(X0-12,Y0-14,X1-X0+24,14); c.lineWidth=2; c.strokeRect(X0-12,Y0-14,X1-X0+24,14); T.label(c,(X0+X1)/2,Y0-22,"lid on: closed system",{fs:13,c:"#5f6b72"}); } else T.label(c,(X0+X1)/2,Y0-10,"lid off: gas escapes",{fs:13,c:"#5f6b72"});
     if(mode==="heat"){ c.fillStyle="#e8553a"; c.fillRect(X0+20,Y1+8,X1-X0-40,12); c.lineWidth=2; c.strokeRect(X0+20,Y1+8,X1-X0-40,12); T.label(c,(X0+X1)/2,Y1+36,"heat added",{fs:12,c:R}); }
-    /* rate meters */ const span=Math.min(10,Math.max(1,t)), rv=evs.filter(e=>e[1]==="v").length/span, rc=evs.filter(e=>e[1]==="c").length/span, gx=380;
-    const bar=(y,lab,v,col)=>{ T.label(c,gx,y,lab,{fs:14,c:col,a:"start"}); c.fillStyle="#eef2f4"; c.fillRect(gx,y+6,240,16); c.fillStyle=col; c.fillRect(gx,y+6,Math.min(240,v/4*240),16); c.lineWidth=1.5; c.strokeStyle=INK; c.strokeRect(gx,y+6,240,16); T.label(c,gx+246,y+20,v.toFixed(1)+" /s",{fs:13,a:"start"}); };
+    /* rate meters */ const span=Math.min(10,Math.max(1,t-tw)), rv=evs.filter(e=>e[1]==="v").length/span, rc=evs.filter(e=>e[1]==="c").length/span, gx=380;
+    const bar=(y,lab,v,col)=>{ T.label(c,gx,y,lab,{fs:14,c:col,a:"start"}); c.fillStyle="#eef2f4"; c.fillRect(gx,y+6,200,16); c.fillStyle=col; c.fillRect(gx,y+6,Math.min(200,v/3*200),16); c.lineWidth=1.5; c.strokeStyle=INK; c.strokeRect(gx,y+6,200,16); T.label(c,gx+208,y+20,v.toFixed(1)+" /s",{fs:13,a:"start"}); };
     bar(26,"Vaporizing (rate)",rv,R); bar(66,"Condensing (rate)",rc,B);
-    const eq=mode==="eq"; T.label(c,gx+120,118,eq?"Rates equal → no net change":"Rates NOT equal → net change",{fs:14,c:eq?"#00843c":"#c40000"});
-    /* graph */ const gy=350, gh=190, gw=250; c.lineWidth=2; c.strokeStyle=INK; c.beginPath(); c.moveTo(gx,gy-gh); c.lineTo(gx,gy); c.lineTo(gx+gw,gy); c.stroke();
-    [0,25,50,75,100].forEach(v=>{ const yy=gy-v/110*gh; T.label(c,gx-6,yy+4,String(v),{fs:11,a:"end",w:600}); c.strokeStyle="#e6edf0"; c.lineWidth=1; c.beginPath(); c.moveTo(gx+1,yy); c.lineTo(gx+gw,yy); c.stroke(); });
-    T.label(c,gx+gw/2,gy+22,"Time (last 60 s)",{fs:13}); T.label(c,gx,gy-gh-10,"Number of molecules",{fs:13,a:"start"});
-    const tNow=t, tx=v=>gx+gw-(tNow-v)/60*gw, ty=v=>gy-v/110*gh; hist=hist.filter(h=>tNow-h[0]<=60);
-    [[1,"#2E75D6","Liquid"],[2,"#E00000","Gas"]].forEach(([i,col,nm])=>{ c.beginPath(); hist.forEach((h,k)=>{ const X=tx(h[0]), Y=ty(h[i]); k?c.lineTo(X,Y):c.moveTo(X,Y); }); c.lineWidth=3; c.strokeStyle=col; c.stroke(); const last=hist[hist.length-1]; if(last) T.label(c,gx+gw-4,ty(last[i])+(i===1?-10:-10),`${nm}: ${last[i]}`,{fs:13,c:col,a:"end",halo:1}); }); }); };
+    const eq=mode==="eq"; T.label(c,gx+125,112,eq?"Rates equal → no net change":"Rates NOT equal → net change",{fs:14,c:eq?"#00843c":"#c40000"});
+    /* graph: fills from the left, then scrolls (last 60 s) */ const gy=350, gh=170, gw=250, YM=50; c.lineWidth=2; c.strokeStyle=INK; c.beginPath(); c.moveTo(gx,gy-gh); c.lineTo(gx,gy); c.lineTo(gx+gw,gy); c.stroke();
+    [0,10,20,30,40,50].forEach(v=>{ const yy=gy-v/YM*gh; T.label(c,gx-6,yy+4,String(v),{fs:11,a:"end",w:600}); if(v){ c.strokeStyle="#e6edf0"; c.lineWidth=1; c.beginPath(); c.moveTo(gx+1,yy); c.lineTo(gx+gw,yy); c.stroke(); } });
+    T.label(c,gx+gw/2,gy+22,"Time",{fs:13}); T.label(c,gx,gy-gh-28,"Number of molecules",{fs:13,a:"start"});
+    const tNow=t-t0, tS=Math.max(0,tNow-60), tx=v=>gx+(v-t0-tS)/60*gw, ty=v=>gy-Math.min(v,YM)/YM*gh; hist=hist.filter(h=>h[0]-t0>=tS);
+    [[1,"#2E75D6","Liquid"],[2,"#E00000","Gas"]].forEach(([i,col,nm])=>{ c.beginPath(); hist.forEach((h,k)=>{ const X=tx(h[0]), Y=ty(h[i]); k?c.lineTo(X,Y):c.moveTo(X,Y); }); c.lineWidth=3; c.strokeStyle=col; c.stroke(); const last=hist[hist.length-1]; const lx=gx+(i===1?0:130); c.fillStyle=col; c.fillRect(lx,gy-gh-14,18,4); T.label(c,lx+24,gy-gh-8,`${nm}: ${last?last[i]:""}`,{fs:13,c:col,a:"start"}); }); }); };
 
 /* ---------- phase diagram with live particles ---------- */
 T.PhaseDiagram=function(host){ const W=600,H=440, x0=70,y0=370,w=500,h=330, CW=280, CH=240, N=22;
@@ -10511,8 +10536,8 @@ T.HeatCurve=function(host,o={}){ const M=T.curveModel(), N=30, LW=470,LH=360, GW
     const bx=36,by=150,bw=130,bh=150, lvl=st.vap>=1?0:bh*.55*(1-st.vap*.9);
     if(lvl>0){ c.fillStyle="#cfe9f7"; c.fillRect(bx+2,by+bh-lvl,bw-4,lvl); }
     if(st.melt<1){ c.fillStyle="#eef8fc"; c.strokeStyle="#6aa9cf"; c.lineWidth=2; const n=Math.ceil(5*(1-st.melt)); for(let k=0;k<n;k++){ const x=bx+12+(k%3)*36, y=by+bh-36-Math.floor(k/3)*30; c.fillRect(x,y,28,28); c.strokeRect(x,y,28,28); } }
-    if(st.i===3&&dir){ for(let k=0;k<6;k++){ const yy=by+bh-((performance.now()/9+k*37)%Math.max(10,lvl)); c.beginPath(); c.arc(bx+20+k*18,yy,4,0,7); c.strokeStyle="#5f6b72"; c.lineWidth=1.5; c.stroke(); } }
-    if(st.i>=3){ c.strokeStyle="#b9c4c9"; c.lineWidth=3; for(let k=0;k<3;k++){ const x=bx+30+k*35; c.beginPath(); for(let y=0;y<50;y+=2){ const xx=x+Math.sin(y/7+performance.now()/300+k)*5; y?c.lineTo(xx,by-6-y):c.moveTo(xx,by-6); } c.stroke(); } }
+    if(st.i===3&&dir){ for(let k=0;k<6;k++){ const yy=by+bh-((performance.now()/24+k*37)%Math.max(10,lvl)); c.beginPath(); c.arc(bx+20+k*18,yy,4,0,7); c.strokeStyle="#5f6b72"; c.lineWidth=1.5; c.stroke(); } }
+    if(st.i>=3){ c.strokeStyle="#b9c4c9"; c.lineWidth=3; for(let k=0;k<3;k++){ const x=bx+30+k*35; c.beginPath(); for(let y=0;y<50;y+=2){ const xx=x+Math.sin(y/7+performance.now()/650+k)*5; y?c.lineTo(xx,by-6-y):c.moveTo(xx,by-6); } c.stroke(); } }
     c.lineWidth=3.5; c.strokeStyle=INK; c.beginPath(); c.moveTo(bx-6,by-4); c.lineTo(bx,by+2); c.lineTo(bx,by+bh); c.lineTo(bx+bw,by+bh); c.lineTo(bx+bw,by+2); c.lineTo(bx+bw+6,by-4); c.stroke();
     c.fillStyle=dir===(cool?-1:1)&&!cool?"#e8553a":dir>0?"#e8553a":"#9aa7ad"; c.fillRect(bx-10,by+bh+4,bw+20,10); c.strokeRect(bx-10,by+bh+4,bw+20,10); c.fillStyle="#dfe5e8"; c.fillRect(bx-18,by+bh+14,bw+36,28); c.strokeRect(bx-18,by+bh+14,bw+36,28);
     T.label(c,bx+bw/2,by+bh+34,dir>0?"heating":dir<0?"cooling":"off",{fs:12,c:dir>0?"#c40000":dir<0?"#005ea3":"#5f6b72"});
@@ -10522,7 +10547,7 @@ T.HeatCurve=function(host,o={}){ const M=T.curveModel(), N=30, LW=470,LH=360, GW
     c.lineWidth=8; c.strokeStyle=INK; c.beginPath(); c.arc(mx,my,mr,0,7); c.stroke(); c.lineWidth=14; c.beginPath(); c.moveTo(mx-mr*.72,my+mr*.72); c.lineTo(mx-mr*1.02,my+mr*1.02); c.stroke();
     c.lineWidth=1.5; c.setLineDash([4,4]); c.strokeStyle="#5f6b72"; c.beginPath(); c.moveTo(bx+bw/2-20,by+bh-40); c.lineTo(mx-mr*.95,my+mr*.3); c.stroke(); c.setLineDash([]); }
   T.loop(cv,dt=>{ Q=Math.max(0,Math.min(M.tot,Q+dir*900*speed*dt)); if((Q<=0&&dir<0)||(Q>=M.tot&&dir>0)) dir=0; lo=Math.min(lo,Q); hi=Math.max(hi,Q);
-    const st=M.at(Q); E.set(N*(1-st.melt),N*st.vap,KEFF(st.T)); E.step(dt); scene(st); graph(st);
+    const st=M.at(Q); E.set(N*(1-st.melt),N*st.vap,KEFF(st.T)); E.step(dt*.4); scene(st); graph(st);
     const d=dir||(cool?-1:1), nm=(d<0?CNAMES:NAMES)[st.i], ke=(st.T+273.15)/(140+273.15), pe=st.i<1?.12:st.i===1?.12+.22*st.melt:st.i===2?.34:st.i===3?.34+.6*st.vap:.94;
     $('[data-r="m"]').innerHTML=[["Kinetic energy",ke,"#E00000"],["Potential energy",pe,"#2E75D6"]].map(([n,v,col])=>`<div><div class="t7-bar"><i style="height:${(v*100).toFixed(1)}%;background:${col}"></i></div><b>${n}</b></div>`).join("");
     $('[data-r="read"]').innerHTML=`<span>Temperature <b>${st.T.toFixed(1)} °C</b></span><span>Heat ${cool?"removed":"added"} <b>${Math.round(cool?M.tot-Q:Q).toLocaleString()} J</b></span>`;
@@ -10666,8 +10691,8 @@ T.figTransfer=()=>{ let s="";
   return T.svg(700,210,`<defs><linearGradient id="t7trg" x1="0" x2="1"><stop offset="0" stop-color="#E00000"/><stop offset="1" stop-color="#F2B705"/></linearGradient></defs>`+s,"Conduction: a pan handle heats up. Convection: currents of water in a pot. Radiation: the Sun’s light crossing space to warm Earth"); };
 
 /* two blocks touching at the same temperature: energy passes both ways equally */
-T.figEquil=()=>{ const box=(x)=>{ let s=`<rect x="${x}" y="60" width="200" height="120" fill="#8f63c9" fill-opacity=".18" stroke="${INK}" stroke-width="3"/>`; for(let j=0;j<3;j++) for(let i=0;i<5;i++){ const cx=x+24+i*38, cy=86+j*36; s+=`<line x1="${cx-20}" y1="${cy}" x2="${cx-13}" y2="${cy}" stroke="${INK}" stroke-width="1.6"/>`+T.ball(cx,cy,11,"#8f63c9"); } return s+TT(x+100,46,"40 °C",{fs:20,c:"#6a2c9a"}); };
-  return T.svg(520,250,box(60)+box(260)+`<line x1="260" y1="52" x2="260" y2="188" stroke="${INK}" stroke-width="3"/>`+T.arrow(214,206,306,206,INK,3,10)+T.arrow(306,226,214,226,INK,3,10)+TT(260,246,"Energy passes both ways equally: no NET flow of heat",{fs:13,c:"#00843c"}),"Two touching blocks at the same temperature: energy passes both ways equally, so there is no net flow of heat"); };
+T.figEquil=()=>{ const box=(x)=>{ let s=`<rect x="${x}" y="60" width="200" height="120" fill="#8f63c9" fill-opacity=".18" stroke="${INK}" stroke-width="3"/>`; for(let j=0;j<3;j++) for(let i=0;i<4;i++){ const cx=x+28+i*48, cy=86+j*36; s+=T.vib(cx,cy,11,1)+T.ball(cx,cy,11,"#8f63c9"); } return s+TT(x+100,46,"40 °C",{fs:20,c:"#6a2c9a"}); };
+  return T.svg(520,282,box(60)+box(260)+`<line x1="260" y1="52" x2="260" y2="188" stroke="${INK}" stroke-width="3"/>`+T.arrow(214,206,306,206,INK,3,10)+T.arrow(306,226,214,226,INK,3,10)+TT(260,246,"Energy passes both ways equally: no NET flow of heat",{fs:13,c:"#00843c"})+T.vibKey(260,270),"Two touching blocks at the same temperature: energy passes both ways equally, so there is no net flow of heat"); };
 
 /* rate of heat transfer: a wall between hot and cold, labeled ΔT, A, d */
 T.figRate=()=>{ let s=`<rect x="30" y="40" width="200" height="170" fill="#E00000" fill-opacity=".15" stroke="${INK}" stroke-width="2.5"/>${TT(130,130,"Hot side",{fs:16,c:R})}<rect x="230" y="40" width="60" height="170" fill="#c9c9c9" stroke="${INK}" stroke-width="3"/><rect x="290" y="40" width="200" height="170" fill="#2E75D6" fill-opacity=".15" stroke="${INK}" stroke-width="2.5"/>${TT(390,130,"Cold side",{fs:16,c:B})}`;
@@ -10707,11 +10732,37 @@ T.figCalorimeter=()=>{ let s=`<defs><linearGradient id="t7foam" x1="0" x2="1"><s
   return T.svg(740,384,`<g transform="translate(120 0)">${s}</g>`,"A coffee-cup calorimeter: two nested foam cups with a lid, a thermometer and a stirrer, holding water in which a reaction takes place"); };
 
 /* a bomb calorimeter, used to measure food Calories */
-T.figBomb=()=>{ let s=`<rect x="90" y="60" width="300" height="250" rx="12" fill="#e9eef1" stroke="${INK}" stroke-width="3"/><rect x="110" y="90" width="260" height="200" rx="8" fill="#9fd3f2" stroke="${INK}" stroke-width="2"/>`;
-  s+=`<rect x="190" y="150" width="100" height="110" rx="10" fill="#9aa7ad" stroke="${INK}" stroke-width="3"/><rect x="214" y="210" width="52" height="30" rx="4" fill="#fff" stroke="${INK}" stroke-width="1.5"/><path d="M226 226l6-12 6 10 6-10 6 12z" fill="#c8a06a" stroke="${INK}"/><path d="M232 210v-20M248 210v-20" stroke="${INK}" stroke-width="2"/>`;
-  s+=A.U1.thermo(178,30,246,16,11,.6)+`<path d="M330 40V270" stroke="#7a5a2c" stroke-width="4"/>`;
-  s+=TT(424,64,"Bomb calorimeter",{fs:17,a:"start"})+`<line x1="290" y1="200" x2="420" y2="180" stroke="${INK}" stroke-width="1.5"/>`+TT(424,176,"sealed steel “bomb”",{fs:13,a:"start"})+TT(424,194,"with food and oxygen",{fs:13,a:"start"})+`<line x1="250" y1="225" x2="420" y2="236" stroke="${INK}" stroke-width="1.5"/>`+TT(424,240,"sample burns completely",{fs:13,a:"start"})+`<line x1="350" y1="120" x2="420" y2="110" stroke="${INK}" stroke-width="1.5"/>`+TT(424,114,"water absorbs the heat",{fs:13,a:"start"});
-  return T.svg(600,330,s,"A bomb calorimeter: a sealed steel container in which food burns in oxygen, surrounded by water that absorbs the heat"); };
+T.figBomb=()=>{ let s=`<defs><linearGradient id="bm-st" x1="0" x2="1"><stop offset="0" stop-color="#7d888e"/><stop offset=".45" stop-color="#dfe4e7"/><stop offset="1" stop-color="#7d888e"/></linearGradient>
+    <pattern id="bm-ins" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#f4efe2"/><line x1="0" y1="0" x2="0" y2="8" stroke="#d2c6a8" stroke-width="3"/></pattern></defs>`;
+  const lead=(x1,y1,x2,y2)=>`<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${INK}" stroke-width="1.3"/><circle cx="${x1}" cy="${y1}" r="2.6" fill="${INK}"/>`;
+  const wave=(x1,y1,x2,y2)=>{ const dx=x2-x1, dy=y2-y1, L=Math.hypot(dx,dy), ux=dx/L, uy=dy/L; let d=`M${x1} ${y1}`; for(let i=1;i<=8;i++){ const t=i/8*(L-8), w=(i%2?4:-4); d+=`L${(x1+ux*t-uy*w).toFixed(1)} ${(y1+uy*t+ux*w).toFixed(1)}`; } return `<path d="${d}" fill="none" stroke="#E8590C" stroke-width="2.6" stroke-linejoin="round"/>`+`<path d="M${x2} ${y2}l${(-ux*10-uy*6).toFixed(1)} ${(-uy*10+ux*6).toFixed(1)}l${(uy*12).toFixed(1)} ${(-ux*12).toFixed(1)}z" fill="#E8590C"/>`; };
+  /* insulated jacket and lid */
+  s+=`<rect x="170" y="112" width="300" height="290" rx="14" fill="url(#bm-ins)" stroke="${INK}" stroke-width="3"/><rect x="190" y="130" width="260" height="256" rx="8" fill="#eef2f4" stroke="${INK}" stroke-width="2"/>`;
+  s+=`<rect x="160" y="96" width="320" height="18" rx="4" fill="#9aa7ad" stroke="${INK}" stroke-width="2.5"/>`;
+  /* bucket of water */
+  s+=`<path d="M205 150V374q0 6 6 6H429q6 0 6-6V150" fill="none" stroke="${INK}" stroke-width="2.5"/><path d="M207 168H433V374q0 4-4 4H211q-4 0-4-4z" fill="#9fd3f2"/><path d="M207 168H433" stroke="#2a7fd0" stroke-width="2"/>`;
+  /* steel bomb: thick walls, screw cap, oxygen inside, sample cup, electrodes and fuse wire */
+  s+=`<rect x="262" y="222" width="100" height="148" rx="10" fill="url(#bm-st)" stroke="${INK}" stroke-width="3"/><rect x="275" y="234" width="74" height="124" rx="5" fill="#eaf4ff" stroke="${INK}" stroke-width="1.5"/>`;
+  s+=`<rect x="254" y="206" width="116" height="20" rx="4" fill="url(#bm-st)" stroke="${INK}" stroke-width="3"/>${[0,1,2,3,4,5,6,7,8,9,10].map(k=>`<path d="M${262+k*10} 208v16" stroke="#5f6b72" stroke-width="1"/>`).join("")}`;
+  s+=[[284,256],[332,270],[300,292],[338,306],[286,320]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.2" fill="#fff" stroke="#2E75D6" stroke-width="1.4"/><circle cx="${x+5}" cy="${y}" r="3.2" fill="#fff" stroke="#2E75D6" stroke-width="1.4"/>`).join("")+TT(312,252,"O₂",{fs:12,c:"#2E75D6"});
+  s+=`<path d="M290 226V334M334 226V334" stroke="#5f6b72" stroke-width="3"/><path d="M290 334q5-8 11 0t11 0t11 0t11 0" fill="none" stroke="#E8590C" stroke-width="2"/>`;
+  s+=`<path d="M293 340h38l-6 14h-26z" fill="#c9cdd1" stroke="${INK}" stroke-width="2"/><rect x="301" y="331" width="22" height="10" rx="3" fill="#a0703c" stroke="${INK}" stroke-width="1.5"/>`;
+  s+=`<path d="M312 322l3 6 6 1-5 4 2 6-6-3-6 3 2-6-5-4 6-1z" fill="#F2B705" stroke="#c46a00" stroke-width="1"/>`;
+  /* ignition wires up through the lid to the ignition unit */
+  s+=`<path d="M298 206V50H520" fill="none" stroke="#c40000" stroke-width="2.5"/><path d="M326 206V58H520" fill="none" stroke="${INK}" stroke-width="2.5"/>`;
+  s+=`<rect x="520" y="34" width="96" height="40" rx="6" fill="#2b3a42" stroke="${INK}" stroke-width="2"/><circle cx="600" cy="54" r="8" fill="#E00000" stroke="#fff" stroke-width="1.5"/><text x="534" y="58" font-size="12" font-weight="700" fill="#fff">FIRE</text>`;
+  /* stirrer: motor on the lid, shaft and blades in the water */
+  s+=`<rect x="396" y="66" width="38" height="30" rx="4" fill="#5f6b72" stroke="${INK}" stroke-width="2"/><path d="M415 96V340" stroke="#5f6b72" stroke-width="3.5"/><ellipse cx="404" cy="340" rx="11" ry="4" fill="#9aa7ad" stroke="${INK}" stroke-width="1.5"/><ellipse cx="426" cy="340" rx="11" ry="4" fill="#9aa7ad" stroke="${INK}" stroke-width="1.5"/>`;
+  /* digital thermometer */
+  s+=`<path d="M228 76V300" stroke="${INK}" stroke-width="4"/><rect x="176" y="38" width="104" height="40" rx="6" fill="#2b3a42" stroke="${INK}" stroke-width="2"/><rect x="184" y="45" width="88" height="26" rx="3" fill="#cfe8c6"/>`+TT(228,64,"25.00 °C",{fs:15,c:"#14361c"});
+  /* heat flowing from the bomb into the water */
+  s+=wave(276,202,262,176)+wave(348,202,362,176)+wave(366,290,402,290);
+  /* labels */
+  const L=(x,y,t,a)=>TT(x,y,t,{fs:13,a:a||"start"});
+  s+=lead(178,58,120,58)+L(116,62,"Thermometer","end")+lead(180,250,120,250)+L(116,246,"Insulated","end")+L(116,262,"jacket","end")+lead(215,200,120,200)+L(116,204,"Water","end");s+=lead(392,296,480,350)+L(484,354,"Heat flows from the")+L(484,370,"burning sample into the water");
+  s+=lead(434,84,480,136)+L(484,140,"Stirrer")+TT(568,92,"Ignition unit",{fs:13})+lead(362,250,480,170)+L(484,166,"Sealed steel bomb")+L(484,182,"filled with oxygen")+lead(323,336,480,236)+L(484,232,"Food sample in a")+L(484,248,"metal cup")+lead(334,334,480,300)+L(484,296,"Fuse wire: an electric")+L(484,312,"spark ignites the sample");
+  s+=TT(320,20,"Bomb calorimeter",{fs:17});
+  return T.svg(700,412,s,"A bomb calorimeter: a sealed steel bomb filled with oxygen holds the food sample, which an electric spark ignites. The bomb sits in a bucket of water inside an insulated jacket, with a stirrer and a digital thermometer. Heat from the burning sample flows into the water."); };
 
 /* the heating curve with color-coded segments (for the notes) */
 T.figCurve=(cool)=>{ const xs=[60,140,250,340,520,600], ys=cool?[40,110,110,200,200,260]:[260,200,200,110,110,40]; const P=xs.map((x,i)=>[x,ys[i]]);
@@ -10726,13 +10777,22 @@ T.figCurve=(cool)=>{ const xs=[60,140,250,340,520,600], ys=cool?[40,110,110,200,
   return T.svg(660,340,s,cool?"A cooling curve: sloped parts where the temperature drops and flat parts during condensation and freezing":"A heating curve: sloped parts where the temperature rises and flat parts during melting and vaporization"); };
 
 /* where added heat goes: kinetic energy (temperature rises) or potential energy (phase change) */
-T.figKEPE=(cool)=>{ const fast=(x,y,L)=>{ let s=""; [[0,0],[40,8],[80,-4],[20,40],[60,36]].forEach(([dx,dy])=>{ s+=`<line x1="${x+dx-12-L}" y1="${y+dy}" x2="${x+dx-12}" y2="${y+dy}" stroke="${INK}" stroke-width="1.8"/>`+T.ball(x+dx,y+dy,11,COL.l); }); return s; };
-  let s=`<rect x="10" y="10" width="640" height="230" rx="10" fill="#fff" stroke="#dbe5ea"/>`+TT(330,40,cool?"Heat removed comes out of…":"Heat added goes into…",{fs:17});
-  s+=`<rect x="30" y="60" width="290" height="160" rx="8" fill="#fde9e9" stroke="${R}" stroke-width="2"/>`+TT(175,86,cool?"Kinetic energy (sloped parts)":"Kinetic energy (sloped parts)",{fs:15,c:R})+fast(62,128,cool?14:4)+T.arrow(150,150,190,150,INK,2.5,9)+fast(222,128,cool?4:16)+TT(175,210,cool?"particles slow down: temperature falls":"particles speed up: temperature rises",{fs:13,fw:600});
-  s+=`<rect x="340" y="60" width="290" height="160" rx="8" fill="#e6f0fb" stroke="${B}" stroke-width="2"/>`+TT(485,86,"Potential energy (flat parts)",{fs:15,c:B});
-  const close=[[380,140],[402,140],[391,121],[413,121]], far=[[520,110],[580,130],[545,160],[600,170]]; (cool?far:close).forEach(([x,y])=>s+=T.ball(x,y,11,COL.l)); s+=T.arrow(440,140,500,140,INK,2.5,9); (cool?close.map(([x,y])=>[x+160,y]):far).forEach(([x,y])=>s+=T.ball(x,y,11,COL.l));
-  s+=TT(485,210,cool?"particles move closer: phase change":"particles move apart: phase change",{fs:13,fw:600});
-  return T.svg(660,250,s,cool?"Heat removed lowers either the kinetic energy of the particles or their potential energy, one at a time":"Heat added raises either the kinetic energy of the particles or their potential energy, one at a time"); };
+T.figKEPE=(cool)=>{ const U=A.U1, L1=cool?15:5, L2=cool?5:15, BW=104, BH=96;
+  /* a particle with motion lines trailing behind it; the trail is turned until it fits inside its box */
+  const mv=(bx,by,x,y,dx,dy,L)=>{ const n=Math.hypot(dx,dy); dx/=n; dy/=n; for(let t=0;t<4;t++){ const ex=x-dx*(12+L), ey=y-dy*(12+L); if(ex>bx+5&&ex<bx+BW-5&&ey>by+5&&ey<by+BH-5) break; [dx,dy]=[-dy,dx]; }
+    let s=""; const k=L>10?3:1; for(let i=0;i<k;i++){ const o=k>1?(i-1)*5:0; s+=`<line x1="${(x-dx*12-dy*o).toFixed(1)}" y1="${(y-dy*12+dx*o).toFixed(1)}" x2="${(x-dx*(12+L)-dy*o).toFixed(1)}" y2="${(y-dy*(12+L)+dx*o).toFixed(1)}" stroke="${INK}" stroke-width="1.7"/>`; } return s+T.ball(x,y,9,COL.l); };
+  const box=(x,y,inner)=>`<rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="4" fill="#fff" stroke="${INK}" stroke-width="2"/>`+inner;
+  const gas=(x,y,L)=>[[24,24,-.3,-1],[80,24,1,-.3],[24,72,-1,.3],[80,72,.3,1]].map(([px,py,dx,dy])=>mv(x,y,x+px,y+py,dx,dy,L)).join("");
+  const tight=(x,y)=>[[30,30],[52,30],[74,30],[41,49],[63,49],[30,68],[52,68],[74,68]].map(([px,py])=>T.ball(x+px,y+py,10,COL.l)).join("");
+  const loose=(x,y)=>[[18,18],[54,16],[88,24],[32,50],[72,52],[16,80],[52,80],[88,78]].map(([px,py])=>T.ball(x+px,y+py,10,COL.l)).join("");
+  let s=TT(330,26,cool?"Heat removed comes out of one kind of energy at a time":"Heat added goes into one kind of energy at a time",{fs:17});
+  s+=`<rect x="10" y="42" width="315" height="252" rx="10" fill="#fde9e9" stroke="${R}" stroke-width="2"/>`+TT(167,68,"Kinetic energy",{fs:16,c:R})+TT(167,88,"changes while the temperature changes",{fs:12.5,fw:600});
+  s+=box(22,106,gas(22,106,L1))+U.thermo(140,112,64,9,8,cool?.8:.3,"#e23b3b",2)+T.arrow(152,154,170,154,INK,2.5,8)+box(176,106,gas(176,106,L2))+U.thermo(294,112,64,9,8,cool?.3:.8,"#e23b3b",2);
+  s+=TT(167,230,cool?"Particles slow down.":"Particles speed up.",{fs:13.5,fw:700})+TT(167,250,cool?"Temperature falls.":"Temperature rises.",{fs:13.5,fw:700,c:R})+TT(167,276,"Distance between particles: about the same",{fs:12,fw:600,c:"#5f6b72"});
+  s+=`<rect x="335" y="42" width="315" height="252" rx="10" fill="#e6f0fb" stroke="${B}" stroke-width="2"/>`+TT(492,68,"Potential energy",{fs:16,c:B})+TT(492,88,"changes during a phase change",{fs:12.5,fw:600});
+  s+=box(355,106,cool?loose(355,106):tight(355,106))+T.arrow(470,154,512,154,INK,2.5,8)+box(525,106,cool?tight(525,106):loose(525,106));
+  s+=TT(492,230,cool?"Particles move closer together.":"Particles move farther apart.",{fs:13.5,fw:700})+TT(492,250,"Temperature stays the same.",{fs:13.5,fw:700,c:B})+TT(492,276,"Speed of the particles: about the same",{fs:12,fw:600,c:"#5f6b72"});
+  return T.svg(660,302,s,cool?"Heat removed lowers either the kinetic energy of the particles (they slow down and the temperature falls) or their potential energy (they move closer together at a constant temperature), one at a time":"Heat added raises either the kinetic energy of the particles (they speed up and the temperature rises) or their potential energy (they move farther apart at a constant temperature), one at a time"); };
 
 /* sand vs. water on a sunny day */
 T.figBeach=()=>{ let s=`<rect x="0" y="0" width="620" height="140" fill="#dff1fb"/><circle cx="80" cy="60" r="34" fill="#F2B705" stroke="${INK}" stroke-width="2.5"/>${[...Array(12)].map((_,k)=>{ const a=k*Math.PI/6; return `<line x1="${80+42*Math.cos(a)}" y1="${60+42*Math.sin(a)}" x2="${80+54*Math.cos(a)}" y2="${60+54*Math.sin(a)}" stroke="${INK}" stroke-width="2.5"/>`; }).join("")}`;
@@ -10760,9 +10820,9 @@ T.figBoilEvap=()=>{ const beaker=(x,boil)=>{ let s=`<path d="M${x} 80v150q0 6 6 
   return T.svg(640,330,`<g transform="translate(0 30)">`+beaker(40,false)+beaker(400,true)+`</g>`+TT(120,30,"Evaporation",{fs:17,c:R})+TT(120,50,"surface only, below the boiling point",{fs:13,fw:600})+TT(480,30,"Boiling",{fs:17,c:R})+TT(480,50,"throughout the liquid, at the boiling point",{fs:13,fw:600})+TT(120,316,"Ex: a puddle drying up",{fs:13,fw:600,c:"#5f6b72"})+TT(480,316,"Bubbles of vapor form inside",{fs:13,fw:600,c:"#5f6b72"}),"Evaporation happens only at the surface of a liquid below its boiling point; boiling happens throughout the liquid at its boiling point"); };
 
 /* temperature boxes: low and high average kinetic energy (no overlapping motion lines) */
-T.figTempBox=(hot)=>{ const pts=[[70,60],[160,52],[240,76],[110,120],[200,138],[60,170],[250,168],[150,186]]; const dirs=[[1,.2],[-.6,.8],[-1,.1],[.7,-.7],[-.2,-1],[.9,.4],[-.8,-.5],[.3,.95]];
+T.figTempBox=(hot)=>{ const pts=[[70,60],[160,52],[240,76],[110,120],[200,138],[60,170],[250,168],[150,186]]; const dirs=[[1,.2],[-.6,.8],[-1,.1],[.7,-.7],[-.2,-1],[.9,.4],[.85,-.5],[.3,.95]];
   let s=`<rect x="20" y="24" width="270" height="190" fill="#fff" stroke="${INK}" stroke-width="2.5"/>`;
-  pts.forEach(([x,y],i)=>{ let [dx,dy]=dirs[i]; const n=Math.hypot(dx,dy); dx/=n; dy/=n; const L=hot?26:9; for(let k=0;k<(hot?3:1);k++){ const o=hot?(k-1)*6:0; s+=`<line x1="${(x-dx*14-dy*o).toFixed(1)}" y1="${(y-dy*14+dx*o).toFixed(1)}" x2="${(x-dx*(14+L)-dy*o).toFixed(1)}" y2="${(y-dy*(14+L)+dx*o).toFixed(1)}" stroke="${INK}" stroke-width="1.8"/>`; } s+=T.ball(x,y,11,hot?"#E00000":"#2E75D6"); });
+  pts.forEach(([x,y],i)=>{ let [dx,dy]=dirs[i]; const n=Math.hypot(dx,dy); dx/=n; dy/=n; const L=hot?26:9; { const ex=x-dx*(14+L), ey=y-dy*(14+L), m=8; if(ex<20+m||ex>290-m||ey<24+m||ey>214-m){ dx=-dx; dy=-dy; } } for(let k=0;k<(hot?3:1);k++){ const o=hot?(k-1)*6:0; s+=`<line x1="${(x-dx*14-dy*o).toFixed(1)}" y1="${(y-dy*14+dx*o).toFixed(1)}" x2="${(x-dx*(14+L)-dy*o).toFixed(1)}" y2="${(y-dy*(14+L)+dx*o).toFixed(1)}" stroke="${INK}" stroke-width="1.8"/>`; } s+=T.ball(x,y,11,hot?"#E00000":"#2E75D6"); });
   s+=`<g transform="translate(300 24)">${U.thermo(22,4,150,18,16,hot?.85:.25,"#e23b3b",2.5)}</g>`+TT(155,240,hot?"High temperature: fast-moving particles":"Low temperature: slow-moving particles",{fs:13.5,c:hot?R:B});
   return T.svg(350,252,s,hot?"High temperature: particles move fast and have high average kinetic energy":"Low temperature: particles move slowly and have low average kinetic energy"); };
 
@@ -10863,7 +10923,7 @@ T.CurveExplorer=function(host,o={}){ let cool=!!o.cool, water=false, sel=-1, f=0
       <div class="t7-cx-cv"></div><div><p class="t7-cx-say">${g.say}</p>
       <table class="t7-cx-t"><tr><td>Kinetic energy</td><td>${arrow(g.ke)}</td></tr><tr><td>Potential energy</td><td>${arrow(g.pe)}</td></tr><tr><td>Temperature</td><td>${arrow(g.ke)}</td></tr>${water?`<tr><td>Heat equation</td><td><b>${g.eq}</b></td></tr>`:""}</table></div>`;
     cv=T.canvas(300,200,"Particles during "+g.name); ctx=cv.getContext("2d"); host.querySelector(".t7-cx-cv").appendChild(cv); }
-  T.loop(host,(dt,t)=>{ if(!cv||sel<0) return; f=(f+dt/5)%1; const L=cool?SEGS.cool:SEGS.heat; drawSeg(ctx,300,200,L[sel],f,t/1000,cool); });
+  T.loop(host,(dt,t)=>{ if(!cv||sel<0) return; f=(f+dt/5)%1; const L=cool?SEGS.cool:SEGS.heat; drawSeg(ctx,300,200,L[sel],f,t/1000*.4,cool); });
   A.$$('[data-r="mode"] button',host).forEach(b=>b.addEventListener("click",()=>{ cool=b.dataset.v==="cool"; A.$$('[data-r="mode"] button',host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); sel=-1; graph(); card(); }));
   $("water").addEventListener("change",e=>{ water=e.target.checked; graph(); card(); });
   graph(); card(); };
@@ -10944,39 +11004,63 @@ const PLACES=[["Antarctica in winter",-60,"❄"],["Buffalo, NY in January",-12,"
 T.PhaseQuiz=function(host){ let cur=null, n=0, right=0;
   const g=A.Game(host,{how:"Compare the temperature with the substance’s melting point and boiling point, then choose its phase.",scoreText:()=>`Round ${Math.min(n,8)} of 8 · Correct ${right}`});
   g.button("Next",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="t7-pq"><div class="t7-pq-card" data-r="sub"></div><div class="t7-pq-card t7-pq-place" data-r="pl"></div></div><div class="qc"><small>At this temperature, the substance is a…</small><div class="qc-o" data-r="o"></div></div><div data-r="after"></div>`;
+  g.stage.innerHTML=`<div class="t7-pq-wrap"><div class="t7-pq-th" data-r="th"></div><div class="t7-pq-main"><div class="t7-pq"><div class="t7-pq-card" data-r="sub"></div><div class="t7-pq-card t7-pq-place" data-r="pl"></div></div><div class="qc"><small>At this temperature, the substance is a…</small><div class="qc-o" data-r="o"></div></div><div data-r="after"></div></div></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
   const phaseOf=(s,t)=>t<s[2]?"s":t<s[3]?"l":"g";
-  function next(){ g.fresh(); g.msg(""); if(n>=8){ $("o").innerHTML=""; $("after").innerHTML=""; g.msg(`Done: ${right} of 8 correct. Press Next to play again.`,right>=6?"good":""); n=0; right=0; g.paint(); return; }
+  const fmt=v=>(v<0?"−":"")+Math.abs(v).toLocaleString();
+  /* thermometer: mp and bp marked on the right, the location's temperature as the liquid level (scale compressed for very high temperatures) */
+  function therm(reveal){ const {s,p}=cur, W=310,H=330, tx=100, top=18, len=272, tw=20, br=17, yBot=top+len-br-30, yTop=top+26;
+    const f=v=>Math.asinh(v/60), vals=[s[2],s[3],p[1]], lo=f(Math.min(...vals)), hi=f(Math.max(...vals));
+    let Y=v=>yBot-(f(v)-lo)/(hi-lo||1)*(yBot-yTop), ym=Y(s[2]), yb=Y(s[3]); if(ym-yb<40){ const mid=(ym+yb)/2; ym=Math.min(yBot,mid+20); yb=ym-40; }
+    /* liquid level: the location temperature placed against the (possibly spread) mp and bp marks */
+    const te=p[1], yl= te<=s[2]? ym+(Y(te)-Y(s[2]))*(te<s[2]?1:0) : te>=s[3]? yb+(Y(te)-Y(s[3])) : ym+(yb-ym)*((f(te)-f(s[2]))/(f(s[3])-f(s[2])));
+    const yL=Math.max(yTop-8,Math.min(yBot+8,yl)), fr=(top+len-yL-tw/2)/(len-tw/2);
+    let v="";
+    if(reveal){ const bx=228, bw=74; v+=`<rect x="${bx}" y="${yb}" width="${bw}" height="${ym-yb}" fill="${COL.l}" opacity=".85"/><rect x="${bx}" y="${ym}" width="${bw}" height="${top+len-br-ym}" fill="${COL.s}" opacity=".85"/><rect x="${bx}" y="${top}" width="${bw}" height="${yb-top}" fill="${COL.g}" opacity=".85"/><rect x="${bx}" y="${top}" width="${bw}" height="${top+len-br-top}" fill="none" stroke="${INK}" stroke-width="1.5"/>`;
+      v+=TT(bx+bw/2,(yb+top)/2+5,"Gas",{fs:14,c:"#fff"})+TT(bx+bw/2,(ym+yb)/2+5,"Liquid",{fs:14,c:"#fff"})+TT(bx+bw/2,(top+len-br+ym)/2+5,"Solid",{fs:14,c:"#fff"}); }
+    v+=A.U1.thermo(tx,top,len,tw,br,fr,"#e23b3b",2.5);
+    [[ym,"Melting point",s[2]],[yb,"Boiling point",s[3]]].forEach(([y,l,val])=>{ v+=`<line x1="${tx+tw/2}" y1="${y}" x2="${tx+tw/2+16}" y2="${y}" stroke="${INK}" stroke-width="2.5"/>`+(reveal?"":TT(tx+tw/2+22,y-4,l,{fs:12,a:"start",c:"#5f6b72",w:700})+TT(tx+tw/2+22,y+12,fmt(val)+" °C",{fs:14,a:"start"})); if(reveal) v+=TT(tx+tw/2+20,y+5,(l[0]==="M"?"mp ":"bp ")+fmt(val)+" °C",{fs:12.5,a:"start",c:INK}); });
+    if(reveal) v+=`<line x1="${tx+tw/2}" y1="${yL}" x2="${302}" y2="${yL}" stroke="#b05d00" stroke-width="2.5" stroke-dasharray="6 4"/>`; v+=`<path d="M${tx-tw/2-4} ${yL}l-12-8v16z" fill="#F28C28" stroke="${INK}" stroke-width="1.5"/>`+TT(tx-tw/2-20,yL+5,fmt(te)+" °C",{fs:14,a:"end",c:"#b05d00"});
+    $("th").innerHTML=T.svg(W,H,v,`Thermometer: melting point ${s[2]} °C, boiling point ${s[3]} °C, temperature ${te} °C`,{w:W}); }
+  function next(){ g.fresh(); g.msg(""); if(n>=8){ $("o").innerHTML=""; $("after").innerHTML=""; $("th").innerHTML=""; g.msg(`Done: ${right} of 8 correct. Press Next to play again.`,right>=6?"good":""); n=0; right=0; g.paint(); return; }
     let s,p,tries=0; do{ s=A.shuffle(SUBS.slice())[0]; p=A.shuffle(PLACES.slice())[0]; tries++; } while(tries<40 && (Math.abs(p[1]-s[2])<3||Math.abs(p[1]-s[3])<3));
     cur={s,p,ans:phaseOf(s,p[1])}; n++; g.paint();
-    $("sub").innerHTML=`<small>Substance</small><b>${s[0]}, ${s[1]}</b><div class="t7-pq-nums"><span>Melting point <b>${s[2]} °C</b></span><span>Boiling point <b>${s[3].toLocaleString()} °C</b></span></div>`;
-    $("pl").innerHTML=`<small>Location</small><b>${p[2]} ${p[0]}</b><div class="t7-pq-temp">${p[1]} °C</div>`;
+    $("sub").innerHTML=`<small>Substance</small><b>${s[0]}, ${s[1]}</b><div class="t7-pq-nums"><span>Melting point <b>${fmt(s[2])} °C</b></span><span>Boiling point <b>${fmt(s[3])} °C</b></span></div>`;
+    $("pl").innerHTML=`<small>Location</small><b>${p[2]} ${p[0]}</b><div class="t7-pq-temp">${fmt(p[1])} °C</div>`;
+    therm(false);
     $("o").innerHTML=[["s","Solid"],["l","Liquid"],["g","Gas"]].map(([k,t])=>`<button type="button" data-v="${k}" style="border-color:${COL[k]}">${t}</button>`).join(""); delete $("o").dataset.done; $("after").innerHTML="";
     A.$$("button",$("o")).forEach(b=>b.addEventListener("click",()=>{ if($("o").dataset.done) return; const ok=b.dataset.v===cur.ans; b.classList.add(ok?"right":"wrong");
-      const why=cur.ans==="s"?`${p[1]} °C is below the melting point (${s[2]} °C), so ${s[0].toLowerCase()} is a solid.`:cur.ans==="l"?`${p[1]} °C is between the melting point (${s[2]} °C) and the boiling point (${s[3]} °C), so ${s[0].toLowerCase()} is a liquid.`:`${p[1]} °C is above the boiling point (${s[3]} °C), so ${s[0].toLowerCase()} is a gas.`;
+      const why=cur.ans==="s"?`${fmt(p[1])} °C is below the melting point (${fmt(s[2])} °C), so ${s[0].toLowerCase()} is a solid.`:cur.ans==="l"?`${fmt(p[1])} °C is between the melting point (${fmt(s[2])} °C) and the boiling point (${fmt(s[3])} °C), so ${s[0].toLowerCase()} is a liquid.`:`${fmt(p[1])} °C is above the boiling point (${fmt(s[3])} °C), so ${s[0].toLowerCase()} is a gas.`;
       if(ok){ right++; g.win(); g.msg("✔ "+why,"good"); } else { g.lose(); g.msg("Not quite. "+why,"bad"); A.$$("button",$("o")).forEach(x=>{ if(x.dataset.v===cur.ans) x.classList.add("right"); }); }
       $("o").dataset.done=1; g.paint(); show(); })); }
-  function show(){ const {s,p}=cur, lo=Math.min(s[2],p[1])-60, hi=Math.max(Math.min(s[3],s[2]+600),p[1])+60, W=640, x0=40, w=W-80, X=t=>x0+w*Math.max(0,Math.min(1,(t-lo)/(hi-lo)));
-    let v=`<rect x="${x0}" y="40" width="${X(s[2])-x0}" height="26" fill="${COL.s}"/><rect x="${X(s[2])}" y="40" width="${X(s[3])-X(s[2])}" height="26" fill="${COL.l}"/><rect x="${X(s[3])}" y="40" width="${x0+w-X(s[3])}" height="26" fill="${COL.g}"/><rect x="${x0}" y="40" width="${w}" height="26" fill="none" stroke="${INK}" stroke-width="2"/>`;
-    v+=TT((x0+X(s[2]))/2,58,"Solid",{fs:14,c:"#fff"})+TT((X(s[2])+X(s[3]))/2,58,"Liquid",{fs:14,c:"#fff"})+TT((X(s[3])+x0+w)/2,58,"Gas",{fs:14,c:"#fff"});
-    v+=`<line x1="${X(s[2])}" y1="34" x2="${X(s[2])}" y2="74" stroke="${INK}" stroke-width="2"/><line x1="${X(s[3])}" y1="34" x2="${X(s[3])}" y2="74" stroke="${INK}" stroke-width="2"/>`+TT(X(s[2]),90,`mp ${s[2]} °C`,{fs:13})+TT(X(s[3]),90,`bp ${s[3]} °C`,{fs:13});
-    v+=`<path d="M${X(p[1])} 36l-8-14h16z" fill="#F28C28" stroke="${INK}" stroke-width="1.5"/>`+TT(X(p[1]),16,`${p[1]} °C`,{fs:14,c:"#b05d00"});
-    const wrap=A.h("div",{class:"t7-pq-after"}); wrap.innerHTML=`<div>${T.svg(W,100,v,"Temperature line for "+s[0])}</div><div class="t7-pq-box"></div>`; $("after").innerHTML=""; $("after").appendChild(wrap);
-    wrap.querySelector(".t7-pq-box").innerHTML=T.u1box?T.u1box(cur.ans,150,130,11):""; }
+  function show(){ therm(true); const nm={s:"Solid",l:"Liquid",g:"Gas"}[cur.ans];
+    $("after").innerHTML=`<div class="t7-pq-after"><figure class="t7-pq-fig">${T.u1box?T.u1box(cur.ans,150,130,11):""}<figcaption>${cur.s[0]} particles at ${fmt(cur.p[1])} °C: <b style="color:${COL[cur.ans]}">${nm.toLowerCase()}</b></figcaption></figure></div>`; }
+  T._pqTest=(si,pi)=>{ cur={s:SUBS[si],p:PLACES[pi]}; cur.ans=phaseOf(cur.s,cur.p[1]); therm(true); show(); };
   next(); };
 
 /* ---------- thermal conductivity vs specific heat capacity: two panels ---------- */
 T.figKC=()=>{ let s="";
-  const panel=(ox,title,sub)=>`<rect x="${ox}" y="10" width="370" height="330" rx="12" fill="#fbfdfe" stroke="#cfe3ea" stroke-width="2"/>`+TT(ox+185,40,title,{fs:17})+TT(ox+185,62,sub,{fs:13.5,c:"#5f6b72",w:600});
+  const panel=(ox,title,sub)=>`<rect x="${ox}" y="10" width="370" height="352" rx="12" fill="#fbfdfe" stroke="#cfe3ea" stroke-width="2"/>`+TT(ox+185,40,title,{fs:17})+TT(ox+185,62,sub,{fs:13.5,c:"#5f6b72",w:600});
   s+=panel(10,"Thermal conductivity (k)","How FAST does heat move through it?");
-  /* mug of cocoa with a copper spoon and a plastic spoon */
-  s+=`<path d="M80 170h170v110q0 22-22 22H102q-22 0-22-22z" fill="#fff" stroke="${INK}" stroke-width="3"/><path d="M250 190q38 0 38 34t-38 34" fill="none" stroke="${INK}" stroke-width="3"/><path d="M84 190h162v88q0 18-18 18H102q-18 0-18-18z" fill="#7a4a2a"/>`;
-  s+=`<path d="M120 238L108 116" stroke="#c96b2b" stroke-width="9" stroke-linecap="round"/><ellipse cx="107" cy="112" rx="10" ry="6" fill="#E00000" stroke="${INK}" stroke-width="1.5"/>`;
-  s+=`<path d="M205 238L220 116" stroke="#e8e1c4" stroke-width="9" stroke-linecap="round"/><path d="M205 238L220 116" fill="none" stroke="${INK}" stroke-width="1" opacity=".4"/><ellipse cx="221" cy="112" rx="10" ry="6" fill="#bfe3f7" stroke="${INK}" stroke-width="1.5"/>`;
-  s+=T.arrow(116,226,109,130,R,4,11)+T.arrow(209,226,213,190,R,2,8);
-  s+=TT(100,84,"Copper spoon",{fs:14,c:"#a0521b"})+TT(100,100,"handle: hot",{fs:13,c:R})+TT(250,84,"Plastic spoon",{fs:14})+TT(250,100,"handle: barely warm",{fs:13,c:B});
-  s+=TT(195,322,"k (copper) = 401   ·   k (plastic) = 0.28 W/m·K",{fs:13.5,c:P});
+  /* mug of hot coffee with a copper spoon and a plastic spoon; handle color shows how hot each part of the spoon is */
+  s+=`<defs><linearGradient id="kc-cu" gradientUnits="userSpaceOnUse" x1="0" y1="280" x2="0" y2="118"><stop offset="0" stop-color="#E00000"/><stop offset=".55" stop-color="#ef4a1a"/><stop offset="1" stop-color="#f2552a"/></linearGradient>
+    <linearGradient id="kc-pl" gradientUnits="userSpaceOnUse" x1="0" y1="280" x2="0" y2="118"><stop offset="0" stop-color="#E00000"/><stop offset=".42" stop-color="#E00000"/><stop offset=".55" stop-color="#9cc3ec"/><stop offset="1" stop-color="#5b9be0"/></linearGradient>
+    <linearGradient id="kc-key" x1="0" x2="1"><stop offset="0" stop-color="#5b9be0"/><stop offset=".5" stop-color="#F28C28"/><stop offset="1" stop-color="#E00000"/></linearGradient></defs>`;
+  const spoon=(x1,y1,x2,y2,grad)=>{ const ang=Math.atan2(x2-x1,y1-y2)*180/Math.PI; return `<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${INK}" stroke-width="11" stroke-linecap="round"/><path d="M${x1} ${y1}L${x2} ${y2}" stroke="url(#${grad})" stroke-width="7.5" stroke-linecap="round"/><ellipse cx="${x1}" cy="${y1+12}" rx="11" ry="17" transform="rotate(${-ang} ${x1} ${y1+12})" fill="url(#${grad})" stroke="${INK}" stroke-width="2"/>`; };
+  /* mug body and handle */
+  s+=`<path d="M250 200q44 0 44 38t-44 38" fill="none" stroke="${INK}" stroke-width="4"/><path d="M70 176h180v112q0 22-22 22H92q-22 0-22-22z" fill="#fff" stroke="${INK}" stroke-width="3"/>`;
+  s+=spoon(122,262,106,134,"kc-cu")+spoon(200,262,216,134,"kc-pl");
+  /* coffee drawn over the spoons so the parts under the surface look submerged */
+  s+=`<path d="M74 196h172v92q0 18-18 18H92q-18 0-18-18z" fill="#5a3019" fill-opacity=".84"/><path d="M74 196h172" stroke="#4a2914" stroke-width="2"/>`;
+  s+=[0,1,2].map(k=>`<path d="M${150+k*16} 186q-6-10 0-20t0-20" fill="none" stroke="#9aa5ab" stroke-width="2" stroke-linecap="round"/>`).join("");
+  s+=TT(160,252,"hot coffee",{fs:13,c:"#fff"});
+  /* heat travelling up each handle */
+  s+=T.arrow(133,240,119,146,"#ffd34d",3.5,10)+T.arrow(209,244,212,206,"#ffd34d",3.5,10);
+  s+=`<path d="M206 196h18" stroke="${INK}" stroke-width="2.5"/>`;
+  s+=TT(86,84,"Copper spoon",{fs:14,c:"#a0521b"})+TT(86,102,"handle: hot",{fs:13,c:R})+TT(86,118,"heat travels up quickly",{fs:11.5,c:"#5f6b72"})+TT(250,84,"Plastic spoon",{fs:14})+TT(250,102,"handle: cool",{fs:13,c:B})+TT(250,118,"heat stays near the coffee",{fs:11.5,c:"#5f6b72"});
+  /* color key */
+  s+=`<rect x="120" y="318" width="150" height="10" rx="3" fill="url(#kc-key)" stroke="${INK}" stroke-width="1"/>`+TT(110,327,"cool",{fs:12,c:B,a:"end"})+TT(278,327,"hot",{fs:12,c:R,a:"start"});
+  s+=TT(195,350,"k (copper) = 401   ·   k (plastic) = 0.28 W/m·K",{fs:13.5,c:P});
   s+=panel(400,"Specific heat capacity (c)","How MUCH heat changes its temperature?");
   /* same heat added to 100 g of water and 100 g of iron */
   const thermo=(x,fr,read,col)=>A.U1.thermo(x,120,126,14,12,fr)+TT(x,108,read,{fs:15,c:col});
@@ -10985,7 +11069,7 @@ T.figKC=()=>{ let s="";
   s+=thermo(560,.22,"+4.8 °C",B)+thermo(728,.85,"+44.5 °C",R);
   s+=`<rect x="438" y="292" width="300" height="22" rx="5" fill="#F2B705" stroke="${INK}" stroke-width="1.5"/>`+TT(588,308,"2000 J of heat added to each",{fs:13});
   s+=TT(585,334,"c (water) = 4.18   ·   c (iron) = 0.449 J/g·K",{fs:13.5,c:P});
-  return T.svg(790,350,s,"Thermal conductivity: a copper spoon handle gets hot quickly while a plastic one stays cool. Specific heat capacity: 2000 joules warms 100 grams of water by 4.8 degrees but 100 grams of iron by 44.5 degrees"); };
+  return T.svg(790,372,s,"Thermal conductivity: a copper spoon handle gets hot quickly while a plastic one stays cool. Specific heat capacity: 2000 joules warms 100 grams of water by 4.8 degrees but 100 grams of iron by 44.5 degrees"); };
 
 /* ---------- hot pack and cold pack ---------- */
 T.figPacks=()=>{ const U1=A.U1;
@@ -11219,6 +11303,158 @@ A.VocabCheck=function(host,items){ /* items: [{s:"sentence with ___", a:"answer"
     dd.mark((c,where)=>{ const it=items[+where.slice(1)]; const r=c.html===it.a; if(r) ok++; return r; });
     if(ok===items.length){ g.win(); g.msg(`✔ All ${ok} correct.`,"good"); } else { g.lose(); g.msg(`${ok} of ${items.length} correct. Move the terms marked in red and check again.`,"bad"); } }
   setup(); };
+})();
+
+/* ---------- Hess's law: shared engine, worked examples in the 5-step format from the Unit 7 slides, and the Hess's Law Builder game ---------- */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const RED="#e00000", LC=["#7030A0","#00a046","#e07b00"], TC="#0070C0";
+const key=s=>s[1]+"|"+s[2];
+const fr=x=>{ if(Math.abs(x-Math.round(x))<1e-9){ const n=Math.round(x); return n===1?"":String(n); } for(const d of [2,3,4]){ const n=x*d; if(Math.abs(n-Math.round(n))<1e-9) return (Math.round(n)===1&&d===2)?"½":`<span class="hs-frc"><sup>${Math.round(n)}</sup>⁄<sub>${d}</sub></span>`; } return String(+x.toFixed(3)); };
+const sp=(s,red,strike)=>{ const t=`${fr(s[0])}${T.f(s[1])}(${s[2]})`; return `<span class="hs-sp${red?" red":""}${strike?" x":""}">${t}</span>`; };
+const sideH=(L,uniq,strike)=>L.map(s=>sp(s,uniq&&uniq.has(key(s)),strike&&strike.has(key(s)))).join(" + ");
+const kJ=v=>`${v>0?"+":v<0?"−":""}${Math.abs(+v.toFixed(1)).toFixed(1)} kJ`;
+const H={};
+const dhChange=(dH0,op,dH1)=>{ if(!op.rev&&op.f===1) return `ΔH = ${kJ(dH0)}`; return `ΔH = ${op.rev?"−":""}${op.f!==1?`(${fr(op.f)||1})`:""}(${kJ(dH0)}) = ${kJ(dH1)}`; };
+/* manipulate: reverse and/or multiply by f */
+H.apply=(eq,op)=>{ const m=L=>L.map(([c,f,p])=>[c*op.f,f,p]); const R=op.rev?m(eq.P):m(eq.R), P=op.rev?m(eq.R):m(eq.P); return {R,P,dH:(op.rev?-1:1)*op.f*eq.dH}; };
+H.opLabel=(L,op)=>{ const f=op.f===1?"":op.f<1?`½`:String(op.f); if(op.f===.5) return (op.rev?"reverse ":"")+"½"+L; return (op.rev?"reverse ":"")+f+L; };
+/* species in the target that appear in exactly one given equation */
+H.unique=(target,given)=>{ const u=new Set(); target.R.concat(target.P).forEach(s=>{ const n=given.filter(g=>g.R.concat(g.P).some(x=>key(x)===key(s))).length; if(n===1) u.add(key(s)); }); return u; };
+/* add equations: combine like terms on each side, find species on both sides, and the net equation */
+H.sum=eqs=>{ const comb=side=>{ const m=new Map(); eqs.forEach(e=>e[side].forEach(s=>{ const k=key(s); m.set(k,m.has(k)?[m.get(k)[0]+s[0],s[1],s[2]]:s.slice()); })); return [...m.values()]; };
+  const R=comb("R"), P=comb("P"), both=new Set(R.map(key).filter(k=>P.some(s=>key(s)===k)));
+  const net=new Map(); R.forEach(s=>net.set(key(s),[-s[0],s[1],s[2]])); P.forEach(s=>{ const k=key(s); net.set(k,net.has(k)?[net.get(k)[0]+s[0],s[1],s[2]]:s.slice()); });
+  const nR=[], nP=[]; net.forEach(s=>{ if(s[0]<-1e-9) nR.push([-s[0],s[1],s[2]]); else if(s[0]>1e-9) nP.push(s); });
+  if(H._order){ const o=H._order, rank=s=>{ const i=o.indexOf(key(s)); return i<0?99:i; }; nR.sort((a,b)=>rank(a)-rank(b)); nP.sort((a,b)=>rank(a)-rank(b)); }
+  return {R,P,both,nR,nP,dH:eqs.reduce((a,e)=>a+e.dH,0)}; };
+H.sumFor=(eqs,target)=>{ H._order=target.R.concat(target.P).map(key); const S=H.sum(eqs); H._order=null; return S; };
+H.same=(a,b)=>{ const m=e=>{ const o={}; e.R.forEach(s=>o[key(s)]=-s[0]); e.P.forEach(s=>o[key(s)]=(o[key(s)]||0)+s[0]); return o; }; const x=m(a), y=m(b); const ks=new Set([...Object.keys(x),...Object.keys(y)]); return [...ks].every(k=>Math.abs((x[k]||0)-(y[k]||0))<1e-9); };
+/* keep every equation and calculation on one line: shrink the font a little if a line is too long for its column */
+H.fit=root=>{ if(!root) return; requestAnimationFrame(()=>A.$$(".hs-we,.hs-wd,.hs-geq,.hs-gdh,.hs-mid .hs-eq,.hs-dh .hs-eq,.s6-fmath .mth",root).forEach(el=>{ el.style.fontSize=""; let fs=parseFloat(getComputedStyle(el).fontSize); while(el.scrollWidth>el.clientWidth+1&&fs>12){ fs-=.5; el.style.fontSize=fs+"px"; } })); };
+let fitT=null; window.addEventListener("resize",()=>{ clearTimeout(fitT); fitT=setTimeout(()=>A.$$(".hs-fitroot").forEach(H.fit),150); });
+T.Hess=H;
+
+/* ---------- worked examples: the site's numbered step cards (S.workedTabs), with the 5 steps from the Unit 7 slides ---------- */
+T.hessSteps=(ex)=>{ const given=ex.given.map((g,i)=>({...g,L:"ABC"[i]})), uniq=H.unique(ex.target,given);
+  const lab=(t,c)=>`<b class="hs-lab" style="color:${c}">${t}:</b>`;
+  const grid=rows=>`<div class="hs-wk">${rows.map(([l,eq,dh])=>`<div class="hs-wl">${l||""}</div><div class="hs-we">${eq}</div><div class="hs-wd">${dh||""}</div>`).join("")}</div>`;
+  const man=ex.ops.map((op,i)=>({...H.apply(given[i],op),op,L:given[i].L,c:LC[i]})), S=H.sumFor(man,ex.target);
+  const title=`${ex.q}<table class="hs-given">${given.map((g,i)=>`<tr><td style="color:${LC[i]}"><b>${g.L}</b></td><td>${sideH(g.R)} → ${sideH(g.P)}</td><td>ΔH = ${kJ(g.dH)}</td></tr>`).join("")}<tr><td style="color:${TC}"><b>Target</b></td><td>${sideH(ex.target.R)} → ${sideH(ex.target.P)}</td><td>ΔH = ?</td></tr></table>`;
+  const steps=[
+    ["Identify the target equation.",grid([[lab("Target",TC),`${sideH(ex.target.R,uniq)} → ${sideH(ex.target.P,uniq)}`,"ΔH = ?"]])],
+    ["Find species unique to the target equation in the given equations (shown in <b style=\"color:#e00000\">red</b>).",grid(given.map((g,i)=>[lab(g.L,LC[i]),`${sideH(g.R,uniq)} → ${sideH(g.P,uniq)}`,`ΔH = ${kJ(g.dH)}`]))],
+    [`Manipulate the given equations. Apply all changes to the enthalpies as well.<span class="hs-note">${ex.note}</span>`,grid(man.map((m,i)=>[lab(H.opLabel(m.L,m.op),m.c),`${sideH(m.R,uniq)} → ${sideH(m.P,uniq)}`,m.op.f===1?`ΔH = ${kJ(m.dH)}`:`ΔH = (${fr(m.op.f)||1})(${kJ((m.op.rev?-1:1)*given[i].dH)})`]))],
+    ["Add the equations and cancel species present on both sides.",grid([["",`${sideH(S.R,uniq,S.both)} → ${sideH(S.P,uniq,S.both)}`,""],["",`<b>${sideH(S.nR,uniq)} → ${sideH(S.nP,uniq)}</b>`,""]])],
+    ["Add the enthalpies together.",grid([["",`ΔH = ${man.map((m,i)=>i?`(${kJ(m.dH)})`:kJ(m.dH)).join(" + ")} = <b>${kJ(S.dH)}</b>`,""]])]];
+  return {title,steps}; };
+T.hessExamples=(host,list)=>{ const S6=A.U6; host.classList.add("hs-fitroot"); S6.workedTabs(host,list.map(ex=>({label:ex.label,...S6.wk(...Object.values(T.hessSteps(ex)))}))); H.fit(host); A.$$(".seg button",host).forEach(b=>b.addEventListener("click",()=>H.fit(host))); };
+
+/* ---------- problem sets (ΔH values: standard enthalpies at 25 °C, CRC Handbook / NIST) ---------- */
+const E=(R,P,dH)=>({R,P,dH});
+T.HESS_EX=[
+  {label:"Sulfur trioxide",q:"Use equations A and B to find ΔH for the target equation.",given:[E([[1,"S","s"],[1,"O2","g"]],[[1,"SO2","g"]],-296.8),E([[2,"SO2","g"],[1,"O2","g"]],[[2,"SO3","g"]],-197.8)],target:E([[2,"S","s"],[3,"O2","g"]],[[2,"SO3","g"]]),ops:[{rev:false,f:2},{rev:false,f:1}],note:"Multiply equation A by 2 to get 2S(s)."},
+  {label:"Carbon monoxide",q:"Use equations A and B to find ΔH for the target equation.",given:[E([[1,"C","s"],[1,"O2","g"]],[[1,"CO2","g"]],-393.5),E([[2,"CO","g"],[1,"O2","g"]],[[2,"CO2","g"]],-566.0)],target:E([[2,"C","s"],[1,"O2","g"]],[[2,"CO","g"]]),ops:[{rev:false,f:2},{rev:true,f:1}],note:"Multiply equation A by 2 to get 2C(s), and reverse equation B to get 2CO(g) on the product side."},
+  {label:"Ethanol",q:"Use equations A, B and C to find ΔH for the target equation.",given:[E([[1,"C","s"],[1,"O2","g"]],[[1,"CO2","g"]],-393.5),E([[1,"H2","g"],[.5,"O2","g"]],[[1,"H2O","l"]],-285.8),E([[1,"C2H5OH","l"],[3,"O2","g"]],[[2,"CO2","g"],[3,"H2O","l"]],-1366.8)],target:E([[2,"C","s"],[3,"H2","g"],[.5,"O2","g"]],[[1,"C2H5OH","l"]]),ops:[{rev:false,f:2},{rev:false,f:3},{rev:true,f:1}],note:"Multiply A by 2 to get 2C(s), multiply B by 3 to get 3H₂(g), and reverse C to get C₂H₅OH(l) on the product side."}];
+T.HESS_GAME=[
+  {lv:1,given:[E([[1,"C","s, graphite"],[1,"O2","g"]],[[1,"CO2","g"]],-393.5),E([[1,"C","s, diamond"],[1,"O2","g"]],[[1,"CO2","g"]],-395.4)],target:E([[1,"C","s, graphite"]],[[1,"C","s, diamond"]]),ans:1.9},
+  {lv:1,given:[E([[1,"N2","g"],[1,"O2","g"]],[[2,"NO","g"]],180.6),E([[2,"NO2","g"]],[[2,"NO","g"],[1,"O2","g"]],114.1)],target:E([[1,"N2","g"],[2,"O2","g"]],[[2,"NO2","g"]]),ans:66.5},
+  {lv:1,given:[E([[1,"H2","g"],[1,"O2","g"]],[[1,"H2O2","l"]],-187.8),E([[1,"H2","g"],[.5,"O2","g"]],[[1,"H2O","l"]],-285.8)],target:E([[2,"H2O2","l"]],[[2,"H2O","l"],[1,"O2","g"]]),ans:-196.0},
+  {lv:1,given:[E([[1,"Sn","s"],[1,"Cl2","g"]],[[1,"SnCl2","s"]],-325.1),E([[1,"SnCl2","s"],[1,"Cl2","g"]],[[1,"SnCl4","l"]],-186.2)],target:E([[1,"Sn","s"],[2,"Cl2","g"]],[[1,"SnCl4","l"]]),ans:-511.3},
+  {lv:2,given:[E([[1,"C","s"],[1,"O2","g"]],[[1,"CO2","g"]],-393.5),E([[1,"H2","g"],[.5,"O2","g"]],[[1,"H2O","l"]],-285.8),E([[1,"CH4","g"],[2,"O2","g"]],[[1,"CO2","g"],[2,"H2O","l"]],-890.3)],target:E([[1,"C","s"],[2,"H2","g"]],[[1,"CH4","g"]]),ans:-74.8},
+  {lv:2,given:[E([[1,"C2H4","g"],[3,"O2","g"]],[[2,"CO2","g"],[2,"H2O","l"]],-1411.0),E([[1,"H2","g"],[.5,"O2","g"]],[[1,"H2O","l"]],-285.8),E([[2,"C2H6","g"],[7,"O2","g"]],[[4,"CO2","g"],[6,"H2O","l"]],-3120.0)],target:E([[1,"C2H4","g"],[1,"H2","g"]],[[1,"C2H6","g"]]),ans:-136.8},
+  {lv:2,given:[E([[1,"C","s"],[1,"O2","g"]],[[1,"CO2","g"]],-393.5),E([[1,"H2","g"],[.5,"O2","g"]],[[1,"H2O","l"]],-285.8),E([[2,"C2H2","g"],[5,"O2","g"]],[[4,"CO2","g"],[2,"H2O","l"]],-2598.8)],target:E([[2,"C","s"],[1,"H2","g"]],[[1,"C2H2","g"]]),ans:226.6}];
+
+/* ---------- Hess's Law Builder: click an equation to reverse, multiply or divide it ---------- */
+T.HessGame=function(host){ let mode="easy", cur=null, ops=[], open=-1, summed=false, idx=-1;
+  const g=A.Game(host,{how:"Click a given equation to reverse it, multiply it or divide it. When the given equations add up to the target equation, press <b>Add equations</b>, then find ΔH."});
+  g.seg("Level",[["easy","Easy: ΔH updates"],["med","Medium: find ΔH yourself"]],"easy",v=>{ mode=v; idx=-1; next(); });
+  g.button("New problem",()=>next(),"ghost");
+  function next(){ g.fresh(); g.msg(""); const pool=T.HESS_GAME.filter(p=>mode==="easy"?p.lv===1:true); let i; do{ i=Math.floor(Math.random()*pool.length); }while(pool.length>1&&i===idx); idx=i;
+    const p=pool[i]; cur={...p,given:p.given.map((e,k)=>({...e,L:"ABC"[k]}))}; ops=cur.given.map(()=>({rev:false,f:1})); open=-1; summed=false; draw(); }
+  function draw(){ const uniq=mode==="easy"?H.unique(cur.target,cur.given):null, man=cur.given.map((e,i)=>H.apply(e,ops[i]));
+    const dhTxt=(i)=>{ const o=ops[i]; if(mode==="med"&&(o.rev||o.f!==1)) return "ΔH = ?"; return dhChange(cur.given[i].dH,o,man[i].dH); };
+    let h=`<div class="hs-game"><div class="hs-row hs-tgt"><div class="hs-step"><span><u>Step 1</u>: Target equation</span></div><div class="hs-mid"><div class="hs-eq">${sideH(cur.target.R,uniq)} → ${sideH(cur.target.P,uniq)}</div></div><div class="hs-dh">ΔH = ?</div></div>`;
+    h+=`<div class="hs-sub">${mode==="easy"?`<b>Step 2</b>: species unique to the target are shown in <b style="color:${RED}">red</b>. `:"<b>Step 2</b>: find the species unique to the target equation. "}<b>Step 3</b>: click an equation to change it.</div>`;
+    cur.given.forEach((e,i)=>{ const m=man[i];
+      h+=`<button type="button" class="hs-gq${open===i?" on":""}" data-i="${i}" ${summed?"disabled":""}><span class="hs-lab" style="color:${LC[i]}">${H.opLabel(e.L,ops[i])}:</span><span class="hs-geq">${sideH(m.R,uniq)} → ${sideH(m.P,uniq)}</span><span class="hs-gdh">${dhTxt(i)}</span></button>`;
+      if(open===i&&!summed) h+=`<div class="hs-tools" role="group" aria-label="Change equation ${e.L}"><button type="button" class="btn ghost sm" data-op="rev">⇄ Reverse</button><button type="button" class="btn ghost sm" data-op="x2">× 2</button><button type="button" class="btn ghost sm" data-op="x3">× 3</button><button type="button" class="btn ghost sm" data-op="d2">÷ 2</button><button type="button" class="btn ghost sm" data-op="undo">Undo changes</button></div>`; });
+    h+=`<div class="controls" style="justify-content:center;margin-top:8px"><button class="btn" type="button" data-r="add" ${summed?"disabled":""}>Step 4: Add equations</button></div><div data-r="sum"></div></div>`;
+    g.stage.innerHTML=h;
+    A.$$(".hs-gq",g.stage).forEach(b=>b.addEventListener("click",()=>{ const i=+b.dataset.i; open=open===i?-1:i; draw(); }));
+    A.$$("[data-op]",g.stage).forEach(b=>b.addEventListener("click",()=>{ const o=ops[open], k=b.dataset.op;
+      if(k==="rev") o.rev=!o.rev; else if(k==="x2") o.f*=2; else if(k==="x3") o.f*=3; else if(k==="d2") o.f/=2; else { o.rev=false; o.f=1; }
+      if(o.f>8||o.f<.25){ o.f=Math.min(8,Math.max(.25,o.f)); g.msg("That factor is larger (or smaller) than any of these problems need.","warn"); } draw(); }));
+    g.stage.querySelector('[data-r="add"]').addEventListener("click",add); g.stage.classList.add("hs-fitroot"); H.fit(g.stage); }
+  function add(){ const uniq=mode==="easy"?H.unique(cur.target,cur.given):null, man=cur.given.map((e,i)=>H.apply(e,ops[i])), S=H.sumFor(man,cur.target), ok=H.same({R:S.nR,P:S.nP},cur.target);
+    const box=g.stage.querySelector('[data-r="sum"]');
+    box.innerHTML=`<div class="hs-row"><div class="hs-step"><span><u>Step 4</u>: Add and cancel</span></div><div class="hs-mid"><div class="hs-eq">${sideH(S.R,uniq,S.both)} → ${sideH(S.P,uniq,S.both)}</div><div class="hs-eq hs-net">${sideH(S.nR,uniq)} → ${sideH(S.nP,uniq)}</div></div><div class="hs-dh"></div></div>`;
+    H.fit(g.stage);
+    if(!ok){ g.lose(); const miss=[]; cur.target.R.concat(cur.target.P).forEach(s=>{ const inR=cur.target.R.includes(s), side=inR?S.nR:S.nP, f=side.find(x=>key(x)===key(s)); if(!f||Math.abs(f[0]-s[0])>1e-9) miss.push(`${fr(s[0])||1} ${T.f(s[1])}(${s[2]}) on the ${inR?"reactant":"product"} side`); });
+      g.msg(`The sum does not match the target equation yet. The target needs ${miss.length?miss.join(", "):"no extra species"}. Change the equations and add again.`,"bad"); return; }
+    summed=true; open=-1; draw(); g.stage.querySelector('[data-r="sum"]').innerHTML=box.innerHTML; step5(man,S); }
+  function step5(man,S){ const box=A.h("div",{class:"hs-row"}); const total=S.dH;
+    box.innerHTML=`<div class="hs-step"><span><u>Step 5</u>: Add the enthalpies</span></div><div class="hs-mid" data-r="in"></div><div class="hs-dh"></div>`; g.stage.querySelector('[data-r="sum"]').appendChild(box);
+    const done=()=>{ g.win(); g.msg(`✔ ΔH = ${man.map((m,i)=>i?`(${kJ(m.dH)})`:kJ(m.dH)).join(" + ")} = <b>${kJ(total)}</b>. ${total<0?"Negative ΔH: the target reaction is exothermic.":"Positive ΔH: the target reaction is endothermic."}`,"good"); };
+    const inp=box.querySelector('[data-r="in"]'); H.fit(g.stage);
+    if(mode==="easy"){ const raw=cur.given.reduce((a,e)=>a+e.dH,0); let opts=[total,-total,raw,total*2].map(v=>+v.toFixed(1)); opts=[...new Set(opts)]; if(opts.length<4) opts.push(+(total+100).toFixed(1));
+      inp.innerHTML=`<div class="controls">${A.shuffle(opts.slice(0,4)).map(v=>`<button type="button" class="btn ghost" data-v="${v}">ΔH = ${kJ(v)}</button>`).join("")}</div>`;
+      A.$$("button",inp).forEach(b=>b.addEventListener("click",()=>{ const ok=Math.abs(+b.dataset.v-total)<.05; A.markBox(b,ok); if(!ok){ g.lose(); g.msg("Add the ΔH values of the equations as you changed them (Step 3), not the original values.","bad"); return; } A.$$("button",inp).forEach(x=>x.disabled=true); done(); })); }
+    else { inp.innerHTML=`<div class="controls"><span class="mth">ΔH =</span><input class="inp" style="width:130px" aria-label="Delta H of the target equation"><b>kJ</b><button class="btn sm" type="button">Check</button></div>`;
+      const box2=inp.querySelector("input"), go=()=>{ const p=A.parseTyped(box2.value.replace(/−/g,"-")); if(!p){ g.msg("Type a number, with a negative sign if ΔH is negative.","warn"); return; } const ok=Math.abs(p.v-total)<=.15; A.markBox(box2,ok);
+        if(!ok){ g.lose(); g.msg(Math.abs(p.v+total)<=.15?"Check the sign.":"Find the new ΔH of each equation you changed: flip the sign if you reversed it, and multiply or divide by the same factor. Then add them.","bad"); return; } box2.disabled=true; done(); };
+      inp.querySelector("button").addEventListener("click",go); box2.addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); } }
+  next(); };
+})();
+
+/* Unit 7, round 5 (Nov 8): enthalpy page figures rebuilt as aligned HTML, the bond-breaking figure, and the bond-energy worked examples in the 5-step method. */
+(function(){ const A=window.AS, T=A&&A.U7, S=A&&A.U6; if(!T) return; const INK="#1b2328";
+
+/* heat written in an equation vs. written as ΔH. Built in HTML so each bracket sits exactly under the part it labels. */
+T.figEnthalpy=(exo)=>{ const sub=n=>`<sub>${n}</sub>`;
+  const part=(html,lab,cls)=>`<span class="hx-part${cls?" "+cls:""}"><span class="hx-t">${html}</span>${lab?`<span class="hx-lab">${lab}</span>`:""}</span>`;
+  const plain=html=>`<span class="hx-part"><span class="hx-t">${html}</span></span>`;
+  const R= exo? `2H${sub(2)}(g) + O${sub(2)}(g)` : `N${sub(2)}(g) + 2O${sub(2)}(g)`, P= exo? `2H${sub(2)}O(ℓ)` : `2NO${sub(2)}(g)`, q= exo? "571.6 kJ" : "66.4 kJ", cls= exo?"hx-exo":"hx-endo";
+  const row1= exo? [plain(R),plain("→"),plain(P),plain("+"),part(q,"heat is a product",cls)] : [plain(R),plain("+"),part(q,"heat is a reactant",cls),plain("→"),plain(P)];
+  const row2=[plain(R),plain("→"),plain(P),`<span class="hx-gap"></span>`,part(`ΔH = ${exo?"−":"+"}${q}`,exo?"negative: exothermic":"positive: endothermic",cls)];
+  return `<div class="hx-card ${cls}"><div class="hx-h">${exo?"Exothermic: heat is released":"Endothermic: heat is absorbed"}</div>
+    <div class="hx-k">Heat written in the equation</div><div class="hx-row">${row1.join("")}</div>
+    <div class="hx-or">or</div>
+    <div class="hx-k">The same reaction written with ΔH</div><div class="hx-row">${row2.join("")}</div></div>`; };
+
+/* N₂ + 3H₂ → 2NH₃: break every bond (energy absorbed), then form new bonds (energy released) */
+T.figNH3=()=>{ const N=(x,y)=>T.ball(x,y,13,"#7030A0")+T.t(x,y+5,"N",{fs:12,c:"#fff"}), H=(x,y)=>T.ball(x,y,10,"#2E75D6")+T.t(x,y+4,"H",{fs:10,c:"#fff"});
+  const bond=(a,b,c,d,n=1)=>[...Array(n)].map((_,k)=>{ const o=(k-(n-1)/2)*4.5, dx=c-a, dy=d-b, L=Math.hypot(dx,dy), nx=-dy/L*o, ny=dx/L*o; return `<line x1="${(a+nx).toFixed(1)}" y1="${(b+ny).toFixed(1)}" x2="${(c+nx).toFixed(1)}" y2="${(d+ny).toFixed(1)}" stroke="${INK}" stroke-width="2.5"/>`; }).join("");
+  const box=(x,title,inner,lab)=>`<rect x="${x}" y="54" width="150" height="132" rx="8" fill="#fff" stroke="${INK}" stroke-width="2.5"/>`+T.t(x+75,42,title,{fs:13.5,c:"#5f6b72"})+inner+T.t(x+75,210,lab,{fs:14.5});
+  let s="";
+  /* reactants: one N≡N and three H–H */
+  s+=box(20,"Reactants",bond(50,88,80,88,3)+N(50,88)+N(80,88)+[[120,84],[42,148],[108,150]].map(([x,y])=>bond(x,y,x+22,y)+H(x,y)+H(x+22,y)).join(""),"N₂ + 3H₂");
+  /* separate atoms */
+  s+=box(285,"Separate atoms",[[322,92],[398,150]].map(([x,y])=>N(x,y)).join("")+[[366,78],[412,88],[310,152],[352,126],[364,166],[414,118]].map(([x,y])=>H(x,y)).join(""),"2 N atoms + 6 H atoms");
+  /* products: two NH₃ */
+  const nh3=(x,y,hs)=>hs.map(([a,b])=>bond(x,y,a,b)).join("")+N(x,y)+hs.map(([a,b])=>H(a,b)).join("");
+  s+=box(550,"Products",nh3(595,98,[[570,76],[620,76],[595,130]])+nh3(656,138,[[680,116],[680,162],[634,164]]),"2NH₃");
+  /* the two steps */
+  const step=(x1,x2,col,l1,l2,l3)=>`<rect x="${x1+2}" y="80" width="${x2-x1-4}" height="76" rx="8" fill="${col}" fill-opacity=".08"/>`+T.arrow(x1+8,120,x2-8,120,col,7,16)+T.t((x1+x2)/2,98,l1,{fs:13.5,c:col})+T.t((x1+x2)/2,146,l2,{fs:12.5,c:col})+T.t((x1+x2)/2,174,l3,{fs:12.5,c:col});
+  s+=step(170,285,"#2E75D6","Break bonds","absorbs energy","+2237 kJ");
+  s+=step(435,550,"#E00000","Form bonds","releases energy","−2346 kJ");
+  s+=`<rect x="120" y="232" width="480" height="44" rx="8" fill="#f6fafb" stroke="#dbe5ea"/>`+T.t(360,252,"More energy is released than absorbed, so the reaction is exothermic.",{fs:13.5})+T.t(360,270,"ΔH ≈ 2237 kJ − 2346 kJ = −109 kJ",{fs:13.5,c:"#c40000"});
+  return T.svg(720,286,s,"Nitrogen and hydrogen: breaking the N≡N bond and three H–H bonds absorbs 2237 kJ, giving separate atoms. Forming six N–H bonds in two ammonia molecules releases 2346 kJ. More energy is released than absorbed, so the reaction is exothermic."); };
+
+/* bond-energy worked examples: his five steps */
+const chip=(n,b)=>`<span class="be-chip"><b>${n}</b> ${b}</span>`;
+T.BOND_EX=[
+ {label:"H₂ + Cl₂ → 2HCl",q:"Ex: Use bond energies to estimate ΔH for H<sub>2</sub>(g) + Cl<sub>2</sub>(g) → 2HCl(g). Bond energies (kJ/mol): H–H 432, Cl–Cl 239, H–Cl 427.",
+  brk:[[1,"H–H",432],[1,"Cl–Cl",239]],frm:[[2,"H–Cl",427]],where:["1 H<sub>2</sub>: 1 H–H","1 Cl<sub>2</sub>: 1 Cl–Cl"],whereF:["2 HCl: 2 H–Cl"]},
+ {label:"Burning methane",q:"Ex: Use bond energies to estimate ΔH for CH<sub>4</sub>(g) + 2O<sub>2</sub>(g) → CO<sub>2</sub>(g) + 2H<sub>2</sub>O(g). Bond energies (kJ/mol): C–H 413, O=O 495, C=O 799, O–H 467.",
+  brk:[[4,"C–H",413],[2,"O=O",495]],frm:[[2,"C=O",799],[4,"O–H",467]],where:["1 CH<sub>4</sub>: 4 C–H","2 O<sub>2</sub>: 2 O=O"],whereF:["1 CO<sub>2</sub>: 2 C=O","2 H<sub>2</sub>O: 4 O–H"]}];
+T.bondSteps=ex=>{ const sum=L=>L.reduce((a,b)=>a+b[0]*b[2],0), B=sum(ex.brk), F=sum(ex.frm), dH=B-F, f=n=>n.toLocaleString("en-US").replace(/,/g,"");
+  const mult=L=>L.map(([n,b,e])=>`(${n})(${e} kJ)`).join(" + ");
+  return [
+   [`<b>Step 1:</b> Determine the type and number of bonds broken (all of the bonds in the reactants).<div class="be-where">${ex.where.join("<br>")}</div>`, ex.brk.map(([n,b])=>chip(n,b)).join(" ")],
+   [`<b>Step 2:</b> Multiply the number of each bond broken by its bond energy, and add the results.`, `${mult(ex.brk)} = <b class="be-in">${f(B)} kJ</b>`],
+   [`<b>Step 3:</b> Determine the type and number of bonds formed (all of the bonds in the products).<div class="be-where">${ex.whereF.join("<br>")}</div>`, ex.frm.map(([n,b])=>chip(n,b)).join(" ")],
+   [`<b>Step 4:</b> Multiply the number of each bond formed by its bond energy, and add the results.`, `${mult(ex.frm)} = <b class="be-out">${f(F)} kJ</b>`],
+   [`<b>Step 5:</b> Subtract: ΔH = Σ(bonds broken) − Σ(bonds formed).`, `ΔH = ${f(B)} kJ − ${f(F)} kJ = <b>${dH>0?"+":"−"}${f(Math.abs(dH))} kJ</b> (${dH>0?"endothermic":"exothermic"})`]]; };
+T.bondExamples=(host,list)=>{ S.workedTabs(host,list.map(ex=>({label:ex.label,...S.wk(ex.q,T.bondSteps(ex))}))); };
 })();
 
 /* ================= SECTION PICTURES, UNITS 0–5 =================

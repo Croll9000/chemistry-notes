@@ -16,11 +16,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Removing an Electron</h2><p>Energy must be added to remove an electron.</p></div>
+  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Removing an Electron</h2><p>Removing one electron from every atom in 4 grams of helium requires 2372 kJ of energy, enough to heat about 7.5 L of water from room temperature to boiling. This much energy is needed because helium’s two electrons are held tightly by its nucleus. In this section, we will define ionization energy, the energy required to remove an electron from an atom, and compare the energies needed to remove the first, second and third electrons.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ionization Energy</h2></div>
     <div class="body">
+      <p class="intro">Ionization smoke detectors contain less than a microgram of americium-241, which knocks electrons from the oxygen and nitrogen molecules in a small chamber of air so that a tiny current can flow. Building on the description of ionization in Unit 2, in this section we will discuss the energy required to remove an electron from an atom.</p>
       <ul>
         <li>Recall that <span class="def">ionization</span> is the process of removing an electron from an atom.</li>
         <li>Electrons are held in place by their attraction to the positive nucleus.
@@ -36,6 +37,7 @@
   <section class="note">
     <div class="tile"><h2>1st, 2nd, 3rd… Ionization Energy</h2></div>
     <div class="body">
+      <p class="intro">Removing the first two electrons from a magnesium atom takes 738 and 1451 kJ/mol, but the third takes 7733 kJ/mol, more than five times as much. This jump explains why magnesium forms Mg<sup>2+</sup> ions and never Mg<sup>3+</sup>, and it shows that not every electron in an atom is held equally tightly.</p>
       <ul>
         <li>Not every electron in an atom requires the same amount of energy to remove.</li>
         <li>The valence electrons, farthest from the nucleus, are the most loosely held and the easiest to remove.</li>
@@ -55,7 +57,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="The trends"><div class="pn"><small>Part</small><span>2</span></div><h2>The Trends</h2><p>Ionization energy across a period and down a group.</p></div>
+  <div class="part" id="p2" data-short="The trends"><div class="pn"><small>Part</small><span>2</span></div><h2>The Trends</h2><p>Removing an electron from a fluorine atom takes more than three times the energy needed for a lithium atom in the same period (1681 vs. 520 kJ/mol). Both atoms have 2 energy levels, but fluorine’s nucleus has 9 protons pulling on its electrons, while lithium’s has only 3. In this section, we will discuss how ionization energy changes across a period and down a group, and why metals lose electrons so much more easily than nonmetals.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ionization Energy in Periods</h2></div>
@@ -122,7 +124,7 @@
     <div class="labq" id="lq-sim-g"></div>
   </section>
 
-  <div class="part" id="p3" data-short="The data"><div class="pn"><small>Part</small><span>3</span></div><h2>Looking at the Data</h2><p>The highest values are at the noble gases and the lowest are at the alkali metals.</p></div>
+  <div class="part" id="p3" data-short="The data"><div class="pn"><small>Part</small><span>3</span></div><h2>Looking at the Data</h2><p>Graphed against atomic number, first ionization energy climbs across each period to a peak at the noble gas, then falls sharply at the next alkali metal, from 2081 kJ/mol for neon to 496 kJ/mol for sodium. The drop occurs because sodium’s valence electron is the first in a new energy level, farther from the nucleus. In this section, we will use measured data to show that these peaks and valleys repeat in every period.</p></div>
 
   <section class="lab" id="graph">
     <div class="lab-h"><span class="tag">Lab</span><h3>Trend Graph</h3></div>
@@ -139,7 +141,7 @@
     <div id="og"></div>
   </section>
 
-  <div class="part enr" id="enr" data-short="Enrichment: the dips"><div class="pn"><small>Extra</small><span>★</span></div><h2>Why Are There Dips?</h2><p>Optional. Uses the orbital ideas from the Orbitals enrichment pages.</p></div>
+  <div class="part enr" id="enr" data-short="Enrichment: the dips"><div class="pn"><small>Extra</small><span>★</span></div><h2>Why Are There Dips?</h2><p>Gallium has one more proton than zinc, yet removing an electron from gallium takes much less energy (579 vs. 906 kJ/mol). Gallium’s outermost electron is the first in a 4p subshell, which is higher in energy than zinc’s filled 4s subshell, so it is easier to remove. In this section, we will use orbitals from the Orbitals enrichment pages to explain the small dips in the ionization energy trend.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Exceptions to the Trend</h2></div>
@@ -163,7 +165,12 @@
     </div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -218,6 +225,7 @@ A.$("#orb-art").innerHTML=(()=>{ const box=(x,y,lab,cfg)=>{ let s=T(x+12,y-8,lab
   s+=atom(0,"Be",2,[0,0,0],900,"full 2s")+atom(160,"B",2,[1,0,0],801,"new 2p electron")+atom(330,"N",2,[1,1,1],1402,"half-filled 2p")+atom(490,"O",2,[2,1,1],1314,"first paired 2p");
   return s+`</svg>`; })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The amount of energy required to remove an electron from an atom is its ___.", "a": "ionization energy"}, {"s": "Ionization energy is measured in ___.", "a": "kJ/mol"}, {"s": "From left to right across a period, ionization energy ___.", "a": "increases"}, {"s": "From top to bottom down a group, ionization energy ___.", "a": "decreases"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which element requires the least amount of energy to remove the most loosely held electron from a gaseous atom in the ground state?",choices:["bromine","calcium","potassium","selenium"],ans:3,explain:"All four are in Period 4, so they have the same number of shells. Potassium has the smallest nuclear charge (19 protons), so its single valence electron is held least strongly and has the lowest first ionization energy."},
  {type:"mc",stem:"As the elements of Period 3 are considered from left to right, first ionization energy generally increases. Which statement explains this trend?",choices:["The nuclear charge increases while the number of occupied energy levels stays the same.","The number of occupied energy levels increases.","The atomic radius increases.","The number of neutrons decreases."],ans:1,explain:"Across a period each atom has one more proton but the same number of energy levels, so the nucleus holds the valence electrons more tightly."},

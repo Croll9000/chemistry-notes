@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Percent composition"><div class="pn"><small>Part</small><span>1</span></div><h2>Percent Composition</h2><p>Each element’s share of the mass.</p></div>
+  <div class="part" id="p1" data-short="Percent composition"><div class="pn"><small>Part</small><span>1</span></div><h2>Percent Composition</h2><p>Iron makes up 69.9% of the mass of hematite, Fe₂O₃, the iron ore mined most often. This percent never changes, because every formula unit of hematite contains exactly 2 iron atoms and 3 oxygen atoms. In this section, we will calculate the percent by mass of each element in a compound from its formula.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Percent Composition</h2></div>
@@ -41,7 +41,7 @@
     <div id="pc-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Hydrates"><div class="pn"><small>Part</small><span>2</span></div><h2>Hydrated Compounds</h2><p>Water locked inside a crystal.</p></div>
+  <div class="part" id="p2" data-short="Hydrates"><div class="pn"><small>Part</small><span>2</span></div><h2>Hydrated Compounds</h2><p>Gypsum, the mineral used to make drywall, is calcium sulfate dihydrate, CaSO₄•2H₂O, and is about 21% water by mass. The water is not wet: its molecules are locked into the crystal in a fixed ratio of 2 water molecules for every formula unit of calcium sulfate. In this section, we will name hydrates and calculate the percent of water they contain.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Hydrated Compounds</h2></div>
@@ -104,7 +104,12 @@
     <div id="hl-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -143,6 +148,7 @@ A.$("#hb-art").innerHTML=S.hydBar("CuSO4",5);
     ["Divide the part (water lost) by the whole (hydrate) and multiply by 100.",`(1.44 g ÷ 4.00 g) × 100 = 36.0% water`]]}]); }
 S.HydrateName(A.$("#hn-host"));
 S.HydrateLab(A.$("#hl-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "The percent by mass of each element in a compound is its ___.", "a": "percent composition"}, {"s": "A compound that contains water is a ___.", "a": "hydrate"}, {"s": "A compound that does not contain water is ___.", "a": "anhydrous"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What is the percent composition by mass of nitrogen in (NH<sub>4</sub>)<sub>2</sub>CO<sub>3</sub> (molar mass = 96.0 g/mol)?",choices:["14.6%","29.2%","58.4%","87.5%"],ans:2,explain:"2 N × 14.01 = 28.02 g; (28.02 ÷ 96.0) × 100 = 29.2%."},
  {type:"mc",stem:"The percent by mass of water in the hydrate Na<sub>2</sub>SO<sub>4</sub>•10H<sub>2</sub>O is closest to",choices:["18%","44%","56%","76%"],ans:3,explain:"10 × 18.02 = 180.2 g of water; molar mass 322.2 g/mol; (180.2 ÷ 322.2) × 100 = 56%."},

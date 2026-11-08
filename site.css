@@ -1614,3 +1614,84 @@ li > .xbox{margin-top:6px}
 .t7-vc-b .dd-card{margin:0;padding:2px 8px}
 /* energy stations */
 .t7-st{display:flex;flex-direction:column;gap:8px}.t7-st-h{display:flex;gap:12px;align-items:center}.t7-st-h small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5f6b72}.t7-st-h b{font-size:18px}
+
+.t7-pq-wrap{display:flex;gap:14px;align-items:flex-start}.t7-pq-th{flex:0 0 310px;display:flex;justify-content:center}.t7-pq-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}@media (max-width:700px){.t7-pq-wrap{flex-direction:column;align-items:center}.t7-pq-th{flex:none}}
+.t7-pq-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}.t7-pq-fig figcaption{font-size:14.5px;text-align:center}
+/* Hess's law worked examples and game: Step label | equations | ΔH, as in the Unit 7 slides */
+.hs-ex{border:2px solid #cfe3ea;border-radius:12px;background:#fff;overflow:hidden}
+.hs-q{background:#eef8fb;padding:12px 16px;font-size:16.5px;border-bottom:2px solid #cfe3ea}
+.hs-tag{display:inline-block;background:var(--teal,#40BAD2);color:#fff;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:2px 10px;margin-right:6px}
+.hs-given{margin:8px auto 0;border-collapse:collapse;font-size:17px}.hs-given td{padding:3px 12px}.hs-given td:last-child{white-space:nowrap}
+.hs-steps{display:flex;flex-direction:column}
+.hs-row{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:10px 16px;border-top:1px solid #e3edf1}
+.hs-steps .hs-row:first-child{border-top:none}
+.hs-step{font-size:15px;line-height:1.35;display:flex;flex-direction:column;gap:4px}.hs-step u{font-weight:800}
+.hs-note{color:#e00000;font-size:14.5px}
+.hs-mid{font-size:18px;display:flex;flex-direction:column;gap:6px}
+.hs-dh{font-size:17px;display:flex;flex-direction:column;gap:6px;text-align:right;white-space:nowrap}
+.hs-eq{min-height:26px;display:flex;align-items:center;flex-wrap:wrap;gap:0 4px;justify-content:inherit}
+.hs-dh .hs-eq{justify-content:flex-end}
+.hs-net{border-top:2px solid #1b2328;padding-top:6px;font-weight:700}
+.hs-plus{color:#0070C0;font-weight:900;font-size:22px;margin-right:6px}
+.hs-lab{font-style:italic;margin-right:4px;white-space:nowrap}
+.hs-sp{white-space:nowrap}.hs-sp.red{color:#e00000}.hs-sp.x{text-decoration:line-through;text-decoration-color:#e00000;text-decoration-thickness:2px;color:#7b878d}.hs-sp.red.x{color:#e07575}
+@media(max-width:760px){.hs-row{grid-template-columns:1fr}.hs-dh{text-align:left}.hs-dh .hs-eq{justify-content:flex-start}}
+.hs-game{display:flex;flex-direction:column;gap:8px}
+.hs-game .hs-row{border:1px solid #dbe5ea;border-radius:10px;background:#fff}
+.hs-sub{font-size:15px;color:#3d4a50;padding:2px 4px}
+.hs-gq{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;font:inherit;font-size:18px;padding:10px 14px;border:2px solid #dbe5ea;border-radius:10px;background:#f7fbfc;cursor:pointer;color:inherit}
+.hs-gq:hover:not(:disabled){border-color:var(--teal,#40BAD2)}.hs-gq.on{border-color:var(--teal,#40BAD2);background:#e8f6fa}.hs-gq:disabled{cursor:default}
+.hs-gdh{font-size:16px;white-space:nowrap}
+.hs-tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:4px 0 6px}
+@media(max-width:700px){.hs-gq{grid-template-columns:1fr}}
+.hs-frc{display:inline-flex;align-items:baseline;font-size:.8em;margin-right:1px}.hs-frc sup{font-size:.85em;vertical-align:.45em}.hs-frc sub{font-size:.85em;vertical-align:-.15em}
+.s6-fmath .mth:has(> .hs-wk){display:block!important;white-space:normal!important}
+.hs-wk{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 14px;align-items:center;font-size:18px}
+.hs-wl{white-space:nowrap}.hs-we{display:flex;flex-wrap:wrap;gap:0 4px}.hs-wd{white-space:nowrap;text-align:right;font-size:16.5px}
+.s6-ftitle .hs-given{font-size:16.5px}
+.s6-ftext .hs-note{display:block;color:#e00000;margin-top:4px}
+/* equations and calculations stay on one line */
+.hs-we,.hs-geq,.hs-mid .hs-eq{flex-wrap:nowrap!important;white-space:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}
+.hs-wd,.hs-gdh,.hs-dh .hs-eq{white-space:nowrap}
+.s6-fmath .mth:has(> .hs-wk){min-width:0;width:100%}
+.hs-wk{grid-template-columns:auto minmax(0,1fr) auto}
+.hs-geq{min-width:0}
+@media (min-width:721px){.s6-fstep:has(.hs-wk){grid-template-columns:minmax(150px,210px) minmax(0,1fr)}}
+.s6-fstep:has(.hs-wk) .s6-ftext{font-size:15.5px}
+/* heat game (Nov 8): equations stay on one line; operators centered on the boxes; labels sit under each box */
+.t7-eqwrap{overflow-x:auto;padding-bottom:4px}
+.t7-eqrow{flex-wrap:nowrap;white-space:nowrap;margin:8px 0 28px;gap:6px}
+.t7-eqrow>i{font-size:21px;font-weight:700}
+.t7-box{position:relative;flex:0 0 auto}
+.t7-box small{position:absolute;top:calc(100% + 3px);left:50%;transform:translateX(-50%);white-space:nowrap}
+.t7-op{font-size:24px;font-weight:500;padding:0 3px;line-height:1}
+.t7-q{min-width:70px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;border:2.5px solid #c9d3d6;border-radius:8px;background:#f1f4f5;font-weight:800;font-size:20px;color:#5f6b72}
+.t7-line{white-space:nowrap}
+.t7-eqrow .da-slot{min-width:118px;min-height:42px}
+.cx-q{width:88px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:2.5px solid #c9d3d6;border-radius:6px;background:#f1f4f5;font-weight:800;font-size:19px;color:#5f6b72}
+.cx-row.cx-solve{margin-top:-6px}
+/* heat in an equation vs ΔH: each label sits under exactly the part it names */
+.hx-card{max-width:760px;margin:12px auto;border:2px solid var(--line);border-radius:12px;padding:12px 16px 6px;background:#fff}
+.hx-card.hx-exo{border-color:#f0b9b9;background:#fffafa}.hx-card.hx-endo{border-color:#b9d3f0;background:#f8fbff}
+.hx-h{font-weight:800;font-size:17px;margin-bottom:8px}.hx-exo .hx-h{color:#c40000}.hx-endo .hx-h{color:#005ea3}
+.hx-k{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#5f6b72;margin-top:4px}
+.hx-row{display:flex;align-items:flex-start;gap:8px;font-size:21px;font-weight:600;white-space:nowrap;overflow-x:auto;padding:6px 2px 4px}
+.hx-part{display:inline-flex;flex-direction:column;align-items:center}
+.hx-part .hx-t{line-height:1.5}
+.hx-part.hx-exo .hx-t,.hx-part.hx-endo .hx-t{padding:0 8px;border-radius:7px;font-weight:800}
+.hx-part.hx-exo .hx-t{background:#fde3e3;color:#c40000}.hx-part.hx-endo .hx-t{background:#e1edfb;color:#005ea3}
+.hx-lab{margin-top:4px;padding-top:4px;border-top:2.5px solid currentColor;font-size:13px;font-weight:700;align-self:stretch;text-align:center;position:relative}
+.hx-lab:before,.hx-lab:after{content:"";position:absolute;top:-8px;width:2.5px;height:8px;background:currentColor}.hx-lab:before{left:0}.hx-lab:after{right:0}
+.hx-part.hx-exo .hx-lab{color:#c40000}.hx-part.hx-endo .hx-lab{color:#005ea3}
+.hx-gap{width:28px}
+.hx-or{font-size:13px;color:#5f6b72;font-weight:700;margin:2px 0}
+/* bond-energy worked examples */
+.be-chip{display:inline-block;border:2px solid #9aa7ad;border-radius:999px;padding:2px 12px;margin:2px 3px;font-size:19px;background:#fff;white-space:nowrap}
+.be-chip b{color:#6a2c9a}
+.be-where{font-size:14px;color:#5f6b72;margin-top:4px;font-weight:500}
+.be-in{color:#2E75D6}.be-out{color:#c40000}
+/* enrichment is purple everywhere: worked examples, step cards, games and buttons inside enrichment sections take the purple palette */
+.note.enr,.lab.enr,details.enr-box,li.enr-i,.enr-scope,body.enr-page{--teal:#8a4fc4;--teal-deep:#6a2c9a;--teal-ink:#4b1d70;--row:#f4edfb;--row2:#e3d4f3;--ch-bg:#f4edfb;--ch-bd:#c9b0e6;--ch-hov:#efe4fa;--ch-sel:#e3d4f3}
+.note.enr .s6-fstep,.lab.enr .s6-fstep{box-shadow:0 4px 12px rgba(106,44,154,.08)}
+.note.enr .s6-fmath,.lab.enr .s6-fmath{background:#f8f4fc}
+.t7-eqb{min-width:190px}

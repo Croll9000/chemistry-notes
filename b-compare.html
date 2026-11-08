@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Bonding comparison"><div class="pn"><small>Part</small><span>1</span></div><h2>Bonding Comparison</h2><p>Particles and forces explain properties.</p></div>
+  <div class="part" id="p1" data-short="Bonding comparison"><div class="pn"><small>Part</small><span>1</span></div><h2>Bonding Comparison</h2><p>Ice melts at 0 °C, table salt at 801 °C and iron at 1538 °C. Each melting point reflects the particles in the solid and the forces that hold them together: weak attractions between water molecules, ionic bonds between Na⁺ and Cl⁻ ions, and metallic bonds between iron ions and their sea of electrons. In this section, we will compare ionic, metallic, molecular and network substances by their particles, forces and properties.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Bonding Comparison</h2></div>
@@ -38,7 +38,12 @@
     <div class="labq" id="lq-pl"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -70,6 +75,7 @@ A.QSet(A.$("#lq-pl"),[
  {type:"mc",stem:"A mystery solid did not conduct as a solid, conducted when melted, and shattered when hammered. It is most likely",choices:["ionic","metallic","molecular covalent","network covalent"],ans:1,explain:"Ions are locked in the solid but free when melted; shifted layers of ions repel, so it is brittle."}
 ],{id:"lq-pl",title:"Lab Questions"});
 const tb=(rows)=>`<div class="tbl-wrap"><table class="nt" style="margin-top:6px"><tr><th>Substance</th><th>Melting point</th><th>Conducts as a solid?</th><th>Conducts dissolved in water?</th></tr>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</table></div>`;
+A.VocabCheck(A.$("#vc-host"),[{"s": "A substance made of positive and negative ions held by ionic bonds is ___.", "a": "ionic"}, {"s": "A substance made of metal ions in a sea of electrons is ___.", "a": "metallic"}, {"s": "Substances made of molecules held together by weak forces have ___ melting points.", "a": "low"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:`The table below shows properties of four solids.${tb([["A","801 °C","no","yes"],["B","1085 °C","yes","does not dissolve"],["C","186 °C","no","no"],["D","1713 °C","no","does not dissolve"]])}Which solid is most likely an ionic compound?`,choices:["A","B","C","D"],ans:1,explain:"High melting point, no conduction as a solid, but conducts when dissolved: ions."},
  {type:"mc",stem:"Which substance is a soft, nonconducting solid with a low melting point?",choices:["KCl","Cu","paraffin wax","SiO<sub>2</sub>"],ans:3,explain:"Molecular substances have weak attractions between molecules."},

@@ -22,12 +22,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Main-group families"><div class="pn"><small>Part</small><span>1</span></div><h2>Main-Group Families</h2><p>Groups 1, 2, 17 and 18.</p></div>
+  <div class="part" id="p1" data-short="Main-group families"><div class="pn"><small>Part</small><span>1</span></div><h2>Main-Group Families</h2><p>Since 1924, potassium iodide has been added to table salt in the United States to prevent iodine deficiency, and modern airships are filled with helium instead of hydrogen, which burned in the 1937 Hindenburg disaster. Both uses come from the family each element belongs to: iodine is a halogen, one of the reactive group 17 elements that combine with metals to form salts, while helium is a noble gas, one of the group 18 elements that almost never react. In this section, we will discuss the four main-group families, groups 1, 2, 17 and 18, and the properties shared by the members of each.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Alkali Metals (Group 1)</h2></div>
     <div class="body">
-      <p class="intro">Elements in the same group of the Periodic Table behave so similarly that they are often referred to as families. Several families have their own names, and the members of each share characteristics that make them useful in everyday life.</p><div class="fam"><div>
+      <p class="intro">Sodium and potassium make up about 2.4% and 2.1% of Earth’s crust, yet neither is ever found as a pure metal in nature. Elements in the same group of the periodic table behave so similarly that they are known as families, and the alkali metals are the most reactive family of metals.</p><div class="fam"><div>
       <ul>
         <li>The elements in group 1 (except hydrogen) are known as the <span class="def" data-gl="the elements in Group 1, except hydrogen.">alkali metals</span>.</li>
         <li>Highly reactive
@@ -115,11 +115,12 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Middle & bottom"><div class="pn"><small>Part</small><span>2</span></div><h2>The Middle and the Bottom</h2><p>Transition metals, lanthanides and actinides.</p></div>
+  <div class="part" id="p2" data-short="Middle & bottom"><div class="pn"><small>Part</small><span>2</span></div><h2>The Middle and the Bottom</h2><p>More than half of the 118 known elements sit in the middle and bottom of the periodic table, including the titanium in aircraft frames and the platinum in car catalytic converters. Like all metals, these elements conduct heat and electricity, and many of them form brightly colored compounds and ions with more than one possible charge. In this section, we will discuss the transition metals, lanthanides and actinides and the properties they share.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Transition Metals (Groups 3–12)</h2></div>
-    <div class="body"><div class="fam"><div>
+    <div class="body"><p class="intro">Stainless steel contains at least 10.5% chromium, a transition metal that forms a thin oxide layer protecting the iron underneath from rust. Moving from the main-group families to the center of the table, in this section we will discuss the properties shared by the elements in groups 3–12.</p>
+      <div class="fam"><div>
       <ul>
         <li>The elements in groups 3–12 are known as the <span class="def" data-gl="the elements in Groups 3–12.">transition metals</span>.
           <ul><li class="enr-i">They are the transition between the s-block (groups 1–2) and the p-block (groups 13–18).</li></ul></li>
@@ -187,7 +188,12 @@
     <div id="pt-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -220,6 +226,7 @@ P.FamilyGame(A.$("#fg-host"));
 P.MatchGame(A.$("#fm-host"),{id:"fm",pairs:[["Alkali metals","Group 1. Most reactive metals; form 1+ ions."],["Alkaline earth metals","Group 2. Very reactive; form 2+ ions."],["Transition metals","Groups 3–12. Colored solutions and multiple oxidation states."],["Halogens","Group 17. Diatomic; contain all three phases at room temperature."],["Noble gases","Group 18. Unreactive and monatomic."],["Lanthanides","Atomic numbers 57–71. Metallic and reactive."],["Actinides","Atomic numbers 89–103. Radioactive metals."]],n:5});
 A.PTExplorer(A.$("#pt-host"),{modes:["family","valence","lewis"],mode:"family",start:17});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The elements in group 1 (except hydrogen) are the ___.", "a": "alkali metals"}, {"s": "The elements in group 2 are the ___.", "a": "alkaline earth metals"}, {"s": "The elements in group 17 are the ___.", "a": "halogens"}, {"s": "The elements in group 18 are the ___.", "a": "noble gases"}, {"s": "The elements in groups 3–12 are the ___.", "a": "transition metals"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which element is an alkali metal?",choices:["Na","Mg","Al","Cl"],ans:1,explain:"Sodium is in group 1."},
  {type:"mc",stem:"Alkali metals, alkaline earth metals, and halogens are elements found respectively in Groups",choices:["1, 2, and 18","2, 13, and 17","1, 2, and 14","1, 2, and 17"],ans:4,explain:"Alkali metals: group 1; alkaline earth metals: group 2; halogens: group 17."},

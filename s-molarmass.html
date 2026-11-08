@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Molar mass"><div class="pn"><small>Part</small><span>1</span></div><h2>Molar Mass</h2><p>The mass of one mole of a substance.</p></div>
+  <div class="part" id="p1" data-short="Molar mass"><div class="pn"><small>Part</small><span>1</span></div><h2>Molar Mass</h2><p>One mole of water has a mass of 18.02 g and fills only about 18 mL, a little more than a tablespoon. Its mass comes directly from the periodic table: two hydrogen atoms (2 × 1.01) plus one oxygen atom (16.00) add up to 18.02. In this section, we will calculate the molar mass of any substance from its formula.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Significance of a Mole</h2></div>
@@ -41,7 +41,7 @@
   <section class="note">
     <div class="tile"><h2>Molar Mass</h2></div>
     <div class="body">
-      <p class="intro">When carrying out reactions, chemists must measure out the right number of moles of each substance. To do that with a balance, they need to know the mass of one mole of each substance.</p>
+      <p class="intro">A recipe for a reaction may call for 2.00 moles of sodium chloride, but a balance measures grams. Since 1 mole of sodium chloride has a mass of 58.44 g, a chemist weighs out 116.88 g. In this section we will discuss molar mass, the mass of one mole of a substance, which links the moles in an equation to the grams on a balance.</p>
       <ul>
         <li><span class="def">Molar Mass</span> – mass of one mole of a substance.
           <ul><li><i>Unit</i> – grams/mole (g/mol)</li></ul></li>
@@ -60,7 +60,7 @@
     <div id="mm-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Mole–mass conversions"><div class="pn"><small>Part</small><span>2</span></div><h2>Mole–Mass Conversions</h2><p>Multiply or divide by the molar mass.</p></div>
+  <div class="part" id="p2" data-short="Mole–mass conversions"><div class="pn"><small>Part</small><span>2</span></div><h2>Mole–Mass Conversions</h2><p>A teaspoon of table sugar, about 4 g, contains roughly 0.012 mole of sucrose. To find this, the mass is divided by the molar mass of sucrose, 342.3 g/mol. In this section, we will convert between moles and mass by multiplying or dividing by the molar mass.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mole–Mass Conversions</h2></div>
@@ -92,7 +92,12 @@
     <div id="sw-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -120,6 +125,7 @@ const W2=S.wk("Ex: How many moles are in 45.30 g of H<sub>2</sub>O?",[
  ["<b>Step 3:</b> Divide and write the answer with units.",`45.30 ÷ 18.02 = 2.514 ${S.u("mol","H2O")}`]]);
 S.workedTabs(A.$("#ex1"),[{label:"Moles → grams (H₂O)",...W1},{label:"Grams → moles (H₂O)",...W2}]);
 S.Converter(A.$("#mc-host"),{make:()=>S.mkMass()});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The mass of one mole of a substance is its ___.", "a": "molar mass"}, {"s": "Molar mass is measured in ___.", "a": "g/mol"}, {"s": "To find molar mass, add the ___ masses of all of the atoms in the formula.", "a": "atomic"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What is the molar mass of CO<sub>2</sub>?",choices:["28.01 g/mol","32.00 g/mol","44.01 g/mol","56.02 g/mol"],ans:3,explain:"12.01 + 2(16.00) = 44.01 g/mol."},
  {type:"mc",stem:"What is the molar mass of Ca(OH)<sub>2</sub>?",choices:["57.09 g/mol","74.10 g/mol","58.09 g/mol","114.18 g/mol"],ans:2,explain:"40.08 + 2(16.00) + 2(1.01) = 74.10 g/mol. The subscript 2 multiplies both O and H."},

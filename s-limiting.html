@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part enr" id="p1" data-short="Limiting and excess"><div class="pn"><small>Part</small><span>1</span></div><h2>Limiting and Excess Reagents</h2><p>Which reactant runs out first?</p></div>
+  <div class="part enr" id="p1" data-short="Limiting and excess"><div class="pn"><small>Part</small><span>1</span></div><h2>Limiting and Excess Reagents</h2><p>When 1.00 g of aluminum foil is placed in a solution containing 5.00 g of copper(II) sulfate, the blue color of the solution disappears while some aluminum is left over. The copper(II) sulfate, which gives the solution its blue color, is the limiting reactant: it runs out first and determines how much copper forms, while the aluminum is in excess. In this section, we will identify limiting and excess reagents.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Limiting and Excess Reagents</h2></div>
@@ -56,7 +56,7 @@
     <div id="lr-host"></div>
   </section>
 
-  <div class="part enr" id="p2" data-short="Yield"><div class="pn"><small>Part</small><span>2</span></div><h2>Theoretical Yield, Leftover Excess and Percent Yield</h2><p>How much product, really?</p></div>
+  <div class="part enr" id="p2" data-short="Yield"><div class="pn"><small>Part</small><span>2</span></div><h2>Theoretical Yield, Leftover Excess and Percent Yield</h2><p>Industrial ammonia plants convert only about 15% of their nitrogen and hydrogen into ammonia each time the gases pass through the reactor, so the unreacted gases are recycled. The amount of product actually collected is almost always less than the maximum calculated from the balanced equation, the theoretical yield. In this section, we will calculate theoretical yield, leftover excess reagent and percent yield.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Theoretical and Actual Yield</h2></div>
@@ -98,7 +98,12 @@
     <div id="py-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -116,6 +121,7 @@ A.$("#py-art").innerHTML=S.yieldArt("20.0","17.0","product");
 S.LimitingGame(A.$("#lr-host"),{mode:"lim"});
 S.LimitingGame(A.$("#py-host"),{mode:"yield"});
 (function(){ const h=A.$("#hero-b"); S.BurgerLab(h); A.$$(".controls",h).forEach(c=>c.remove()); A.$$(".status",h).forEach(c=>c.remove()); A.$$("p",h).forEach(c=>c.remove()); const sv=h.querySelector("svg"); if(sv){ sv.setAttribute("viewBox","0 0 330 200"); sv.setAttribute("width","330"); } })();
+A.VocabCheck(A.$("#vc-host"),[{"s": "The reactant that is completely used up is the ___.", "a": "limiting reagent"}, {"s": "The reactant that is left over is the ___.", "a": "excess reagent"}, {"s": "The maximum amount of product that can be made is the ___.", "a": "theoretical yield"}, {"s": "The amount of product that is truly produced is the ___.", "a": "actual yield"}, {"s": "The actual yield as a percent of the theoretical yield is the ___.", "a": "percent yield"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Each sandwich needs 2 slices of bread and 1 slice of cheese. With 10 slices of bread and 7 slices of cheese, which is the limiting reagent?",choices:["bread, because 5 sandwiches can be made","cheese, because 7 sandwiches can be made","bread, because there are more slices of it","cheese, because there are fewer slices of it"],ans:1,explain:"10 slices of bread make only 5 sandwiches; 7 slices of cheese could make 7. Bread runs out first."},
  {type:"mc",stem:"Given 2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O, 4 moles of H<sub>2</sub> react with 4 moles of O<sub>2</sub>. Which is the limiting reagent?",choices:["H<sub>2</sub>","O<sub>2</sub>","H<sub>2</sub>O","neither"],ans:1,explain:"4 mol H₂ makes 4 mol H₂O; 4 mol O₂ could make 8 mol H₂O. H₂ makes less product."},

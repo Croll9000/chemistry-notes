@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Why balance"><div class="pn"><small>Part</small><span>1</span></div><h2>Balancing Chemical Reactions</h2><p>Same atoms on both sides.</p></div>
+  <div class="part" id="p1" data-short="Why balance"><div class="pn"><small>Part</small><span>1</span></div><h2>Balancing Chemical Reactions</h2><p>Iron is produced in blast furnaces by the reaction Fe₂O₃ + 3CO → 2Fe + 3CO₂, which balances only with the coefficients 1, 3, 2 and 3. Without these coefficients, the equation would show oxygen and iron atoms appearing or disappearing, which never happens in a real reaction. In this section, we will balance chemical equations by adjusting coefficients, never subscripts.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Balancing Chemical Reactions</h2></div>
@@ -62,7 +62,12 @@
     <div id="bal-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -84,6 +89,7 @@ const EX=[
   A.$$(".wf-b",host).forEach(b=>b.addEventListener("click",()=>{ e=+b.dataset.e; s=0; show(); }));
   A.$$("[data-s]",host).forEach(b=>b.addEventListener("click",()=>{ s=Math.max(0,Math.min(EX[e].steps.length-1,s+ +b.dataset.s)); show(); })); show(); })();
 R.Balance(A.$("#bal-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "To balance an equation, change only the ___.", "a": "coefficients"}, {"s": "Never change the ___ in a formula when balancing an equation.", "a": "subscripts"}, {"s": "A balanced equation has the same number of each type of ___ on both sides.", "a": "atom"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which equation is correctly balanced?",choices:["H<sub>2</sub> + O<sub>2</sub> → H<sub>2</sub>O","2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O","H<sub>2</sub> + 2O<sub>2</sub> → 2H<sub>2</sub>O","2H<sub>2</sub> + 2O<sub>2</sub> → 2H<sub>2</sub>O"],ans:2,explain:"4 H and 2 O on each side."},
  {type:"mc",stem:"When the equation __Al + __O<sub>2</sub> → __Al<sub>2</sub>O<sub>3</sub> is correctly balanced using the smallest whole numbers, the coefficient of Al is",choices:["1","2","3","4"],ans:4,explain:"4Al + 3O₂ → 2Al₂O₃."},

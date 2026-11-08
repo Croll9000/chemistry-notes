@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Combustion"><div class="pn"><small>Part</small><span>1</span></div><h2>Predicting Combustion</h2><p>Hydrocarbon + oxygen → carbon dioxide + water.</p></div>
+  <div class="part" id="p1" data-short="Combustion"><div class="pn"><small>Part</small><span>1</span></div><h2>Predicting Combustion</h2><p>Burning one gallon of gasoline releases about 8.9 kg of carbon dioxide. This much carbon dioxide forms because every carbon atom in the fuel combines with oxygen from the air, while the hydrogen atoms form water. In this section, we will predict the products of combustion reactions: a hydrocarbon burned in oxygen forms carbon dioxide and water.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Combustion Reactions</h2></div>
@@ -39,7 +39,12 @@
     <div id="cb-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -67,6 +72,7 @@ R.RxnPlayer(A.$("#ex-tbl"),{r:["C3H8","O2"],p:["CO2","H2O"],c:[1,5,3,4],heatP:tr
     else s+=`<text x="80" y="70" text-anchor="middle" font-family="Inter,Arial" font-size="11" fill="#5f6b72">write the products</text><text x="80" y="84" text-anchor="middle" font-family="Inter,Arial" font-size="11" fill="#5f6b72">to light it</text>`;
     flame.innerHTML=s; setTimeout(()=>requestAnimationFrame(fl),60); }; fl();
   next(); })();
+A.VocabCheck(A.$("#vc-host"),[{"s": "A molecule containing only hydrogen and carbon is a ___.", "a": "hydrocarbon"}, {"s": "A hydrocarbon reacts with oxygen in a ___ reaction.", "a": "combustion"}, {"s": "The products of a complete combustion reaction are carbon dioxide and ___.", "a": "water"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What are the products of the complete combustion of propane, C<sub>3</sub>H<sub>8</sub>?",choices:["C and H<sub>2</sub>","CO and H<sub>2</sub>","CO<sub>2</sub> and H<sub>2</sub>O","CH<sub>4</sub> and O<sub>2</sub>"],ans:3,explain:"All hydrocarbons burn to CO₂ and H₂O."},
  {type:"num",stem:"Balance: __C<sub>4</sub>H<sub>10</sub> + __O<sub>2</sub> → __CO<sub>2</sub> + __H<sub>2</sub>O. What is the coefficient of O<sub>2</sub> (smallest whole numbers)?",ans:13,tol:0,explain:"2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O."},

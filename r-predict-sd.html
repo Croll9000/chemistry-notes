@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Synthesis"><div class="pn"><small>Part</small><span>1</span></div><h2>Predicting Synthesis Reactions</h2><p>Two elements combine into one compound.</p></div>
+  <div class="part" id="p1" data-short="Synthesis"><div class="pn"><small>Part</small><span>1</span></div><h2>Predicting Synthesis Reactions</h2><p>When aluminum powder and iodine are mixed with a drop of water, they react violently, releasing purple iodine vapor and forming aluminum iodide, AlI₃. The product’s formula is not random: aluminum forms Al³⁺ ions and iodine forms I⁻ ions, so three iodide ions are needed for every aluminum ion. In this section, we will predict the products of synthesis reactions between two elements.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Predicting Synthesis Reactions</h2></div>
@@ -35,7 +35,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Decomposition"><div class="pn"><small>Part</small><span>2</span></div><h2>Predicting Decomposition Reactions</h2><p>A binary compound breaks into its elements.</p></div>
+  <div class="part" id="p2" data-short="Decomposition"><div class="pn"><small>Part</small><span>2</span></div><h2>Predicting Decomposition Reactions</h2><p>In 1774, Joseph Priestley discovered oxygen by heating mercury(II) oxide, HgO, a red powder that decomposed into liquid mercury and oxygen gas. A binary compound like HgO contains only two elements, so when it decomposes it breaks down into those same two elements. In this section, we will predict the products of decomposition reactions.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Predicting Decomposition Reactions</h2></div>
@@ -62,7 +62,7 @@
     <div id="pr-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Oxides and acid rain"><div class="pn"><small>Part</small><span>3</span></div><h2>Oxides in Water</h2><p>Metal oxides make bases; nonmetal oxides make acids.</p></div>
+  <div class="part" id="p3" data-short="Oxides and acid rain"><div class="pn"><small>Part</small><span>3</span></div><h2>Oxides in Water</h2><p>The oceans have absorbed about 30% of the carbon dioxide released by human activities, and the acid it forms with seawater is making the oceans more acidic and harming coral reefs. Like other nonmetal oxides, carbon dioxide forms an acid when it combines with water, while metal oxides form bases. In this section, we will predict the products of metal oxides and nonmetal oxides reacting with water, and connect these reactions to acid rain.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Oxides in Water and Acid Rain</h2></div>
@@ -84,7 +84,7 @@
     </div>
   </section>
 
-  <div class="part enr" id="p4" data-short="Enrichment"><div class="pn"><small>Part</small><span>4</span></div><h2>More Synthesis and Decomposition Patterns</h2><p>Compounds that combine or break apart in predictable ways.</p></div>
+  <div class="part enr" id="p4" data-short="Enrichment"><div class="pn"><small>Part</small><span>4</span></div><h2>More Synthesis and Decomposition Patterns</h2><p>The emergency oxygen masks above airplane seats are supplied by heating sodium chlorate, NaClO₃, which decomposes into sodium chloride and oxygen gas. Compounds that contain the same polyatomic ion break down in the same pattern: every metal chlorate releases oxygen and leaves a metal chloride. In this section, we will predict the products of synthesis and decomposition reactions that involve compounds.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Synthesis with Compounds</h2></div>
@@ -123,7 +123,12 @@
     <div id="pr2-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -175,6 +180,7 @@ const L2=[
  E(["KClO3"],["KCl","O2"],[2,2,3],{cat:"dchl",ions:[["K⁺","1+"],["Cl⁻","1−"]]}),E(["H2O2"],["H2O","O2"],[2,2,1],{cat:"dperox"}),E(["H2CO3"],["H2O","CO2"],[1,1,1],{cat:"dcarbac"})];
 R.Predict(A.$("#pr2-host"),{list:L2,cats:CAT2,steps:["type","cat","write","bal"],how:"Step 1: synthesis or decomposition? Step 2: which row of the table fits? Step 3: write the products. Step 4: balance.",catTitle:"Which row of the table fits?",catPrompt:"Look at the reactants: oxides, water, or a compound with a polyatomic ion breaking down?",catHint:()=>"Look again at the kinds of substances in the reactants.",writeMiss:"the charges (criss-cross and simplify) and the diatomic elements",
   onDone:(it,holder)=>{ const d=A.h("div",{class:"center",style:"margin-top:8px"}); holder.appendChild(d); R.RxnPlayer(d,{r:it.r,p:it.p,c:it.c},{w:520,h:200}); }});
+A.VocabCheck(A.$("#vc-host"),[{"s": "A compound made of only two elements is a ___.", "a": "binary compound"}, {"s": "A compound of an element with oxygen is an ___.", "a": "oxide"}, {"s": "A metal oxide that reacts with water forms a ___.", "a": "base"}, {"s": "A nonmetal oxide that reacts with water forms an ___.", "a": "acid"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What is the product of the synthesis reaction between magnesium and oxygen?",choices:["MgO<sub>2</sub>","Mg<sub>2</sub>O","MgO","Mg<sub>2</sub>O<sub>2</sub>"],ans:3,explain:"Mg²⁺ and O²⁻ combine 1 : 1."},
  {type:"mc",stem:"Which is the correctly balanced equation for the decomposition of water?",choices:["H<sub>2</sub>O → H<sub>2</sub> + O","2H<sub>2</sub>O → 2H<sub>2</sub> + O<sub>2</sub>","H<sub>2</sub>O → H + O","2H<sub>2</sub>O → H<sub>4</sub> + O<sub>2</sub>"],ans:2,explain:"Hydrogen and oxygen are both diatomic elements."},

@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Polyatomic ions"><div class="pn"><small>Part</small><span>1</span></div><h2>Polyatomic Ions</h2><p>Covalently bonded groups of atoms with an overall charge.</p></div>
+  <div class="part" id="p1" data-short="Polyatomic ions"><div class="pn"><small>Part</small><span>1</span></div><h2>Polyatomic Ions</h2><p>Household bleach is a solution of sodium hypochlorite, NaClO, about 6% by mass. Each hypochlorite ion, ClO⁻, is a chlorine atom and an oxygen atom bonded together that carries a 1− charge as a whole, and it stays together as one unit when the compound dissolves. In this section, we will discuss polyatomic ions, covalently bonded groups of atoms with an overall charge.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Polyatomic Ions</h2></div>
@@ -68,7 +68,7 @@
     <div id="sp-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Formulas and names"><div class="pn"><small>Part</small><span>2</span></div><h2>Formulas and Names with Polyatomic Ions</h2><p>A polyatomic ion stays together as one unit.</p></div>
+  <div class="part" id="p2" data-short="Formulas and names"><div class="pn"><small>Part</small><span>2</span></div><h2>Formulas and Names with Polyatomic Ions</h2><p>Sodium hydroxide, NaOH, the main ingredient in many drain cleaners, contains one sodium ion for every hydroxide ion. Its formula is written the same way as any binary ionic compound: the 1+ and 1− charges cancel, and the hydroxide ion, OH⁻, is kept together as one unit. In this section, we will write formulas and names for compounds that contain polyatomic ions, using parentheses when more than one polyatomic ion is needed.</p></div>
 
   <section class="note added">
     <div class="tile"><h2>Writing Formulas with Polyatomic Ions</h2></div>
@@ -101,7 +101,12 @@
     <div id="ps-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Polyatomic ion formulas are given where you need them. Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Polyatomic ion formulas are given where you need them. Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -144,6 +149,7 @@ A.$("#pname-art").innerHTML=[
 B.SpotPoly(A.$("#sp-host"));
 B.PolySnap(A.$("#ps-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Covalently bonded groups of atoms that possess a charge are ___.", "a": "polyatomic ions"}, {"s": "A polyatomic ion that contains oxygen and has a negative charge is an ___.", "a": "oxyanion"}, {"s": "When more than one polyatomic ion is needed in a formula, it is placed in ___.", "a": "parentheses"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What is the chemical formula for ammonium sulfide? (The ammonium ion is NH<sub>4</sub><sup>+</sup>.)",choices:["NH<sub>4</sub>S","(NH<sub>4</sub>)<sub>2</sub>S","NH<sub>4</sub>S<sub>2</sub>","(NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub>"],ans:2,explain:"S²⁻ needs two NH₄⁺ ions. More than one polyatomic ion → parentheses: (NH₄)₂S. Sulfide is S²⁻, not sulfate."},
  {type:"mc",stem:"What is the chemical formula for sodium sulfate? (The sulfate ion is SO<sub>4</sub><sup>2−</sup>.)",choices:["NaSO<sub>4</sub>","Na<sub>2</sub>SO<sub>4</sub>","Na(SO<sub>4</sub>)<sub>2</sub>","Na<sub>2</sub>S"],ans:2,explain:"Two Na⁺ ions balance one SO₄²⁻ ion."},

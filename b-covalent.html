@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Covalent compounds"><div class="pn"><small>Part</small><span>1</span></div><h2>Covalent Compounds</h2><p>Nonmetals share electrons.</p></div>
+  <div class="part" id="p1" data-short="Covalent compounds"><div class="pn"><small>Part</small><span>1</span></div><h2>Covalent Compounds</h2><p>Table sugar, C₁₂H₂₂O₁₁, contains 45 atoms of carbon, hydrogen and oxygen in each molecule, all held together by shared electrons. Because these elements are all nonmetals with strong attractions for electrons, none of them can take electrons away from the others, so they share them instead. In this section, we will discuss covalent bonds and the properties of the compounds they form.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Covalent Compounds</h2></div>
@@ -50,7 +50,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Single, double, triple"><div class="pn"><small>Part</small><span>2</span></div><h2>Single, Double and Triple Bonds</h2><p>Shared electrons count for both atoms.</p></div>
+  <div class="part" id="p2" data-short="Single, double, triple"><div class="pn"><small>Part</small><span>2</span></div><h2>Single, Double and Triple Bonds</h2><p>Each oxygen molecule in the air, O₂, is held together by a double bond: two pairs of shared electrons, or 4 electrons in all. An oxygen atom has 6 valence electrons, and sharing only one pair would leave each atom with 7, so the two atoms share two pairs to complete both octets. In this section, we will discuss single, double and triple bonds and how to tell which one two atoms will form.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Single Bonds</h2></div>
@@ -107,7 +107,7 @@
     <div id="sh-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Number of bonds"><div class="pn"><small>Part</small><span>3</span></div><h2>Number of Bonds</h2><p>Each group forms a predictable number of bonds.</p></div>
+  <div class="part" id="p3" data-short="Number of bonds"><div class="pn"><small>Part</small><span>3</span></div><h2>Number of Bonds</h2><p>In every molecule of ethanol, C₂H₅OH, the alcohol in hand sanitizer, each carbon atom forms 4 bonds, the oxygen atom forms 2 and each hydrogen atom forms 1. These numbers are predictable because an atom usually forms one bond for each electron it needs to complete its octet. In this section, we will use an element’s group to predict how many covalent bonds its atoms form.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Number of Bonds</h2></div>
@@ -128,7 +128,7 @@
     <div id="nb-host"></div>
   </section>
 
-  <div class="part" id="p4" data-short="Length and strength"><div class="pn"><small>Part</small><span>4</span></div><h2>Bond Length and Bond Strength</h2><p>More shared pairs: shorter and stronger.</p></div>
+  <div class="part" id="p4" data-short="Length and strength"><div class="pn"><small>Part</small><span>4</span></div><h2>Bond Length and Bond Strength</h2><p>In carbon monoxide, CO, the carbon and oxygen atoms share three pairs of electrons and sit only 113 pm apart, while the carbon–oxygen single bond in ethanol is 143 pm long. Sharing more electron pairs pulls the two nuclei closer together and holds them more tightly. In this section, we will discuss how bond length and bond strength change as the number of shared pairs increases.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Bond Length</h2></div>
@@ -171,7 +171,12 @@
   </section>
 
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -222,6 +227,7 @@ A.QSet(A.$("#lq-ble"),[
 B.BondPT(A.$("#nb-pt"));
 B.BondCount(A.$("#nb-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Compounds that possess covalent bonds are ___.", "a": "covalent compounds"}, {"s": "A sharing of 2 electrons is a ___.", "a": "single covalent bond"}, {"s": "A sharing of 4 electrons between 2 atoms is a ___.", "a": "double bond"}, {"s": "A sharing of 6 electrons between atoms is a ___.", "a": "triple bond"}, {"s": "The distance between the nuclei of two bonded atoms is the ___.", "a": "bond length"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which type of bond results when one or more pairs of electrons are shared between two atoms?",choices:["ionic bond","covalent bond","metallic bond","hydrogen bond"],ans:2,explain:"Sharing electrons is a covalent bond."},
  {type:"mc",stem:"Which substance contains only covalent bonds?",choices:["NaCl","CaO","CO<sub>2</sub>","KBr"],ans:3,explain:"Carbon and oxygen are both nonmetals, so they share electrons."},

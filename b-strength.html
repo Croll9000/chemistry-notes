@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Bond order"><div class="pn"><small>Part</small><span>1</span></div><h2>Bond Order</h2><p>More shared pairs, stronger bond.</p></div>
+  <div class="part" id="p1" data-short="Bond order"><div class="pn"><small>Part</small><span>1</span></div><h2>Bond Order</h2><p>Hydrogen peroxide slowly breaks down into water and oxygen because the single O–O bond in each molecule needs only about 146 kJ/mol to break, while the double bond in an O₂ molecule needs about 495 kJ/mol. The more electron pairs two atoms share, the more energy is needed to pull them apart. In this section, we will discuss how bond order affects bond strength.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Bond Strength and Bond Order</h2></div>
@@ -49,7 +49,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Atom size"><div class="pn"><small>Part</small><span>2</span></div><h2>Atom Size and Bond Strength</h2><p>Smaller atoms, shorter and stronger bonds.</p></div>
+  <div class="part" id="p2" data-short="Atom size"><div class="pn"><small>Part</small><span>2</span></div><h2>Atom Size and Bond Strength</h2><p>Breaking the bond in 1 mole of hydrogen fluoride requires 565 kJ, while breaking the bond in 1 mole of hydrogen iodide requires only 295 kJ. An iodine atom is much larger than a fluorine atom, so the shared electrons in H–I are farther from the iodine nucleus and held less tightly. In this section, we will discuss how the size of the bonded atoms affects bond length and bond strength.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atom Size and Bond Strength</h2></div>
@@ -94,7 +94,12 @@
     <div id="sb-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -129,6 +134,7 @@ A.QSet(A.$("#lq-bs"),[
   function showWhy(){ $("w").hidden=false; $("wo").innerHTML=Object.entries(WHY).map(([k,t])=>`<button type="button" data-k="${k}">${t}</button>`).join("");
     A.$$("[data-k]",$("wo")).forEach(b=>b.addEventListener("click",()=>{ if(stage!==1) return; if(b.dataset.k===cur[2]){ b.classList.add("right"); stage=2; right++; g.win(); g.paint(); g.msg(`✔ ${cur[0]} is stronger than ${cur[1]}: ${WHY[cur[2]].toLowerCase()}.`,"good"); g.later(next,2400); } else { b.classList.add("wrong"); g.lose(); g.msg(cur[2]==="lp"?"Fluorine is smaller, yet F–F is weaker. Think about what repels.":cur[2]==="order"?"Both bonds join the same two elements. What is different?":"Both are single bonds. What is different about the atoms?","bad"); } })); }
   next(); })();
+A.VocabCheck(A.$("#vc-host"),[{"s": "The number of shared pairs of electrons between two atoms is the ___.", "a": "bond order"}, {"s": "The distance between the nuclei of two bonded atoms is the ___.", "a": "bond length"}, {"s": "A triple bond is ___ than a single bond between the same two atoms.", "a": "shorter"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which bond requires the most energy to break?",choices:["C–C","C=C","C≡C","they are equal"],ans:3,explain:"Three shared pairs: the highest bond order and the strongest bond."},
  {type:"mc",stem:"The H–Cl bond (431 kJ/mol) is stronger than the H–I bond (299 kJ/mol) because",choices:["chlorine atoms are smaller, so the shared electrons are closer to the nucleus","iodine has more valence electrons","H–Cl is a triple bond","iodine is a metal"],ans:1,explain:"Smaller atoms form shorter bonds with a stronger attraction to the shared pair."},

@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Attracting Electrons</h2><p>Atoms in a bond attract the shared electrons.</p></div>
+  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Attracting Electrons</h2><p>Fluorine, the element bonded to carbon in nonstick Teflon coatings, has an electronegativity of 3.98, the highest of any element. In each carbon–fluorine bond, the fluorine atom pulls the shared electrons toward itself much more strongly than the carbon atom does. In this section, we will discuss electronegativity, an atom’s ability to attract the electrons in a chemical bond, and how it is measured.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Electronegativity</h2></div>
@@ -45,7 +45,7 @@
     <div class="labq" id="lq-tug"></div>
   </section>
 
-  <div class="part" id="p2" data-short="The trends"><div class="pn"><small>Part</small><span>2</span></div><h2>The Trends</h2><p>Electronegativity across a period and down a group.</p></div>
+  <div class="part" id="p2" data-short="The trends"><div class="pn"><small>Part</small><span>2</span></div><h2>The Trends</h2><p>Across period 3, electronegativity more than triples, from 0.93 for sodium to 3.16 for chlorine. Both atoms have 3 energy levels, but chlorine’s nucleus has 17 protons pulling on bonding electrons, while sodium’s has only 11. In this section, we will discuss how electronegativity changes across a period and down a group, using the same causes that explain atomic radius and ionization energy.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Electronegativity in Periods</h2></div>
@@ -103,7 +103,7 @@
     <div class="labq" id="lq-sim-g"></div>
   </section>
 
-  <div class="part" id="p3" data-short="The data"><div class="pn"><small>Part</small><span>3</span></div><h2>Looking at the Data</h2><p>The same pattern repeats in every period.</p></div>
+  <div class="part" id="p3" data-short="The data"><div class="pn"><small>Part</small><span>3</span></div><h2>Looking at the Data</h2><p>Down group 17, electronegativity drops from 3.98 for fluorine to 2.66 for iodine, and the same decrease appears in every group. Each step down the group adds an energy level, placing the bonding electrons farther from the nucleus. In this section, we will compare atomic radius, ionization energy and electronegativity side by side and show that all three trends share the same two causes.</p></div>
 
   <section class="lab" id="graph">
     <div class="lab-h"><span class="tag">Lab</span><h3>Trend Graph</h3></div>
@@ -133,7 +133,12 @@
     </div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -159,6 +164,7 @@ P.OrderGame(A.$("#og"),{props:["en"]});
 A.$("#all-art").innerHTML=`<div class="center">`+(()=>{ let s=P.miniPT({stair:false,w:820,label:"summary of the periodic trends",fill:Z=>{ const e=A.EL[Z]; if(Z===1) return A.heat(.12,0,1).bg; return A.heat(1-(e.col-1)/17*.7-(1-(e.period-1)/6)*.3,0,1).bg; },text:Z=>{ const e=A.EL[Z]; if(Z===1) return null; return A.heat(1-(e.col-1)/17*.7-(1-(e.period-1)/6)*.3,0,1).fg; }});
   return s; })()+`</div><div class="all-trends"><div><b>Across a period →</b><span>Atomic radius decreases</span><span>Ionization energy increases</span><span>Electronegativity increases</span><span>Metallic character decreases</span><i>Cause: increasing nuclear charge, same number of energy levels</i></div><div><b>Down a group ↓</b><span>Atomic radius increases</span><span>Ionization energy decreases</span><span>Electronegativity decreases</span><span>Metallic character increases</span><i>Cause: more energy levels, greater distance from the nucleus and more shielding</i></div></div><div class="muted" style="text-align:center;font-size:13px">Shading: darker = larger atom, lower ionization energy, lower electronegativity, more metallic.</div>`;
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "An atom’s ability to attract electrons in a chemical bond is its ___.", "a": "electronegativity"}, {"s": "The most electronegative element is ___.", "a": "fluorine"}, {"s": "From left to right across a period, electronegativity ___.", "a": "increases"}, {"s": "From top to bottom down a group, electronegativity ___.", "a": "decreases"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which term represents the strength of the attraction an atom has for the electrons in a chemical bond?",choices:["electrical conductivity","electronegativity","first ionization energy","atomic radius"],ans:2,explain:"Electronegativity is an atom’s ability to attract the electrons in a bond."},
  {type:"mc",stem:"Which list of elements is arranged in order of increasing electronegativity?",choices:["Be, Mg, Ca","F, Cl, Br","K, Ca, Sc","Li, Na, K"],ans:3,explain:"K, Ca and Sc go left to right across Period 4, so electronegativity increases. The other lists go down a group, where it decreases."},

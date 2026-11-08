@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Activity series"><div class="pn"><small>Part</small><span>1</span></div><h2>Single Replacement and the Activity Series</h2><p>A more active element replaces a less active one.</p></div>
+  <div class="part" id="p1" data-short="Activity series"><div class="pn"><small>Part</small><span>1</span></div><h2>Single Replacement and the Activity Series</h2><p>Zinc metal placed in hydrochloric acid fizzes as it releases hydrogen gas, but a copper penny made before 1982 does not react at all. Zinc is more active than hydrogen and can replace it in the acid, while copper is less active and cannot. In this section, we will use the activity series to predict whether a single replacement reaction will occur and what it produces.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Activity Series</h2></div>
@@ -62,7 +62,7 @@
     <div id="sr-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Solubility"><div class="pn"><small>Part</small><span>2</span></div><h2>Solubility and Precipitates</h2><p>Which ionic compounds dissolve in water?</p></div>
+  <div class="part" id="p2" data-short="Solubility"><div class="pn"><small>Part</small><span>2</span></div><h2>Solubility and Precipitates</h2><p>Water with more than about 120 mg of dissolved minerals (measured as calcium carbonate) per liter is classified as hard, and it leaves a white crust inside kettles. Calcium carbonate does not dissolve in water, so when hard water is heated, the dissolved ions combine and come out of solution as a solid. In this section, we will use the Reference Table to decide which ionic compounds dissolve in water.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Solubility of Ionic Compounds</h2></div>
@@ -90,7 +90,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Double replacement"><div class="pn"><small>Part</small><span>3</span></div><h2>Double Replacement Reactions</h2><p>A reaction happens if a precipitate, water or a gas forms.</p></div>
+  <div class="part" id="p3" data-short="Double replacement"><div class="pn"><small>Part</small><span>3</span></div><h2>Double Replacement Reactions</h2><p>Water treatment plants remove phosphate from wastewater by adding iron(III) chloride, which reacts to form solid iron(III) phosphate that settles out of the water. The ions of the two compounds trade partners, and because iron(III) phosphate does not dissolve, it separates from the solution as a precipitate. In this section, we will predict when a double replacement reaction occurs: when a precipitate, water or a gas forms.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Predicting Double Replacement Reactions</h2></div>
@@ -117,7 +117,7 @@
     <div id="dr-host"></div>
   </section>
 
-  <div class="part enr" id="p4" data-short="Enrichment: solubility"><div class="pn"><small>Part</small><span>4</span></div><h2>The Solubility Table</h2><p>Which compounds dissolve, and which form precipitates.</p></div>
+  <div class="part enr" id="p4" data-short="Enrichment: solubility"><div class="pn"><small>Part</small><span>4</span></div><h2>The Solubility Table</h2><p>Silver nitrate is used to test water for chloride ions: even a few milligrams of chloride per liter produce a cloudy white precipitate of silver chloride. The test works because silver chloride is insoluble, a fact listed in the full solubility table. In this section, we will use the full solubility table to predict precipitates for many more pairs of solutions.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Solubility Table</h2></div>
@@ -150,7 +150,12 @@
     <div id="dr2-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -194,6 +199,7 @@ const DR=[
 R.Predict(A.$("#dr2-host"),{list:DR,steps:["write","sol","bal"],how:"Swap the positive ions to write the two possible products. Then use the solubility table to decide whether a reaction occurs, and balance.",writeTitle:"Swap the ions and write the two new compounds",writeHint:"Pair the first positive ion with the second negative ion, and the second positive ion with the first negative ion. Criss-cross the charges.",writeMiss:"pairing each positive ion with the other compound’s negative ion and balancing the charges"});
 R.Predict(A.$("#dr-host"),{list:DR,steps:["ions","swap","write","rt","bal"],how:"Step 1: mark the positive and negative ions. Step 2: drag the ions together into the new compounds. Step 3: criss-cross the charges and write the new formulas. Step 4: use the Reference Table and the given information to decide whether a solid, water, or a gas forms. Step 5: balance.",writeTitle:"Swap the ions and write the two new compounds",writeHint:"Pair the first positive ion with the second negative ion, and the second positive ion with the first negative ion. Criss-cross the charges.",writeMiss:"pairing each positive ion with the other compound’s negative ion and balancing the charges",
   onDone:(it,holder)=>{ if(it.none) return; const d=A.h("div",{class:"center",style:"margin-top:8px"}); holder.appendChild(d); R.RxnPlayer(d,{r:it.r,p:it.p,c:it.c},{w:520,h:200}); }});
+A.VocabCheck(A.$("#vc-host"),[{"s": "A table that lists elements in decreasing order of chemical activity is the ___.", "a": "activity series"}, {"s": "A compound that is able to dissolve in water is ___.", "a": "soluble"}, {"s": "A compound that does not dissolve in water is ___.", "a": "insoluble"}, {"s": "An insoluble solid that forms during a reaction is a ___.", "a": "precipitate"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Based on the activity series, which metal will react with CuSO<sub>4</sub>(aq)?",choices:["Ag","Au","Zn","Cu"],ans:3,explain:"Zn is above Cu, so it can replace copper."},
  {type:"mc",stem:"Which reaction will NOT occur?",choices:["Cl<sub>2</sub> + 2NaBr →","Br<sub>2</sub> + 2KI →","Mg + 2HCl →","Cu + ZnSO<sub>4</sub> →"],ans:4,explain:"Cu is less active than Zn, so it cannot replace it."},

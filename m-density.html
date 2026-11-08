@@ -80,7 +80,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Mass & volume"><div class="pn"><small>Part</small><span>1</span></div><h2>Mass and Volume</h2><p>Mass and volume are the two properties that every sample of matter possesses. In this section we will discuss how each is measured in the laboratory.</p></div>
+  <div class="part" id="p1" data-short="Mass & volume"><div class="pn"><small>Part</small><span>1</span></div><h2>Mass and Volume</h2><p>An Olympic swimming pool holds about 2,500,000 liters of water, with a mass of about 2,500,000 kg. Every sample of matter, however large or small, has both mass and volume, measured with a balance and with a graduated cylinder or ruler. In this section, we will discuss how mass and volume are measured in the laboratory.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mass</h2></div>
@@ -122,7 +122,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Density"><div class="pn"><small>Part</small><span>2</span></div><h2>Density</h2><p>Density compares the mass of a substance to its volume, describing how tightly its matter is packed. It explains why some objects float and others sink.</p></div>
+  <div class="part" id="p2" data-short="Density"><div class="pn"><small>Part</small><span>2</span></div><h2>Density</h2><p>One cubic centimeter of lead has a mass of 11.3 g, while one cubic centimeter of cork has a mass of only about 0.24 g. Lead packs far more mass into the same volume, so it is denser, and objects denser than water (1.00 g/cm³) sink while less dense objects float. In this section, we will define density and calculate it from mass and volume.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Density</h2></div>
@@ -195,7 +195,7 @@
     <div id="dc-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Identifying substances"><div class="pn"><small>Part</small><span>3</span></div><h2>Identifying Substances</h2><p>Intensive properties such as density, melting point and boiling point are unique to each substance. In this section we will use them to identify unknown samples.</p></div>
+  <div class="part" id="p3" data-short="Identifying substances"><div class="pn"><small>Part</small><span>3</span></div><h2>Identifying Substances</h2><p>Pure ethanol boils at 78 °C and has a density of 0.789 g/mL, a combination that no other common liquid shares. Intensive properties such as boiling point and density do not depend on the size of a sample, so they can be compared with known values to identify an unknown substance. In this section, we will use these properties to identify unknown samples.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Identifying Substances</h2></div>
@@ -353,9 +353,9 @@ A.$("#calc-art").innerHTML=`<div style="display:flex;gap:10px;align-items:flex-e
     if(kind==="D"){ const m=+(A.rand(10,200)+Math.random()).toFixed(1), V=+(A.rand(5,80)+Math.random()).toFixed(1), D=m/V; A.$("#dc-q").innerHTML=`A sample has a mass of ${m} g and a volume of ${V} cm³. What is its density?`;
       U.Calc(A.$("#dc-c1"),{lhs:{sym:"D",name:"density",unit:"g/cm³"},form:"frac",num:{sym:"m",name:"mass",unit:"g",val:m},den:{sym:"V",name:"volume",unit:"cm³",val:V},ans:D,atol:Math.max(.011,D*.005),onCorrect:()=>win(`D = ${m} ÷ ${V} = ${D.toFixed(2)} g/cm³`),onWrong:()=>g.lose()}); }
     else if(kind==="m"){ const D=mat[0], V=+(A.rand(4,40)+A.pick([0,.5])).toFixed(1), m=D*V; A.$("#dc-q").innerHTML=`A piece of ${mat[1]} (density ${D.toFixed(2)} g/cm³) has a volume of ${V} cm³. What is its mass?`;
-      U.Calc(A.$("#dc-c1"),{lhs:{sym:"m",name:"mass",unit:"g"},form:"line",terms:[{sym:"D",name:"density",unit:"g/cm³",val:D},"×",{sym:"V",name:"volume",unit:"cm³",val:V}],ans:m,atol:Math.max(.011,m*.003),onCorrect:()=>win(`m = D × V = ${D.toFixed(2)} × ${V} = ${m.toFixed(2)} g`),onWrong:()=>g.lose()}); }
+      U.Calc(A.$("#dc-c1"),{lhs:{sym:"D",name:"density",unit:"g/cm³",val:D},form:"frac",num:{sym:"m",name:"mass",unit:"g",unk:true},den:{sym:"V",name:"volume",unit:"cm³",val:V},ans:m,atol:Math.max(.011,m*.003),onCorrect:()=>win(`${D.toFixed(2)} g/cm³ = m ÷ ${V} cm³, so m = ${m.toFixed(2)} g`),onWrong:()=>g.lose()}); }
     else if(kind==="V"){ const D=mat[0], m=+(A.rand(10,250)+Math.random()).toFixed(1), V=m/D; A.$("#dc-q").innerHTML=`A sample of ${mat[1]} (density ${D.toFixed(2)} g/cm³) has a mass of ${m} g. What is its volume?`;
-      U.Calc(A.$("#dc-c1"),{lhs:{sym:"V",name:"volume",unit:"cm³"},form:"frac",num:{sym:"m",name:"mass",unit:"g",val:m},den:{sym:"D",name:"density",unit:"g/cm³",val:D},ans:V,atol:Math.max(.011,V*.004),onCorrect:()=>win(`V = m ÷ D = ${m} ÷ ${D.toFixed(2)} = ${V.toFixed(2)} cm³`),onWrong:()=>g.lose()}); }
+      U.Calc(A.$("#dc-c1"),{lhs:{sym:"D",name:"density",unit:"g/cm³",val:D},form:"frac",num:{sym:"m",name:"mass",unit:"g",val:m},den:{sym:"V",name:"volume",unit:"cm³",unk:true},ans:V,atol:Math.max(.011,V*.004),onCorrect:()=>win(`${D.toFixed(2)} g/cm³ = ${m} g ÷ V, so V = ${V.toFixed(2)} cm³`),onWrong:()=>g.lose()}); }
     else if(kind==="cube"){ const sd=A.pick([1.5,2.0,2.5,3.0]), V=sd*sd*sd, m=+(V*mat[0]).toFixed(1), D=m/V; A.$("#dc-q").innerHTML=`A cube is ${sd.toFixed(1)} cm on each side and has a mass of ${m} g. What is its density? <span class="muted">(First find the volume.)</span>`;
       U.Calc(A.$("#dc-c1"),{lhs:{sym:"V",name:"volume",unit:"cm³"},form:"line",terms:[{sym:"l",name:"length",unit:"cm",val:sd},"×",{sym:"w",name:"width",unit:"cm",val:sd},"×",{sym:"h",name:"height",unit:"cm",val:sd}],ans:V,atol:.02,dp:3,onWrong:()=>g.lose(),onCorrect:()=>U.Calc(A.$("#dc-c2"),{lhs:{sym:"D",name:"density",unit:"g/cm³"},form:"frac",num:{sym:"m",name:"mass",unit:"g",val:m},den:{sym:"V",name:"volume",unit:"cm³",val:V,atol:.02},ans:D,atol:Math.max(.011,D*.005),onCorrect:()=>win(`V = ${V.toFixed(3)} cm³, so D = ${m} ÷ ${V.toFixed(3)} = ${D.toFixed(2)} g/cm³`),onWrong:()=>g.lose()})}); }
     else { const vi=A.rand(10,30), o=A.rand(3,12), m=+(o*A.pick([2.70,7.13,8.96,11.3])).toFixed(1), D=m/o; A.$("#dc-q").innerHTML=`A rock with a mass of ${m} g raises the water in a graduated cylinder from ${vi}.0 mL to ${vi+o}.0 mL. What is its density? <span class="muted">(First find the volume.)</span>`;

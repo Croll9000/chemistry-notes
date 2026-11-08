@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Naming"><div class="pn"><small>Part</small><span>1</span></div><h2>Naming Binary Covalent Compounds</h2><p>Prefixes tell how many atoms.</p></div>
+  <div class="part" id="p1" data-short="Naming"><div class="pn"><small>Part</small><span>1</span></div><h2>Naming Binary Covalent Compounds</h2><p>Dinitrogen monoxide, N₂O, known as laughing gas, is used by dentists as an anesthetic, while nitrogen dioxide, NO₂, is a toxic brown gas found in smog. Both contain only nitrogen and oxygen, so their names use prefixes to show exactly how many atoms of each element are in one molecule. In this section, we will name binary covalent compounds using prefixes.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Naming Binary Covalent Compounds</h2></div>
@@ -40,7 +40,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Formulas"><div class="pn"><small>Part</small><span>2</span></div><h2>Formula Writing for Covalent Compounds</h2><p>Prefixes become subscripts.</p></div>
+  <div class="part" id="p2" data-short="Formulas"><div class="pn"><small>Part</small><span>2</span></div><h2>Formula Writing for Covalent Compounds</h2><p>Tetraphosphorus decoxide, P₄O₁₀, is used in laboratories to dry gases because it absorbs water so strongly. Its name gives its formula directly: tetra- means 4 and deca- means 10, so each molecule contains 4 phosphorus atoms and 10 oxygen atoms. In this section, we will write the formulas of covalent compounds by turning prefixes into subscripts.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Formula Writing for Covalent Compounds</h2></div>
@@ -83,7 +83,12 @@
     <div id="ws-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -103,6 +108,7 @@ B.CovName(A.$("#cn-host"));
 P.TapSort(A.$("#ws-host"),{prompt:"To name this compound, use…",how:"Metal + nonmetal: ionic naming (no prefixes). Two nonmetals: covalent naming with prefixes.",
   items:[["MgCl<sub>2</sub>","ion","Magnesium chloride: Mg is a metal, so no prefixes."],["CO","cov","Carbon monoxide: two nonmetals use prefixes."],["Na<sub>2</sub>O","ion","Sodium oxide: Na is a metal."],["SO<sub>3</sub>","cov","Sulfur trioxide: two nonmetals."],["CuCl<sub>2</sub>","ion","Copper(II) chloride: a metal with more than one charge gets a Roman numeral, not a prefix."],["N<sub>2</sub>O","cov","Dinitrogen monoxide: two nonmetals."],["PCl<sub>5</sub>","cov","Phosphorus pentachloride: two nonmetals."],["AlF<sub>3</sub>","ion","Aluminum fluoride: Al is a metal."],["CCl<sub>4</sub>","cov","Carbon tetrachloride: two nonmetals."],["Fe<sub>2</sub>O<sub>3</sub>","ion","Iron(III) oxide: Fe is a metal."],["SF<sub>6</sub>","cov","Sulfur hexafluoride: two nonmetals."],["K<sub>2</sub>S","ion","Potassium sulfide: K is a metal."]],
   choices:[["ion","Ionic naming"],["cov","Covalent prefixes"]]});
+A.VocabCheck(A.$("#vc-host"),[{"s": "Binary covalent compounds are named with ___ such as mono-, di- and tri-.", "a": "prefixes"}, {"s": "The prefix mono- is not used on the ___ element.", "a": "first"}, {"s": "The second element in a binary covalent name ends in ___.", "a": "ide"}, {"s": "Covalent compounds are made of two ___.", "a": "nonmetals"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What is the name of the compound N<sub>2</sub>O<sub>5</sub>?",choices:["nitrogen oxide","dinitrogen pentoxide","nitrogen(V) oxide","pentanitrogen dioxide"],ans:2,explain:"di- = 2 nitrogen atoms, pent(a)- = 5 oxygen atoms."},
  {type:"mc",stem:"Which formula represents carbon tetrachloride?",choices:["CCl","CCl<sub>4</sub>","C<sub>4</sub>Cl","C<sub>4</sub>Cl<sub>4</sub>"],ans:2,explain:"No prefix on carbon = 1; tetra- = 4 chlorine atoms."},

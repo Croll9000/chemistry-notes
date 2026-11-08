@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Mass"><div class="pn"><small>Part</small><span>1</span></div><h2>Conservation of Mass</h2><p>The mass of the reactants equals the mass of the products.</p></div>
+  <div class="part" id="p1" data-short="Mass"><div class="pn"><small>Part</small><span>1</span></div><h2>Conservation of Mass</h2><p>In the 1770s, Antoine Lavoisier heated tin inside sealed glass vessels and found that the total mass did not change, even though the shiny tin turned into a dull powder. Because the vessel was closed, no gas could enter or escape, so the mass of the reactants equaled the mass of the products. In this section, we will discuss the law of conservation of mass and use it to find unknown masses in reactions.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Law of Conservation of Mass</h2></div>
@@ -62,7 +62,7 @@
     <div id="mm-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Atoms"><div class="pn"><small>Part</small><span>2</span></div><h2>Conservation of Atoms</h2><p>The same atoms before and after.</p></div>
+  <div class="part" id="p2" data-short="Atoms"><div class="pn"><small>Part</small><span>2</span></div><h2>Conservation of Atoms</h2><p>When an iron nail rusts, 4 iron atoms combine with 3 oxygen molecules from the air to form 2 formula units of iron(III) oxide, and every one of those atoms is still present in the rust. Mass is conserved because atoms are only rearranged in a reaction, never created or destroyed. In this section, we will count the atoms of each element on both sides of an equation to show that the same atoms are present before and after a reaction.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Conservation of Atoms</h2></div>
@@ -78,7 +78,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Energy"><div class="pn"><small>Part</small><span>3</span></div><h2>Conservation of Energy</h2><p>Energy changes form.</p></div>
+  <div class="part" id="p3" data-short="Energy"><div class="pn"><small>Part</small><span>3</span></div><h2>Conservation of Energy</h2><p>A car engine converts only about 30% of the chemical energy in gasoline into motion; the rest leaves the engine as heat. None of the energy is destroyed: every joule released by burning the fuel can be accounted for as motion or as heat. In this section, we will discuss the law of conservation of energy and how chemical potential energy is converted into other forms.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Law of Conservation of Energy</h2></div>
@@ -100,7 +100,7 @@
     <div id="eb-host"></div>
   </section>
 
-  <div class="part" id="p4" data-short="Charge"><div class="pn"><small>Part</small><span>4</span></div><h2>Conservation of Charge</h2><p>Electrons move, but the total charge stays the same.</p></div>
+  <div class="part" id="p4" data-short="Charge"><div class="pn"><small>Part</small><span>4</span></div><h2>Conservation of Charge</h2><p>The Daniell cell, an early battery used to power telegraphs in the 1800s, ran on the reaction Zn + Cu²⁺ → Zn²⁺ + Cu. The 2 electrons lost by each zinc atom are gained by a copper ion, so the total charge is 2+ on both sides of the equation. In this section, we will discuss the law of conservation of charge.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Law of Conservation of Charge</h2></div>
@@ -123,7 +123,12 @@
     <div id="cc-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -196,6 +201,7 @@ A.$("#energy-art").innerHTML=`<div class="en-cards"><div class="en-card en-exo">
     const same=tot(c.l)===tot(c.r); if((pick==="yes")===same){ done++; g.win(); g.paint(); g.msg(same?`✔ Both sides total ${q1(tot(c.l))}: charge is conserved.`:`✔ The reactants total ${q1(tot(c.l))} but the products total ${q1(tot(c.r))}. This equation does not conserve charge, so it cannot be correct as written.`,"good"); }
     else { g.lose(); g.msg(`Compare the two totals: ${q1(tot(c.l))} and ${q1(tot(c.r))}.`,"bad"); } }
   next(); })();
+A.VocabCheck(A.$("#vc-host"),[{"s": "Mass cannot be created or destroyed. This is the law of conservation of ___.", "a": "mass"}, {"s": "Energy cannot be created or destroyed, only converted into different forms. This is the law of conservation of ___.", "a": "energy"}, {"s": "Charge cannot be created or destroyed. This is the law of conservation of ___.", "a": "charge"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Given the reaction: 2Na + Cl<sub>2</sub> → 2NaCl. If 4.60 grams of sodium react completely with 7.10 grams of chlorine, what is the mass of sodium chloride produced?",choices:["2.50 g","4.60 g","7.10 g","11.70 g"],ans:4,explain:"Mass of reactants = mass of products: 4.60 g + 7.10 g = 11.70 g."},
  {type:"mc",stem:"In a chemical reaction, which quantity is always conserved?",choices:["number of molecules","number of atoms of each element","volume of gases","number of moles of substances"],ans:2,explain:"Atoms are rearranged, not created or destroyed. The number of molecules can change."},

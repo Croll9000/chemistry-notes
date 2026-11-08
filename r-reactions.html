@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Chemical reactions"><div class="pn"><small>Part</small><span>1</span></div><h2>Chemical Reactions</h2><p>New substances form when atoms rearrange.</p></div>
+  <div class="part" id="p1" data-short="Chemical reactions"><div class="pn"><small>Part</small><span>1</span></div><h2>Chemical Reactions</h2><p>A loaf of bread turns brown in the oven once its crust passes about 140 °C, as sugars and proteins on its surface react to form hundreds of new, darker compounds. The color change is evidence that new substances have formed, because the atoms of the original substances have been rearranged. In this section, we will discuss chemical reactions and the evidence that one has taken place.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Chemical Reactions</h2></div>
@@ -34,7 +34,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Chemical equations"><div class="pn"><small>Part</small><span>2</span></div><h2>Chemical Equations</h2><p>Formulas and numbers that describe a reaction.</p></div>
+  <div class="part" id="p2" data-short="Chemical equations"><div class="pn"><small>Part</small><span>2</span></div><h2>Chemical Equations</h2><p>Green plants make sugar from carbon dioxide and water, a process summarized by the equation 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂. In one line, this equation identifies every reactant and product and shows that 6 molecules of carbon dioxide are used for each molecule of glucose formed. In this section, we will discuss how to read and write chemical equations, starting from word equations.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Chemical Equations</h2></div>
@@ -77,7 +77,7 @@
     <div id="pe-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Coefficients and subscripts"><div class="pn"><small>Part</small><span>3</span></div><h2>Coefficients and Subscripts</h2><p>Two kinds of numbers, two different meanings.</p></div>
+  <div class="part" id="p3" data-short="Coefficients and subscripts"><div class="pn"><small>Part</small><span>3</span></div><h2>Coefficients and Subscripts</h2><p>The equation 2H₂ + O₂ → 2H₂O describes the reaction in the fuel cells that powered the Apollo spacecraft and produced drinking water for the astronauts. Its subscripts identify each substance (H₂O contains 2 hydrogen atoms and 1 oxygen atom), while its coefficients show that 2 molecules of hydrogen react with every 1 molecule of oxygen. In this section, we will distinguish between these two kinds of numbers and what each one tells us.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Coefficients and Subscripts</h2></div>
@@ -114,7 +114,12 @@
     <div id="cs-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -162,6 +167,7 @@ R.EqFlip(A.$("#flip-host"));
       if(opt===c[2][0]){ b.classList.add("right"); O.dataset.done=1; done++; g.win(); g.paint(); g.msg(`✔ ${c[1]} separate molecules, each made of ${Object.entries(R.parse(c[0])).map(([e,n])=>`${n} ${e}`).join(" and ")}: the coefficient counts the particles and the subscripts count the atoms in each one.`,"good"); g.later(next,2600); }
       else { b.classList.add("wrong"); g.lose(); g.msg("Count the separate molecules first (that is the coefficient). Then count the atoms in one molecule (those are the subscripts).","bad"); } }); O.appendChild(b); }); }
   next(); })();
+A.VocabCheck(A.$("#vc-host"),[{"s": "A symbolic representation of a chemical reaction using formulas and numbers is a ___.", "a": "chemical equation"}, {"s": "The starting substances in a reaction are the ___.", "a": "reactants"}, {"s": "The ending substances in a reaction are the ___.", "a": "products"}, {"s": "Large numbers placed in front of a chemical formula are ___.", "a": "coefficients"}, {"s": "Small numbers placed to the bottom right of an element symbol are ___.", "a": "subscripts"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"In a chemical equation, the substances to the left of the arrow are the",choices:["products","reactants","coefficients","catalysts"],ans:2,explain:"Reactants are the starting substances, written before the arrow."},
  {type:"mc",stem:"In the equation N<sub>2</sub> + 3H<sub>2</sub> → 2NH<sub>3</sub>, the number 3 in front of H<sub>2</sub> represents the",choices:["number of hydrogen atoms in one molecule","number of H<sub>2</sub> molecules that react","mass of hydrogen","charge of hydrogen"],ans:2,explain:"A coefficient counts particles: 3 molecules of H₂."},

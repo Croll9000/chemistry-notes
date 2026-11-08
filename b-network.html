@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part added" id="p0" data-short="Molecular substances"><div class="pn"><small>Part</small><span>1</span></div><h2>Molecular Covalent Substances</h2><p>Separate molecules, weakly attracted to each other.</p></div>
+  <div class="part added" id="p0" data-short="Molecular substances"><div class="pn"><small>Part</small><span>1</span></div><h2>Molecular Covalent Substances</h2><p>Chocolate melts in the mouth because cocoa butter is made of separate molecules, and the attractions between them are weak enough to be overcome near body temperature, about 37 °C. The covalent bonds inside each molecule stay intact; only the attractions between molecules are overcome. In this section, we will discuss molecular covalent substances, made of separate molecules weakly attracted to one another.</p></div>
 
   <section class="note added" id="molecular">
     <div class="tile"><h2>Molecular Covalent Substances</h2></div>
@@ -37,7 +37,7 @@
     </div>
   </section>
 
-  <div class="part" id="p1" data-short="Network solids"><div class="pn"><small>Part</small><span>2</span></div><h2>Network Solids</h2><p>Every atom bonded to its neighbors.</p></div>
+  <div class="part" id="p1" data-short="Network solids"><div class="pn"><small>Part</small><span>2</span></div><h2>Network Solids</h2><p>Silicon, the element in nearly every computer chip, does not melt until 1414 °C. In a silicon crystal, every atom is covalently bonded to 4 neighboring atoms, forming one continuous network with no separate molecules, so melting it requires breaking covalent bonds. In this section, we will discuss network solids, in which covalent bonds extend throughout the entire sample.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Network Solids</h2></div>
@@ -71,7 +71,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Molecular vs network"><div class="pn"><small>Part</small><span>3</span></div><h2>Molecular vs. Network Covalent Substances</h2><p>Where are the weak attractions?</p></div>
+  <div class="part" id="p2" data-short="Molecular vs network"><div class="pn"><small>Part</small><span>3</span></div><h2>Molecular vs. Network Covalent Substances</h2><p>Iodine melts at 114 °C, while boron, another covalent solid, does not melt until 2076 °C. Melting iodine only separates whole I₂ molecules from one another, while melting boron requires breaking covalent bonds throughout its network. In this section, we will compare the attractions that must be overcome to melt molecular and network covalent substances.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Molecular vs. Network Covalent Substances</h2></div>
@@ -104,7 +104,12 @@
     <div id="mn-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -173,6 +178,7 @@ P.TapSort(A.$("#mn-host"),{prompt:"This covalent substance is…",how:"Look at t
    ["Methane, CH<sub>4</sub>","mol","Methane is made of small, separate molecules.",null,"methane"]],
   choices:[["mol","Molecular"],["net","Network solid"]],reveal:c=>`<div class="center">${B.substPD(c[4])}</div>`});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A substance made of small, individual units of covalently bonded atoms is a ___.", "a": "molecular covalent substance"}, {"s": "A large, 3-dimensional, covalently bonded system of atoms is a ___.", "a": "network solid"}, {"s": "Diamond and quartz are examples of network ___ substances.", "a": "covalent"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which substance is a network solid?",choices:["CO<sub>2</sub>(s)","H<sub>2</sub>O(s)","SiO<sub>2</sub>(s)","I<sub>2</sub>(s)"],ans:3,explain:"Quartz (SiO₂) is a 3-D network of covalently bonded Si and O atoms."},
  {type:"mc",stem:"Which properties describe diamond?",choices:["soft, low melting point","hard, high melting point","soft, good conductor","brittle, conducts when dissolved"],ans:2,explain:"Strong covalent bonds throughout the network make diamond hard with a very high melting point."},

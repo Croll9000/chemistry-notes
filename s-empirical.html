@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Empirical and molecular"><div class="pn"><small>Part</small><span>1</span></div><h2>Empirical and Molecular Formulas</h2><p>Exact numbers or the simplest ratio.</p></div>
+  <div class="part" id="p1" data-short="Empirical and molecular"><div class="pn"><small>Part</small><span>1</span></div><h2>Empirical and Molecular Formulas</h2><p>Glucose, C₆H₁₂O₆, and formaldehyde, CH₂O, contain carbon, hydrogen and oxygen atoms in the same 1 : 2 : 1 ratio, yet one is a sugar and the other is a toxic gas. Both have the same empirical formula, CH₂O, but a glucose molecule contains 6 times as many atoms of each element. In this section, we will distinguish empirical formulas from molecular formulas and convert between them.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Empirical and Molecular Formulas</h2></div>
@@ -70,7 +70,7 @@
     <div id="em-host"></div>
   </section>
 
-  <div class="part enr" id="p2" data-short="Enrichment: % to formula"><div class="pn"><small>Part</small><span>2</span></div><h2>Percent Composition to Empirical Formula</h2><p>From lab data to a formula.</p></div>
+  <div class="part enr" id="p2" data-short="Enrichment: % to formula"><div class="pn"><small>Part</small><span>2</span></div><h2>Percent Composition to Empirical Formula</h2><p>Vitamin C is 40.9% carbon, 4.6% hydrogen and 54.5% oxygen by mass. Converting these percents to moles of each element reveals the simplest whole-number ratio of its atoms, C₃H₄O₃. In this section, we will determine empirical formulas from percent composition.</p></div>
 
   <section class="note enr">
     <div class="tile"><h2>Converting Percent Composition to Empirical Formula</h2></div>
@@ -94,7 +94,12 @@
     <div id="pe-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -129,6 +134,7 @@ A.$("#mol-art2").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;jus
      ["Multiply the subscripts in the empirical formula by the answer from step 2.",`C<sub>1×6</sub>H<sub>2×6</sub>O<sub>1×6</sub> → ${big("C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>")}`]]}]); }
 A.$("#ex1").innerHTML=`<div class="exbox">Ex: A compound is found to be 25.2% hydrogen and 74.8% carbon by mass. Determine the compound’s empirical formula.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Step 1: grams in 100 g</th><th>Step 2: moles</th><th>Step 3: ÷ smallest</th><th>Subscript</th></tr><tr><td><b>C</b></td><td>74.8 g</td><td>74.8 ÷ 12.01 = 6.23 mol</td><td>6.23 ÷ 6.23 = 1.00</td><td>1</td></tr><tr><td><b>H</b></td><td>25.2 g</td><td>25.2 ÷ 1.01 = 25.0 mol</td><td>25.0 ÷ 6.23 = 4.01</td><td>4</td></tr></table></div><p class="center"><b>Step 4:</b> the empirical formula is CH<sub>4</sub>.</p>`;
 S.PctEmpGame(A.$("#pe-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "A formula that shows how many atoms of each element are in a compound is a ___.", "a": "molecular formula"}, {"s": "A formula that shows the simplest whole-number ratio of elements is an ___.", "a": "empirical formula"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which formula is an empirical formula?",choices:["N<sub>2</sub>O<sub>4</sub>","NH<sub>3</sub>","C<sub>3</sub>H<sub>6</sub>","P<sub>4</sub>O<sub>10</sub>"],ans:2,explain:"NH₃ cannot be simplified. The others can be divided by 2."},
  {type:"mc",stem:"What is the empirical formula of a compound that has a carbon-to-hydrogen ratio of 2 to 6?",choices:["CH<sub>3</sub>","C<sub>2</sub>H<sub>6</sub>","C<sub>3</sub>H","C<sub>6</sub>H<sub>2</sub>"],ans:1,explain:"2 : 6 reduces to 1 : 3: CH₃."},

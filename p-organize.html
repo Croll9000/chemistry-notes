@@ -16,12 +16,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Rows & columns"><div class="pn"><small>Part</small><span>1</span></div><h2>Rows and Columns</h2><p>The period number equals the number of energy levels. Elements in a group have the same number of valence electrons.</p></div>
+  <div class="part" id="p1" data-short="Rows & columns"><div class="pn"><small>Part</small><span>1</span></div><h2>Rows and Columns</h2><p>Carbon, found in more than 10 million known compounds, sits in period 2 and group 14 of the periodic table. Its location is not arbitrary: the period number shows that a carbon atom has 2 energy levels, and the group number shows that it has 4 valence electrons, which allow each carbon atom to form four bonds. In this section, we will discuss how to read an element’s electron arrangement from its row and column.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Periods</h2></div>
     <div class="body">
-      <p class="intro">The Periodic Table is arranged much like a calendar. Just as the days of the week repeat in each row of a calendar, the properties of elements repeat in each row of the table. This repetition is the reason it is called the periodic table.</p>
+      <p class="intro">The periodic table is arranged much like a calendar. Just as the days of the week repeat every 7 days, the properties of the elements repeat at regular intervals: lithium, sodium and potassium, each 8 elements apart, are all soft, highly reactive metals. This repetition is the reason it is known as the periodic table.</p>
       <ul>
         <li>The table is organized into rows called periods and columns called groups.</li>
         <li><span class="def">Period</span> – a horizontal row of the periodic table (numbered 1–7).
@@ -66,12 +66,12 @@
     <div id="pt-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Reactivity"><div class="pn"><small>Part</small><span>2</span></div><h2>Valence Electrons and Reactivity</h2><p>Atoms react to reach a full outer shell.</p></div>
+  <div class="part" id="p2" data-short="Reactivity"><div class="pn"><small>Part</small><span>2</span></div><h2>Valence Electrons and Reactivity</h2><p>Fluorine, with 7 valence electrons, reacts with nearly every other element, while neon, with 8, forms no compounds at all. The difference is a single electron: fluorine is one electron short of a full outer shell, while neon’s outer shell is already full. In this section, we will discuss how the number of valence electrons determines how reactive an element is.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Reactivity of Elements</h2></div>
     <div class="body">
-      <p class="intro">Sodium reacts violently with water, while gold can sit for thousands of years without tarnishing. The difference in how readily elements react is explained by their valence electrons.</p>
+      <p class="intro">Gold masks made in ancient Egypt more than 3,000 years ago are still bright and untarnished, while a freshly cut piece of potassium dulls within seconds in air. Building on the previous section, the question this section answers is how valence electrons determine whether an element reacts readily or hardly at all.</p>
       <ul>
         <li>Some elements are more reactive than others.
           <ul><li>The <span class="kr">reactivity</span> of an element is determined by its number of valence electrons.</li></ul></li>
@@ -95,7 +95,12 @@
     <div id="lg-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -127,6 +132,7 @@ P.TapSort(A.$("#lg-host"),{prompt:"To reach a full outer shell, this atom will�
     if(v===8||Z===2) return `<div class="bf one">${L(e.name+" atom")}${D(A.lewisSVG(e.sym,v,0,{scale:1.35}))}${I(A.iso({A:mass,Z,sym:e.sym,cls:"mid"}))}</div><div class="note2">The valence shell is already full, so no ion forms.</div>`;
     const ch = v<=3? v : -(8-v), dots = v<=3? 0 : 8, cs = Math.abs(ch)+(ch>0?"+":"−");
     return `<div class="bf">${L(e.name+" atom")}<span></span>${L(e.name+" ion")}${D(A.lewisSVG(e.sym,v,0,{scale:1.35}))}<span class="arr" aria-hidden="true">→</span>${D(A.lewisSVG(e.sym,dots,0,{brackets:true,charge:ch,scale:1.35}))}${I(A.iso({A:mass,Z,sym:e.sym,cls:"mid"}))}<span></span>${I(A.iso({A:mass,Z,sym:e.sym,charge:ch,cls:"mid"}))}</div><div class="note2">${v<=3?`Loses ${v} electron${v>1?"s":""}: ${v} fewer electron${v>1?"s":""} than protons, so the charge is ${cs}. The mass number does not change.`:`Gains ${8-v} electron${8-v>1?"s":""}: ${8-v} more electron${8-v>1?"s":""} than protons, so the charge is ${cs}. The mass number does not change.`}</div>`; }});
+A.VocabCheck(A.$("#vc-host"),[{"s": "A horizontal row of the periodic table is a ___.", "a": "period"}, {"s": "A vertical column of the periodic table is a ___.", "a": "group"}, {"s": "Elements in the same group have the same number of ___ electrons.", "a": "valence"}, {"s": "Eight electrons in an atom’s valence shell is an ___.", "a": "octet"}, {"s": "The elements in group 18 have full valence shells and are called the ___.", "a": "noble gases"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"All of the atoms of the elements in Period 2 have the same number of",choices:["protons","neutrons","valence electrons","occupied energy levels (shells)"],ans:4,explain:"The period number equals the number of occupied shells. Every Period 2 atom has 2 shells."},
  {type:"mc",stem:"Which statement explains why sulfur is classified as a Group 16 element?",choices:["A sulfur atom has 6 valence electrons.","A sulfur atom has 16 neutrons.","Sulfur is a yellow solid at STP.","Sulfur reacts with most metals."],ans:1,explain:"Group 16 elements have 6 valence electrons (16 − 10 = 6). Sulfur is 2-8-6."},

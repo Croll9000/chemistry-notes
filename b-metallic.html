@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Metallic bonds"><div class="pn"><small>Part</small><span>1</span></div><h2>Metallic Bonding</h2><p>Positive ions in a sea of electrons.</p></div>
+  <div class="part" id="p1" data-short="Metallic bonds"><div class="pn"><small>Part</small><span>1</span></div><h2>Metallic Bonding</h2><p>Silver conducts electricity better than any other element, but copper, which conducts about 95% as well and costs far less, is used for household wiring. Both metals conduct because their valence electrons are not held by any one atom: they form a sea of mobile electrons that flows freely around the positive metal ions. In this section, we will discuss metallic bonding and the properties of metals it explains.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Metallic Bonding</h2></div>
@@ -68,7 +68,7 @@
     <div class="labq" id="lq-mp"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Alloys"><div class="pn"><small>Part</small><span>2</span></div><h2>Alloys</h2><p>Mixing metals with other elements.</p></div>
+  <div class="part" id="p2" data-short="Alloys"><div class="pn"><small>Part</small><span>2</span></div><h2>Alloys</h2><p>Pure gold is so soft that it scratches easily, so most gold jewelry is made of 14-karat gold, an alloy that is 58.3% gold. Atoms of other metals, such as copper and silver, disrupt the layers of gold atoms and make them harder to slide past one another. In this section, we will discuss alloys and why they are often harder and stronger than the pure metals they are made from.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Alloys</h2></div>
@@ -117,7 +117,12 @@
     <div class="labq" id="lq-ab"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -152,6 +157,7 @@ A.QSet(A.$("#lq-ab"),[
  {type:"mc",stem:"In the Build an Alloy lab, why do carbon atoms go into the holes between iron atoms instead of replacing them?",choices:["Carbon atoms are much smaller than iron atoms.","Carbon atoms are much larger than iron atoms.","Carbon is a metal.","Carbon has a positive charge."],ans:1,explain:"Small atoms fit in the spaces between larger metal atoms: an interstitial alloy."},
  {type:"mc",stem:"What happened when far too many alloy atoms were added?",choices:["The alloy became softer.","The alloy lost its malleability and became brittle.","The alloy turned into a compound.","Nothing changed."],ans:2,explain:"Too many mismatched atoms lock the layers in place, so the alloy can crack instead of bending."}
 ],{id:"lq-ab",title:"Lab Questions"});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The attraction between positive metal ions and the sea of mobile electrons around them is a ___.", "a": "metallic bond"}, {"s": "Mixtures of metals and other substances are ___.", "a": "alloys"}, {"s": "Metals conduct electricity because their electrons are ___.", "a": "mobile"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which phrase describes the bonding in a sample of copper?",choices:["positive ions in a sea of mobile electrons","shared pairs of electrons between atoms","oppositely charged ions in a crystal lattice","separate molecules with weak attractions"],ans:1,explain:"Metallic bonding: positive ions attracted to delocalized electrons."},
  {type:"mc",stem:"Which property best accounts for the conductivity of metals?",choices:["high melting points","mobile valence electrons","small atomic radii","high electronegativity"],ans:2,explain:"Electrons that are not tied to one atom can move and carry a current."},

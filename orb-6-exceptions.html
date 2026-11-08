@@ -233,7 +233,7 @@ body.gsites .topbar{display:none}
 :root{--teal:#8a4fc4;--teal-deep:#6a2c9a;--teal-ink:#4b1d70;--row:#f4edfb;--row2:#e3d4f3}</style>
 </head><body><div class="wrap">
 
-<div class="band"><h1>Exceptions to the Aufbau Principle</h1><p>Optional · When the filling rules don't quite work</p></div>
+<div class="band"><h1>Exceptions to the Aufbau Principle</h1><p>Elements whose actual configurations differ from the Aufbau prediction</p></div>
 <div class="def">There are times when having a <b>half-filled</b> or <b>completely filled d subshell</b> is more stable than having a completely filled s subshell.</div>
 <p class="explain">The filling rules predict the configuration of almost every element from hydrogen to krypton. Two elements in that range break the pattern: <b>chromium</b> and <b>copper</b>. Click <b>Predicted</b> and <b>Actual</b> to compare.</p>
 
@@ -249,6 +249,23 @@ body.gsites .topbar{display:none}
   </ul>
   <p class="small">Chemists often summarize this as "half-filled and filled d subshells are extra stable." That is a simplified model; the full explanation involves how electrons repel and interact with each other. Scientists know these configurations from experimental measurements, not just from the rules.</p>
 </div>
+<h2>More Exceptions</h2>
+<p class="explain">Chromium and copper are not the only exceptions. The elements below them in groups 6 and 11 show the same patterns, and several other transition metals also have configurations that differ from the Aufbau prediction. Select an element, then click <b>Predicted</b> and <b>Actual</b> to compare.</p>
+<div class="excard" id="more"></div>
+
+<h2>Patterns in the Exceptions</h2>
+<p class="explain">Every known exception is a transition metal or an inner transition metal. Click a colored element to see its predicted and actual configurations.</p>
+<div class="card" id="ptable" style="background:#fff"></div>
+<div class="card explain">
+  <ul style="margin:0">
+    <li><b>Group 6:</b> chromium and molybdenum each have a <b>half-filled d subshell</b> and a single s electron (s¹ d⁵).<ul><li>Tungsten, below them, follows the Aufbau prediction (6s² 5d⁴).</li></ul></li>
+    <li><b>Group 11:</b> copper, silver and gold each have a <b>completely filled d subshell</b> and a single s electron (s¹ d¹⁰).</li>
+    <li>In the transition metals, the outermost s subshell and the d subshell being filled are very close in energy, so one or two electrons can occupy the d subshell instead of the s subshell.</li>
+    <li>In the lanthanides and actinides, an electron that the Aufbau principle places in an f orbital is often found in a d orbital instead (for example, gadolinium is [Xe] 6s² 4f⁷ 5d¹, with a half-filled 4f subshell).</li>
+  </ul>
+  <p class="small" style="margin-bottom:0">Configurations are ground-state electron configurations measured for neutral gaseous atoms (NIST Atomic Spectra Database).</p>
+</div>
+
 
 <h2>Check your understanding</h2>
 <p class="small">Your <b>first try</b> on each question is your score.</p>
@@ -298,8 +315,8 @@ function fillBoxes(type, count) {
 /* In your notes: "Place 1 electron with a 'spin up' in each orbital of a subshell before pairing them up."
    true = single electrons must be spin up; false = any matching spin is accepted. */
 const SPIN_UP_FIRST = true;
-const LV = { 1: '#1aa64a', 2: '#7030a0', 3: '#f0b400', 4: '#2e75b6' };
-const LVT = { 1: '#138a3c', 2: '#7030a0', 3: '#a87800', 4: '#2e75b6' };
+const LV = { 1: '#1aa64a', 2: '#7030a0', 3: '#f0b400', 4: '#2e75b6', 5: '#e07b00', 6: '#e00000', 7: '#1c88a6' };
+const LVT = { 1: '#138a3c', 2: '#7030a0', 3: '#a87800', 4: '#2e75b6', 5: '#b05d00', 6: '#c00000', 7: '#1c88a6' };
 const BLOCK = { s: '#f4b8b8', p: '#b9e3f2', d: '#cdeab0', f: '#f8c99a' };
 const ORBNAMES = { s: [''], p: ['x', 'y', 'z'], d: ['xy', 'xz', 'yz', 'x²−y²', 'z²'], f: ['', '', '', '', '', '', ''] };
 function arrow(ch) { return ch === 'u' ? '↑' : ch === 'd' ? '↓' : ''; }
@@ -673,6 +690,56 @@ function exCard(id, Z, note) {
 exCard('cr', 24, 'The highlighted boxes show where one electron moved: from 4s to 3d. Now 3d is <b>half-filled</b>: every 3d orbital has one electron, all with the same spin.');
 exCard('cu', 29, 'The highlighted boxes show where one electron moved: from 4s to 3d. Now 3d is <b>completely filled</b> with 10 electrons.');
 
+
+/* ===== More exceptions: predicted vs actual for other d-block elements ===== */
+const MORE = [
+  { sy:'Nb', Z:41, nm:'niobium', core:'[Kr]', s:'5s', d:'4d', p:[2,3], a:[1,4], k:'o', note:'One electron moves from 5s into 4d, even though 4d⁴ is neither half-filled nor completely filled. Simple rules do not explain every exception.' },
+  { sy:'Mo', Z:42, nm:'molybdenum', core:'[Kr]', s:'5s', d:'4d', p:[2,4], a:[1,5], k:'h', note:'Like chromium directly above it, molybdenum moves one electron from 5s into 4d. Its 4d subshell is <b>half-filled</b>.' },
+  { sy:'Ru', Z:44, nm:'ruthenium', core:'[Kr]', s:'5s', d:'4d', p:[2,6], a:[1,7], k:'o', note:'One electron moves from 5s into 4d, giving 4d⁷. This arrangement is neither half-filled nor completely filled.' },
+  { sy:'Rh', Z:45, nm:'rhodium', core:'[Kr]', s:'5s', d:'4d', p:[2,7], a:[1,8], k:'o', note:'One electron moves from 5s into 4d, giving 4d⁸. This arrangement is neither half-filled nor completely filled.' },
+  { sy:'Pd', Z:46, nm:'palladium', core:'[Kr]', s:'5s', d:'4d', p:[2,8], a:[0,10], k:'f', note:'<b>Both</b> 5s electrons move into 4d. The 4d subshell is <b>completely filled</b> and the 5s subshell is empty.' },
+  { sy:'Ag', Z:47, nm:'silver', core:'[Kr]', s:'5s', d:'4d', p:[2,9], a:[1,10], k:'f', note:'Like copper directly above it, silver moves one electron from 5s into 4d. Its 4d subshell is <b>completely filled</b>.' },
+  { sy:'Pt', Z:78, nm:'platinum', core:'[Xe] 4f¹⁴', s:'6s', d:'5d', p:[2,8], a:[1,9], k:'o', note:'One electron moves from 6s into 5d, giving 5d⁹. Nickel, two rows above platinum, follows the Aufbau prediction ([Ar] 4s² 3d⁸).' },
+  { sy:'Au', Z:79, nm:'gold', core:'[Xe] 4f¹⁴', s:'6s', d:'5d', p:[2,9], a:[1,10], k:'f', note:'Like copper and silver above it, gold moves one electron from 6s into 5d. Its 5d subshell is <b>completely filled</b>.' } ];
+(function(){ const el=document.getElementById('more'); let cur=MORE[1], actual=false;
+  function draw(){ const pr=cur.p, ac=cur.a, v=actual?ac:pr; const pb=[fillBoxes('s',pr[0]),fillBoxes('d',pr[1])], ab=[fillBoxes('s',ac[0]),fillBoxes('d',ac[1])];
+    const sb=fillBoxes('s',v[0]), db=fillBoxes('d',v[1]);
+    el.querySelector('.elcard').innerHTML='<span class="z">'+cur.Z+'</span><span class="sy">'+cur.sy+'</span><span class="nmx">'+cur.nm+'</span>';
+    el.querySelector('.dia').innerHTML='<span class="core">'+cur.core+'</span>'+obHTML(cur.s,sb)+obHTML(cur.d,db);
+    if(actual){ const obs=el.querySelectorAll('.ob'); [0,1].forEach(k=>obs[k].querySelectorAll('.bx').forEach((b,i)=>{ if(pb[k][i]!==ab[k][i]) b.classList.add('moved'); })); }
+    el.querySelector('.cfg').innerHTML=(actual?'Actual: ':'Aufbau prediction: ')+cur.core+' '+cur.s+toSup(v[0])+' '+cur.d+toSup(v[1]);
+    el.querySelector('.note').innerHTML=actual?'The highlighted boxes changed. '+cur.note:'This is what the filling rules predict. Now click <b>Actual</b>.';
+    el.querySelectorAll('.seg.pa button').forEach((b,k)=>b.classList.toggle('on',(k===1)===actual));
+    el.querySelectorAll('.pick button').forEach(b=>b.classList.toggle('on',b.dataset.sy===cur.sy)); }
+  el.innerHTML='<div class="seg pick" style="flex-wrap:wrap;margin-bottom:10px">'+MORE.map(m=>'<button data-sy="'+m.sy+'">'+m.sy+'</button>').join('')+'</div><div class="exhead"><span class="elcard"></span><div class="seg pa"><button>Predicted</button><button>Actual</button></div></div><div class="dia"></div><div class="cfg"></div><p class="note small"></p>';
+  el.querySelectorAll('.pick button').forEach(b=>b.addEventListener('click',()=>{ cur=MORE.find(m=>m.sy===b.dataset.sy); actual=false; draw(); }));
+  el.querySelectorAll('.seg.pa button').forEach((b,k)=>b.addEventListener('click',()=>{ actual=k===1; draw(); }));
+  window.showMore=sy=>{ const m=MORE.find(x=>x.sy===sy); if(!m) return false; cur=m; actual=true; draw(); el.scrollIntoView({behavior:'smooth',block:'center'}); return true; };
+  draw(); })();
+
+/* ===== Periodic table of the exceptions ===== */
+(function(){ const S='H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og'.split(' ');
+  const K={h:['#f2b705','Half-filled d subshell'],f:['#2e75b6','Completely filled d subshell'],o:['#e07b00','Other d-block exceptions'],n:['#1aa64a','f-block exceptions']};
+  const CAT={24:'h',42:'h',29:'f',47:'f',79:'f',46:'f',41:'o',44:'o',45:'o',78:'o',57:'n',58:'n',64:'n',89:'n',90:'n',91:'n',92:'n',93:'n',96:'n',103:'n'};
+  const TXT={24:['[Ar] 4s² 3d⁴','[Ar] 4s¹ 3d⁵'],29:['[Ar] 4s² 3d⁹','[Ar] 4s¹ 3d¹⁰'],57:['[Xe] 6s² 4f¹','[Xe] 6s² 5d¹'],58:['[Xe] 6s² 4f²','[Xe] 6s² 4f¹ 5d¹'],64:['[Xe] 6s² 4f⁸','[Xe] 6s² 4f⁷ 5d¹'],89:['[Rn] 7s² 5f¹','[Rn] 7s² 6d¹'],90:['[Rn] 7s² 5f²','[Rn] 7s² 6d²'],91:['[Rn] 7s² 5f³','[Rn] 7s² 5f² 6d¹'],92:['[Rn] 7s² 5f⁴','[Rn] 7s² 5f³ 6d¹'],93:['[Rn] 7s² 5f⁵','[Rn] 7s² 5f⁴ 6d¹'],96:['[Rn] 7s² 5f⁸','[Rn] 7s² 5f⁷ 6d¹'],103:['[Rn] 7s² 5f¹⁴ 6d¹','[Rn] 7s² 5f¹⁴ 7p¹']};
+  const NM={24:'Chromium',29:'Copper',57:'Lanthanum',58:'Cerium',64:'Gadolinium',89:'Actinium',90:'Thorium',91:'Protactinium',92:'Uranium',93:'Neptunium',96:'Curium',103:'Lawrencium'};
+  function pos(z){ if(z===1) return [1,1]; if(z===2) return [18,1]; if(z<=10) return [z<=4?z-2:z+8,2]; if(z<=18) return [z<=12?z-10:z,3];
+    if(z<=36) return [z-18,4]; if(z<=54) return [z-36,5]; if(z===55||z===56) return [z-54,6]; if(z===57) return [3,6]; if(z>=58&&z<=71) return [z-58+4,9]; if(z<=86) return [z-68,6];
+    if(z===87||z===88) return [z-86,7]; if(z===89) return [3,7]; if(z>=90&&z<=103) return [z-90+4,10]; return [z-100,7]; }
+  const c=34, x0=6, y0=6, W=18*c+12, H=9*c+26; let s='';
+  for(let z=1;z<=118;z++){ const [g,r]=pos(z), x=x0+(g-1)*c, y=r>=9? y0+7*c+14+(r-9)*c : y0+(r-1)*c, k=CAT[z];
+    s+='<g class="pt-cell" data-z="'+z+'" style="cursor:'+(k?'pointer':'default')+'"><rect x="'+x+'" y="'+y+'" width="'+(c-2)+'" height="'+(c-2)+'" rx="3" fill="'+(k?K[k][0]:'#f1f4f6')+'" stroke="'+(k?'#1b2328':'#d4dbe3')+'" stroke-width="'+(k?1.6:1)+'"/>'+
+      '<text x="'+(x+(c-2)/2)+'" y="'+(y+11)+'" text-anchor="middle" font-family="Inter,Arial" font-size="8.5" font-weight="700" fill="'+(k?'#1b2328':'#9aa7ad')+'">'+z+'</text>'+
+      '<text x="'+(x+(c-2)/2)+'" y="'+(y+26)+'" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="'+(k?'#1b2328':'#9aa7ad')+'">'+S[z-1]+'</text></g>'; }
+  const el=document.getElementById('ptable');
+  el.innerHTML='<div style="overflow-x:auto"><svg viewBox="0 0 '+W+' '+H+'" style="width:100%;min-width:560px;max-width:'+W+'px;display:block;margin:0 auto" role="img" aria-label="Periodic table with the elements whose actual electron configurations differ from the Aufbau prediction highlighted">'+s+'</svg></div>'+
+    '<div style="display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin:10px 0 6px">'+Object.values(K).map(([col,lab])=>'<span style="display:inline-flex;align-items:center;gap:6px;font-size:.95rem"><span style="width:16px;height:16px;border-radius:3px;background:'+col+';border:1px solid #1b2328"></span>'+lab+'</span>').join('')+'</div>'+
+    '<div class="cfg small" id="pt-out" style="text-align:center;min-height:1.6em">Click a colored element.</div>';
+  el.querySelectorAll('.pt-cell').forEach(g=>g.addEventListener('click',()=>{ const z=+g.dataset.z; if(!CAT[z]) return; const out=document.getElementById('pt-out');
+    if(window.showMore&&window.showMore(S[z-1])){ out.innerHTML=S[z-1]+' is shown in the comparison above.'; return; }
+    out.innerHTML='<b>'+NM[z]+' ('+S[z-1]+')</b>: predicted '+TXT[z][0]+' · actual <b>'+TXT[z][1]+'</b>'; }));
+})();
+
 function isPredicted(v, Z) {
   const p = parseNotation(v); if (p.error) return false; const have = {};
   if (p.core && NOBLE[p.core]) config(NOBLE[p.core]).forEach(([s, c]) => have[s] = c);
@@ -692,7 +759,13 @@ const quiz = makeQuiz(document.getElementById('quiz'), [
     check: v => { if (!v.trim()) return { empty: true }; if (isPredicted(v, 29)) return { ok: false, msg: 'That is the Aufbau prediction. Look at copper’s Actual diagram above.' }; return checkNotation(v, 29, 'abbr'); },
     answerText: '<b>[Ar] 4s¹ 3d¹⁰</b>', why: 'One 4s electron moves to 3d so the 3d subshell is completely filled.' },
   { q: 'In a copper atom, the 3d subshell is', choices: ['empty', 'half-filled', 'completely filled', 'filled with 9 electrons'], answer: 3,
-    hints: { 4: '9 is the Aufbau prediction. Click Actual for copper.', 2: 'Half-filled is chromium.' }, why: 'Copper’s actual configuration has 3d¹⁰.' }
+    hints: { 4: '9 is the Aufbau prediction. Click Actual for copper.', 2: 'Half-filled is chromium.' }, why: 'Copper’s actual configuration has 3d¹⁰.' },
+  { q: 'Silver (Ag) is directly below copper in group 11. Which is the <b>actual</b> configuration of silver?', choices: ['[Kr] 5s² 4d⁹', '[Kr] 5s¹ 4d¹⁰', '[Kr] 5s² 4d¹⁰', '[Kr] 5s⁰ 4d¹¹'], answer: 2,
+    hints: { 1: 'That is the Aufbau prediction. Look at copper and silver above.', 3: 'Count the electrons: silver has 47, so 11 must be outside [Kr].', 4: 'A d subshell holds a maximum of 10 electrons.' },
+    why: 'Like copper, silver moves one s electron into the d subshell so that the d subshell is completely filled: [Kr] 5s¹ 4d¹⁰.' },
+  { q: 'Which statement describes the elements whose actual configurations differ from the Aufbau prediction?', choices: ['They are all noble gases.', 'They are all transition metals or inner transition metals.', 'They are all in group 1.', 'They are all nonmetals.'], answer: 2,
+    hints: { 1: 'Look at the colored elements on the periodic table above.', 3: 'Look at the colored elements on the periodic table above.', 4: 'Copper, silver and gold are metals.' },
+    why: 'Every highlighted element is in the d block or the f block, where the s subshell and the d (or f) subshell being filled are very close in energy.' }
 ], () => refresh());
 const refresh = makeCompletion(document.getElementById('done'), 'EXCP', 'Exceptions', () => ({
   ready: quiz.allDone(), score: quiz.score(), total: quiz.total, remaining: 'Finish all ' + quiz.total + ' questions to unlock your code.' }));

@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Nuclear charge"><div class="pn"><small>Part</small><span>1</span></div><h2>Nuclear Charge</h2><p>More protons create a stronger attraction.</p></div>
+  <div class="part" id="p1" data-short="Nuclear charge"><div class="pn"><small>Part</small><span>1</span></div><h2>Nuclear Charge</h2><p>Each iron atom in a steel beam has a nucleus with 26 protons and a charge of +26, compared with +1 for a hydrogen nucleus. This positive charge is what holds the atom’s 26 electrons in place, and the larger the charge, the more strongly the electrons are attracted. In this section, we will discuss nuclear charge, the first of three factors that explain every periodic trend.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Nuclear Charge</h2></div>
@@ -37,7 +37,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Shells (distance)"><div class="pn"><small>Part</small><span>2</span></div><h2>Periods and Shells</h2><p>A greater distance creates a weaker attraction.</p></div>
+  <div class="part" id="p2" data-short="Shells (distance)"><div class="pn"><small>Part</small><span>2</span></div><h2>Periods and Shells</h2><p>A cesium atom has 6 energy levels, and its outermost electron is so far from the nucleus that light alone can knock it free, a property used in photoelectric cells that convert light into an electric current. Even though cesium’s nucleus holds 55 protons, the distance between the nucleus and the outermost electron makes their attraction weak. In this section, we will discuss how the number of energy levels affects the attraction between the nucleus and the outermost electrons.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Periods and Shells</h2></div>
@@ -53,7 +53,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Shielding"><div class="pn"><small>Part</small><span>3</span></div><h2>Electron Shielding</h2><p>Inner electrons reduce the attraction.</p></div>
+  <div class="part" id="p3" data-short="Shielding"><div class="pn"><small>Part</small><span>3</span></div><h2>Electron Shielding</h2><p>The single valence electron of a potassium atom is separated from the 19 protons in its nucleus by 18 inner electrons. These inner electrons repel the valence electron, so it feels a much weaker pull than the 19 protons alone would produce. In this section, we will discuss this effect, known as shielding, and combine it with nuclear charge and distance to find the net pull on an atom’s valence electrons.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Electron Shielding</h2></div>
@@ -115,7 +115,12 @@
     </div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -153,6 +158,7 @@ A.$("#shield-art").innerHTML=(()=>{ const cx=170, cy=135, r1=46, r2=112; let s=`
 P.PullSim(A.$("#pull-host"));
 P.AtomBuilder(A.$("#pull-host2"),{mode:"group",pull:true,shield:true,meters:["charge","shells","inner","net","radius"]});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The positive charge of the nucleus, equal to its number of protons, is the ___.", "a": "nuclear charge"}, {"s": "Inner electrons repel valence electrons and reduce their attraction to the nucleus. This is the ___.", "a": "shielding effect"}, {"s": "Each new period adds another ___ to the atom.", "a": "energy level"}, {"s": "A greater distance between the nucleus and the valence electrons means a ___ attraction.", "a": "weaker"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"The nuclear charge of an atom of magnesium is",choices:["+2","+12","+24","−12"],ans:2,explain:"Nuclear charge = number of protons = atomic number. Magnesium has 12 protons: +12."},
  {type:"mc",stem:"Which statement explains why the electrons in an atom are attracted to the nucleus?",choices:["The nucleus contains positively charged protons.","The nucleus contains neutrons with no charge.","Electrons and protons have the same mass.","Electrons repel one another."],ans:1,explain:"Opposite charges attract: the positive protons in the nucleus attract the negative electrons."},

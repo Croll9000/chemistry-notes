@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Dimensional analysis"><div class="pn"><small>Part</small><span>1</span></div><h2>Dimensional Analysis</h2><p>Every conversion in this unit uses the same method.</p></div>
+  <div class="part" id="p1" data-short="Dimensional analysis"><div class="pn"><small>Part</small><span>1</span></div><h2>Dimensional Analysis</h2><p>In 1983, an Air Canada jet ran out of fuel in mid-flight because its fuel load had been calculated in pounds instead of kilograms, giving the plane less than half the fuel its crew believed. A single unit left unconverted can turn a correct number into a dangerous one. In this section, we will review dimensional analysis, the method of multiplying by conversion factors that is used for every calculation in this unit.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Equivalences and Conversion Factors</h2></div>
@@ -60,12 +60,12 @@
     <div id="da-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="The mole"><div class="pn"><small>Part</small><span>2</span></div><h2>The Mole</h2><p>A counting unit for particles.</p></div>
+  <div class="part" id="p2" data-short="The mole"><div class="pn"><small>Part</small><span>2</span></div><h2>The Mole</h2><p>Twelve grams of carbon-12 contain 6.02 × 10²³ atoms, a number so large that counting them at a rate of one billion per second would take about 19 million years. Atoms are so small that chemists count them in groups of this size, a unit known as the mole. In this section, we will define the mole and Avogadro’s number.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Moles</h2></div>
     <div class="body">
-      <p class="intro">A single drop of water contains about 1,700,000,000,000,000,000,000 molecules. Numbers this large are impossible to work with one particle at a time, so chemists count particles in groups, the same way a baker counts eggs by the dozen. The chemist’s group is the mole, and it is the central unit of every calculation in this unit.</p>
+      <p class="intro">A single drop of water contains about 1,700,000,000,000,000,000,000 molecules. Numbers this large are impossible to work with one particle at a time, so chemists count particles in groups of 6.02 × 10²³, a unit known as the mole, which is the central unit of every calculation in this unit.</p>
       <ul>
         <li>Similarly to how a “dozen” represents 12 of something, 1 <span class="def">mole</span> represents 6.02 × 10<sup>23</sup> of something.
           <ul><li>1 mole = 6.02 × 10<sup>23</sup> particles (atoms, molecules or formula units).</li>
@@ -82,7 +82,7 @@
     <div id="ml-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Mole–particle conversions"><div class="pn"><small>Part</small><span>3</span></div><h2>Mole–Particle Conversions</h2><p>Multiply or divide by 6.02 × 10<sup>23</sup>.</p></div>
+  <div class="part" id="p3" data-short="Mole–particle conversions"><div class="pn"><small>Part</small><span>3</span></div><h2>Mole–Particle Conversions</h2><p>A 200-mg ibuprofen tablet contains about 5.8 × 10²⁰ ibuprofen molecules, or about 0.00097 mole. Because every mole holds 6.02 × 10²³ particles, any number of moles can be converted to a number of particles, and back again. In this section, we will convert between moles and particles by multiplying or dividing by Avogadro’s number.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mole–Particle Conversions</h2></div>
@@ -104,7 +104,7 @@
     <div id="pc-host"></div>
   </section>
 
-  <div class="part" id="p4" data-short="Moles and equations"><div class="pn"><small>Part</small><span>4</span></div><h2>Moles and Equations</h2><p>Coefficients count particles and moles.</p></div>
+  <div class="part" id="p4" data-short="Moles and equations"><div class="pn"><small>Part</small><span>4</span></div><h2>Moles and Equations</h2><p>The reaction 2NO + O₂ → 2NO₂ turns the nitrogen monoxide in car exhaust into the brown haze of smog. It can be read as 2 molecules of NO reacting with 1 molecule of O₂, or as 2 moles of NO reacting with 1 mole of O₂, because every mole contains the same number of particles. In this section, we will read the coefficients of a balanced equation as numbers of moles.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Moles and Equations</h2></div>
@@ -121,7 +121,12 @@
     </div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -153,6 +158,7 @@ S.workedTabs(A.$("#ex1"),[{label:"Moles → molecules (HCl)",...W1},{label:"Atom
 L.DABuilder(A.$("#da-host"));
 S.Converter(A.$("#pc-host"),{make:()=>S.mkParticles(),how:"Read the problem. Drag the two sides of the equivalence into the conversion factor: the unit you want to cancel goes on the bottom. Then calculate."});
 A.$("#lv-art").innerHTML=S.levelsArt();
+A.VocabCheck(A.$("#vc-host"),[{"s": "Two equal quantities with different units form an ___.", "a": "equivalence"}, {"s": "A fraction of two equal quantities with different units is a ___.", "a": "conversion factor"}, {"s": "A method of unit conversion that multiplies by conversion factors is ___.", "a": "dimensional analysis"}, {"s": "The number of particles in one mole, 6.02 × 10²³, is ___.", "a": "avogadro’s number"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"How many molecules are in 2.00 moles of H<sub>2</sub>O?",choices:["2.00 molecules","3.01 × 10<sup>23</sup> molecules","6.02 × 10<sup>23</sup> molecules","1.20 × 10<sup>24</sup> molecules"],ans:4,explain:"2.00 mol × (6.02 × 10²³ molecules / 1 mol) = 1.20 × 10²⁴ molecules."},
  {type:"mc",stem:"Which conversion factor is used to change a number of atoms into moles?",choices:[`<span class="mth">${S.cf(S.AVH,"atoms","",1,"mol","")}</span>`,`<span class="mth">${S.cf(1,"mol","",S.AVH,"atoms","")}</span>`,`<span class="mth">${S.cf(1,"atoms","",S.AVH,"mol","")}</span>`,`<span class="mth">${S.cf(S.AVH,"mol","",1,"atoms","")}</span>`],ans:2,explain:"Atoms (the given unit) go on the bottom so they cancel, and moles go on top: 1 mol = 6.02 × 10²³ atoms."},

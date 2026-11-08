@@ -16,12 +16,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Ions and size"><div class="pn"><small>Part</small><span>1</span></div><h2>How Ions Change Size</h2><p>Losing electrons decreases the radius. Gaining electrons increases the radius.</p></div>
+  <div class="part" id="p1" data-short="Ions and size"><div class="pn"><small>Part</small><span>1</span></div><h2>How Ions Change Size</h2><p>Lithium-ion batteries work because the small Li<sup>+</sup> ion, with a radius of 76 pm, can slip between the layers of carbon atoms in the battery’s graphite electrode. A lithium ion is much smaller than a lithium atom (130 pm) because it has lost its only valence electron, and with it, its entire outer energy level. In this section, we will discuss why atoms that lose electrons become smaller and atoms that gain electrons become larger.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ionic Radius</h2></div>
     <div class="body">
-      <p class="intro">When an atom gains or loses electrons, its size changes along with its charge. The sizes of ions affect how closely they pack together in compounds such as table salt.</p>
+      <p class="intro">A sodium atom has a radius of 160 pm, but the sodium ion in table salt has a radius of only 102 pm, more than a third smaller. This change comes from the loss of just one electron, and in this section we will discuss why losing or gaining electrons changes the size of an atom.</p>
       <ul>
         <li>Recall that ions are atoms that have gained or lost electrons to acquire a net charge.</li>
         <li class="added"><span class="def">Ionic Radius</span> – the radius of an atom’s ion after it has gained or lost electrons.
@@ -60,7 +60,12 @@
     </div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -78,6 +83,7 @@ A.$("#ion-art").innerHTML=(()=>{ const fig=(Z,q)=>{ const e=A.EL[Z], f=P.ionStep
   return `<div class="col" style="gap:16px">${fig(11,1)}${fig(17,-1)}<div class="muted" style="text-align:center;font-size:14px">Atoms and ions are drawn to scale. For the positive ion, the dashed circle shows the size of the original atom.</div></div>`; })();
 P.IonGame(A.$("#ig-host"));
 A.$("#ion-tbl").innerHTML=`<tr><th>Element</th><th>Type</th><th>Atomic radius (pm)</th><th>Ion</th><th>Ionic radius (pm)</th><th>Ion is…</th></tr>`+["Li","Na","K","Mg","Ca","Al","N","O","S","F","Cl","Br","I"].map(s=>{ const e=A.bySym[s.toLowerCase()], [q,r]=A.IONR[s]; return `<tr><td>${e.name} (${s})</td><td>${e.cat}</td><td>${e.radius}</td><td>${P.ionName(s,q)}</td><td>${r}</td><td style="color:${r<e.radius?"#c40000":"#005ea3"};font-weight:600">${r<e.radius?"smaller":"larger"}</td></tr>`; }).join("");
+A.VocabCheck(A.$("#vc-host"),[{"s": "The radius of an atom’s ion after it has gained or lost electrons is its ___.", "a": "ionic radius"}, {"s": "When a metal atom loses electrons, its ion is ___ than the atom.", "a": "smaller"}, {"s": "When a nonmetal atom gains electrons, its ion is ___ than the atom.", "a": "larger"}, {"s": "Atoms that have gained or lost electrons to acquire a net charge are ___.", "a": "ions"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which ion has the largest radius?",choices:["Br⁻","Cl⁻","F⁻","I⁻"],ans:4,explain:"All four have the same charge. Iodine is lowest in group 17, so I⁻ has the most shells and the largest radius."},
  {type:"mc",stem:"Which element has an ion with a radius that is larger than its atomic radius?",choices:["K","Cr","Zn","Cl"],ans:4,explain:"Chlorine is a nonmetal. It gains an electron, which increases electron repulsion, so Cl⁻ is larger than the Cl atom."},

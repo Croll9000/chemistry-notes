@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Properties"><div class="pn"><small>Part</small><span>1</span></div><h2>Properties of Ionic Compounds</h2><p>Strong attractions between ions lead to high melting and boiling points.</p></div>
+  <div class="part" id="p1" data-short="Properties"><div class="pn"><small>Part</small><span>1</span></div><h2>Properties of Ionic Compounds</h2><p>Calcium oxide, also known as lime, melts at 2613 °C; in the 1800s, blocks of it were heated until they glowed to produce the bright “limelight” used in theaters. This high melting point is typical of ionic compounds, because each Ca²⁺ ion is held in place by strong attractions to the O²⁻ ions surrounding it. In this section, we will discuss the properties that ionic compounds share and the attractions between ions that cause them.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Properties of Ionic Compounds</h2></div>
@@ -36,7 +36,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Crystal lattice"><div class="pn"><small>Part</small><span>2</span></div><h2>Crystal Lattice</h2><p>Ionic compounds are not made of separate molecules.</p></div>
+  <div class="part" id="p2" data-short="Crystal lattice"><div class="pn"><small>Part</small><span>2</span></div><h2>Crystal Lattice</h2><p>A grain of table salt half a millimeter across contains more than 5 × 10¹⁸ sodium and chloride ions. Every one of them is surrounded by ions of the opposite charge, in a pattern that repeats in all three directions. In this section, we will discuss this arrangement, known as a crystal lattice, and why ionic compounds are described by formula units rather than molecules.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Crystal Lattice</h2></div>
@@ -57,7 +57,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Brittleness"><div class="pn"><small>Part</small><span>3</span></div><h2>Brittleness</h2><p>Shift the layers and like charges meet.</p></div>
+  <div class="part" id="p3" data-short="Brittleness"><div class="pn"><small>Part</small><span>3</span></div><h2>Brittleness</h2><p>A ceramic plate dropped onto a tile floor usually shatters, while an aluminum pan dropped from the same height only dents. Ceramics are made largely of ionic compounds, and when a force shifts one layer of ions past another, ions with the same charge line up side by side and repel, splitting the solid apart. In this section, we will discuss why ionic compounds are brittle.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ionic Compound Brittleness</h2></div>
@@ -82,7 +82,7 @@
     <div class="labq" id="lq-push"></div>
   </section>
 
-  <div class="part" id="p4" data-short="Electrolytes"><div class="pn"><small>Part</small><span>4</span></div><h2>Electrolytes</h2><p>Moving ions can carry an electric current.</p></div>
+  <div class="part" id="p4" data-short="Electrolytes"><div class="pn"><small>Part</small><span>4</span></div><h2>Electrolytes</h2><p>Solid sodium chloride does not conduct electricity, but at 801 °C it melts into a liquid that conducts well enough to be used in factories that produce sodium metal. Melting, like dissolving, frees the ions to move, and moving charged particles carry an electric current. In this section, we will discuss electrolytes and why ionic compounds conduct electricity only when they are melted or dissolved.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Electrolytes</h2></div>
@@ -118,7 +118,12 @@
     <div id="wc-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -182,6 +187,7 @@ P.TapSort(A.$("#wc-host"),{prompt:"This sample will…",picToggle:"Show the samp
    ["NaOH(aq) (a base)","yes","Bases are electrolytes: dissolved in water, their ions are free to move.","Bases are one of the 3 types of electrolytes.",{ph:"aq",cat:["Na⁺",11,1],an:["OH⁻",14,-1]}]],
   choices:[["yes","Conduct electricity"],["no","Not conduct electricity"]],reveal:c=>`<div class="center col" style="gap:4px">${B.samplePD(Object.assign({label:"Particle diagram"},c[4]))}<span class="muted" style="font-size:13px">${c[4].cat?(c[4].ph==="s"?"Ions locked in a lattice":"Ions free to move"+(c[4].ph==="aq"?" among water molecules":"")):"Neutral molecules only"}</span></div>`});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A large, 3-dimensional, repeating arrangement of ions is a ___.", "a": "crystal lattice"}, {"s": "The simplest ratio of ions in an ionic compound is a ___.", "a": "formula unit"}, {"s": "Substances that conduct electricity through the movement of charged ions are ___.", "a": "electrolytes"}, {"s": "Ionic solids break apart when struck because they are ___.", "a": "brittle"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which property is generally characteristic of ionic compounds?",choices:["low melting point","high melting point","good conductor of electricity as a solid","malleable as a solid"],ans:2,explain:"The strong attractions between many oppositely charged ions require a lot of energy to overcome."},
  {type:"mc",stem:"Which substance can conduct an electric current?",choices:["KCl(s)","KCl(aq)","C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>(aq)","CH<sub>3</sub>OH(l)"],ans:2,explain:"Dissolved KCl has ions that are free to move. Solid KCl has its ions locked in place, and the other two are molecular."},

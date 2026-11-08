@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Polar molecules"><div class="pn"><small>Part</small><span>1</span></div><h2>Polar Molecules</h2><p>Polar bonds plus an asymmetrical shape.</p></div>
+  <div class="part" id="p1" data-short="Polar molecules"><div class="pn"><small>Part</small><span>1</span></div><h2>Polar Molecules</h2><p>Carbon dioxide (CO₂) and water (H₂O) both contain polar bonds, yet only water is a polar molecule. The two bonds in CO₂ point in opposite directions, 180° apart, so their pulls cancel, while the bent shape of a water molecule leaves it with a partially negative end and a partially positive end. In this section, we will use both bond polarity and molecular symmetry to decide whether a molecule is polar.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Polar Molecules</h2></div>
@@ -91,7 +91,12 @@
     <div id="pp-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -122,6 +127,7 @@ A.QSet(A.$("#lq-fs"),[
  {type:"mc",stem:"When the field was on, which end of each water molecule pointed toward the positive plate?",choices:["the hydrogen (δ+) end","the oxygen (δ−) end","neither; they spun randomly","both ends equally"],ans:2,explain:"Opposite charges attract: oxygen’s partial negative charge faces the positive plate."}
 ],{id:"lq-fs",title:"Lab Questions"});
 B.PolarityPredictor(A.$("#pp-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "Molecules with an uneven distribution of charge are ___.", "a": "polar molecules"}, {"s": "Molecules with a symmetrical distribution of charge are ___.", "a": "nonpolar molecules"}, {"s": "A molecule with polar bonds can still be nonpolar if its shape is ___.", "a": "symmetrical"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which molecule is polar?",choices:["CH<sub>4</sub>","CO<sub>2</sub>","NH<sub>3</sub>","CCl<sub>4</sub>"],ans:3,explain:"NH₃ has polar N–H bonds and an asymmetrical shape (lone pair on one side)."},
  {type:"mc",stem:"Which statement explains why CO<sub>2</sub> is a nonpolar molecule?",choices:["It has nonpolar bonds.","Its polar bonds are arranged symmetrically, so it has no partially positive end and partially negative end.","Carbon and oxygen have the same electronegativity.","It contains ionic bonds."],ans:2,explain:"The two C=O bonds are polar, but they pull in opposite directions and cancel."},

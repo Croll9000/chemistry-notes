@@ -17,7 +17,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Avogadro’s law"><div class="pn"><small>Part</small><span>1</span></div><h2>Avogadro’s Law</h2><p>Equal volumes, equal numbers of particles.</p></div>
+  <div class="part" id="p1" data-short="Avogadro’s law"><div class="pn"><small>Part</small><span>1</span></div><h2>Avogadro’s Law</h2><p>A balloon filled with 1 mole of helium and a balloon filled with 1 mole of carbon dioxide are the same size at the same temperature and pressure, even though the carbon dioxide is 11 times heavier. The volume of a gas depends on the number of particles, not on their identity, because the particles are tiny compared with the empty space between them. In this section, we will discuss Avogadro’s law.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Avogadro’s Law</h2></div>
@@ -31,7 +31,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Molar volume"><div class="pn"><small>Part</small><span>2</span></div><h2>Molar Volume</h2><p>1 mole of gas at STP = 22.4 L.</p></div>
+  <div class="part" id="p2" data-short="Molar volume"><div class="pn"><small>Part</small><span>2</span></div><h2>Molar Volume</h2><p>At STP, 1 mole of any gas occupies 22.4 L, about the volume of eleven 2-liter soda bottles. This volume is the same for every gas because equal volumes of gases at the same temperature and pressure contain equal numbers of particles. In this section, we will use the molar volume, 22.4 L/mol at STP, as a conversion factor.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Molar Volume</h2></div>
@@ -48,7 +48,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Mole–volume conversions"><div class="pn"><small>Part</small><span>3</span></div><h2>Mole–Volume Conversions</h2><p>Multiply or divide by 22.4 L.</p></div>
+  <div class="part" id="p3" data-short="Mole–volume conversions"><div class="pn"><small>Part</small><span>3</span></div><h2>Mole–Volume Conversions</h2><p>A party balloon about 30 cm across holds roughly 14 L of helium, or about 0.63 mole at STP. Dividing the volume of a gas by the molar volume, 22.4 L/mol, converts it to moles. In this section, we will convert between the moles and the volume of a gas.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mole–Volume Conversions</h2></div>
@@ -71,7 +71,12 @@
     <div id="mv-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -96,6 +101,7 @@ const W2=S.wk("Ex: How many moles of hydrogen gas are in a 12.2-liter container 
  ["<b>Step 3:</b> Divide and write the answer with units.",`12.2 ÷ 22.4 = 0.545 ${S.u("mol","H2")}`]]);
 S.workedTabs(A.$("#ex1"),[{label:"Moles → liters (neon)",...W1},{label:"Liters → moles (hydrogen)",...W2}]);
 S.Converter(A.$("#mv-host"),{make:()=>S.mkVolume()});
+A.VocabCheck(A.$("#vc-host"),[{"s": "Equal volumes of gas at the same pressure and temperature contain the same number of molecules. This is ___.", "a": "avogadro’s law"}, {"s": "One mole of any gas at STP occupies ___ liters.", "a": "22.4"}, {"s": "STP stands for standard temperature and ___.", "a": "pressure"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"At STP, which sample contains the same number of molecules as 22.4 L of O<sub>2</sub>(g)?",choices:["11.2 L of N<sub>2</sub>(g)","22.4 L of CO<sub>2</sub>(g)","44.8 L of H<sub>2</sub>(g)","32.0 L of He(g)"],ans:2,explain:"Avogadro’s law: equal volumes at the same temperature and pressure contain equal numbers of particles."},
  {type:"text",stem:"What volume does 2.50 moles of N<sub>2</sub> gas occupy at STP?",unit:"L",width:120,check:v=>A.lenient(v,56.0,{sf:3}),explain:"2.50 mol × 22.4 L/mol = 56.0 L."},
