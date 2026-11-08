@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Hess’s Law</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermochemistry · 10 · Enrichment</span><h1>Hess’s Law</h1><p>Enthalpy depends only on where a reaction starts and where it ends. Adding reactions together adds their ΔH values, which lets chemists find enthalpies they cannot measure directly.</p>
+    <div class="pe-chips"><span>HS-PS1-4</span><span>HS-PS3-1</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Hess’s law"><div class="pn"><small>Part</small><span>1</span></div><h2>Hess’s Law</h2><p>The enthalpy of a reaction depends only on where the reaction starts and where it ends. This allows chemists to calculate enthalpies that are difficult or impossible to measure directly.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Hess’s Law</h2></div>
+    <div class="body">
+      <p class="intro">Two hikers can reach the same mountain summit by different trails: one climbs a steep, direct path and the other follows a long, winding road. However different their routes, both gain exactly the same height. Enthalpy behaves the same way. Some reactions, such as forming ethanol directly from carbon, hydrogen and oxygen, cannot be carried out cleanly in a calorimeter, but their enthalpy can still be found by adding up reactions that can be measured.</p>
+      <ul>
+        <li>Enthalpy is a <span class="kr">state function</span>, meaning that the only things that determine its value are its starting and ending states.
+          <ul><li>For a chemical reaction, the steps by which reactants turn into products have no bearing on the heat released or absorbed by the process.</li>
+          <li>The only things that matter are the starting and ending enthalpies of the particles.</li></ul></li>
+        <li><span class="def">Hess’s Law</span> – a chemical reaction can be expressed as the sum of other reactions, in which case the enthalpy of the overall reaction is the sum of the enthalpies of the component reactions.</li>
+        <li>To use Hess’s law:
+          <ul><li>Arrange the given reactions so that, when added together, they produce the target reaction.</li>
+          <li>Reverse a reaction if needed (switch the sign of ΔH), and multiply it if needed (multiply ΔH by the same number).</li>
+          <li>Substances that appear on both sides cancel. Add the ΔH values of the adjusted reactions.</li></ul></li>
+      </ul>
+      <div class="t7-fig" id="hess-art"></div>
+      <div id="ex-hess" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="hgame">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Change the Equation, Change ΔH</h3></div>
+    <div id="dh-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, T=A.U7, S=A.U6;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figHess()}</div>`;
+A.$("#hess-art").innerHTML=T.figHess();
+S.workedTabs(A.$("#ex-hess"),[{label:"Hess’s law: ethanol",...S.wk("Ex: Use the reactions below to find ΔH for 2C(s) + 3H₂(g) + ½O₂(g) → C₂H₅OH(l).<br>C(s) + O₂(g) → CO₂(g) ΔH = −393.5 kJ<br>H₂(g) + ½O₂(g) → H₂O(l) ΔH = −285.8 kJ<br>C₂H₅OH(l) + 3O₂(g) → 2CO₂(g) + 3H₂O(l) ΔH = −1366.8 kJ",[["<b>Step 1:</b> The target needs 2 C on the left, so multiply the first reaction by 2.","2C(s) + 2O₂(g) → 2CO₂(g)   ΔH = 2(−393.5) = −787.0 kJ"],["<b>Step 2:</b> The target needs 3 H₂ on the left, so multiply the second reaction by 3.","3H₂(g) + 1½O₂(g) → 3H₂O(l)   ΔH = 3(−285.8) = −857.4 kJ"],["<b>Step 3:</b> The target has C₂H₅OH on the right, so reverse the third reaction and switch its sign.","2CO₂(g) + 3H₂O(l) → C₂H₅OH(l) + 3O₂(g)   ΔH = +1366.8 kJ"],["<b>Step 4:</b> Add the reactions. CO₂, H₂O and 3 O₂ cancel, leaving the target. Add the ΔH values.","ΔH = −787.0 + (−857.4) + 1366.8 = −277.6 kJ"]])}]);
+T.DeltaHGame(A.$("#dh-host"));
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Enthalpy is a state function. This means that the ΔH of a reaction depends only on",choices:["the number of steps in the reaction","the starting and ending states","how fast the reaction occurs","the temperature of the calorimeter"],ans:2,explain:"Only the starting and ending enthalpies matter, not the path between them."},
+ {type:"mc",stem:"A reaction has ΔH = −120 kJ. When the reaction is reversed and multiplied by 2, its ΔH becomes",choices:["−240 kJ","−60 kJ","+240 kJ","+60 kJ"],ans:3,explain:"Reversing switches the sign (+120 kJ); multiplying by 2 doubles it (+240 kJ)."},
+ {type:"text",stem:"Given A → B ΔH = +50 kJ and B → C ΔH = −80 kJ, what is ΔH for A → C?",unit:"kJ",width:110,check:v=>A.lenient(v,-30,{dp:0}),explain:"Add the two steps: +50 + (−80) = −30 kJ."},
+ {type:"mc",stem:"When reactions are added using Hess’s law, a substance that appears on both the reactant side and the product side",choices:["is doubled","cancels out","must be reversed","changes the sign of ΔH"],ans:2,explain:"Equal amounts on both sides cancel, just like terms in algebra."}]);
+
+})();</script>
+<script>AS.U3.addSources("t-hess");AS.completion(document.querySelector(".wrap"),"t-hess");AS.chrome("t-hess");</script>
+</body>
+</html>

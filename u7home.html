@@ -69,6 +69,7 @@ const blurbs={
  "t-calc":["Specific heat capacity, heat of fusion and heat of vaporization, and the three heat equations.",["Same heat, different substances","Heat equation workout"]],
  "t-calorimetry":["Measuring the heat of a reaction and the heat of fusion of ice with a calorimeter.",["Calorimetry lab"]],
  "t-enthalpy":["Bond energies, breaking and forming bonds, enthalpy (ΔH), and reversing or multiplying equations.",["Bond energy arrows","Changing ΔH"]],
+ "t-hess":["Enrichment: Hess’s law, adding reactions and their ΔH values to find an unknown enthalpy.",["Change the equation, change ΔH"]],
  "t-practice":["Games from every subtopic plus Regents-style questions.",["Heat equations","Regents practice"]]};
 A.$("#toc").innerHTML=A.UNIT7.map((p,i)=>{ const b=blurbs[p.slug]||["",[]]; const last=p.slug==="t-practice"; return `<a class="tcard${last?" arcade":p.enr?" enr":""}" href="${p.slug}.html"><span class="num">${last?"★":i+1}</span><span class="tc"><h3>${p.title}${p.enr?' <span style="color:var(--purple);font-size:13px;font-weight:800">ENRICHMENT</span>':""}</h3><p>${b[0]}</p><span class="tools">${b[1].map(t=>`<span>${t}</span>`).join("")}</span></span></a>`; }).join("");
 

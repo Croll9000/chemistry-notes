@@ -17,12 +17,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Reading a phase diagram"><div class="pn"><small>Part</small><span>1</span></div><h2>Phase Diagrams</h2><p>Temperature on the x-axis, pressure on the y-axis.</p></div>
+  <div class="part" id="p1" data-short="Reading a phase diagram"><div class="pn"><small>Part</small><span>1</span></div><h2>Phase Diagrams</h2><p>Changing the temperature or pressure of a substance's surroundings can change its phase. A phase diagram represents the conditions under which a substance exists in each phase.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Phase Diagrams</h2></div>
     <div class="body">
-      <p class="intro">Changing the temperature or the pressure around a substance can change its phase. A phase diagram puts both on one graph, so you can read the phase of a substance under any conditions.</p>
+      <p class="intro">Mountaineers on the summit of Mount Everest cannot make a proper cup of tea. At that altitude the air pressure is about one-third of the pressure at sea level, so water boils at only about 70 °C. Changing either the temperature or the pressure around a substance can change its phase. A phase diagram puts both on one graph, like a map, so you can read the phase of a substance under any set of conditions.</p>
       <ul>
         <li>A phase diagram shows the conditions at which a substance exists as a solid, a liquid or a gas.
           <ul><li>x-axis: temperature. y-axis: pressure.</li>
@@ -31,25 +31,31 @@
         <li><span class="kb">When the temperature and pressure fall on a line, the substance is in phase equilibrium</span>: the two phases on either side of the line exist together.</li>
         <li>When a change in temperature or pressure <span class="kp">crosses a line</span>, a phase change occurs.</li>
         <li><span class="def">Triple Point</span> – the temperature and pressure at which a substance exists in all three phases at the same time.</li>
-        <li><span class="def">Critical Point</span> – the temperature and pressure above which the liquid and gas phases become indistinguishable.</li>
+        <li><span class="def">Critical Point</span> – the temperature and pressure above which the liquid and gas phases become indistinguishable.
+          <ul><li><span class="def">Supercritical Fluid</span> – a substance above its critical temperature and critical pressure. It is dense like a liquid but fills its container like a gas.</li>
+          </ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Supercritical carbon dioxide (above 31 °C and 73 atm) is used to remove caffeine from coffee beans.</div></div></div></li>
         <li>The normal melting point and normal boiling point are read where the solid–liquid line and the liquid–gas line cross the pressure of 1 atm.</li>
       </ul>
       <div class="t7-fig" id="pd-art"></div>
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Water"><div class="pn"><small>Part</small><span>2</span></div><h2>Phase Changes of Water and Pressure</h2><p>Why the solid–liquid line of water leans left.</p></div>
+  <div class="part" id="p2" data-short="Water"><div class="pn"><small>Part</small><span>2</span></div><h2>Phase Changes of Water and Pressure</h2><p>Water is an exception to the pattern followed by most substances. Because ice is less dense than liquid water, increasing the pressure on ice favors the liquid phase.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Phase Changes of Water and Pressure</h2></div>
     <div class="body">
-      <p class="intro">Lakes freeze from the top down, and ice floats in a glass. Both happen because ice is less dense than liquid water, and that shows up on water’s phase diagram.</p>
+      <p class="intro">Lakes freeze from the top down, and ice floats in a glass. Both happen because ice is less dense than liquid water, which is unusual: for almost every other substance, the solid sinks in its own liquid. This unusual property shows up as a line that leans the “wrong” way on water’s phase diagram.</p>
       <ul>
         <li>For most substances, the solid–liquid line leans to the <b>right</b>: raising the pressure raises the melting point, so high pressure favors the solid.</li>
-        <li><span class="kp">Water is an exception.</span> Ice is less dense than liquid water, so increasing the pressure favors the liquid, where the molecules are closer together. Water’s solid–liquid line leans to the <b>left</b>: <span class="kb">higher pressure lowers the melting point of ice</span>.</li>
+        <li><span class="kr">Water is an exception.</span> Ice is less dense than liquid water, so increasing the pressure favors the liquid, where the molecules are closer together. Water’s solid–liquid line leans to the <b>left</b>: <span class="kb">higher pressure lowers the melting point of ice</span>.</li>
         <li>Water’s triple point is 0.01 °C at 0.006 atm. Its critical point is 374 °C at 218 atm.</li>
         <li>At 1 atm, water melts at 0 °C and boils at 100 °C.</li>
+        <li>Carbon dioxide is different: its triple point is at 5.1 atm, above normal air pressure.
+          <ul><li>At 1 atm, solid CO<sub>2</sub> (dry ice) cannot melt.</li><li>It sublimes directly into a gas at −78 °C.</li></ul></li>
       </ul>
+      <div class="t7-fig" id="water-art"></div>
+      <div class="rw"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Pressure_cooker_-_Hawkins%2C_Contura_Model_-_3_litres_-_1.jpg/960px-Pressure_cooker_-_Hawkins%2C_Contura_Model_-_3_litres_-_1.jpg" alt="A pressure cooker with its lid locked" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption><b>Pressure cooker</b>The sealed lid raises the pressure inside, so water boils at about 120 °C and food cooks faster.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Pressure_cooker_-_Hawkins%2C_Contura_Model_-_3_litres_-_1.jpg" target="_blank" rel="noopener">Cantons-de-l'Est</a>, Wikimedia Commons (CC BY-SA 4.0)</span></figcaption></figure></div>
     </div>
   </section>
 
@@ -80,14 +86,17 @@ function pd(o={}){ const W=600,H=400, x0=70,y0=340,w=500,h=300, X=t=>x0+t*w, Y=p
   s+=`<path d="M${X(0)} ${Y(.02)}Q${X(.2)} ${Y(.08)} ${X(tp[0])} ${Y(tp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="M${X(tp[0])} ${Y(tp[1])}Q${X(.58)} ${Y(.38)} ${X(cp[0])} ${Y(cp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="${sl}" stroke="${INK}" stroke-width="3"/>`;
   s+=`<circle cx="${X(tp[0])}" cy="${Y(tp[1])}" r="7" fill="#F2B705" stroke="${INK}" stroke-width="2"/><circle cx="${X(cp[0])}" cy="${Y(cp[1])}" r="7" fill="#6a2c9a" stroke="${INK}" stroke-width="2"/>`;
   s+=T.t(X(.14),Y(.6),"Solid",{fs:20,c:T.PH.s})+T.t(X(.6),Y(.75),"Liquid",{fs:20,c:T.PH.l})+T.t(X(.7),Y(.2),"Gas",{fs:20,c:T.PH.g});
-  if(!o.letters){ s+=T.t(X(tp[0])+14,Y(tp[1])+22,"Triple point",{fs:13,a:"start"})+T.t(X(cp[0])+10,Y(cp[1])-12,"Critical point",{fs:13,a:"start"});
+  if(!o.letters){ s+=T.t(X(tp[0])+14,Y(tp[1])+22,"Triple point",{fs:13,a:"start"})+T.t(X(cp[0])-12,Y(cp[1])+4,"Critical point",{fs:13,a:"end"});
     s+=`<line x1="${X(0)}" y1="${Y(.5)}" x2="${X(1)}" y2="${Y(.5)}" stroke="#9aa7ad" stroke-dasharray="5 5"/>`+T.t(X(1)-2,Y(.5)-6,"1 atm",{fs:12,a:"end",c:"#5f6b72"});
-    s+=T.t(X(.04),Y(.12),"Sublimation ↗",{fs:12,a:"start",c:"#5f6b72"}); }
+    s+=T.t(X(.04),Y(.12),"Sublimation ↗",{fs:12,a:"start",c:"#5f6b72"});
+    s+=`<rect x="${X(cp[0])}" y="${Y(1)}" width="${X(1)-X(cp[0])}" height="${Y(cp[1])-Y(1)}" fill="#8f63c9" fill-opacity=".14"/><path d="M${X(cp[0])} ${Y(1)}V${Y(cp[1])}H${X(1)}" fill="none" stroke="#6a2c9a" stroke-width="1.5" stroke-dasharray="5 4"/>`+T.t((X(cp[0])+X(1))/2,Y(.93),"Supercritical",{fs:12.5,c:"#6a2c9a"})+T.t((X(cp[0])+X(1))/2,Y(.88),"fluid",{fs:12.5,c:"#6a2c9a"}); }
   else o.letters.forEach(([l,x,y])=>{ s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="13" fill="#fff" stroke="${INK}" stroke-width="2"/>`+T.t(X(x),Y(y)+5,l,{fs:14}); });
   s+=T.t(x0+w/2,y0+34,"Temperature →",{fs:15})+`<text transform="translate(26 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="15" font-weight="700">Pressure →</text>`;
+  if(o.water&&!o.letters) s+=T.t(X(.5),Y(1)-6,"Water (not to scale)",{fs:14,c:"#5f6b72"});
   return T.svg(W,H+10,s,o.water?"Phase diagram of water":"A phase diagram with solid, liquid and gas regions, the triple point and the critical point"); }
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${pd()}</div>`;
-A.$("#pd-art").innerHTML=pd();
+A.$("#pd-art").innerHTML=T.figPD();
+A.$("#water-art").innerHTML=T.figPD({water:true});
 T.PhaseDiagram(A.$("#pd-host"));
 /* where is each letter? */
 const L=[["A",.12,.4,"s"],["B",.6,.6,"l"],["C",.75,.15,"g"],["D",.32,.24,"t"],["E",.82,.78,"c"],["F",.38,.6,"sl"],["G",.55,.4,"lg"]];

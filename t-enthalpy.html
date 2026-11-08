@@ -17,39 +17,51 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Bond energy"><div class="pn"><small>Part</small><span>1</span></div><h2>Bond Energies</h2><p>The energy stored in a bond.</p></div>
+  <div class="part" id="p1" data-short="Bond energy"><div class="pn"><small>Part</small><span>1</span></div><h2>Bond Energies</h2><p>Chemical bonds are attractions between atoms, and overcoming these attractions requires energy. The energy needed to break a specific type of bond is known as its bond energy.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Bond Energies</h2></div>
     <div class="body">
-      <p class="intro">Natural gas burning on a stove releases enough energy to cook dinner. That energy comes from the difference between the bonds that break in the methane and oxygen and the bonds that form in carbon dioxide and water.</p>
+      <p class="intro">The main engines of the Space Shuttle were powered by one of the simplest reactions in chemistry: hydrogen combining with oxygen to form water. That reaction releases an enormous amount of energy, but the energy does not come from the hydrogen or the oxygen alone. It comes from the difference between the energy needed to break the bonds in the reactants and the energy released when the bonds in the products form.</p>
       <ul>
-        <li>Chemical bonds are strong attractions between atoms. To break a bond and overcome that attraction, <span class="kb">energy must be added</span>, which leaves the atoms less stable.</li>
-        <li>The reverse is also true: when a bond forms, <span class="kr">energy is released</span> as the atoms become more stable.</li>
-        <li>Not every bond takes the same amount of energy to break. Some bonds are stronger than others because of the elements involved, their sizes, lone pairs and other factors. A double or triple bond between the same two atoms is stronger than a single bond.</li>
-        <li><span class="kp">The energy needed to break a bond is equal to the energy released when that same bond forms.</span>
-          <ul><li><span class="def">Bond Energy</span> – the energy required to break 1 mole of a specific type of bond in the gas phase.</li></ul></li>
+        <li>Chemical bonds are strong attractions between atoms. To break a bond and overcome that attraction, <span class="kr">energy must be added</span>, which leaves the atoms less stable.</li>
+        <li>The reverse is also true: when a bond forms, <span class="kb">energy is released</span> as the atoms become more stable.</li>
+        <li>Not every bond takes the same amount of energy to break.
+          <ul><li>Some bonds are stronger than others because of the elements involved, their sizes, lone pairs and other factors.</li><li>A double or triple bond between the same two atoms is stronger than a single bond.</li></ul></li>
+        <li>Bonds store energy as <b>potential energy</b>, just like the particles in a phase change.
+          <ul><li>Two atoms that are far apart have the most potential energy.</li>
+          <li>As they move closer, each nucleus attracts the other atom’s electrons, and their potential energy decreases.</li>
+          <li>At the bond length, attraction and repulsion are balanced and the potential energy is at its lowest. Pushed any closer, the two nuclei repel and the potential energy rises again.</li></ul></li>
+        <li><span class="kg">The energy needed to break a bond is equal to the energy released when that same bond forms.</span>
+          <ul><li><span class="def">Bond Energy</span> – the energy required to break 1 mole of a specific type of bond in the gas phase.</li>
+          <li>The stronger the bond, the larger its bond energy and the more stable the molecule.</li></ul></li>
       </ul>
+      <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Water, H<sub>2</sub>O, and hydrogen peroxide, H<sub>2</sub>O<sub>2</sub>, are both made of hydrogen and oxygen atoms and both look like clear, colorless liquids.</div><div class="xl">Hydrogen peroxide contains a weak O–O bond (146 kJ/mol), while water contains only strong O–H bonds (467 kJ/mol).</div><div class="xl">This is why hydrogen peroxide slowly breaks down into water and oxygen in its brown bottle, while water is stable.</div></div></div>
       <div class="t7-fig" id="bond-art"></div>
       <table class="nt t7-tbl" style="margin:10px auto"><tr><th>Bond</th><th>Average bond energy (kJ/mol)</th><th>Bond</th><th>Average bond energy (kJ/mol)</th></tr>
         <tr><td>H–H</td><td>432</td><td>C–C</td><td>347</td></tr><tr><td>C–H</td><td>413</td><td>C=C</td><td>614</td></tr><tr><td>O–H</td><td>467</td><td>C≡C</td><td>839</td></tr>
-        <tr><td>N–H</td><td>391</td><td>O=O</td><td>495</td></tr><tr><td>H–Cl</td><td>427</td><td>N≡N</td><td>941</td></tr><tr><td>Cl–Cl</td><td>239</td><td>C=O (in CO<sub>2</sub>)</td><td>799</td></tr></table>
+        <tr><td>N–H</td><td>391</td><td>O–O</td><td>146</td></tr><tr><td>C–O</td><td>358</td><td>O=O</td><td>495</td></tr><tr><td>H–Cl</td><td>427</td><td>N≡N</td><td>941</td></tr><tr><td>Cl–Cl</td><td>239</td><td>C=O (in CO<sub>2</sub>)</td><td>799</td></tr></table>
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Breaking and forming"><div class="pn"><small>Part</small><span>2</span></div><h2>Breaking and Forming Bonds</h2><p>Absorbed in, released out.</p></div>
+  <section class="lab" id="bondpe">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Pull Two Atoms Apart</h3></div>
+    <div id="bpe-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Breaking and forming"><div class="pn"><small>Part</small><span>2</span></div><h2>Breaking and Forming Bonds</h2><p>In a chemical reaction, energy must be added to break the bonds of the reactants, and energy is released when the bonds of the products form. The difference between the two determines whether the reaction is endothermic or exothermic.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Breaking and Forming Bonds</h2></div>
     <div class="body">
-      <p class="intro">Every reaction is a trade: energy in to break the old bonds, energy out when the new bonds form. Whichever is bigger decides whether the reaction heats up or cools down its surroundings.</p>
+      <p class="intro">Every reaction is a trade: energy in to break the old bonds, energy out when the new bonds form. It is a little like a business that spends money to buy supplies and earns money selling its products. If it earns more than it spends, there is energy left over and the reaction warms its surroundings. If it spends more than it earns, it has to take energy from its surroundings, and they cool down.</p>
       <ul>
         <li>In a chemical reaction, energy must be added to break the bonds in the reactants. When new bonds form to create the products, energy is released.
-          <ul><li>If <span class="kb">more energy is needed to break the old bonds</span> than is released forming the new bonds, there is a net absorption of energy and the reaction is <span class="kb">endothermic</span>.</li>
-          <li>If <span class="kr">more energy is released forming the new bonds</span> than is needed to break the old bonds, there is a net release of energy and the reaction is <span class="kr">exothermic</span>.</li></ul></li>
-        <li>Example: in N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g), energy is needed to break the N≡N and H–H bonds. When the new N–H bonds form, more energy is released than was absorbed, so the reaction is exothermic.</li>
-        <li>Estimate: ΔH ≈ (energy absorbed breaking bonds) − (energy released forming bonds). Average bond energies only give an estimate; measured heats of reaction are more exact.</li>
-      </ul>
+          <ul><li>If <span class="kr">more energy is needed to break the old bonds</span> than is released forming the new bonds, there is a net absorption of energy and the reaction is <span class="kr">endothermic</span>.</li>
+          <li>If <span class="kb">more energy is released forming the new bonds</span> than is needed to break the old bonds, there is a net release of energy and the reaction is <span class="kb">exothermic</span>.</li></ul></li>
+        
+        
+      </ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">In N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g), energy is needed to break the N≡N and H–H bonds. When the new N–H bonds form, more energy is released than was absorbed, so the reaction is exothermic.</div></div></div><ul><li>The heat of reaction can be estimated from these bond energies: ΔH = Σ(bonds broken) − Σ(bonds formed). See <b>Calculating ΔH from Bond Energies</b> below.</li></ul>
       <div class="t7-fig" id="nh3-art"></div>
     </div>
   </section>
@@ -59,25 +71,47 @@
     <div id="ba-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Enthalpy"><div class="pn"><small>Part</small><span>3</span></div><h2>Enthalpy (Heat) of Reaction</h2><p>ΔH = H<sub>products</sub> − H<sub>reactants</sub></p></div>
+  <div class="part" id="p3" data-short="Enthalpy"><div class="pn"><small>Part</small><span>3</span></div><h2>Enthalpy (Heat) of Reaction</h2><p>Every chemical reaction is accompanied by a change in energy. The enthalpy of reaction describes the amount of energy absorbed or released, and its sign indicates the direction of the energy flow.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Enthalpy</h2></div>
     <div class="body">
-      <p class="intro">Hand warmers and cold packs are both chemical reactions. One releases energy and one absorbs it, and a single number with a sign tells which is which.</p>
+      <p class="intro">Squeeze a cold pack from a first-aid kit and it turns icy within seconds; snap a hand warmer and it heats up instead. Both are chemical changes. One releases energy to its surroundings and the other absorbs energy from them. Chemists describe both with a single number, the enthalpy change, whose sign tells you which way the energy flows.</p>
       <ul>
         <li>Every chemical reaction is accompanied by a change in energy due to the breaking and forming of bonds. We call the energy absorbed or released during a chemical reaction the enthalpy, or heat of reaction.
           <ul><li><span class="def">Enthalpy (Heat) of Reaction (ΔH)</span> – the difference in energy between the products and the reactants in a chemical reaction at constant pressure. It is the energy absorbed or released during the reaction.</li>
-          <li><span class="mth">ΔH = H<sub>products</sub> − H<sub>reactants</sub></span></li></ul></li>
-        <li>If ΔH is <span class="kb">positive (+)</span>, the reaction is <span class="kb">endothermic</span> and heat is a <span class="kb">reactant</span>.
+          <li><span class="def">Endothermic Reaction</span> – reaction which absorbs energy from its surroundings.</li>
+          <li><span class="def">Exothermic Reaction</span> – reaction which releases energy to its surroundings.</li></ul></li>
+        <li>The enthalpy change is found by comparing the energy of the products with the energy of the reactants (see the box below).</li>
+        <li>If ΔH is <span class="kr">positive (+)</span>, the reaction is <span class="kr">endothermic</span> and heat is a <span class="kr">reactant</span>.
           <ul><li>N<sub>2</sub>(g) + 2O<sub>2</sub>(g) + 66.4 kJ → 2NO<sub>2</sub>(g), or N<sub>2</sub>(g) + 2O<sub>2</sub>(g) → 2NO<sub>2</sub>(g) &nbsp;ΔH = +66.4 kJ</li></ul></li>
-        <li>If ΔH is <span class="kr">negative (−)</span>, the reaction is <span class="kr">exothermic</span> and heat is a <span class="kr">product</span>.
+        <li>If ΔH is <span class="kb">negative (−)</span>, the reaction is <span class="kb">exothermic</span> and heat is a <span class="kb">product</span>.
           <ul><li>2H<sub>2</sub>(g) + O<sub>2</sub>(g) → 2H<sub>2</sub>O(ℓ) + 571.6 kJ, or 2H<sub>2</sub>(g) + O<sub>2</sub>(g) → 2H<sub>2</sub>O(ℓ) &nbsp;ΔH = −571.6 kJ</li>
           <li>The negative sign only appears in ΔH. We do not write a negative sign on the heat term in the equation itself.</li></ul></li>
         <li>The ΔH value applies to the equation exactly as written, with those coefficients and phases.</li>
       </ul>
+      <div class="center"><div class="fbox"><span>ΔH</span><span>=</span><span>H<sub>products</sub> − H<sub>reactants</sub></span></div><div class="mathbox" style="font-size:16px"><span>ΔH – enthalpy (heat) of reaction (kJ)</span><span>H<sub>products</sub> – energy of the products</span><span>H<sub>reactants</sub> – energy of the reactants</span></div></div>
       <div class="t7-fig" id="exo-art"></div>
       <div class="t7-fig" id="endo-art"></div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Calculating ΔH from Bond Energies</h2></div>
+    <div class="body">
+      <p class="intro">Chemists cannot always measure a heat of reaction in a calorimeter. The reaction may be too slow, too dangerous or impossible to run cleanly. Instead, they can estimate ΔH on paper by adding up the energy needed to break every bond in the reactants and subtracting the energy released by forming every bond in the products.</p>
+      <ul>
+        <li>The enthalpy (heat) of reaction is equal to the sum of the bond energies of the bonds broken minus the sum of the bond energies of the bonds formed.
+          <ul><li>Breaking bonds in the reactants <span class="kr">absorbs energy</span>, so these bond energies are added.</li>
+          <li>Forming bonds in the products <span class="kb">releases energy</span>, so these bond energies are subtracted.</li></ul></li>
+        <li>Bond energies are given per mole of bonds, so multiply each bond energy by the number of moles of that bond in the balanced equation.
+          <ul><li>Ex: 2HCl contains 2 moles of H–Cl bonds. CH<sub>4</sub> contains 4 moles of C–H bonds.</li></ul></li>
+        <li>If more energy is absorbed breaking bonds than is released forming bonds, ΔH is <span class="kg">positive</span> and the reaction is endothermic. If more energy is released, ΔH is <span class="kg">negative</span> and the reaction is exothermic.</li>
+        <li>Average bond energies give an <b>estimate</b>. Measured heats of reaction (like those in the table below) are more exact.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>ΔH</span><span>=</span><span>Σ(bond energies of bonds broken)</span><span>−</span><span>Σ(bond energies of bonds formed)</span></div><div class="mathbox" style="font-size:16px"><span>ΔH – enthalpy (heat) of reaction (kJ)</span><span>Σ – “the sum of”</span><span>bonds broken – all bonds in the reactants</span><span>bonds formed – all bonds in the products</span></div></div>
+      <div class="t7-fig" id="bsum-art"></div>
+      <div id="ex-bond" style="margin-top:12px"></div>
     </div>
   </section>
 
@@ -99,21 +133,24 @@
         <tr><td>NH<sub>4</sub>NO<sub>3</sub>(s) → NH<sub>4</sub><sup>+</sup>(aq) + NO<sub>3</sub><sup>−</sup>(aq) (dissolving)</td><td>+25.69</td></tr>
         <tr><td>KNO<sub>3</sub>(s) → K<sup>+</sup>(aq) + NO<sub>3</sub><sup>−</sup>(aq) (dissolving)</td><td>+34.89</td></tr>
         <tr><td>H<sup>+</sup>(aq) + OH<sup>−</sup>(aq) → H<sub>2</sub>O(ℓ)</td><td>−55.8</td></tr></table>
+      <div class="t7-fig" id="packs-art"></div>
+      <div class="rw"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Instantcare_Instant_Cold_Pack%2C_Oude_Pekela_%282019%29_03.jpg/960px-Instantcare_Instant_Cold_Pack%2C_Oude_Pekela_%282019%29_03.jpg" alt="An instant cold pack from a first-aid kit" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption><b>Instant cold pack</b>Squeezing the pack breaks an inner pouch so the salt dissolves in water, an endothermic process.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Instantcare_Instant_Cold_Pack%2C_Oude_Pekela_%282019%29_03.jpg" target="_blank" rel="noopener">Donald Trung Quoc Don</a>, Wikimedia Commons (CC BY-SA 4.0)</span></figcaption></figure></div>
       <ul><li>A cold pack uses an endothermic dissolving process (like NH<sub>4</sub>NO<sub>3</sub>); a heat pack uses an exothermic one.</li></ul>
     </div>
   </section>
 
-  <div class="part" id="p4" data-short="Changing ΔH"><div class="pn"><small>Part</small><span>4</span></div><h2>Manipulating Reactions and Their Enthalpies</h2><p>Reverse it: flip the sign. Multiply it: multiply ΔH.</p></div>
+  <div class="part" id="p4" data-short="Changing ΔH"><div class="pn"><small>Part</small><span>4</span></div><h2>Manipulating Reactions and Their Enthalpies</h2><p>The enthalpy of a reaction applies to the reaction exactly as it is written. Reversing the reaction or changing its coefficients changes its enthalpy in predictable ways.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Manipulating Reactions and Their Enthalpies</h2></div>
     <div class="body">
-      <p class="intro">Burning one mole of methane releases 890.4 kJ, so burning two moles releases twice as much. And if a reaction releases energy going forward, running it backward must take that same energy back in.</p>
+      <p class="intro">Burning one mole of methane releases 890.4 kJ, so burning two moles releases twice as much. And if a reaction releases energy going forward, running it backward must take that same energy back in, or energy would be created from nothing, breaking the law of conservation of energy.</p>
       <ul>
         <li>The enthalpy of a reaction applies to the reaction exactly as it is written. Changing the coefficients or reversing the reaction changes its enthalpy.
           <ul><li><span class="kr">Multiplying or dividing</span> – if all of the coefficients are multiplied or divided by a number, <span class="kr">ΔH is multiplied or divided by the same number</span>.</li>
           <li><span class="kb">Reversing the reaction</span> – if a reaction is reversed, <span class="kb">the sign of ΔH is switched</span>, but its size stays the same. An endothermic reaction becomes exothermic, and an exothermic reaction becomes endothermic.</li></ul></li>
       </ul>
+      <div class="t7-fig" id="manip-art"></div>
       <div id="ex1" style="margin-top:12px"></div>
     </div>
   </section>
@@ -133,6 +170,19 @@
 <script>(function(){
 
 const A=AS, T=A.U7, S=A.U6, INK="#1b2328";
+A.$("#manip-art").innerHTML=T.figManip();
+T.BondPE(A.$("#bpe-host"));
+A.$("#bsum-art").innerHTML=T.figBondSum();
+S.workedTabs(A.$("#ex-bond"),[
+ {label:"H₂ + Cl₂ → 2HCl",...S.wk("Ex: Use bond energies to estimate ΔH for H₂(g) + Cl₂(g) → 2HCl(g). (H–H 432, Cl–Cl 239, H–Cl 427 kJ/mol)",[
+  ["<b>Step 1:</b> Add up the bonds broken in the reactants: 1 H–H and 1 Cl–Cl.","432 + 239 = 671 kJ"],
+  ["<b>Step 2:</b> Add up the bonds formed in the products: 2 H–Cl.","2 × 427 = 854 kJ"],
+  ["<b>Step 3:</b> Subtract: bonds broken − bonds formed.","ΔH = 671 − 854 = −183 kJ (exothermic)"]])},
+ {label:"Burning methane",...S.wk("Ex: Use bond energies to estimate ΔH for CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(g). (C–H 413, O=O 495, C=O 799, O–H 467 kJ/mol)",[
+  ["<b>Step 1:</b> Bonds broken: 4 C–H in CH₄ and 2 O=O.","4(413) + 2(495) = 1652 + 990 = 2642 kJ"],
+  ["<b>Step 2:</b> Bonds formed: 2 C=O in CO₂ and 4 O–H in 2H₂O.","2(799) + 4(467) = 1598 + 1868 = 3466 kJ"],
+  ["<b>Step 3:</b> Subtract: bonds broken − bonds formed.","ΔH = 2642 − 3466 = −824 kJ (exothermic)"]])}]);
+A.$("#packs-art").innerHTML=T.figPacks();
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figEnthalpy(true)}</div>`;
 A.$("#bond-art").innerHTML=T.figBond();
 A.$("#exo-art").innerHTML=T.figEnthalpy(true); A.$("#endo-art").innerHTML=T.figEnthalpy(false);
