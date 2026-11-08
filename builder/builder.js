@@ -12,6 +12,7 @@ const sel=new Set();               /* "slug|secId" */
 const MAN=new Set(), PRE=new Set(); /* token keys that are blanks */
 const O={blank:"pre",lc:"page",ans:"key",intro:true,enr:true};
 const IMGCACHE={};
+const EXMAX=2;
 
 /* ---------------- access ---------------- */
 async function sha(t){ const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t.trim().toLowerCase())); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
@@ -101,8 +102,9 @@ function model(){ const B=blanks(), M=[], lcs=[]; let listId=0;
   if(O.lc==="end"&&lcs.length){ M.push({k:"page",text:"Learning Check",unit:""}); lcs.forEach(L=>M.push(L)); }
   return M; }
 function imgs(pg,id){ const s=pg.snaps[id]; if(!s||s.failed) return [];
-  if(s.files) return s.files.map((f,i)=>({k:"img",file:f,w:s.sizes[i][0],h:s.sizes[i][1],label:s.labels&&s.labels[i]}));
-  return [{k:"img",file:s.file,w:s.size[0],h:s.size[1]}]; }
+  /* a website picture with several examples (tabs) keeps only the first two in a packet or slides */
+  if(s.files) return s.files.slice(0,EXMAX).map((f,i)=>({k:"img",grp:id,file:f,w:s.sizes[i][0],h:s.sizes[i][1],label:s.labels&&s.labels[i],steps:s.stepsV&&s.stepsV[i]}));
+  return [{k:"img",file:s.file,w:s.size[0],h:s.size[1],steps:s.steps}]; }
 
 /* ---------------- preview ---------------- */
 function render(){ const pv=$("#pv"); $("#pvwrap").classList.toggle("manual",O.blank==="man");
@@ -133,7 +135,7 @@ function clusterHTML(c,pg){ return `<p class="clh">${R2H(c.head)}</p><p class="c
 /* ---------------- pictures ---------------- */
 /* pictures are stored one bundle per website page (builder/pics/<page>.json: file name → base64 PNG) */
 const BUNDLES={};
-const slugOf=f=>f.replace(/-s\d+(-\d+)?\.png$/,"");
+const slugOf=f=>f.replace(/-s\d+(-\d+)?(-st\d+)?\.png$/,"");
 function bundle(slug){ return BUNDLES[slug]||(BUNDLES[slug]=fetch("builder/pics/"+slug+".json").then(r=>r.json())); }
 async function imgB64(file){ const b=await bundle(slugOf(file)); return "data:image/png;base64,"+b[file]; }
 async function imgData(file){ if(IMGCACHE[file]) return IMGCACHE[file]; const b=await bundle(slugOf(file)); const bin=atob(b[file]); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); IMGCACHE[file]=u.buffer; return u.buffer; }
@@ -152,12 +154,15 @@ async function makeDocx(key){ const D=window.docx; const {Document,Packer,Paragr
   const P=(children,o={})=>{ const sp=Object.assign({after:80,line:360,lineRule:"auto"},o.spacing||{}); const k=KEEP&&o.keepNext!==false? {keepNext:true,keepLines:true} : {}; return new Paragraph(Object.assign({children},k,o,{spacing:sp})); };
   const endKeep=()=>{ if(KEEP){ KEEP=false; children.push(P([],{spacing:{after:0,line:240}})); } };
   const estH=(items)=>items.reduce((h,m)=>{ const len=r=>(r||[]).reduce((a,x)=>a+String(x.x).length,0);
-    if(m.k==="p"||m.k==="li") return h+Math.ceil(len(m.runs)/92)*0.26+0.06; if(m.k==="box") return h+Math.ceil(len(m.runs)/88)*0.26+0.3;
-    if(m.k==="table") return h+m.rows.length*0.32; if(m.k==="img"){ const w=m.w*0.62, hh=m.h*0.62, k=Math.min(1,640/w,420/hh); return h+hh*k/96+0.3; } return h; },0.5);
-  const children=[]; const PAGEW=640;
+    if(m.k==="p"||m.k==="li") return h+Math.ceil(len(m.runs)/100)*0.26+0.06; if(m.k==="box") return h+Math.ceil(len(m.runs)/96)*0.26+0.3;
+    if(m.k==="table") return h+m.rows.length*0.32; if(m.k==="img"){ const w=m.w*0.62, hh=m.h*0.62, k=Math.min(1,680/w,420/hh); return h+hh*k/96+0.3; } return h; },0.5);
+  const children=[]; const PAGEW=680;
   const addImg=async(m,maxW=PAGEW,maxH=420)=>{ const data=await imgData(m.file); let w=m.w*0.62, h=m.h*0.62; const k=Math.min(1,maxW/w,maxH/h); w*=k; h*=k;
     if(m.label) children.push(P([new TextRun({text:"Example: "+m.label,italics:true,font:FONT,size:18,color:C.body})],{alignment:AlignmentType.CENTER,spacing:{before:120,after:40}}));
     children.push(P([new ImageRun({type:"png",data,transformation:{width:Math.round(w),height:Math.round(h)}})],{alignment:AlignmentType.CENTER,spacing:{before:60,after:120,line:240}})); };
+  /* two example pictures side by side, centered, in a borderless table */
+  const pairImg=async(a,b,sc)=>{ const nb={style:BorderStyle.NONE,size:0,color:"FFFFFF"}, cell=async x=>{ const data=await imgData(x.file), k=sc(x); const kids=[]; if(x.label) kids.push(P([new TextRun({text:"Example: "+x.label,italics:true,font:FONT,size:18,color:C.body})],{alignment:AlignmentType.CENTER,spacing:{after:40,line:240}})); kids.push(P([new ImageRun({type:"png",data,transformation:{width:Math.round(x.w*0.62*k),height:Math.round(x.h*0.62*k)}})],{alignment:AlignmentType.CENTER,spacing:{after:0,line:240}})); return new TableCell({borders:{top:nb,bottom:nb,left:nb,right:nb},verticalAlign:"center",width:{size:50,type:WidthType.PERCENTAGE},children:kids}); };
+    children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},alignment:AlignmentType.CENTER,borders:{top:nb,bottom:nb,left:nb,right:nb,insideHorizontal:nb,insideVertical:nb},rows:[new TableRow({children:[await cell(a),await cell(b)]})]})); children.push(P([],{spacing:{after:80,line:240}})); };
   const tableOf=(rows,size=20)=>{ const n=Math.max(...rows.map(r=>r.reduce((a,c)=>a+(c.cs||1),0)));
     return new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:rows.map(r=>new TableRow({children:r.map(c=>new TableCell({columnSpan:c.cs,rowSpan:c.rs,shading:c.th?{type:ShadingType.CLEAR,fill:C.row2,color:"auto"}:undefined,margins:{top:40,bottom:40,left:80,right:80},children:[P(runsOf(c.runs,size),{alignment:AlignmentType.CENTER,spacing:{after:0}})]}))}))}); };
   const boxOf=(runs,fill)=>new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[new TableRow({children:[new TableCell({shading:{type:ShadingType.CLEAR,fill,color:"auto"},margins:{top:80,bottom:80,left:140,right:140},borders:{top:{style:BorderStyle.SINGLE,size:8,color:C.boxLine},bottom:{style:BorderStyle.SINGLE,size:8,color:C.boxLine},left:{style:BorderStyle.SINGLE,size:8,color:C.boxLine},right:{style:BorderStyle.SINGLE,size:8,color:C.boxLine}},children:[P(runsOf(runs),{spacing:{after:0}})]})]})]});
@@ -170,14 +175,16 @@ async function makeDocx(key){ const D=window.docx; const {Document,Packer,Paragr
   const MM=model();
   for(let mi=0;mi<MM.length;mi++){ const m=MM[mi];
     if(m.k==="page"||m.k==="sec"||m.k==="lc") endKeep();
-    if(m.k==="sec"){ let j=mi+1; while(j<MM.length&&!["sec","page","lc"].includes(MM[j].k)) j++; KEEP=estH(MM.slice(mi+1,j))<=8.2; }
+    if(m.k==="sec"){ let j=mi+1; while(j<MM.length&&!["sec","page","lc"].includes(MM[j].k)) j++; KEEP=estH(MM.slice(mi+1,j))<=9.0; }
     if(m.k==="page") children.push(P([new TextRun({text:m.text,bold:true,size:32,font:FONT,color:C.tealInk})],{spacing:{before:280,after:80},border:{bottom:{style:BorderStyle.SINGLE,size:12,color:C.teal,space:2}},keepNext:true}));
     else if(m.k==="sec") children.push(P([new TextRun({text:m.text+(m.enr?" (Enrichment)":""),bold:true,size:26,font:FONT,color:"FFFFFF"})],{shading:{type:ShadingType.CLEAR,fill:m.enr?C.purple:C.teal,color:"auto"},spacing:{before:220,after:100},keepNext:true}));
     else if(m.k==="p") children.push(P(runsOf(m.runs,m.style==="small"||m.style==="cap"?18:undefined),{alignment:m.style==="cap"?AlignmentType.CENTER:undefined}));
     else if(m.k==="li") children.push(P(runsOf(m.runs),{numbering:m.ordered?{reference:"num",level:Math.min(m.level,4),instance:listInst(m.list)}:{reference:"bul",level:Math.min(m.level,4)},spacing:{after:60}}));
     else if(m.k==="box"){ children.push(boxOf(m.runs,m.kind==="cause"?"E7F6F9":C.box)); children.push(P([],{spacing:{after:60}})); }
     else if(m.k==="table"){ children.push(tableOf(m.rows)); children.push(P([],{spacing:{after:60}})); }
-    else if(m.k==="img") await addImg(m);
+    else if(m.k==="img"){ const n2=MM[mi+1], sc=x=>Math.min(1,(PAGEW/2-16)/(x.w*0.62),300/(x.h*0.62));
+      if(n2&&n2.k==="img"&&n2.grp&&n2.grp===m.grp&&m.w*0.62*sc(m)>=200&&n2.w*0.62*sc(n2)>=200&&m.w*0.62<=PAGEW*0.9&&n2.w*0.62<=PAGEW*0.9){ await pairImg(m,n2,sc); mi++; }
+      else await addImg(m); }
     else if(m.k==="lc"){ children.push(P([new TextRun({text:"Learning Check: "+m.page,bold:true,size:26,font:FONT,color:"FFFFFF"})],{shading:{type:ShadingType.CLEAR,fill:C.orange,color:"auto"},spacing:{before:240,after:100},keepNext:true}));
       for(const it of m.items){ if(it.t==="cluster"){ children.push(P(runsOf(it.head,20).map(x=>x),{spacing:{before:160,after:60}})); children.push(P(runsOf(it.title,24),{alignment:AlignmentType.CENTER}));
           if(it.intro) children.push(P(runsOf(it.intro))); else for(const x of imgs(m.pg,it.introImg)) await addImg(x);
@@ -197,12 +204,12 @@ async function makeDocx(key){ const D=window.docx; const {Document,Packer,Paragr
   const lvl=(i,fmt,text)=>({level:i,format:fmt,text,alignment:AlignmentType.LEFT,style:{paragraph:{indent:{left:360+i*360,hanging:300}}}});
   const doc=new Document({creator:"Chemistry Notes",title:$("#title").value||"Chemistry Notes",styles:{default:{document:{run:{font:FONT,size:22,color:C.ink}}}},
     numbering:{config:[{reference:"bul",levels:["•","◦","▪","•","◦"].map((c,i)=>lvl(i,LevelFormat.BULLET,c))},{reference:"num",levels:[0,1,2,3,4].map(i=>lvl(i,LevelFormat.DECIMAL,`%${i+1}.`))}]},
-    sections:[{properties:{page:{margin:{top:900,bottom:900,left:1000,right:1000}}},footers:{default:new Footer({children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:($("#title").value||"")+"  ·  ",size:16,color:C.body,font:FONT}),new TextRun({children:[PageNumber.CURRENT],size:16,color:C.body,font:FONT})]})]})},children}]});
+    sections:[{properties:{page:{margin:{top:720,bottom:720,left:720,right:720}}},footers:{default:new Footer({children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:($("#title").value||"")+"  ·  ",size:16,color:C.body,font:FONT}),new TextRun({children:[PageNumber.CURRENT],size:16,color:C.body,font:FONT})]})]})},children}]});
   save(await Packer.toBlob(doc),fname("docx",key?"Teacher Key":"Guided Notes")); }
 
 /* ---------------- slides ---------------- */
 async function makePptx(){ const pptx=new PptxGenJS(); pptx.layout="LAYOUT_WIDE"; pptx.title=$("#title").value||"Chemistry Notes";
-  const SW=13.333, SH=7.5, M=0.5, TOP=1.25, BOT=6.95, FONT="Arial", FS=20;
+  const SW=13.333, SH=7.5, M=0.5, TOP=1.25, BOT=6.95, FONT="Arial", FS=24;
   const title=$("#title").value||"Chemistry Notes";
   /* title slide */
   let s=pptx.addSlide(); s.background={color:C.teal}; s.addText(title,{x:M,y:2.3,w:SW-2*M,h:1.4,fontFace:FONT,fontSize:40,bold:true,color:"FFFFFF",align:"center"});
@@ -218,38 +225,105 @@ async function makePptx(){ const pptx=new PptxGenJS(); pptx.layout="LAYOUT_WIDE"
       rr[rr.length-1].options.breakLine=pi<paras.length-1; out.push(...rr); }); return out; };
   const lines=(p,wIn)=>{ const cpl=Math.max(20,Math.floor(wIn*72/((p.size||FS)*0.56))); const t=plain(p.runs); return Math.max(1,Math.ceil((t.length+(p.level||0)*3)/cpl))+((t.match(/\n/g)||[]).length); };
   const LH=(p)=>(p.size||FS)/72*1.32+0.06;
-  /* lay out one section: stack text, boxes, tables and pictures; text next to a picture when it fits */
-  const sectionSlides=async(head,color,items,foot)=>{ let sl=null, y=TOP; const fresh=()=>{ sl=pptx.addSlide(); bar(sl,head,color,foot); y=TOP; };
-    const room=()=>BOT-y;
-    const textBlock=(paras,x,w,yy,maxH)=>{ sl.addText(paraArr(paras),{x,y:yy,w,h:maxH,fontFace:FONT,valign:"top",margin:2}); };
-    const heightOf=(paras,w)=>paras.reduce((a,p)=>a+lines(p,w)*LH(p),0.1);
-    let i=0; fresh();
-    while(i<items.length){ const it=items[i];
-      if(it.k==="text"){ /* a run of paragraphs, maybe split over slides */
-        let paras=it.paras; const nxt=items[i+1];
-        if(nxt&&nxt.k==="img"&&nxt.w/nxt.h<1.7&&y===TOP){ const tw=6.0, h=heightOf(paras,tw); if(h<=BOT-TOP){ textBlock(paras,M,tw,y,h+0.2); await picture(nxt,M+tw+0.2,y,SW-M-(M+tw+0.2),BOT-y); i+=2; if(i<items.length) fresh(); continue; } }
-        while(paras.length){ let n=0, h=0.1; while(n<paras.length&&h+lines(paras[n],SW-2*M)*LH(paras[n])<=room()) { h+=lines(paras[n],SW-2*M)*LH(paras[n]); n++; }
-          if(n===0){ if(y>TOP){ fresh(); continue; } n=1; h=Math.min(BOT-TOP,lines(paras[0],SW-2*M)*LH(paras[0])); }
-          textBlock(paras.slice(0,n),M,SW-2*M,y,h+0.1); y+=h+0.12; paras=paras.slice(n); if(paras.length) fresh(); }
-        i++; continue; }
-      if(it.k==="box"){ const h=heightOf([{runs:it.runs}],SW-2*M-0.4)+0.25; if(h>room()&&y>TOP) fresh();
-        sl.addText(paraArr([{runs:it.runs}]),{x:M,y,w:SW-2*M,h:Math.min(h,BOT-y),fill:{color:it.kind==="cause"?C.row:C.box},line:{color:C.boxLine,width:1.25},rectRadius:0.08,shape:pptx.ShapeType.roundRect,margin:8,valign:"middle",fit:"shrink"}); y+=h+0.15; i++; continue; }
-      if(it.k==="table"){ const rows=it.rows.length, h=rows*0.42+0.1; if(h>room()&&y>TOP) fresh();
-        const fs=rows>9?12:rows>6?14:16; sl.addTable(it.rows.map(r=>r.map(c=>({text:cellRuns(c.runs).map(x=>{ x.options.fontSize=fs; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,rowspan:c.rs,align:"center",valign:"middle",fontFace:FONT,fontSize:fs}}))),{x:M,y,w:SW-2*M,border:{type:"solid",pt:1,color:"9FC4D6"},fontFace:FONT,autoPage:false});
-        y+=Math.min(h,room())+0.15; i++; continue; }
-      if(it.k==="img"){ const need=Math.min(BOT-TOP,(it.h/it.w)*(SW-2*M)); if(room()<Math.min(2.6,need)&&y>TOP) fresh(); await picture(it,M,y,SW-2*M,room()); i++; continue; }
-      i++; }
-    async function picture(m,x,yy,w,h){ let labH=0; if(m.label){ sl.addText("Example: "+m.label,{x,y:yy,w,h:0.35,fontFace:FONT,fontSize:14,italic:true,color:C.body,align:"center"}); labH=0.4; }
-      const data=await imgB64(m.file); let iw=m.w/96, ih=m.h/96; const k=Math.min(w/iw,(h-labH)/ih,1.6); iw*=k; ih*=k; sl.addImage({data,x:x+(w-iw)/2,y:yy+labH,w:iw,h:ih}); y=yy+labH+ih+0.15; } };
-  /* group the document model into sections */
-  const M2=model(); let cur=null, pageT="", unitT=""; const secs=[];
+  /* one idea per slide: a main bullet with its sub-bullets (or one set of numbered steps), plus the pictures, boxes and tables that go with it */
+  const ideaSlides=async(head,color,ideas0,foot,notes)=>{
+    /* estimated height of a group at full size, in the layout it would get */
+    const need=g=>{ const pics=g.extra.filter(x=>x.k==="img"), side=pics.length&&g.paras.length&&!(pics.length>1||pics[0].w/pics[0].h>=1.9), tw=side?5.9:SW-2*M;
+      const tH=g.paras.reduce((a,p)=>a+lines(p,tw)*LH(p),0.1), bH=g.extra.filter(x=>x.k==="box").reduce((a,x)=>a+heightOf([{runs:x.runs,size:18}],tw-0.3)+0.3,0), tabH=g.extra.filter(x=>x.k==="table").reduce((a,t)=>a+t.rows.length*0.42+0.15,0);
+      const picH=pics.length?(side?0:2.6):0; return {h:tH+bH+tabH+picH+(pics.length?0.2:0), pics:pics.length}; };
+    const ideas=[]; for(const I of ideas0){ const L=ideas[ideas.length-1];
+      if(L&&!I.cont){ const g={paras:L.paras.concat(I.paras),extra:L.extra.concat(I.extra)}, n=need(g); if(n.pics<=2&&n.h<=(BOT-TOP)*0.92&&g.extra.filter(x=>x.k==="table").length<=1){ L.paras=g.paras; L.extra=g.extra; continue; } }
+      ideas.push({paras:I.paras.slice(),extra:I.extra.slice(),cont:I.cont}); }
+    /* worked examples (step cards) leave the idea and get their own slides, two or three steps at a time */
+    for(let k=0;k<ideas.length;k++){ const I=ideas[k], ex=I.extra.filter(x=>x.k==="img"&&x.steps&&x.steps.steps.length); if(!ex.length) continue;
+      I.extra=I.extra.filter(x=>!ex.includes(x)); ideas.splice(k+1,0,...ex.map(x=>({paras:[],extra:[],ex:x}))); if(!I.paras.length&&!I.extra.length){ ideas.splice(k,1); k--; } }
+    /* every slide gets a visual: spread the section's pictures over its slides, then a formula/equation card from the slide's own words, then the nearest picture again */
+    const P=I=>I.extra.filter(x=>x.k==="img");
+    for(let k=0;k<ideas.length;k++){ const a=ideas[k], b=ideas[k+1]; if(!b) break;
+      if(P(a).length>=2&&!P(b).length&&b.paras.length){ const m=P(a)[P(a).length-1]; if(!(m.grp&&P(a).some(x=>x!==m&&x.grp===m.grp))){ a.extra.splice(a.extra.indexOf(m),1); b.extra.unshift(m); } }
+      if(!P(a).length&&a.paras.length&&P(b).length>=2){ const m=P(b)[0]; if(!(m.grp&&P(b).some(x=>x!==m&&x.grp===m.grp))){ b.extra.splice(b.extra.indexOf(m),1); a.extra.push(m); } } }
+    ideas.forEach((I,k)=>{ if(I.ex||P(I).length||!I.paras.length) return; const c=cardOf(I.paras); if(c){ I.card=c; return; }
+      for(let d=1;d<ideas.length;d++){ const n=ideas[k-d]&&P(ideas[k-d])[0]||ideas[k+d]&&P(ideas[k+d])[0]; if(n){ I.extra.push(Object.assign({},n,{label:null})); return; } }
+      if(SECPIC) I.extra.push(SECPIC); });
+    for(let ii=0;ii<ideas.length;ii++){ const id=ideas[ii];
+      if(id.ex){ await exampleSlides(head,color,foot,id.ex); continue; }
+      { const P0=id.extra.filter(x=>x.k==="img"); if(P0.length>2){ const more=P0.slice(2); id.extra=id.extra.filter(x=>!more.includes(x)); ideas.splice(ii+1,0,{paras:[],extra:more,cont:true}); } }
+      const pics=id.extra.filter(x=>x.k==="img"), boxes=id.extra.filter(x=>x.k==="box"), tabs=id.extra.filter(x=>x.k==="table");
+      let paras=id.paras.slice(); let cont=false;
+      const wide=pics.length&&(pics.length>1? pics.every(p=>p.w/p.h<1.6)===false : pics[0].w/pics[0].h>=1.9);
+      const side=(pics.length||id.card)&&paras.length&&!wide;   /* text left, pictures right */
+      const tw=side?5.9:SW-2*M;
+      const boxH=boxes.reduce((a,x)=>a+heightOf([{runs:x.runs,size:18}],tw-0.3)+0.3,0), tabH=tabs.reduce((a,t)=>a+t.rows.length*0.42+0.15,0);
+      const picRoom=side?0:(pics.length?2.6:0);   /* pictures get whatever is left under the words, at least this much */
+      /* font: 20 pt, down to 16 pt if the idea is long; anything still left over goes to a second slide */
+      let fs=FS, avail=BOT-TOP-boxH-(side?0:tabH)-picRoom;
+      const H=(ps,f)=>ps.reduce((a,p)=>{ const sz=p.size?p.size*f/FS:f-(p.level?2:0); return a+lines(Object.assign({},p,{size:sz}),tw)*(sz/72*1.32+0.06); },0.1);
+      /* not enough room for the words: the boxes and pictures under them move to the next slide */
+      if(paras.length&&(boxes.length||(pics.length&&!side))&&H(paras,18)>avail){ const mv=id.extra.filter(x=>x.k==="box"||(x.k==="img"&&!side)||x.k==="table"); id.extra=id.extra.filter(x=>!mv.includes(x)); ideas.splice(ii+1,0,{paras:[],extra:mv,cont:true}); ii--; continue; }
+      while(fs>18&&H(paras,fs)>avail) fs-=2;
+      let rest=[]; while(paras.length>1&&H(paras,fs)>avail){ rest.unshift(paras.pop()); }
+      const sl=pptx.addSlide(); bar(sl,head+(id.cont?" (continued)":""),color,foot); let y=TOP; if(ii===0&&notes) sl.addNotes(notes);
+      if(paras.length){ const h=Math.min(H(paras,fs)+0.1,avail); sl.addText(paraArr(paras.map(p=>Object.assign({},p,{size:p.size?Math.round(p.size*fs/FS):(p.level?fs-2:fs)}))),{x:M,y,w:tw,h,fontFace:FONT,valign:"top",margin:2,fit:"shrink"}); y+=h+0.12; }
+      for(const x of boxes){ const h=heightOf([{runs:x.runs,size:18}],tw-0.3)+0.25; sl.addText(paraArr([{runs:x.runs,size:Math.min(fs,18)}]),{x:M,y,w:tw,h:Math.min(h,BOT-y),fill:{color:x.kind==="cause"?C.row:C.box},line:{color:C.boxLine,width:1.25},rectRadius:0.08,shape:pptx.ShapeType.roundRect,margin:8,valign:"middle",fit:"shrink"}); y+=h+0.12; }
+      if(side&&id.card){ const x0=M+tw+0.3, w=SW-M-x0, h=Math.min(3.2,BOT-TOP); sl.addText(prRuns(id.card).map(x=>{ x.options.fontSize=id.card.fs||40; x.options.bold=true; return x; }),{x:x0,y:TOP+(BOT-TOP-h)/2,w,h,align:"center",valign:"middle",fontFace:FONT,fill:{color:C.row},line:{color:C.teal,width:2},shape:pptx.ShapeType.roundRect,rectRadius:0.15,margin:12,fit:"shrink"}); }
+      else if(side){ const x0=M+tw+0.3, w=SW-M-x0; let yy=TOP; const each=(BOT-TOP-0.1*(pics.length-1))/pics.length; for(const m of pics){ yy=await picture(sl,m,x0,yy,w,each)+0.1; } }
+      else if(pics.length){ const n=pics.length, room=BOT-y-tabH, W0=SW-2*M;
+        /* side by side or stacked, whichever lets the pictures be bigger */
+        const kSide=Math.min(...pics.map(m=>Math.min(((W0-0.3*(n-1))/n)/(m.w/96),(room-(m.label?0.4:0))/(m.h/96)))), kStack=Math.min(...pics.map(m=>Math.min(W0/(m.w/96),((room-0.1*(n-1))/n-(m.label?0.4:0))/(m.h/96))));
+        if(n>1&&kStack>kSide*1.15){ let yy=y; for(const m of pics){ yy=await picture(sl,m,M,yy,W0,(room-0.1*(n-1))/n)+0.1; } }
+        else { const w=(W0-0.3*(n-1))/n; let x=M; for(const m of pics){ await picture(sl,m,x,y,w,room); x+=w+0.3; } }
+        y=BOT-tabH; }
+      for(const t of tabs){ const rows=t.rows.length, f=rows>9?12:rows>6?14:16; if(y+rows*0.42>BOT+0.3){ const s2=pptx.addSlide(); bar(s2,head+" (continued)",color,foot); tableAt(s2,t,TOP,f); } else { tableAt(sl,t,y,f); y+=rows*0.42+0.15; } }
+      if(rest.length) ideas.splice(ii+1,0,{paras:rest,extra:[],cont:true}); } };
+  const ELS=new Set("H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce W Pt Au Hg Tl Pb Bi Po At Rn Fr Ra U Pu".split(" "));
+  /* words (with their sub/superscript styles) from paragraph runs */
+  const wordsOf=runs=>{ const W=[]; let cur=[]; (runs||[]).forEach(r=>{ String(r.x).split(/(\s+)/).forEach(t=>{ if(t==="") return; if(/^\s+$/.test(t)){ if(cur.length) W.push(cur); cur=[]; return; } cur.push({x:t,st:r.st||{}}); }); }); if(cur.length) W.push(cur); return W; };
+  const txt=w=>w.map(r=>r.x).join("");
+  const isF=w=>{ let t=txt(w).replace(/^[“"]+|[.,;:!?”"]+$/g,""); if(/^\(/.test(t)){ t=t.slice(1); if((t.match(/\(/g)||[]).length<(t.match(/\)/g)||[]).length) t=t.replace(/\)$/,""); } if(!/^[0-9]*(?:\(?(?:[A-Z][a-z]?)[0-9₀-₉]*\)?[0-9₀-₉]*)+(?:[⁺⁻⁰-⁹+−-]*)(?:\((?:s|l|g|aq)\))?$/.test(t)) return false; const syms=t.match(/[A-Z][a-z]?/g)||[]; if(!syms.every(x=>ELS.has(x))) return false; return /[0-9₀-₉]/.test(t)||w.some(r=>r.st.sub)||syms.length>=2||/[⁺⁻+−]/.test(t); };
+  const isOp=w=>/^(\+|→|⟶|=|×|÷|[0-9.,]+|\(|\))$/.test(txt(w));
+  const trimW=w=>{ const a=w.map(r=>Object.assign({},r)); const op=/^\(/.test(a[0].x); a[0].x=a[0].x.replace(/^[(“"]+/,""); const L=a[a.length-1]; L.x=L.x.replace(/[.,;:!?”"]+$/,""); const t=a.map(r=>r.x).join(""); if(op&&/\)$/.test(t)&&(t.match(/\(/g)||[]).length<(t.match(/\)/g)||[]).length) L.x=L.x.replace(/\)$/,""); return a.filter(r=>r.x!==""); };
+  function cardOf(paras){ let best=null;
+    for(const p of paras){ const W=wordsOf(p.runs); for(let i=0;i<W.length;i++){ if(!isF(W[i])) continue; let j=i; while(j+1<W.length&&(isF(W[j+1])||isOp(W[j+1]))) j++; while(j>i&&isOp(W[j])&&!/\)$/.test(txt(W[j]))) j--; const span=W.slice(i,j+1), eq=span.some(w=>/^(→|⟶|=)$/.test(txt(w))); const score=(eq?100:0)+span.length; if(!best||score>best.score) best={score,span}; i=j; } }
+    if(!best) return null; const out=[]; const add=(span,sep)=>span.forEach((w,k)=>{ if(k) out.push({x:sep,st:{}}); trimW(w).forEach(r=>out.push({x:r.x,st:Object.assign({},r.st,{c:undefined})})); });
+    if(best.score>=100){ add(best.span," "); out.fs=best.span.length>5?32:44; return out; }
+    /* no equation: show up to four different formulas from the slide */
+    const seen=new Set(), list=[]; for(const p of paras) for(const w of wordsOf(p.runs)) if(isF(w)){ const t=txt(trimW(w)); if(!seen.has(t)&&list.length<4){ seen.add(t); list.push(w); } }
+    add(list,"     "); out.fs=list.length>2?36:48; return out; }
+  let SECPIC=null;
+  /* a worked example: the question in a teal bubble, then the step cards as large as they fit (a new slide when they don't) */
+  async function exampleSlides(head,color,foot,m){ const st=m.steps.steps, W0=SW-2*M; let i=0, part=0;
+    const q=m.steps.title||m.label||"";
+    while(i<st.length){ const sl=pptx.addSlide(); bar(sl,head+(part?" (continued)":""),color,foot); let y=TOP;
+      if(q){ const qh=Math.min(1.1,0.5+Math.ceil(q.length/90)*0.38); sl.addText([{text:"EXAMPLE",options:{fontSize:11,bold:true,color:"FFFFFF",charSpacing:2,breakLine:true}},{text:q,options:{fontSize:20,color:"FFFFFF",bold:true}}],{x:M,y,w:W0,h:qh,fontFace:FONT,fill:{color:C.tealDeep},shape:pptx.ShapeType.roundRect,rectRadius:0.12,margin:10,valign:"middle",fit:"shrink"}); y+=qh+0.15; }
+      /* scale: full width, but at most 2.2x, and fit at least one step */
+      let n=0, yy=y; const sc=x=>Math.min(W0/(x.size[0]/96),2.2);
+      while(i+n<st.length){ const x=st[i+n], h=x.size[1]/96*sc(x); if(n&&yy+h>BOT) break; n++; yy+=Math.min(h,BOT-y)+0.12; if(n>=3) break; }
+      for(let j=0;j<n;j++){ const x=st[i+j]; let k=sc(x), w=x.size[0]/96*k, h=x.size[1]/96*k; if(h>BOT-y){ k*=(BOT-y)/h; w*=(BOT-y)/h; h=BOT-y; } sl.addImage({data:await imgB64(x.file),x:M+(W0-w)/2,y,w,h}); y+=h+0.12; }
+      i+=n; part++; } }
+  const heightOf=(paras,w)=>paras.reduce((a,p)=>a+lines(p,w)*LH(p),0.1);
+  const tableAt=(sl,t,y,fs)=>sl.addTable(t.rows.map(r=>r.map(c=>({text:cellRuns(c.runs).map(x=>{ x.options.fontSize=fs; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,rowspan:c.rs,align:"center",valign:"middle",fontFace:FONT,fontSize:fs}}))),{x:M,y,w:SW-2*M,border:{type:"solid",pt:1,color:"9FC4D6"},fontFace:FONT,autoPage:false});
+  /* a picture fitted and centered in its box; returns the bottom edge */
+  async function picture(sl,m,x,yy,w,h){ let labH=0; if(m.label){ sl.addText("Example: "+m.label,{x,y:yy,w,h:0.35,fontFace:FONT,fontSize:14,italic:true,color:C.body,align:"center"}); labH=0.4; }
+    const data=await imgB64(m.file); let iw=m.w/96, ih=m.h/96; const k=Math.min(w/iw,(h-labH)/ih,3); iw*=k; ih*=k; sl.addImage({data,x:x+(w-iw)/2,y:yy+labH+Math.max(0,(h-labH-ih)/2)*(h<3?0:0),w:iw,h:ih}); return yy+labH+ih; }
+  /* group the document model into sections, and each section into ideas */
+  const M2=model(); let cur=null, pageT="", unitT="", pend=[], PAGEPIC=null; const secs=[];
+  const idea=()=>{ const I={paras:[],extra:pend,list:null}; pend=[]; cur.ideas.push(I); return I; };
+  const last=()=>cur.ideas[cur.ideas.length-1];
   M2.forEach(m=>{ if(m.k==="page"){ pageT=m.text; unitT=m.unit; return; }
-    if(m.k==="sec"){ cur={head:m.text+(m.enr?" (Enrichment)":""),color:m.enr?C.purple:C.teal,items:[],foot:[unitT,pageT].filter(Boolean).join("  ·  ")}; secs.push(cur); return; }
+    if(m.k==="sec"||m.k==="lc"){ if(cur&&pend.length){ if(cur.ideas.length) last().extra.push(...pend); else { cur.ideas.push({paras:[],extra:pend}); } pend=[]; } }
+    if(m.k==="sec"){ if(cur&&cur.firstPic) PAGEPIC=cur.firstPic; cur={pagePic:PAGEPIC,head:m.text+(m.enr?" (Enrichment)":""),color:m.enr?C.purple:C.teal,ideas:[],foot:[unitT,pageT].filter(Boolean).join("  ·  ")}; secs.push(cur); return; }
     if(m.k==="lc"){ secs.push({lc:m}); cur=null; return; }
-    if(!cur) return; const L=cur.items[cur.items.length-1];
-    const para= m.k==="p"? {runs:m.runs,level:0,bullet:false,italic:m.style==="intro",color:m.style==="intro"?C.body:undefined,size:m.style==="small"||m.style==="cap"?15:undefined} : m.k==="li"? {runs:m.runs,level:m.level,bullet:true,ordered:m.ordered} : null;
-    if(para){ if(L&&L.k==="text") L.paras.push(para); else cur.items.push({k:"text",paras:[para]}); return; }
-    cur.items.push(m); });
+    if(!cur) return;
+    if(m.k==="p"){ const para={runs:m.runs,level:0,bullet:false,italic:m.style==="intro",color:m.style==="intro"?C.body:undefined,size:m.style==="small"||m.style==="cap"?15:undefined};
+      /* the narrative intro is not slide text: it goes in the speaker notes of the section’s first slide */
+      if(m.style==="intro"){ cur.notes=(cur.notes?cur.notes+"\n\n":"")+plain(m.runs); return; } if(!cur.ideas.length) idea().paras.push(para); else last().paras.push(para); return; }
+    if(m.k==="li"){ const para={runs:m.runs,level:m.level,bullet:true,ordered:m.ordered};
+      const L=cur.ideas.length?last():null;
+      if(m.level===0&&!(m.ordered&&L&&L.list===m.list)){ const I=idea(); I.list=m.ordered?m.list:null; I.paras.push(para); }
+      else (L||idea()).paras.push(para); return; }
+    /* pictures, boxes and tables: with the idea they follow; anything before the first idea goes with the first idea */
+    if(m.k==="img"&&!cur.firstPic&&!(m.steps&&m.steps.steps.length)) cur.firstPic=m; if(cur.ideas.length&&!pend.length) last().extra.push(m); else pend.push(m); });
+  if(cur&&pend.length){ if(cur.ideas.length) last().extra.push(...pend); else cur.ideas.push({paras:[],extra:pend}); }
   for(const sc of secs){
     if(sc.lc){ const m=sc.lc, pg=m.pg; const foot="Learning Check  ·  "+m.page;
       const qSlide=async(q,ctxTitle)=>{ const sl=pptx.addSlide(); bar(sl,ctxTitle||`Learning Check: ${m.page}`,C.orange,foot); let y=TOP;
@@ -270,7 +344,7 @@ async function makePptx(){ const pptx=new PptxGenJS(); pptx.layout="LAYOUT_WIDE"
           if(it.table&&y<BOT-0.8){ sl.addTable(it.table.rows.map(r=>r.map(c=>({text:cellRuns(c.runs).map(x=>{ x.options.fontSize=14; return x; }),options:{fill:{color:c.th?C.row2:"FFFFFF"},colspan:c.cs,align:"center",fontFace:FONT,fontSize:14}}))),{x:M+1,y,w:SW-2*M-2,border:{type:"solid",pt:1,color:"9FC4D6"}}); }
           for(const q of it.qs) await qSlide(q,plain(it.title)); }
         else await qSlide(it); } continue; }
-    await sectionSlides(sc.head,sc.color,sc.items,sc.foot); }
+    SECPIC=sc.firstPic||sc.pagePic||null; await ideaSlides(sc.head,sc.color,sc.ideas,sc.foot,sc.notes); }
   /* pptxgenjs writes an extra paragraph-property tag between runs of one paragraph; remove it so PowerPoint opens the file cleanly */
   const ab=await pptx.write({outputType:"arraybuffer"}); const z=await JSZip.loadAsync(ab);
   for(const f of Object.keys(z.files).filter(f=>/ppt\/slides\/slide\d+\.xml$/.test(f))){ let x=await z.file(f).async("string"); x=x.replace(/(<\/a:r>)<a:pPr\b[^>]*?(?:\/>|>.*?<\/a:pPr>)/g,"$1"); z.file(f,x); }
