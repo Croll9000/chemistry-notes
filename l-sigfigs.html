@@ -24,11 +24,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="What they are"><div class="pn"><small>Part</small><span>1</span></div><h2>What Are Significant Figures?</h2><p>Significant figures show the precision of a measurement.</p></div>
+  <div class="part" id="p1" data-short="What they are"><div class="pn"><small>Part</small><span>1</span></div><h2>What Are Significant Figures?</h2><p>The number of digits in a recorded measurement communicates how precisely it was made. These meaningful digits are known as significant figures.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Why Significant Figures Matter</h2></div>
     <div class="body">
+      <p class="intro">Two students measure the same block. One records 2.8 cm and the other records 2.81 cm. The second measurement was made with a finer instrument and tells us more. Significant figures are how scientists communicate that difference in precision.</p>
       <ul>
         <li>Imagine a friend measures their height with a tape measure and says, “I am 6.01598 ft tall.”</li>
         <li>That last digit is in the hundred-thousandths place.
@@ -105,7 +106,7 @@
     <div class="labq" id="lq-hl"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Practice"><div class="pn"><small>Part</small><span>2</span></div><h2>Practice Counting</h2><p>Tap the significant digits, or count them.</p></div>
+  <div class="part" id="p2" data-short="Practice"><div class="pn"><small>Part</small><span>2</span></div><h2>Practice Counting</h2><p>The number of significant figures in a measurement is determined by a short set of rules. In this section we will practice applying these rules to a variety of measured values.</p></div>
 
   <p class="bridge">Tap every digit that is significant, then check.</p>
 
@@ -119,6 +120,11 @@
   <section class="lab" id="count">
     <div class="lab-h"><span class="tag game">Game</span><h3>Count the Sig Figs</h3></div>
     <div id="cnt-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -217,6 +223,7 @@ L.TapGame(A.$("#tap-host"));
 /* ---------- count game ---------- */
 L.CountGame(A.$("#cnt-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The certain digits in a measurement plus the estimated digit are its ___.", "a": "significant figures"}, {"s": "Zeros between nonzero digits are always ___.", "a": "significant"}, {"s": "If a decimal point is present, count significant figures starting from the ___ side.", "a": "Pacific"}, {"s": "If a decimal point is absent, count significant figures starting from the ___ side.", "a": "Atlantic"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which measurement contains a total of three significant figures?",choices:["0.012 g","0.125 g","1,205 g","12,050 g"],ans:2,explain:"0.125 g: the leading zero is not significant, leaving 1, 2 and 5. (0.012 has 2; 1,205 has 4; 12,050 has 4.)"},
  {type:"mc",stem:"Which volume measurement is expressed in four significant figures?",choices:["5.50 mL","550. mL","5,500 mL","5,500. mL"],ans:4,explain:"The decimal point at the end of 5,500. makes its trailing zeros significant: 4 sig figs. (5.50 and 550. have 3; 5,500 has 2.)"},

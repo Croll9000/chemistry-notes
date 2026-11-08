@@ -80,11 +80,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Mass & volume"><div class="pn"><small>Part</small><span>1</span></div><h2>Mass and Volume</h2><p>Mass is the amount of matter. Volume is the amount of space it occupies.</p></div>
+  <div class="part" id="p1" data-short="Mass & volume"><div class="pn"><small>Part</small><span>1</span></div><h2>Mass and Volume</h2><p>Mass and volume are the two properties that every sample of matter possesses. In this section we will discuss how each is measured in the laboratory.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mass</h2></div>
     <div class="body">
+      <p class="intro">An astronaut weighs less on the Moon than on Earth, but the amount of matter in the astronaut’s body is exactly the same. That amount of matter is the astronaut’s mass, and it does not change from place to place.</p>
       <ul>
         <li><span class="def">Mass</span> – the <span class="kr">amount of matter</span> (“stuff”) in an object.
           <ul><li class="qu"><i>Unit</i> – gram (g) or kilogram (kg)
@@ -97,6 +98,7 @@
   <section class="note">
     <div class="tile"><h2>Volume</h2></div>
     <div class="body">
+      <p class="intro">Before a medicine is taken, its dose is often measured with a small syringe or cup marked in milliliters. That measurement is a volume: the amount of space a sample occupies.</p>
       <ul>
         <li><span class="def">Volume</span> – the amount of space an object takes up.
           <ul><li class="qu"><i>Unit</i> – cubic meter (m³), cubic centimeter (cm³), milliliter (mL), liter (L)
@@ -120,7 +122,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Density"><div class="pn"><small>Part</small><span>2</span></div><h2>Density</h2><p>Density compares mass to volume: how tightly packed the matter is.</p></div>
+  <div class="part" id="p2" data-short="Density"><div class="pn"><small>Part</small><span>2</span></div><h2>Density</h2><p>Density compares the mass of a substance to its volume, describing how tightly its matter is packed. It explains why some objects float and others sink.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Density</h2></div>
@@ -193,7 +195,7 @@
     <div id="dc-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Identifying substances"><div class="pn"><small>Part</small><span>3</span></div><h2>Identifying Substances</h2><p>Use intensive properties like density, melting point and boiling point to find out what an unknown is.</p></div>
+  <div class="part" id="p3" data-short="Identifying substances"><div class="pn"><small>Part</small><span>3</span></div><h2>Identifying Substances</h2><p>Intensive properties such as density, melting point and boiling point are unique to each substance. In this section we will use them to identify unknown samples.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Identifying Substances</h2></div>
@@ -250,6 +252,11 @@
         <div class="nb"><h4>Lab notebook</h4><table><tr><td>Melting point</td><td><input id="ms-mp" inputmode="decimal"> <span class="ms-u">K</span></td></tr><tr><td>Boiling point</td><td><input id="ms-bp" inputmode="decimal"> <span class="ms-u">K</span></td></tr></table><div style="margin-top:8px"><button class="btn sm" type="button" id="ms-check">Check readings</button></div><div id="ms-conv"></div><div id="ms-tbl" style="margin-top:8px"></div></div></div>
       <div class="status" id="ms-msg" aria-live="polite"></div>
     </div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Measure and calculate the way the Regents asks. Your first answer to each question is your score.</p></div>
@@ -357,6 +364,7 @@ A.$("#calc-art").innerHTML=`<div style="display:flex;gap:10px;align-items:flex-e
   next();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The amount of space an object occupies is its ___.", "a": "volume"}, {"s": "Mass divided by volume is ___.", "a": "density"}, {"s": "Density does not change with sample size, so it is an ___ property.", "a": "intensive"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Mass is a measure of",choices:["the space an object takes up","the amount of matter in an object","how tightly packed an object is","the temperature of an object"],ans:2,explain:"Mass is the amount of matter (“stuff”) in an object. Volume is the space it takes up; density is how tightly packed it is."},
  {type:"num",stem:"A graduated cylinder contains 20.0 mL of water. When a stone is added, the water level rises to 26.5 mL. What is the volume of the stone, in mL?",ans:6.5,round:{sf:2},explain:"26.5 mL − 20.0 mL = 6.5 mL."},

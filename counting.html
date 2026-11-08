@@ -27,7 +27,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Two key numbers"><div class="pn"><small>Part</small><span>1</span></div><h2>Two Key Numbers</h2><p>Two numbers describe the nucleus of every atom: the atomic number counts protons, and the mass number counts protons plus neutrons.</p></div>
+  <div class="part" id="p1" data-short="Two key numbers"><div class="pn"><small>Part</small><span>1</span></div><h2>Two Key Numbers</h2><p>Every gold atom, whether in a wedding ring or a smartphone circuit board, contains exactly 79 protons. The atomic number identifies an element, and the mass number tells how heavy its nucleus is, so together they give a complete description of any nucleus.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atomic Number</h2></div>
@@ -55,11 +55,12 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Atomic mass"><div class="pn"><small>Part</small><span>2</span></div><h2>Atomic Mass on the Periodic Table</h2><p>The periodic table doesn’t list mass numbers. It lists average atomic masses, which you can round.</p></div>
+  <div class="part" id="p2" data-short="Atomic mass"><div class="pn"><small>Part</small><span>2</span></div><h2>Atomic Mass on the Periodic Table</h2><p>The periodic table lists iron at 55.845 u, which rounds to 56, the mass number of iron-56, the isotope that makes up about 92% of natural iron. Rounding the atomic mass in this way is a quick method for finding the most common isotope of an element.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atomic Mass</h2></div>
     <div class="body">
+      <p class="intro">If you check the periodic table, you will find that carbon has an atomic mass of 12.011, not exactly 12. The reason is that not every carbon atom has the same mass, and the periodic table reports their average.</p>
       <ul>
         <li><span class="def">(Average) Atomic Mass</span> – the weighted average of all naturally occurring isotopes of an element measured in unified mass units (u).
           <ul><li class="qu"><i>Unit</i> – unified atomic mass units (u)</li><li class="qu"><i>Measuring device</i> – mass spectrometer</li><li>Not all atoms of a given element possess the same mass.
@@ -70,7 +71,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Symbols"><div class="pn"><small>Part</small><span>3</span></div><h2>Isotope Symbols and Hyphen Notation</h2><p>Chemists write the mass number and atomic number next to the element symbol.</p></div>
+  <div class="part" id="p3" data-short="Symbols"><div class="pn"><small>Part</small><span>3</span></div><h2>Isotope Symbols and Hyphen Notation</h2><p>Doctors treat thyroid disease with iodine-131, a name that tells chemists exactly which atoms are being used. Isotope symbols and hyphen notation let scientists, doctors and engineers record the makeup of a nucleus in just a few characters.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Isotope Symbols</h2></div>
@@ -111,6 +112,11 @@
   <section class="lab" id="writer">
     <div class="lab-h"><span class="tag game">Game</span><h3>Symbol Writer</h3></div>
     <div id="writer-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Count particles and write symbols the way the Regents asks. Your first answer to each question is your score.</p></div>
@@ -170,6 +176,7 @@ A.$("#examples").innerHTML=[
 /* symbol writer game */
 A.SymbolGame(A.$("#writer-host"),{kind:"atom"});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The number of protons in an atom is its atomic ___.", "a": "number"}, {"s": "The total number of protons and neutrons is the ___ number.", "a": "mass"}, {"s": "Carbon-14 is written in ___ notation.", "a": "hyphen"}, {"s": "The weighted average mass on the periodic table is the atomic ___.", "a": "mass"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"What is the number of neutrons in an atom of "+A.iso({A:39,Z:19,sym:"K"})+"?",choices:["19","20","39","58"],ans:2,explain:"Neutrons = mass number − atomic number = 39 − 19 = 20.",why:{0:"19 is the number of protons (and electrons).",2:"39 is the mass number: protons + neutrons.",3:"Subtract the atomic number from the mass number; don’t add."}},
  {type:"num",stem:"How many protons are in an atom of "+A.hy("sulfur",34)+"?",ans:16,tol:0,explain:"The atomic number of sulfur is 16, so every sulfur atom has 16 protons. The 34 is the mass number."},

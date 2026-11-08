@@ -31,7 +31,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Physical vs. chemical"><div class="pn"><small>Part</small><span>1</span></div><h2>Physical Changes and Chemical Changes</h2><p>The key question: did the chemical identity of the substance change?</p></div>
+  <div class="part" id="p1" data-short="Physical vs. chemical"><div class="pn"><small>Part</small><span>1</span></div><h2>Physical Changes and Chemical Changes</h2><p>Matter is constantly changing. Chemists classify each change by asking whether the chemical identity of the substance has changed.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Identifying Physical and Chemical Changes</h2></div>
@@ -65,7 +65,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Chemical reactions"><div class="pn"><small>Part</small><span>2</span></div><h2>Chemical Reactions</h2><p>In a chemical reaction, the atoms of the starting substances rearrange into new substances.</p></div>
+  <div class="part" id="p2" data-short="Chemical reactions"><div class="pn"><small>Part</small><span>2</span></div><h2>Chemical Reactions</h2><p>During a chemical reaction, the atoms of the starting substances are rearranged to form new substances with new properties.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Reactants and Products</h2></div>
@@ -89,6 +89,7 @@
   <section class="note added">
     <div class="tile"><h2>Evidence of a Chemical Change</h2></div>
     <div class="body">
+      <p class="intro">Chemists cannot see atoms rearranging, so they rely on clues that a new substance has formed. Baking soda and vinegar fizz, a cut apple turns brown and a glow stick gives off light. Each of these observations is evidence that a chemical change has occurred.</p>
       <p>We can’t see atoms rearranging, but these clues suggest a new substance has formed:</p>
       <div class="tbl-wrap"><table class="nt"><tr><th>Evidence</th><th>Example</th></tr>
         <tr><td>A gas is produced (bubbles) that wasn’t there before</td><td class="l">Baking soda and vinegar fizzing</td></tr>
@@ -121,6 +122,11 @@
   <section class="lab" id="sort">
     <div class="lab-h"><span class="tag game">Game</span><h3>Physical or Chemical?</h3></div>
     <div id="pc-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Classify changes and read reaction equations. Your first answer to each question is your score.</p></div>
@@ -277,6 +283,7 @@ const pair=(b,a,s)=>`<span style="display:inline-flex;gap:8px;align-items:center
   scene(0);
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A change that does not produce a new substance is a ___.", "a": "physical change"}, {"s": "A change that produces a new substance is a ___.", "a": "chemical change"}, {"s": "The starting substances in a reaction are the ___.", "a": "reactants"}, {"s": "The substances formed in a reaction are the ___.", "a": "products"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which event is an example of a chemical change?",choices:["ice melting","paper being cut","wood burning","water boiling"],ans:3,explain:"Burning wood produces new substances (carbon dioxide, water vapor, ash). The others are physical changes."},
  {type:"mc",stem:"Which statement describes a physical change?",choices:["The identity of the substance changes.","New substances with new properties form.","The substance keeps the same chemical identity.","Atoms rearrange to form new molecules."],ans:3,explain:"In a physical change the substance is still the same substance; only its form or phase changes."},

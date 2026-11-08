@@ -22,7 +22,7 @@
   <section class="note">
     <div class="tile"><h2>Heat</h2></div>
     <div class="body">
-      <p class="intro">Hold a cold can of soda and your hand gets cold while the can warms up. Nothing called “cold” moved into your hand. Instead, energy moved out of your hand and into the can. In everyday speech, “heat” and “hot” mean almost the same thing, but in chemistry heat has a precise meaning: it is energy that is moving from one object to another because of a difference in temperature.</p>
+      <p class="intro">In the previous section, you saw that particles possess kinetic energy because they are always moving. When a warm object touches a cooler one, some of that energy moves between them. A cold can of soda held in your hand warms up while your hand grows cold, because energy flows from your hand into the can; nothing called “cold” ever moves. In chemistry, energy that moves because of a temperature difference has a precise name: heat.</p>
       <ul>
         <li>When two objects at different temperatures are brought near one another, energy is always transferred from the object at the higher temperature to the object at the lower temperature. The energy that is transferred is heat.
           <ul><li><span class="def">Heat</span> – energy transferred from a high temperature object to a low temperature object.</li></ul></li>
@@ -37,7 +37,7 @@
   <section class="note">
     <div class="tile"><h2>Systems and Surroundings</h2></div>
     <div class="body">
-      <p class="intro">To keep track of where heat goes, chemists split the universe into two parts: the part they are studying and everything else. This is the same idea used in the Chemical Reactions unit.</p>
+      <p class="intro">To track where heat goes, chemists divide the universe into two parts: the part being studied and everything else. An athletic trainer pressing an instant cold pack against an injured ankle is applying this idea. The chemicals inside the pack form the system, and the ankle is part of the surroundings. Whether the ankle grows colder or warmer depends on the direction in which heat crosses the boundary between them. You first used these terms in Unit 5 to classify reactions; here they describe every heat transfer.</p>
       <ul>
         <li><span class="def">System</span> – specific part of the universe that is being focused on.</li>
         <li><span class="def">Surroundings</span> – everything that is not part of the system.
@@ -74,12 +74,17 @@
     <div id="tr-host"></div>
   </section>
 
+  <section class="lab" id="label">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Label the Heat Transfer</h3></div>
+    <div id="lh-host"></div>
+  </section>
+
   <div class="part" id="p3" data-short="Thermal equilibrium"><div class="pn"><small>Part</small><span>3</span></div><h2>Thermal Equilibrium</h2><p>Heat continues to flow only as long as a temperature difference exists. Once two objects reach the same temperature, there is no longer a net flow of heat between them.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Thermal Equilibrium</h2></div>
     <div class="body">
-      <p class="intro">A hot cup of cocoa left on the table does not stay hot, and it never gets colder than the room. It cools quickly at first, then more and more slowly, until it matches the temperature of the room. After that, its temperature stops changing. The cocoa and the room have reached a balance.</p>
+      <p class="intro">A refrigerator set to 4 °C eventually brings everything inside it to 4 °C. Warm leftovers cool down, and nothing ever becomes colder than the air around it. Once the food and the air reach the same temperature, the food’s temperature stops changing. Particles continue to collide and exchange energy, but energy now flows equally in both directions. This balanced state is known as thermal equilibrium.</p>
       <ul>
         <li>Since heat flows from high temperature to low temperature, there is no net flow of heat when two objects reach the same temperature.
           <ul><li><span class="def">Thermal Equilibrium</span> – state in which there is no net flow of heat between objects because they are at the same temperature.</li></ul></li>
@@ -127,7 +132,7 @@
   <section class="note enr">
     <div class="tile"><h2>Factors that Affect the Rate of Heat Transfer</h2></div>
     <div class="body">
-      <p class="intro">A thick winter coat keeps you warmer than a thin jacket, and a wide pan heats food faster than a narrow one on the same burner. Engineers who design houses, coolers and computer chips control four factors to speed up or slow down the flow of heat.</p>
+      <p class="intro">Houses in cold climates are built with thick walls packed with insulation, while laptop processors are pressed against thin copper plates that carry heat away. Engineers control how quickly heat flows by adjusting four factors: the temperature difference, the area in contact, the thickness of the material and its thermal conductivity.</p>
       <ul>
         <li><span class="kr">Temperature difference (ΔT)</span> – the larger the temperature difference between the two objects, the faster heat flows.</li>
         <li><span class="kb">Surface area in contact (A)</span> – the larger the area in contact, the faster heat flows.</li>
@@ -145,6 +150,11 @@
     <div id="rate-host"></div>
   </section>
 
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
@@ -158,6 +168,7 @@ const A=AS, T=A.U7;
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figHeatFlow()}</div>`;
 A.$("#flow-art").innerHTML=T.figHeatFlow("90 °C","20 °C");
 T.TransferSim(A.$("#tr-host"));
+T.LabelHeat(A.$("#lh-host"));
 A.$("#eq-art").innerHTML=T.figEquil();
 A.$("#tr-art").innerHTML=T.figTransfer();
 A.$("#rate-art").innerHTML=T.figRate();
@@ -166,6 +177,7 @@ T.EquilSim(A.$("#eq-host"));
 A.$("#cond-art").innerHTML=T.figConduct();
 T.ConductRace(A.$("#race-host"));
 T.RateSim2(A.$("#rate-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "Energy transferred from a high temperature object to a low temperature object is ___.", "a": "heat"}, {"s": "Heat transfer between objects in contact is ___.", "a": "conduction"}, {"s": "Heat transfer by currents of a liquid or gas is ___.", "a": "convection"}, {"s": "Heat transfer by light waves, which can cross empty space, is ___.", "a": "radiation"}, {"s": "When two objects reach the same temperature and there is no net flow of heat, they are in ___.", "a": "thermal equilibrium"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"A 70 °C metal block is placed in 20 °C water. Which statement describes the heat flow?",choices:["Heat flows from the water to the block.","Heat flows from the block to the water.","Cold flows from the water to the block.","No heat flows because the block is a solid."],ans:2,explain:"Heat always flows from the higher temperature object to the lower temperature object."},
  {type:"mc",stem:"The block and the water in the previous question eventually stop changing temperature. At this point they",choices:["have the same temperature","have the same mass","contain the same amount of heat","stop colliding"],ans:1,explain:"Thermal equilibrium: same temperature, no net flow of heat. Particles still collide."},

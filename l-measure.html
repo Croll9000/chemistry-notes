@@ -25,7 +25,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Uncertainty"><div class="pn"><small>Part</small><span>1</span></div><h2>Measurements and Uncertainty</h2><p>Record what you know for sure, plus one estimated digit.</p></div>
+  <div class="part" id="p1" data-short="Uncertainty"><div class="pn"><small>Part</small><span>1</span></div><h2>Measurements and Uncertainty</h2><p>No instrument is perfect, so every measurement carries some uncertainty. A properly recorded measurement includes every digit that is known with certainty plus one estimated digit.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Taking Measurements</h2></div>
@@ -73,7 +73,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Lab equipment"><div class="pn"><small>Part</small><span>2</span></div><h2>Reading Lab Equipment</h2><p>The same rule for every instrument: certain digits plus one estimated digit.</p></div>
+  <div class="part" id="p2" data-short="Lab equipment"><div class="pn"><small>Part</small><span>2</span></div><h2>Reading Lab Equipment</h2><p>Rulers, graduated cylinders, thermometers and balances differ in appearance, but each is read using the same rules. In this section we will apply these rules to the instruments commonly used in the laboratory.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Rulers and Meter Sticks</h2></div>
@@ -122,6 +122,7 @@
   <section class="note">
     <div class="tile"><h2>Electronic Balances</h2></div>
     <div class="body">
+      <p class="intro">Electronic balances are the most precise instruments in a high school laboratory; many read to the nearest 0.01 g or even 0.001 g. Unlike a ruler or a cylinder, a digital balance does the estimating for you, so every digit on the display is recorded.</p>
       <ul>
         <li><span class="def">Mass</span> is measured with a balance.
           <ul><li>An electronic (digital) balance shows the reading as numbers.</li></ul></li>
@@ -147,6 +148,11 @@
   <section class="lab" id="record">
     <div class="lab-h"><span class="tag game">Game</span><h3>Record It Right</h3></div>
     <div id="rr-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Read each instrument to the correct place value. Your first answer to each question is your score.</p></div>
@@ -217,6 +223,7 @@ L.Station(A.$("#st-host"));
 function figR(len,mm,cm){ const id="q"+Math.random().toString(36).slice(2,6); const s=`<svg viewBox="0 0 ${cm*90+80} 140" width="${Math.min(640,cm*120+100)}" style="background:#fff;border:1px solid var(--line);border-radius:8px" role="img" aria-label="Ruler reading"><rect width="2000" height="400" fill="#fff"/>${L.ruler(40,80,{cm,px:90,mm})}<rect x="40" y="58" width="${len*90}" height="18" fill="#00B050" stroke="#1b2328" stroke-width="1.5"/></svg>`; return s; }
 function figC(level){ const o={top:30,bot:250,max:20,step:1,major:5,cw:54,level}; return `<svg viewBox="0 0 200 280" width="250" style="background:#fff;border:1px solid var(--line);border-radius:8px" role="img" aria-label="Graduated cylinder">${L.cyl(50,o)}</svg>`; }
 function figT(val){ return `<svg viewBox="0 0 150 300" width="190" style="background:#fff;border:1px solid var(--line);border-radius:8px" role="img" aria-label="Thermometer">${L.thermometer(45,{min:10,max:40,px:8,bot:292,val})}</svg>`; }
+A.VocabCheck(A.$("#vc-host"),[{"s": "Every recorded measurement includes all of the certain digits plus one ___ digit.", "a": "estimated"}, {"s": "The volume of a liquid in a graduated cylinder is read at the bottom of the ___.", "a": "meniscus"}, {"s": "Mass is measured with a ___.", "a": "balance"}, {"s": "Volume of a liquid is measured with a ___.", "a": "graduated cylinder"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"A ruler is marked every 0.1 cm. To which place value should a length measured with this ruler be recorded?",choices:["ones (1 cm)","tenths (0.1 cm)","hundredths (0.01 cm)","thousandths (0.001 cm)"],ans:3,explain:"You may estimate one place beyond the smallest marking. The smallest marking is 0.1 cm, so record to the 0.01 cm (hundredths) place."},
  {type:"mc",stem:"The diagram shows a bar measured with a centimeter ruler marked in millimeters. Which measurement is recorded correctly?",figure:figR(3.47,true,5),choices:["3 cm","3.5 cm","3.47 cm","3.470 cm"],ans:3,explain:"The bar is past 3.4 cm (certain digits) and about 7/10 of the way to 3.5 cm, so 3.47 cm. One estimated digit beyond the 0.1 cm markings."},

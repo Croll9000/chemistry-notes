@@ -93,7 +93,7 @@
   <section class="note">
     <div class="tile"><h2>Heat During Phase Changes</h2></div>
     <div class="body">
-      <p class="intro">Sweating cools you down on a hot day because every gram of sweat that evaporates carries away 2260 joules from your skin, without the sweat getting any hotter. During a phase change the temperature does not change, so q = mcΔT would give zero heat. A different equation is needed for the flat parts of the heating curve.</p>
+      <p class="intro">Bringing a pot of water to a boil takes about 10 minutes, but boiling it all away takes far longer, even though the burner delivers heat at the same rate and the temperature never rises above 100 °C. The heat added during this time is not raising the temperature; it is separating the particles. Because ΔT is zero during a phase change, q = mcΔT cannot describe it, and a different equation is needed.</p>
       <ul>
         <li>During a phase change, the potential energy of the particles changes, not their kinetic energy. To calculate the heat, we use q = mH<sub>f</sub> for melting or freezing, and q = mH<sub>v</sub> for vaporizing or condensing.</li>
         <li><span class="def">Heat of Fusion (H<sub>f</sub>)</span> – the amount of heat needed to melt (or released when freezing) 1 gram of a substance at its melting point.</li>
@@ -153,6 +153,11 @@
     <div id="which-host"></div>
   </section>
 
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
@@ -198,6 +203,7 @@ P.TapSort(A.$("#which-host"),{prompt:"Which equation would you use?",how:"Temper
  ["Heating water from 25 °C to 60 °C","c","The temperature changes."],["Melting an ice cube at 0 °C","f","Melting at the melting point."],["Boiling water at 100 °C","v","Vaporizing at the boiling point."],
  ["Cooling a copper pipe from 90 °C to 30 °C","c","The temperature changes."],["Freezing water at 0 °C","f","Freezing uses the heat of fusion."],["Steam condensing on a cold window","v","Condensing uses the heat of vaporization."],
  ["Warming ice from −20 °C to −5 °C","c","The ice’s temperature changes; no phase change."],["Warming steam from 110 °C to 130 °C","c","The temperature of the gas changes."]]});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The heat needed to raise 1 g of a substance by 1 °C is its ___.", "a": "specific heat capacity"}, {"s": "The heat needed to melt 1 g of a substance at its melting point is its ___.", "a": "heat of fusion"}, {"s": "The heat needed to vaporize 1 g of a substance at its boiling point is its ___.", "a": "heat of vaporization"}]);
 A.QSet(A.$("#qs"),[
  {type:"text",stem:"How much heat is absorbed by 200. g of water when its temperature increases from 15.0 °C to 35.0 °C? (c = 4.18 J/g·K)",unit:"J",width:120,check:v=>S.chk(v,16720,{minSf:2}),explain:"q = (200. g)(4.18 J/g·K)(20.0 K) = 16,720 J (1.67 × 10<sup>4</sup> J)."},
  {type:"text",stem:"How much heat is needed to vaporize 5.00 g of water at 100 °C? (H<sub>v</sub> = 2260 J/g)",unit:"J",width:120,check:v=>S.chk(v,11300,{minSf:2}),explain:"q = (5.00 g)(2260 J/g) = 11,300 J."},

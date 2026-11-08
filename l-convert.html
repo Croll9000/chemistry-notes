@@ -26,11 +26,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Conversion factors"><div class="pn"><small>Part</small><span>1</span></div><h2>Equivalences and Conversion Factors</h2><p>Two equal quantities with different units, written as a fraction.</p></div>
+  <div class="part" id="p1" data-short="Conversion factors"><div class="pn"><small>Part</small><span>1</span></div><h2>Equivalences and Conversion Factors</h2><p>Any two quantities that describe the same amount in different units can be written as a fraction. These fractions, known as conversion factors, are the tools of every unit conversion.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Equivalences and Conversion Factors</h2></div>
     <div class="body">
+      <p class="intro">A recipe written in cups must be converted for a kitchen scale that measures in grams, and a race measured in miles is often reported in kilometers. In both cases, two quantities that describe the same amount are used to change units. In chemistry, these pairs are known as equivalences.</p>
       <p>In science, it is often necessary to <span class="kr">convert from one unit of measurement to another</span>. One of the quickest ways to do this is with a process known as <span class="kr">Dimensional Analysis</span>. In this process we use a series of Equivalences and Conversion Factors to get from the given unit to the target (desired) unit.</p>
       <ul>
         <li><span class="def">Equivalence</span> – two equal quantities with different units.</li>
@@ -43,6 +44,7 @@
   <section class="note">
     <div class="tile"><h2>Dimensional Analysis</h2></div>
     <div class="body">
+      <p class="intro">Pharmacists, engineers and chemists all use the same method to convert units, because it keeps track of the units at every step. If the units cancel correctly, the answer is set up correctly. This method is known as dimensional analysis.</p>
       <ul><li><span class="def">Dimensional Analysis</span> (also called the <i>factor-label method</i>) – method of unit conversion which involves multiplying by fractions known as conversion factors.</li></ul>
       <p>Steps to Dimensional Analysis</p>
       <ol class="steps7">
@@ -66,7 +68,7 @@
     <div class="body" id="ex-steps"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Metric conversions"><div class="pn"><small>Part</small><span>2</span></div><h2>Dimensional Analysis and the Metric System</h2><p>The prefix table on the Reference Table provides the equivalences.</p></div>
+  <div class="part" id="p2" data-short="Metric conversions"><div class="pn"><small>Part</small><span>2</span></div><h2>Dimensional Analysis and the Metric System</h2><p>The metric prefix table on your Reference Table provides the equivalences needed to convert between any two metric units using dimensional analysis.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Dimensional Analysis and the Metric System</h2></div>
@@ -101,6 +103,11 @@
   <section class="lab" id="which">
     <div class="lab-h"><span class="tag game">Game</span><h3>Which Conversion Factor?</h3></div>
     <div id="wf-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -145,6 +152,7 @@ L.DABuilder(A.$("#da-host"));
 /* ---------- which conversion factor ---------- */
 L.WhichFactor(A.$("#wf-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Two quantities that describe the same amount in different units form an ___.", "a": "equivalence"}, {"s": "An equivalence written as a fraction is a ___.", "a": "conversion factor"}, {"s": "Converting units by multiplying by conversion factors is ___.", "a": "dimensional analysis"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which conversion factor should be used to convert a mass in grams to kilograms?",choices:[`<span class="mth">${cf(P(3),"g",1,"kg")}</span>`,`<span class="mth">${cf(1,"kg",P(3),"g")}</span>`,`<span class="mth">${cf(1,"g",P(3),"kg")}</span>`,`<span class="mth">${cf(P(3),"kg",1,"g")}</span>`],ans:2,explain:"The given unit (g) goes on the bottom so it cancels, and the desired unit (kg) on top: 1 kg = 10³ g."},
  {type:"mc",stem:"2,000 mL can not be expressed as",choices:["2.0 × 10<sup>3</sup> mL","2 kL","2 L","2.0 × 10<sup>−3</sup> kL"],ans:2,explain:"2,000 mL × (10⁻³ L / 1 mL) = 2 L = 0.002 kL, not 2 kL."},

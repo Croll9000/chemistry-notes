@@ -72,12 +72,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Substances & mixtures"><div class="pn"><small>Part</small><span>1</span></div><h2>Pure Substances and Mixtures</h2><p>A pure substance contains one type of particle. A mixture contains more than one.</p></div>
+  <div class="part" id="p1" data-short="Substances & mixtures"><div class="pn"><small>Part</small><span>1</span></div><h2>Pure Substances and Mixtures</h2><p>All matter can be classified by the particles it contains. A pure substance contains only one type of particle, while a mixture contains two or more.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Classification of Matter</h2></div>
     <div class="body">
-      <p class="intro">Scientists will often categorize things to make them easier to study and draw comparisons between them. Chemists are no different. All matter can be classified into a number of different categories.</p>
+      <p class="intro">A librarian sorts books by subject, and a biologist sorts living things into kingdoms and species. Chemists sort matter in the same way, by asking what kinds of particles a sample contains and how those particles are combined. This system of categories allows any sample of matter, from seawater to a diamond, to be described precisely.</p>
       <p><b>Click any bubble</b> to see its definition and an example.</p>
       <div class="web"><div id="tree-art"></div><div class="web-info" id="web-info"></div></div>
     </div>
@@ -156,7 +156,8 @@
           <li>If two different types of atoms touch or overlap, the particle is both a molecule and a compound.</li>
           <li>If atoms/molecules occupy the same container but <span class="kb">do not touch</span>, they are considered a <span class="kb">mixture</span>.</li>
         </ul></li>
-        <li class="added">To classify a diagram, ask: <b>Are all of the particles identical?</b> Yes → pure substance. No → mixture.</li></ul>
+        <li class="added">To classify a diagram, ask: <b>Are all of the particles identical?</b> Yes → pure substance.
+          <ul><li>No → mixture.</li></ul></li></ul>
       <div class="pd-pair"><div class="pd-keycard"><h4>Key</h4><div class="pd-key" id="key-big"></div></div><div class="pd-keycard" id="key-mix"></div></div>
     </div>
   </section>
@@ -184,7 +185,7 @@
     <div id="mk-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Types of mixtures"><div class="pn"><small>Part</small><span>3</span></div><h2>Types of Mixtures</h2><p>Mixtures keep the properties of their parts, and they can be evenly or unevenly mixed.</p></div>
+  <div class="part" id="p2" data-short="Types of mixtures"><div class="pn"><small>Part</small><span>3</span></div><h2>Types of Mixtures</h2><p>The parts of a mixture keep their own properties. In this section we will discuss how mixtures are classified by how evenly their particles are distributed.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mixtures</h2></div>
@@ -257,7 +258,7 @@
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Classify it"><div class="pn"><small>Part</small><span>4</span></div><h2>Putting It Together</h2><p>Three yes-or-no questions are enough to classify any sample of matter.</p></div>
+  <div class="part" id="p3" data-short="Classify it"><div class="pn"><small>Part</small><span>4</span></div><h2>Putting It Together</h2><p>Any sample of matter can be classified by answering three questions about its particles. In this section we will combine these questions into a single flowchart.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Classifying Matter: Flowchart</h2></div>
@@ -278,6 +279,11 @@
   <section class="lab" id="sorter">
     <div class="lab-h"><span class="tag game">Game</span><h3>Classify It</h3></div>
     <div id="cs-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Classify matter the way the Regents asks. Your first answer to each question is your score.</p></div>
@@ -645,6 +651,7 @@ function randomSpec(kind){
 /* ---------- Learning Check ---------- */
 const keyLine=`<div class="pd-key" style="flex-direction:row;flex-wrap:wrap;gap:14px;margin:6px 0">${keyHTML()}</div>`;
 const QD=(items,seed)=>U.diagram({items,w:220,h:160,r:11,seed});
+A.VocabCheck(A.$("#vc-host"),[{"s": "Matter with only one type of particle and a fixed composition is a ___.", "a": "pure substance"}, {"s": "Two or more substances physically combined form a ___.", "a": "mixture"}, {"s": "A mixture with particles distributed evenly is a ___.", "a": "homogeneous mixture"}, {"s": "A mixture with particles distributed unevenly is a ___.", "a": "heterogeneous mixture"}, {"s": "The substance that does the dissolving in a solution is the ___.", "a": "solvent"}]);
 A.QSet(A.$("#qs"),A._clsQ1.concat([
  {type:"mc",stem:`Which type of matter is represented by the particle diagram below?${keyLine}${QD([{f:"A",n:5},{f:"C",n:4}],301)}`,choices:["an element","a compound","a mixture of elements","a mixture of compounds"],ans:3,explain:"Two different kinds of single atoms (A and C) that don’t touch: a mixture of elements."},
  {type:"mc",stem:`Which diagram represents a mixture of an element and a compound?${keyLine}`,choices:[QD([{f:"A2",n:6}],303),QD([{f:"A",n:4},{f:"BC2",n:3}],304),QD([{f:"AB",n:3},{f:"BC2",n:3}],305),QD([{f:"B",n:4},{f:"C",n:4}],306)],ans:2,explain:"Choice 2 has single atoms of element A and particles of the compound BC₂."},

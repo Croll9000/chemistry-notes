@@ -24,7 +24,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Temperature"><div class="pn"><small>Part</small><span>1</span></div><h2>What Temperature Measures</h2><p>Temperature is a measure of the average kinetic energy of the particles.</p></div>
+  <div class="part" id="p1" data-short="Temperature"><div class="pn"><small>Part</small><span>1</span></div><h2>What Temperature Measures</h2><p>Temperature is one of the most frequently measured quantities in chemistry. It reflects the average kinetic energy of the particles in a sample.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Temperature</h2></div>
@@ -54,7 +54,7 @@
     <div class="labq" id="lq-motion"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Two scales"><div class="pn"><small>Part</small><span>2</span></div><h2>The Celsius and Kelvin Scales</h2><p>The Celsius and Kelvin scales have the same size degrees but different zero points.</p></div>
+  <div class="part" id="p2" data-short="Two scales"><div class="pn"><small>Part</small><span>2</span></div><h2>The Celsius and Kelvin Scales</h2><p>Chemists use two temperature scales. The Celsius and Kelvin scales have degrees of the same size but begin at different zero points.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Celsius Scale</h2></div>
@@ -70,7 +70,8 @@
 
   <section class="note">
     <div class="tile"><h2>Kelvin Scale</h2></div>
-    <div class="body"><div class="two" style="align-items:center"><div>
+    <div class="body"><p class="intro">In the 1800s, scientists noticed that a gas shrinks by a predictable amount every time it is cooled by one degree. Extending that pattern pointed to a temperature at which the gas would have no volume at all, about −273 °C. The Kelvin scale begins at this temperature, absolute zero.</p>
+      <div class="two" style="align-items:center"><div>
       <ul>
         <li>The <span class="def">Kelvin scale (K)</span> is the SI temperature scale.</li>
         <li>It starts at <span class="def">absolute zero (0 K)</span>, the <span class="kr">lowest possible temperature</span>.
@@ -107,7 +108,7 @@
     <div class="labq" id="lq-dual"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Converting"><div class="pn"><small>Part</small><span>3</span></div><h2>Converting</h2><p>Convert with the equation on the Reference Table.</p></div>
+  <div class="part" id="p3" data-short="Converting"><div class="pn"><small>Part</small><span>3</span></div><h2>Converting</h2><p>Because the two scales differ only in their starting point, converting between them requires a single equation found on your Reference Table.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Converting Between Kelvin and Celsius</h2></div>
@@ -128,6 +129,11 @@
   <section class="lab" id="tconv">
     <div class="lab-h"><span class="tag game">Game</span><h3>Kelvin Sprint</h3></div>
     <div id="tc-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use K = °C + 273.15 from your Reference Table. Your first answer to each question is your score.</p></div>
@@ -212,6 +218,7 @@ A.$("#ke-hi").innerHTML=`<b style="color:#c40000">High temperature</b>${gasBox(9
 L.TempGame(A.$("#tc-host"));
 
 const tq=(exact,dp)=>v=>A.lenient(v,exact,{dp});
+A.VocabCheck(A.$("#vc-host"),[{"s": "A measurement of the average kinetic energy of the particles in a sample is ___.", "a": "temperature"}, {"s": "The lowest possible temperature is ___.", "a": "absolute zero"}, {"s": "The temperature scale with no negative values is the ___.", "a": "Kelvin scale"}, {"s": "Water freezes at 0 degrees on the ___.", "a": "Celsius scale"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"The temperature of a substance is a measure of the",choices:["average kinetic energy of its particles","total mass of its particles","number of its particles","amount of space its particles take up"],ans:1,explain:"Temperature measures the average kinetic energy of the particles."},
  {type:"mc",stem:"Which sample of water contains particles having the highest average kinetic energy?",choices:["25 mL of water at 95 °C","45 mL of water at 75 °C","75 mL of water at 75 °C","95 mL of water at 25 °C"],ans:1,explain:"The highest temperature (95 °C) means the highest average kinetic energy. The volume doesn’t matter."},

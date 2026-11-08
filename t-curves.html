@@ -35,7 +35,7 @@
   <section class="note">
     <div class="tile"><h2>Cooling Substances</h2></div>
     <div class="body">
-      <p class="intro">Cooling is heating in reverse. Put a glass of water in the freezer and its temperature falls steadily, then stops at 0 °C while ice forms, even though the freezer keeps pulling heat out. As heat is removed, the particles either slow down or move closer together.</p>
+      <p class="intro">A pot of soup taken off the stove cools quickly at first. Placed in a freezer, its temperature continues to fall until it reaches its freezing point, where it remains nearly constant for a long time while it turns solid, even though the freezer keeps removing heat. As heat is removed, particles either slow down or move closer together.</p>
       <ul>
         <li>When a substance is cooled, it loses energy.
           <ul><li>The energy comes out of either the kinetic energy or the potential energy of its particles.</li><li>Only one type of energy decreases at a time.</li><li>If the kinetic energy of the particles decreases, they move slower and the temperature of the substance decreases.</li>
@@ -50,7 +50,7 @@
   <section class="note">
     <div class="tile"><h2>Heating Curve</h2></div>
     <div class="body">
-      <p class="intro">A heating curve is a graph of what a thermometer would read as a substance is heated at a steady rate. It looks like a staircase: ramps where the temperature rises, and flat steps where it pauses. Each ramp and each step tells you exactly what the particles are doing and which kind of energy they are gaining.</p>
+      <p class="intro">In the previous section, you saw that heat added to a substance either speeds up its particles or separates them. A heating curve records this process as a graph of temperature against heat added. It resembles a staircase of ramps and flat steps, and each segment reveals exactly what the particles are doing and which type of energy they are gaining.</p>
       <ul>
         <li><span class="def">Heating Curve</span> – a graph of the temperature of a substance as heat is added to it.
           <ul><li>The y-axis is the temperature of the substance.</li>
@@ -98,6 +98,11 @@
     <div id="cm-host"></div>
   </section>
 
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
@@ -120,6 +125,7 @@ T.CurveMatch(A.$("#cm-host"));
 const lettered=()=>{ const xs=[60,140,250,340,520,600], ys=[260,200,200,110,110,40]; let s=`<line x1="50" y1="280" x2="630" y2="280" stroke="#1b2328" stroke-width="2.5"/><line x1="50" y1="280" x2="50" y2="20" stroke="#1b2328" stroke-width="2.5"/><polyline points="${xs.map((x,i)=>x+","+ys[i]).join(" ")}" fill="none" stroke="#E00000" stroke-width="4"/>`;
   "ABCDE".split("").forEach((l,i)=>{ const mx=(xs[i]+xs[i+1])/2, my=(ys[i]+ys[i+1])/2; s+=`<circle cx="${mx}" cy="${my-18}" r="12" fill="#fff" stroke="#1b2328" stroke-width="2"/>`+T.t(mx,my-13,l,{fs:13}); });
   return T.svg(660,310,s+T.t(340,304,"Heat added / time",{fs:14})+`<text transform="translate(18 150) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Temperature</text>`,"Heating curve with segments A to E"); };
+A.VocabCheck(A.$("#vc-host"),[{"s": "A graph of temperature as heat is added is a ___.", "a": "heating curve"}, {"s": "On a sloped segment, the ___ of the particles increases.", "a": "kinetic energy"}, {"s": "On a flat segment, the ___ of the particles increases.", "a": "potential energy"}, {"s": "A graph of temperature as heat is removed is a ___.", "a": "cooling curve"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:`${lettered()}<br>During which segment is the substance melting?`,choices:["A","B","C","D"],ans:2,explain:"B is the first flat segment, at the melting point."},
  {type:"mc",stem:"During segment D of the same curve, the average kinetic energy of the particles",choices:["increases","decreases","stays the same","becomes zero"],ans:3,explain:"D is flat (vaporization). The temperature, and so the average kinetic energy, stays the same; potential energy increases."},

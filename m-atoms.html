@@ -30,7 +30,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Atoms"><div class="pn"><small>Part</small><span>1</span></div><h2>Atoms: The Building Blocks</h2><p>All matter is made of atoms.</p></div>
+  <div class="part" id="p1" data-short="Atoms"><div class="pn"><small>Part</small><span>1</span></div><h2>Atoms: The Building Blocks</h2><p>All matter, from the air we breathe to the stars, is built from tiny particles called atoms. In this section we will discuss what atoms are and how they differ from one another.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atoms</h2></div>
@@ -58,7 +58,7 @@
     <div class="labq" id="lq-zoom"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Elements"><div class="pn"><small>Part</small><span>2</span></div><h2>Elements and the Periodic Table</h2><p>Atoms come in different types. Each type is an element, and the periodic table lists them all.</p></div>
+  <div class="part" id="p2" data-short="Elements"><div class="pn"><small>Part</small><span>2</span></div><h2>Elements and the Periodic Table</h2><p>Atoms come in different types, and each type is known as an element. The periodic table organizes all of the known elements in a single chart.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atoms and Elements</h2></div>
@@ -120,6 +120,11 @@
   <section class="lab" id="symgame">
     <div class="lab-h"><span class="tag game">Game</span><h3>Symbol Sprint</h3></div>
     <div id="sg-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Show what you know about atoms, elements and the periodic table. Your first answer to each question is your score.</p></div>
@@ -232,6 +237,7 @@ A.$("#sym-art").innerHTML=`<div style="display:flex;gap:12px;align-items:center;
   next();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The smallest unit of matter that keeps the identity of an element is an ___.", "a": "atom"}, {"s": "A substance made of only one type of atom is an ___.", "a": "element"}, {"s": "A vertical column of the periodic table is a ___.", "a": "group"}, {"s": "A horizontal row of the periodic table is a ___.", "a": "period"}, {"s": "Elements along the staircase line with properties of both metals and nonmetals are ___.", "a": "metalloids"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"All matter is made up of small particles called",choices:["elements","mixtures","electrolytes","atoms"],ans:4,explain:"Atoms are the smallest building blocks of matter. Elements are types of atoms."},
  {type:"mc",stem:"Atoms of different elements are different because they contain different numbers of",choices:["molecules","protons","mixtures","bonds"],ans:2,explain:"Each element has its own unique number of protons."},

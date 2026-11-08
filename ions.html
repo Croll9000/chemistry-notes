@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Gaining & losing electrons"><div class="pn"><small>Part</small><span>1</span></div><h2>Gaining and Losing Electrons</h2><p>Atoms can gain or lose electrons, which gives them a charge. The number of protons does not change.</p></div>
+  <div class="part" id="p1" data-short="Gaining & losing electrons"><div class="pn"><small>Part</small><span>1</span></div><h2>Gaining and Losing Electrons</h2><p>The calcium in milk and the potassium in bananas are present in the body as ions, not as neutral atoms. When an atom gains or loses electrons it becomes charged, but its number of protons, and therefore its identity as an element, does not change.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ions</h2></div>
@@ -33,6 +33,7 @@
   <section class="note">
     <div class="tile"><h2>Losing Electrons</h2></div>
     <div class="body">
+      <p class="intro">Sodium metal reacts so violently with water that it must be stored under oil. Yet the sodium ions in table salt are completely stable. The difference is a single electron.</p>
       <p>When atoms <span class="kr">lose electrons</span> they acquire a <span class="kr">positive charge</span>. This is because they will have more protons (+) than electrons (−).</p>
       <ul><li>Losing multiple electrons creates an ion with a larger positive charge.
           <ul><li><span class="kb">Losing 2 electrons</span> creates an ion with a charge of <span class="kb">“2+”</span>.</li><li><span class="kg">Losing 3 electrons</span> creates an ion with a charge of <span class="kg">“3+”</span>.</li></ul></li></ul>
@@ -69,7 +70,7 @@
     <div class="labq" id="lq-ionlab"></div>
   </section>
 
-<div class="part" id="p2" data-short="Ion symbols"><div class="pn"><small>Part</small><span>2</span></div><h2>Writing Ion Symbols</h2><p>The charge of an ion is written in the top right corner of its symbol.</p></div>
+<div class="part" id="p2" data-short="Ion symbols"><div class="pn"><small>Part</small><span>2</span></div><h2>Writing Ion Symbols</h2><p>Sports drink labels list electrolytes such as sodium (Na⁺) and potassium (K⁺), ions that carry electrical signals through nerves and muscles. Ion symbols show the charge in the upper right corner, which tells a chemist how many electrons the atom has gained or lost.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ion Symbols</h2></div>
@@ -95,7 +96,7 @@
     <div id="ion-game-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Patterns"><div class="pn"><small>Part</small><span>3</span></div><h2>Predicting the Charge</h2><p>Atoms gain or lose electrons to reach a noble gas configuration, so the charge can be predicted from the periodic table.</p></div>
+  <div class="part" id="p3" data-short="Patterns"><div class="pn"><small>Part</small><span>3</span></div><h2>Predicting the Charge</h2><p>The magnesium in Epsom salt is always found as Mg²⁺, and the chlorine dissolved in seawater is always found as Cl⁻. Because atoms gain or lose electrons to reach the stable configuration of a noble gas, the charge of an ion can be predicted from its position on the periodic table.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Stable Configurations</h2></div>
@@ -124,7 +125,12 @@
     <div id="ionpt-host"></div>
   </section>
 
-    <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use what you know about electrons to answer these Regents-style questions. Your first answer to each question is your score.</p></div>
+    <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use what you know about electrons to answer these Regents-style questions. Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
@@ -155,6 +161,7 @@ A.IonLab(A.$("#ionlab-host"),{start:12});
 A.IonPT(A.$("#ionpt-host"),{start:20,maxZ:86});
 A.SymbolGame(A.$("#ion-game-host"),{kind:"ion"});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "An atom with an overall charge is an ___.", "a": "ion"}, {"s": "A positively charged ion is a ___.", "a": "cation"}, {"s": "A negatively charged ion is an ___.", "a": "anion"}, {"s": "Metals tend to ___ electrons when they form ions.", "a": "lose"}, {"s": "Nonmetals tend to ___ electrons when they form ions.", "a": "gain"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"An atom of calcium loses 2 electrons. Which ion is formed?",choices:["Ca<sup>2−</sup>, an anion","Ca<sup>2+</sup>, a cation","Ca<sup>2−</sup>, a cation","Ca<sup>2+</sup>, an anion"],ans:2,explain:"Losing electrons leaves more protons than electrons: a positive ion, which is called a cation."},
  {type:"num",stem:"How many electrons are in the ion "+A.iso({A:31,Z:15,sym:"P",charge:-3})+"?",ans:18,tol:0,explain:"Phosphorus has 15 electrons as an atom. A 3− charge means it gained 3: 15 + 3 = 18."},

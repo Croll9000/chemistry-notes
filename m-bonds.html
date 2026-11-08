@@ -31,7 +31,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Chemical bonds"><div class="pn"><small>Part</small><span>1</span></div><h2>Chemical Bonds</h2><p>A chemical bond is the attraction that holds atoms together. Energy is required to break a bond.</p></div>
+  <div class="part" id="p1" data-short="Chemical bonds"><div class="pn"><small>Part</small><span>1</span></div><h2>Chemical Bonds</h2><p>Atoms rarely exist on their own. They are held together by attractions known as chemical bonds, and breaking these bonds always requires energy.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Chemical Bond</h2></div>
@@ -48,6 +48,7 @@
   <section class="note added">
     <div class="tile"><h2>Bonds and Energy</h2></div>
     <div class="body">
+      <p class="intro">Fuels such as natural gas and gasoline are valuable because of the energy changes that occur when their bonds break and new bonds form. A single liter of gasoline releases about 34,000 kJ as its atoms rearrange into carbon dioxide and water. Every chemical bond represents stored energy.</p>
       <ul>
         <li>Bonded atoms are more stable (have less energy) than the same atoms when they are separated.</li>
         <li>To <span class="kr">break</span> a chemical bond, <span class="kr">energy must be added (absorbed)</span>.</li>
@@ -70,7 +71,7 @@
     <div class="labq" id="lq-break"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Molecules & compounds"><div class="pn"><small>Part</small><span>2</span></div><h2>Molecules and Compounds</h2><p>Bonded atoms make molecules. When the atoms are from different elements, the molecule is also a compound.</p></div>
+  <div class="part" id="p2" data-short="Molecules & compounds"><div class="pn"><small>Part</small><span>2</span></div><h2>Molecules and Compounds</h2><p>When atoms bond together they form molecules. When the bonded atoms come from more than one element, the substance is known as a compound.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Molecules and Compounds</h2></div>
@@ -113,7 +114,7 @@
     <div id="mc-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Chemical formulas"><div class="pn"><small>Part</small><span>3</span></div><h2>Chemical Formulas</h2><p>A formula tells you which elements are in a compound and how many atoms of each.</p></div>
+  <div class="part" id="p3" data-short="Chemical formulas"><div class="pn"><small>Part</small><span>3</span></div><h2>Chemical Formulas</h2><p>A chemical formula is a shorthand that identifies the elements in a substance and the number of atoms of each. In this section we will discuss how to read and interpret formulas.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Decoding Compounds</h2></div>
@@ -154,7 +155,7 @@
     <div id="ac-host"></div>
   </section>
 
-  <div class="part" id="p4" data-short="Structure & properties"><div class="pn"><small>Part</small><span>4</span></div><h2>Structure Decides Properties</h2><p>The same atoms, bonded in a different arrangement, make a substance with different properties.</p></div>
+  <div class="part" id="p4" data-short="Structure & properties"><div class="pn"><small>Part</small><span>4</span></div><h2>Structure Decides Properties</h2><p>The same atoms, bonded in different arrangements, can form substances with very different properties. Carbon, for example, forms both diamond and graphite.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Allotropes</h2></div>
@@ -179,6 +180,11 @@
           <ul><li>Diamond’s atoms are locked in a 3-D network, so diamond-tipped saws can cut stone.</li><li>Graphite’s layers slide past each other easily, so graphite works as pencil “lead” and as a dry lubricant.</li></ul></li>
       </ul>
     </div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Show what you know about bonds, molecules, compounds and formulas. Your first answer to each question is your score.</p></div>
@@ -325,6 +331,7 @@ A.$("#gra-art").innerHTML=(()=>{
 
 U.AtomCounter(A.$("#ac-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The attraction that holds atoms together is a ___.", "a": "chemical bond"}, {"s": "Two or more atoms bonded together form a ___.", "a": "molecule"}, {"s": "A substance made of two or more elements chemically combined is a ___.", "a": "compound"}, {"s": "Elements found as bonded pairs of atoms, such as O₂, are ___.", "a": "diatomic elements"}, {"s": "Different forms of the same element, such as diamond and graphite, are ___.", "a": "allotropes"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"A chemical bond is best described as",choices:["a weak attraction between separate molecules","a strong attraction that holds atoms together","the space between atoms","a mixture of two elements"],ans:2,explain:"A chemical bond is a strong attraction that holds atoms together."},
  {type:"mc",stem:"Which particle is a molecule but <b>not</b> a compound?",choices:["H<sub>2</sub>O","CO<sub>2</sub>","O<sub>2</sub>","NH<sub>3</sub>"],ans:3,explain:"O₂ is two bonded atoms (a molecule) of only one element, so it is not a compound."},

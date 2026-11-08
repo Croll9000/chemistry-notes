@@ -32,7 +32,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Writing Numbers in Scientific Notation</h2><p>One digit in front of the decimal point, then a power of 10.</p></div>
+  <div class="part" id="p1" data-short="What it is"><div class="pn"><small>Part</small><span>1</span></div><h2>Writing Numbers in Scientific Notation</h2><p>Chemistry deals with numbers far too large or small to write comfortably. Scientific notation expresses any number as a value between 1 and 10 multiplied by a power of 10.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Scientific Notation</h2></div>
@@ -53,6 +53,7 @@
   <section class="note">
     <div class="tile"><h2>Converting to Scientific Notation</h2></div>
     <div class="body">
+      <p class="intro">The mass of Earth is about 5,970,000,000,000,000,000,000,000 kg. Counting those zeros correctly is slow and easy to get wrong. Converting to scientific notation replaces them with a single power of 10: 5.97 × 10<sup>24</sup> kg.</p>
       <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:5px">
         <li>Rewrite the number, leaving off leading and trailing zeros (but not zeros in the middle of the number).</li>
         <li>Put the decimal point between the 1<sup>st</sup> and 2<sup>nd</sup> nonzero digits (#.###).</li>
@@ -68,6 +69,7 @@
   <section class="note">
     <div class="tile"><h2>Converting from Scientific Notation</h2></div>
     <div class="body">
+      <p class="intro">Sometimes a number in scientific notation must be written out in full, for example to compare it with a value on a lab instrument. The exponent tells you exactly how many places, and in which direction, to move the decimal point.</p>
       <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:5px">
         <li>Rewrite the number, leaving off the “× 10<sup>y</sup>”.</li>
         <li>Move the decimal point a number of places equal to the exponent, y.
@@ -96,7 +98,7 @@
     <div class="labq" id="lq-hopper"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Calculators & practice"><div class="pn"><small>Part</small><span>2</span></div><h2>Calculators and Practice</h2><p>Enter scientific notation the right way, then practice converting.</p></div>
+  <div class="part" id="p2" data-short="Calculators & practice"><div class="pn"><small>Part</small><span>2</span></div><h2>Calculators and Practice</h2><p>A calculator only gives the right answer if the number is entered correctly. In this section we will discuss how to enter scientific notation correctly and practice converting numbers in both directions.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Scientific Notation on Your Calculator</h2></div>
@@ -126,6 +128,11 @@
   <section class="lab" id="cmp">
     <div class="lab-h"><span class="tag game">Game</span><h3>Which Is Larger?</h3></div>
     <div id="cmp-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -195,6 +202,7 @@ L.SciGame(A.$("#sn-host"));
 /* ---------- which is larger ---------- */
 L.CmpGame(A.$("#cmp-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A number written as a value between 1 and 10 times a power of 10 is in ___.", "a": "scientific notation"}, {"s": "In 3.2 × 10⁴, the number 4 is the ___.", "a": "exponent"}, {"s": "A negative exponent means the number is ___ than 1.", "a": "smaller"}, {"s": "On a calculator, the ___ key means “× 10 to the power of”.", "a": "EE"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which number is written correctly in scientific notation?",choices:["45 × 10<sup>3</sup>","0.45 × 10<sup>5</sup>","4.5 × 10<sup>4</sup>","450 × 10<sup>2</sup>"],ans:3,explain:"Scientific notation has a single nonzero digit in the ones place of the coefficient: 4.5 × 10⁴."},
  {type:"mc",stem:"A small virus is 0.0000001 meter across. This length can also be written as",choices:["1 × 10<sup>−5</sup> meter","1 × 10<sup>−7</sup> meter","1 × 10<sup>−9</sup> meter","1 × 10<sup>−4</sup> meter"],ans:2,explain:"The decimal point moves 7 places to the right to get 1, and the number is less than 1, so the exponent is −7."},

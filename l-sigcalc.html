@@ -29,11 +29,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="The rules"><div class="pn"><small>Part</small><span>1</span></div><h2>Rounding Calculated Answers</h2><p>An answer can’t be more precise than the least precise measurement.</p></div>
+  <div class="part" id="p1" data-short="The rules"><div class="pn"><small>Part</small><span>1</span></div><h2>Rounding Calculated Answers</h2><p>A calculated answer can never be more precise than the measurements used to calculate it. In this section we will discuss how to round calculated answers so that they reflect the precision of the original data.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Why Round?</h2></div>
     <div class="body">
+      <p class="intro">A calculator will happily report a density of 2.7173913 g/mL, but the measurements behind it were never that precise. Reporting every digit would claim a precision that the data cannot support. Rounding brings the answer back in line with the measurements.</p>
       <ul>
         <li>A calculated answer <span class="kr">cannot be more precise than the least precise measurement</span> used to calculate it.</li>
         <li>Your calculator will often show many more digits than you actually know.
@@ -97,6 +98,7 @@
   <section class="note">
     <div class="tile"><h2>Exact Numbers</h2></div>
     <div class="body">
+      <p class="intro">Some numbers in a calculation are not measurements at all. There are exactly 24 students in a class and exactly 100 centimeters in a meter. Because these numbers have no uncertainty, they never limit the number of significant figures in an answer.</p>
       <ul><li><b>Counted Number</b> – a number that comes from counting whole objects, not from reading a measuring tool.
           <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">3 trials, 24 students, 2 beakers</div><div class="xl">You can’t have 2.7 beakers, so there is no estimated digit and no uncertainty.</div></div></div></li>
         <li><b>Defined Equivalence</b> – a relationship that is true by definition.
@@ -117,6 +119,11 @@
   </section>
 
 
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
@@ -146,6 +153,7 @@ L.SigCalc(A.$("#sg-host"));
 /* ---------- Round It Right ---------- */
 L.RoundGame(A.$("#rd-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "When adding or subtracting, round to the fewest ___.", "a": "decimal places"}, {"s": "When multiplying or dividing, round to the fewest ___.", "a": "significant figures"}, {"s": "A counted number, such as 24 students, is an ___ number.", "a": "exact"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Expressed to the correct number of significant figures, the sum of two masses is 445.2 grams. Which two masses produce this answer?",choices:["210.10 g + 235.100 g","210.100 g + 235.10 g","210.1 g + 235.1 g","210.10 g + 235.10 g"],ans:3,explain:"A sum is rounded to the fewest decimal places. Only 210.1 g + 235.1 g (one decimal place each) gives an answer to the tenths place: 445.2 g."},
  {type:"mc",stem:"During a laboratory experiment, a sample of aluminum is found to have a mass of 12.50 grams and a volume of 4.6 milliliters. What is the density of this sample, expressed to the correct number of significant figures?",choices:["2.717 g/mL","2.72 g/mL","3 g/mL","2.7 g/mL"],ans:4,explain:"12.50 ÷ 4.6 = 2.717…; 4.6 has only 2 sig figs, so the answer has 2: 2.7 g/mL."},

@@ -29,7 +29,7 @@ canvas.sim,svg.sim{width:100%;max-width:560px;height:auto;background:#fff;border
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Physical properties"><div class="pn"><small>Part</small><span>1</span></div><h2>Separating by Physical Properties</h2><p>Each separation method uses a different physical property.</p></div>
+  <div class="part" id="p1" data-short="Physical properties"><div class="pn"><small>Part</small><span>1</span></div><h2>Separating by Physical Properties</h2><p>Because the parts of a mixture keep their own properties, they can be separated by physical means. Each separation method takes advantage of a different physical property.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Separating Mixtures</h2></div>
@@ -136,6 +136,11 @@ canvas.sim,svg.sim{width:100%;max-width:560px;height:auto;background:#fff;border
   <section class="lab" id="pick">
     <div class="lab-h"><span class="tag game">Game</span><h3>Pick the Method</h3></div>
     <div id="pm-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Choose and explain separation methods. Your first answer to each question is your score.</p></div>
@@ -362,6 +367,7 @@ A.$("#chrom-art").innerHTML=`<svg width="360" height="310" viewBox="0 0 360 310"
   next();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Separating a solid from a liquid by passing the mixture through paper is ___.", "a": "filtration"}, {"s": "Separating liquids by their boiling points is ___.", "a": "distillation"}, {"s": "Separating dyes by how far they travel up paper is ___.", "a": "chromatography"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Distillation separates a mixture of liquids based on differences in their",choices:["densities","boiling points","colors","masses"],ans:2,explain:"Each liquid vaporizes at its own boiling point, so they can be collected one at a time."},
  {type:"mc",stem:"A mixture of sand and salt water is poured through filter paper. The sand stays on the paper because",choices:["sand dissolves in water","sand particles are too large to pass through the paper","sand has a lower boiling point","sand is a compound"],ans:2,explain:"Filtration separates by particle size. Undissolved sand particles are too large; dissolved salt particles pass through."},

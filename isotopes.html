@@ -26,11 +26,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="What isotopes are"><div class="pn"><small>Part</small><span>1</span></div><h2>Same Element, Different Mass</h2><p>The number of protons decides the element. The number of neutrons can be different, and that changes only the mass.</p></div>
+  <div class="part" id="p1" data-short="What isotopes are"><div class="pn"><small>Part</small><span>1</span></div><h2>Same Element, Different Mass</h2><p>Archaeologists date ancient bones and wood by measuring carbon-14, a form of carbon with two more neutrons than ordinary carbon-12. Atoms like these, of the same element with different numbers of neutrons, are known as isotopes.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Isotopes</h2></div>
     <div class="body">
+      <p class="intro">The hydrogen in ordinary water and the hydrogen in “heavy water,” used to control nuclear reactors, are the same element. Each heavy water molecule, however, contains hydrogen atoms with an extra neutron, making it about 10% denser than ordinary water. Atoms like these are known as isotopes.</p>
       <p>While all atoms of the same element must possess the same number of protons, they do not all need to have the same number of neutrons.</p>
       <ul><li><span class="def">Isotopes</span> – atoms of the same element with the same number of protons but different numbers of neutrons.
           <ul><li>Same atomic number, different mass numbers</li></ul></li><li class="added">Isotopes are named by their mass number.
@@ -58,7 +59,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Explore"><div class="pn"><small>Part</small><span>2</span></div><h2>Exploring Isotopes</h2><p>Change the neutrons, compare isotopes, and practice telling isotopes apart from different elements.</p></div>
+  <div class="part" id="p2" data-short="Explore"><div class="pn"><small>Part</small><span>2</span></div><h2>Exploring Isotopes</h2><p>Hydrogen has three isotopes, including tritium, which makes some exit signs glow without electricity. Changing the number of neutrons in an atom shows why isotopes of an element have different masses but behave the same way in chemical reactions.</p></div>
 
   <p class="bridge">Add or remove neutrons to see what changes and what stays the same. <b>Compare</b> places two isotopes of the same element side by side.</p>
 
@@ -80,13 +81,18 @@
     <div id="sorter-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Write symbols"><div class="pn"><small>Part</small><span>3</span></div><h2>Writing Isotope Symbols</h2><p>Every isotope gets its own symbol. The mass number tells them apart.</p></div>
+  <div class="part" id="p3" data-short="Write symbols"><div class="pn"><small>Part</small><span>3</span></div><h2>Writing Isotope Symbols</h2><p>Uranium-235 makes up only about 0.7% of natural uranium, yet it is the isotope that fuels nuclear power plants. Nuclear engineers must separate it from uranium-238, so the mass number in an isotope symbol is the detail that matters most.</p></div>
 
   <p class="bridge">Write the isotope symbol for each atom. These are less common isotopes, so the mass number comes from the neutrons, not from rounding the atomic mass.</p>
 
   <section class="lab" id="iso-writer">
     <div class="lab-h"><span class="tag game">Game</span><h3>Isotope Symbol Writer</h3></div>
     <div id="writer-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use protons, neutrons and mass numbers to answer these Regents-style questions. Your first answer to each question is your score.</p></div>
@@ -158,6 +164,7 @@ A.$("#c-fig").innerHTML=atomBox(6,12,250)+atomBox(6,14,250);
 
 A.SymbolGame(A.$("#writer-host"),{kind:"isotope"});
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Atoms of the same element with different numbers of neutrons are ___.", "a": "isotopes"}, {"s": "Isotopes of an element have the same number of ___.", "a": "protons"}, {"s": "Isotopes of an element have different ___ numbers.", "a": "mass"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which pair of atoms are isotopes of the same element?",choices:[A.iso({A:14,Z:6,sym:"C"})+" and "+A.iso({A:14,Z:7,sym:"N"}),A.iso({A:35,Z:17,sym:"Cl"})+" and "+A.iso({A:37,Z:17,sym:"Cl"}),A.iso({A:40,Z:18,sym:"Ar"})+" and "+A.iso({A:40,Z:20,sym:"Ca"}),A.iso({A:16,Z:8,sym:"O"})+" and "+A.iso({A:16,Z:8,sym:"O"})],ans:2,explain:"Cl-35 and Cl-37 have the same atomic number (17) but different mass numbers.",why:{0:"Different atomic numbers mean different elements.",2:"Different atomic numbers mean different elements.",3:"These are the same isotope."}},
  {type:"mc",stem:"Isotopes of an element have the same number of protons but a different number of",choices:["electrons","neutrons","energy levels","valence electrons"],ans:2,explain:"Isotopes differ only in neutrons, which changes the mass number."},

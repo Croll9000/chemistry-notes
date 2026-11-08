@@ -33,7 +33,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Energy levels"><div class="pn"><small>Part</small><span>1</span></div><h2>Filling the Energy Levels</h2><p>In the Bohr model, electrons sit in energy levels around the nucleus. Each level holds a limited number, and the lowest levels fill first.</p></div>
+  <div class="part" id="p1" data-short="Energy levels"><div class="pn"><small>Part</small><span>1</span></div><h2>Filling the Energy Levels</h2><p>A sodium atom’s 11 electrons are arranged with 2 in the first energy level, 8 in the second and 1 in the third. That single electron in the outermost level is the reason sodium is so reactive, and it comes from the rule that each level holds a limited number of electrons, with the lowest filled first.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atomic Structure</h2></div>
@@ -53,7 +53,8 @@
         <li>Energy levels close to the nucleus have less energy than levels further from the nucleus.</li>
         <li>Energy levels are filled starting with the lowest energy level before moving to the next highest although there are exceptions to this.
           <ul><li>Note that this will only work for elements 1-18.</li></ul></li>
-        <li class="added"><b>The 3rd energy level only needs <span class="kr">8 electrons</span> before electrons start filling the <span class="kr">4th energy level</span>.</b> Even though n = 3 can hold up to 18, after it has 8 electrons the next 2 electrons go into the 4th energy level. That is why potassium (19) is <b>2-8-8-1</b> and calcium (20) is <b>2-8-8-2</b>, not 2-8-9 or 2-8-10.</li>
+        <li class="added"><b>The 3rd energy level only needs <span class="kr">8 electrons</span> before electrons start filling the <span class="kr">4th energy level</span>.</b> Even though n = 3 can hold up to 18, after it has 8 electrons the next 2 electrons go into the 4th energy level.
+          <ul><li>That is why potassium (19) is <b>2-8-8-1</b> and calcium (20) is <b>2-8-8-2</b>, not 2-8-9 or 2-8-10.</li></ul></li>
       </ul>
       <div class="two"><figure id="ec-art"></figure><div class="tbl-wrap"><table class="nt"><tr><th>Energy Level</th><th>Maximum Number of Electrons</th></tr><tr><td>n = 1</td><td>2</td></tr><tr><td>n = 2</td><td>8</td></tr><tr><td>n = 3</td><td>18</td></tr><tr><td>n = 4</td><td>32</td></tr><tr><td>n = 5</td><td>50</td></tr></table><p class="muted" style="margin-top:8px">Maximum = 2n<sup>2</sup>. For n = 3: 2(3)<sup>2</sup> = 18.</p></div></div>
     </div>
@@ -83,7 +84,7 @@
     <div class="labq" id="lq-fill"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Shell notation"><div class="pn"><small>Part</small><span>2</span></div><h2>Writing Shell Notation</h2><p>Instead of drawing every electron, we can write how many are in each energy level.</p></div>
+  <div class="part" id="p2" data-short="Shell notation"><div class="pn"><small>Part</small><span>2</span></div><h2>Writing Shell Notation</h2><p>The Reference Tables list the electron arrangement of every element in a shorthand, such as 2-8-7 for chlorine. Reading this shell notation lets a chemist find an element’s valence electrons and predict its behavior without drawing a full model.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Shell Notation</h2></div>
@@ -110,7 +111,7 @@
     <div id="sprint-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Build atoms"><div class="pn"><small>Part</small><span>3</span></div><h2>Building Atoms</h2><p>Protons and neutrons in the nucleus, and electrons in the correct energy levels.</p></div>
+  <div class="part" id="p3" data-short="Build atoms"><div class="pn"><small>Part</small><span>3</span></div><h2>Building Atoms</h2><p>Oxygen makes up about 65% of the mass of the human body, and each of its atoms has 8 protons and 8 electrons arranged 2-6. Building models like this one turns the numbers on the periodic table into a picture of the atom that explains how it will react.</p></div>
 
   <p class="bridge">Build an atom, or switch to <b>Symbol challenge</b> to build the Bohr model that matches an isotope or ion symbol.</p>
 
@@ -163,6 +164,11 @@
       <div class="status" id="gp-msg"></div>
       <div class="gp-strip" id="gp-strip"></div>
     </div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Show you can read and write electron configurations. Your first answer to each question is your score.</p></div>
@@ -307,6 +313,7 @@ fill();
 A.PTExplorer(A.$("#ptx-host"),{modes:["bohr","shell"],mode:"bohr",start:15});
 A.ShellSprint(A.$("#sprint-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Electrons occupy energy ___ around the nucleus.", "a": "levels"}, {"s": "Writing 2-8-1 for sodium is called ___ notation.", "a": "shell"}, {"s": "The electrons in the outermost energy level are ___ electrons.", "a": "valence"}]);
 A.QSet(A.$("#qs"),[
  {type:"shell",stem:"Write the shell notation for an atom of aluminum.",ans:"2-8-3",explain:"Aluminum has 13 electrons: 2 in n=1, 8 in n=2, 3 in n=3."},
  {type:"mc",stem:"What is the maximum number of electrons the second energy level (n = 2) can hold?",choices:["2","8","18","32"],ans:2,explain:"2n² = 2(2)² = 8."},

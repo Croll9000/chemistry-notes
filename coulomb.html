@@ -20,7 +20,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Charge"><div class="pn"><small>Part</small><span>1</span></div><h2>Electrical Charge</h2><p>Charge comes in two types. Opposites attract; like charges repel.</p></div>
+  <div class="part" id="p1" data-short="Charge"><div class="pn"><small>Part</small><span>1</span></div><h2>Electrical Charge</h2><p>A lightning bolt forms when negative charge built up at the bottom of a storm cloud jumps toward the ground. The same rule that drives lightning, that opposite charges attract and like charges repel, governs every interaction between particles in an atom.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Electrical Charge</h2></div>
@@ -66,7 +66,7 @@
     <div id="nc-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Coulomb’s law"><div class="pn"><small>Part</small><span>2</span></div><h2>Coulomb’s Law</h2><p>The size of the force depends on how big the charges are and how far apart they are.</p></div>
+  <div class="part" id="p2" data-short="Coulomb’s law"><div class="pn"><small>Part</small><span>2</span></div><h2>Coulomb’s Law</h2><p>The force between two charged particles weakens quickly with distance: doubling the distance between them cuts the force to one quarter of its original strength. This relationship, known as Coulomb’s law, is the key to explaining atomic size, ionization energy and other periodic trends.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Coulomb’s Law</h2></div>
@@ -112,7 +112,7 @@
     <div class="labq" id="lq-lab-force"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Charges in the atom"><div class="pn"><small>Part</small><span>3</span></div><h2>Charges Inside the Atom</h2><p>Coulomb’s law explains how the nucleus holds on to its electrons.</p></div>
+  <div class="part" id="p3" data-short="Charges in the atom"><div class="pn"><small>Part</small><span>3</span></div><h2>Charges Inside the Atom</h2><p>Removing the outermost electron from a sodium atom takes 496 kJ/mol, while removing one from neon takes 2081 kJ/mol. Coulomb’s law explains this difference, since electrons that are closer to a more highly charged nucleus are held more tightly.</p></div>
 
   <section class="note added">
     <div class="tile"><h2>The Nucleus and Its Electrons</h2></div>
@@ -130,6 +130,11 @@
   </section>
 
   <p class="bridge">Atoms can gain or lose electrons. When the numbers of protons and electrons are no longer equal, the atom has a net charge and is called an ion.</p>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use the charge law and Coulomb’s law. Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
@@ -208,6 +213,7 @@ A.$("#atom-art").innerHTML=(()=>{ const cx=250, cy=165; let g=`<svg width="520" 
   draw();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Opposite charges ___ each other.", "a": "attract"}, {"s": "Like charges ___ each other.", "a": "repel"}, {"s": "An object with equal numbers of protons and electrons is ___.", "a": "neutral"}, {"s": "As the distance between two charges increases, the force between them ___.", "a": "decreases"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Two particles that both have a negative charge will",choices:["attract each other","repel each other","have no effect on each other","become neutral"],ans:2,explain:"Like charges repel."},
  {type:"mc",stem:"An object contains 5 positive charges and 5 negative charges. The object is",choices:["positively charged","negatively charged","neutral","without any charged particles"],ans:3,explain:"Equal numbers of positive and negative charges give a net charge of 0: neutral. The charges are still there; they cancel."},

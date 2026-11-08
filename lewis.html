@@ -41,7 +41,7 @@
     <div class="hero-art" id="hero" style="gap:8px;flex-wrap:wrap"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Drawing dots"><div class="pn"><small>Part</small><span>1</span></div><h2>Drawing Lewis Dot Diagrams</h2><p>A Lewis dot diagram shows only the valence electrons, the ones that matter for bonding.</p></div>
+  <div class="part" id="p1" data-short="Drawing dots"><div class="pn"><small>Part</small><span>1</span></div><h2>Drawing Lewis Dot Diagrams</h2><p>In 1916, the American chemist Gilbert N. Lewis introduced a simple way to show only the electrons involved in bonding. Lewis dot diagrams are still used by chemists today to predict how atoms and ions will combine.</p></div>
 
   <section class="note added">
     <div class="tile"><h2>Lewis Dot Diagrams</h2></div>
@@ -87,7 +87,7 @@
     <div id="dd-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Patterns"><div class="pn"><small>Part</small><span>2</span></div><h2>Patterns on the Periodic Table</h2><p>Lewis dot diagrams make the periodic table’s patterns easy to see. The notes on these patterns are on the <a href="bohr.html#patterns">Bohr Models</a> page.</p></div>
+  <div class="part" id="p2" data-short="Patterns"><div class="pn"><small>Part</small><span>2</span></div><h2>Patterns on the Periodic Table</h2><p>Lithium, sodium and potassium all react vigorously with water, and each has a single dot in its Lewis dot diagram. These diagrams make the patterns of the periodic table visible, since elements in the same group have the same number of valence electrons.</p></div>
 
   <section class="lab" id="lewis-pt">
     <div class="lab-h"><span class="tag ptag">Periodic table</span><h3>Lewis Dot Periodic Table</h3></div>
@@ -108,6 +108,11 @@
       <div class="gp-strip" id="gp-strip"></div>
     </div>
     <div class="labq" id="lq-gp"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use valence electrons and Lewis dot diagrams to answer these questions. Your first answer to each question is your score.</p></div>
@@ -178,6 +183,7 @@ show("g",1);
   next();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A diagram that shows only valence electrons is a Lewis ___ diagram.", "a": "dot"}, {"s": "Elements in the same ___ have the same number of valence electrons.", "a": "group"}, {"s": "A Lewis dot diagram shows only the ___ electrons.", "a": "valence"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which Lewis dot diagram represents an atom of magnesium?",choices:[A.lewisSVG("Mg",1,56),A.lewisSVG("Mg",2,56),A.lewisSVG("Mg",3,56),A.lewisSVG("Mg",12,56).replace(/<circle[^>]*>/g,(m,i)=>m)],ans:2,explain:"Magnesium is 2-8-2: 2 valence electrons, so 2 dots.",why:{3:"The dots show only valence electrons, not all 12."}},
  {type:"mc",stem:"Elements in the same group have the same number of dots in their Lewis dot diagrams. This is because they have the same number of",choices:["energy levels","protons","valence electrons","neutrons"],ans:3,explain:"Each dot is a valence electron. Elements in the same group have the same number of valence electrons."},

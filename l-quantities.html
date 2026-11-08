@@ -27,7 +27,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Measurements"><div class="pn"><small>Part</small><span>1</span></div><h2>Measurements</h2><p>Every measurement needs a number and a unit.</p></div>
+  <div class="part" id="p1" data-short="Measurements"><div class="pn"><small>Part</small><span>1</span></div><h2>Measurements</h2><p>Chemistry is an experimental science, and its conclusions are only as reliable as the measurements behind them. Every measurement must include both a number and a unit.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Measurements</h2></div>
@@ -67,7 +67,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Six quantities"><div class="pn"><small>Part</small><span>2</span></div><h2>Quantities We Measure in Chemistry</h2><p>What each quantity is, its units, the tool that measures it, and a real-world reference for its size.</p></div>
+  <div class="part" id="p2" data-short="Six quantities"><div class="pn"><small>Part</small><span>2</span></div><h2>Quantities We Measure in Chemistry</h2><p>Chemists measure a small set of basic quantities over and over. In this section we will discuss each of these quantities, its unit, the instrument used to measure it and a real-world reference for its size.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Length</h2></div>
@@ -81,7 +81,7 @@
   <section class="note">
     <div class="tile"><h2>Mass</h2></div>
     <div class="body">
-      <p class="intro">Every object, from a grain of sand to a planet, is made of matter. The amount of that matter determines how heavy an object is and how difficult it is to move. In the lab, mass is one of the most common measurements a chemist will take.</p><div class="qn"><div><ul>
+      <p class="intro">A paper clip has a mass of about 1 gram, and a gallon of milk about 4 kilograms. Every object is made of matter, and the amount of that matter determines how heavy the object is and how difficult it is to move. In the lab, mass is one of the most common measurements a chemist will take, usually with an electronic balance.</p><div class="qn"><div><ul>
       <li><span class="def">Mass</span> – the <span class="kr">amount of matter</span> (“stuff”) in an object.
         <ul><li class="qu"><i>Unit</i> – gram (g); also kilogram (kg) and milligram (mg)</li><li class="qu"><i>Measuring device</i> – balance (electronic or triple beam)</li></ul></li></ul></div><div class="center" id="mass-tool"></div></div>
       <div class="refs" id="mass-refs"></div></div>
@@ -90,7 +90,7 @@
   <section class="note">
     <div class="tile"><h2>Volume</h2></div>
     <div class="body">
-      <p class="intro">All matter takes up space. That space can be as large as the water in a swimming pool or as small as the few milliliters of medicine in a syringe. Liquids in particular are almost always measured by the amount of space they occupy.</p><div class="qn"><div><ul>
+      <p class="intro">All matter takes up space. A standard can of soda holds 355 milliliters, and a teaspoon about 5 milliliters. Liquids in particular are almost always measured by the amount of space they occupy, using a graduated cylinder, a pipet or a buret.</p><div class="qn"><div><ul>
       <li><span class="def">Volume</span> – the amount of <span class="kr">space</span> an object takes up.
         <ul><li class="qu"><i>Unit</i> – liter (L), milliliter (mL) and cubic centimeter (cm³)</li><li class="qu"><i>Measuring device</i> – graduated cylinder (liquids); ruler (regular solids, V = l × w × h)</li><li><span class="kb">1 mL = 1 cm³</span></li></ul></li></ul></div><div class="center" id="vol-tool"></div></div>
       <div class="refs" id="vol-refs"></div></div>
@@ -107,7 +107,7 @@
   <section class="note">
     <div class="tile"><h2>Energy</h2></div>
     <div class="body">
-      <p class="intro">Every change in matter, from ice melting to fuel burning, involves energy. The energy stored in food is listed on nutrition labels in Calories, and the energy released by burning gasoline is what moves a car.</p><div class="qn"><div><ul>
+      <p class="intro">Every change in matter, from ice melting to fuel burning, involves energy. In chemistry, energy is measured in joules. A single joule is a small amount, about the energy needed to lift an apple one meter, so chemists often work in kilojoules. The energy released by burning one liter of gasoline, for example, is about 34,000 kJ.</p><div class="qn"><div><ul>
       <li><span class="def">Energy</span> – the ability to do work or cause change.
         <ul><li class="qu"><i>Unit</i> – joule (J) and kilojoule (kJ)</li><li><span class="kr">Heat</span> is a form of energy.</li></ul></li></ul></div><div class="center" id="en-tool"></div></div>
       <div class="refs" id="en-refs"></div></div>
@@ -136,6 +136,11 @@
   <section class="lab" id="pick">
     <div class="lab-h"><span class="tag game">Game</span><h3>Pick the Unit</h3></div>
     <div id="pick-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -223,6 +228,7 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:1
 })();
 
 /* ---------- Learning Check (Regents style) ---------- */
+A.VocabCheck(A.$("#vc-host"),[{"s": "The SI unit of mass is the ___.", "a": "kilogram"}, {"s": "The amount of space an object occupies is its ___.", "a": "volume"}, {"s": "The SI unit of energy is the ___.", "a": "joule"}, {"s": "The SI unit for the amount of a substance is the ___.", "a": "mole"}, {"s": "6.02 × 10²³ is known as ___.", "a": "Avogadro’s number"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which quantity is the amount of space an object takes up?",choices:["mass","volume","temperature","energy"],ans:2,explain:"Volume is the amount of space an object takes up."},
  {type:"mc",stem:"Which instrument is used to measure the mass of a sample?",choices:["a graduated cylinder","a balance","a thermometer","a meter stick"],ans:2,explain:"Mass is measured with a balance."},

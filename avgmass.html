@@ -35,11 +35,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="What it means"><div class="pn"><small>Part</small><span>1</span></div><h2>A Weighted Average</h2><p>Most elements are a mix of isotopes. The mass on the periodic table averages them, counting the common isotopes more.</p></div>
+  <div class="part" id="p1" data-short="What it means"><div class="pn"><small>Part</small><span>1</span></div><h2>A Weighted Average</h2><p>When tests count more toward a course grade than homework, the grade is a weighted average. The atomic mass on the periodic table works the same way, counting the more common isotopes of an element more heavily.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Atomic Mass</h2></div>
     <div class="body">
+      <p class="intro">Chlorine on Earth is a mixture of two isotopes: about three out of every four atoms are chlorine-35 and one is chlorine-37. Its atomic mass, 35.45 u, reflects this mixture.</p>
       <p>The <span class="kr">atomic masses</span> written on the periodic table are <span class="kr">weighted averages of the masses of all the naturally occurring isotopes</span> of an element.</p>
       <div class="three" id="c-iso"></div>
       <div class="center"><div class="callout">Carbon has 3 main isotopes: <span class="hy">C&#8209;12</span>, <span class="hy">C&#8209;13</span> and <span class="hy">C&#8209;14</span>, which are found in differing amounts on Earth. The weighted average of the masses of these isotopes is 12.011 u.</div></div>
@@ -79,7 +80,7 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Calculate it"><div class="pn"><small>Part</small><span>2</span></div><h2>Calculating Average Atomic Mass</h2><p>Two ways to do the same calculation: with percents (divide by 100 at the end) or with decimals.</p></div>
+  <div class="part" id="p2" data-short="Calculate it"><div class="pn"><small>Part</small><span>2</span></div><h2>Calculating Average Atomic Mass</h2><p>Natural magnesium is about 79% magnesium-24, 10% magnesium-25 and 11% magnesium-26. Calculating an average atomic mass from values like these, using either percentages or decimals, shows exactly where the numbers on the periodic table come from.</p></div>
 
   <section class="note">
     <div class="tile"><h2>The Percent Method</h2></div>
@@ -133,6 +134,7 @@
   <section class="note added enr">
     <div class="tile"><h2>The Mass Spectrometer</h2></div>
     <div class="body">
+      <p class="intro">To calculate an average atomic mass, chemists must know the mass and abundance of each isotope. These values are measured with a mass spectrometer, an instrument also used to detect performance-enhancing drugs in athletes.</p>
       <ul>
         <li>A <b>mass spectrometer</b> separates the atoms of a sample by mass, so scientists can measure the mass of each isotope and how common it is.</li>
       </ul>
@@ -159,6 +161,11 @@
   <section class="lab enr" id="ms">
     <div class="lab-h"><span class="tag game">Game</span><h3>Mass Spectrum Reader</h3></div>
     <div id="ms-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Calculate and reason with average atomic mass. Your first answer to each question is your score.</p></div>
@@ -360,6 +367,7 @@ ${[...Array(5)].map((_,r)=>[...Array(6)].map((_,c)=>`<text x="${362+c*36}" y="${
   next();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "An average that counts common values more heavily is a ___ average.", "a": "weighted"}, {"s": "The percent of an element’s atoms that are a given isotope is its ___.", "a": "abundance"}, {"s": "The instrument that measures isotope masses and abundances is a mass ___.", "a": "spectrometer"}]);
 A.QSet(A.$("#qs"),[
  {type:"num",stem:"Chlorine has two naturally occurring isotopes: "+A.hy("Cl",35)+" (34.969 u, 75.76%) and "+A.hy("Cl",37)+" (36.966 u, 24.24%). Calculate the average atomic mass of chlorine. Round to the hundredths place.",ans:35.45,round:{sf:4},unit:"u",explain:"[(34.969)(75.76) + (36.966)(24.24)] / 100 = (2649.25 + 896.06) / 100 = 35.45 u.",msg:x=>Math.abs(x-3545)<5?"Divide by 100.":"Multiply each mass by its percent, add, then divide by 100."},
  {type:"mc",stem:"The average atomic mass of copper is 63.55 u. Copper has two isotopes, "+A.hy("Cu",63)+" and "+A.hy("Cu",65)+". Which statement is true?",choices:["Cu-65 is more abundant than Cu-63.","Cu-63 is more abundant than Cu-65.","Both isotopes are equally abundant.","Copper atoms each have a mass of 63.55 u."],ans:2,explain:"63.55 is closer to 63 than to 65, so Cu-63 must be more abundant."},

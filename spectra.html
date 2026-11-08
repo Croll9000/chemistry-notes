@@ -16,7 +16,7 @@
     <div class="hero-art" id="hero" style="flex-direction:column;gap:6px;align-items:stretch"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Each element’s light"><div class="pn"><small>Part</small><span>1</span></div><h2>Every Element’s Own Light</h2><p>When excited electrons fall back, each element gives off its own set of colors.</p></div>
+  <div class="part" id="p1" data-short="Each element’s light"><div class="pn"><small>Part</small><span>1</span></div><h2>Every Element’s Own Light</h2><p>In 1868, astronomers discovered helium by finding a new line in the spectrum of the Sun, 27 years before helium was found on Earth. Because every element gives off its own unique set of colors, its emission spectrum works like a fingerprint.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Emission Spectra</h2></div>
@@ -51,11 +51,12 @@
     <div class="labq" id="lq-scope"></div>
   </section>
 
-<div class="part" id="p2" data-short="Mixtures"><div class="pn"><small>Part</small><span>2</span></div><h2>Identifying Elements and Mixtures</h2><p>Match lines to identify an element. For a mixture, every line of an element must be there.</p></div>
+<div class="part" id="p2" data-short="Mixtures"><div class="pn"><small>Part</small><span>2</span></div><h2>Identifying Elements and Mixtures</h2><p>Environmental labs check drinking water for metals such as lead by matching the lines in its emission spectrum. An unknown element is identified when its lines match a known spectrum, and in a mixture, every line of each element present must appear.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Mixtures and Emission Spectra</h2></div>
     <div class="body">
+      <p class="intro">The light from a distant star is a mixture of the spectra of every element in it. Astronomers determine a star’s composition by identifying each element’s set of lines within that light.</p>
       <p>Since emission spectra are unique to each element, they can be used to identify elements. We can also use them to <span class="kr">determine which elements are present in a mixture</span>.</p>
       <ul><li>In order to say an element is in a mixture, <span class="kr">ALL spectral lines</span> from that element <span class="kr">must be present</span> in the mixture.</li></ul>
       <div class="two"><div id="mix-fig" style="display:flex;flex-direction:column;gap:6px"></div><div class="callout" style="align-self:center">This mixture contains both element A and element C. All spectral lines from both elements can be found in the mixture. Although some lines from element B are in the mixture, not all of them are. Therefore, we cannot say B is present in the mixture.</div></div>
@@ -67,6 +68,11 @@
   <section class="lab" id="idgame">
     <div class="lab-h"><span class="tag">Game</span><h3>Identify the Element</h3></div>
     <div id="id-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Read spectra and explain where the lines come from. Your first answer to each question is your score.</p></div>
@@ -207,6 +213,7 @@ A.$("#mix-fig").innerHTML=row("Element A",MA,{scale:false})+row("Element B",MB,{
 })();
 
 const mixQ=row("Hydrogen",S.H.lines,{scale:false,h:24,w:520})+row("Helium",S.He.lines,{scale:false,h:24,w:520})+row("Sodium",S.Na.lines,{scale:false,h:24,w:520})+row("Mixture",[...S.H.lines,...S.Na.lines,[501.6,1]],{h:28,w:520});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The pattern of colors an element gives off is its emission ___.", "a": "spectrum"}, {"s": "Each colored line is produced when electrons fall to ___ energy levels.", "a": "lower"}, {"s": "In a mixture, the lines of every element present must ___ in the spectrum.", "a": "appear"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"An emission spectrum is produced when electrons",choices:["absorb energy and move to higher energy levels","release energy as they return to lower energy levels","are removed from the atom","are added to the nucleus"],ans:2,explain:"Light is emitted when excited electrons fall back toward the ground state."},
  {type:"mc",stem:"Why can emission spectra be used to identify elements?",choices:["All elements produce the same lines.","Each element has its own unique energy levels and produces a unique set of lines.","Only metals produce emission spectra.","The lines show the number of neutrons in the atom."],ans:2,explain:"Unique energy levels → unique electron transitions → unique pattern of wavelengths."},

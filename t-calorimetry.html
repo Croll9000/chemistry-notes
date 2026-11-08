@@ -76,6 +76,11 @@
     <div id="lab-host"></div>
   </section>
 
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
@@ -107,6 +112,7 @@ const W3=S.wk("Ex: Ice is added to 120.0 g of water at 32.0 °C. When the water 
  ["<b>Step 4:</b> Heat of fusion.","H<sub>f</sub> = 16,051 J ÷ 48.1 g = 334 J/g"]]);
 S.workedTabs(A.$("#ex2"),[{label:"Heat of fusion of ice",...W3}]);
 T.CalLab(A.$("#lab-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "Measuring the heat absorbed or released in a change is ___.", "a": "calorimetry"}, {"s": "An insulated device used to measure heat is a ___.", "a": "calorimeter"}, {"s": "If the water in a calorimeter gets warmer, the reaction is ___.", "a": "exothermic"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Why is a calorimeter insulated?",choices:["to keep the reaction from happening too fast","so that heat is not exchanged with the surroundings","to keep the water from evaporating","to increase the specific heat capacity of the water"],ans:2,explain:"Calorimetry assumes all the heat goes between the reaction and the water, so heat must not escape."},
  {type:"mc",stem:"A solid dissolves in water in a calorimeter and the temperature of the water decreases. The dissolving is",choices:["exothermic, because the water lost heat","endothermic, because the water lost heat","exothermic, because the water gained heat","endothermic, because the water gained heat"],ans:2,explain:"The water lost heat to the dissolving solid, so the process absorbed heat: endothermic."},

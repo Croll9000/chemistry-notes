@@ -36,7 +36,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Ground vs. excited"><div class="pn"><small>Part</small><span>1</span></div><h2>Ground State and Excited States</h2><p>Electrons normally occupy the lowest available energy levels. When an electron absorbs energy, it can move to a higher energy level.</p></div>
+  <div class="part" id="p1" data-short="Ground vs. excited"><div class="pn"><small>Part</small><span>1</span></div><h2>Ground State and Excited States</h2><p>Glow-in-the-dark stickers absorb energy from room light and release it slowly after the lights go out. Electrons normally occupy the lowest energy levels, and absorbing energy moves them to higher levels, the first step in every process that produces light from atoms.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Ground State</h2></div>
@@ -58,6 +58,7 @@
   <section class="note">
     <div class="tile"><h2>Excited State</h2></div>
     <div class="body">
+      <p class="intro">When a firework explodes, the heat of the explosion gives the electrons in its metal atoms extra energy. For an instant, those electrons occupy energy levels higher than normal.</p>
       <p>Electrons can absorb energy from their surroundings in the form of light or heat. After absorbing this energy, they move into a <span class="kr">higher energy level</span>. This is referred to as an <span class="kr">excited state</span>.</p>
       <ul><li><span class="def">Excited State</span> – A configuration in which electrons occupy <span class="fixed" data-orig="high energy levels than the ground state" data-why="Comparative: higher.">higher energy levels</span> than the ground state.</li></ul>
       <div class="center" id="x-art"></div>
@@ -73,11 +74,12 @@
     <div id="goe-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Absorb & emit"><div class="pn"><small>Part</small><span>2</span></div><h2>Absorbing and Emitting Energy</h2><p>Electrons absorb energy to move up and release energy as light when they fall back. With enough energy, the electron is removed from the atom.</p></div>
+  <div class="part" id="p2" data-short="Absorb & emit"><div class="pn"><small>Part</small><span>2</span></div><h2>Absorbing and Emitting Energy</h2><p>Older streetlights glow orange-yellow because excited sodium electrons release their energy as light with a wavelength of 589 nanometers. The energy an electron absorbs or releases matches the gap between its energy levels, and enough energy can remove the electron entirely.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Electron Transitions</h2></div>
     <div class="body">
+      <p class="intro">An excited electron does not stay in a higher energy level for long. As it returns to a lower level, it releases the extra energy as light, producing the colors of fireworks and neon signs.</p>
       <p>Electrons that absorb energy and jump into an excited state do not remain there forever. Eventually, the electron returns to the ground state and when it does, emits energy in the form of light.</p>
       <p><b>Steps:</b></p>
       <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:4px"><li><span class="fixed" data-orig="An electrons absorbs" data-why="Grammar.">An electron</span> <span class="kr">absorbs energy</span> and jumps from the <span class="kr">ground state to the excited state.</span></li><li>The <span class="fixed" data-orig="electrons returns" data-why="Grammar.">electron</span> <span class="kb">returns to the ground state</span> from the excited state and <span class="kb">releases energy</span> in the form of light.</li></ol>
@@ -92,6 +94,7 @@
   <section class="note">
     <div class="tile"><h2>Ionization</h2></div>
     <div class="body">
+      <p class="intro">If an electron absorbs enough energy, it escapes the atom entirely. The energy needed to remove an electron is a characteristic property of each element.</p>
       <p>Sometimes an electron can absorb so much energy that it doesn’t just jump up in energy level, it leaves the atom completely. If this happens, the atom loses <span class="fixed" data-orig="loses and electron" data-why="Typo.">an</span> electron and acquires a net positive charge. This process is called ionization.</p>
       <ul><li><span class="def">Ionization</span> – process by which an atom loses electrons and acquires a positive charge.</li><li class="added">The smallest amount of energy that removes the outermost electron is called the <span class="kr">ionization energy</span>.</li></ul>
       <div class="center" id="ion-art" style="align-items:flex-start;flex-wrap:wrap"></div>
@@ -114,6 +117,11 @@
       <p class="muted">Energies are in electron-volts (eV), a very small unit used for single atoms. Values are the real energies of each atom’s outermost electron (NIST Atomic Spectra Database). Simplified picture: each outer dashed ring stands for one of the electron’s allowed excited levels.</p>
     </div>
     <div class="labq" id="lq-excite"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Explain how electrons absorb and release energy. Your first answer to each question is your score.</p></div>
@@ -427,6 +435,7 @@ function wavy(x1,y1,x2,y2,col,amp=6,wl=26){ const dx=x2-x1, dy=y2-y1, L=Math.hyp
   next();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "An atom with all electrons in the lowest available levels is in the ___ state.", "a": "ground"}, {"s": "An atom with an electron in a higher energy level is in an ___ state.", "a": "excited"}, {"s": "Removing an electron from an atom completely is called ___.", "a": "ionization"}, {"s": "An electron releases energy as ___ when it falls to a lower level.", "a": "light"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which electron configuration represents a sodium atom in an excited state?",choices:["2-8-1","2-7-2","2-8","2-8-2"],ans:2,explain:"2-7-2 still has 11 electrons, but one has moved from n=2 up to n=3.",why:{0:"2-8-1 is the ground state.",2:"2-8 has only 10 electrons: that is Na⁺.",3:"2-8-2 has 12 electrons: that is magnesium."}},
  {type:"mc",stem:"A watch made with phosphor glows in the dark after the light shining on it is removed. Which statement explains the glow?",choices:["Radiation that was absorbed is released in the form of light as electrons return to a lower energy state.","Radiation that was absorbed is released in the form of light as electrons jump to the excited state.","Radiation released from the nucleus is given off as light as electrons return to the ground state.","Radiation released from the nucleus is given off as light as electrons jump to the excited state."],ans:1,explain:"Electrons absorb energy, then release it as light when they fall back to a lower energy level. (June 2026 Regents, Q4)"},

@@ -16,7 +16,7 @@
     <div class="hero-art" id="timeline-art" style="flex-wrap:wrap;gap:4px"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Early ideas"><div class="pn"><small>Part</small><span>1</span></div><h2>Early Ideas: Atoms as Tiny Spheres</h2><p>The idea of the atom began with Democritus. Two thousand years later, Dalton turned the idea into a scientific theory.</p></div>
+  <div class="part" id="p1" data-short="Early ideas"><div class="pn"><small>Part</small><span>1</span></div><h2>Early Ideas: Atoms as Tiny Spheres</h2><p>Around 400 BCE, the Greek philosopher Democritus proposed that matter is made of tiny, uncuttable pieces he called <em>atomos</em>. More than 2,000 years later, John Dalton turned that idea into a scientific theory by explaining the masses of substances measured in real experiments.</p></div>
 
   <section class="note" id="democritus">
     <div class="tile"><h2>Democritus</h2></div>
@@ -56,7 +56,7 @@
     </div>
   </section>
 
-<div class="part" id="p2" data-short="The electron"><div class="pn"><small>Part</small><span>2</span></div><h2>Discovering the Electron</h2><p>Dalton’s atom could not be divided. Thomson’s cathode ray tube showed that atoms contain even smaller, negatively charged particles.</p></div>
+<div class="part" id="p2" data-short="The electron"><div class="pn"><small>Part</small><span>2</span></div><h2>Discovering the Electron</h2><p>Dalton believed that atoms could not be divided. In 1897, J.J. Thomson used a cathode ray tube, the same technology later used in early television sets, to show that atoms contain even smaller, negatively charged particles.</p></div>
 
   <section class="note" id="thomson">
     <div class="tile"><h2>J.J. Thomson</h2></div>
@@ -102,7 +102,7 @@
     </div>
   </section>
 
-<div class="part" id="p3" data-short="The nucleus"><div class="pn"><small>Part</small><span>3</span></div><h2>Discovering the Nucleus</h2><p>If the positive charge were spread out, as Thomson proposed, alpha particles would pass straight through gold foil. A few were deflected.</p></div>
+<div class="part" id="p3" data-short="The nucleus"><div class="pn"><small>Part</small><span>3</span></div><h2>Discovering the Nucleus</h2><p>In 1909, Rutherford’s team fired alpha particles at a sheet of gold foil only a few hundred atoms thick. Most passed straight through, but about 1 in every 8,000 bounced back at a large angle, revealing a small, dense nucleus.</p></div>
 
   <section class="note" id="rutherford">
     <div class="tile"><h2>Ernest Rutherford</h2></div>
@@ -166,7 +166,7 @@
     </div>
   </section>
 
-<div class="part" id="p4" data-short="Energy levels & orbitals"><div class="pn"><small>Part</small><span>4</span></div><h2>Energy Levels and the Modern Model</h2><p>Rutherford’s model didn’t explain why atoms give off only certain colors of light. Bohr’s energy levels did, and the modern model refined them.</p></div>
+<div class="part" id="p4" data-short="Energy levels & orbitals"><div class="pn"><small>Part</small><span>4</span></div><h2>Energy Levels and the Modern Model</h2><p>Rutherford’s model could not explain why hydrogen gas gives off only four colors of visible light. Bohr’s energy levels, proposed in 1913, explained this observation, and the modern model later refined them into the picture chemists use today.</p></div>
 
   <section class="note" id="bohr">
     <div class="tile"><h2>Niels Bohr</h2></div>
@@ -227,7 +227,7 @@
     </div>
   </section>
 
-<div class="part" id="p5" data-short="Putting it together"><div class="pn"><small>Part</small><span>5</span></div><h2>Putting It Together</h2><p>Each model was replaced when new evidence showed a problem with it.</p></div>
+<div class="part" id="p5" data-short="Putting it together"><div class="pn"><small>Part</small><span>5</span></div><h2>Putting It Together</h2><p>Over roughly 120 years, from Dalton’s theory in 1803 to the modern model of the 1920s, each model of the atom was replaced when new evidence revealed a problem with it. Comparing the models side by side shows how scientific ideas change as evidence improves.</p></div>
 
   <section class="note">
     <div class="tile"><h2>History of Atomic Models</h2></div>
@@ -248,6 +248,11 @@
   <section class="lab" id="match-lab">
     <div class="lab-h"><span class="tag game">Game</span><h3>Evidence Match</h3></div>
     <div id="match-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use the evidence from each experiment to answer these Regents-style questions. Your first answer to each question is your score.</p></div>
@@ -528,6 +533,7 @@ drawCut();
   setup();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "Dalton described atoms as tiny, solid ___.", "a": "spheres"}, {"s": "Thomson discovered the negatively charged ___.", "a": "electron"}, {"s": "Rutherford’s gold foil experiment revealed the small, dense ___.", "a": "nucleus"}, {"s": "Bohr placed electrons in fixed energy ___.", "a": "levels"}, {"s": "Rutherford fired positively charged ___ particles at gold foil.", "a": "alpha"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"In the gold foil experiment, most alpha particles passed straight through the foil. Which conclusion is supported by this evidence?",choices:["The atom is mostly empty space.","Atoms contain negatively charged electrons.","Electrons are found in specific energy levels.","The nucleus has a negative charge."],ans:1,explain:"If most alpha particles met nothing, the atom must be mostly empty space."},
  {type:"mc",stem:"In Thomson’s cathode ray tube, the beam bent toward the positive plate. What does this show about the particles in the beam?",choices:["They have a positive charge.","They have a negative charge.","They have no charge.","They have a large mass."],ans:2,explain:"Opposite charges attract. Particles pulled toward a positive plate are negative: electrons."},

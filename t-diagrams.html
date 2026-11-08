@@ -45,7 +45,7 @@
   <section class="note">
     <div class="tile"><h2>Phase Changes of Water and Pressure</h2></div>
     <div class="body">
-      <p class="intro">Lakes freeze from the top down, and ice floats in a glass. Both happen because ice is less dense than liquid water, which is unusual: for almost every other substance, the solid sinks in its own liquid. This unusual property shows up as a line that leans the “wrong” way on water’s phase diagram.</p>
+      <p class="intro">In winter, lakes in upstate New York freeze from the top down, and the layer of ice insulates the liquid water below so that fish survive until spring. This happens because ice is less dense than liquid water, which is unusual: for almost every other substance, the solid sinks in its own liquid. This unusual property appears on water’s phase diagram as a solid–liquid line that leans the opposite way.</p>
       <ul>
         <li>For most substances, the solid–liquid line leans to the <b>right</b>: raising the pressure raises the melting point, so high pressure favors the solid.</li>
         <li><span class="kr">Water is an exception.</span> Ice is less dense than liquid water, so increasing the pressure favors the liquid, where the molecules are closer together. Water’s solid–liquid line leans to the <b>left</b>: <span class="kb">higher pressure lowers the melting point of ice</span>.</li>
@@ -67,6 +67,11 @@
   <section class="lab" id="read">
     <div class="lab-h"><span class="tag game">Game</span><h3>Read the Phase Diagram</h3></div>
     <div id="read-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -104,6 +109,7 @@ P.TapSort(A.$("#read-host"),{prompt:"What is true of the substance at this point
   pic:cur=>pd({letters:[L.find(x=>x[0]===cur[0].replace(/<[^>]+>/g,"").slice(-1))].map(x=>[x[0],x[1],x[2]])}),
   choices:[["s","Solid"],["l","Liquid"],["g","Gas"],["sl","Solid + liquid in equilibrium"],["lg","Liquid + gas in equilibrium"],["t","All three phases"],["c","Critical point"]],
   items:L.map(x=>[`Point ${x[0]}`,x[3],{s:"Low temperature, high pressure: solid.",l:"Between the lines at moderate temperature and pressure: liquid.",g:"High temperature, low pressure: gas.",t:"The triple point: solid, liquid and gas together.",c:"The critical point: above it, liquid and gas cannot be told apart.",sl:"On the solid–liquid line: melting and freezing are in equilibrium.",lg:"On the liquid–gas line: vaporization and condensation are in equilibrium."}[x[3]]])});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The temperature and pressure at which all three phases exist at the same time is the ___.", "a": "triple point"}, {"s": "Above the ___, the liquid and gas phases can no longer be told apart.", "a": "critical point"}, {"s": "A substance above its critical temperature and pressure is a ___.", "a": "supercritical fluid"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"On a phase diagram, a point that lies on the line between the liquid and gas regions represents",choices:["a solid","a gas only","liquid and gas in phase equilibrium","the triple point"],ans:3,explain:"Points on a line are phase equilibrium between the two phases on either side."},
  {type:"mc",stem:"The triple point of a substance is the temperature and pressure at which",choices:["the liquid boils","the solid melts at 1 atm","solid, liquid and gas exist together","liquid and gas become indistinguishable"],ans:3,explain:"At the triple point, all three phases exist at the same time."},

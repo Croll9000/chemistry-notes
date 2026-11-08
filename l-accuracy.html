@@ -34,7 +34,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Accuracy & precision"><div class="pn"><small>Part</small><span>1</span></div><h2>Accuracy vs. Precision</h2><p>Accuracy and precision.</p></div>
+  <div class="part" id="p1" data-short="Accuracy & precision"><div class="pn"><small>Part</small><span>1</span></div><h2>Accuracy vs. Precision</h2><p>Scientists judge the quality of their data in two ways: how close it is to the true value, and how consistent it is from trial to trial. These qualities are known as accuracy and precision.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Accuracy and Precision</h2></div>
@@ -69,6 +69,7 @@
   <section class="note">
     <div class="tile"><h2>Accuracy and Precision in Data</h2></div>
     <div class="body">
+      <p class="intro">A dart player whose darts all land in a tight cluster far from the bullseye is precise but not accurate. In the laboratory, the same ideas are judged from data: how close the average of several trials is to the accepted value, and how close the trials are to one another.</p>
       <p>Four students each measured the density of the same aluminum sample three times. The accepted value is 2.70 g/cm³.</p>
       <div class="tbl-wrap"><table class="nt"><tr><th>Student</th><th>Trial 1</th><th>Trial 2</th><th>Trial 3</th><th>Average</th><th>Description</th></tr>
         <tr><td>A</td><td>2.71</td><td>2.69</td><td>2.70</td><td>2.70</td><td><span class="kr">accurate and precise</span>: close to 2.70 and close to each other</td></tr>
@@ -93,7 +94,7 @@
     <div id="pt-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Percent error"><div class="pn"><small>Part</small><span>2</span></div><h2>Percent Error</h2><p>Percent error measures how far a measurement is from the accepted value.</p></div>
+  <div class="part" id="p2" data-short="Percent error"><div class="pn"><small>Part</small><span>2</span></div><h2>Percent Error</h2><p>Percent error describes how far a measured value is from the accepted value, relative to the size of the accepted value. It allows the accuracy of very different measurements to be compared.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Percent Error</h2></div>
@@ -129,6 +130,11 @@
   <section class="lab" id="pepr">
     <div class="lab-h"><span class="tag game">Game</span><h3>Percent Error Practice</h3></div>
     <div id="pe-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -218,6 +224,7 @@ L.PlaceTrials(A.$("#pt-host"));
 /* ---------- percent error practice ---------- */
 L.PEGame(A.$("#pe-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "How close a measurement is to the accepted value is its ___.", "a": "accuracy"}, {"s": "How close repeated measurements are to each other is their ___.", "a": "precision"}, {"s": "How far a measured value is from the accepted value, as a percent, is the ___.", "a": "percent error"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"The accuracy of a measurement describes how close the measurement is to",choices:["other measurements of the same quantity","the accepted value","the smallest marking on the instrument","the average of all the measurements"],ans:2,explain:"Accuracy = closeness to the accepted (true) value. Closeness of measurements to each other is precision."},
  {type:"mc",stem:"The accepted value for the density of a metal is 7.87 g/cm³. Four students each measured the density three times. Click the row that shows a set of measurements that is precise but not accurate.",table:`<table class="nt"><tr><th>Row</th><th>Trial 1 (g/cm³)</th><th>Trial 2 (g/cm³)</th><th>Trial 3 (g/cm³)</th></tr><tr><td>(1)</td><td>7.86</td><td>7.88</td><td>7.87</td></tr><tr><td>(2)</td><td>6.10</td><td>9.40</td><td>8.10</td></tr><tr><td>(3)</td><td>8.52</td><td>8.53</td><td>8.51</td></tr><tr><td>(4)</td><td>7.40</td><td>8.30</td><td>7.88</td></tr></table>`,choices:["","","",""],ans:3,explain:"Row 3: 8.52, 8.53 and 8.51 agree closely with each other (precise) but are all far from 7.87 (not accurate)."},

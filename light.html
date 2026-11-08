@@ -23,7 +23,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Light as a wave"><div class="pn"><small>Part</small><span>1</span></div><h2>Light Is a Wave of Energy</h2><p>Light travels as an electromagnetic wave, in packets of energy called photons.</p></div>
+  <div class="part" id="p1" data-short="Light as a wave"><div class="pn"><small>Part</small><span>1</span></div><h2>Light Is a Wave of Energy</h2><p>Sunlight travels about 150 million kilometers to reach Earth in just over 8 minutes. Light travels as an electromagnetic wave carried in packets of energy called photons, and these photons are what atoms absorb and give off.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Light</h2></div>
@@ -37,7 +37,7 @@
     </div>
   </section>
 
-<div class="part" id="p2" data-short="Wavelength & frequency"><div class="pn"><small>Part</small><span>2</span></div><h2>Describing Light Waves</h2><p>Two measurements describe every light wave, and together they decide its energy.</p></div>
+<div class="part" id="p2" data-short="Wavelength & frequency"><div class="pn"><small>Part</small><span>2</span></div><h2>Describing Light Waves</h2><p>Red light has a wavelength of about 700 nanometers, while violet light has a wavelength of about 400 nanometers. Wavelength and frequency describe every light wave and determine its energy, which is why ultraviolet light can cause sunburn while visible light cannot.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Wavelength</h2></div>
@@ -68,7 +68,7 @@
     </div>
   </section>
 
-<div class="part" id="p3" data-short="EM spectrum"><div class="pn"><small>Part</small><span>3</span></div><h2>The Electromagnetic Spectrum</h2><p>All types of light, from radio waves to gamma rays, arranged by wavelength, frequency and energy.</p></div>
+<div class="part" id="p3" data-short="EM spectrum"><div class="pn"><small>Part</small><span>3</span></div><h2>The Electromagnetic Spectrum</h2><p>A car radio, a microwave oven and a dentist’s X-ray machine all use forms of light. Engineers choose the type of light for each technology by its position on the electromagnetic spectrum, which arranges all light from radio waves to gamma rays by wavelength, frequency and energy.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Electromagnetic Spectrum</h2></div>
@@ -99,6 +99,11 @@
   <section class="lab" id="rank">
     <div class="lab-h"><span class="tag game">Game</span><h3>Energy Ranking</h3></div>
     <div id="rank-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Use wavelength, frequency and energy to answer these Regents-style questions. Your first answer to each question is your score.</p></div>
@@ -246,6 +251,7 @@ const regionOf=lg=>REG.find(r=>lg>=r[1]&&lg<r[2])||(lg<-14?REG[0]:REG[6]);
   setup();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The distance from one crest of a wave to the next is its ___.", "a": "wavelength"}, {"s": "The number of waves that pass a point each second is the ___.", "a": "frequency"}, {"s": "A packet of light energy is a ___.", "a": "photon"}, {"s": "All types of light arranged by wavelength form the electromagnetic ___.", "a": "spectrum"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which type of electromagnetic radiation has the highest energy?",choices:["radio waves","visible light","ultraviolet","gamma rays"],ans:4,explain:"Gamma rays have the shortest wavelength and highest frequency, so the highest energy."},
  {type:"mc",stem:"As the wavelength of light increases, its frequency",choices:["increases and its energy increases","increases and its energy decreases","decreases and its energy increases","decreases and its energy decreases"],ans:4,explain:"Longer wavelength → lower frequency → lower energy."},
