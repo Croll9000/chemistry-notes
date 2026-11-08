@@ -52,7 +52,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Chemistry & matter"><div class="pn"><small>Part</small><span>1</span></div><h2>Chemistry and Matter</h2><p>Chemistry is the study of matter.</p></div>
+  <div class="part" id="p1" data-short="Chemistry & matter"><div class="pn"><small>Part</small><span>1</span></div><h2>Chemistry and Matter</h2><p>Chemistry is the branch of science that studies matter, its composition and the changes it undergoes. In this section we will define matter and the two properties that every sample of matter shares.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Chemistry</h2></div>
@@ -78,11 +78,12 @@
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="Matter vs. energy"><div class="pn"><small>Part</small><span>2</span></div><h2>What Isn’t Matter?</h2><p>Light, heat and electricity are real, but they have no mass and take up no space. They are forms of energy.</p></div>
+  <div class="part" id="p2" data-short="Matter vs. energy"><div class="pn"><small>Part</small><span>2</span></div><h2>What Isn’t Matter?</h2><p>Not everything in the universe is matter. Light, heat and electricity are real and measurable, but they have no mass and take up no space; they are forms of energy.</p></div>
 
   <section class="note">
     <div class="tile"><h2>What Isn’t Matter?</h2></div>
     <div class="body">
+      <p class="intro">Sunlight warms your skin and a lightning bolt can split a tree, yet neither can be placed on a balance or poured into a container. Some of the most familiar things in the world have no mass and take up no space, so they are not matter.</p>
       <p>Not everything in the universe would be classified as matter. <span class="kr">Energy</span>, for example, does not have mass nor does it take up space. However, it is very real, and can be experienced in the form of light, heat and electricity.</p>
       <div class="center" id="energy-art"></div>
       <div class="center"><div class="callout">Heat, light and electricity are forms of energy and therefore not classified as matter.</div></div>
@@ -127,6 +128,11 @@
       <div class="status" id="chain-msg" aria-live="polite"></div>
     </div>
     <div class="labq" id="lq-chain-lab"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Show what you know about matter and energy. Your first answer to each question is your score.</p></div>
@@ -266,6 +272,7 @@ A.$("#energy-art").innerHTML=`<div style="display:flex;gap:40px;align-items:flex
   draw();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The study of matter, its composition and the changes it undergoes is ___.", "a": "chemistry"}, {"s": "Anything that has mass and takes up space is ___.", "a": "matter"}, {"s": "The amount of matter in an object is its ___.", "a": "mass"}, {"s": "Light, heat and electricity are forms of ___, not matter.", "a": "energy"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Matter is best described as anything that",choices:["can be seen with the naked eye","has mass and takes up space","gives off light or heat","is made of only one element"],ans:2,explain:"Matter has mass and volume. Air can’t be seen, but it is still matter."},
  {type:"mc",stem:"Which of these is <b>not</b> matter?",choices:["water vapor","oxygen gas","light","sand"],ans:3,explain:"Light is a form of energy. It has no mass and takes up no space."},

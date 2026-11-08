@@ -22,7 +22,7 @@
   <section class="note">
     <div class="tile"><h2>Temperature</h2></div>
     <div class="body">
-      <p class="intro">Touch a mug of hot tea and you can feel that it is hot, but what does “hot” actually mean for the water inside? Even in a still cup, the water molecules are racing around, crashing into one another billions of times every second. Energy cannot be measured directly, but temperature gives us a window into it: it tells us how fast, on average, those particles are moving.</p>
+      <p class="intro">On the previous page, you learned that heat is energy in transit. Temperature measures something different. Even in a still cup of tea, the water molecules are racing around and colliding billions of times every second, some moving quickly and some slowly. Energy cannot be measured directly, but temperature provides a measure of the average kinetic energy of those particles.</p>
       <ul>
         <li>Temperature is directly related to the kinetic energy of the particles in a substance.
           <ul><li>Particles at a <span class="kr">high temperature</span> move <span class="kr">fast</span> and have <span class="kr">high kinetic energy</span>.</li>
@@ -64,7 +64,7 @@
   <section class="note">
     <div class="tile"><h2>Temperature Scales</h2></div>
     <div class="body">
-      <p class="intro">A weather report in New York says 77 degrees; the same report in Paris says 25 degrees. Both describe the same warm day on different scales. Each scale picks its own zero point and its own size of degree. The Fahrenheit scale was built around a freezing salt-water mixture, the Celsius scale around water, and the Kelvin scale around the coldest temperature that is possible at all.</p>
+      <p class="intro">When a weather report in New York reads 77 degrees, a report in Paris describing the same weather reads 25 degrees. Neither is wrong; they use different scales. The Fahrenheit scale was originally built around a freezing salt-water mixture, the Celsius scale around the freezing and boiling points of water, and the Kelvin scale around the lowest temperature that is possible at all. In chemistry, we use the Celsius and Kelvin scales.</p>
       <ul>
         <li>There are a number of different scales that we use to measure temperature, including Fahrenheit (°F), Celsius (°C) and Kelvin (K). <span class="kr">In chemistry we use the Celsius and Kelvin scales.</span></li>
         <li><span class="def">Celsius Scale</span> – temperature scale based on the freezing point and boiling point of water.
@@ -105,7 +105,7 @@
   <section class="note">
     <div class="tile"><h2>Some Important Temperatures</h2></div>
     <div class="body">
-      <p class="intro">The volume of a gas, the speed of a reaction and even the density of water all change with temperature. To compare results fairly, chemists agree on a few standard temperatures. That way, a measurement made in New York can be compared with one made in Tokyo.</p>
+      <p class="intro">The volume of a gas, the speed of a reaction and even the density of water all change with temperature. A result measured on a hot summer afternoon cannot be compared fairly with one measured in a cold laboratory in January. To make results comparable, scientists around the world agree on a few standard temperatures.</p>
       <ul>
         <li><span class="def">Standard Temperature</span> – baseline temperature that scientists use for consistency in describing chemical properties and reactions. For gases, standard temperature is 0 °C (273.15 K).</li>
       </ul>
@@ -124,6 +124,11 @@
   <section class="lab" id="tri">
     <div class="lab-h"><span class="tag sim">Simulation</span><h3>Three Thermometers</h3></div>
     <div id="tri-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
@@ -168,6 +173,7 @@ const W2=S.wk("Ex: What temperature in Celsius is equivalent to 168 K?",[
 S.workedTabs(A.$("#ex1"),[{label:"°C → K",...W1},{label:"K → °C",...W2}]);
 L.TempGame(A.$("#tc-host"));
 T.TriThermo(A.$("#tri-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "A measurement of the average kinetic energy of the particles in a sample is ___.", "a": "temperature"}, {"s": "The lowest possible temperature, 0 K, is ___.", "a": "absolute zero"}, {"s": "Temperature is measured with a ___.", "a": "thermometer"}, {"s": "The temperature scale that starts at 0 K is the ___.", "a": "Kelvin scale"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Temperature is a measure of the",choices:["total energy of a sample","average kinetic energy of the particles in a sample","heat stored in a sample","potential energy of the particles in a sample"],ans:2,explain:"Temperature measures the average kinetic energy of the particles."},
  {type:"text",stem:"Convert 37 °C to kelvin.",unit:"K",width:110,check:v=>A.lenient(v,310.15,{dp:0}),explain:"K = 37 + 273.15 = 310.15 K (310 K)."},

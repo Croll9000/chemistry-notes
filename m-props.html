@@ -57,7 +57,7 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Physical & chemical"><div class="pn"><small>Part</small><span>1</span></div><h2>Physical and Chemical Properties</h2><p>A physical property can be observed without producing a new substance.</p></div>
+  <div class="part" id="p1" data-short="Physical & chemical"><div class="pn"><small>Part</small><span>1</span></div><h2>Physical and Chemical Properties</h2><p>Chemists describe substances by their properties. Some properties can be observed without changing the substance, while others can only be observed when it reacts.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Describing Matter</h2></div>
@@ -71,6 +71,7 @@
   <section class="note">
     <div class="tile"><h2>Types of Properties</h2></div>
     <div class="body">
+      <p class="intro">Copper is reddish, bends without breaking and conducts electricity, all of which can be observed without changing it. Copper also slowly turns green when it reacts with air, which is why the Statue of Liberty is green rather than copper-colored. These two kinds of observations are known as physical and chemical properties.</p>
       <ul>
         <li><span class="def">Physical Property</span> – measurable characteristic of a substance that can be determined <span class="kr">without changing the identity</span> of that substance
           <div class="xbox xs"><span class="xtag">Example</span><div class="xbody"><div class="xl">Temperature, mass, volume, density, melting point, boiling point</div></div></div></li>
@@ -92,7 +93,7 @@
     <div id="ps-host"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Intensive & extensive"><div class="pn"><small>Part</small><span>2</span></div><h2>Intensive and Extensive Properties</h2><p>An extensive property depends on the amount of substance. An intensive property does not.</p></div>
+  <div class="part" id="p2" data-short="Intensive & extensive"><div class="pn"><small>Part</small><span>2</span></div><h2>Intensive and Extensive Properties</h2><p>Some properties depend on the size of a sample, and others do not. This distinction determines which properties can be used to identify a substance.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Intensive vs. Extensive Properties</h2></div>
@@ -111,6 +112,11 @@
   </section>
 
   <p class="bridge">Physical and chemical properties match the two kinds of change: physical changes and chemical changes.</p>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Describe matter with properties. Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
@@ -172,6 +178,7 @@ A.$("#cu-art").innerHTML=`<div class="cu-cmp"><div style="display:flex;gap:26px;
   setup();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A characteristic observed without changing the identity of a substance is a ___.", "a": "physical property"}, {"s": "A characteristic that describes how a substance reacts is a ___.", "a": "chemical property"}, {"s": "A property that does not depend on the size of the sample is an ___.", "a": "intensive property"}, {"s": "A property that depends on the size of the sample is an ___.", "a": "extensive property"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which is a chemical property of a substance?",choices:["its color","its density","its ability to burn","its boiling point"],ans:3,explain:"Flammability (ability to burn) describes how the substance reacts. The others can be observed without changing the substance."},
  {type:"mc",stem:"The ability of a metal to allow electricity to flow through it is",choices:["a chemical property","a physical property","a chemical change","an extensive property"],ans:2,explain:"Electrical conductivity can be measured without changing the identity of the metal: a physical property."},

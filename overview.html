@@ -16,11 +16,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Inside the atom"><div class="pn"><small>Part</small><span>1</span></div><h2>What Atoms Are Made Of</h2><p>Every atom is built from three particles: protons, neutrons and electrons.</p></div>
+  <div class="part" id="p1" data-short="Inside the atom"><div class="pn"><small>Part</small><span>1</span></div><h2>What Atoms Are Made Of</h2><p>The iron in your blood and the iron in a steel beam are made of identical atoms, and every atom is built from the same three subatomic particles. Knowing where each particle is located is the starting point for explaining why elements look, weigh and react the way they do.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Subatomic Particles</h2></div>
     <div class="body">
+      <p class="intro">A single grain of sand contains roughly 50 quintillion atoms, and every one of them is built from the same three particles. The number of each particle determines which element an atom is, how heavy it is and how it will behave.</p>
       <p class="lead">Atoms are composed of 3 subatomic particles:</p>
       <ul>
         <li><span class="def">Protons</span> – massive, positively charged particles found in the nucleus</li>
@@ -46,7 +47,7 @@
     <div class="labq" id="lq-lab-atom"></div>
   </section>
 
-  <div class="part" id="p2" data-short="Mass & charge"><div class="pn"><small>Part</small><span>2</span></div><h2>Mass and Charge</h2><p>Particles this small need their own unit of mass. Compare the three particles side by side.</p></div>
+  <div class="part" id="p2" data-short="Mass & charge"><div class="pn"><small>Part</small><span>2</span></div><h2>Mass and Charge</h2><p>A single proton has a mass of only about 1.67 × 10⁻²⁴ grams, so chemists measure subatomic particles in atomic mass units instead. Comparing the mass and charge of each particle explains why almost all of an atom’s mass is packed into its nucleus.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Subatomic Particles: Mass and Charge</h2></div>
@@ -73,11 +74,12 @@
     <div id="sort-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="What holds it together"><div class="pn"><small>Part</small><span>3</span></div><h2>What Holds an Atom Together?</h2><p>The electrons stay in the atom because of the attraction between opposite charges.</p></div>
+  <div class="part" id="p3" data-short="What holds it together"><div class="pn"><small>Part</small><span>3</span></div><h2>What Holds an Atom Together?</h2><p>The electron in a hydrogen atom moves at about 2,200 kilometers per second, yet it does not escape. The attraction between the positive nucleus and the negative electrons that holds it in place is the same attraction that later explains ions, bonding and the periodic trends.</p></div>
 
   <section class="note added">
     <div class="tile"><h2>Attraction Between Charges</h2></div>
     <div class="body">
+      <p class="intro">An atom is mostly empty space, yet its electrons do not fly away from the nucleus. The same attraction between opposite charges that makes a balloon cling to a wall holds every electron in its atom.</p>
       <ul>
         <li>Charged particles push or pull on each other.
           <ul><li>Opposite charges <span class="kr">attract</span>.</li><li>Like charges <span class="kb">repel</span>.</li></ul></li>
@@ -92,6 +94,11 @@
     </div>
   </section>
 
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Show what you learned about the particles in an atom. Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
@@ -173,6 +180,7 @@ drawAtom();
   setup();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "A positively charged particle in the nucleus is a ___.", "a": "proton"}, {"s": "A particle in the nucleus with no charge is a ___.", "a": "neutron"}, {"s": "A negatively charged particle outside the nucleus is an ___.", "a": "electron"}, {"s": "The small, dense center of an atom is the ___.", "a": "nucleus"}, {"s": "Protons, neutrons and electrons are called ___ particles.", "a": "subatomic"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which particles are found in the nucleus of an atom?",choices:["protons only","protons and neutrons","electrons and neutrons","protons, neutrons, and electrons"],ans:2,explain:"The nucleus contains protons and neutrons. Electrons are found outside the nucleus in energy levels.",why:{0:"Protons are in the nucleus, but they are not alone there.",2:"Electrons are found outside the nucleus.",3:"Electrons are found outside the nucleus."}},
  {type:"mc",stem:"Which subatomic particle has the smallest mass?",choices:["proton","neutron","electron","alpha particle"],ans:3,explain:"An electron’s mass is about 1/1836 of a proton’s, so it is treated as 0 u."},

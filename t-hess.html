@@ -43,6 +43,11 @@
     <div id="dh-host"></div>
   </section>
 
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
@@ -57,6 +62,7 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
 A.$("#hess-art").innerHTML=T.figHess();
 S.workedTabs(A.$("#ex-hess"),[{label:"Hess’s law: ethanol",...S.wk("Ex: Use the reactions below to find ΔH for 2C(s) + 3H₂(g) + ½O₂(g) → C₂H₅OH(l).<br>C(s) + O₂(g) → CO₂(g) ΔH = −393.5 kJ<br>H₂(g) + ½O₂(g) → H₂O(l) ΔH = −285.8 kJ<br>C₂H₅OH(l) + 3O₂(g) → 2CO₂(g) + 3H₂O(l) ΔH = −1366.8 kJ",[["<b>Step 1:</b> The target needs 2 C on the left, so multiply the first reaction by 2.","2C(s) + 2O₂(g) → 2CO₂(g)   ΔH = 2(−393.5) = −787.0 kJ"],["<b>Step 2:</b> The target needs 3 H₂ on the left, so multiply the second reaction by 3.","3H₂(g) + 1½O₂(g) → 3H₂O(l)   ΔH = 3(−285.8) = −857.4 kJ"],["<b>Step 3:</b> The target has C₂H₅OH on the right, so reverse the third reaction and switch its sign.","2CO₂(g) + 3H₂O(l) → C₂H₅OH(l) + 3O₂(g)   ΔH = +1366.8 kJ"],["<b>Step 4:</b> Add the reactions. CO₂, H₂O and 3 O₂ cancel, leaving the target. Add the ΔH values.","ΔH = −787.0 + (−857.4) + 1366.8 = −277.6 kJ"]])}]);
 T.DeltaHGame(A.$("#dh-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "A quantity that depends only on the starting and ending states is a ___.", "a": "state function"}, {"s": "If a reaction is reversed, the ___ of ΔH is switched.", "a": "sign"}, {"s": "The enthalpy of an overall reaction equals the sum of the enthalpies of its steps, according to ___.", "a": "Hess’s law"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Enthalpy is a state function. This means that the ΔH of a reaction depends only on",choices:["the number of steps in the reaction","the starting and ending states","how fast the reaction occurs","the temperature of the calorimeter"],ans:2,explain:"Only the starting and ending enthalpies matter, not the path between them."},
  {type:"mc",stem:"A reaction has ΔH = −120 kJ. When the reaction is reversed and multiplied by 2, its ΔH becomes",choices:["−240 kJ","−60 kJ","+240 kJ","+60 kJ"],ans:3,explain:"Reversing switches the sign (+120 kJ); multiplying by 2 doubles it (+240 kJ)."},

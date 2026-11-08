@@ -54,7 +54,7 @@
   <section class="note">
     <div class="tile"><h2>Breaking and Forming Bonds</h2></div>
     <div class="body">
-      <p class="intro">Every reaction is a trade: energy in to break the old bonds, energy out when the new bonds form. It is a little like a business that spends money to buy supplies and earns money selling its products. If it earns more than it spends, there is energy left over and the reaction warms its surroundings. If it spends more than it earns, it has to take energy from its surroundings, and they cool down.</p>
+      <p class="intro">In the previous section, you learned that every type of bond has a characteristic bond energy. A chemical reaction breaks some bonds and forms others, so it both absorbs and releases energy. Whether the reaction warms or cools its surroundings depends on which amount is larger. Burning natural gas releases more energy forming CO<sub>2</sub> and H<sub>2</sub>O than it absorbs breaking the bonds in CH<sub>4</sub> and O<sub>2</sub>, which is why it can heat a home.</p>
       <ul>
         <li>In a chemical reaction, energy must be added to break the bonds in the reactants. When new bonds form to create the products, energy is released.
           <ul><li>If <span class="kr">more energy is needed to break the old bonds</span> than is released forming the new bonds, there is a net absorption of energy and the reaction is <span class="kr">endothermic</span>.</li>
@@ -64,6 +64,11 @@
       </ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">In N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g), energy is needed to break the N≡N and H–H bonds. When the new N–H bonds form, more energy is released than was absorbed, so the reaction is exothermic.</div></div></div><ul><li>The heat of reaction can be estimated from these bond energies: ΔH = Σ(bonds broken) − Σ(bonds formed). See <b>Calculating ΔH from Bond Energies</b> below.</li></ul>
       <div class="t7-fig" id="nh3-art"></div>
     </div>
+  </section>
+
+  <section class="lab" id="steps">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Break, Make, Overall</h3></div>
+    <div id="bs-host"></div>
   </section>
 
   <section class="lab" id="arrows">
@@ -118,7 +123,7 @@
   <section class="note">
     <div class="tile"><h2>Selected Heats of Reaction</h2></div>
     <div class="body">
-      <p class="intro">Chemists have measured the heats of many common reactions at 101.3 kPa and 298 K. The table below lists some of them, including the heats of dissolving several salts in water (used in hot packs and cold packs).</p>
+      <p class="intro">Measured heats of reaction allow chemists and engineers to compare fuels directly. Burning one mole of methane, natural gas, releases 890.4 kJ, while burning one mole of propane, the fuel in a gas grill, releases 2219.2 kJ. Tables of measured heats of reaction, collected at 101.3 kPa and 298 K, are used to choose fuels, design cold packs and predict the energy change of a reaction.</p>
       <table class="nt t7-tbl" style="margin:10px auto"><tr><th>Reaction</th><th>ΔH (kJ)</th></tr>
         <tr><td>CH<sub>4</sub>(g) + 2O<sub>2</sub>(g) → CO<sub>2</sub>(g) + 2H<sub>2</sub>O(ℓ)</td><td>−890.4</td></tr>
         <tr><td>C<sub>3</sub>H<sub>8</sub>(g) + 5O<sub>2</sub>(g) → 3CO<sub>2</sub>(g) + 4H<sub>2</sub>O(ℓ)</td><td>−2219.2</td></tr>
@@ -137,6 +142,16 @@
       <div class="rw"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Instantcare_Instant_Cold_Pack%2C_Oude_Pekela_%282019%29_03.jpg/960px-Instantcare_Instant_Cold_Pack%2C_Oude_Pekela_%282019%29_03.jpg" alt="An instant cold pack from a first-aid kit" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption><b>Instant cold pack</b>Squeezing the pack breaks an inner pouch so the salt dissolves in water, an endothermic process.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Instantcare_Instant_Cold_Pack%2C_Oude_Pekela_%282019%29_03.jpg" target="_blank" rel="noopener">Donald Trung Quoc Don</a>, Wikimedia Commons (CC BY-SA 4.0)</span></figcaption></figure></div>
       <ul><li>A cold pack uses an endothermic dissolving process (like NH<sub>4</sub>NO<sub>3</sub>); a heat pack uses an exothermic one.</li></ul>
     </div>
+  </section>
+
+  <section class="lab" id="dissolve">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Hot or Cold Dissolving</h3></div>
+    <div id="dl-host"></div>
+  </section>
+
+  <section class="lab" id="stations">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Energy Stations</h3></div>
+    <div id="es-host"></div>
   </section>
 
   <div class="part" id="p4" data-short="Changing ΔH"><div class="pn"><small>Part</small><span>4</span></div><h2>Manipulating Reactions and Their Enthalpies</h2><p>The enthalpy of a reaction applies to the reaction exactly as it is written. Reversing the reaction or changing its coefficients changes its enthalpy in predictable ways.</p></div>
@@ -160,6 +175,11 @@
     <div id="dh-host"></div>
   </section>
 
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
@@ -172,6 +192,9 @@
 const A=AS, T=A.U7, S=A.U6, INK="#1b2328";
 A.$("#manip-art").innerHTML=T.figManip();
 T.BondPE(A.$("#bpe-host"));
+T.BondSteps(A.$("#bs-host"));
+T.DissolveLab(A.$("#dl-host"));
+T.EnergyStations(A.$("#es-host"));
 A.$("#bsum-art").innerHTML=T.figBondSum();
 S.workedTabs(A.$("#ex-bond"),[
  {label:"H₂ + Cl₂ → 2HCl",...S.wk("Ex: Use bond energies to estimate ΔH for H₂(g) + Cl₂(g) → 2HCl(g). (H–H 432, Cl–Cl 239, H–Cl 427 kJ/mol)",[
@@ -210,6 +233,7 @@ const W3=S.wk("Ex: 2H<sub>2</sub>(g) + O<sub>2</sub>(g) → 2H<sub>2</sub>O(ℓ)
  ["<b>Step 2:</b> Switch the sign, then multiply by ½.","ΔH = −(−571.6 kJ) × ½ = +285.8 kJ"]]);
 S.workedTabs(A.$("#ex1"),[{label:"Multiply",...W1},{label:"Reverse",...W2},{label:"Both",...W3}]);
 T.DeltaHGame(A.$("#dh-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "The energy required to break 1 mole of a specific bond is its ___.", "a": "bond energy"}, {"s": "The energy absorbed or released during a reaction is its ___.", "a": "enthalpy of reaction"}, {"s": "A reaction that absorbs energy from its surroundings is ___.", "a": "endothermic"}, {"s": "A reaction that releases energy to its surroundings is ___.", "a": "exothermic"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which statement describes bond breaking and bond forming?",choices:["Both absorb energy.","Both release energy.","Breaking bonds absorbs energy; forming bonds releases energy.","Breaking bonds releases energy; forming bonds absorbs energy."],ans:3,explain:"Energy must be added to overcome the attraction in a bond; the same energy is released when the bond forms."},
  {type:"mc",stem:"In a reaction, 1,200 kJ is absorbed to break the bonds in the reactants and 1,650 kJ is released when the bonds in the products form. The reaction is",choices:["endothermic, ΔH = +450 kJ","exothermic, ΔH = −450 kJ","endothermic, ΔH = −450 kJ","exothermic, ΔH = +2,850 kJ"],ans:2,explain:"More energy is released than absorbed: ΔH ≈ 1,200 − 1,650 = −450 kJ, exothermic."},

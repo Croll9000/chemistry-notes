@@ -1602,3 +1602,15 @@ li > .xbox{margin-top:6px}
 .rw img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:#eef3f5}
 .rw figcaption{font-size:14.5px;line-height:1.4;color:var(--ink)}
 .rw figcaption b{display:block}
+/* label the heat transfer */
+.t7-lh{display:flex;flex-direction:column;gap:8px;align-items:center}
+.t7-lh-art{position:relative;width:100%;max-width:600px}.t7-lh-art svg{width:100%;height:auto;display:block}
+.t7-lh-slot{position:absolute;width:21%;min-height:34px;border:2px dashed #9aa7ad;border-radius:8px;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center}
+.t7-lh-slot .dd-card{margin:0;font-size:13px;padding:4px 8px}
+.t7-lh-pool,.t7-vc-pool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:44px;padding:6px;border:1.5px dashed #cfe3ea;border-radius:10px;width:100%;max-width:600px}
+/* vocabulary check */
+.t7-vc{margin:0 0 10px;padding-left:22px;line-height:2.4;font-size:16px}
+.t7-vc-b{display:inline-flex;min-width:150px;min-height:32px;vertical-align:middle;border-bottom:2px solid var(--teal-deep);background:#f2fafc;border-radius:6px 6px 0 0;margin:0 4px;align-items:center;justify-content:center}
+.t7-vc-b .dd-card{margin:0;padding:2px 8px}
+/* energy stations */
+.t7-st{display:flex;flex-direction:column;gap:8px}.t7-st-h{display:flex;gap:12px;align-items:center}.t7-st-h small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5f6b72}.t7-st-h b{font-size:18px}

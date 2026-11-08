@@ -16,11 +16,12 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Valence electrons"><div class="pn"><small>Part</small><span>1</span></div><h2>The Electrons That Matter</h2><p>Only the outermost electrons take part in reactions. They explain why elements in a group behave alike.</p></div>
+  <div class="part" id="p1" data-short="Valence electrons"><div class="pn"><small>Part</small><span>1</span></div><h2>The Electrons That Matter</h2><p>Neon glows in signs for decades without reacting, while chlorine reacts with almost every metal it touches. The difference lies in their valence electrons, the only electrons that take part in chemical reactions.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Outermost (Valence) Electrons</h2></div>
     <div class="body">
+      <p class="intro">When two atoms collide in a reaction, they meet at their outermost edges. The electrons in the outermost energy level are the first to interact, and they determine how an atom will react.</p>
       <p>Not all electrons participate in chemical reactions. The most important electrons for bonding are the ones found in the outermost shell. We sometimes refer to these as valence electrons.</p>
       <ul><li><span class="def">Valence Electrons</span> – electrons found in the outermost energy level of an atom.
           <ul><li>They determine the chemical properties of the atom.</li><li>They determine how it will react with other atoms.</li></ul></li><li><span class="def">Valence Shell</span> – the outermost electron shell of an atom.</li></ul>
@@ -46,7 +47,7 @@
     <div id="ptx-host"></div>
   </section>
 
-<div class="part" id="p2" data-short="Stability"><div class="pn"><small>Part</small><span>2</span></div><h2>Getting a Full Valence Shell</h2><p>Most atoms are most stable with 8 valence electrons, like the noble gases.</p></div>
+<div class="part" id="p2" data-short="Stability"><div class="pn"><small>Part</small><span>2</span></div><h2>Getting a Full Valence Shell</h2><p>Argon, which makes up about 1% of the air, is so unreactive that it is used to fill light bulbs and shield metal during welding. Its eight valence electrons are the most stable arrangement an atom can have, which is why other atoms gain, lose or share electrons to reach it.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Stable Electron Configurations</h2></div>
@@ -87,11 +88,16 @@
     <div id="ionpt-host"></div>
   </section>
 
-<div class="part" id="p3" data-short="Element Detective"><div class="pn"><small>Part</small><span>3</span></div><h2>Use the Clues</h2><p>Put valence electrons, energy levels, ions and masses together to identify a mystery element.</p></div>
+<div class="part" id="p3" data-short="Element Detective"><div class="pn"><small>Part</small><span>3</span></div><h2>Use the Clues</h2><p>Forensic chemists identify an unknown substance by combining several pieces of evidence. Valence electrons, energy levels, ion charges and atomic masses can be combined in the same way to identify a mystery element.</p></div>
 
   <section class="lab" id="detective">
     <div class="lab-h"><span class="tag game">Game</span><h3>Element Detective</h3></div>
     <div id="det-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Explain chemical behavior using outermost (valence) electrons. Your first answer to each question is your score.</p></div>
@@ -114,6 +120,7 @@ A.PTExplorer(A.$("#ptx-host"),{modes:["valence","lewis","shell"],mode:"valence",
 A.IonPT(A.$("#ionpt-host"),{start:9,mainOnly:true,maxZ:56});
 A.ElementDetective(A.$("#det-host"));
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The electrons in the outermost energy level are ___ electrons.", "a": "valence"}, {"s": "Atoms are most stable with ___ valence electrons.", "a": "eight"}, {"s": "Elements with a full valence shell are the noble ___.", "a": "gases"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which element has the same number of valence electrons as oxygen?",choices:["nitrogen","fluorine","sulfur","neon"],ans:3,explain:"Sulfur is in group 16 with oxygen; both have 6 valence electrons."},
  {type:"mc",stem:"Which electron configuration represents an atom with a stable (full) valence shell?",choices:["2-8-1","2-8-7","2-8-8","2-8-2"],ans:3,explain:"2-8-8 (argon) has 8 electrons in its outermost shell."},

@@ -34,7 +34,7 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part" id="p1" data-short="Solids, liquids, gases"><div class="pn"><small>Part</small><span>1</span></div><h2>Solids, Liquids and Gases</h2><p>The phase of a substance is about how its particles are arranged and how they move.</p></div>
+  <div class="part" id="p1" data-short="Solids, liquids, gases"><div class="pn"><small>Part</small><span>1</span></div><h2>Solids, Liquids and Gases</h2><p>Matter exists in three common phases. The phase of a substance is determined by how its particles are arranged and how they move.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Phases of Matter</h2></div>
@@ -57,7 +57,7 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
     </div>
   </section>
 
-  <div class="part" id="p2" data-short="What decides the phase"><div class="pn"><small>Part</small><span>2</span></div><h2>What Decides the Phase?</h2><p>Three things decide the phase of a substance: attractions between particles, temperature, and pressure.</p></div>
+  <div class="part" id="p2" data-short="What decides the phase"><div class="pn"><small>Part</small><span>2</span></div><h2>What Decides the Phase?</h2><p>The phase that a substance takes depends on three factors: the attractions between its particles, its temperature and the pressure acting on it.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Determining Phase of Matter</h2></div>
@@ -123,6 +123,7 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
   <section class="note">
     <div class="tile"><h2>Phases of Matter and Temperature</h2></div>
     <div class="body">
+      <p class="intro">A stick of butter is solid in the refrigerator, soft on the counter and liquid in a hot pan. Its particles have not changed; only their kinetic energy has. As temperature changes, so does the phase of a substance.</p>
       <ul>
         <li>Temperature affects phase.
           <ul><li>As temperature <span class="kr">increases</span>, a substance changes from <span class="kr">solid to liquid to gas</span>.</li><li>As temperature <span class="kb">decreases</span>, a substance changes from <span class="kb">gas to liquid to solid</span>.</li></ul></li>
@@ -151,7 +152,7 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
     </div>
   </section>
 
-  <div class="part" id="p3" data-short="Phase changes"><div class="pn"><small>Part</small><span>3</span></div><h2>Phase Changes</h2><p>Adding or removing heat changes the phase. Some changes absorb energy; others release it.</p></div>
+  <div class="part" id="p3" data-short="Phase changes"><div class="pn"><small>Part</small><span>3</span></div><h2>Phase Changes</h2><p>Adding or removing heat can change the phase of a substance. Some phase changes absorb energy, while others release it.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Phase Changes</h2></div>
@@ -176,7 +177,7 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
   <section class="note">
     <div class="tile"><h2>Endothermic vs. Exothermic</h2></div>
     <div class="body">
-      <p class="intro">When sweat evaporates from your skin, it carries energy away and cools you down. A burn from steam is often more severe than one from boiling water because steam releases additional energy as it condenses on the skin. Every phase change involves energy moving into or out of a substance.</p>
+      <p class="intro">A can of compressed air used to clean a keyboard grows icy cold as you spray it, because the liquid inside vaporizes and absorbs energy from the can. Water vapor condensing on a cold window releases energy instead. Every phase change involves energy moving into or out of a substance.</p>
       <ul><li>During phase changes energy is either absorbed or released.
         <ul><li><span class="def">Endothermic</span> – a change in which energy is <span class="kr">absorbed</span> by a substance (melting, vaporization, sublimation)</li>
         <li><span class="def">Exothermic</span> – a change in which energy is <span class="kb">released</span> by a substance (freezing, condensation, deposition)</li></ul></li></ul>
@@ -220,6 +221,11 @@ canvas.sim{width:100%;max-width:520px;height:auto;background:#fff;border:1px sol
   <section class="lab" id="sort">
     <div class="lab-h"><span class="tag game">Game</span><h3>Endothermic or Exothermic?</h3></div>
     <div id="eo-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
   </section>
 
   <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Explain phases and phase changes with particles and energy. Your first answer to each question is your score.</p></div>
@@ -424,6 +430,7 @@ A.$("#endo-pics").innerHTML=(()=>{ const inA=(x,y,a,c)=>{ const dx=Math.cos(a), 
   next();
 })();
 
+A.VocabCheck(A.$("#vc-host"),[{"s": "The form that matter can take, solid, liquid or gas, is its ___.", "a": "phase of matter"}, {"s": "Attractive forces between particles in a sample are ___.", "a": "intermolecular forces"}, {"s": "The temperature at which a solid turns into a liquid is the ___.", "a": "melting point"}, {"s": "A change in which energy is absorbed is ___.", "a": "endothermic"}, {"s": "A change in which energy is released is ___.", "a": "exothermic"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which phase has a definite volume but no definite shape?",choices:["solid","liquid","gas","all three phases"],ans:2,explain:"A liquid takes the shape of its container (variable shape) but keeps its volume (fixed volume)."},
  {type:"mc",stem:"Compared to particles in the liquid phase, particles of the same substance in the gas phase are",choices:["closer together with stronger attractions","farther apart with weaker attractions","the same distance apart","not moving"],ans:2,explain:"Gas particles are very far apart, move fast, and have weak attractions between them."},
