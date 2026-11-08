@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Thermochemistry Practice Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermochemistry · Practice</span><h1>Practice Arcade</h1><p>Games from the whole unit in one place, plus Regents-style questions. These games are for practice and do not give a completion code.</p></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <nav class="controls" aria-label="Jump to a game"><span class="ctl-label">Jump to:</span><a class="btn ghost sm" href="#g-heat">Heat Equations</a><a class="btn ghost sm" href="#g-curve">Label the Curve</a><a class="btn ghost sm" href="#g-temp">Temperature Conversions</a><a class="btn ghost sm" href="#g-dh">Changing ΔH</a><a class="btn ghost sm" href="#g-lab">Calorimetry Lab</a><a class="btn ghost sm" href="#g-reg">Regents Practice</a></nav>
+
+  <section class="lab" id="g-heat"><div class="lab-h"><span class="tag game">Game</span><h3>Heat Equation Workout</h3></div><div id="h-heat"></div></section>
+  <section class="lab" id="g-curve"><div class="lab-h"><span class="tag game">Game</span><h3>Label the Curve</h3></div><div id="h-curve"></div></section>
+  <section class="lab" id="g-temp"><div class="lab-h"><span class="tag game">Game</span><h3>Convert It</h3></div><div id="h-temp"></div></section>
+  <section class="lab" id="g-dh"><div class="lab-h"><span class="tag game">Game</span><h3>Change the Equation, Change ΔH</h3></div><div id="h-dh"></div></section>
+  <section class="lab" id="g-lab"><div class="lab-h"><span class="tag game">Lab</span><h3>Calorimetry Lab</h3></div><div id="h-lab"></div></section>
+
+  <div class="part lc" id="g-reg" data-short="Regents practice"><div class="pn"><small>Set</small><span>✓</span></div><h2>Regents Practice</h2><p>Question clusters from the whole unit.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, T=A.U7, S=A.U6, L=A.U0;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figCurve(false)}</div>`;
+T.HeatGame(A.$("#h-heat"),{mode:"hard"});
+T.CurveMatch(A.$("#h-curve"));
+L.TempGame(A.$("#h-temp"));
+T.DeltaHGame(A.$("#h-dh"));
+T.CalLab(A.$("#h-lab"));
+const curve=()=>{ const xs=[60,100,190,300,560,600], ys=[260,200,200,110,110,40]; let s=`<line x1="50" y1="280" x2="620" y2="280" stroke="#1b2328" stroke-width="2.5"/><line x1="50" y1="280" x2="50" y2="20" stroke="#1b2328" stroke-width="2.5"/><polyline points="${xs.map((x,i)=>x+","+ys[i]).join(" ")}" fill="none" stroke="#E00000" stroke-width="4"/>`;
+  s+=`<line x1="44" y1="200" x2="50" y2="200" stroke="#1b2328" stroke-width="2"/><line x1="44" y1="110" x2="50" y2="110" stroke="#1b2328" stroke-width="2"/>`+T.t(40,204,"0",{fs:12,a:"end",w:400})+T.t(40,114,"100",{fs:12,a:"end",w:400})+T.t(40,264,"−20",{fs:12,a:"end",w:400});
+  "ABCDE".split("").forEach((l,i)=>{ const mx=(xs[i]+xs[i+1])/2, my=(ys[i]+ys[i+1])/2; s+=`<circle cx="${mx}" cy="${my-18}" r="12" fill="#fff" stroke="#1b2328" stroke-width="2"/>`+T.t(mx,my-13,l,{fs:13}); });
+  return T.svg(640,330,s+T.t(330,310,"Time (heat added at a constant rate)",{fs:13})+`<text transform="translate(12 150) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13" font-weight="700">Temperature (°C)</text>`,"Heating curve of water heated at a constant rate, with segments A to E"); };
+A.RegentsSet(A.$("#qs"),[
+ {title:"Heating a Block of Ice",intro:`<p>A 50.0-gram block of ice at −20 °C is placed in a pot on a stove and heated at a constant rate until it is all water vapor. Figure 1 shows the heating curve. For water, c = 4.18 J/g·K, H<sub>f</sub> = 334 J/g and H<sub>v</sub> = 2260 J/g.</p><p style="text-align:center"><b>Figure 1</b></p>${curve()}`,
+  qs:[{type:"mc",stem:"Which segment represents the time when the average kinetic energy of the particles is constant and the ice is melting?",choices:["A","B","C","D"],ans:2,explain:"B is the flat segment at 0 °C."},
+   {type:"mc",stem:"During segment D, the heat added is used to",choices:["increase the temperature of the liquid","increase the potential energy of the particles as they separate into a gas","increase the kinetic energy of the gas","break the bonds within water molecules"],ans:2,explain:"D is flat at 100 °C: vaporization. Potential energy increases; temperature does not change. Bonds within molecules do not break in a phase change."},
+   {type:"text",stem:"Calculate the heat needed to melt the 50.0 g of ice at 0 °C.",unit:"J",width:120,check:v=>S.chk(v,16700,{minSf:2}),explain:"q = mH<sub>f</sub> = (50.0 g)(334 J/g) = 16,700 J."},
+   {type:"text",stem:"Calculate the heat needed to raise the temperature of the 50.0 g of liquid water from 0 °C to 100 °C.",unit:"J",width:120,check:v=>S.chk(v,20900,{minSf:2}),explain:"q = mcΔT = (50.0 g)(4.18 J/g·K)(100 K) = 20,900 J."},
+   {type:"cr",stem:"Using the heat of fusion and heat of vaporization of water, explain why segment D is longer than segment B.",parts:["Explanation"],model:["The heat of vaporization (2260 J/g) is much larger than the heat of fusion (334 J/g), so vaporizing the water takes much more heat (and more time at a constant heating rate) than melting it."],noCredit:"“Boiling is hotter than melting.”"}]},
+ {title:"A Cold Pack",intro:"<p>A student tests a cold pack design in a calorimeter. 8.00 g of ammonium nitrate, NH<sub>4</sub>NO<sub>3</sub>, is dissolved in 100.0 g of water. The temperature of the water drops from 22.0 °C to 15.9 °C. The specific heat capacity of water is 4.18 J/g·K.</p><p style=\"text-align:center\"><b>Equation 1:</b> NH<sub>4</sub>NO<sub>3</sub>(s) → NH<sub>4</sub><sup>+</sup>(aq) + NO<sub>3</sub><sup>−</sup>(aq) &nbsp;ΔH = +25.69 kJ</p>",
+  qs:[{type:"mc",stem:"Based on the temperature change, the dissolving of NH<sub>4</sub>NO<sub>3</sub> is",choices:["exothermic, because heat flows from the solid to the water","exothermic, because heat flows from the water to the solid","endothermic, because heat flows from the water to the dissolving solid","endothermic, because heat flows from the dissolving solid to the water"],ans:3,explain:"The water cooled, so it lost heat to the dissolving solid: endothermic."},
+   {type:"text",stem:"Calculate the heat lost by the water.",unit:"J",width:120,check:v=>S.chk(String(v).replace(/^\s*[-−]/,""),2549.8,{minSf:2}),explain:"q = (100.0 g)(4.18 J/g·K)(15.9 − 22.0 °C) = −2,550 J. The water lost 2,550 J (2.5 × 10<sup>3</sup> J)."},
+   {type:"mc",stem:"What is ΔH for the reverse of Equation 1?",choices:["+25.69 kJ","−25.69 kJ","+51.38 kJ","−12.85 kJ"],ans:2,explain:"Reversing switches the sign."},
+   {type:"cr",stem:"State one change to the cold pack that would make the water colder, and explain why.",parts:["Change","Explanation"],model:["Use more NH<sub>4</sub>NO<sub>3</sub> (or less water).","More dissolving absorbs more heat from the water (or the same heat is taken from less water), so the temperature drops more."],noCredit:"“Put it in the freezer.”"}]},
+ {title:"Making Ammonia",intro:"<p>Ammonia, used to make fertilizer, is made from nitrogen and hydrogen. Equation 1 represents the reaction. Table 1 lists average bond energies.</p><p style=\"text-align:center\"><b>Equation 1:</b> N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g) &nbsp;ΔH = −91.8 kJ</p><table class=\"nt t7-tbl\" style=\"margin:8px auto\"><tr><th colspan=\"2\">Table 1: Average Bond Energies</th></tr><tr><th>Bond</th><th>kJ/mol</th></tr><tr><td>N≡N</td><td>941</td></tr><tr><td>H–H</td><td>432</td></tr><tr><td>N–H</td><td>391</td></tr></table>",
+  qs:[{type:"mc",stem:"Which statement describes the energy in this reaction?",choices:["More energy is absorbed breaking bonds than is released forming bonds.","More energy is released forming bonds than is absorbed breaking bonds.","No energy is absorbed.","No energy is released."],ans:2,explain:"ΔH is negative: net release of energy."},
+   {type:"text",stem:"Using Table 1, calculate the total energy absorbed to break the bonds in 1 mol N<sub>2</sub> and 3 mol H<sub>2</sub>.",unit:"kJ",width:110,check:v=>S.chk(v,2237,{minSf:3}),explain:"941 + 3(432) = 2,237 kJ."},
+   {type:"text",stem:"What is ΔH for the reaction 4NH<sub>3</sub>(g) → 2N<sub>2</sub>(g) + 6H<sub>2</sub>(g)?",unit:"kJ",width:110,check:v=>{ const p=A.parseTyped(String(v).replace(/−/g,"-")); return !!p&&Math.abs(p.v-183.6)<.06; },explain:"Reversed and × 2: ΔH = −(−91.8) × 2 = +183.6 kJ."},
+   {type:"mc",stem:"The bond energy estimate gives ΔH ≈ −109 kJ, but the measured value is −91.8 kJ. Why are they different?",choices:["Bond energies are averages over many compounds.","Energy is not conserved in reactions.","The reaction is endothermic.","Ammonia has no N–H bonds."],ans:1,explain:"Average bond energies are estimates; the actual strength of a bond depends on the molecule it is in."}]}]);
+
+})();</script>
+<script>AS.U3.addSources("t-practice");AS.completion(document.querySelector(".wrap"),"t-practice");AS.chrome("t-practice");</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Heating & Cooling Curves</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermochemistry · 6</span><h1>Heating &amp; Cooling Curves</h1><p>Heat added to a substance goes into either kinetic energy (the temperature rises) or potential energy (a phase change), never both at once.</p>
+    <div class="pe-chips"><span>HS-PS3-2</span><span>HS-PS3-4</span><span>SEP: Analyzing &amp; Interpreting Data</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Heating and cooling"><div class="pn"><small>Part</small><span>1</span></div><h2>Heating and Cooling Substances</h2><p>Kinetic energy or potential energy, one at a time.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Heating Substances</h2></div>
+    <div class="body">
+      <p class="intro">Put a pot of ice on a stove and watch a thermometer: the temperature climbs, then stops at 0 °C until the ice is gone, then climbs again. The stove never stopped adding heat, so where did the energy go?</p>
+      <ul>
+        <li>When a substance is heated, it gains energy. This energy increases either the kinetic energy or the potential energy of its particles. <span class="kp">Only one type of energy increases at a time.</span>
+          <ul><li>If the <span class="kr">kinetic energy</span> of the particles increases, they move faster and <span class="kr">the temperature of the substance increases</span>.</li>
+          <li>If the <span class="kb">potential energy</span> of the particles increases, the particles spread farther apart and <span class="kb">a phase change occurs</span>. The temperature stays the same.</li></ul></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="note">
+    <div class="tile"><h2>Cooling Substances</h2></div>
+    <div class="body">
+      <p class="intro">Cooling is heating in reverse. As heat is removed, the particles slow down or move closer together.</p>
+      <ul>
+        <li>When a substance is cooled, it loses energy. The energy comes out of either the kinetic energy or the potential energy of its particles. Only one type of energy decreases at a time.
+          <ul><li>If the kinetic energy of the particles decreases, they move slower and the temperature of the substance decreases.</li>
+          <li>If the potential energy of the particles decreases, the particles move closer together and a phase change occurs. The temperature stays the same.</li></ul></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part" id="p2" data-short="Heating curves"><div class="pn"><small>Part</small><span>2</span></div><h2>Heating Curves</h2><p>Slopes are temperature changes; flat parts are phase changes.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Heating Curve</h2></div>
+    <div class="body">
+      <p class="intro">A heating curve is a graph of what a thermometer would read as a substance is heated at a steady rate. Its shape tells the whole story of the particles.</p>
+      <ul>
+        <li><span class="def">Heating Curve</span> – a graph of the temperature of a substance as heat is added to it.
+          <ul><li>The y-axis is the temperature of the substance.</li>
+          <li>The x-axis is the heat added, or the time over which heat is added at a constant rate.</li></ul></li>
+        <li>On the <span class="kr">sloped</span> segments, the temperature increases as heat is added. <span class="kr">The kinetic energy of the particles increases</span> while their potential energy stays the same.</li>
+        <li>On the <span class="kb">flat</span> segments, the temperature stays the same even though heat is still being added. <span class="kb">The energy becomes potential energy</span>, separating the particles in a phase change. Kinetic energy stays the same.</li>
+        <li>The first flat segment is at the melting point (melting); the second is at the boiling point (vaporization).</li>
+        <li><span class="kp">The longer a segment, the more heat that change requires.</span> The vaporization segment is longer than the melting segment because separating liquid particles completely into a gas takes more energy than loosening a solid into a liquid.</li>
+      </ul>
+      <div class="t7-fig" id="hc-art"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="hc">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Interactive Heating Curve</h3></div>
+    <div id="hc-host"></div>
+  </section>
+
+  <div class="part" id="p3" data-short="Cooling curves"><div class="pn"><small>Part</small><span>3</span></div><h2>Cooling Curves</h2><p>The same story, run backward.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Cooling Curve</h2></div>
+    <div class="body">
+      <p class="intro">Steam cooling down in a cold room follows a cooling curve: the reverse of the heating curve.</p>
+      <ul>
+        <li><span class="def">Cooling Curve</span> – a graph of the temperature of a substance as heat is removed from it.</li>
+        <li>On the sloped segments, the temperature decreases and <span class="kr">the kinetic energy of the particles decreases</span>. Potential energy stays the same.</li>
+        <li>On the flat segments, heat is still being removed, but <span class="kb">the potential energy of the particles decreases</span> as they move closer together in a phase change. Kinetic energy and temperature stay the same.</li>
+        <li>The first flat segment is condensation (at the boiling point); the second is freezing (at the freezing point, which is the same temperature as the melting point).</li>
+        <li>The longer a segment, the more heat is removed during that interval.</li>
+      </ul>
+      <div class="t7-fig" id="cc-art"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="cc">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Interactive Cooling Curve</h3></div>
+    <div id="cc-host"></div>
+  </section>
+
+  <section class="lab" id="match">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Label the Curve</h3></div>
+    <div id="cm-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, T=A.U7;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figCurve(false)}</div>`;
+A.$("#hc-art").innerHTML=T.figCurve(false);
+A.$("#cc-art").innerHTML=T.figCurve(true);
+T.HeatCurve(A.$("#hc-host"));
+T.HeatCurve(A.$("#cc-host"),{cool:true});
+T.CurveMatch(A.$("#cm-host"));
+/* a heating curve with lettered segments for the questions */
+const lettered=()=>{ const xs=[60,140,250,340,520,600], ys=[260,200,200,110,110,40]; let s=`<line x1="50" y1="280" x2="630" y2="280" stroke="#1b2328" stroke-width="2.5"/><line x1="50" y1="280" x2="50" y2="20" stroke="#1b2328" stroke-width="2.5"/><polyline points="${xs.map((x,i)=>x+","+ys[i]).join(" ")}" fill="none" stroke="#E00000" stroke-width="4"/>`;
+  "ABCDE".split("").forEach((l,i)=>{ const mx=(xs[i]+xs[i+1])/2, my=(ys[i]+ys[i+1])/2; s+=`<circle cx="${mx}" cy="${my-18}" r="12" fill="#fff" stroke="#1b2328" stroke-width="2"/>`+T.t(mx,my-13,l,{fs:13}); });
+  return T.svg(660,310,s+T.t(340,304,"Heat added / time",{fs:14})+`<text transform="translate(18 150) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Temperature</text>`,"Heating curve with segments A to E"); };
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:`${lettered()}<br>During which segment is the substance melting?`,choices:["A","B","C","D"],ans:2,explain:"B is the first flat segment, at the melting point."},
+ {type:"mc",stem:"During segment D of the same curve, the average kinetic energy of the particles",choices:["increases","decreases","stays the same","becomes zero"],ans:3,explain:"D is flat (vaporization). The temperature, and so the average kinetic energy, stays the same; potential energy increases."},
+ {type:"mc",stem:"During segment C, the heat added mainly",choices:["increases the potential energy of the particles","increases the kinetic energy of the particles","breaks bonds within the molecules","decreases the potential energy of the particles"],ans:2,explain:"C slopes upward: the liquid’s temperature rises, so kinetic energy increases."},
+ {type:"mc",stem:"Why is segment D longer than segment B?",choices:["Vaporization requires more heat than melting.","Melting requires more heat than vaporization.","The liquid has a higher specific heat capacity.","Heat is added faster during D."],ans:1,explain:"For water, vaporization takes 2260 J/g and melting takes 334 J/g."},
+ {type:"cr",stem:"On a cooling curve, the temperature of a liquid stays constant at its freezing point while heat is still being removed. Explain what is happening to the particles and their energy.",parts:["Particles","Energy"],model:["The particles are moving closer together as the liquid freezes into a solid.","Their potential energy decreases while their kinetic energy (and so the temperature) stays the same."],noCredit:"An answer saying no energy is being removed."}]);
+
+})();</script>
+<script>AS.U3.addSources("t-curves");AS.completion(document.querySelector(".wrap"),"t-curves");AS.chrome("t-curves");</script>
+</body>
+</html>

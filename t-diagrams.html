@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Phase Diagrams</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermochemistry · 5</span><h1>Phase Diagrams</h1><p>A phase diagram maps the phase of a substance at every temperature and pressure. Lines mark phase equilibrium; crossing a line means a phase change.</p>
+    <div class="pe-chips"><span>HS-PS1-3</span><span>SEP: Analyzing &amp; Interpreting Data</span><span>CCC: Patterns</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Reading a phase diagram"><div class="pn"><small>Part</small><span>1</span></div><h2>Phase Diagrams</h2><p>Temperature on the x-axis, pressure on the y-axis.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Phase Diagrams</h2></div>
+    <div class="body">
+      <p class="intro">Changing the temperature or the pressure around a substance can change its phase. A phase diagram puts both on one graph, so you can read the phase of a substance under any conditions.</p>
+      <ul>
+        <li>A phase diagram shows the conditions at which a substance exists as a solid, a liquid or a gas.
+          <ul><li>x-axis: temperature. y-axis: pressure.</li>
+          <li>At <span class="kr">high temperatures and low pressures</span>, substances exist as <span class="kr">gases</span>.</li>
+          <li>At <span class="kg">low temperatures and high pressures</span>, substances exist as <span class="kg">solids</span>.</li></ul></li>
+        <li><span class="kb">When the temperature and pressure fall on a line, the substance is in phase equilibrium</span>: the two phases on either side of the line exist together.</li>
+        <li>When a change in temperature or pressure <span class="kp">crosses a line</span>, a phase change occurs.</li>
+        <li><span class="def">Triple Point</span> – the temperature and pressure at which a substance exists in all three phases at the same time.</li>
+        <li><span class="def">Critical Point</span> – the temperature and pressure above which the liquid and gas phases become indistinguishable.</li>
+        <li>The normal melting point and normal boiling point are read where the solid–liquid line and the liquid–gas line cross the pressure of 1 atm.</li>
+      </ul>
+      <div class="t7-fig" id="pd-art"></div>
+    </div>
+  </section>
+
+  <div class="part" id="p2" data-short="Water"><div class="pn"><small>Part</small><span>2</span></div><h2>Phase Changes of Water and Pressure</h2><p>Why the solid–liquid line of water leans left.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Phase Changes of Water and Pressure</h2></div>
+    <div class="body">
+      <p class="intro">Lakes freeze from the top down, and ice floats in a glass. Both happen because ice is less dense than liquid water, and that shows up on water’s phase diagram.</p>
+      <ul>
+        <li>For most substances, the solid–liquid line leans to the <b>right</b>: raising the pressure raises the melting point, so high pressure favors the solid.</li>
+        <li><span class="kp">Water is an exception.</span> Ice is less dense than liquid water, so increasing the pressure favors the liquid, where the molecules are closer together. Water’s solid–liquid line leans to the <b>left</b>: <span class="kb">higher pressure lowers the melting point of ice</span>.</li>
+        <li>Water’s triple point is 0.01 °C at 0.006 atm. Its critical point is 374 °C at 218 atm.</li>
+        <li>At 1 atm, water melts at 0 °C and boils at 100 °C.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="lab" id="pd">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Explore a Phase Diagram</h3></div>
+    <div id="pd-host"></div>
+  </section>
+
+  <section class="lab" id="read">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Read the Phase Diagram</h3></div>
+    <div id="read-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, T=A.U7, P=A.U3, INK="#1b2328";
+/* a labeled generic phase diagram, letters A–F for the game */
+function pd(o={}){ const W=600,H=400, x0=70,y0=340,w=500,h=300, X=t=>x0+t*w, Y=p=>y0-p*h, tp=[.32,.24], cp=[.82,.78];
+  const sl=o.water? `M${X(.36)} ${Y(1)}L${X(tp[0])} ${Y(tp[1])}` : `M${X(tp[0])} ${Y(tp[1])}L${X(.44)} ${Y(1)}`;
+  let s=`<path d="M${X(0)} ${Y(1)}V${Y(0)}H${X(1)}" fill="none" stroke="${INK}" stroke-width="2.5"/>`;
+  s+=`<path d="M${X(0)} ${Y(.02)}Q${X(.2)} ${Y(.08)} ${X(tp[0])} ${Y(tp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="M${X(tp[0])} ${Y(tp[1])}Q${X(.58)} ${Y(.38)} ${X(cp[0])} ${Y(cp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="${sl}" stroke="${INK}" stroke-width="3"/>`;
+  s+=`<circle cx="${X(tp[0])}" cy="${Y(tp[1])}" r="7" fill="#F2B705" stroke="${INK}" stroke-width="2"/><circle cx="${X(cp[0])}" cy="${Y(cp[1])}" r="7" fill="#6a2c9a" stroke="${INK}" stroke-width="2"/>`;
+  s+=T.t(X(.14),Y(.6),"Solid",{fs:20,c:T.PH.s})+T.t(X(.6),Y(.75),"Liquid",{fs:20,c:T.PH.l})+T.t(X(.7),Y(.2),"Gas",{fs:20,c:T.PH.g});
+  if(!o.letters){ s+=T.t(X(tp[0])+14,Y(tp[1])+22,"Triple point",{fs:13,a:"start"})+T.t(X(cp[0])+10,Y(cp[1])-12,"Critical point",{fs:13,a:"start"});
+    s+=`<line x1="${X(0)}" y1="${Y(.5)}" x2="${X(1)}" y2="${Y(.5)}" stroke="#9aa7ad" stroke-dasharray="5 5"/>`+T.t(X(1)-2,Y(.5)-6,"1 atm",{fs:12,a:"end",c:"#5f6b72"});
+    s+=T.t(X(.04),Y(.12),"Sublimation ↗",{fs:12,a:"start",c:"#5f6b72"}); }
+  else o.letters.forEach(([l,x,y])=>{ s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="13" fill="#fff" stroke="${INK}" stroke-width="2"/>`+T.t(X(x),Y(y)+5,l,{fs:14}); });
+  s+=T.t(x0+w/2,y0+34,"Temperature →",{fs:15})+`<text transform="translate(26 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="15" font-weight="700">Pressure →</text>`;
+  return T.svg(W,H+10,s,o.water?"Phase diagram of water":"A phase diagram with solid, liquid and gas regions, the triple point and the critical point"); }
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${pd()}</div>`;
+A.$("#pd-art").innerHTML=pd();
+T.PhaseDiagram(A.$("#pd-host"));
+/* where is each letter? */
+const L=[["A",.12,.4,"s"],["B",.6,.6,"l"],["C",.75,.15,"g"],["D",.32,.24,"t"],["E",.82,.78,"c"],["F",.38,.6,"sl"],["G",.55,.4,"lg"]];
+P.TapSort(A.$("#read-host"),{prompt:"What is true of the substance at this point?",how:"Each letter marks a temperature and pressure on the phase diagram. Choose what is true there.",
+  pic:cur=>pd({letters:[L.find(x=>x[0]===cur[0].replace(/<[^>]+>/g,"").slice(-1))].map(x=>[x[0],x[1],x[2]])}),
+  choices:[["s","Solid"],["l","Liquid"],["g","Gas"],["sl","Solid + liquid in equilibrium"],["lg","Liquid + gas in equilibrium"],["t","All three phases"],["c","Critical point"]],
+  items:L.map(x=>[`Point ${x[0]}`,x[3],{s:"Low temperature, high pressure: solid.",l:"Between the lines at moderate temperature and pressure: liquid.",g:"High temperature, low pressure: gas.",t:"The triple point: solid, liquid and gas together.",c:"The critical point: above it, liquid and gas cannot be told apart.",sl:"On the solid–liquid line: melting and freezing are in equilibrium.",lg:"On the liquid–gas line: vaporization and condensation are in equilibrium."}[x[3]]])});
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"On a phase diagram, a point that lies on the line between the liquid and gas regions represents",choices:["a solid","a gas only","liquid and gas in phase equilibrium","the triple point"],ans:3,explain:"Points on a line are phase equilibrium between the two phases on either side."},
+ {type:"mc",stem:"The triple point of a substance is the temperature and pressure at which",choices:["the liquid boils","the solid melts at 1 atm","solid, liquid and gas exist together","liquid and gas become indistinguishable"],ans:3,explain:"At the triple point, all three phases exist at the same time."},
+ {type:"mc",stem:"A sample of a gas is kept at a constant temperature below its triple point temperature while the pressure is increased. The sample will",choices:["condense into a liquid","deposit into a solid","stay a gas","boil"],ans:2,explain:"Below the triple point temperature, moving up crosses the gas–solid line: deposition."},
+ {type:"mc",stem:"Why does the solid–liquid line on water’s phase diagram lean to the left?",choices:["Ice is denser than liquid water.","Ice is less dense than liquid water.","Water has weak intermolecular forces.","Water sublimes at 1 atm."],ans:2,explain:"Ice is less dense, so higher pressure favors the liquid and lowers the melting point."},
+ {type:"cr",stem:"Using a phase diagram, describe the change in phase when a solid at a pressure above its triple point is heated at constant pressure until it is far above its boiling point.",parts:["Phase changes"],model:["Moving to the right across the diagram, the solid crosses the solid–liquid line and melts, then crosses the liquid–gas line and vaporizes (boils), ending as a gas."],noCredit:"An answer that says the solid sublimes (that only happens below the triple point pressure)."}]);
+
+})();</script>
+<script>AS.U3.addSources("t-diagrams");AS.completion(document.querySelector(".wrap"),"t-diagrams");AS.chrome("t-diagrams");</script>
+</body>
+</html>
