@@ -12,7 +12,7 @@
 <body>
 <main class="wrap">
   <section class="hero">
-    <div class="hero-t"><span class="eyebrow">Chemical Bonding · 17</span><h1>Comparing Substances</h1><p>Ionic, metallic, molecular and network substances can all look like white or shiny solids. Their particles, and the forces between them, give each type a different set of properties you can test.</p><div class="pe-chips"><span>HS-PS1-3</span><span>HS-PS2-6</span><span>SEP: Constructing Explanations</span><span>CCC: Structure &amp; Function</span></div></div>
+    <div class="hero-t"><span class="eyebrow">Chemical Bonding · 18</span><h1>Comparing Substances</h1><p>Ionic, metallic, molecular and network substances can all look like white or shiny solids. Their particles, and the forces between them, give each type a different set of properties you can test.</p><div class="pe-chips"><span>HS-PS1-3</span><span>HS-PS2-6</span><span>SEP: Constructing Explanations</span><span>CCC: Structure &amp; Function</span></div></div>
     <div class="hero-art" id="hero"></div>
   </section>
 
@@ -36,6 +36,27 @@
     <div class="lab-h"><span class="tag">Lab</span><h3>Lab Bench &amp; Mystery Solid</h3></div>
     <div id="pl-host"></div>
     <div class="labq" id="lq-pl"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Choosing materials"><div class="pn"><small>Part</small><span>2</span></div><h2>Choosing Materials</h2><p>The black tiles on the underside of NASA’s Space Shuttle were made almost entirely of silica (SiO<sub>2</sub>) fibers, and they protected surfaces that reached more than 1200 °C during reentry. Silica is a network solid: its atoms are joined by a giant network of covalent bonds, so it does not melt until about 1700 °C and does not conduct heat well. In this section, we will discuss how to choose a material whose properties meet the requirements of a design.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Choosing a Material</h2></div>
+    <div class="body">
+      <p class="intro">Every engineered object, from a phone cable to a furnace, starts with a list of what it must do. Because a material’s properties come from its particles and the forces between them, the comparison table above can be used to predict which type of substance will work before any testing begins.</p>
+      <ul>
+        <li><span class="def">Criteria</span> – the requirements a design must meet to succeed, such as “must conduct electricity” or “must stay solid at 1500 °C.”</li>
+        <li><span class="def">Constraints</span> – limits on a design, such as cost, safety, weight or the temperature at which a material can be shaped.</li>
+        <li>To choose a material:
+          <ol><li>List the criteria and constraints.</li><li>Identify the property each criterion requires (melting point, conductivity, hardness, malleability or solubility).</li><li>Decide which type of substance (ionic, metallic, molecular or network) has those properties.</li><li>Choose the material that meets <span class="kr">every</span> criterion and constraint, and support the choice with property data.</li></ol></li>
+      </ul>
+      <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">A wire must conduct electricity as a solid and bend without breaking. Only metallic substances conduct as solids and are malleable, so copper (metallic) meets both criteria. Sodium chloride does not conduct as a solid and is brittle.</div></div></div>
+    </div>
+  </section>
+
+  <section class="lab" id="materials">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Pick the Material</h3></div>
+    <div id="mg-host"></div>
   </section>
 
     <section class="lab" id="vocab">
@@ -70,12 +91,13 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:8
     A.$$("[data-r]",host).forEach(h=>{ const go=()=>{ row= row===+h.dataset.r? null : +h.dataset.r; paint(); }; h.addEventListener("click",go); h.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }); }); }
   paint(); })();
 B.Bench(A.$("#pl-host"));
+B.MaterialGame(A.$("#mg-host"));
 A.QSet(A.$("#lq-pl"),[
  {type:"mc",stem:"On the lab bench, which solid lit the bulb as a solid?",choices:["sodium chloride","copper","table sugar","quartz"],ans:2,explain:"Metals have mobile electrons that carry a current even in the solid phase."},
  {type:"mc",stem:"A mystery solid did not conduct as a solid, conducted when melted, and shattered when hammered. It is most likely",choices:["ionic","metallic","molecular covalent","network covalent"],ans:1,explain:"Ions are locked in the solid but free when melted; shifted layers of ions repel, so it is brittle."}
 ],{id:"lq-pl",title:"Lab Questions"});
 const tb=(rows)=>`<div class="tbl-wrap"><table class="nt" style="margin-top:6px"><tr><th>Substance</th><th>Melting point</th><th>Conducts as a solid?</th><th>Conducts dissolved in water?</th></tr>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</table></div>`;
-A.VocabCheck(A.$("#vc-host"),[{"s": "A substance made of positive and negative ions held by ionic bonds is ___.", "a": "ionic"}, {"s": "A substance made of metal ions in a sea of electrons is ___.", "a": "metallic"}, {"s": "Substances made of molecules held together by weak forces have ___ melting points.", "a": "low"}]);
+A.VocabCheck(A.$("#vc-host"),[{"s": "The requirements a design must meet to succeed are its ___.", "a": "criteria"}, {"s": "Limits on a design, such as cost or safety, are its ___.", "a": "constraints"}, {"s": "A substance made of positive and negative ions held by ionic bonds is ___.", "a": "ionic"}, {"s": "A substance made of metal ions in a sea of electrons is ___.", "a": "metallic"}, {"s": "Substances made of molecules held together by weak forces have ___ melting points.", "a": "low"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:`The table below shows properties of four solids.${tb([["A","801 °C","no","yes"],["B","1085 °C","yes","does not dissolve"],["C","186 °C","no","no"],["D","1713 °C","no","does not dissolve"]])}Which solid is most likely an ionic compound?`,choices:["A","B","C","D"],ans:1,explain:"High melting point, no conduction as a solid, but conducts when dissolved: ions."},
  {type:"mc",stem:"Which substance is a soft, nonconducting solid with a low melting point?",choices:["KCl","Cu","paraffin wax","SiO<sub>2</sub>"],ans:3,explain:"Molecular substances have weak attractions between molecules."},

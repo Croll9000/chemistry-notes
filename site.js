@@ -23,6 +23,7 @@ A.UNIT0 = [
   {slug:"l-sigcalc", title:"Calculations with Significant Figures", short:"Calculations with Sig Figs", sites:"calculations-with-sig-figs", sname:"Calculations with Sig Figs"},
   {slug:"l-temp", title:"Temperature Conversions", short:"Temperature Conversions", sites:"temperature-conversions", sname:"Temperature Conversions"},
   {slug:"l-convert", title:"Dimensional Analysis", short:"Dimensional Analysis", sites:"dimensional-analysis", sname:"Dimensional Analysis"},
+  {slug:"l-graphs", title:"Graphs & Proportional Relationships", short:"Graphs & Relationships", sites:"graphs-and-relationships", sname:"Graphs and Relationships"},
   {slug:"l-practice", title:"Practice Arcade", short:"Practice Arcade", sites:"practice", sname:"Practice"}
 ];
 A.UNIT1 = [
@@ -38,7 +39,7 @@ A.UNIT1 = [
   {slug:"m-practice", title:"Practice Arcade", short:"Practice Arcade", sites:"practice", sname:"Practice"}
 ];
 Object.assign(A.SECTIONS,{"m-chemistry":"MATR","m-atoms":"ELEM","m-bonds":"BOND","m-classify":"CLAS","m-props":"PROP","m-changes":"CHNG","m-phases":"PHAS","m-density":"DENS","m-separate":"SEPR",coulomb:"CHRG"});
-Object.assign(A.SECTIONS,{"l-quantities":"QUAN","l-scinot":"SCIN","l-metric":"METR","l-measure":"MEAS","l-sigfigs":"SIGF","l-sigcalc":"SGCL","l-accuracy":"ACCU","l-temp":"TEMP","l-convert":"DIMA"});
+Object.assign(A.SECTIONS,{"l-quantities":"QUAN","l-scinot":"SCIN","l-metric":"METR","l-measure":"MEAS","l-sigfigs":"SIGF","l-sigcalc":"SGCL","l-accuracy":"ACCU","l-temp":"TEMP","l-convert":"DIMA","l-graphs":"GRAF"});
 A.UNIT3 = [
   {slug:"p-building", title:"Building the Periodic Table", short:"Building the Table", sites:"building-the-periodic-table", sname:"Building the Periodic Table"},
   {slug:"p-organize", title:"Groups & Periods", short:"Groups & Periods", sites:"groups-and-periods", sname:"Groups and Periods"},
@@ -69,10 +70,11 @@ A.UNIT4 = [
   {slug:"b-molpol", title:"Molecular Polarity", short:"Molecular Polarity", sites:"molecular-polarity", sname:"Molecular Polarity"},
   {slug:"b-strength", title:"What Affects Bond Strength", short:"Bond Strength", sites:"bond-strength", sname:"Bond Strength"},
   {slug:"b-imf", title:"Intermolecular Forces", short:"Intermolecular Forces", sites:"intermolecular-forces", sname:"Intermolecular Forces"},
+  {slug:"b-imfprops", title:"Intermolecular Forces & Properties", short:"IMFs & Properties", sites:"imfs-and-properties", sname:"IMFs and Properties"},
   {slug:"b-compare", title:"Comparing Substances", short:"Comparing Substances", sites:"comparing-substances", sname:"Comparing Substances"},
   {slug:"b-practice", title:"Practice Arcade", short:"Practice Arcade", sites:"practice", sname:"Practice"}
 ];
-Object.assign(A.SECTIONS,{"b-bonds":"BNDS","b-ionic":"IONB","b-ionprops":"IONP","b-ionname":"INAM","b-poly":"POLY","b-covalent":"COVB","b-lewis":"LWST","b-geometry":"GEOM","b-network":"NETW","b-covname":"CNAM","b-naming":"NMNG","b-metallic":"METB","b-bondpol":"BPOL","b-molpol":"MPOL","b-strength":"BSTR","b-imf":"IMFS","b-compare":"COMP"});
+Object.assign(A.SECTIONS,{"b-bonds":"BNDS","b-ionic":"IONB","b-ionprops":"IONP","b-ionname":"INAM","b-poly":"POLY","b-covalent":"COVB","b-lewis":"LWST","b-geometry":"GEOM","b-network":"NETW","b-covname":"CNAM","b-naming":"NMNG","b-metallic":"METB","b-bondpol":"BPOL","b-molpol":"MPOL","b-strength":"BSTR","b-imf":"IMFS","b-imfprops":"IMFP","b-compare":"COMP"});
 A.UNIT5 = [
   {slug:"r-reactions", title:"Chemical Reactions & Equations", short:"Reactions & Equations", sites:"chemical-reactions-and-equations", sname:"Chemical Reactions and Equations"},
   {slug:"r-conservation", title:"Conservation Laws", short:"Conservation Laws", sites:"conservation-laws", sname:"Conservation Laws"},
@@ -93,10 +95,11 @@ A.UNIT6 = [
   {slug:"s-multistep", title:"Multistep Conversions", short:"Multistep Conversions", sites:"multistep-conversions", sname:"Multistep Conversions"},
   {slug:"s-percent", title:"Percent Composition & Hydrates", short:"Percent Composition & Hydrates", sites:"percent-composition-and-hydrates", sname:"Percent Composition and Hydrates"},
   {slug:"s-empirical", title:"Empirical & Molecular Formulas", short:"Empirical & Molecular Formulas", sites:"empirical-and-molecular-formulas", sname:"Empirical and Molecular Formulas"},
-  {slug:"s-limiting", title:"Limiting Reagents & Percent Yield", short:"Limiting Reagents & Yield", sites:"limiting-reagents", sname:"Limiting Reagents", enr:true},
+  {slug:"s-limiting", title:"Limiting & Excess Reagents", short:"Limiting Reagents", sites:"limiting-reagents", sname:"Limiting Reagents", enr:true},
+  {slug:"s-yield", title:"Theoretical & Percent Yield", short:"Percent Yield", sites:"percent-yield", sname:"Percent Yield", enr:true},
   {slug:"s-practice", title:"Practice Arcade", short:"Practice Arcade", sites:"practice", sname:"Practice"}
 ];
-Object.assign(A.SECTIONS,{"s-moles":"MOLE","s-molarmass":"MMAS","s-molvolume":"MVOL","s-ratios":"MRAT","s-multistep":"MULT","s-percent":"PCMP","s-empirical":"EMPF","s-limiting":"LIMR"});
+Object.assign(A.SECTIONS,{"s-moles":"MOLE","s-molarmass":"MMAS","s-molvolume":"MVOL","s-ratios":"MRAT","s-multistep":"MULT","s-percent":"PCMP","s-empirical":"EMPF","s-limiting":"LIMR","s-yield":"YELD"});
 A.UNIT7 = [
   {slug:"t-energy", title:"Energy: Kinetic & Potential", short:"Kinetic & Potential Energy", sites:"energy", sname:"Energy"},
   {slug:"t-heat", title:"Heat & Heat Transfer", short:"Heat & Heat Transfer", sites:"heat-and-heat-transfer", sname:"Heat and Heat Transfer"},
@@ -111,8 +114,25 @@ A.UNIT7 = [
   {slug:"t-practice", title:"Practice Arcade", short:"Practice Arcade", sites:"practice", sname:"Practice"}
 ];
 Object.assign(A.SECTIONS,{"t-energy":"ENGY","t-heat":"HEAT","t-temp":"TEMP","t-phases":"PHAS","t-diagrams":"PDIA","t-curves":"CURV","t-calc":"HCAL","t-calorimetry":"CALM","t-enthalpy":"ENTH","t-hess":"HESS"});
-A.unitOf = slug => (slug==="u0home" || A.UNIT0.some(p=>p.slug===slug)) ? 0 : (slug==="u1home" || A.UNIT1.some(p=>p.slug===slug)) ? 1 : (slug==="u3home" || A.UNIT3.some(p=>p.slug===slug)) ? 3 : (slug==="u4home" || A.UNIT4.some(p=>p.slug===slug)) ? 4 : (slug==="u5home" || A.UNIT5.some(p=>p.slug===slug)) ? 5 : (slug==="u6home" || A.UNIT6.some(p=>p.slug===slug)) ? 6 : (slug==="u7home" || A.UNIT7.some(p=>p.slug===slug)) ? 7 : 2;
-A.UNITS = {7:{list:"UNIT7",home:"u7home",name:"Unit 7: Thermochemistry",short:"Thermochemistry",foot:"Unit 7 Thermochemistry"},6:{list:"UNIT6",home:"u6home",name:"Unit 6: Stoichiometry",short:"Stoichiometry",foot:"Unit 6 Stoichiometry"},5:{list:"UNIT5",home:"u5home",name:"Unit 5: Chemical Reactions",short:"Chemical Reactions",foot:"Unit 5 Chemical Reactions"},4:{list:"UNIT4",home:"u4home",name:"Unit 4: Chemical Bonding",short:"Chemical Bonding",foot:"Unit 4 Chemical Bonding"},3:{list:"UNIT3",home:"u3home",name:"Unit 3: The Periodic Table",short:"Periodic Table",foot:"Unit 3 The Periodic Table"},0:{list:"UNIT0",home:"u0home",name:"Unit 0: Lab Skills",short:"Lab Skills",foot:"Unit 0 Lab Skills"},1:{list:"UNIT1",home:"u1home",name:"Unit 1: Matter",short:"Matter",foot:"Unit 1 Matter"},2:{list:"SITE",home:"home",name:"Unit 2: Atomic Structure",short:"Atomic Structure",foot:"Unit 2 Atomic Structure"}};
+A.UNIT8 = [
+  {slug:"g-variables", title:"Describing Gases", short:"Describing Gases", sites:"describing-gases", sname:"Describing Gases"},
+  {slug:"g-pressure", title:"Gas Pressure", short:"Gas Pressure", sites:"gas-pressure", sname:"Gas Pressure"},
+  {slug:"g-kmt", title:"Kinetic Molecular Theory", short:"Kinetic Molecular Theory", sites:"kinetic-molecular-theory", sname:"Kinetic Molecular Theory"},
+  {slug:"g-boyle", title:"Boyle’s Law", short:"Boyle’s Law", sites:"boyles-law", sname:"Boyle's Law"},
+  {slug:"g-charles", title:"Charles’s Law", short:"Charles’s Law", sites:"charles-law", sname:"Charles's Law"},
+  {slug:"g-gaylussac", title:"Gay-Lussac’s Law", short:"Gay-Lussac’s Law", sites:"gay-lussacs-law", sname:"Gay-Lussac's Law"},
+  {slug:"g-combined", title:"The Combined Gas Law", short:"Combined Gas Law", sites:"combined-gas-law", sname:"Combined Gas Law"},
+  {slug:"g-avogadro", title:"Avogadro’s Law", short:"Avogadro’s Law", sites:"avogadros-law", sname:"Avogadro's Law"},
+  {slug:"g-ideal", title:"The Ideal Gas Law", short:"Ideal Gas Law", sites:"ideal-gas-law", sname:"Ideal Gas Law", enr:true},
+  {slug:"g-maxwell", title:"Maxwell–Boltzmann Distribution", short:"Maxwell–Boltzmann", sites:"maxwell-boltzmann-distribution", sname:"Maxwell-Boltzmann Distribution", enr:true},
+  {slug:"g-vapor", title:"Vapor Pressure", short:"Vapor Pressure", sites:"vapor-pressure", sname:"Vapor Pressure"},
+  {slug:"g-graham", title:"Graham’s Law of Effusion", short:"Graham’s Law", sites:"grahams-law", sname:"Graham's Law", enr:true},
+  {slug:"g-dalton", title:"Dalton’s Law of Partial Pressures", short:"Dalton’s Law", sites:"daltons-law", sname:"Dalton's Law", enr:true},
+  {slug:"g-practice", title:"Practice Arcade", short:"Practice Arcade", sites:"practice", sname:"Practice"}
+];
+Object.assign(A.SECTIONS,{"g-variables":"GVAR","g-pressure":"GPRS","g-kmt":"GKMT","g-boyle":"BOYL","g-charles":"CHRL","g-gaylussac":"GAYL","g-combined":"CGAS","g-ideal":"IGAS","g-vapor":"VAPR","g-dalton":"DALT","g-graham":"GRAH","g-avogadro":"AVOG","g-maxwell":"MAXB"});
+A.unitOf = slug => (slug==="u0home" || A.UNIT0.some(p=>p.slug===slug)) ? 0 : (slug==="u1home" || A.UNIT1.some(p=>p.slug===slug)) ? 1 : (slug==="u3home" || A.UNIT3.some(p=>p.slug===slug)) ? 3 : (slug==="u4home" || A.UNIT4.some(p=>p.slug===slug)) ? 4 : (slug==="u5home" || A.UNIT5.some(p=>p.slug===slug)) ? 5 : (slug==="u6home" || A.UNIT6.some(p=>p.slug===slug)) ? 6 : (slug==="u7home" || A.UNIT7.some(p=>p.slug===slug)) ? 7 : (slug==="u8home" || A.UNIT8.some(p=>p.slug===slug)) ? 8 : 2;
+A.UNITS = {8:{list:"UNIT8",home:"u8home",name:"Unit 8: Gas Laws",short:"Gas Laws",foot:"Unit 8 Gas Laws"},7:{list:"UNIT7",home:"u7home",name:"Unit 7: Thermochemistry",short:"Thermochemistry",foot:"Unit 7 Thermochemistry"},6:{list:"UNIT6",home:"u6home",name:"Unit 6: Stoichiometry",short:"Stoichiometry",foot:"Unit 6 Stoichiometry"},5:{list:"UNIT5",home:"u5home",name:"Unit 5: Chemical Reactions",short:"Chemical Reactions",foot:"Unit 5 Chemical Reactions"},4:{list:"UNIT4",home:"u4home",name:"Unit 4: Chemical Bonding",short:"Chemical Bonding",foot:"Unit 4 Chemical Bonding"},3:{list:"UNIT3",home:"u3home",name:"Unit 3: The Periodic Table",short:"Periodic Table",foot:"Unit 3 The Periodic Table"},0:{list:"UNIT0",home:"u0home",name:"Unit 0: Lab Skills",short:"Lab Skills",foot:"Unit 0 Lab Skills"},1:{list:"UNIT1",home:"u1home",name:"Unit 1: Matter",short:"Matter",foot:"Unit 1 Matter"},2:{list:"SITE",home:"home",name:"Unit 2: Atomic Structure",short:"Atomic Structure",foot:"Unit 2 Atomic Structure"}};
 A.SITE = [
   {slug:"overview", title:"Atom Overview", short:"Atom Overview"},
   {slug:"history", title:"History of the Atom", short:"History of the Atom"},
@@ -740,6 +760,7 @@ A.UNIT4.forEach(p=>{ A.SITES_PATH[p.slug]="@unit-4-chemical-bonding/"+p.sites; }
 A.UNIT5.forEach(p=>{ A.SITES_PATH[p.slug]="@unit-5-chemical-reactions/"+p.sites; }); A.SITES_PATH.u5home="@unit-5-chemical-reactions";
 A.UNIT6.forEach(p=>{ A.SITES_PATH[p.slug]="@unit-6-stoichiometry/"+p.sites; }); A.SITES_PATH.u6home="@unit-6-stoichiometry";
 A.UNIT7.forEach(p=>{ A.SITES_PATH[p.slug]="@unit-7-thermochemistry/"+p.sites; }); A.SITES_PATH.u7home="@unit-7-thermochemistry";
+A.UNIT8.forEach(p=>{ A.SITES_PATH[p.slug]="@unit-8-gas-laws/"+p.sites; }); A.SITES_PATH.u8home="@unit-8-gas-laws";
 A.SITES_PATH.u4home="@unit-4-chemical-bonding"; A.SITES_PATH.u3home="@unit-3-periodic-table"; A.SITES_PATH.u0home="@unit-0-lab-skills"; A.SITES_PATH.u1home="@unit-1-matter"; A.SITES_PATH.index="@home";
 A.sitesURL = slug => { const p=A.SITES_PATH[slug]; if(p&&p[0]==="@") return A.SITES_ROOT+"/"+p.slice(1); return A.SITES_BASE + (p ? "/"+p : ""); };
 A.fixSitesLinks = function(root=document){
@@ -752,7 +773,7 @@ A.spinArrows=function(root){ const w=document.createTreeWalker(root,NodeFilter.S
   list.forEach(n=>{ const span=document.createElement("span"); span.className="arw-wrap"; span.innerHTML=n.nodeValue.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/[↑↓]/g,c=>`<span class="arw-c" role="img" aria-label="${c==="↑"?"spin up":"spin down"}">${A.arrowInline(c==="↑")}</span>`); n.replaceWith(span); }); };
 A.chrome = function(slug){
   /* pages that are entirely enrichment use the purple theme of the orbital pages */
-  { const pg=["UNIT0","UNIT1","SITE","UNIT3","UNIT4","UNIT5","UNIT6","UNIT7"].flatMap(k=>A[k]||[]).find(p=>p.slug===slug); if(pg&&pg.enr) document.body.classList.add("enr-page"); }
+  { const pg=["UNIT0","UNIT1","SITE","UNIT3","UNIT4","UNIT5","UNIT6","UNIT7","UNIT8"].flatMap(k=>A[k]||[]).find(p=>p.slug===slug); if(pg&&pg.enr) document.body.classList.add("enr-page"); }
   { let busy=false; const run=()=>{ if(busy) return; busy=true; requestAnimationFrame(()=>{ A.spinArrows(document.body); busy=false; }); }; run(); new MutationObserver(run).observe(document.body,{childList:true,subtree:true,characterData:true}); }
   if(window.SITE_MODE==="gsites"){ A.fixSitesLinks(); new MutationObserver(()=>A.fixSitesLinks()).observe(document.body,{childList:true,subtree:true}); }
   const mode=window.SITE_MODE||"web";
@@ -1895,6 +1916,16 @@ U.Calc = (host, spec)=>{
   host.innerHTML=""; host.appendChild(root);
   const ins=[...root.querySelectorAll(".cx-in:not(.cx-ans)")].sort((a,b)=>a.dataset.i-b.dataset.i), ans=root.querySelector(".cx-ans"), msg=root.querySelector(".cx-msg");
   const num=v=>{ const s=A.unsup(String(v)).trim().replace(/[−–]/g,"-").replace(/,/g,"").replace(/\s+/g,""); const m=s.match(/^(-?[\d.]*)[x×*]?10\^\(?(-?\d+)\)?$/); if(m&&s.includes("^")){ const c=m[1]===""||m[1]==="-"? (m[1]==="-"?-1:1) : parseFloat(m[1]); return c*Math.pow(10,+m[2]); } return /^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)? parseFloat(s) : NaN; };
+  /* Nov 14: spec.drag={src:problem element whose .t7-val spans carry data-v, extras:[{v,html}]} → drag the values out of the problem instead of typing them */
+  let dd=null;
+  if(spec.drag&&A.TextDrag){ root.classList.add("cx-dd"); const tag="cx"+(++U._cxN||(U._cxN=1)), vals={};
+    ins.forEach(el=>{ el.readOnly=true; el.tabIndex=-1; el.insertAdjacentHTML("beforebegin",`<span class="tx-body"></span>`); });
+    const sources=A.$$(".t7-val",spec.drag.src).map((el,i)=>{ const id=tag+"v"+i; vals[id]=+el.dataset.v; return {id,el,html:el.innerHTML}; });
+    const extras=(spec.drag.extras||[]).map((x,i)=>{ const id=tag+"x"+i; vals[id]=x.v; return {id,html:x.html}; });
+    const pool=A.h("div",{class:"tx-pool"}), tip=A.h("div",{class:"tx-tip"},spec.drag.tip||"Drag each highlighted value from the problem into its box. Drag a value out of a box to remove it.");
+    root.insertBefore(tip,root.querySelector(".cx-btns")); root.insertBefore(pool,tip);
+    dd=A.TextDrag({root:document,reuse:true,sources,extras,pool,poolLabel:spec.drag.label,targets:ins.map((el,i)=>({el:el.closest(".cx-slot"),id:tag+"s"+i})),
+      onChange:()=>{ ins.forEach(el=>{ el.value=""; el.classList.remove("ok","no"); }); Object.entries(dd.placement()).forEach(([cid,sl])=>{ if(sl) ins[+sl.slice(tag.length+1)].value=String(vals[dd.baseOf(cid)]); }); }}); }
   const near=(a,b,tol)=>Math.abs(a-b)<=Math.max(Math.abs(b)*tol, Math.abs(b)<0.05? 1e-15 : 1e-9+(tol<0.01?0.005:0.011));
   let done=false;
   function check(){
@@ -1904,7 +1935,7 @@ U.Calc = (host, spec)=>{
     const a=num(ans.value), ck=spec.check? spec.check(ans.value,a) : spec.strict? null : A.lenient(ans.value,spec.ans,spec.round||{sf:spec.sf||3}), ok= ck!=null? ck===true : spec.atol!=null? Math.abs(a-spec.ans)<=spec.atol : near(a,spec.ans,spec.tol??.02);
     if(typeof ck==="string"){ ans.classList.add("no"); msg.className="status cx-msg bad"; msg.innerHTML=ck; spec.onWrong&&spec.onWrong(); return; }
     ans.classList.toggle("ok",ok); ans.classList.toggle("no",!ok);
-    if(ok){ done=true; msg.className="status cx-msg good"; msg.innerHTML=`✔ ${ansT.sym} = ${spec.ansText??spec.ans.toFixed(spec.dp??2)} ${ansT.unit||""}`; spec.onCorrect&&spec.onCorrect(); }
+    if(ok){ done=true; dd&&dd.lock(); msg.className="status cx-msg good"; msg.innerHTML=`✔ ${ansT.sym} = ${spec.ansText??spec.ans.toFixed(spec.dp??2)} ${ansT.unit||""}`; spec.onCorrect&&spec.onCorrect(); }
     else { msg.className="status cx-msg bad"; msg.innerHTML= isNaN(a)? "Now do the math and type the answer in the last box." : solving? `Your numbers are in the right place, but the value of ${ansT.sym} isn’t right. Rearrange the equation to get ${ansT.sym} by itself, then calculate (use the calculator in the top bar).` : `Your numbers are in the right place, but the answer isn’t right. Redo the ${spec.form==="frac"?"division":"math"} (use the calculator in the top bar).`; spec.onWrong&&spec.onWrong(); }
   }
   root.querySelector("button").addEventListener("click",check);
@@ -2479,21 +2510,23 @@ L.PlaceTrials=function(host){
     A.$("#pt-q").innerHTML=`Make three measurements of the ${ctx[0]} that are ${goal[1]}.`; draw(); }
   next();
 };
-L.peCalc=function(host,meas,acc,u,dp,onDone,onWrong){
+L.peCalc=function(host,meas,acc,u,dp,onDone,onWrong,drag){
   const h1=A.h("h4",{class:"stp"},"<b>1</b>Find the difference: measured − accepted"), c1=A.h("div"), h2=A.h("h4",{class:"stp locked"},"<b>2</b>Divide by the accepted value and multiply by 100"), c2=A.h("div"); host.innerHTML=""; host.append(h1,c1,h2,c2);
   const diff=meas-acc, pe=diff/acc*100;
-  U.Calc(c1,{lhs:{sym:"difference",name:"difference",unit:u},form:"line",terms:[{sym:"measured",name:"measured value",unit:u,val:meas,atol:Math.pow(10,-dp)/2},"−",{sym:"accepted",name:"accepted value",unit:u,val:acc,atol:Math.pow(10,-dp)/2}],ans:diff,round:{dp},ansText:diff.toFixed(dp),onWrong,onCorrect:()=>{ h2.classList.remove("locked");
-    U.Calc(c2,{lhs:{sym:"% error",name:"percent error",unit:"%"},form:"frac",num:{sym:"difference",name:"difference",unit:u,val:diff,atol:Math.pow(10,-dp)*0.6},den:{sym:"accepted",name:"accepted value",unit:u,val:acc,atol:Math.pow(10,-dp)/2},tail:"× 100",ans:pe,round:{sf:Math.max(1,Math.min(L.sigCount(Math.abs(diff).toFixed(dp))||1,L.sigCount(acc.toFixed(dp))||3))},ansText:L.fmtSigAny?String(+pe.toPrecision(3)):pe.toFixed(2),onWrong,onCorrect:()=>onDone(pe)});
+  U.Calc(c1,{drag:drag||null,lhs:{sym:"difference",name:"difference",unit:u},form:"line",terms:[{sym:"measured",name:"measured value",unit:u,val:meas,atol:Math.pow(10,-dp)/2},"−",{sym:"accepted",name:"accepted value",unit:u,val:acc,atol:Math.pow(10,-dp)/2}],ans:diff,round:{dp},ansText:diff.toFixed(dp),onWrong,onCorrect:()=>{ h2.classList.remove("locked");
+    U.Calc(c2,{drag:drag?{src:drag.src,extras:[{v:+diff.toFixed(dp),html:`${diff.toFixed(dp).replace("-","−")} ${u}`}],label:"From Step 1:"}:null,lhs:{sym:"% error",name:"percent error",unit:"%"},form:"frac",num:{sym:"difference",name:"difference",unit:u,val:diff,atol:Math.pow(10,-dp)*0.6},den:{sym:"accepted",name:"accepted value",unit:u,val:acc,atol:Math.pow(10,-dp)/2},tail:"× 100",ans:pe,round:{sf:Math.max(1,Math.min(L.sigCount(Math.abs(diff).toFixed(dp))||1,L.sigCount(acc.toFixed(dp))||3))},ansText:L.fmtSigAny?String(+pe.toPrecision(3)):pe.toFixed(2),onWrong,onCorrect:()=>onDone(pe)});
   }});
 };
 L.PEGame=function(host){
-  const g=A.Game(host,{how:"Work through the two steps. Use the calculator in the top bar."});
+  const g=A.Game(host,{how:"Work through the two steps. Easy: drag each highlighted value from the problem into its box. Hard: type each value. Use the calculator in the top bar."});
+  let lvl="easy"; g.seg("Level",[["easy","Easy"],["hard","Hard"]],lvl,x=>{ lvl=x; next(); });
   g.button("New problem",()=>next(),"ghost");
   g.stage.innerHTML=`<div class="qp"><small>Problem</small><div class="qp-t txt" id="pe-q"></div></div><div id="pe-c"></div>`;
+  const hv=(v,t)=>lvl==="easy"?`<span class="t7-val" data-v="${v}">${t}</span>`:t;
   const CTX=[["the density of copper","g/cm³",8.96,2],["the boiling point of ethanol","°C",78.4,1],["the density of aluminum","g/cm³",2.70,2],["the mass of a 25.00-g standard","g",25.00,2],["the melting point of a sample of tin","°C",231.9,1],["the percent by mass of water in a hydrate","%",36.0,1],["the density of water at 20 °C","g/mL",0.998,3]];
   function next(){ g.fresh(); g.msg(""); const [nm,u,acc,dp]=A.pick(CTX); let meas; do{ meas=+(acc*(1+(Math.random()*2-1)*0.12)).toFixed(dp); }while(meas===acc);
-    A.$("#pe-q").innerHTML=`A student measured ${nm} to be ${meas.toFixed(dp)} ${u}. The accepted value is ${acc.toFixed(dp)} ${u}. What is the percent error?`;
-    L.peCalc(A.$("#pe-c"),meas,acc,u,dp,pe=>{ g.win(); g.msg(`✔ Percent error = ${+pe.toPrecision(3)}%`,"good"); g.later(next,3000); },()=>g.lose()); }
+    A.$("#pe-q").innerHTML=`A student measured ${nm} to be ${hv(meas,meas.toFixed(dp)+" "+u)}. The accepted value is ${hv(acc,acc.toFixed(dp)+" "+u)}. What is the percent error?`;
+    L.peCalc(A.$("#pe-c"),meas,acc,u,dp,pe=>{ g.win(); g.msg(`✔ Percent error = ${+pe.toPrecision(3)}%`,"good"); g.later(next,3000); },()=>g.lose(),lvl==="easy"?{src:A.$("#pe-q")}:null); }
   next();
 };
 }
@@ -2515,7 +2548,7 @@ L.TempGame=function(host){
 };
 }
 { /* dimensional analysis */
-const UCOL={miles:"#2E75D6",mile:"#2E75D6",feet:"#00B050",foot:"#00B050",inches:"#E00000",inch:"#E00000",ft:"#00B050",in:"#E00000",mi:"#2E75D6",m:"#00B050",km:"#2E75D6",cm:"#E00000",mm:"#7030A0","μm":"#F28C28",nm:"#7030A0",g:"#00B050",kg:"#2E75D6",mg:"#E00000","μg":"#F28C28",L:"#00B050",mL:"#E00000",J:"#00B050",kJ:"#2E75D6",s:"#00B050",min:"#2E75D6",h:"#E00000",days:"#7030A0",day:"#7030A0",ns:"#7030A0","μs":"#F28C28",ms:"#E00000",mol:"#E00000",particles:"#2E75D6",yd:"#7030A0"};
+const UCOL={atm:"#E00000",kPa:"#2E75D6",mmHg:"#00B050",torr:"#7030A0",miles:"#2E75D6",mile:"#2E75D6",feet:"#00B050",foot:"#00B050",inches:"#E00000",inch:"#E00000",ft:"#00B050",in:"#E00000",mi:"#2E75D6",m:"#00B050",km:"#2E75D6",cm:"#E00000",mm:"#7030A0","μm":"#F28C28",nm:"#7030A0",g:"#00B050",kg:"#2E75D6",mg:"#E00000","μg":"#F28C28",L:"#00B050",mL:"#E00000",J:"#00B050",kJ:"#2E75D6",s:"#00B050",min:"#2E75D6",h:"#E00000",days:"#7030A0",day:"#7030A0",ns:"#7030A0","μs":"#F28C28",ms:"#E00000",mol:"#E00000",particles:"#2E75D6",yd:"#7030A0"};
 const uc=u=>UCOL[u]||"#2E75D6";
 const un=(u,x)=>`<i class="${x?"xu":""}" style="color:${uc(u)}">${u}</i>`;
 const q=(n,u,x)=>`${n}&thinsp;${un(u,x)}`;
@@ -2538,7 +2571,8 @@ const nice=v=>{ const a=Math.abs(v); if(a>=1e5||a<1e-3){ const e=Math.floor(Math
 
 L.DABuilder=function(host,opt={}){
   const g=A.Game(host,{how:"Drag a quantity card into each box (or tap a card, then tap a box). Each conversion factor uses the two sides of one equivalence: put the unit you want to cancel on the bottom."});
-  let lvl="mix"; /* opt.moles: true turns on mole/particle problems (Stoichiometry unit) */ g.seg("Problems",[["mix","Mixed"],["one","Metric: 1 step"],["two","Metric: 2 steps"],["life","Everyday units"]].concat(opt.moles?[["mol","Moles"]]:[]),"mix",v=>{ lvl=v; next(); });
+  if(opt.eq) Object.assign(EQ,opt.eq);
+  let lvl="mix"; /* opt.moles: true turns on mole/particle problems (Stoichiometry unit); opt.probs replaces the problem list (gas pressure units) */ if(!opt.probs) g.seg("Problems",[["mix","Mixed"],["one","Metric: 1 step"],["two","Metric: 2 steps"],["life","Everyday units"]].concat(opt.moles?[["mol","Moles"]]:[]),"mix",v=>{ lvl=v; next(); });
   let mode="easy"; g.seg("Mode",[["easy","Easy"],["med","Medium"],["hard","Hard"]],mode,v=>{ mode=v; next(); });
   g.button("New problem",()=>next(),"ghost");
   g.stage.innerHTML=`<div class="dab"><div class="qp"><small>Problem</small><div class="qp-t txt" id="da-q"></div></div>
@@ -2546,7 +2580,7 @@ L.DABuilder=function(host,opt={}){
    <div class="da-step"><h4><b>2</b>Set up the conversion factor(s): given unit on the bottom, desired unit on top.</h4><div id="da-ch"></div><div class="da-eq" id="da-eq"></div><div class="dd-pool" id="da-pool" style="margin-top:8px;justify-content:center"></div><div class="center" style="margin-top:8px"><button class="btn" type="button" id="da-chk">Check setup</button></div></div>
    <div class="da-step locked" id="da-s6"><h4><b>3</b>Multiply by the numbers on top, divide by the numbers on the bottom.</h4><div class="mth" id="da-math" style="font-size:19px"></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap"><span class="cx-slot"><input class="cx-in" id="da-ans" style="width:200px" inputmode="decimal" autocomplete="off" aria-label="answer"><small id="da-ansu">answer</small></span><button class="btn sm" type="button" id="da-go" style="margin-left:6px">Check answer</button></div><p class="muted" style="margin:18px 0 0;font-size:13px">For scientific notation, type x10, a space, then the exponent: 2.5 x10 4 becomes 2.5 × 10⁴.</p></div></div>`;
   let P0=null, dd=null, cards=[], CH=null;
-  function pickProb(){ const pool=PROBS.filter(p=> !opt.moles && (p[2].includes("mol")||p[0]==="mol"||p[1]==="mol")? false : lvl==="mix"? true : lvl==="one"? p[2].length===1&&p[0]!=="mol"&&p[1]!=="mol" : lvl==="two"? p[2].length===2&&!/mi|h|day|yd/.test(p[0]) : lvl==="life"? /mi|^h$|day|yd/.test(p[0]) : p[2].includes("mol")); return A.pick(pool); }
+  function pickProb(){ if(opt.probs) return A.pick(opt.probs); const pool=PROBS.filter(p=> !opt.moles && (p[2].includes("mol")||p[0]==="mol"||p[1]==="mol")? false : lvl==="mix"? true : lvl==="one"? p[2].length===1&&p[0]!=="mol"&&p[1]!=="mol" : lvl==="two"? p[2].length===2&&!/mi|h|day|yd/.test(p[0]) : lvl==="life"? /mi|^h$|day|yd/.test(p[0]) : p[2].includes("mol")); return A.pick(pool); }
   function next(){ g.fresh(); g.msg(""); const [from,to,path,dis,[lo,hi]]=pickProb();
     let v= from==="particles"? +(lo*Math.pow(hi/lo,Math.random())).toPrecision(3) : +(lo+Math.random()*(hi-lo)).toPrecision(A.pick([2,3]));
     if(from==="day") v=A.rand(2,7); P0={from,to,path,dis,v,k:path.length}; const vTxt= from==="particles"? fmtN(v) : L.commas(String(v));
@@ -2563,7 +2597,7 @@ L.DABuilder=function(host,opt={}){
     cards=[]; eqs.forEach(k=>{ EQ[k].forEach(([n,u],side)=>cards.push({id:k+"_"+side,eq:k,n,u,html:`${fmtN(n)}<i style="color:${uc(u)}">${u}</i>`})); });
     const pool=A.$("#da-pool"); dd=A.DragDrop({root:g.root,pool,mode:"later",targets:A.$$("#da-eq .da-slot").map(el=>({el,id:el.dataset.s})),cards:A.shuffle(cards).map(c=>({id:c.id,html:c.html,label:`${c.n} ${c.u}`})),onChange:()=>{}});
     A.$$("#da-pool .dd-card").forEach(c=>c.classList.add("qcard"));
-    A.$("#da-s6").classList.add("locked"); A.$("#da-math").innerHTML=""; A.$("#da-ans").value=""; A.$("#da-ans").classList.remove("ok","no"); A.$("#da-ansu").textContent=`answer (${to})`; A.$("#da-chk").disabled=false; }
+    A.$("#da-s6").classList.add("locked"); A.$("#da-math").innerHTML=""; A.$("#da-ans").value=""; A.$("#da-ans").classList.remove("ok","no"); A.$("#da-ansu").textContent=`answer (${A.subUnit?A.subUnit(to):to})`; A.$("#da-chk").disabled=false; }
   function check(){ if(CH){ const r=CH.check(); if(!r.ok){ g.lose(); CH.mark(false,r.bad||[]); g.msg(r.msg,"bad"); return; } CH.mark(true); CH.lock(); A.$("#da-chk").disabled=true; g.msg("✔ The setup is correct. Watch the units cancel, then calculate (Step 3).","good");
       P0.ans=r.ans; const pw=t=>/×|<sup>|e/.test(t)? `(${t})` : t; const gT=P0.from==="particles"?fmtN(P0.v):L.commas(String(P0.v)); const tops=r.factors.map(f=>fmtN(f.t.n)), bots=r.factors.map(f=>fmtN(f.b.n));
       A.$("#da-math").innerHTML=`${pw(gT)} × ${tops.map(n=>`(${n})`).join(" × ")} ÷ ${bots.length>1? "("+bots.map(n=>pw(n)).join(" × ")+")" : pw(bots[0])} = ?`; A.$("#da-s6").classList.remove("locked"); return; }
@@ -3342,7 +3376,7 @@ const SRC={
  PHOTO:`Photos of elements and minerals: <a href="https://images-of-elements.com" target="_blank" rel="noopener">images-of-elements.com</a>, licensed CC BY 3.0.`,
  WIKI:`Photos from Wikimedia Commons: sodium chloride crystals (W.J. Pilsak, CC BY-SA 3.0), halite (Robert M. Lavinsky, CC BY-SA 3.0), copper(II) sulfate (Stephanb, CC BY-SA 3.0), ice cubes (Darren Hester, CC BY-SA 2.5), sugar (Lauri Andler, CC BY-SA 3.0), quartz (JJ Harrison, CC BY-SA 2.5), magnesium chloride (public domain). <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">commons.wikimedia.org</a>`
 };
-const PAGE_SRC={"p-building":["RT25","TS","MEND"],"p-organize":["TS"],"p-metals":["TS","PHOTO"],"p-families":["TS","PHOTO"],"p-forces":["TS"],"p-radius":["TS"],"p-ionic":["TS","IONR"],"p-ionization":["TS","NIST"],"p-electroneg":["EN","TS"],"p-practice":["TS","RT25","EN","IONR","MEND"],"spectra":["PHOTO"],"m-atoms":["PHOTO"],"m-density":["TS"],"m-bonds":["PHOTO"],"m-classify":["PHOTO"],"m-changes":["PHOTO"],"excited":["PHOTO"],"m-phases":["TS","CRC"],"b-bonds":["EN","BE","PHOTO","WIKI"],"b-ionprops":["CRC","PHOTO","WIKI"],"b-covalent":["BE"],"b-strength":["BE"],"b-network":["CRC","PHOTO","WIKI"],"b-imf":["CRC"],"b-compare":["CRC"],"b-practice":["CRC","BE"],"b-bondpol":["EN"],"b-molpol":["EN"],"b-metallic":["CRC","PHOTO"]};
+const PAGE_SRC={"p-building":["RT25","TS","MEND"],"p-organize":["TS"],"p-metals":["TS","PHOTO"],"p-families":["TS","PHOTO"],"p-forces":["TS"],"p-radius":["TS"],"p-ionic":["TS","IONR"],"p-ionization":["TS","NIST"],"p-electroneg":["EN","TS"],"p-practice":["TS","RT25","EN","IONR","MEND"],"spectra":["PHOTO"],"m-atoms":["PHOTO"],"m-density":["TS"],"m-bonds":["PHOTO"],"m-classify":["PHOTO"],"m-changes":["PHOTO"],"excited":["PHOTO"],"m-phases":["TS","CRC"],"b-bonds":["EN","BE","PHOTO","WIKI"],"b-ionprops":["CRC","PHOTO","WIKI"],"b-covalent":["BE"],"b-strength":["BE"],"b-network":["CRC","PHOTO","WIKI"],"b-imf":["CRC"],"b-imfprops":["CRC"],"b-compare":["CRC"],"b-practice":["CRC","BE"],"b-bondpol":["EN"],"b-molpol":["EN"],"b-metallic":["CRC","PHOTO"]};
 A.SOURCES=SRC;
 P.addSources=(slug)=>{ const keys=PAGE_SRC[slug]; if(!keys) return; const wrap=document.querySelector(".wrap"); if(!wrap||wrap.querySelector(".sources")) return;
   const box=A.h("section",{class:"sources"}); box.innerHTML=`<h3>Data Sources</h3><ol>${keys.map(k=>`<li>${SRC[k]}</li>`).join("")}</ol>`;
@@ -4426,11 +4460,13 @@ B.FieldSim=function(host){
   const mol=(m,d)=>{ const S=SH[key], c=Math.cos(m.ang), s=Math.sin(m.ang); let q=`<g transform="translate(${m.x.toFixed(1)} ${m.y.toFixed(1)}) rotate(${(m.ang*57.3).toFixed(1)})">`;
     const at=(x,y,r,f,t)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${f}" stroke="#000" stroke-width="1"/><text x="${x}" y="${y+4}" transform="rotate(${(-m.ang*57.3).toFixed(1)} ${x} ${y})" text-anchor="middle" font-family="Inter,Arial" font-size="${r>10?11:9}" font-weight="800" fill="${B.inkOn(t)}">${t}</text>`;
     const A2=B.ATC;
-    if(S.draw==="bent") q+=at(-18,-12,8,A2.H,"H")+at(-18,12,8,A2.H,"H")+at(0,0,13,A2.O,"O");
-    else if(S.draw==="pyr") q+=at(-18,-16,8,A2.H,"H")+at(-18,16,8,A2.H,"H")+at(-22,0,8,A2.H,"H")+at(0,0,13,A2.N,"N");
-    else if(S.draw==="dia") q+=at(-17,0,8,A2.H,"H")+at(4,0,13,A2.Cl,"Cl");
-    else if(S.draw==="lin") q+=at(-22,0,11,A2.O,"O")+at(22,0,11,A2.O,"O")+at(0,0,11,A2.C,"C");
-    else q+=(S.b==="H"?at(0,-19,7,A2.H,"H")+at(0,19,7,A2.H,"H")+at(-19,0,7,A2.H,"H")+at(19,0,7,A2.H,"H"):at(0,-21,10,A2.Cl,"Cl")+at(0,21,10,A2.Cl,"Cl")+at(-21,0,10,A2.Cl,"Cl")+at(21,0,10,A2.Cl,"Cl"))+at(0,0,11,A2.C,"C");
+    /* Nov 14: bonded atoms spaced apart with bond lines (one line per shared pair) */
+    const bd=(x,y,n=1,x0=0,y0=0)=>{ const d=Math.hypot(x-x0,y-y0)||1, nx=-(y-y0)/d, ny=(x-x0)/d; let o=""; for(let k=0;k<n;k++){ const f=(k-(n-1)/2)*3.4; o+=`<line x1="${(x0+nx*f).toFixed(1)}" y1="${(y0+ny*f).toFixed(1)}" x2="${(x+nx*f).toFixed(1)}" y2="${(y+ny*f).toFixed(1)}" stroke="#1b2328" stroke-width="1.8"/>`; } return o; };
+    if(S.draw==="bent") q+=bd(-22,-15)+bd(-22,15)+at(-22,-15,8,A2.H,"H")+at(-22,15,8,A2.H,"H")+at(0,0,13,A2.O,"O");
+    else if(S.draw==="pyr") q+=bd(-22,-20)+bd(-22,20)+bd(-29,0)+at(-22,-20,8,A2.H,"H")+at(-22,20,8,A2.H,"H")+at(-29,0,8,A2.H,"H")+at(0,0,13,A2.N,"N");
+    else if(S.draw==="dia") q+=bd(-22,0,1,4,0)+at(-22,0,8,A2.H,"H")+at(4,0,13,A2.Cl,"Cl");
+    else if(S.draw==="lin") q+=bd(-27,0,2)+bd(27,0,2)+at(-27,0,11,A2.O,"O")+at(27,0,11,A2.O,"O")+at(0,0,11,A2.C,"C");
+    else q+=(S.b==="H"? [[0,-23],[0,23],[-23,0],[23,0]].map(([x,y])=>bd(x,y)).join("")+at(0,-23,7,A2.H,"H")+at(0,23,7,A2.H,"H")+at(-23,0,7,A2.H,"H")+at(23,0,7,A2.H,"H") : [[0,-26],[0,26],[-26,0],[26,0]].map(([x,y])=>bd(x,y)).join("")+at(0,-26,10,A2.Cl,"Cl")+at(0,26,10,A2.Cl,"Cl")+at(-26,0,10,A2.Cl,"Cl")+at(26,0,10,A2.Cl,"Cl"))+at(0,0,11,A2.C,"C");
     return q+`</g>`; };
   function draw(){ const S=SH[key];
     /* smooth motion: each molecule has its own angular speed, changed gradually (no frame-to-frame jitter) */
@@ -4480,17 +4516,19 @@ B.BondSeries=function(host){
 B.ATC={O:"#E00000",N:"#2E75D6",Cl:"#00B050",F:"#9fd36b",C:"#3a3a3a",H:"#c9d0d4",Br:"#8b2b1e",I:"#5b2a86"};
 const atomG=(x,y,r,sym)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${B.ATC[sym]||"#999"}" stroke="#000" stroke-width="1"/><text x="${x}" y="${y+r*.36}" text-anchor="middle" font-family="Inter,Arial" font-size="${(r*.95).toFixed(0)}" font-weight="800" fill="${B.inkOn(sym)}">${sym}</text>`;
 /* a molecule drawn around (0,0), pointing its δ− end along +x. Returns svg and the local points of its δ+ "tail" and δ− "head" */
+/* Nov 14: bonded atoms spaced apart with a bond line (one line per shared pair); pos/neg are the δ+ tail and δ− head */
+const bdG=(x1,y1,x2,y2,n=1)=>{ const d=Math.hypot(x2-x1,y2-y1)||1, nx=-(y2-y1)/d, ny=(x2-x1)/d; let o=""; for(let k=0;k<n;k++){ const f=(k-(n-1)/2)*3.2; o+=`<line x1="${(x1+nx*f).toFixed(1)}" y1="${(y1+ny*f).toFixed(1)}" x2="${(x2+nx*f).toFixed(1)}" y2="${(y2+ny*f).toFixed(1)}" stroke="#1b2328" stroke-width="1.7"/>`; } return o; };
 B.molG=(k)=>{ switch(k){
-  case "H2O": return {g:atomG(-14,-11,7,"H")+atomG(-14,11,7,"H")+atomG(0,0,12,"O"),pos:[-21,-13],neg:[12,0]};
-  case "NH3": return {g:atomG(-15,-13,7,"H")+atomG(-15,13,7,"H")+atomG(-19,0,7,"H")+atomG(0,0,12,"N"),pos:[-22,-15],neg:[12,0]};
-  case "HF": return {g:atomG(-14,0,7,"H")+atomG(4,0,11,"F"),pos:[-21,0],neg:[15,0]};
-  case "HCl": return {g:atomG(-16,0,7,"H")+atomG(4,0,13,"Cl"),pos:[-23,0],neg:[17,0]};
-  case "CH3F": return {g:atomG(-16,-12,6,"H")+atomG(-16,12,6,"H")+atomG(-21,0,6,"H")+atomG(-4,0,10,"C")+atomG(14,0,10,"F"),pos:[-27,0],neg:[24,0]};
-  case "CH4": return {g:atomG(0,-16,6,"H")+atomG(0,16,6,"H")+atomG(-16,0,6,"H")+atomG(16,0,6,"H")+atomG(0,0,10,"C"),pos:[-22,0],neg:[22,0]};
-  case "O2": return {g:atomG(-10,0,11,"O")+atomG(10,0,11,"O"),pos:[-21,0],neg:[21,0]};
-  case "Cl2": return {g:atomG(-12,0,13,"Cl")+atomG(12,0,13,"Cl"),pos:[-25,0],neg:[25,0]};
-  case "Br2": return {g:atomG(-14,0,15,"Br")+atomG(14,0,15,"Br"),pos:[-29,0],neg:[29,0]};
-  case "F2": return {g:atomG(-9,0,10,"F")+atomG(9,0,10,"F"),pos:[-19,0],neg:[19,0]}; } };
+  case "H2O": return {g:bdG(0,0,-18,-14)+bdG(0,0,-18,14)+atomG(-18,-14,7,"H")+atomG(-18,14,7,"H")+atomG(0,0,12,"O"),pos:[-25,-16],neg:[12,0]};
+  case "NH3": return {g:bdG(0,0,-19,-17)+bdG(0,0,-19,17)+bdG(0,0,-24,0)+atomG(-19,-17,7,"H")+atomG(-19,17,7,"H")+atomG(-24,0,7,"H")+atomG(0,0,12,"N"),pos:[-27,-19],neg:[12,0]};
+  case "HF": return {g:bdG(-18,0,4,0)+atomG(-18,0,7,"H")+atomG(4,0,11,"F"),pos:[-25,0],neg:[15,0]};
+  case "HCl": return {g:bdG(-20,0,4,0)+atomG(-20,0,7,"H")+atomG(4,0,13,"Cl"),pos:[-27,0],neg:[17,0]};
+  case "CH3F": return {g:bdG(-4,0,-19,-15)+bdG(-4,0,-19,15)+bdG(-4,0,-25,0)+bdG(-4,0,20,0)+atomG(-19,-15,6,"H")+atomG(-19,15,6,"H")+atomG(-25,0,6,"H")+atomG(-4,0,10,"C")+atomG(20,0,10,"F"),pos:[-31,0],neg:[30,0]};
+  case "CH4": return {g:[[0,-20],[0,20],[-20,0],[20,0]].map(([x,y])=>bdG(0,0,x,y)).join("")+atomG(0,-20,6,"H")+atomG(0,20,6,"H")+atomG(-20,0,6,"H")+atomG(20,0,6,"H")+atomG(0,0,10,"C"),pos:[-26,0],neg:[26,0]};
+  case "O2": return {g:bdG(-13,0,13,0,2)+atomG(-13,0,11,"O")+atomG(13,0,11,"O"),pos:[-24,0],neg:[24,0]};
+  case "Cl2": return {g:bdG(-15,0,15,0)+atomG(-15,0,13,"Cl")+atomG(15,0,13,"Cl"),pos:[-28,0],neg:[28,0]};
+  case "Br2": return {g:bdG(-17,0,17,0)+atomG(-17,0,15,"Br")+atomG(17,0,15,"Br"),pos:[-32,0],neg:[32,0]};
+  case "F2": return {g:bdG(-12,0,12,0)+atomG(-12,0,10,"F")+atomG(12,0,10,"F"),pos:[-22,0],neg:[22,0]}; } };
 B.IMFTYPE={H2O:"hb",NH3:"hb",HF:"hb",HCl:"dd",CH3F:"dd",CH4:"ldf",O2:"ldf",Cl2:"ldf",Br2:"ldf",F2:"ldf",NaCl:"id"};
 B.IMFNAME={id:"Ion–dipole",hb:"Hydrogen bonding",dd:"Dipole–dipole",ldf:"London dispersion"};
 /* zoomed-in view of a liquid: molecules in two rows, dashed attractions between neighbors */
@@ -6425,13 +6463,32 @@ const SHAPES={H2:[["H",-7,0],["H",7,0]],O2:[["O",-9,0],["O",9,0]],N2:[["N",-9,0]
   CaCO3:[["Ca",-26,4],["C",4,0],["O",4,-17],["O",19,9],["O",-10,9]],MgCO3:[["Mg",-26,4],["C",4,0],["O",4,-17],["O",19,9],["O",-10,9]],
   AgNO3:[["Ag",-27,4],["N",4,0],["O",4,-17],["O",19,9],["O",-10,9]],NaNO3:[["Na",-27,4],["N",4,0],["O",4,-17],["O",19,9],["O",-10,9]],KNO3:[["K",-27,4],["N",4,0],["O",4,-17],["O",19,9],["O",-10,9]],
   KClO3:[["K",-27,4],["Cl",4,0],["O",4,-19],["O",21,9],["O",-12,9]],C2H6:[["C",-8,0],["C",8,0],["H",-8,-15],["H",-8,15],["H",-23,0],["H",8,-15],["H",8,15],["H",23,0]],C3H8:[["C",-16,0],["C",0,0],["C",16,0],["H",-16,-15],["H",-16,15],["H",-31,0],["H",0,-15],["H",0,15],["H",16,-15],["H",16,15],["H",31,0]]};
-R.layout=(f)=>{ if(SHAPES[f]) return SHAPES[f].map(([s,x,y])=>({s,x,y}));
+R.layout0=(f)=>{ if(SHAPES[f]) return SHAPES[f].map(([s,x,y])=>({s,x,y}));
   const p=R.parse(f), els=Object.keys(p), list=[]; els.forEach(e=>{ for(let i=0;i<p[e];i++) list.push(e); });
   if(list.length===1) return [{s:list[0],x:0,y:0}];
   /* the center: a single atom of a non-H element (or the first element) */
   let ci=els.find(e=>p[e]===1&&e!=="H")||els[0]; const rest=list.slice(); rest.splice(rest.indexOf(ci),1);
   const out=[{s:ci,x:0,y:0}], n=rest.length, r0=R.rad(ci); rest.forEach((s,i)=>{ const a=-Math.PI/2+i*2*Math.PI/n, d=r0+R.rad(s)+(n>4?4:1); out.push({s,x:Math.cos(a)*d,y:Math.sin(a)*d}); }); return out; };
-R.molSVG=(f,x,y,o={})=>{ const k=o.k||1; return R.layout(f).map(a=>R.atom(x+a.x*k,y+a.y*k,a.s,{k})).join(""); };
+/* Nov 14: bonded layout. Each atom bonds to its nearest atom placed before it; covalent bonds are spaced so the bond line shows, ionic contacts touch (no line). */
+R.METALS=new Set(["Li","Na","K","Rb","Cs","Be","Mg","Ca","Sr","Ba","Al","Fe","Cu","Zn","Ag","Ni","Sn","Pb","Cr","Mn","Co","Ti","Au","Hg"]);
+R.ORD={O2:[2],N2:[3],CO2:[2,2],CO:[3],NO:[2],SO2:[2,1],SO3:[2,1,1],H2SO4:[2,2,1,1,1,1],CaCO3:[0,2,1,1],MgCO3:[0,2,1,1],AgNO3:[0,2,1,1],NaNO3:[0,2,1,1],KNO3:[0,2,1,1]};
+R._LB={};
+R.layoutB=(f)=>{ if(R._LB[f]) return R._LB[f]; const A0=R.layout0(f), n=A0.length; if(n===1) return R._LB[f]={atoms:A0,bonds:[]};
+  /* parent of each atom: nearest earlier atom (atom 0 is the root); for H prefer a non-H parent */
+  const par=[-1]; for(let i=1;i<n;i++){ let best=0, bd=1e9; for(let j=0;j<n;j++){ if(j===i) continue; if(A0[i].s==="H"&&A0[j].s==="H") continue; if(j>i&&!(A0[i].s==="H")) continue; const d=Math.hypot(A0[i].x-A0[j].x,A0[i].y-A0[j].y); if(d<bd){ bd=d; best=j; } } par.push(best); }
+  /* make sure parents are placed first: order atoms by depth */
+  const depth=i=>{ let d=0, k=i; while(par[k]>=0&&d<9){ k=par[k]; d++; } return d; }, order=[...Array(n).keys()].sort((x,y)=>depth(x)-depth(y));
+  const ord=R.ORD[f], out=A0.map(a=>({...a})), bonds=[];
+  order.forEach(i=>{ if(par[i]<0) return; const p=par[i], ion=R.METALS.has(A0[i].s)!==R.METALS.has(A0[p].s)&&(R.METALS.has(A0[i].s)||R.METALS.has(A0[p].s));
+    let dx=A0[i].x-A0[p].x, dy=A0[i].y-A0[p].y, d=Math.hypot(dx,dy)||1; const L=R.rad(A0[i].s)+R.rad(A0[p].s)+(ion?1:8);
+    out[i].x=out[p].x+dx/d*L; out[i].y=out[p].y+dy/d*L; const o= ion?0 : (ord&&ord[i-1]!=null? ord[i-1] : 1); bonds.push([p,i,o]); });
+  /* center the molecule */
+  const cx=(Math.min(...out.map(a=>a.x-R.rad(a.s)))+Math.max(...out.map(a=>a.x+R.rad(a.s))))/2, cy=(Math.min(...out.map(a=>a.y-R.rad(a.s)))+Math.max(...out.map(a=>a.y+R.rad(a.s))))/2;
+  out.forEach(a=>{ a.x-=cx; a.y-=cy; }); return R._LB[f]={atoms:out,bonds}; };
+R.layout=(f)=>R.layoutB(f).atoms;
+/* bond lines between atom centers (atoms are drawn on top); order = number of lines */
+R.bondSVG=(x1,y1,x2,y2,o,k=1,op=1)=>{ if(!o) return ""; const d=Math.hypot(x2-x1,y2-y1)||1, nx=-(y2-y1)/d, ny=(x2-x1)/d; let s=""; for(let q=0;q<o;q++){ const f=(q-(o-1)/2)*Math.max(2.8,3.6*k); s+=`<line x1="${(x1+nx*f).toFixed(1)}" y1="${(y1+ny*f).toFixed(1)}" x2="${(x2+nx*f).toFixed(1)}" y2="${(y2+ny*f).toFixed(1)}" stroke="#1b2328" stroke-width="${(1.9*Math.max(.62,Math.min(1.4,k))).toFixed(2)}" stroke-linecap="round" opacity="${op}"/>`; } return s; };
+R.molSVG=(f,x,y,o={})=>{ const k=o.k||1, L=R.layoutB(f); return L.bonds.map(([i,j,n])=>R.bondSVG(x+L.atoms[i].x*k,y+L.atoms[i].y*k,x+L.atoms[j].x*k,y+L.atoms[j].y*k,n,k)).join("")+L.atoms.map(a=>R.atom(x+a.x*k,y+a.y*k,a.s,{k})).join(""); };
 R.ext=f=>Math.max(...R.layout(f).map(a=>Math.hypot(a.x,a.y)+R.rad(a.s)));
 R.molBox=(f,n,o={})=>{ const W=o.w||120, H=o.h||90, cols=Math.min(o.cols||3,n), rows=Math.ceil(n/cols), cw=W/cols, ch=H/rows, e=R.ext(f), k=Math.min(o.max||1.25,(Math.min(cw,ch)-6)/(2*e));
   let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" class="r5-mb" aria-hidden="true">`;
@@ -6498,7 +6555,7 @@ R.rxnScene=(eq,t,o={})=>{ const W=o.w||560, H=o.h||220, n=eq.r.length, all=eq.r.
   const br=ease((u-.2)/.15), mv=ease((u-.35)/.45);
   let s=`<rect width="${W}" height="${H}" rx="10" fill="#fbfcfd" stroke="#d5e3ea"/><text x="${W*.23}" y="18" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="800" fill="#5f6b72">REACTANTS</text><text x="${W*.77}" y="18" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="800" fill="#5f6b72">PRODUCTS</text><path d="M${W*.47} ${H/2}h${W*.06}" stroke="#9aa7ad" stroke-width="3"/><path d="M${W*.53+4} ${H/2}l-10 -6v12z" fill="#9aa7ad"/>`;
   /* bonds (thin lines) inside reactant particles before they break, inside product particles after they form */
-  const bondLines=(M,op)=>M.map(m=>m.atoms.slice(1).map(a=>{ const b=m.atoms.reduce((best,q)=>q!==a&&Math.hypot(q.x-a.x,q.y-a.y)<Math.hypot(best.x-a.x,best.y-a.y)?q:best,m.atoms[0]===a?m.atoms[1]:m.atoms[0]); return `<line x1="${b.x}" y1="${b.y}" x2="${a.x}" y2="${a.y}" stroke="#1b2328" stroke-width="2.4" opacity="${op}"/>`; }).join("")).join("");
+  const bondLines=(M,op)=>M.map(m=>R.layoutB(m.f).bonds.map(([i,j,n])=>R.bondSVG(m.atoms[i].x,m.atoms[i].y,m.atoms[j].x,m.atoms[j].y,n,K,op)).join("")).join("");
   /* a faint "ghost" of the reactants stays on the left once the atoms start to move, so reactants and products can be compared */
   if(br>0){ s+=`<g opacity="${(.28*Math.min(1,br*2)).toFixed(2)}">${bondLines(RP,1)}${RP.map(m=>m.atoms.map(a=>R.atom(a.x,a.y,a.s,{k:K})).join("")).join("")}</g>`; if(mv>.05) s+=`<text x="${W*.23}" y="${H-28}" text-anchor="middle" font-family="Inter,Arial" font-size="11" font-weight="700" fill="#9aa7ad">(faded: the reactants before)</text>`; }
   if(mv<1) s+=bondLines(RP,(1-br).toFixed(2)); if(mv>=1) s+=bondLines(PP,1);
@@ -7224,7 +7281,7 @@ R.rxnTable=function(host,head,rows,o={}){ let player=null;
   if(o.open!==undefined) show(host.querySelector(`tr[data-k="${o.open}"]`)); };
 
 /* the acid rain cycle: burning fuels → nonmetal oxides rise → they react with water in clouds → acid rain falls → lakes, trees, buildings */
-R.acidRainArt=(t)=>{ const W=640, H=330; let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Acid rain cycle: burning fuels release SO2, NO2 and CO2; in the clouds they react with water to form acids; acid rain falls on lakes, trees and buildings"><defs><linearGradient id="arsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe9f3"/><stop offset="1" stop-color="#f4f8fb"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#arsky)"/><rect y="270" width="${W}" height="60" fill="#c9dbb0"/>`;
+R.acidRainArt=(t)=>{ const W=640, H=330; let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Acid rain cycle: burning fuels release SO₂, NO₂ and CO₂; in the clouds they react with water to form acids; acid rain falls on lakes, trees and buildings"><defs><linearGradient id="arsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe9f3"/><stop offset="1" stop-color="#f4f8fb"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#arsky)"/><rect y="270" width="${W}" height="60" fill="#c9dbb0"/>`;
   const T=(x,y,str,o={})=>`<text x="${x}" y="${y}" text-anchor="${o.a||"middle"}" font-family="Inter,Arial" font-size="${o.fs||12.5}" font-weight="${o.w||800}" fill="${o.c||"#1b2328"}">${str}</text>`;
   /* 1: factory and car */
   s+=`<rect x="40" y="200" width="90" height="70" fill="#9aa7ad" stroke="#1b2328" stroke-width="1.5"/><rect x="100" y="150" width="18" height="60" fill="#7a868c" stroke="#1b2328" stroke-width="1.5"/><rect x="60" y="225" width="16" height="16" fill="#ffe066" stroke="#1b2328"/><rect x="88" y="225" width="16" height="16" fill="#ffe066" stroke="#1b2328"/>`;
@@ -7301,7 +7358,7 @@ R.pptArt=(t)=>{ const W=640, H=300, T=8, u=t%T, pour=Math.min(1,u/1.6), mix=Math
 
 /* ================= Round 6 =================
    1. One particle-drawing format for the whole site (Unit 5 pictures):
-      - covalent bonds: the atoms touch (no lines)
+      - covalent bonds: drawn as lines between spaced atoms (one line per shared pair; updated Nov 14, see common41.js)
       - ionic compounds: one FORMULA UNIT = the ions touching each other inside one shaded box,
         each ion labeled with its charge; a polyatomic ion is a touching cluster of atoms inside a dashed circle
    2. Reaction animations move whole ions (polyatomic ions stay together) and never draw bond lines. */
@@ -7648,8 +7705,8 @@ S.Converter=function(host,o){ let done=0, mode="drag";
    <div class="s6-map" data-r="map"></div>
    <div class="da-step"><h4><b>1</b>Equivalences you can use (not all of them are needed):</h4><div class="da-eqlist" data-r="eqs"></div></div>
    <div class="da-step" data-r="smm" hidden><h4><b>1b</b>Calculate the molar mass you need (use the periodic table).</h4><div data-r="mm" class="s6-mmwrap"></div></div>
-   <div class="da-step" data-r="s2"><h4><b>2</b><span data-r="s2h">Set up the conversion factor(s): the unit you want to cancel on the bottom, the unit you want on top.</span></h4><div data-r="chain"></div><div class="da-eq" data-r="eq"></div><div class="dd-pool" data-r="pool" style="margin-top:8px;justify-content:center"></div><p class="muted center" data-r="tyhelp" style="font-size:13.5px;margin:6px 0 0" hidden>Type a number and a unit in each box, for example <b>1</b> and <b>mol H2O</b>, or <b>6.02e23</b> and <b>molecules H2O</b>.</p><div class="center" style="margin-top:8px"><button class="btn" type="button" data-r="chk">Check setup</button></div></div>
-   <div class="da-step locked" data-r="s3"><h4><b>3</b>Multiply by the numbers on top, divide by the numbers on the bottom.</h4><div class="mth" data-r="math" style="font-size:19px"></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap"><span class="cx-slot"><input class="cx-in" data-r="ans" style="width:220px" inputmode="decimal" autocomplete="off" aria-label="answer"><small data-r="ansu">answer</small></span><button class="btn sm" type="button" data-r="go" style="margin-left:6px">Check answer</button></div><p class="muted" style="margin:18px 0 0;font-size:13px">For scientific notation, type 1.05e24 or 1.05 x 10^24.</p><div data-r="flair"></div></div></div>`;
+   <div class="da-step" data-r="s2"><h4><b>2</b><span data-r="s2h">Set up the conversion factor(s): the unit you want to cancel on the bottom, the unit you want on top.</span></h4><div data-r="chain"></div><div class="da-eq" data-r="eq"></div><div class="dd-pool" data-r="pool" style="margin-top:8px;justify-content:center"></div><p class="muted center" data-r="tyhelp" style="font-size:13.5px;margin:6px 0 0" hidden>Type a number and a unit in each box, for example <b>1</b> and <b>mol H<sub>2</sub>O</b>, or <b>6.02 × 10<sup>23</sup></b> and <b>molecules H<sub>2</sub>O</b>. Numbers typed after a symbol become subscripts automatically, and 6.02e23 becomes 6.02 × 10<sup>23</sup>.</p><div class="center" style="margin-top:8px"><button class="btn" type="button" data-r="chk">Check setup</button></div></div>
+   <div class="da-step locked" data-r="s3"><h4><b>3</b>Multiply by the numbers on top, divide by the numbers on the bottom.</h4><div class="mth" data-r="math" style="font-size:19px"></div><div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap"><span class="cx-slot"><input class="cx-in" data-r="ans" style="width:220px" inputmode="decimal" autocomplete="off" aria-label="answer"><small data-r="ansu">answer</small></span><button class="btn sm" type="button" data-r="go" style="margin-left:6px">Check answer</button></div><p class="muted" style="margin:18px 0 0;font-size:13px">For scientific notation, type 1.05e24; it is shown as 1.05 × 10<sup>24</sup>.</p><div data-r="flair"></div></div></div>`;
   const $=r=>g.stage.querySelector(`[data-r="${r}"]`);
   const key=(u,sp)=>ucl(u)+"|"+(sp||"");
   const subs=()=>[...new Set(eqs.flatMap(e=>[e.a[3],e.b[3]]).concat([P0.given[2],P0.want[1]]).filter(Boolean))];
@@ -7664,7 +7721,7 @@ S.Converter=function(host,o){ let done=0, mode="drag";
     eqs=A.shuffle([...P0.path,...(P0.extra||[])]).filter((e,i,a)=>a.findIndex(x=>x.id===e.id)===i);
     chips(); mmStep();
     const [gv,gu,gs]=P0.given; P0.gTxt=P0.gTxt||S.num(gv,P0.sf||3);
-    $("s3").classList.add("locked"); $("math").innerHTML=""; $("ans").value=""; $("ans").classList.remove("ok","no"); $("ansu").textContent=`answer (${P0.want[0]}${P0.want[1]?" "+P0.want[1]:""})`;
+    $("s3").classList.add("locked"); $("math").innerHTML=""; $("ans").value=""; $("ans").classList.remove("ok","no"); $("ansu").textContent=`answer (${P0.want[0]}${P0.want[1]?" "+A.subUnit(P0.want[1]):""})`;
     buildSetup(); }
   /* step 1b: molar mass scaffold — count × atomic mass for each element, then add (rounded whole-number masses are accepted too) */
   function mmStep(){ const box=$("smm"); if(!P0.need.length){ box.hidden=true; $("s2").classList.remove("locked"); return; } box.hidden=false; $("s2").classList.add("locked");
@@ -9020,9 +9077,9 @@ S.chainOpts=(P0,extra={})=>Object.assign({label:q=>S.q(q.txt||S.num(q.n,3),q.u,q
 /* ---------- Unit 0 quantities: number + unit (metric, everyday units, moles) ---------- */
 (function(){ const A=window.AS, L=A&&A.U0; if(!L) return;
 const F={m:[1,"L"],km:[1e3,"L"],cm:[1e-2,"L"],mm:[1e-3,"L"],"μm":[1e-6,"L"],um:[1e-6,"L"],nm:[1e-9,"L"],in:[.0254,"L"],ft:[.3048,"L"],yd:[.9144,"L"],mi:[1609.344,"L"],
-  g:[1,"M"],kg:[1e3,"M"],mg:[1e-3,"M"],"μg":[1e-6,"M"],ug:[1e-6,"M"],L:[1,"V"],mL:[1e-3,"V"],J:[1,"E"],kJ:[1e3,"E"],s:[1,"T"],ms:[1e-3,"T"],ns:[1e-9,"T"],min:[60,"T"],h:[3600,"T"],day:[86400,"T"],mol:[6.02e23,"N"],particles:[1,"N"]};
-const ALIAS={meter:"m",meters:"m",kilometer:"km",kilometers:"km",centimeter:"cm",centimeters:"cm",millimeter:"mm",millimeters:"mm",micrometer:"μm",micrometers:"μm",nanometer:"nm",nanometers:"nm",inch:"in",inches:"in",foot:"ft",feet:"ft",yard:"yd",yards:"yd",mile:"mi",miles:"mi",gram:"g",grams:"g",kilogram:"kg",kilograms:"kg",milligram:"mg",milligrams:"mg",liter:"L",liters:"L",l:"L",milliliter:"mL",milliliters:"mL",ml:"mL",joule:"J",joules:"J",kilojoule:"kJ",kilojoules:"kJ",kj:"kJ",second:"s",seconds:"s",sec:"s",millisecond:"ms",milliseconds:"ms",nanosecond:"ns",nanoseconds:"ns",minute:"min",minutes:"min",hour:"h",hours:"h",hr:"h",days:"day",mole:"mol",moles:"mol",particle:"particles",atoms:"particles",molecules:"particles",mcg:"μg"};
-L.readQ=(numRaw,unitRaw)=>{ const nv=A.parseTyped(String(numRaw).replace(/−/g,"-")); if(!nv) return "Type a number on {where}."; let u=String(unitRaw).trim(); if(!F[u]) u=ALIAS[u.toLowerCase()]||ALIAS[u]||u; if(!F[u]) return `I don’t recognize the unit on {where}. Use a unit symbol such as m, cm, km, g, kg, mL, L, s, min or h.`; return {n:nv.v,u,nh:String(+nv.v.toPrecision(6))}; };
+  g:[1,"M"],kg:[1e3,"M"],mg:[1e-3,"M"],"μg":[1e-6,"M"],ug:[1e-6,"M"],L:[1,"V"],mL:[1e-3,"V"],J:[1,"E"],kJ:[1e3,"E"],s:[1,"T"],ms:[1e-3,"T"],ns:[1e-9,"T"],min:[60,"T"],h:[3600,"T"],day:[86400,"T"],mol:[6.02e23,"N"],particles:[1,"N"],atm:[101325,"P"],kPa:[1000,"P"],mmHg:[133.322,"P"],torr:[133.322,"P"]};
+const ALIAS={atmosphere:"atm",atmospheres:"atm",kpa:"kPa",kilopascal:"kPa",kilopascals:"kPa",mmhg:"mmHg","mm hg":"mmHg",Torr:"torr",torrs:"torr",meter:"m",meters:"m",kilometer:"km",kilometers:"km",centimeter:"cm",centimeters:"cm",millimeter:"mm",millimeters:"mm",micrometer:"μm",micrometers:"μm",nanometer:"nm",nanometers:"nm",inch:"in",inches:"in",foot:"ft",feet:"ft",yard:"yd",yards:"yd",mile:"mi",miles:"mi",gram:"g",grams:"g",kilogram:"kg",kilograms:"kg",milligram:"mg",milligrams:"mg",liter:"L",liters:"L",l:"L",milliliter:"mL",milliliters:"mL",ml:"mL",joule:"J",joules:"J",kilojoule:"kJ",kilojoules:"kJ",kj:"kJ",second:"s",seconds:"s",sec:"s",millisecond:"ms",milliseconds:"ms",nanosecond:"ns",nanoseconds:"ns",minute:"min",minutes:"min",hour:"h",hours:"h",hr:"h",days:"day",mole:"mol",moles:"mol",particle:"particles",atoms:"particles",molecules:"particles",mcg:"μg"};
+L.readQ=(numRaw,unitRaw)=>{ const nv=A.parseTyped(String(numRaw).replace(/−/g,"-")); if(!nv) return "Type a number on {where}."; let u=String(unitRaw).trim(); if(!F[u]) u=ALIAS[u.toLowerCase()]||ALIAS[u]||u; if(!F[u]) return `I don’t recognize the unit on {where}. Use a unit symbol such as m, cm, km, g, kg, mL, L, s, min, h, atm, kPa or mmHg.`; return {n:nv.v,u,nh:String(+nv.v.toPrecision(6))}; };
 L.validQ=(t,b)=>{ const a=F[t.u], c=F[b.u]; if(!a||!c) return "the top and bottom must be equal amounts."; if(a[1]!==c[1]) return `${t.u} and ${b.u} measure different things, so they can’t be equal.`;
   return Math.abs(t.n*a[0]-b.n*c[0])<=Math.abs(b.n*c[0])*.005? true : `${t.n} ${t.u} is not equal to ${b.n} ${b.u}. Check the equivalence.`; };
 L.chainUnit=u=>u;
@@ -9287,9 +9344,9 @@ S.MoleLab=function(host,o={}){ const scale=!!o.scale, list=o.items?SAMP.filter(s
 /* Glossary: every underlined definition on the site, collected when the site is built (glossary.py),
    in a side panel that opens from the top bar on every page. Clicking an underlined term in the notes opens its entry. */
 (function(){ const A=window.AS; if(!A) return;
-A.GLOSSARY_RAW=[{"t": "Percentage Abundance", "d": "relative frequency of a specific isotope of a given element.", "slug": "avgmass", "sec": "The Percent Method", "enr": false, "k": "percentage abundance"}, {"t": "Polar Covalent Bond", "d": "unequal, or asymmetrical, sharing of electrons between two atoms.", "slug": "b-bondpol", "sec": "Polar Bonds", "enr": false, "k": "polar covalent bond"}, {"t": "Dipole", "d": "a bond or molecule with a partially positive end and a partially negative end.", "slug": "b-bondpol", "sec": "Polar Bonds and Dipoles", "enr": false, "k": "dipole"}, {"t": "Nonpolar Covalent Bond", "d": "equal sharing of electrons between two atoms.", "slug": "b-bondpol", "sec": "Nonpolar Bonds", "enr": false, "k": "nonpolar covalent bond"}, {"t": "Lewis Dot Diagram", "d": "the element’s symbol surrounded by dots that represent its valence electrons.", "slug": "b-bonds", "sec": "Lewis Dot Diagrams (Recall)", "enr": false, "k": "lewis dot diagram"}, {"t": "Lewis Structure", "d": "a diagram of a molecule that shows shared pairs of electrons as lines and unshared pairs (lone pairs) as dots.", "slug": "b-bonds", "sec": "Lewis Dot Diagrams (Recall)", "enr": false, "k": "lewis structure"}, {"t": "Chemical Bond", "d": "strong attraction that holds atoms or ions together.", "slug": "b-bonds", "sec": "Chemical Bonds", "enr": false, "k": "chemical bond"}, {"t": "ionic bond", "d": "", "slug": "b-bonds", "sec": "Chemical Bonds", "enr": false, "k": "ionic bond"}, {"t": "covalent bond", "d": "", "slug": "b-bonds", "sec": "Chemical Bonds", "enr": false, "k": "covalent bond"}, {"t": "Octet Rule", "d": "atoms form chemical bonds in order to achieve 8 valence electrons, or a complete octet.", "slug": "b-bonds", "sec": "The Octet Rule", "enr": false, "k": "octet rule"}, {"t": "exothermic", "d": "", "slug": "b-bonds", "sec": "Bonds and Energy", "enr": false, "k": "exothermic"}, {"t": "endothermic", "d": "", "slug": "b-bonds", "sec": "Bonds and Energy", "enr": false, "k": "endothermic"}, {"t": "Covalent Bond", "d": "sharing of electrons.", "slug": "b-covalent", "sec": "Covalent Compounds", "enr": false, "k": "covalent bond"}, {"t": "Covalent Compounds", "d": "compounds that possess covalent bonds.", "slug": "b-covalent", "sec": "Covalent Compounds", "enr": false, "k": "covalent compound"}, {"t": "Single Covalent Bond", "d": "a sharing of 2 electrons, 1 from each atom participating in the bond.", "slug": "b-covalent", "sec": "Single Bonds", "enr": false, "k": "single covalent bond"}, {"t": "Double Bond", "d": "sharing of 4 electrons between 2 atoms.", "slug": "b-covalent", "sec": "Double Bonds", "enr": false, "k": "double bond"}, {"t": "Triple Bond", "d": "sharing of 6 electrons between atoms.", "slug": "b-covalent", "sec": "Triple Bonds", "enr": false, "k": "triple bond"}, {"t": "Bond Length", "d": "the distance between the nuclei of two bonded atoms.", "slug": "b-covalent", "sec": "Bond Length", "enr": false, "k": "bond length"}, {"t": "Molecular Geometry", "d": "the 3-dimensional arrangement of atoms in a molecule.", "slug": "b-geometry", "sec": "Molecular Geometry", "enr": true, "k": "molecular geometry"}, {"t": "Valence Shell Electron Pair Repulsion (VSEPR) Theory", "d": "negatively charged electrons will repel one another. Therefore, bonds and lone pairs will arrange themselves in such a way as to maximize the 3-dimensional space around the atom.", "slug": "b-geometry", "sec": "VSEPR Theory", "enr": true, "k": "valence shell electron pair repulsion theory"}, {"t": "Intermolecular Force of Attraction (IMF, IFA)", "d": "weak, attractive forces that pull atoms, ions and molecules together.", "slug": "b-imf", "sec": "Intermolecular Forces of Attraction", "enr": false, "k": "intermolecular force"}, {"t": "Ion–Dipole Forces", "d": "attractive force between an ion and the oppositely charged end of a polar molecule.", "slug": "b-imf", "sec": "Ion–Dipole Forces", "enr": false, "k": "ion dipole force"}, {"t": "Hydrogen Bond", "d": "strong intermolecular force between molecules that contain hydrogen bonded to a very electronegative element (oxygen, nitrogen or fluorine).", "slug": "b-imf", "sec": "Hydrogen Bonding", "enr": false, "k": "hydrogen bond"}, {"t": "Dipole–Dipole Force", "d": "force of attraction between oppositely charged ends of polar molecules.", "slug": "b-imf", "sec": "Dipole–Dipole Forces", "enr": false, "k": "dipole dipole force"}, {"t": "London Dispersion Forces", "d": "attraction between molecules due to temporary shifts in electron density that cause momentary dipoles.", "slug": "b-imf", "sec": "London Dispersion Forces", "enr": false, "k": "london dispersion force"}, {"t": "Melting Point", "d": "the temperature at which a solid turns into a liquid. It is the same temperature at which the liquid freezes.", "slug": "b-imf", "sec": "Melting Point and Boiling Point", "enr": false, "k": "melting point"}, {"t": "Boiling Point", "d": "the temperature at which a liquid turns into a gas throughout the liquid. It is the same temperature at which the gas condenses.", "slug": "b-imf", "sec": "Melting Point and Boiling Point", "enr": false, "k": "boiling point"}, {"t": "Surface tension", "d": "the tendency of a liquid’s surface to hold together and resist being broken.", "slug": "b-imf", "sec": "Surface Tension", "enr": false, "k": "surface tension"}, {"t": "Viscosity", "d": "a liquid’s resistance to flowing.", "slug": "b-imf", "sec": "Viscosity", "enr": false, "k": "viscosity"}, {"t": "Solubility", "d": "how much of a substance (the solute) can dissolve in another substance (the solvent).", "slug": "b-imf", "sec": "Solubility: Like Dissolves Like", "enr": false, "k": "solubility"}, {"t": "Ionic Bond", "d": "strong attraction between two oppositely charged ions that form when one atom donates electrons to another.", "slug": "b-ionic", "sec": "Ionic Bonds", "enr": false, "k": "ionic bond"}, {"t": "Ionic Compound", "d": "compound that contains ionic bonds.", "slug": "b-ionic", "sec": "Ionic Bonds", "enr": false, "k": "ionic compound"}, {"t": "Crystal Lattice", "d": "large, 3-dimensional, repeating arrangement of ions.", "slug": "b-ionprops", "sec": "Crystal Lattice", "enr": false, "k": "crystal lattice"}, {"t": "Formula unit", "d": "the simplest ratio of ions in an ionic compound, as shown by its chemical formula. One formula unit of NaCl is 1 Na<sup>+</sup> ion and 1 Cl<sup>−</sup> ion.", "slug": "b-ionprops", "sec": "Crystal Lattice", "enr": false, "k": "formula unit"}, {"t": "Electrolytes", "d": "substances that conduct electricity through the movement of charged ions.", "slug": "b-ionprops", "sec": "Electrolytes", "enr": false, "k": "electrolyte"}, {"t": "Lone Pair", "d": "a pair of valence electrons that is not shared with another atom.", "slug": "b-lewis", "sec": "Drawing Lewis Structures (Covalent)", "enr": false, "k": "lone pair"}, {"t": "Resonance Structures", "d": "sets of Lewis diagrams that show varying positions of electrons and bonds within the same molecule.", "slug": "b-lewis", "sec": "Resonance Structures", "enr": true, "k": "resonance structure"}, {"t": "Formal Charge", "d": "the charge an atom would have if the electrons in each of its bonds were shared equally.", "slug": "b-lewis", "sec": "Formal Charge", "enr": true, "k": "formal charge"}, {"t": "Metallic Bond", "d": "attraction between positive metal ions and the sea of mobile electrons around them.", "slug": "b-metallic", "sec": "Metallic Bonding", "enr": false, "k": "metallic bond"}, {"t": "Alloys", "d": "mixtures of metals and other substances.", "slug": "b-metallic", "sec": "Alloys", "enr": false, "k": "alloy"}, {"t": "Polar Molecules", "d": "molecules with an uneven (asymmetrical) distribution of charge. They have a partially positive end and a partially negative end.", "slug": "b-molpol", "sec": "Polar Molecules", "enr": false, "k": "polar molecule"}, {"t": "Nonpolar Molecules", "d": "molecules with a symmetrical distribution of charge. They do not have a partially positive end and a partially negative end.", "slug": "b-molpol", "sec": "Polar Molecules", "enr": false, "k": "nonpolar molecule"}, {"t": "Molecular Covalent Substance", "d": "a substance made of small, individual units (molecules) of covalently bonded atoms.", "slug": "b-network", "sec": "Molecular Covalent Substances", "enr": false, "k": "molecular covalent substance"}, {"t": "Network Solid", "d": "large, 3-dimensional, covalently bonded system of atoms.", "slug": "b-network", "sec": "Network Solids", "enr": false, "k": "network solid"}, {"t": "Network Covalent Substances", "d": "large covalently bonded systems of atoms. All atoms are connected together via strong covalent bonds.", "slug": "b-network", "sec": "Molecular vs. Network Covalent Substances", "enr": false, "k": "network covalent substance"}, {"t": "Polyatomic Ions", "d": "covalently bonded molecules that possess a charge.", "slug": "b-poly", "sec": "Polyatomic Ions", "enr": false, "k": "polyatomic ion"}, {"t": "Oxyanion", "d": "a polyatomic ion that contains oxygen and has a negative charge.", "slug": "b-poly", "sec": "Naming Oxyanions", "enr": true, "k": "oxyanion"}, {"t": "Bond Order", "d": "the number of shared pairs of electrons between two atoms (single = 1, double = 2, triple = 3).", "slug": "b-strength", "sec": "Bond Strength and Bond Order", "enr": false, "k": "bond order"}, {"t": "Coulomb’s Law", "d": "the force between charged particles depends on their charges and the distance between them.", "slug": "coulomb", "sec": "Coulomb’s Law", "enr": false, "k": "coulomb s law"}, {"t": "Atomic Number", "d": "equal to the number of protons found in the nucleus of an atom", "slug": "counting", "sec": "Atomic Number", "enr": false, "k": "atomic number"}, {"t": "Mass Number", "d": "Total number of protons and neutrons in the nucleus of an atom.", "slug": "counting", "sec": "Mass Number", "enr": false, "k": "mass number"}, {"t": "(Average) Atomic Mass", "d": "the weighted average of all naturally occurring isotopes of an element measured in unified mass units (u).", "slug": "counting", "sec": "Atomic Mass", "enr": false, "k": "atomic mass"}, {"t": "Ground state", "d": "Lowest energy electron configuration of an atom.", "slug": "excited", "sec": "Ground State", "enr": false, "k": "ground state"}, {"t": "Excited State", "d": "A configuration in which electrons occupy higher energy levels than the ground state.", "slug": "excited", "sec": "Excited State", "enr": false, "k": "excited state"}, {"t": "Ionization", "d": "process by which an atom loses electrons and acquires a positive charge.", "slug": "excited", "sec": "Ionization", "enr": false, "k": "ionization"}, {"t": "Plum Pudding Model", "d": "the atom possessed regions of negative charge, now called electrons.", "slug": "history", "sec": "J.J. Thomson", "enr": false, "k": "plum pudding model"}, {"t": "Gold Foil Experiment", "d": "Rutherford took a radioactive isotope that emitted particles known as alpha particles.", "slug": "history", "sec": "Ernest Rutherford", "enr": false, "k": "gold foil experiment"}, {"t": "Alpha particles", "d": "radioactive emissions with a mass of 4 u and a charge of +2.", "slug": "history", "sec": "Ernest Rutherford", "enr": false, "k": "alpha particle"}, {"t": "Rutherford Model", "d": "the atom was mostly empty space.", "slug": "history", "sec": "Ernest Rutherford", "enr": false, "k": "rutherford model"}, {"t": "Energy levels", "d": "regions at fixed distances from the nucleus where electrons are found.", "slug": "history", "sec": "Niels Bohr", "enr": false, "k": "energy level"}, {"t": "Bohr Model", "d": "electrons are found in circular orbits around the nucleus called energy levels.", "slug": "history", "sec": "Niels Bohr", "enr": false, "k": "bohr model"}, {"t": "Modern Model of the Atom", "d": "electrons are both particles and waves.", "slug": "history", "sec": "Modern Model", "enr": false, "k": "modern model of the atom"}, {"t": "Orbitals", "d": "the most probable location of finding an electron.", "slug": "history", "sec": "Modern Model", "enr": false, "k": "orbital"}, {"t": "Ion", "d": "atom that has gained or lost electrons to acquire a charge.", "slug": "ions", "sec": "Ions", "enr": false, "k": "ion"}, {"t": "Cation", "d": "name for an ion that has lost electrons and acquired a positive charge", "slug": "ions", "sec": "Cations and Anions", "enr": false, "k": "cation"}, {"t": "Anion", "d": "name for an ion that has gained electrons and acquired a negative charge", "slug": "ions", "sec": "Cations and Anions", "enr": false, "k": "anion"}, {"t": "Isotopes", "d": "atoms of the same element with the same number of protons but different numbers of neutrons.", "slug": "isotopes", "sec": "Isotopes", "enr": false, "k": "isotope"}, {"t": "Accuracy", "d": "how close a measurement comes to the accepted (true) value.", "slug": "l-accuracy", "sec": "Accuracy and Precision", "enr": false, "k": "accuracy"}, {"t": "Precision", "d": "how close repeated measurements are to one another.", "slug": "l-accuracy", "sec": "Accuracy and Precision", "enr": false, "k": "precision"}, {"t": "Percent Error", "d": "how far a measured value differs from the accepted value, as a percent of the accepted value.", "slug": "l-accuracy", "sec": "Percent Error", "enr": false, "k": "percent error"}, {"t": "Equivalence", "d": "two equal quantities with different units.", "slug": "l-convert", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "equivalence"}, {"t": "Conversion Factor", "d": "fraction/ratio of one scientific unit to another where the numerator and denominator are equal quantities with different units.", "slug": "l-convert", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "conversion factor"}, {"t": "Dimensional Analysis", "d": "(also called the <i>factor-label method</i>) method of unit conversion which involves multiplying by fractions known as conversion factors.", "slug": "l-convert", "sec": "Dimensional Analysis", "enr": false, "k": "dimensional analysi"}, {"t": "volume", "d": "", "slug": "l-measure", "sec": "Graduated Cylinders", "enr": false, "k": "volume"}, {"t": "Temperature", "d": "", "slug": "l-measure", "sec": "Thermometers", "enr": false, "k": "temperature"}, {"t": "Mass", "d": "", "slug": "l-measure", "sec": "Electronic Balances", "enr": false, "k": "mass"}, {"t": "International System of Units (SI)", "d": "the set of units used by scientists around the world.", "slug": "l-quantities", "sec": "The SI System", "enr": false, "k": "international system of unit"}, {"t": "Mass", "d": "the amount of matter (“stuff”) in an object.", "slug": "l-quantities", "sec": "Mass", "enr": false, "k": "mass"}, {"t": "Volume", "d": "the amount of space an object takes up.", "slug": "l-quantities", "sec": "Volume", "enr": false, "k": "volume"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "l-quantities", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Energy", "d": "the ability to do work or cause change.", "slug": "l-quantities", "sec": "Energy", "enr": false, "k": "energy"}, {"t": "Mole (mol)", "d": "the SI unit for the amount of a substance.", "slug": "l-quantities", "sec": "Amount of Substance", "enr": false, "k": "mole"}, {"t": "Avogadro’s Number", "d": "the number of particles in one mole: 6.02 × 10<sup>23</sup>", "slug": "l-quantities", "sec": "Amount of Substance", "enr": false, "k": "avogadro s number"}, {"t": "Scientific Notation", "d": "a shorthand way of writing very large or very small numbers as a number multiplied by a power of 10.", "slug": "l-scinot", "sec": "Scientific Notation", "enr": false, "k": "scientific notation"}, {"t": "Significant Figures", "d": "(sig figs) the digits in a measurement that are known with certainty plus the one estimated digit.", "slug": "l-sigfigs", "sec": "Significant Figures", "enr": false, "k": "significant figure"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "l-temp", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Kinetic Energy", "d": "energy possessed by an object due to its motion.", "slug": "l-temp", "sec": "Temperature", "enr": false, "k": "kinetic energy"}, {"t": "Celsius scale (°C)", "d": "", "slug": "l-temp", "sec": "Celsius Scale", "enr": false, "k": "celsius scale"}, {"t": "Kelvin scale (K)", "d": "", "slug": "l-temp", "sec": "Kelvin Scale", "enr": false, "k": "kelvin scale"}, {"t": "absolute zero (0 K)", "d": "", "slug": "l-temp", "sec": "Kelvin Scale", "enr": false, "k": "absolute zero"}, {"t": "Lewis Dot Diagram", "d": "the element’s symbol surrounded by dots that represent its valence electrons.", "slug": "lewis", "sec": "Lewis Dot Diagrams", "enr": false, "k": "lewis dot diagram"}, {"t": "Wavelength", "d": "the length of a single wave cycle, measured from crest to crest or trough to trough.", "slug": "light", "sec": "Wavelength", "enr": false, "k": "wavelength"}, {"t": "Frequency", "d": "the number of wave cycles that are completed in 1 second.", "slug": "light", "sec": "Frequency", "enr": false, "k": "frequency"}, {"t": "Atom", "d": "the smallest fundamental building block of matter", "slug": "m-atoms", "sec": "Atoms", "enr": false, "k": "atom"}, {"t": "Matter", "d": "anything that has mass and takes up volume (space)", "slug": "m-atoms", "sec": "Atoms and Elements", "enr": false, "k": "matter"}, {"t": "Atom", "d": "the smallest fundamental building block of matter", "slug": "m-atoms", "sec": "Atoms and Elements", "enr": false, "k": "atom"}, {"t": "Element", "d": "type of atom that contains a unique number of protons", "slug": "m-atoms", "sec": "Atoms and Elements", "enr": false, "k": "element"}, {"t": "Periodic Table of Elements", "d": "chart which lays out all of the known chemical elements.", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "periodic table of element"}, {"t": "Group", "d": "a vertical column of the periodic table (numbered 1–18).", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "group"}, {"t": "Period", "d": "a horizontal row of the periodic table (numbered 1–7).", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "period"}, {"t": "Metals", "d": "most elements; on the left side.", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "metal"}, {"t": "Nonmetals", "d": "on the right side.", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "nonmetal"}, {"t": "Metalloids", "d": "elements that touch the staircase on the periodic table (except aluminum).", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "metalloid"}, {"t": "Chemical Bond", "d": "strong attraction that holds atoms or ions together", "slug": "m-bonds", "sec": "Chemical Bond", "enr": false, "k": "chemical bond"}, {"t": "Molecule", "d": "two or more atoms that are chemically bonded (combined)", "slug": "m-bonds", "sec": "Molecules and Compounds", "enr": false, "k": "molecule"}, {"t": "Compound", "d": "two or more different elements chemically bonded (combined) in a fixed proportion", "slug": "m-bonds", "sec": "Molecules and Compounds", "enr": false, "k": "compound"}, {"t": "Diatomic Elements", "d": "elements found as molecules made of two identical atoms bonded together when they are uncombined (not part of a compound) at standard conditions.", "slug": "m-bonds", "sec": "Diatomic Elements", "enr": false, "k": "diatomic element"}, {"t": "Monatomic Elements", "d": "elements that are found as single atoms under standard conditions.", "slug": "m-bonds", "sec": "Diatomic Elements", "enr": false, "k": "monatomic element"}, {"t": "Chemical Formula", "d": "concise way to describe what elements and how many atoms of each are present in a compound", "slug": "m-bonds", "sec": "Decoding Compounds", "enr": false, "k": "chemical formula"}, {"t": "Subscripts", "d": "small numbers placed to the bottom right of an element symbol. They indicate the number of atoms of that element in a molecule or compound.", "slug": "m-bonds", "sec": "Decoding Compounds", "enr": false, "k": "subscript"}, {"t": "Allotropes", "d": "different physical and structural forms of the same element under standard conditions.", "slug": "m-bonds", "sec": "Allotropes", "enr": false, "k": "allotrope"}, {"t": "Physical Change", "d": "a change in which the identity of the substance does not change.", "slug": "m-changes", "sec": "Identifying Physical and Chemical Changes", "enr": false, "k": "physical change"}, {"t": "Chemical Change", "d": "a change in which new substances are made with new properties.", "slug": "m-changes", "sec": "Identifying Physical and Chemical Changes", "enr": false, "k": "chemical change"}, {"t": "Chemical Reaction", "d": "a process in which the bonds of substances are broken and the atoms rearrange to form new substances.", "slug": "m-changes", "sec": "Reactants and Products", "enr": false, "k": "chemical reaction"}, {"t": "Reactants", "d": "the starting substances in a chemical reaction, written on the left side of the arrow.", "slug": "m-changes", "sec": "Reactants and Products", "enr": false, "k": "reactant"}, {"t": "Products", "d": "the ending substances in a chemical reaction, written on the right side of the arrow.", "slug": "m-changes", "sec": "Reactants and Products", "enr": false, "k": "product"}, {"t": "Chemistry", "d": "the study of matter: its properties, composition and how it reacts.", "slug": "m-chemistry", "sec": "Chemistry", "enr": false, "k": "chemistry"}, {"t": "Matter", "d": "anything that has mass and takes up volume (space).", "slug": "m-chemistry", "sec": "What Is Matter?", "enr": false, "k": "matter"}, {"t": "Mass", "d": "the amount of matter (“stuff”) in an object.", "slug": "m-chemistry", "sec": "What Is Matter?", "enr": false, "k": "mass"}, {"t": "Volume", "d": "the amount of space an object takes up.", "slug": "m-chemistry", "sec": "What Is Matter?", "enr": false, "k": "volume"}, {"t": "Energy", "d": "the ability to do work or cause change.", "slug": "m-chemistry", "sec": "Energy", "enr": false, "k": "energy"}, {"t": "(Pure) Substance", "d": "a sample of matter that contains only 1 type of particle", "slug": "m-classify", "sec": "Substances and Mixtures", "enr": false, "k": "substance"}, {"t": "Mixture", "d": "a sample of matter that contains 2+ different types of particles that are physically combined.", "slug": "m-classify", "sec": "Substances and Mixtures", "enr": false, "k": "mixture"}, {"t": "Element", "d": "type of atom that contains a unique number of protons.", "slug": "m-classify", "sec": "Elements and Compounds", "enr": false, "k": "element"}, {"t": "Compound", "d": "two or more different elements chemically bonded (combined) in a fixed proportion.", "slug": "m-classify", "sec": "Elements and Compounds", "enr": false, "k": "compound"}, {"t": "Mixture", "d": "a sample of matter that contains 2+ different types of particles that are physically combined.", "slug": "m-classify", "sec": "Mixtures", "enr": false, "k": "mixture"}, {"t": "Homogeneous Mixtures", "d": "particles in the mixture are distributed evenly (uniform) throughout.", "slug": "m-classify", "sec": "Homogeneous and Heterogeneous Mixtures", "enr": false, "k": "homogeneous mixture"}, {"t": "Heterogeneous Mixtures", "d": "particles in the mixture are distributed unevenly throughout.", "slug": "m-classify", "sec": "Homogeneous and Heterogeneous Mixtures", "enr": false, "k": "heterogeneous mixture"}, {"t": "Solution", "d": "a type of homogeneous mixture.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solution"}, {"t": "Solute", "d": "the substance that dissolves.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solute"}, {"t": "Solvent", "d": "the substance that does the dissolving.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solvent"}, {"t": "Solubility", "d": "how much of a substance (the solute) can dissolve in another substance (the solvent).", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solubility"}, {"t": "Aqueous Solution", "d": "a solution in which the solvent is water.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "aqueous solution"}, {"t": "Mass", "d": "the amount of matter (“stuff”) in an object.", "slug": "m-density", "sec": "Mass", "enr": false, "k": "mass"}, {"t": "Volume", "d": "the amount of space an object takes up.", "slug": "m-density", "sec": "Volume", "enr": false, "k": "volume"}, {"t": "Density", "d": "the amount of mass per unit volume in a substance.", "slug": "m-density", "sec": "Density", "enr": false, "k": "density"}, {"t": "Phase of Matter", "d": "the form that matter can take.", "slug": "m-phases", "sec": "Phases of Matter", "enr": false, "k": "phase of matter"}, {"t": "Intermolecular Forces (of attraction)", "d": "attractive forces between particles in a sample of matter", "slug": "m-phases", "sec": "Phases of Matter and Intermolecular Forces", "enr": false, "k": "intermolecular force"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "m-phases", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Kinetic Energy", "d": "energy possessed by an object due to its motion.", "slug": "m-phases", "sec": "Temperature", "enr": false, "k": "kinetic energy"}, {"t": "Heat", "d": "energy transferred from a high temperature object to a low temperature object.", "slug": "m-phases", "sec": "Temperature", "enr": false, "k": "heat"}, {"t": "Pressure", "d": "the amount of force per unit area pushing down on a substance", "slug": "m-phases", "sec": "Phases of Matter and Pressure", "enr": false, "k": "pressure"}, {"t": "Melting Point", "d": "the temperature at which a solid turns into a liquid. It is the same temperature at which the liquid freezes.", "slug": "m-phases", "sec": "Phase Changes", "enr": false, "k": "melting point"}, {"t": "Boiling Point", "d": "the temperature at which a liquid turns into a gas throughout the liquid. It is the same temperature at which the gas condenses.", "slug": "m-phases", "sec": "Phase Changes", "enr": false, "k": "boiling point"}, {"t": "Endothermic", "d": "a change in which energy is absorbed by a substance (melting, vaporization, sublimation)", "slug": "m-phases", "sec": "Endothermic vs. Exothermic", "enr": false, "k": "endothermic"}, {"t": "Exothermic", "d": "a change in which energy is released by a substance (freezing, condensation, deposition)", "slug": "m-phases", "sec": "Endothermic vs. Exothermic", "enr": false, "k": "exothermic"}, {"t": "Physical Property", "d": "measurable characteristic of a substance that can be determined without changing the identity of that substance ExampleTemperature, mass, volume, density, melting point, boiling point", "slug": "m-props", "sec": "Types of Properties", "enr": false, "k": "physical property"}, {"t": "Chemical Property", "d": "characteristic of a substance that describes the way it reacts.", "slug": "m-props", "sec": "Types of Properties", "enr": false, "k": "chemical property"}, {"t": "Intensive Properties", "d": "properties which do not change with the size of the sample.", "slug": "m-props", "sec": "Intensive vs. Extensive Properties", "enr": false, "k": "intensive property"}, {"t": "Extensive Properties", "d": "properties that change with the size of the sample.", "slug": "m-props", "sec": "Intensive vs. Extensive Properties", "enr": false, "k": "extensive property"}, {"t": "Filtration", "d": "laboratory technique used to separate substances based on differences in particle size using filter paper.", "slug": "m-separate", "sec": "Filtration", "enr": false, "k": "filtration"}, {"t": "Distillation", "d": "laboratory technique used to separate mixtures of liquids based on differences in their boiling points.", "slug": "m-separate", "sec": "Distillation", "enr": false, "k": "distillation"}, {"t": "Chromatography", "d": "laboratory technique used to separate substances based on two differences:", "slug": "m-separate", "sec": "Chromatography", "enr": false, "k": "chromatography"}, {"t": "Protons", "d": "massive, positively charged particles found in the nucleus", "slug": "overview", "sec": "Subatomic Particles", "enr": false, "k": "proton"}, {"t": "Neutrons", "d": "massive, neutral particles found in the nucleus", "slug": "overview", "sec": "Subatomic Particles", "enr": false, "k": "neutron"}, {"t": "Electrons", "d": "light, negative particles found outside the nucleus", "slug": "overview", "sec": "Subatomic Particles", "enr": false, "k": "electron"}, {"t": "Unified Mass Unit (u)", "d": "unit of mass used to measure very small particles. Equal to 112 of the mass of a C‑12 atom", "slug": "overview", "sec": "Subatomic Particles: Mass and Charge", "enr": false, "k": "unified mass unit"}, {"t": "Periodic Law", "d": "the physical and chemical properties of elements recur in regular patterns when they are arranged in order of increasing atomic number.", "slug": "p-building", "sec": "Periodic Law", "enr": false, "k": "periodic law"}, {"t": "Electronegativity", "d": "an atom’s ability to attract electrons (in a chemical bond).", "slug": "p-electroneg", "sec": "Electronegativity", "enr": false, "k": "electronegativity"}, {"t": "alkali metals", "d": "the elements in Group 1, except hydrogen.", "slug": "p-families", "sec": "Alkali Metals (Group 1)", "enr": false, "k": "alkali metal"}, {"t": "alkaline earth metals", "d": "the elements in Group 2.", "slug": "p-families", "sec": "Alkaline Earth Metals (Group 2)", "enr": false, "k": "alkaline earth metal"}, {"t": "halogens", "d": "the elements in Group 17.", "slug": "p-families", "sec": "Halogens (Group 17)", "enr": false, "k": "halogen"}, {"t": "noble gases", "d": "the elements in Group 18.", "slug": "p-families", "sec": "Noble Gases (Group 18)", "enr": false, "k": "noble gase"}, {"t": "transition metals", "d": "the elements in Groups 3–12.", "slug": "p-families", "sec": "Transition Metals (Groups 3–12)", "enr": false, "k": "transition metal"}, {"t": "Lanthanides", "d": "elements with atomic numbers 57–71", "slug": "p-families", "sec": "Lanthanides and Actinides", "enr": false, "k": "lanthanide"}, {"t": "Actinides", "d": "elements with atomic numbers 89–103", "slug": "p-families", "sec": "Lanthanides and Actinides", "enr": false, "k": "actinide"}, {"t": "nuclear charge", "d": "the total positive charge of the nucleus, equal to the number of protons (the atomic number).", "slug": "p-forces", "sec": "Nuclear Charge", "enr": false, "k": "nuclear charge"}, {"t": "Shielding Effect", "d": "inner (core) electrons repel valence electrons, reducing the attraction between an electron and the nucleus.", "slug": "p-forces", "sec": "Electron Shielding", "enr": false, "k": "shielding effect"}, {"t": "effective nuclear charge", "d": "the net pull of the nucleus felt by a valence electron: the protons minus the inner electrons that shield it.", "slug": "p-forces", "sec": "Putting It Together: The Net Pull", "enr": false, "k": "effective nuclear charge"}, {"t": "Ionic Radius", "d": "the radius of an atom’s ion after it has gained or lost electrons.", "slug": "p-ionic", "sec": "Ionic Radius", "enr": false, "k": "ionic radiu"}, {"t": "ionization", "d": "", "slug": "p-ionization", "sec": "Ionization Energy", "enr": false, "k": "ionization"}, {"t": "Ionization Energy", "d": "amount of energy required to remove an electron from an atom.", "slug": "p-ionization", "sec": "Ionization Energy", "enr": false, "k": "ionization energy"}, {"t": "Lustrous", "d": "shiny", "slug": "p-metals", "sec": "Properties of Metals", "enr": false, "k": "lustrou"}, {"t": "Malleable", "d": "able to be hammered into different shapes", "slug": "p-metals", "sec": "Properties of Metals", "enr": false, "k": "malleable"}, {"t": "Ductile", "d": "able to be drawn into wires", "slug": "p-metals", "sec": "Properties of Metals", "enr": false, "k": "ductile"}, {"t": "Metalloids", "d": "elements that touch the staircase on the periodic table (except aluminum).", "slug": "p-metals", "sec": "Metalloids", "enr": false, "k": "metalloid"}, {"t": "Semiconductors", "d": "materials whose conductivity can be good or poor depending on what they are combined with. ExampleSilicon is the semiconductor in computer chips and solar panels.", "slug": "p-metals", "sec": "Metalloids", "enr": false, "k": "semiconductor"}, {"t": "Period", "d": "a horizontal row of the periodic table (numbered 1–7).", "slug": "p-organize", "sec": "Periods", "enr": false, "k": "period"}, {"t": "Group", "d": "a vertical column of the periodic table (numbered 1–18).", "slug": "p-organize", "sec": "Groups", "enr": false, "k": "group"}, {"t": "Octet", "d": "8 electrons in an atom’s valence shell.", "slug": "p-organize", "sec": "Reactivity of Elements", "enr": false, "k": "octet"}, {"t": "Atomic Radius", "d": "the distance from the nucleus to the outermost energy level in an atom.", "slug": "p-radius", "sec": "Atomic Radius", "enr": false, "k": "atomic radiu"}, {"t": "Law of Conservation of Mass", "d": "mass (matter) cannot be created or destroyed.", "slug": "r-conservation", "sec": "Law of Conservation of Mass", "enr": false, "k": "law of conservation of mass"}, {"t": "Law of Conservation of Energy", "d": "energy cannot be created or destroyed, only converted into different forms.", "slug": "r-conservation", "sec": "Law of Conservation of Energy", "enr": false, "k": "law of conservation of energy"}, {"t": "Law of Conservation of Charge", "d": "charge cannot be created or destroyed.", "slug": "r-conservation", "sec": "Law of Conservation of Charge", "enr": false, "k": "law of conservation of charge"}, {"t": "Combustion Reaction", "d": "a chemical reaction in which a hydrocarbon (a molecule containing only hydrogen and carbon) reacts with oxygen (O<sub>2</sub>) to produce carbon dioxide (CO<sub>2</sub>) and water (H<sub>2</sub>O).", "slug": "r-predict-comb", "sec": "Combustion Reactions", "enr": false, "k": "combustion reaction"}, {"t": "Activity Series", "d": "table which lists elements in decreasing order of chemical activity.", "slug": "r-predict-rep", "sec": "Activity Series", "enr": false, "k": "activity sery"}, {"t": "Soluble", "d": "able to dissolve in water. A soluble ionic compound breaks apart into ions and is written with (aq).", "slug": "r-predict-rep", "sec": "Solubility of Ionic Compounds", "enr": false, "k": "soluble"}, {"t": "Insoluble", "d": "does not dissolve in water. An insoluble ionic compound stays a solid and is written with (s).", "slug": "r-predict-rep", "sec": "Solubility of Ionic Compounds", "enr": false, "k": "insoluble"}, {"t": "Precipitate", "d": "insoluble solid that forms and separates from a liquid during a chemical reaction.", "slug": "r-predict-rep", "sec": "Solubility of Ionic Compounds", "enr": false, "k": "precipitate"}, {"t": "Binary compound", "d": "a compound made of only two elements.ExampleNaCl, H<sub>2</sub>O, Al<sub>2</sub>O<sub>3</sub>", "slug": "r-predict-sd", "sec": "Predicting Decomposition Reactions", "enr": false, "k": "binary compound"}, {"t": "Oxide", "d": "a compound of an element with oxygen.", "slug": "r-predict-sd", "sec": "Oxides in Water and Acid Rain", "enr": false, "k": "oxide"}, {"t": "Chemical Equation", "d": "symbolic representation of a chemical reaction using formulas and numbers.", "slug": "r-reactions", "sec": "Chemical Equations", "enr": false, "k": "chemical equation"}, {"t": "Reactants", "d": "the starting substances in a chemical reaction, written on the left side of the arrow.", "slug": "r-reactions", "sec": "Chemical Equations", "enr": false, "k": "reactant"}, {"t": "Products", "d": "the ending substances in a chemical reaction, written on the right side of the arrow.", "slug": "r-reactions", "sec": "Chemical Equations", "enr": false, "k": "product"}, {"t": "Coefficients", "d": "large numbers placed in front of a chemical formula. Indicate the number of molecules or formula units (or moles) of a substance taking part in the reaction.", "slug": "r-reactions", "sec": "Coefficients and Subscripts", "enr": false, "k": "coefficient"}, {"t": "Subscripts", "d": "small numbers placed to the bottom right of an element symbol. They indicate the number of atoms of that element in a molecule or compound.", "slug": "r-reactions", "sec": "Coefficients and Subscripts", "enr": false, "k": "subscript"}, {"t": "formula unit", "d": "", "slug": "r-reactions", "sec": "Coefficients and Subscripts", "enr": false, "k": "formula unit"}, {"t": "System", "d": "specific part of the universe that is being focused on.", "slug": "r-systems", "sec": "Systems and Surroundings", "enr": false, "k": "system"}, {"t": "Surroundings", "d": "everything that is not part of the system.", "slug": "r-systems", "sec": "Systems and Surroundings", "enr": false, "k": "surrounding"}, {"t": "Universe", "d": "the system and its surroundings together.", "slug": "r-systems", "sec": "Systems and Surroundings", "enr": false, "k": "universe"}, {"t": "Open System", "d": "both matter and energy are allowed to pass freely between the system and its surroundings.", "slug": "r-systems", "sec": "Open vs. Closed Systems", "enr": false, "k": "open system"}, {"t": "Closed System", "d": "energy is allowed to move between the system and its surroundings, but matter is not.", "slug": "r-systems", "sec": "Open vs. Closed Systems", "enr": false, "k": "closed system"}, {"t": "Isolated System", "d": "neither matter nor energy is allowed to move between the system and its surroundings.", "slug": "r-systems", "sec": "Open vs. Closed Systems", "enr": false, "k": "isolated system"}, {"t": "Heat", "d": "energy transferred from a high temperature object to a low temperature object.", "slug": "r-systems", "sec": "Heat", "enr": false, "k": "heat"}, {"t": "Endothermic Reaction", "d": "reaction which absorbs energy from its surroundings.", "slug": "r-systems", "sec": "Thermal Energy Transfer", "enr": false, "k": "endothermic reaction"}, {"t": "Exothermic Reaction", "d": "reaction which releases energy to its surroundings.", "slug": "r-systems", "sec": "Thermal Energy Transfer", "enr": false, "k": "exothermic reaction"}, {"t": "Synthesis Reaction", "d": "chemical reaction in which two or more simple reactants combine into a more complex product.", "slug": "r-types", "sec": "Synthesis Reactions", "enr": false, "k": "synthesis reaction"}, {"t": "Decomposition Reaction", "d": "a chemical reaction in which a single reactant is broken down (decomposed) into two or more simple products.", "slug": "r-types", "sec": "Decomposition Reactions", "enr": false, "k": "decomposition reaction"}, {"t": "Single Replacement Reaction", "d": "a chemical reaction in which one element exchanges places with another element in a compound.", "slug": "r-types", "sec": "Single Replacement Reactions", "enr": false, "k": "single replacement reaction"}, {"t": "Double Replacement Reaction", "d": "a chemical reaction in which an ion in one compound is exchanged with an ion in another compound.", "slug": "r-types", "sec": "Double Replacement Reactions", "enr": false, "k": "double replacement reaction"}, {"t": "Combustion Reaction", "d": "a chemical reaction in which a hydrocarbon (a molecule containing only hydrogen and carbon) reacts with oxygen (O<sub>2</sub>) to produce carbon dioxide (CO<sub>2</sub>) and water (H<sub>2</sub>O).", "slug": "r-types", "sec": "Combustion Reactions", "enr": false, "k": "combustion reaction"}, {"t": "Molecular Formula", "d": "indicates how many atoms of each element are present in a compound.", "slug": "s-empirical", "sec": "Empirical and Molecular Formulas", "enr": false, "k": "molecular formula"}, {"t": "Empirical Formula", "d": "indicates the simplest (lowest whole-number) ratio of elements in a compound.", "slug": "s-empirical", "sec": "Empirical and Molecular Formulas", "enr": false, "k": "empirical formula"}, {"t": "Limiting Reagent", "d": "reactant that is completely used up and therefore restricts how much product is formed.", "slug": "s-limiting", "sec": "Limiting and Excess Reagents", "enr": true, "k": "limiting reagent"}, {"t": "Excess Reagent", "d": "reactant that is left over after the reaction is finished.", "slug": "s-limiting", "sec": "Limiting and Excess Reagents", "enr": true, "k": "excess reagent"}, {"t": "Theoretical Yield", "d": "maximum amount of product that can be created in a reaction.", "slug": "s-limiting", "sec": "Theoretical and Actual Yield", "enr": true, "k": "theoretical yield"}, {"t": "Actual Yield", "d": "the amount of product that is truly produced in a reaction.", "slug": "s-limiting", "sec": "Theoretical and Actual Yield", "enr": true, "k": "actual yield"}, {"t": "Percent Yield", "d": "the actual yield as a percent of the theoretical yield.", "slug": "s-limiting", "sec": "Percent Yield", "enr": true, "k": "percent yield"}, {"t": "Molar Mass", "d": "mass of one mole of a substance.", "slug": "s-molarmass", "sec": "Molar Mass", "enr": false, "k": "molar mass"}, {"t": "Equivalence", "d": "two equal quantities with different units.", "slug": "s-moles", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "equivalence"}, {"t": "Conversion Factor", "d": "fraction/ratio of one scientific unit to another where the numerator and denominator are equal quantities with different units.", "slug": "s-moles", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "conversion factor"}, {"t": "Dimensional Analysis", "d": "(also called the <i>factor-label method</i>) method of unit conversion which involves multiplying by fractions known as conversion factors.", "slug": "s-moles", "sec": "Dimensional Analysis", "enr": false, "k": "dimensional analysi"}, {"t": "mole", "d": "", "slug": "s-moles", "sec": "Moles", "enr": false, "k": "mole"}, {"t": "Avogadro’s Number", "d": "the number of particles in one mole: 6.02 × 10<sup>23</sup>", "slug": "s-moles", "sec": "Moles", "enr": false, "k": "avogadro s number"}, {"t": "Avogadro’s Law", "d": "equal volumes of gas (at the same pressure and temperature) must contain the same number of moles/molecules.", "slug": "s-molvolume", "sec": "Avogadro’s Law", "enr": false, "k": "avogadro s law"}, {"t": "Molar Volume of an Ideal Gas (at STP)", "d": "22.4 liters", "slug": "s-molvolume", "sec": "Molar Volume", "enr": false, "k": "molar volume of an ideal ga"}, {"t": "Percent Composition", "d": "the percent by mass of each element in a compound.", "slug": "s-percent", "sec": "Percent Composition", "enr": false, "k": "percent composition"}, {"t": "Hydrated Compound (Hydrate)", "d": "compound (usually ionic) that contains water.", "slug": "s-percent", "sec": "Hydrated Compounds", "enr": false, "k": "hydrated compound"}, {"t": "Anhydrous Compound", "d": "compound that does not contain water.", "slug": "s-percent", "sec": "Hydrated Compounds", "enr": false, "k": "anhydrous compound"}, {"t": "Mole Ratio", "d": "ratio between the moles of any two substances in a balanced chemical equation.", "slug": "s-ratios", "sec": "Mole Ratios", "enr": false, "k": "mole ratio"}, {"t": "Emission Spectrum", "d": "pattern of light emitted by atoms when electrons transition from excited states to ground states.", "slug": "spectra", "sec": "Emission Spectra", "enr": false, "k": "emission spectrum"}, {"t": "Specific Heat Capacity (c)", "d": "the amount of heat needed to raise the temperature of 1 g of a substance by 1 °C (or 1 K).", "slug": "t-calc", "sec": "Specific Heat Capacity", "enr": false, "k": "specific heat capacity"}, {"t": "Heat of Fusion (H<sub>f</sub>)", "d": "the amount of heat needed to melt (or released when freezing) 1 gram of a substance at its melting point.", "slug": "t-calc", "sec": "Heat During Phase Changes", "enr": false, "k": "heat of fusion"}, {"t": "Heat of Vaporization (H<sub>v</sub>)", "d": "the amount of heat needed to vaporize (or released when condensing) 1 gram of a substance at its boiling point.", "slug": "t-calc", "sec": "Heat During Phase Changes", "enr": false, "k": "heat of vaporization"}, {"t": "Calorimetry", "d": "process of measuring the heat absorbed or released during a chemical reaction or physical change.", "slug": "t-calorimetry", "sec": "Calorimetry", "enr": false, "k": "calorimetry"}, {"t": "Calorimeter", "d": "an insulated device used to measure the heat absorbed or released during a chemical reaction or physical change.", "slug": "t-calorimetry", "sec": "Calorimetry", "enr": false, "k": "calorimeter"}, {"t": "Heating Curve", "d": "a graph of the temperature of a substance as heat is added to it.", "slug": "t-curves", "sec": "Heating Curve", "enr": false, "k": "heating curve"}, {"t": "Cooling Curve", "d": "a graph of the temperature of a substance as heat is removed from it.", "slug": "t-curves", "sec": "Cooling Curve", "enr": false, "k": "cooling curve"}, {"t": "Triple Point", "d": "the temperature and pressure at which a substance exists in all three phases at the same time.", "slug": "t-diagrams", "sec": "Phase Diagrams", "enr": false, "k": "triple point"}, {"t": "Critical Point", "d": "the temperature and pressure above which the liquid and gas phases become indistinguishable.", "slug": "t-diagrams", "sec": "Phase Diagrams", "enr": false, "k": "critical point"}, {"t": "Supercritical Fluid", "d": "a substance above its critical temperature and critical pressure. It is dense like a liquid but fills its container like a gas.", "slug": "t-diagrams", "sec": "Phase Diagrams", "enr": false, "k": "supercritical fluid"}, {"t": "Energy", "d": "the ability to do work or cause change.", "slug": "t-energy", "sec": "Energy", "enr": false, "k": "energy"}, {"t": "Law of Conservation of Energy", "d": "energy cannot be created or destroyed, only converted into different forms.", "slug": "t-energy", "sec": "Energy", "enr": false, "k": "law of conservation of energy"}, {"t": "Joule (J)", "d": "the SI unit of energy.", "slug": "t-energy", "sec": "Units of Energy: Joules and Calories", "enr": false, "k": "joule"}, {"t": "Calorie (cal)", "d": "the amount of energy needed to raise the temperature of 1 g of water by 1 °C.", "slug": "t-energy", "sec": "Units of Energy: Joules and Calories", "enr": false, "k": "calorie"}, {"t": "Potential Energy", "d": "stored energy of an object due to its position in a system.", "slug": "t-energy", "sec": "Potential Energy", "enr": false, "k": "potential energy"}, {"t": "Kinetic Energy", "d": "energy possessed by an object due to its motion.", "slug": "t-energy", "sec": "Kinetic Energy", "enr": false, "k": "kinetic energy"}, {"t": "Bond Energy", "d": "the energy required to break 1 mole of a specific type of bond in the gas phase.", "slug": "t-enthalpy", "sec": "Bond Energies", "enr": false, "k": "bond energy"}, {"t": "Enthalpy (Heat) of Reaction (ΔH)", "d": "the difference in energy between the products and the reactants in a chemical reaction at constant pressure. It is the energy absorbed or released during the reaction.", "slug": "t-enthalpy", "sec": "Enthalpy", "enr": false, "k": "enthalpy of reaction"}, {"t": "Endothermic Reaction", "d": "reaction which absorbs energy from its surroundings.", "slug": "t-enthalpy", "sec": "Enthalpy", "enr": false, "k": "endothermic reaction"}, {"t": "Exothermic Reaction", "d": "reaction which releases energy to its surroundings.", "slug": "t-enthalpy", "sec": "Enthalpy", "enr": false, "k": "exothermic reaction"}, {"t": "Heat", "d": "energy transferred from a high temperature object to a low temperature object.", "slug": "t-heat", "sec": "Heat", "enr": false, "k": "heat"}, {"t": "System", "d": "specific part of the universe that is being focused on.", "slug": "t-heat", "sec": "Systems and Surroundings", "enr": false, "k": "system"}, {"t": "Surroundings", "d": "everything that is not part of the system.", "slug": "t-heat", "sec": "Systems and Surroundings", "enr": false, "k": "surrounding"}, {"t": "Conduction", "d": "heat transfer between objects in contact. Fast-moving particles in the hot object collide with particles in the cold object and transfer energy.", "slug": "t-heat", "sec": "Heat Transfer", "enr": false, "k": "conduction"}, {"t": "Convection", "d": "heat transfer by currents of a fluid (a liquid or gas). Warm fluid rises, cools, sinks and repeats the cycle.", "slug": "t-heat", "sec": "Heat Transfer", "enr": false, "k": "convection"}, {"t": "Radiation", "d": "heat transfer by light waves (such as infrared light) from a hot object to a cold object. It does not need particles, so it can cross empty space.", "slug": "t-heat", "sec": "Heat Transfer", "enr": false, "k": "radiation"}, {"t": "Thermal Equilibrium", "d": "state in which there is no net flow of heat between objects because they are at the same temperature.", "slug": "t-heat", "sec": "Thermal Equilibrium", "enr": false, "k": "thermal equilibrium"}, {"t": "Thermal Conductivity (k)", "d": "a measure of a material’s ability to transfer heat.", "slug": "t-heat", "sec": "Thermal Conductivity", "enr": false, "k": "thermal conductivity"}, {"t": "Hess’s Law", "d": "a chemical reaction can be expressed as the sum of other reactions, in which case the enthalpy of the overall reaction is the sum of the enthalpies of the component reactions.", "slug": "t-hess", "sec": "Hess’s Law", "enr": false, "k": "hess s law"}, {"t": "Phase of Matter", "d": "the form that matter can take.", "slug": "t-phases", "sec": "Phases of Matter", "enr": false, "k": "phase of matter"}, {"t": "Endothermic", "d": "a change in which energy is absorbed by a substance (melting, vaporization, sublimation)", "slug": "t-phases", "sec": "Phase Changes", "enr": false, "k": "endothermic"}, {"t": "Exothermic", "d": "a change in which energy is released by a substance (freezing, condensation, deposition)", "slug": "t-phases", "sec": "Phase Changes", "enr": false, "k": "exothermic"}, {"t": "Melting (Fusion)", "d": "the physical process of turning a solid into a liquid.", "slug": "t-phases", "sec": "Melting and Freezing", "enr": false, "k": "melting"}, {"t": "Freezing", "d": "the physical process of turning a liquid into a solid.", "slug": "t-phases", "sec": "Melting and Freezing", "enr": false, "k": "freezing"}, {"t": "Melting Point", "d": "the temperature at which a solid turns into a liquid. It is the same temperature at which the liquid freezes.", "slug": "t-phases", "sec": "Melting and Freezing", "enr": false, "k": "melting point"}, {"t": "Vaporization", "d": "the physical process of turning a liquid into a gas.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "vaporization"}, {"t": "Evaporation", "d": "vaporization that happens only at the surface of a liquid, below the boiling point.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "evaporation"}, {"t": "Condensation", "d": "the physical process of turning a gas into a liquid.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "condensation"}, {"t": "Boiling Point", "d": "the temperature at which a liquid turns into a gas throughout the liquid. It is the same temperature at which the gas condenses. ExampleBoiling water stays at 100 °C until it has all boiled away.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "boiling point"}, {"t": "Sublimation", "d": "the physical process of turning a solid directly into a gas.", "slug": "t-phases", "sec": "Sublimation and Deposition", "enr": false, "k": "sublimation"}, {"t": "Deposition", "d": "the physical process of turning a gas directly into a solid.", "slug": "t-phases", "sec": "Sublimation and Deposition", "enr": false, "k": "deposition"}, {"t": "Phase Equilibrium", "d": "condition in which two phases of matter exist at the same time with no net change in the amount of either one.", "slug": "t-phases", "sec": "Phase Equilibrium", "enr": false, "k": "phase equilibrium"}, {"t": "Intermolecular Forces (of attraction)", "d": "attractive forces between particles in a sample of matter", "slug": "t-phases", "sec": "Phases of Matter and Intermolecular Forces", "enr": false, "k": "intermolecular force"}, {"t": "Pressure", "d": "the amount of force per unit area pushing down on a substance", "slug": "t-phases", "sec": "Phases of Matter and Pressure", "enr": false, "k": "pressure"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "t-temp", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Celsius Scale", "d": "temperature scale based on the freezing point and boiling point of water.", "slug": "t-temp", "sec": "Temperature Scales", "enr": false, "k": "celsius scale"}, {"t": "Kelvin Scale", "d": "temperature scale that starts at absolute zero (0 K), the lowest possible temperature.", "slug": "t-temp", "sec": "Temperature Scales", "enr": false, "k": "kelvin scale"}, {"t": "Absolute Zero", "d": "the lowest possible temperature (0 K, or −273.15 °C). At absolute zero, particles have the least possible kinetic energy.", "slug": "t-temp", "sec": "Temperature Scales", "enr": false, "k": "absolute zero"}, {"t": "Standard Temperature", "d": "baseline temperature that scientists use for consistency in describing chemical properties and reactions. For gases, standard temperature is 0 °C (273.15 K).", "slug": "t-temp", "sec": "Some Important Temperatures", "enr": false, "k": "standard temperature"}, {"t": "Valence Electrons", "d": "electrons found in the outermost energy level of an atom.", "slug": "valence", "sec": "Outermost (Valence) Electrons", "enr": false, "k": "valence electron"}, {"t": "Valence Shell", "d": "the outermost electron shell of an atom.", "slug": "valence", "sec": "Outermost (Valence) Electrons", "enr": false, "k": "valence shell"}];
-const LISTS=["UNIT0","UNIT1","SITE","UNIT3","UNIT4","UNIT5","UNIT6","UNIT7"];
-const UNITNO={UNIT0:0,UNIT1:1,SITE:2,UNIT3:3,UNIT4:4,UNIT5:5,UNIT6:6,UNIT7:7};
+A.GLOSSARY_RAW=[{"t": "Percentage Abundance", "d": "relative frequency of a specific isotope of a given element.", "slug": "avgmass", "sec": "The Percent Method", "enr": false, "k": "percentage abundance"}, {"t": "Polar Covalent Bond", "d": "unequal, or asymmetrical, sharing of electrons between two atoms.", "slug": "b-bondpol", "sec": "Polar Bonds", "enr": false, "k": "polar covalent bond"}, {"t": "Dipole", "d": "a bond or molecule with a partially positive end and a partially negative end.", "slug": "b-bondpol", "sec": "Polar Bonds and Dipoles", "enr": false, "k": "dipole"}, {"t": "Nonpolar Covalent Bond", "d": "equal sharing of electrons between two atoms.", "slug": "b-bondpol", "sec": "Nonpolar Bonds", "enr": false, "k": "nonpolar covalent bond"}, {"t": "Lewis Dot Diagram", "d": "the element’s symbol surrounded by dots that represent its valence electrons.", "slug": "b-bonds", "sec": "Lewis Dot Diagrams (Recall)", "enr": false, "k": "lewis dot diagram"}, {"t": "Lewis Structure", "d": "a diagram of a molecule that shows shared pairs of electrons as lines and unshared pairs (lone pairs) as dots.", "slug": "b-bonds", "sec": "Lewis Dot Diagrams (Recall)", "enr": false, "k": "lewis structure"}, {"t": "Chemical Bond", "d": "strong attraction that holds atoms or ions together.", "slug": "b-bonds", "sec": "Chemical Bonds", "enr": false, "k": "chemical bond"}, {"t": "ionic bond", "d": "", "slug": "b-bonds", "sec": "Chemical Bonds", "enr": false, "k": "ionic bond"}, {"t": "covalent bond", "d": "", "slug": "b-bonds", "sec": "Chemical Bonds", "enr": false, "k": "covalent bond"}, {"t": "Octet Rule", "d": "atoms form chemical bonds in order to achieve 8 valence electrons, or a complete octet.", "slug": "b-bonds", "sec": "The Octet Rule", "enr": false, "k": "octet rule"}, {"t": "exothermic", "d": "", "slug": "b-bonds", "sec": "Bonds and Energy", "enr": false, "k": "exothermic"}, {"t": "endothermic", "d": "", "slug": "b-bonds", "sec": "Bonds and Energy", "enr": false, "k": "endothermic"}, {"t": "Criteria", "d": "the requirements a design must meet to succeed, such as “must conduct electricity” or “must stay solid at 1500 °C.”", "slug": "b-compare", "sec": "Choosing a Material", "enr": false, "k": "criteria"}, {"t": "Constraints", "d": "limits on a design, such as cost, safety, weight or the temperature at which a material can be shaped.", "slug": "b-compare", "sec": "Choosing a Material", "enr": false, "k": "constraint"}, {"t": "Covalent Bond", "d": "sharing of electrons.", "slug": "b-covalent", "sec": "Covalent Compounds", "enr": false, "k": "covalent bond"}, {"t": "Covalent Compounds", "d": "compounds that possess covalent bonds.", "slug": "b-covalent", "sec": "Covalent Compounds", "enr": false, "k": "covalent compound"}, {"t": "Single Covalent Bond", "d": "a sharing of 2 electrons, 1 from each atom participating in the bond.", "slug": "b-covalent", "sec": "Single Bonds", "enr": false, "k": "single covalent bond"}, {"t": "Double Bond", "d": "sharing of 4 electrons between 2 atoms.", "slug": "b-covalent", "sec": "Double Bonds", "enr": false, "k": "double bond"}, {"t": "Triple Bond", "d": "sharing of 6 electrons between atoms.", "slug": "b-covalent", "sec": "Triple Bonds", "enr": false, "k": "triple bond"}, {"t": "Bond Length", "d": "the distance between the nuclei of two bonded atoms.", "slug": "b-covalent", "sec": "Bond Length", "enr": false, "k": "bond length"}, {"t": "Molecular Geometry", "d": "the 3-dimensional arrangement of atoms in a molecule.", "slug": "b-geometry", "sec": "Molecular Geometry", "enr": true, "k": "molecular geometry"}, {"t": "Valence Shell Electron Pair Repulsion (VSEPR) Theory", "d": "negatively charged electrons will repel one another. Therefore, bonds and lone pairs will arrange themselves in such a way as to maximize the 3-dimensional space around the atom.", "slug": "b-geometry", "sec": "VSEPR Theory", "enr": true, "k": "valence shell electron pair repulsion theory"}, {"t": "Intermolecular Force of Attraction (IMF, IFA)", "d": "weak, attractive forces that pull atoms, ions and molecules together.", "slug": "b-imf", "sec": "Intermolecular Forces of Attraction", "enr": false, "k": "intermolecular force"}, {"t": "Ion–Dipole Forces", "d": "attractive force between an ion and the oppositely charged end of a polar molecule.", "slug": "b-imf", "sec": "Ion–Dipole Forces", "enr": false, "k": "ion dipole force"}, {"t": "Hydrogen Bond", "d": "strong intermolecular force between molecules that contain hydrogen bonded to a very electronegative element (oxygen, nitrogen or fluorine).", "slug": "b-imf", "sec": "Hydrogen Bonding", "enr": false, "k": "hydrogen bond"}, {"t": "Dipole–Dipole Force", "d": "force of attraction between oppositely charged ends of polar molecules.", "slug": "b-imf", "sec": "Dipole–Dipole Forces", "enr": false, "k": "dipole dipole force"}, {"t": "London Dispersion Forces", "d": "attraction between molecules due to temporary shifts in electron density that cause momentary dipoles.", "slug": "b-imf", "sec": "London Dispersion Forces", "enr": false, "k": "london dispersion force"}, {"t": "Melting Point", "d": "the temperature at which a solid turns into a liquid. It is the same temperature at which the liquid freezes.", "slug": "b-imfprops", "sec": "Melting Point and Boiling Point", "enr": false, "k": "melting point"}, {"t": "Boiling Point", "d": "the temperature at which a liquid turns into a gas throughout the liquid. It is the same temperature at which the gas condenses.", "slug": "b-imfprops", "sec": "Melting Point and Boiling Point", "enr": false, "k": "boiling point"}, {"t": "Surface tension", "d": "the tendency of a liquid’s surface to hold together and resist being broken.", "slug": "b-imfprops", "sec": "Surface Tension", "enr": false, "k": "surface tension"}, {"t": "Viscosity", "d": "a liquid’s resistance to flowing.", "slug": "b-imfprops", "sec": "Viscosity", "enr": false, "k": "viscosity"}, {"t": "Solubility", "d": "how much of a substance (the solute) can dissolve in another substance (the solvent).", "slug": "b-imfprops", "sec": "Solubility: Like Dissolves Like", "enr": false, "k": "solubility"}, {"t": "Ionic Bond", "d": "strong attraction between two oppositely charged ions that form when one atom donates electrons to another.", "slug": "b-ionic", "sec": "Ionic Bonds", "enr": false, "k": "ionic bond"}, {"t": "Ionic Compound", "d": "compound that contains ionic bonds.", "slug": "b-ionic", "sec": "Ionic Bonds", "enr": false, "k": "ionic compound"}, {"t": "Crystal Lattice", "d": "large, 3-dimensional, repeating arrangement of ions.", "slug": "b-ionprops", "sec": "Crystal Lattice", "enr": false, "k": "crystal lattice"}, {"t": "Formula unit", "d": "the simplest ratio of ions in an ionic compound, as shown by its chemical formula. One formula unit of NaCl is 1 Na<sup>+</sup> ion and 1 Cl<sup>−</sup> ion.", "slug": "b-ionprops", "sec": "Crystal Lattice", "enr": false, "k": "formula unit"}, {"t": "Electrolytes", "d": "substances that conduct electricity through the movement of charged ions.", "slug": "b-ionprops", "sec": "Electrolytes", "enr": false, "k": "electrolyte"}, {"t": "Lone Pair", "d": "a pair of valence electrons that is not shared with another atom.", "slug": "b-lewis", "sec": "Drawing Lewis Structures (Covalent)", "enr": false, "k": "lone pair"}, {"t": "Resonance Structures", "d": "sets of Lewis diagrams that show varying positions of electrons and bonds within the same molecule.", "slug": "b-lewis", "sec": "Resonance Structures", "enr": true, "k": "resonance structure"}, {"t": "Formal Charge", "d": "the charge an atom would have if the electrons in each of its bonds were shared equally.", "slug": "b-lewis", "sec": "Formal Charge", "enr": true, "k": "formal charge"}, {"t": "Metallic Bond", "d": "attraction between positive metal ions and the sea of mobile electrons around them.", "slug": "b-metallic", "sec": "Metallic Bonding", "enr": false, "k": "metallic bond"}, {"t": "Alloys", "d": "mixtures of metals and other substances.", "slug": "b-metallic", "sec": "Alloys", "enr": false, "k": "alloy"}, {"t": "Polar Molecules", "d": "molecules with an uneven (asymmetrical) distribution of charge. They have a partially positive end and a partially negative end.", "slug": "b-molpol", "sec": "Polar Molecules", "enr": false, "k": "polar molecule"}, {"t": "Nonpolar Molecules", "d": "molecules with a symmetrical distribution of charge. They do not have a partially positive end and a partially negative end.", "slug": "b-molpol", "sec": "Polar Molecules", "enr": false, "k": "nonpolar molecule"}, {"t": "Molecular Covalent Substance", "d": "a substance made of small, individual units (molecules) of covalently bonded atoms.", "slug": "b-network", "sec": "Molecular Covalent Substances", "enr": false, "k": "molecular covalent substance"}, {"t": "Network Solid", "d": "large, 3-dimensional, covalently bonded system of atoms.", "slug": "b-network", "sec": "Network Solids", "enr": false, "k": "network solid"}, {"t": "Network Covalent Substances", "d": "large covalently bonded systems of atoms. All atoms are connected together via strong covalent bonds.", "slug": "b-network", "sec": "Molecular vs. Network Covalent Substances", "enr": false, "k": "network covalent substance"}, {"t": "Polyatomic Ions", "d": "covalently bonded molecules that possess a charge.", "slug": "b-poly", "sec": "Polyatomic Ions", "enr": false, "k": "polyatomic ion"}, {"t": "Oxyanion", "d": "a polyatomic ion that contains oxygen and has a negative charge.", "slug": "b-poly", "sec": "Naming Oxyanions", "enr": true, "k": "oxyanion"}, {"t": "Bond Order", "d": "the number of shared pairs of electrons between two atoms (single = 1, double = 2, triple = 3).", "slug": "b-strength", "sec": "Bond Strength and Bond Order", "enr": false, "k": "bond order"}, {"t": "Coulomb’s Law", "d": "the force between charged particles depends on their charges and the distance between them.", "slug": "coulomb", "sec": "Coulomb’s Law", "enr": false, "k": "coulomb s law"}, {"t": "Atomic Number", "d": "equal to the number of protons found in the nucleus of an atom", "slug": "counting", "sec": "Atomic Number", "enr": false, "k": "atomic number"}, {"t": "Mass Number", "d": "Total number of protons and neutrons in the nucleus of an atom.", "slug": "counting", "sec": "Mass Number", "enr": false, "k": "mass number"}, {"t": "(Average) Atomic Mass", "d": "the weighted average of all naturally occurring isotopes of an element measured in unified mass units (u).", "slug": "counting", "sec": "Atomic Mass", "enr": false, "k": "atomic mass"}, {"t": "Ground state", "d": "Lowest energy electron configuration of an atom.", "slug": "excited", "sec": "Ground State", "enr": false, "k": "ground state"}, {"t": "Excited State", "d": "A configuration in which electrons occupy higher energy levels than the ground state.", "slug": "excited", "sec": "Excited State", "enr": false, "k": "excited state"}, {"t": "Ionization", "d": "process by which an atom loses electrons and acquires a positive charge.", "slug": "excited", "sec": "Ionization", "enr": false, "k": "ionization"}, {"t": "Avogadro’s Law", "d": "the volume of a gas is directly proportional to the number of moles of gas particles in a sample when temperature and pressure are held constant.", "slug": "g-avogadro", "sec": "Avogadro’s Law", "enr": false, "k": "avogadro s law"}, {"t": "Boyle’s Law", "d": "the pressure exerted by a gas is inversely proportional to the volume of the gas when temperature is held constant.", "slug": "g-boyle", "sec": "Boyle’s Law", "enr": false, "k": "boyle s law"}, {"t": "Charles’s Law", "d": "the volume of a gas is directly proportional to the temperature of the gas when pressure is held constant.", "slug": "g-charles", "sec": "Charles’s Law", "enr": false, "k": "charles s law"}, {"t": "Absolute Zero", "d": "the lowest possible temperature, 0 K (−273 °C), where particles have the least possible kinetic energy (see Unit 7: Temperature & Temperature Scales).", "slug": "g-charles", "sec": "Charles’s Law", "enr": false, "k": "absolute zero"}, {"t": "Combined Gas Law", "d": "the ratio of the pressure-volume product to the temperature of a gas remains constant if the amount of gas in the system does not change.", "slug": "g-combined", "sec": "The Combined Gas Law", "enr": false, "k": "combined gas law"}, {"t": "Partial Pressure", "d": "the pressure applied by a single component gas within a mixture if it occupied the same container by itself at the same temperature.", "slug": "g-dalton", "sec": "Dalton’s Law of Partial Pressures", "enr": true, "k": "partial pressure"}, {"t": "Dalton’s Law of Partial Pressures", "d": "the total pressure of a mixture of gases is equal to the sum of the partial pressures of those component gases.", "slug": "g-dalton", "sec": "Dalton’s Law of Partial Pressures", "enr": true, "k": "dalton s law of partial pressure"}, {"t": "Gay-Lussac’s Law", "d": "the pressure exerted by a gas is directly proportional to the temperature of the gas when volume is held constant.", "slug": "g-gaylussac", "sec": "Gay-Lussac’s Law", "enr": false, "k": "gay lussac s law"}, {"t": "Diffusion", "d": "the process of particles moving from areas of high concentration to areas of low concentration.", "slug": "g-graham", "sec": "Effusion and Graham’s Law", "enr": true, "k": "diffusion"}, {"t": "Effusion", "d": "the process in which a gas escapes a container through a small hole.", "slug": "g-graham", "sec": "Effusion and Graham’s Law", "enr": true, "k": "effusion"}, {"t": "Graham’s Law of Effusion", "d": "the rate of diffusion or effusion of a gas is inversely proportional to the square root of its molar mass.", "slug": "g-graham", "sec": "Effusion and Graham’s Law", "enr": true, "k": "graham s law of effusion"}, {"t": "Ideal Gas Law", "d": "the equation relating the four state variables (pressure, volume, temperature and number of moles) for an ideal gas.", "slug": "g-ideal", "sec": "The Ideal Gas Law", "enr": true, "k": "ideal gas law"}, {"t": "Ideal Gas Constant (R)", "d": "the constant of proportionality relating pressure, volume, temperature and number of moles in an ideal gas.", "slug": "g-ideal", "sec": "The Ideal Gas Law", "enr": true, "k": "ideal gas constant"}, {"t": "Kinetic Molecular Theory (KMT)", "d": "a model describing all matter as composed of tiny particles that are always in motion.", "slug": "g-kmt", "sec": "Kinetic Molecular Theory", "enr": false, "k": "kinetic molecular theory"}, {"t": "Ideal Gas", "d": "a theoretical gas made up of a large number of randomly moving particles that are not subject to intermolecular forces.", "slug": "g-kmt", "sec": "Ideal Gases and Real Gases", "enr": false, "k": "ideal ga"}, {"t": "Real Gas", "d": "a non-ideal gas whose particles occupy space and exert intermolecular forces on one another.", "slug": "g-kmt", "sec": "Ideal Gases and Real Gases", "enr": false, "k": "real ga"}, {"t": "Maxwell–Boltzmann Distribution Curve", "d": "a graph showing the number of particles possessing different amounts of energy in a sample.", "slug": "g-maxwell", "sec": "Maxwell–Boltzmann Distribution Curve", "enr": true, "k": "maxwell boltzmann distribution curve"}, {"t": "Pressure (P)", "d": "the amount of force per unit area acting on a surface.", "slug": "g-pressure", "sec": "Pressure", "enr": false, "k": "pressure"}, {"t": "Barometer", "d": "an instrument used to measure air (atmospheric) pressure.", "slug": "g-pressure", "sec": "Barometers and Pressure Gauges", "enr": false, "k": "barometer"}, {"t": "Pressure Gauge", "d": "an instrument used to measure the pressure of a gas inside a container, such as a tire or a gas cylinder.", "slug": "g-pressure", "sec": "Barometers and Pressure Gauges", "enr": false, "k": "pressure gauge"}, {"t": "Atmosphere (atm)", "d": "the average pressure of the air at sea level.", "slug": "g-pressure", "sec": "Pressure Units and Conversions", "enr": false, "k": "atmosphere"}, {"t": "Kilopascal (kPa)", "d": "1000 pascals; the pascal is the SI unit of pressure.", "slug": "g-pressure", "sec": "Pressure Units and Conversions", "enr": false, "k": "kilopascal"}, {"t": "Millimeter of mercury (mmHg)", "d": "the pressure that holds up a column of mercury 1 mm tall. It is also called the torr.", "slug": "g-pressure", "sec": "Pressure Units and Conversions", "enr": false, "k": "millimeter of mercury"}, {"t": "Vapor", "d": "the gas phase of a substance that is usually a liquid or solid at room temperature.", "slug": "g-vapor", "sec": "Vapor Pressure", "enr": false, "k": "vapor"}, {"t": "Vapor Pressure", "d": "the pressure exerted by the vapor above a liquid that is in equilibrium with its condensed phase.", "slug": "g-vapor", "sec": "Vapor Pressure", "enr": false, "k": "vapor pressure"}, {"t": "vapor pressure curve", "d": "", "slug": "g-vapor", "sec": "Reading Vapor Pressure Curves", "enr": false, "k": "vapor pressure curve"}, {"t": "Boiling Point", "d": "the temperature at which the vapor pressure of a liquid equals the pressure on its surface (the atmospheric pressure).", "slug": "g-vapor", "sec": "Vapor Pressure and Boiling", "enr": false, "k": "boiling point"}, {"t": "Normal Boiling Point", "d": "the boiling point at standard pressure, 101.3 kPa (1 atm). Water’s normal boiling point is 100 °C.", "slug": "g-vapor", "sec": "Vapor Pressure and Boiling", "enr": false, "k": "normal boiling point"}, {"t": "State Variables", "d": "quantities that describe the condition and behavior of a system.", "slug": "g-variables", "sec": "The Four Gas Variables", "enr": false, "k": "state variable"}, {"t": "Pressure (P)", "d": "the amount of force per unit area acting on a surface.", "slug": "g-variables", "sec": "The Four Gas Variables", "enr": false, "k": "pressure"}, {"t": "Volume (V)", "d": "the amount of space an object takes up. A gas fills its container, so the volume of a gas is the volume of its container.", "slug": "g-variables", "sec": "The Four Gas Variables", "enr": false, "k": "volume"}, {"t": "Temperature (T)", "d": "a measurement of the average kinetic energy of the particles in a substance.", "slug": "g-variables", "sec": "The Four Gas Variables", "enr": false, "k": "temperature"}, {"t": "Amount of Particles (n)", "d": "the quantity of gas particles present.", "slug": "g-variables", "sec": "The Four Gas Variables", "enr": false, "k": "amount of particle"}, {"t": "STP (Standard Temperature and Pressure)", "d": "the standard conditions for comparing gases: 0 °C (273 K) and 1 atm (101.3 kPa).", "slug": "g-variables", "sec": "Standard Temperature and Pressure (STP)", "enr": false, "k": "stp"}, {"t": "Avogadro’s Law", "d": "equal volumes of gases at the same temperature and pressure contain the same number of particles (see Unit 6: Molar Volume).", "slug": "g-variables", "sec": "Standard Temperature and Pressure (STP)", "enr": false, "k": "avogadro s law"}, {"t": "Plum Pudding Model", "d": "the atom possessed regions of negative charge, now called electrons.", "slug": "history", "sec": "J.J. Thomson", "enr": false, "k": "plum pudding model"}, {"t": "Gold Foil Experiment", "d": "Rutherford took a radioactive isotope that emitted particles known as alpha particles.", "slug": "history", "sec": "Ernest Rutherford", "enr": false, "k": "gold foil experiment"}, {"t": "Alpha particles", "d": "radioactive emissions with a mass of 4 u and a charge of +2.", "slug": "history", "sec": "Ernest Rutherford", "enr": false, "k": "alpha particle"}, {"t": "Rutherford Model", "d": "the atom was mostly empty space.", "slug": "history", "sec": "Ernest Rutherford", "enr": false, "k": "rutherford model"}, {"t": "Energy levels", "d": "regions at fixed distances from the nucleus where electrons are found.", "slug": "history", "sec": "Niels Bohr", "enr": false, "k": "energy level"}, {"t": "Bohr Model", "d": "electrons are found in circular orbits around the nucleus called energy levels.", "slug": "history", "sec": "Niels Bohr", "enr": false, "k": "bohr model"}, {"t": "Modern Model of the Atom", "d": "electrons are both particles and waves.", "slug": "history", "sec": "Modern Model", "enr": false, "k": "modern model of the atom"}, {"t": "Orbitals", "d": "the most probable location of finding an electron.", "slug": "history", "sec": "Modern Model", "enr": false, "k": "orbital"}, {"t": "Ion", "d": "atom that has gained or lost electrons to acquire a charge.", "slug": "ions", "sec": "Ions", "enr": false, "k": "ion"}, {"t": "Cation", "d": "name for an ion that has lost electrons and acquired a positive charge", "slug": "ions", "sec": "Cations and Anions", "enr": false, "k": "cation"}, {"t": "Anion", "d": "name for an ion that has gained electrons and acquired a negative charge", "slug": "ions", "sec": "Cations and Anions", "enr": false, "k": "anion"}, {"t": "Isotopes", "d": "atoms of the same element with the same number of protons but different numbers of neutrons.", "slug": "isotopes", "sec": "Isotopes", "enr": false, "k": "isotope"}, {"t": "Accuracy", "d": "how close a measurement comes to the accepted (true) value.", "slug": "l-accuracy", "sec": "Accuracy and Precision", "enr": false, "k": "accuracy"}, {"t": "Precision", "d": "how close repeated measurements are to one another.", "slug": "l-accuracy", "sec": "Accuracy and Precision", "enr": false, "k": "precision"}, {"t": "Percent Error", "d": "how far a measured value differs from the accepted value, as a percent of the accepted value.", "slug": "l-accuracy", "sec": "Percent Error", "enr": false, "k": "percent error"}, {"t": "Equivalence", "d": "two equal quantities with different units.", "slug": "l-convert", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "equivalence"}, {"t": "Conversion Factor", "d": "fraction/ratio of one scientific unit to another where the numerator and denominator are equal quantities with different units.", "slug": "l-convert", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "conversion factor"}, {"t": "Dimensional Analysis", "d": "(also called the <i>factor-label method</i>) method of unit conversion which involves multiplying by fractions known as conversion factors.", "slug": "l-convert", "sec": "Dimensional Analysis", "enr": false, "k": "dimensional analysi"}, {"t": "Variable", "d": "a quantity that can change or be changed in an experiment.", "slug": "l-graphs", "sec": "Variables in an Experiment", "enr": false, "k": "variable"}, {"t": "Independent Variable", "d": "the variable that the experimenter changes on purpose.", "slug": "l-graphs", "sec": "Variables in an Experiment", "enr": false, "k": "independent variable"}, {"t": "Dependent Variable", "d": "the variable that is measured. Its value depends on the independent variable.", "slug": "l-graphs", "sec": "Variables in an Experiment", "enr": false, "k": "dependent variable"}, {"t": "Controlled Variable", "d": "a variable that is kept the same in every trial, so it cannot affect the results.", "slug": "l-graphs", "sec": "Variables in an Experiment", "enr": false, "k": "controlled variable"}, {"t": "Line of Best Fit", "d": "a straight line or smooth curve that follows the trend of the data, with about as many points above it as below. Do not connect the dots.", "slug": "l-graphs", "sec": "Making a Graph", "enr": false, "k": "line of best fit"}, {"t": "Interpolation", "d": "reading a value between the measured data points.", "slug": "l-graphs", "sec": "Reading Values from a Graph", "enr": false, "k": "interpolation"}, {"t": "Extrapolation", "d": "extending the line to predict a value beyond the measured data. It assumes the trend continues, so it is less reliable than interpolation.", "slug": "l-graphs", "sec": "Reading Values from a Graph", "enr": false, "k": "extrapolation"}, {"t": "Slope", "d": "the change in y divided by the change in x (rise over run).", "slug": "l-graphs", "sec": "Slope", "enr": false, "k": "slope"}, {"t": "y-intercept", "d": "the value of y where the line crosses the y-axis (when x = 0).", "slug": "l-graphs", "sec": "Slope", "enr": false, "k": "y intercept"}, {"t": "Direct Relationship", "d": "as one variable increases, the other increases.", "slug": "l-graphs", "sec": "Direct and Inverse Relationships", "enr": false, "k": "direct relationship"}, {"t": "Inverse Relationship", "d": "as one variable increases, the other decreases.", "slug": "l-graphs", "sec": "Direct and Inverse Relationships", "enr": false, "k": "inverse relationship"}, {"t": "Linearization", "d": "changing the data (for example, plotting 1 ÷ x instead of x) so that the graph becomes a straight line.", "slug": "l-graphs", "sec": "Linearizing Data", "enr": true, "k": "linearization"}, {"t": "volume", "d": "", "slug": "l-measure", "sec": "Graduated Cylinders", "enr": false, "k": "volume"}, {"t": "Temperature", "d": "", "slug": "l-measure", "sec": "Thermometers", "enr": false, "k": "temperature"}, {"t": "Mass", "d": "", "slug": "l-measure", "sec": "Electronic Balances", "enr": false, "k": "mass"}, {"t": "International System of Units (SI)", "d": "the set of units used by scientists around the world.", "slug": "l-quantities", "sec": "The SI System", "enr": false, "k": "international system of unit"}, {"t": "Mass", "d": "the amount of matter (“stuff”) in an object.", "slug": "l-quantities", "sec": "Mass", "enr": false, "k": "mass"}, {"t": "Volume", "d": "the amount of space an object takes up.", "slug": "l-quantities", "sec": "Volume", "enr": false, "k": "volume"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "l-quantities", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Energy", "d": "the ability to do work or cause change.", "slug": "l-quantities", "sec": "Energy", "enr": false, "k": "energy"}, {"t": "Mole (mol)", "d": "the SI unit for the amount of a substance.", "slug": "l-quantities", "sec": "Amount of Substance", "enr": false, "k": "mole"}, {"t": "Avogadro’s Number", "d": "the number of particles in one mole: 6.02 × 10<sup>23</sup>", "slug": "l-quantities", "sec": "Amount of Substance", "enr": false, "k": "avogadro s number"}, {"t": "Scientific Notation", "d": "a shorthand way of writing very large or very small numbers as a number multiplied by a power of 10.", "slug": "l-scinot", "sec": "Scientific Notation", "enr": false, "k": "scientific notation"}, {"t": "Significant Figures", "d": "(sig figs) the digits in a measurement that are known with certainty plus the one estimated digit.", "slug": "l-sigfigs", "sec": "Significant Figures", "enr": false, "k": "significant figure"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "l-temp", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Kinetic Energy", "d": "energy possessed by an object due to its motion.", "slug": "l-temp", "sec": "Temperature", "enr": false, "k": "kinetic energy"}, {"t": "Celsius scale (°C)", "d": "", "slug": "l-temp", "sec": "Celsius Scale", "enr": false, "k": "celsius scale"}, {"t": "Kelvin scale (K)", "d": "", "slug": "l-temp", "sec": "Kelvin Scale", "enr": false, "k": "kelvin scale"}, {"t": "absolute zero (0 K)", "d": "", "slug": "l-temp", "sec": "Kelvin Scale", "enr": false, "k": "absolute zero"}, {"t": "Lewis Dot Diagram", "d": "the element’s symbol surrounded by dots that represent its valence electrons.", "slug": "lewis", "sec": "Lewis Dot Diagrams", "enr": false, "k": "lewis dot diagram"}, {"t": "Wavelength", "d": "the length of a single wave cycle, measured from crest to crest or trough to trough.", "slug": "light", "sec": "Wavelength", "enr": false, "k": "wavelength"}, {"t": "Frequency", "d": "the number of wave cycles that are completed in 1 second.", "slug": "light", "sec": "Frequency", "enr": false, "k": "frequency"}, {"t": "Atom", "d": "the smallest fundamental building block of matter", "slug": "m-atoms", "sec": "Atoms", "enr": false, "k": "atom"}, {"t": "Matter", "d": "anything that has mass and takes up volume (space)", "slug": "m-atoms", "sec": "Atoms and Elements", "enr": false, "k": "matter"}, {"t": "Atom", "d": "the smallest fundamental building block of matter", "slug": "m-atoms", "sec": "Atoms and Elements", "enr": false, "k": "atom"}, {"t": "Element", "d": "type of atom that contains a unique number of protons", "slug": "m-atoms", "sec": "Atoms and Elements", "enr": false, "k": "element"}, {"t": "Periodic Table of Elements", "d": "chart which lays out all of the known chemical elements.", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "periodic table of element"}, {"t": "Group", "d": "a vertical column of the periodic table (numbered 1–18).", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "group"}, {"t": "Period", "d": "a horizontal row of the periodic table (numbered 1–7).", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "period"}, {"t": "Metals", "d": "most elements; on the left side.", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "metal"}, {"t": "Nonmetals", "d": "on the right side.", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "nonmetal"}, {"t": "Metalloids", "d": "elements that touch the staircase on the periodic table (except aluminum).", "slug": "m-atoms", "sec": "Periodic Table of Elements", "enr": false, "k": "metalloid"}, {"t": "Chemical Bond", "d": "strong attraction that holds atoms or ions together", "slug": "m-bonds", "sec": "Chemical Bond", "enr": false, "k": "chemical bond"}, {"t": "Molecule", "d": "two or more atoms that are chemically bonded (combined)", "slug": "m-bonds", "sec": "Molecules and Compounds", "enr": false, "k": "molecule"}, {"t": "Compound", "d": "two or more different elements chemically bonded (combined) in a fixed proportion", "slug": "m-bonds", "sec": "Molecules and Compounds", "enr": false, "k": "compound"}, {"t": "Diatomic Elements", "d": "elements found as molecules made of two identical atoms bonded together when they are uncombined (not part of a compound) at standard conditions.", "slug": "m-bonds", "sec": "Diatomic Elements", "enr": false, "k": "diatomic element"}, {"t": "Monatomic Elements", "d": "elements that are found as single atoms under standard conditions.", "slug": "m-bonds", "sec": "Diatomic Elements", "enr": false, "k": "monatomic element"}, {"t": "Chemical Formula", "d": "concise way to describe what elements and how many atoms of each are present in a compound", "slug": "m-bonds", "sec": "Decoding Compounds", "enr": false, "k": "chemical formula"}, {"t": "Subscripts", "d": "small numbers placed to the bottom right of an element symbol. They indicate the number of atoms of that element in a molecule or compound.", "slug": "m-bonds", "sec": "Decoding Compounds", "enr": false, "k": "subscript"}, {"t": "Allotropes", "d": "different physical and structural forms of the same element under standard conditions.", "slug": "m-bonds", "sec": "Allotropes", "enr": false, "k": "allotrope"}, {"t": "Physical Change", "d": "a change in which the identity of the substance does not change.", "slug": "m-changes", "sec": "Identifying Physical and Chemical Changes", "enr": false, "k": "physical change"}, {"t": "Chemical Change", "d": "a change in which new substances are made with new properties.", "slug": "m-changes", "sec": "Identifying Physical and Chemical Changes", "enr": false, "k": "chemical change"}, {"t": "Chemical Reaction", "d": "a process in which the bonds of substances are broken and the atoms rearrange to form new substances.", "slug": "m-changes", "sec": "Reactants and Products", "enr": false, "k": "chemical reaction"}, {"t": "Reactants", "d": "the starting substances in a chemical reaction, written on the left side of the arrow.", "slug": "m-changes", "sec": "Reactants and Products", "enr": false, "k": "reactant"}, {"t": "Products", "d": "the ending substances in a chemical reaction, written on the right side of the arrow.", "slug": "m-changes", "sec": "Reactants and Products", "enr": false, "k": "product"}, {"t": "Chemistry", "d": "the study of matter: its properties, composition and how it reacts.", "slug": "m-chemistry", "sec": "Chemistry", "enr": false, "k": "chemistry"}, {"t": "Matter", "d": "anything that has mass and takes up volume (space).", "slug": "m-chemistry", "sec": "What Is Matter?", "enr": false, "k": "matter"}, {"t": "Mass", "d": "the amount of matter (“stuff”) in an object.", "slug": "m-chemistry", "sec": "What Is Matter?", "enr": false, "k": "mass"}, {"t": "Volume", "d": "the amount of space an object takes up.", "slug": "m-chemistry", "sec": "What Is Matter?", "enr": false, "k": "volume"}, {"t": "Energy", "d": "the ability to do work or cause change.", "slug": "m-chemistry", "sec": "Energy", "enr": false, "k": "energy"}, {"t": "(Pure) Substance", "d": "a sample of matter that contains only 1 type of particle", "slug": "m-classify", "sec": "Substances and Mixtures", "enr": false, "k": "substance"}, {"t": "Mixture", "d": "a sample of matter that contains 2+ different types of particles that are physically combined.", "slug": "m-classify", "sec": "Substances and Mixtures", "enr": false, "k": "mixture"}, {"t": "Element", "d": "type of atom that contains a unique number of protons.", "slug": "m-classify", "sec": "Elements and Compounds", "enr": false, "k": "element"}, {"t": "Compound", "d": "two or more different elements chemically bonded (combined) in a fixed proportion.", "slug": "m-classify", "sec": "Elements and Compounds", "enr": false, "k": "compound"}, {"t": "Mixture", "d": "a sample of matter that contains 2+ different types of particles that are physically combined.", "slug": "m-classify", "sec": "Mixtures", "enr": false, "k": "mixture"}, {"t": "Homogeneous Mixtures", "d": "particles in the mixture are distributed evenly (uniform) throughout.", "slug": "m-classify", "sec": "Homogeneous and Heterogeneous Mixtures", "enr": false, "k": "homogeneous mixture"}, {"t": "Heterogeneous Mixtures", "d": "particles in the mixture are distributed unevenly throughout.", "slug": "m-classify", "sec": "Homogeneous and Heterogeneous Mixtures", "enr": false, "k": "heterogeneous mixture"}, {"t": "Solution", "d": "a type of homogeneous mixture.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solution"}, {"t": "Solute", "d": "the substance that dissolves.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solute"}, {"t": "Solvent", "d": "the substance that does the dissolving.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solvent"}, {"t": "Solubility", "d": "how much of a substance (the solute) can dissolve in another substance (the solvent).", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "solubility"}, {"t": "Aqueous Solution", "d": "a solution in which the solvent is water.", "slug": "m-classify", "sec": "Solutions", "enr": false, "k": "aqueous solution"}, {"t": "Mass", "d": "the amount of matter (“stuff”) in an object.", "slug": "m-density", "sec": "Mass", "enr": false, "k": "mass"}, {"t": "Volume", "d": "the amount of space an object takes up.", "slug": "m-density", "sec": "Volume", "enr": false, "k": "volume"}, {"t": "Density", "d": "the amount of mass per unit volume in a substance.", "slug": "m-density", "sec": "Density", "enr": false, "k": "density"}, {"t": "Phase of Matter", "d": "the form that matter can take.", "slug": "m-phases", "sec": "Phases of Matter", "enr": false, "k": "phase of matter"}, {"t": "Intermolecular Forces (of attraction)", "d": "attractive forces between particles in a sample of matter", "slug": "m-phases", "sec": "Phases of Matter and Intermolecular Forces", "enr": false, "k": "intermolecular force"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "m-phases", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Kinetic Energy", "d": "energy possessed by an object due to its motion.", "slug": "m-phases", "sec": "Temperature", "enr": false, "k": "kinetic energy"}, {"t": "Heat", "d": "energy transferred from a high temperature object to a low temperature object.", "slug": "m-phases", "sec": "Temperature", "enr": false, "k": "heat"}, {"t": "Pressure", "d": "the amount of force per unit area pushing down on a substance", "slug": "m-phases", "sec": "Phases of Matter and Pressure", "enr": false, "k": "pressure"}, {"t": "Melting Point", "d": "the temperature at which a solid turns into a liquid. It is the same temperature at which the liquid freezes.", "slug": "m-phases", "sec": "Phase Changes", "enr": false, "k": "melting point"}, {"t": "Boiling Point", "d": "the temperature at which a liquid turns into a gas throughout the liquid. It is the same temperature at which the gas condenses.", "slug": "m-phases", "sec": "Phase Changes", "enr": false, "k": "boiling point"}, {"t": "Endothermic", "d": "a change in which energy is absorbed by a substance (melting, vaporization, sublimation)", "slug": "m-phases", "sec": "Endothermic vs. Exothermic", "enr": false, "k": "endothermic"}, {"t": "Exothermic", "d": "a change in which energy is released by a substance (freezing, condensation, deposition)", "slug": "m-phases", "sec": "Endothermic vs. Exothermic", "enr": false, "k": "exothermic"}, {"t": "Physical Property", "d": "measurable characteristic of a substance that can be determined without changing the identity of that substance", "slug": "m-props", "sec": "Types of Properties", "enr": false, "k": "physical property"}, {"t": "Chemical Property", "d": "characteristic of a substance that describes the way it reacts.", "slug": "m-props", "sec": "Types of Properties", "enr": false, "k": "chemical property"}, {"t": "Intensive Properties", "d": "properties which do not change with the size of the sample.", "slug": "m-props", "sec": "Intensive vs. Extensive Properties", "enr": false, "k": "intensive property"}, {"t": "Extensive Properties", "d": "properties that change with the size of the sample.", "slug": "m-props", "sec": "Intensive vs. Extensive Properties", "enr": false, "k": "extensive property"}, {"t": "Filtration", "d": "laboratory technique used to separate substances based on differences in particle size using filter paper.", "slug": "m-separate", "sec": "Filtration", "enr": false, "k": "filtration"}, {"t": "Distillation", "d": "laboratory technique used to separate mixtures of liquids based on differences in their boiling points.", "slug": "m-separate", "sec": "Distillation", "enr": false, "k": "distillation"}, {"t": "Chromatography", "d": "laboratory technique used to separate substances based on two differences:", "slug": "m-separate", "sec": "Chromatography", "enr": false, "k": "chromatography"}, {"t": "Protons", "d": "massive, positively charged particles found in the nucleus", "slug": "overview", "sec": "Subatomic Particles", "enr": false, "k": "proton"}, {"t": "Neutrons", "d": "massive, neutral particles found in the nucleus", "slug": "overview", "sec": "Subatomic Particles", "enr": false, "k": "neutron"}, {"t": "Electrons", "d": "light, negative particles found outside the nucleus", "slug": "overview", "sec": "Subatomic Particles", "enr": false, "k": "electron"}, {"t": "Unified Mass Unit (u)", "d": "unit of mass used to measure very small particles. Equal to 112 of the mass of a C‑12 atom", "slug": "overview", "sec": "Subatomic Particles: Mass and Charge", "enr": false, "k": "unified mass unit"}, {"t": "Periodic Law", "d": "the physical and chemical properties of elements recur in regular patterns when they are arranged in order of increasing atomic number.", "slug": "p-building", "sec": "Periodic Law", "enr": false, "k": "periodic law"}, {"t": "Electronegativity", "d": "an atom’s ability to attract electrons (in a chemical bond).", "slug": "p-electroneg", "sec": "Electronegativity", "enr": false, "k": "electronegativity"}, {"t": "alkali metals", "d": "the elements in Group 1, except hydrogen.", "slug": "p-families", "sec": "Alkali Metals (Group 1)", "enr": false, "k": "alkali metal"}, {"t": "alkaline earth metals", "d": "the elements in Group 2.", "slug": "p-families", "sec": "Alkaline Earth Metals (Group 2)", "enr": false, "k": "alkaline earth metal"}, {"t": "halogens", "d": "the elements in Group 17.", "slug": "p-families", "sec": "Halogens (Group 17)", "enr": false, "k": "halogen"}, {"t": "noble gases", "d": "the elements in Group 18.", "slug": "p-families", "sec": "Noble Gases (Group 18)", "enr": false, "k": "noble gase"}, {"t": "transition metals", "d": "the elements in Groups 3–12.", "slug": "p-families", "sec": "Transition Metals (Groups 3–12)", "enr": false, "k": "transition metal"}, {"t": "Lanthanides", "d": "elements with atomic numbers 57–71", "slug": "p-families", "sec": "Lanthanides and Actinides", "enr": false, "k": "lanthanide"}, {"t": "Actinides", "d": "elements with atomic numbers 89–103", "slug": "p-families", "sec": "Lanthanides and Actinides", "enr": false, "k": "actinide"}, {"t": "nuclear charge", "d": "the total positive charge of the nucleus, equal to the number of protons (the atomic number).", "slug": "p-forces", "sec": "Nuclear Charge", "enr": false, "k": "nuclear charge"}, {"t": "Shielding Effect", "d": "inner (core) electrons repel valence electrons, reducing the attraction between an electron and the nucleus.", "slug": "p-forces", "sec": "Electron Shielding", "enr": false, "k": "shielding effect"}, {"t": "effective nuclear charge", "d": "the net pull of the nucleus felt by a valence electron: the protons minus the inner electrons that shield it.", "slug": "p-forces", "sec": "Putting It Together: The Net Pull", "enr": false, "k": "effective nuclear charge"}, {"t": "Ionic Radius", "d": "the radius of an atom’s ion after it has gained or lost electrons.", "slug": "p-ionic", "sec": "Ionic Radius", "enr": false, "k": "ionic radiu"}, {"t": "ionization", "d": "", "slug": "p-ionization", "sec": "Ionization Energy", "enr": false, "k": "ionization"}, {"t": "Ionization Energy", "d": "amount of energy required to remove an electron from an atom.", "slug": "p-ionization", "sec": "Ionization Energy", "enr": false, "k": "ionization energy"}, {"t": "Lustrous", "d": "shiny", "slug": "p-metals", "sec": "Properties of Metals", "enr": false, "k": "lustrou"}, {"t": "Malleable", "d": "able to be hammered into different shapes", "slug": "p-metals", "sec": "Properties of Metals", "enr": false, "k": "malleable"}, {"t": "Ductile", "d": "able to be drawn into wires", "slug": "p-metals", "sec": "Properties of Metals", "enr": false, "k": "ductile"}, {"t": "Metalloids", "d": "elements that touch the staircase on the periodic table (except aluminum).", "slug": "p-metals", "sec": "Metalloids", "enr": false, "k": "metalloid"}, {"t": "Semiconductors", "d": "materials whose conductivity can be good or poor depending on what they are combined with.", "slug": "p-metals", "sec": "Metalloids", "enr": false, "k": "semiconductor"}, {"t": "Period", "d": "a horizontal row of the periodic table (numbered 1–7).", "slug": "p-organize", "sec": "Periods", "enr": false, "k": "period"}, {"t": "Group", "d": "a vertical column of the periodic table (numbered 1–18).", "slug": "p-organize", "sec": "Groups", "enr": false, "k": "group"}, {"t": "Octet", "d": "8 electrons in an atom’s valence shell.", "slug": "p-organize", "sec": "Reactivity of Elements", "enr": false, "k": "octet"}, {"t": "Atomic Radius", "d": "the distance from the nucleus to the outermost energy level in an atom.", "slug": "p-radius", "sec": "Atomic Radius", "enr": false, "k": "atomic radiu"}, {"t": "Law of Conservation of Mass", "d": "mass (matter) cannot be created or destroyed.", "slug": "r-conservation", "sec": "Law of Conservation of Mass", "enr": false, "k": "law of conservation of mass"}, {"t": "Law of Conservation of Energy", "d": "energy cannot be created or destroyed, only converted into different forms.", "slug": "r-conservation", "sec": "Law of Conservation of Energy", "enr": false, "k": "law of conservation of energy"}, {"t": "Law of Conservation of Charge", "d": "charge cannot be created or destroyed.", "slug": "r-conservation", "sec": "Law of Conservation of Charge", "enr": false, "k": "law of conservation of charge"}, {"t": "Combustion Reaction", "d": "a chemical reaction in which a hydrocarbon (a molecule containing only hydrogen and carbon) reacts with oxygen (O<sub>2</sub>) to produce carbon dioxide (CO<sub>2</sub>) and water (H<sub>2</sub>O).", "slug": "r-predict-comb", "sec": "Combustion Reactions", "enr": false, "k": "combustion reaction"}, {"t": "Activity Series", "d": "table which lists elements in decreasing order of chemical activity.", "slug": "r-predict-rep", "sec": "Activity Series", "enr": false, "k": "activity sery"}, {"t": "Soluble", "d": "able to dissolve in water. A soluble ionic compound breaks apart into ions and is written with (aq).", "slug": "r-predict-rep", "sec": "Solubility of Ionic Compounds", "enr": false, "k": "soluble"}, {"t": "Insoluble", "d": "does not dissolve in water. An insoluble ionic compound stays a solid and is written with (s).", "slug": "r-predict-rep", "sec": "Solubility of Ionic Compounds", "enr": false, "k": "insoluble"}, {"t": "Precipitate", "d": "insoluble solid that forms and separates from a liquid during a chemical reaction.", "slug": "r-predict-rep", "sec": "Solubility of Ionic Compounds", "enr": false, "k": "precipitate"}, {"t": "Binary compound", "d": "a compound made of only two elements.", "slug": "r-predict-sd", "sec": "Predicting Decomposition Reactions", "enr": false, "k": "binary compound"}, {"t": "Oxide", "d": "a compound of an element with oxygen.", "slug": "r-predict-sd", "sec": "Oxides in Water and Acid Rain", "enr": false, "k": "oxide"}, {"t": "Chemical Equation", "d": "symbolic representation of a chemical reaction using formulas and numbers.", "slug": "r-reactions", "sec": "Chemical Equations", "enr": false, "k": "chemical equation"}, {"t": "Reactants", "d": "the starting substances in a chemical reaction, written on the left side of the arrow.", "slug": "r-reactions", "sec": "Chemical Equations", "enr": false, "k": "reactant"}, {"t": "Products", "d": "the ending substances in a chemical reaction, written on the right side of the arrow.", "slug": "r-reactions", "sec": "Chemical Equations", "enr": false, "k": "product"}, {"t": "Coefficients", "d": "large numbers placed in front of a chemical formula. Indicate the number of molecules or formula units (or moles) of a substance taking part in the reaction.", "slug": "r-reactions", "sec": "Coefficients and Subscripts", "enr": false, "k": "coefficient"}, {"t": "Subscripts", "d": "small numbers placed to the bottom right of an element symbol. They indicate the number of atoms of that element in a molecule or compound.", "slug": "r-reactions", "sec": "Coefficients and Subscripts", "enr": false, "k": "subscript"}, {"t": "formula unit", "d": "", "slug": "r-reactions", "sec": "Coefficients and Subscripts", "enr": false, "k": "formula unit"}, {"t": "System", "d": "specific part of the universe that is being focused on.", "slug": "r-systems", "sec": "Systems and Surroundings", "enr": false, "k": "system"}, {"t": "Surroundings", "d": "everything that is not part of the system.", "slug": "r-systems", "sec": "Systems and Surroundings", "enr": false, "k": "surrounding"}, {"t": "Universe", "d": "the system and its surroundings together.", "slug": "r-systems", "sec": "Systems and Surroundings", "enr": false, "k": "universe"}, {"t": "Open System", "d": "both matter and energy are allowed to pass freely between the system and its surroundings.", "slug": "r-systems", "sec": "Open vs. Closed Systems", "enr": false, "k": "open system"}, {"t": "Closed System", "d": "energy is allowed to move between the system and its surroundings, but matter is not.", "slug": "r-systems", "sec": "Open vs. Closed Systems", "enr": false, "k": "closed system"}, {"t": "Isolated System", "d": "neither matter nor energy is allowed to move between the system and its surroundings.", "slug": "r-systems", "sec": "Open vs. Closed Systems", "enr": false, "k": "isolated system"}, {"t": "Heat", "d": "energy transferred from a high temperature object to a low temperature object.", "slug": "r-systems", "sec": "Heat", "enr": false, "k": "heat"}, {"t": "Endothermic Reaction", "d": "reaction which absorbs energy from its surroundings.", "slug": "r-systems", "sec": "Thermal Energy Transfer", "enr": false, "k": "endothermic reaction"}, {"t": "Exothermic Reaction", "d": "reaction which releases energy to its surroundings.", "slug": "r-systems", "sec": "Thermal Energy Transfer", "enr": false, "k": "exothermic reaction"}, {"t": "Synthesis Reaction", "d": "chemical reaction in which two or more simple reactants combine into a more complex product.", "slug": "r-types", "sec": "Synthesis Reactions", "enr": false, "k": "synthesis reaction"}, {"t": "Decomposition Reaction", "d": "a chemical reaction in which a single reactant is broken down (decomposed) into two or more simple products.", "slug": "r-types", "sec": "Decomposition Reactions", "enr": false, "k": "decomposition reaction"}, {"t": "Single Replacement Reaction", "d": "a chemical reaction in which one element exchanges places with another element in a compound.", "slug": "r-types", "sec": "Single Replacement Reactions", "enr": false, "k": "single replacement reaction"}, {"t": "Double Replacement Reaction", "d": "a chemical reaction in which an ion in one compound is exchanged with an ion in another compound.", "slug": "r-types", "sec": "Double Replacement Reactions", "enr": false, "k": "double replacement reaction"}, {"t": "Combustion Reaction", "d": "a chemical reaction in which a hydrocarbon (a molecule containing only hydrogen and carbon) reacts with oxygen (O<sub>2</sub>) to produce carbon dioxide (CO<sub>2</sub>) and water (H<sub>2</sub>O).", "slug": "r-types", "sec": "Combustion Reactions", "enr": false, "k": "combustion reaction"}, {"t": "Molecular Formula", "d": "indicates how many atoms of each element are present in a compound.", "slug": "s-empirical", "sec": "Empirical and Molecular Formulas", "enr": false, "k": "molecular formula"}, {"t": "Empirical Formula", "d": "indicates the simplest (lowest whole-number) ratio of elements in a compound.", "slug": "s-empirical", "sec": "Empirical and Molecular Formulas", "enr": false, "k": "empirical formula"}, {"t": "Limiting Reagent", "d": "reactant that is completely used up and therefore restricts how much product is formed.", "slug": "s-limiting", "sec": "Limiting and Excess Reagents", "enr": true, "k": "limiting reagent"}, {"t": "Excess Reagent", "d": "reactant that is left over after the reaction is finished.", "slug": "s-limiting", "sec": "Limiting and Excess Reagents", "enr": true, "k": "excess reagent"}, {"t": "Molar Mass", "d": "mass of one mole of a substance.", "slug": "s-molarmass", "sec": "Molar Mass", "enr": false, "k": "molar mass"}, {"t": "Equivalence", "d": "two equal quantities with different units.", "slug": "s-moles", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "equivalence"}, {"t": "Conversion Factor", "d": "fraction/ratio of one scientific unit to another where the numerator and denominator are equal quantities with different units.", "slug": "s-moles", "sec": "Equivalences and Conversion Factors", "enr": false, "k": "conversion factor"}, {"t": "Dimensional Analysis", "d": "(also called the <i>factor-label method</i>) method of unit conversion which involves multiplying by fractions known as conversion factors.", "slug": "s-moles", "sec": "Dimensional Analysis", "enr": false, "k": "dimensional analysi"}, {"t": "mole", "d": "", "slug": "s-moles", "sec": "Moles", "enr": false, "k": "mole"}, {"t": "Avogadro’s Number", "d": "the number of particles in one mole: 6.02 × 10<sup>23</sup>", "slug": "s-moles", "sec": "Moles", "enr": false, "k": "avogadro s number"}, {"t": "Avogadro’s Law", "d": "equal volumes of gas (at the same pressure and temperature) must contain the same number of moles/molecules.", "slug": "s-molvolume", "sec": "Avogadro’s Law", "enr": false, "k": "avogadro s law"}, {"t": "Molar Volume of an Ideal Gas (at STP)", "d": "22.4 liters", "slug": "s-molvolume", "sec": "Molar Volume", "enr": false, "k": "molar volume of an ideal ga"}, {"t": "Percent Composition", "d": "the percent by mass of each element in a compound.", "slug": "s-percent", "sec": "Percent Composition", "enr": false, "k": "percent composition"}, {"t": "Hydrated Compound (Hydrate)", "d": "compound (usually ionic) that contains water.", "slug": "s-percent", "sec": "Hydrated Compounds", "enr": false, "k": "hydrated compound"}, {"t": "Anhydrous Compound", "d": "compound that does not contain water.", "slug": "s-percent", "sec": "Hydrated Compounds", "enr": false, "k": "anhydrous compound"}, {"t": "Mole Ratio", "d": "ratio between the moles of any two substances in a balanced chemical equation.", "slug": "s-ratios", "sec": "Mole Ratios", "enr": false, "k": "mole ratio"}, {"t": "Theoretical Yield", "d": "maximum amount of product that can be created in a reaction.", "slug": "s-yield", "sec": "Theoretical and Actual Yield", "enr": true, "k": "theoretical yield"}, {"t": "Actual Yield", "d": "the amount of product that is truly produced in a reaction.", "slug": "s-yield", "sec": "Theoretical and Actual Yield", "enr": true, "k": "actual yield"}, {"t": "Percent Yield", "d": "the actual yield as a percent of the theoretical yield.", "slug": "s-yield", "sec": "Percent Yield", "enr": true, "k": "percent yield"}, {"t": "Emission Spectrum", "d": "pattern of light emitted by atoms when electrons transition from excited states to ground states.", "slug": "spectra", "sec": "Emission Spectra", "enr": false, "k": "emission spectrum"}, {"t": "Specific Heat Capacity (c)", "d": "the amount of heat needed to raise the temperature of 1 g of a substance by 1 °C (or 1 K).", "slug": "t-calc", "sec": "Specific Heat Capacity", "enr": false, "k": "specific heat capacity"}, {"t": "Heat of Fusion (H<sub>f</sub>)", "d": "the amount of heat needed to melt (or released when freezing) 1 gram of a substance at its melting point.", "slug": "t-calc", "sec": "Heat During Phase Changes", "enr": false, "k": "heat of fusion"}, {"t": "Heat of Vaporization (H<sub>v</sub>)", "d": "the amount of heat needed to vaporize (or released when condensing) 1 gram of a substance at its boiling point.", "slug": "t-calc", "sec": "Heat During Phase Changes", "enr": false, "k": "heat of vaporization"}, {"t": "Calorimetry", "d": "process of measuring the heat absorbed or released during a chemical reaction or physical change.", "slug": "t-calorimetry", "sec": "Calorimetry", "enr": false, "k": "calorimetry"}, {"t": "Calorimeter", "d": "an insulated device used to measure the heat absorbed or released during a chemical reaction or physical change.", "slug": "t-calorimetry", "sec": "Calorimetry", "enr": false, "k": "calorimeter"}, {"t": "Heating Curve", "d": "a graph of the temperature of a substance as heat is added to it.", "slug": "t-curves", "sec": "Heating Curve", "enr": false, "k": "heating curve"}, {"t": "Cooling Curve", "d": "a graph of the temperature of a substance as heat is removed from it.", "slug": "t-curves", "sec": "Cooling Curve", "enr": false, "k": "cooling curve"}, {"t": "Triple Point", "d": "the temperature and pressure at which a substance exists in all three phases at the same time.", "slug": "t-diagrams", "sec": "Phase Diagrams", "enr": false, "k": "triple point"}, {"t": "Critical Point", "d": "the temperature and pressure above which the liquid and gas phases become indistinguishable.", "slug": "t-diagrams", "sec": "Phase Diagrams", "enr": false, "k": "critical point"}, {"t": "Supercritical Fluid", "d": "a substance above its critical temperature and critical pressure. It is dense like a liquid but fills its container like a gas.", "slug": "t-diagrams", "sec": "Phase Diagrams", "enr": false, "k": "supercritical fluid"}, {"t": "Energy", "d": "the ability to do work or cause change.", "slug": "t-energy", "sec": "Energy", "enr": false, "k": "energy"}, {"t": "Law of Conservation of Energy", "d": "energy cannot be created or destroyed, only converted into different forms.", "slug": "t-energy", "sec": "Energy", "enr": false, "k": "law of conservation of energy"}, {"t": "Joule (J)", "d": "the SI unit of energy.", "slug": "t-energy", "sec": "Units of Energy: Joules and Calories", "enr": false, "k": "joule"}, {"t": "Calorie (cal)", "d": "the amount of energy needed to raise the temperature of 1 g of water by 1 °C.", "slug": "t-energy", "sec": "Units of Energy: Joules and Calories", "enr": false, "k": "calorie"}, {"t": "Potential Energy", "d": "stored energy of an object due to its position in a system.", "slug": "t-energy", "sec": "Potential Energy", "enr": false, "k": "potential energy"}, {"t": "Kinetic Energy", "d": "energy possessed by an object due to its motion.", "slug": "t-energy", "sec": "Kinetic Energy", "enr": false, "k": "kinetic energy"}, {"t": "Bond Energy", "d": "the energy required to break 1 mole of a specific type of bond in the gas phase.", "slug": "t-enthalpy", "sec": "Bond Energies", "enr": false, "k": "bond energy"}, {"t": "Enthalpy (Heat) of Reaction (ΔH)", "d": "the difference in energy between the products and the reactants in a chemical reaction at constant pressure. It is the energy absorbed or released during the reaction.", "slug": "t-enthalpy", "sec": "Enthalpy", "enr": false, "k": "enthalpy of reaction"}, {"t": "Endothermic Reaction", "d": "reaction which absorbs energy from its surroundings.", "slug": "t-enthalpy", "sec": "Enthalpy", "enr": false, "k": "endothermic reaction"}, {"t": "Exothermic Reaction", "d": "reaction which releases energy to its surroundings.", "slug": "t-enthalpy", "sec": "Enthalpy", "enr": false, "k": "exothermic reaction"}, {"t": "Heat", "d": "energy transferred from a high temperature object to a low temperature object.", "slug": "t-heat", "sec": "Heat", "enr": false, "k": "heat"}, {"t": "System", "d": "specific part of the universe that is being focused on.", "slug": "t-heat", "sec": "Systems and Surroundings", "enr": false, "k": "system"}, {"t": "Surroundings", "d": "everything that is not part of the system.", "slug": "t-heat", "sec": "Systems and Surroundings", "enr": false, "k": "surrounding"}, {"t": "Conduction", "d": "heat transfer between objects in contact. Fast-moving particles in the hot object collide with particles in the cold object and transfer energy.", "slug": "t-heat", "sec": "Heat Transfer", "enr": false, "k": "conduction"}, {"t": "Convection", "d": "heat transfer by currents of a fluid (a liquid or gas). Warm fluid rises, cools, sinks and repeats the cycle.", "slug": "t-heat", "sec": "Heat Transfer", "enr": false, "k": "convection"}, {"t": "Radiation", "d": "heat transfer by light waves (such as infrared light) from a hot object to a cold object. It does not need particles, so it can cross empty space.", "slug": "t-heat", "sec": "Heat Transfer", "enr": false, "k": "radiation"}, {"t": "Thermal Equilibrium", "d": "state in which there is no net flow of heat between objects because they are at the same temperature.", "slug": "t-heat", "sec": "Thermal Equilibrium", "enr": false, "k": "thermal equilibrium"}, {"t": "Thermal Conductivity (k)", "d": "a measure of a material’s ability to transfer heat.", "slug": "t-heat", "sec": "Thermal Conductivity", "enr": false, "k": "thermal conductivity"}, {"t": "Hess’s Law", "d": "a chemical reaction can be expressed as the sum of other reactions, in which case the enthalpy of the overall reaction is the sum of the enthalpies of the component reactions.", "slug": "t-hess", "sec": "Hess’s Law", "enr": false, "k": "hess s law"}, {"t": "Phase of Matter", "d": "the form that matter can take.", "slug": "t-phases", "sec": "Phases of Matter", "enr": false, "k": "phase of matter"}, {"t": "Endothermic", "d": "a change in which energy is absorbed by a substance (melting, vaporization, sublimation)", "slug": "t-phases", "sec": "Phase Changes", "enr": false, "k": "endothermic"}, {"t": "Exothermic", "d": "a change in which energy is released by a substance (freezing, condensation, deposition)", "slug": "t-phases", "sec": "Phase Changes", "enr": false, "k": "exothermic"}, {"t": "Melting (Fusion)", "d": "the physical process of turning a solid into a liquid.", "slug": "t-phases", "sec": "Melting and Freezing", "enr": false, "k": "melting"}, {"t": "Freezing", "d": "the physical process of turning a liquid into a solid.", "slug": "t-phases", "sec": "Melting and Freezing", "enr": false, "k": "freezing"}, {"t": "Melting Point", "d": "the temperature at which a solid turns into a liquid. It is the same temperature at which the liquid freezes.", "slug": "t-phases", "sec": "Melting and Freezing", "enr": false, "k": "melting point"}, {"t": "Vaporization", "d": "the physical process of turning a liquid into a gas.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "vaporization"}, {"t": "Evaporation", "d": "vaporization that happens only at the surface of a liquid, below the boiling point.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "evaporation"}, {"t": "Condensation", "d": "the physical process of turning a gas into a liquid.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "condensation"}, {"t": "Boiling Point", "d": "the temperature at which a liquid turns into a gas throughout the liquid. It is the same temperature at which the gas condenses.", "slug": "t-phases", "sec": "Vaporization and Condensation", "enr": false, "k": "boiling point"}, {"t": "Sublimation", "d": "the physical process of turning a solid directly into a gas.", "slug": "t-phases", "sec": "Sublimation and Deposition", "enr": false, "k": "sublimation"}, {"t": "Deposition", "d": "the physical process of turning a gas directly into a solid.", "slug": "t-phases", "sec": "Sublimation and Deposition", "enr": false, "k": "deposition"}, {"t": "Phase Equilibrium", "d": "condition in which two phases of matter exist at the same time with no net change in the amount of either one.", "slug": "t-phases", "sec": "Phase Equilibrium", "enr": false, "k": "phase equilibrium"}, {"t": "Intermolecular Forces (of attraction)", "d": "attractive forces between particles in a sample of matter", "slug": "t-phases", "sec": "Phases of Matter and Intermolecular Forces", "enr": false, "k": "intermolecular force"}, {"t": "Pressure", "d": "the amount of force per unit area pushing down on a substance", "slug": "t-phases", "sec": "Phases of Matter and Pressure", "enr": false, "k": "pressure"}, {"t": "Temperature", "d": "a measurement of the average kinetic energy of the particles in a sample.", "slug": "t-temp", "sec": "Temperature", "enr": false, "k": "temperature"}, {"t": "Celsius Scale", "d": "temperature scale based on the freezing point and boiling point of water.", "slug": "t-temp", "sec": "Temperature Scales", "enr": false, "k": "celsius scale"}, {"t": "Kelvin Scale", "d": "temperature scale that starts at absolute zero (0 K), the lowest possible temperature.", "slug": "t-temp", "sec": "Temperature Scales", "enr": false, "k": "kelvin scale"}, {"t": "Absolute Zero", "d": "the lowest possible temperature (0 K, or −273.15 °C). At absolute zero, particles have the least possible kinetic energy.", "slug": "t-temp", "sec": "Temperature Scales", "enr": false, "k": "absolute zero"}, {"t": "Standard Temperature", "d": "baseline temperature that scientists use for consistency in describing chemical properties and reactions. For gases, standard temperature is 0 °C (273.15 K).", "slug": "t-temp", "sec": "Some Important Temperatures", "enr": false, "k": "standard temperature"}, {"t": "Valence Electrons", "d": "electrons found in the outermost energy level of an atom.", "slug": "valence", "sec": "Outermost (Valence) Electrons", "enr": false, "k": "valence electron"}, {"t": "Valence Shell", "d": "the outermost electron shell of an atom.", "slug": "valence", "sec": "Outermost (Valence) Electrons", "enr": false, "k": "valence shell"}];
+const LISTS=["UNIT0","UNIT1","SITE","UNIT3","UNIT4","UNIT5","UNIT6","UNIT7","UNIT8"];
+const UNITNO={UNIT0:0,UNIT1:1,SITE:2,UNIT3:3,UNIT4:4,UNIT5:5,UNIT6:6,UNIT7:7,UNIT8:8};
 /* course order of every page, with its title and unit */
 function pages(){ const out=[]; LISTS.forEach(k=>(A[k]||[]).forEach(p=>out.push({slug:p.slug,title:p.title||p.short,unit:UNITNO[k],enr:!!p.enr}))); return out; }
 /* sort and file terms by their first letter, ignoring a leading quote mark or parenthesis */
@@ -9303,7 +9360,11 @@ function build(){ if(G) return G; let raw=A.GLOSSARY_RAW; if(typeof raw==="strin
   const by={}; (raw||[]).forEach(e=>{ if(!(e.slug in order)) return; (by[e.k]=by[e.k]||[]).push(e); });
   G=Object.entries(by).map(([k,v])=>{ v.sort((a,b)=>order[a.slug]-order[b.slug]); const first=v.find(x=>x.d); if(!first) return null;
       const seen=new Set(), where=[]; v.forEach(x=>{ const key=x.slug+"|"+x.sec; if(seen.has(key)) return; seen.add(key); where.push({slug:x.slug,sec:x.sec,page:info[x.slug],def:!!x.d}); });
-      return {k,t:first.t.replace(/^(.)/,c=>c.toUpperCase()),d:first.d,enr:v.every(x=>x.enr||(info[x.slug]&&info[x.slug].enr)),where}; })
+      /* a definition that is refined later in the course: each new version is listed under the same term, in course order */
+      const words=d=>new Set(d.toLowerCase().replace(/\(see [^)]*\)/g,"").replace(/<[^>]+>/g,"").match(/[a-z0-9]+/g)||[]);
+      const sim=(a,b)=>{ let n=0; a.forEach(w=>{ if(b.has(w)) n++; }); return n/(a.size+b.size-n||1); };
+      const defs=[]; v.forEach(x=>{ if(!x.d) return; const w=words(x.d); if(defs.some(y=>sim(w,y.w)>=.6)) return; defs.push({d:x.d,w,slug:x.slug,page:info[x.slug]}); });
+      return {k,t:first.t.replace(/^(.)/,c=>c.toUpperCase()),d:first.d,more:defs.slice(1),enr:v.every(x=>x.enr||(info[x.slug]&&info[x.slug].enr)),where}; })
     .filter(Boolean).sort((a,b)=>skey(a.t).localeCompare(skey(b.t),undefined,{sensitivity:"base"}));
   return G; }
 A.glossary=()=>build();
@@ -9312,11 +9373,11 @@ const secId=t=>"sec-"+t.toLowerCase().replace(/<[^>]+>/g,"").replace(/[^a-z0-9]+
 const BOOK=`<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2.5h4.5a2 2 0 0 1 2 2V14a1.6 1.6 0 0 0-1.6-1.6H2z M14 2.5H9.5a2 2 0 0 0-2 2V14a1.6 1.6 0 0 1 1.6-1.6H14z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`;
 let panel=null, here="";
 function render(q=""){ const list=build(), qq=q.trim().toLowerCase(), body=panel.querySelector(".gls-list");
-  const hit=list.filter(e=>!qq||e.t.toLowerCase().includes(qq)||e.d.toLowerCase().replace(/<[^>]+>/g,"").includes(qq));
+  const hit=list.filter(e=>!qq||e.t.toLowerCase().includes(qq)||[e.d,...e.more.map(m=>m.d)].join(" ").toLowerCase().replace(/<[^>]+>/g,"").includes(qq));
   let L=""; body.innerHTML=hit.length?hit.map(e=>{ const l=letter(e.t), head=l!==L?`<div class="gls-l" id="gls-L-${l==="#"?"0":l}">${(L=l)}</div>`:"";
       const links=e.where.map(w=>{ const t=w.page?`${w.page.unit!=null?`Unit ${w.page.unit}: `:""}${esc(w.page.title)}`:w.slug; const same=w.slug===here;
         return `<a class="gls-a${same?" here":""}" href="${w.slug}.html${w.sec?"#"+secId(w.sec):""}" data-slug="${w.slug}" data-sec="${esc(w.sec)}">${t}${w.sec&&w.sec!==(w.page&&w.page.title)?` <span>· ${w.sec}</span>`:""}${same?` <em>this page</em>`:""}</a>`; }).join("");
-      return `${head}<div class="gls-e${e.enr?" enr":""}" id="${id(e.k)}"><div class="gls-t">${e.t}${e.enr?`<span class="gls-tag">Enrichment</span>`:""}</div><div class="gls-d">${e.d}</div><details class="gls-w"><summary>Where to find it (${e.where.length})</summary>${links}</details></div>`; }).join("")
+      return `${head}<div class="gls-e${e.enr?" enr":""}" id="${id(e.k)}"><div class="gls-t">${e.t}${e.enr?`<span class="gls-tag">Enrichment</span>`:""}</div><div class="gls-d">${e.more.length?`<span class="gls-n1">1</span>`:""}${e.d}</div>${e.more.map((m,i)=>`<div class="gls-d gls-d2"><span class="gls-n1">${i+2}</span>${m.d} <span class="gls-src">(added in ${m.page&&m.page.unit!=null?`Unit ${m.page.unit}: `:""}${esc(m.page?m.page.title:m.slug)})</span></div>`).join("")}<details class="gls-w"><summary>Where to find it (${e.where.length})</summary>${links}</details></div>`; }).join("")
     : `<p class="muted" style="padding:12px">No terms match “${esc(q)}”.</p>`;
   /* the letter rail: letters with no terms are dimmed */
   const have=new Set(hit.map(e=>letter(e.t))); A.$$(".gls-az button",panel).forEach(b=>{ const on=have.has(b.dataset.l); b.disabled=!on; });
@@ -9374,7 +9435,7 @@ T.rng=s=>{ let t=s>>>0||7; return ()=>{ t+=0x6D2B79F5; let r=Math.imul(t^t>>>15,
    n particles; the first nS are solid (bottom of the lattice first), the last nG are gas, the rest liquid.
    K (kelvin-like number) sets the vibration of the solid and the speed of the liquid and gas. */
 T.Engine=function(o){ const W=o.W, H=o.H, r=o.r||10, n=o.n||30, cols=o.cols||6, rnd=T.rng(o.seed||5), d=2*r+1;
-  const sites=[]; for(let k=0;k<n;k++){ const row=Math.floor(k/cols), c=k%cols; sites.push({x:W/2-(cols-1)*d/2+c*d+(row%2?d/2:0)-(row%2?d/4:0), y:H-6-r-row*d*.88}); }
+  const sites=[]; for(let k=0;k<n;k++){ const row=Math.floor(k/cols), c=k%cols; sites.push({x:W/2-(cols-1)*d/2+c*d+(row%2?d/2:0)-d/4, y:H-6-r-row*d*.87}); }
   const P=sites.map((s,i)=>({x:s.x,y:s.y,vx:0,vy:0,k:"s",i}));
   const st={P,sites,W,H,r,n,nS:n,nG:0,K:200,ceil:o.ceil||0,colors:o.colors||PH};
   st.set=(nS,nG,K)=>{ st.nS=Math.max(0,Math.min(n,Math.round(nS))); st.nG=Math.max(0,Math.min(n-st.nS,Math.round(nG))); if(K!=null) st.K=K; };
@@ -9408,7 +9469,10 @@ T.KESim=function(host){ const W=520,H=280;
   T.loop(cv,dt=>{ const sp=(.3+(+sl.value)/100*6)*dt*60; c.fillStyle="#fff"; c.fillRect(0,0,W,H); c.lineWidth=3; c.strokeStyle=INK; c.strokeRect(2,2,W-4,H-4);
     P.forEach(p=>{ p.x+=p.dx*sp; p.y+=p.dy*sp; if(p.x<14||p.x>W-14) p.dx*=-1; if(p.y<14||p.y>H-14) p.dy*=-1; p.x=Math.max(14,Math.min(W-14,p.x)); p.y=Math.max(14,Math.min(H-14,p.y));
       if(+sl.value>15){ c.strokeStyle="#1b2328"; c.lineWidth=2; const L=Math.min(28,sp*5); for(let k=0;k<2;k++){ c.beginPath(); c.moveTo(p.x-p.dx*(14+k*5)-p.dy*(k?-5:5),p.y-p.dy*(14+k*5)+p.dx*(k?-5:5)); c.lineTo(p.x-p.dx*(14+L)-p.dy*(k?-5:5),p.y-p.dy*(14+L)+p.dx*(k?-5:5)); c.stroke(); } }
-      c.beginPath(); c.arc(p.x,p.y,11,0,7); c.fillStyle=COLD; c.fill(); c.lineWidth=1.5; c.strokeStyle=INK; c.stroke(); }); }); };
+      c.beginPath(); c.arc(p.x,p.y,11,0,7); c.fillStyle=COLD; c.fill(); c.lineWidth=1.5; c.strokeStyle=INK; c.stroke(); });
+    /* particles bounce off one another instead of passing through (equal masses: swap the velocity along the line between centers) */
+    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const p=P[i], q=P[j], dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy); if(d>0&&d<23){ const nx=dx/d, ny=dy/d, a=p.dx*nx+p.dy*ny, b=q.dx*nx+q.dy*ny; if(a-b>0){ p.dx+=(b-a)*nx; p.dy+=(b-a)*ny; q.dx+=(a-b)*nx; q.dy+=(a-b)*ny; } const o=(23-d)/2; p.x-=nx*o; p.y-=ny*o; q.x+=nx*o; q.y+=ny*o; } }
+    P.forEach(p=>{ const m=Math.hypot(p.dx,p.dy)||1; p.dx/=m; p.dy/=m; }); }); };
 
 /* ---------- Potential energy: two particles joined by a spring (H and O, as on the slides) ---------- */
 T.SpringSim=function(host){ const W=640,H=230;
@@ -9550,7 +9614,7 @@ T.CHANGES={
   sub:{name:"Sublimation",from:"s",to:"g",endo:true,eq:"CO<sub>2</sub>(s) + heat → CO<sub>2</sub>(g)"},
   dep:{name:"Deposition",from:"g",to:"s",endo:false,eq:"H<sub>2</sub>O(g) → H<sub>2</sub>O(s) + heat"}};
 T.PhaseExplorer=function(host){ const W=560,H=420, CW=360, CH=260, N=24;
-  host.innerHTML=`<div class="lab-b"><p class="how">Click an arrow to watch that phase change happen.</p><div class="t7-row wrap"><div class="t7-svg" data-r="d"></div><div class="col" style="gap:8px;align-items:center"><div class="t7-cv-wrap"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  host.innerHTML=`<div class="lab-b"><p class="how">Click an arrow to watch that phase change happen.</p><div class="t7-row t7-wr"><div class="t7-svg" data-r="d"></div><div class="col" style="gap:8px;align-items:center"><div class="t7-cv-wrap"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
   const cv=T.canvas(CW,CH,"Particles during the phase change"), c=cv.getContext("2d"); host.querySelector(".t7-cv-wrap").appendChild(cv);
   const E=T.Engine({W:CW,H:CH,n:N,cols:6,r:11}); let cur=null, t0=0, from="s", to="s";
   const cnt=ph=>ph==="s"?[N,0]:ph==="l"?[0,0]:[0,N];
@@ -9607,7 +9671,7 @@ T.PhaseDiagram=function(host){ const W=600,H=420, x0=70,y0=360,w=500,h=330;
   host.innerHTML=`<div class="lab-b"><p class="how">Drag the dot (or use the sliders) to change the temperature and pressure. Watch the phase change.</p>
     <div class="controls"><span class="ctl-label">Substance</span><div class="seg" role="group" aria-label="Substance"><button type="button" data-s="gen" aria-pressed="true">Most substances</button><button type="button" data-s="w" aria-pressed="false">Water</button></div></div>
     <div class="t7-sliders two"><label><span>Temperature</span><input type="range" data-k="x" min="0" max="1" step="0.002" value="0.55"></label><label><span>Pressure</span><input type="range" data-k="y" min="0" max="1" step="0.002" value="0.6"></label></div>
-    <div class="t7-row wrap"><div class="t7-svg" data-r="d"></div><div class="col" style="gap:6px;align-items:center"><div data-r="pb"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+    <div class="t7-row t7-wr"><div class="t7-svg" data-r="d"></div><div class="col" style="gap:6px;align-items:center"><div data-r="pb"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
   const $=s=>host.querySelector(s); let sub="gen", px=.55, py=.6;
   const P0={xt:.3,yt:.18,xc:.82,yc:.78};
   const fus=y=>sub==="w"? P0.xt-.07*(y-P0.yt)/(1-P0.yt) : P0.xt+.09*(y-P0.yt)/(1-P0.yt);
@@ -9773,7 +9837,7 @@ const EQS={c:{lab:"q = mcΔT",use:"temperature changes (no phase change)"},f:{la
 const UN={g:"g",grams:"g",gram:"g",j:"J",joules:"J",joule:"J","j/g":"J/g","j/g·k":"J/g·K","j/gk":"J/g·K","j/g*k":"J/g·K","j/(g·k)":"J/g·K","j/g°c":"J/g·K","j/g·°c":"J/g·K","j/g*°c":"J/g·K","j/(g·°c)":"J/g·K","j/g-k":"J/g·K","j/g.k":"J/g·K","j/g c":"J/g·K","j/gc":"J/g·K","°c":"°C",c:"°C",k:"K","j/g°k":"J/g·K"};
 const normU=u=>UN[String(u).trim().toLowerCase().replace(/\s+/g,"").replace(/\(|\)/g,"").replace("deg","°")]||UN[String(u).trim().toLowerCase()]||null;
 T.HeatGame=function(host,o={}){ let mode=o.mode||"easy", P=null, eq=null, dd=null, done=0;
-  const g=A.Game(host,{how:"Solve each problem in three steps: pick the equation, set it up with the values from the problem, then calculate. Easy: the equation is given; drag the values in. Medium: choose the equation, then drag the values in. Hard: choose the equation, then type each number and its unit."});
+  const g=A.Game(host,{how:"Solve each problem in three steps: pick the equation, set it up with the values from the problem, then calculate. Easy: the equation is given; drag the highlighted values from the problem into it. Medium: choose the equation, then drag the values from the problem. Hard: choose the equation, then type each number and its unit."});
   g.seg("Level",[["easy","Easy"],["med","Medium"],["hard","Hard"]],mode,v=>{ mode=v; next(); }); g.button("New problem",()=>next(),"ghost");
   const HL=e=>e==="f"?"H<sub>f</sub>":"H<sub>v</sub>", NAME={q:"heat",m:"mass",c:"specific heat",H:"heat of "+"phase change",t1:"T<sub>initial</sub>",t2:"T<sub>final</sub>"};
   const need=()=>(eq==="c"?["q","m","c","t2","t1"]:["q","m","H"]).filter(k=>k!==P.unk);
@@ -9785,9 +9849,9 @@ T.HeatGame=function(host,o={}){ let mode=o.mode||"easy", P=null, eq=null, dd=nul
     if(eq==="c"){ h+=`<div class="t7-eqrow"><i>ΔT</i>${op("=")}${box("t2","T<sub>final</sub>")}${op("−")}${box("t1","T<sub>initial</sub>")}</div>`;
       h+=`<div class="t7-eqrow">${box("q","q")}${op("=")}${box("m","m")}${op("×")}${box("c","c")}${op("×")}${dtBox}</div>`; }
     else h+=`<div class="t7-eqrow">${box("q","q")}${op("=")}${box("m","m")}${op("×")}${box("H",HL(eq))}</div>`;
-    g.stage.querySelector('[data-r="setup"]').innerHTML=`<div class="t7-eqwrap">${h}</div>`+(mode!=="hard"?`<div class="dd-pool" data-r="pool"></div>`:`<p class="muted" style="margin:6px 0 0">Units: g, J, J/g, J/g·K, °C. To type °, type <b>deg</b> (degC becomes °C).</p>`);
-    if(mode!=="hard"){ dd=A.DragDrop({root:g.root,mode:"later",pool:g.stage.querySelector('[data-r="pool"]'),targets:A.$$(".da-slot",g.stage).map(el=>({el,id:el.dataset.s})),
-        cards:A.shuffle(Object.keys(P.vals).map(k=>({id:k,html:`${P.vals[k][0].toLocaleString()} ${P.vals[k][1]}`}))),onChange:()=>{}}); }
+    g.stage.querySelector('[data-r="setup"]').innerHTML=`<div class="t7-eqwrap">${h}</div>`+(mode!=="hard"?`<p class="muted tx-tip">Drag each highlighted value from the problem into its box. Drag a value out of a box to remove it.</p>`:`<p class="muted" style="margin:6px 0 0">Units: g, J, J/g, J/g·K, °C. To type °, type <b>deg</b> (degC becomes °C).</p>`);
+    if(mode!=="hard"){ dd=A.TextDrag({root:g.root,targets:A.$$(".da-slot",g.stage).map(el=>({el,id:el.dataset.s})),
+        sources:A.$$(".t7-prob .t7-val",g.stage).map(el=>({id:el.dataset.k,el,html:`${P.vals[el.dataset.k][0].toLocaleString()} ${P.vals[el.dataset.k][1]}`})),onChange:()=>{}}); }
     else dd=null;
     g.stage.querySelector('[data-r="s2"]').classList.remove("locked"); }
   function chooseEq(){ const bx=g.stage.querySelector('[data-r="eqs"]');
@@ -10068,6 +10132,8 @@ T.figHeatEq=(kind)=>{ const c=kind==="c", lab=c?"q = mcΔT":kind==="f"?"q = mH<t
   const before=kind==="c"?"l":kind==="f"?"s":"l", after=kind==="c"?"l":kind==="f"?"l":"g";
   s+=T.phaseBox(before,200,130,11).replace(/^<svg[^>]*>|<\/svg>$/g,"").replace(/^/,`<g transform="translate(20 44)">`)+"</g>";
   s+=`<g transform="translate(330 44)">${T.phaseBox(after,200,130,11).replace(/^<svg[^>]*>|<\/svg>$/g,"")}</g>`+T.heatArrow(232,86,86,46,"q");
+  if(c){ /* motion lines: short before heating, long after */ const L=[[.2,.83,1],[.8,.83,-1],[.27,.66,1],[.75,.65,-1],[.35,.5,1],[.52,.51,-1]];
+    [[20,4],[330,12]].forEach(([ox,len])=>L.forEach(([x,y,d])=>{ const cx=ox+x*200, cy=44+y*130, sx=cx-d*12; s+=`<path d="M${sx} ${cy-3}h${-d*len}M${sx} ${cy+3}h${-d*len}" stroke="#1b2328" stroke-width="1.6"/>`; })); }
   s+=T.t(275,214,c?"Temperature change: particles move faster":kind==="f"?"Melting: particles move apart":"Vaporization: particles move far apart",{fs:15});
   s+=`<text x="275" y="28" text-anchor="middle" font-family="Inter,Arial" font-size="20" font-weight="800" fill="#6a2c9a">${lab}</text>`;
   return T.svg(550,228,s,c?"Heat added to a liquid makes its particles move faster":kind==="f"?"Heat added to a solid melts it":"Heat added to a liquid vaporizes it"); };
@@ -10383,7 +10449,7 @@ T.phaseTriangle=(cur,o={})=>{ const W=580,H=450, P={s:[86,380],l:[494,380],g:[29
   return T.svg(W,H,s,"Phase change triangle: melting, sublimation and vaporization absorb heat; freezing, deposition and condensation release heat"); };
 
 T.PhaseExplorer=function(host){ const CW=420, CH=330, N=24;
-  host.innerHTML=`<div class="lab-b"><p class="how">Click an arrow to watch that phase change happen to the particles.</p><div class="t7-row wrap"><div class="t7-svg" data-r="d" style="flex:1 1 380px;max-width:520px"></div><div class="col" style="gap:8px;align-items:center;flex:1 1 360px"><div class="t7-cv-wrap" style="width:100%;max-width:420px"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  host.innerHTML=`<div class="lab-b"><p class="how">Click an arrow to watch that phase change happen to the particles.</p><div class="t7-row t7-wr"><div class="t7-svg" data-r="d" style="flex:1 1 380px;max-width:520px"></div><div class="col" style="gap:8px;align-items:center;flex:1 1 360px"><div class="t7-cv-wrap" style="width:100%;max-width:420px"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
   const cv=T.canvas(CW,CH,"Particles during the phase change"), c=cv.getContext("2d"); host.querySelector(".t7-cv-wrap").appendChild(cv);
   const bx=80,by=30,bw=260,bh=240; const E=T.Engine({W:bw,H:bh,n:N,cols:6,r:11}); let cur=null, t0=0, from="s", to="s", t=0;
   const cnt=ph=>ph==="s"?[N,0]:ph==="l"?[0,0]:[0,N];
@@ -10660,11 +10726,11 @@ T.u1icons=()=>({
   lowP:`<svg width="34" height="34" viewBox="0 0 34 34"><rect x="4" y="26" width="26" height="5" fill="#2E75D6" stroke="#1b2328"/><line x1="17" y1="4" x2="17" y2="20" stroke="#1b2328" stroke-width="2"/><path d="M17 25l-4-7h8z" fill="#1b2328"/></svg>`,
   highP:`<svg width="34" height="34" viewBox="0 0 34 34"><rect x="4" y="26" width="26" height="5" fill="#2E75D6" stroke="#1b2328"/>${[8,17,26].map(x=>`<line x1="${x}" y1="2" x2="${x}" y2="18" stroke="#1b2328" stroke-width="3"/><path d="M${x} 25l-5-8h10z" fill="#1b2328"/>`).join("")}</svg>`});
 T.u1three=()=>`<div class="ph-row" style="gap:40px;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;text-align:center"><div class="col"><svg width="150" height="70" viewBox="0 0 150 70" aria-hidden="true">${A.P.proton(25,35,18)}<path d="M48 35H68" stroke="#00b050" stroke-width="5"/><path d="M76 35l-10-7v14z" fill="#00b050"/><path d="M102 35H82" stroke="#00b050" stroke-width="5"/><path d="M74 35l10-7v14z" fill="#00b050"/>${A.P.electron(125,35,18)}</svg><b style="color:var(--ink)">Intermolecular forces</b></div><div class="col"><svg width="60" height="110" viewBox="0 0 60 110" aria-hidden="true">${U.thermo(30,6,84,18,16,.6,"#e23b3b",2.5)}</svg><b style="color:var(--ink)">Temperature</b></div><div class="col"><svg width="150" height="100" viewBox="0 0 150 100" aria-hidden="true"><path d="M15 80L45 60H140L110 80Z" fill="#2E75D6" stroke="#1b2328" stroke-width="2"/>${[55,80,105].map(x=>`<line x1="${x}" y1="8" x2="${x}" y2="58" stroke="#1b2328" stroke-width="2.5"/><path d="M${x} 64l-6-10h12z" fill="#1b2328"/>`).join("")}</svg><b style="color:var(--ink)">Pressure</b></div></div>`;
-T.u1imf=()=>{ const water=(x,y)=>U.atom(x,y,26,"O")+U.atom(x+35,y+25,17,"H")+U.atom(x+35,y-25,17,"H"), oxy=(x,y)=>U.atom(x,y,24,"O")+U.atom(x+38,y,24,"O");
+T.u1imf=()=>{ const bl=(x1,y1,x2,y2,n=1)=>{ let o=""; const d=Math.hypot(x2-x1,y2-y1), nx=-(y2-y1)/d, ny=(x2-x1)/d; for(let k=0;k<n;k++){ const f=(k-(n-1)/2)*6; o+=`<line x1="${x1+nx*f}" y1="${y1+ny*f}" x2="${x2+nx*f}" y2="${y2+ny*f}" stroke="#1b2328" stroke-width="3"/>`; } return o; }, water=(x,y)=>bl(x,y,x+41,y+30)+bl(x,y,x+41,y-30)+U.atom(x,y,26,"O")+U.atom(x+41,y+30,17,"H")+U.atom(x+41,y-30,17,"H"), oxy=(x,y)=>bl(x,y,x+60,y,2)+U.atom(x,y,24,"O")+U.atom(x+60,y,24,"O");
   const dots=(x1,x2,y,strong)=>`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="#1b2328" stroke-width="${strong?5:2.5}" stroke-linecap="round" stroke-dasharray="${strong?"0.1 10":"0.1 9"}"/>`; const y=100;
-  const hx=595, hy=y-25, ox=700, oy=y, L=Math.hypot(ox-hx,oy-hy), ux=(ox-hx)/L, uy=(oy-hy)/L;
+  const hx=601, hy=y-30, ox=700, oy=y, L=Math.hypot(ox-hx,oy-hy), ux=(ox-hx)/L, uy=(oy-hy)/L;
   const hbond=`<line x1="${(hx+ux*19).toFixed(1)}" y1="${(hy+uy*19).toFixed(1)}" x2="${(ox-ux*29).toFixed(1)}" y2="${(oy-uy*29).toFixed(1)}" stroke="#1b2328" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 10"/>`;
-  return `<svg width="900" height="210" viewBox="0 0 900 210" role="img" aria-label="Weaker attractions between oxygen molecules; stronger attractions between water molecules" style="max-width:100%;height:auto">${TT(200,32,"Weaker attractions",{fs:19,c:B})}${oxy(70,y)+oxy(262,y)+dots(134,236,y,false)}${TT(200,166,"Oxygen (O₂) molecules",{fs:15})}${TT(200,188,"thin dotted line: weak attraction, particles spread apart",{fs:13,fw:500})}<line x1="450" y1="20" x2="450" y2="196" stroke="#c8d3d8" stroke-width="2"/>${TT(660,32,"Stronger attractions",{fs:19,c:R})}${water(560,y)+water(700,y)+hbond}${TT(660,166,"Water (H₂O) molecules",{fs:15})}${TT(660,188,"thick dotted line: stronger attraction, particles held closer",{fs:13,fw:500})}</svg>`; };
+  return `<svg width="900" height="210" viewBox="0 0 900 210" role="img" aria-label="Weaker attractions between oxygen molecules; stronger attractions between water molecules" style="max-width:100%;height:auto">${TT(200,32,"Weaker attractions",{fs:19,c:B})}${oxy(70,y)+oxy(262,y)+dots(160,232,y,false)}${TT(200,166,"Oxygen (O₂) molecules",{fs:15})}${TT(200,188,"thin dotted line: weak attraction, particles spread apart",{fs:13,fw:500})}<line x1="450" y1="20" x2="450" y2="196" stroke="#c8d3d8" stroke-width="2"/>${TT(660,32,"Stronger attractions",{fs:19,c:R})}${water(560,y)+water(700,y)+hbond}${TT(660,166,"Water (H₂O) molecules",{fs:15})}${TT(660,188,"thick dotted line: stronger attraction, particles held closer",{fs:13,fw:500})}</svg>`; };
 
 /* a phase change shown with two particle boxes, an arrow and heat flowing in or out */
 T.figChange=(a,b,endo,name,eq)=>{ const W=560,H=270; const inner=p=>pbox(p,150,130,11).replace(/^<svg[^>]*>|<\/svg>$/g,"");
@@ -10705,7 +10771,7 @@ T.figAbsZero=()=>{ const x0=60,y0=230,w=440,h=190, X=t=>x0+(t+300)/400*w, Y=v=>y
   s+=`<line x1="${X(-273.15)}" y1="${Y(0)}" x2="${X(0)}" y2="${Y(1)}" stroke="#E00000" stroke-width="3" stroke-dasharray="7 6"/><line x1="${X(0)}" y1="${Y(1)}" x2="${X(100)}" y2="${Y(1.366)}" stroke="#E00000" stroke-width="4"/>`;
   [0,25,50,75,100].forEach(t=>s+=T.ball(X(t),Y(1+t/273.15),5,"#E00000"));
   s+=T.ball(X(-273.15),Y(0),7,"#F2B705")+TT(X(-273.15),y0+22,"−273.15 °C = 0 K",{fs:13,c:R})+TT(X(0),y0+22,"0 °C",{fs:12,fw:600})+TT(X(100),y0+22,"100 °C",{fs:12,fw:600});
-  s+=TT(X(-130),Y(.62)-14,"extend the line",{fs:13,fw:600,c:"#5f6b72"})+TT(X(50),Y(1.18)-18,"measured",{fs:13,fw:600,c:"#5f6b72"})+TT(x0+w/2,y0+46,"Temperature",{fs:14})+`<text transform="translate(26 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Volume of a gas</text>`;
+  s+=TT(X(-130),Y(.62)-14,"extend the line",{fs:13,fw:600,c:"#5f6b72"})+TT(X(50)+46,Y(1.18)+22,"measured",{fs:13,fw:600,c:"#5f6b72"})+TT(x0+w/2,y0+46,"Temperature",{fs:14})+`<text transform="translate(26 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Volume of a gas</text>`;
   return T.svg(540,290,s,"Graph of gas volume versus temperature. The measured straight line, extended to zero volume, reaches −273.15 °C, which is 0 K"); };
 
 /* calories and joules */
@@ -11455,6 +11521,2743 @@ T.bondSteps=ex=>{ const sum=L=>L.reduce((a,b)=>a+b[0]*b[2],0), B=sum(ex.brk), F=
    [`<b>Step 4:</b> Multiply the number of each bond formed by its bond energy, and add the results.`, `${mult(ex.frm)} = <b class="be-out">${f(F)} kJ</b>`],
    [`<b>Step 5:</b> Subtract: ΔH = Σ(bonds broken) − Σ(bonds formed).`, `ΔH = ${f(B)} kJ − ${f(F)} kJ = <b>${dH>0?"+":"−"}${f(Math.abs(dH))} kJ</b> (${dH>0?"endothermic":"exothermic"})`]]; };
 T.bondExamples=(host,list)=>{ S.workedTabs(host,list.map(ex=>({label:ex.label,...S.wk(ex.q,T.bondSteps(ex))}))); };
+})();
+/* worked examples: shrink a calculation's font until it fits on one line (never wrap, never cut off) */
+(function(){ const A=window.AS; if(!A) return;
+  const fit=root=>{ (root||document).querySelectorAll(".s6-fmath").forEach(box=>{ if(!box.offsetParent) return; const el=box.querySelector(".mth")||box; el.style.fontSize=""; let fs=parseFloat(getComputedStyle(el).fontSize)||18, n=0; while(box.scrollWidth>box.clientWidth+1&&fs>11&&n<24){ fs-=1; el.style.fontSize=fs+"px"; n++; } }); };
+  A.fitMath=fit;
+  const run=()=>fit(document); window.addEventListener("load",()=>{ run(); setTimeout(run,400); }); window.addEventListener("resize",()=>{ clearTimeout(run._t); run._t=setTimeout(run,150); });
+  document.addEventListener("click",e=>{ if(e.target.closest("button")) setTimeout(run,30); });
+})();
+
+/* Unit 8: Gas Laws. Gas particle engine, gas-law simulations, vapor pressure, games (namespace AS.U8). */
+(function(){ const A=window.AS; if(!A||!A.U7) return; const G=A.U8={}, T=A.U7, U=A.U1;
+const INK="#1b2328", RED="#E00000", BLUE="#2E75D6", GREEN="#00843c", PURPLE="#7030A0", ORANGE="#E8590C", GRAY="#5f6b72";
+const R_KPA=8.314, R_ATM=0.08206, N0=0.0401; /* the simulated sample: 0.0401 mol, so 1.00 L at 300 K is 100 kPa */
+G.R_KPA=R_KPA; G.R_ATM=R_ATM;
+const fx=(v,d=1)=>(+v).toFixed(d).replace("-","−"), sig=(v,n=3)=>{ const a=Math.abs(v); if(!a) return "0"; const s=+v.toPrecision(n); return Math.abs(s)>=1e4? s.toLocaleString("en-US") : String(s); };
+G.sig=sig;
+
+/* ---------- vapor pressure (kPa) from the Antoine equation, log10(P/mmHg) = A − B/(C + t), t in °C ---------- */
+const ANT={ propanone:[[7.02447,1161.0,224.0,-60,200]],
+  ethanol:[[8.20417,1642.89,230.300,-57,80],[7.68117,1332.04,199.200,80,243]],
+  water:[[8.07131,1730.63,233.426,0,100],[8.14019,1810.94,244.485,100,374]],
+  ethanoic:[[7.38782,1533.313,222.309,17,200]] };
+G.LIQ=[ {k:"propanone",name:"Propanone",f:"CH<sub>3</sub>COCH<sub>3</sub>",col:"#E8590C",imf:"weakest"},
+  {k:"ethanol",name:"Ethanol",f:"C<sub>2</sub>H<sub>5</sub>OH",col:"#7030A0",imf:"weaker"},
+  {k:"water",name:"Water",f:"H<sub>2</sub>O",col:"#2E75D6",imf:"stronger"},
+  {k:"ethanoic",name:"Ethanoic acid",f:"CH<sub>3</sub>COOH",col:"#00843c",imf:"strongest"} ];
+G.vp=(k,t)=>{ const L=ANT[k]; let c=L[0]; for(const x of L) if(t>=x[3]) c=x; return Math.pow(10,c[0]-c[1]/(c[2]+t))*0.133322; };
+/* temperature at which a liquid's vapor pressure equals P (kPa): its boiling point at that pressure */
+G.bp=(k,P)=>{ let lo=-60, hi=250; for(let i=0;i<60;i++){ const m=(lo+hi)/2; if(G.vp(k,m)<P) lo=m; else hi=m; } return (lo+hi)/2; };
+/* air pressure at an altitude (U.S. Standard Atmosphere, 1976) */
+G.airP=h=>101.325*Math.pow(1-2.25577e-5*h,5.25588);
+
+/* ---------- small drawings ---------- */
+G.gauge=(cx,cy,r,P,max=300,lab="kPa")=>{ const a0=Math.PI*.75, a1=Math.PI*2.25, ang=a0+(a1-a0)*Math.max(0,Math.min(1,P/max)); let s=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#fff" stroke="${INK}" stroke-width="3"/>`;
+  for(let i=0;i<=6;i++){ const a=a0+(a1-a0)*i/6, c=Math.cos(a), d=Math.sin(a); s+=`<line x1="${cx+c*r*.78}" y1="${cy+d*r*.78}" x2="${cx+c*r*.93}" y2="${cy+d*r*.93}" stroke="${INK}" stroke-width="2"/>`+(r>=34?T.t(cx+c*r*.6,cy+d*r*.6+4,String(Math.round(max*i/6)),{fs:r*.2,w:600,c:GRAY}):""); }
+  s+=`<line x1="${cx}" y1="${cy}" x2="${(cx+Math.cos(ang)*r*.8).toFixed(1)}" y2="${(cy+Math.sin(ang)*r*.8).toFixed(1)}" stroke="${RED}" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="4" fill="${INK}"/>`+T.t(cx,cy+r*.62,lab,{fs:Math.max(10,r*.2),c:GRAY});
+  return s; };
+/* a gas particle with optional motion lines trailing behind it */
+G.dot=(x,y,r,col,dx=0,dy=0,L=0)=>{ let s=""; if(L){ const n=Math.hypot(dx,dy)||1; dx/=n; dy/=n; for(const o of (L>9?[-4,4]:[0])) s+=`<line x1="${(x-dx*(r+2)-dy*o).toFixed(1)}" y1="${(y-dy*(r+2)+dx*o).toFixed(1)}" x2="${(x-dx*(r+2+L)-dy*o).toFixed(1)}" y2="${(y-dy*(r+2+L)+dx*o).toFixed(1)}" stroke="${INK}" stroke-width="1.6"/>`; } return s+T.ball(x,y,r,col); };
+/* cylinder with a piston; h = height of the gas (px); parts: weight, pins (rigid), handle */
+G.cyl=(x,y0,w,h,o={})=>{ const top=y0-h; let s=`<rect x="${x}" y="${top}" width="${w}" height="${h}" fill="${o.fill||"#f3f9fd"}"/>`;
+  s+=`<path d="M${x} ${y0-(o.tall||h+60)}V${y0}H${x+w}V${y0-(o.tall||h+60)}" fill="none" stroke="${INK}" stroke-width="3.5"/>`;
+  s+=`<rect x="${x+2}" y="${top-14}" width="${w-4}" height="14" fill="#9aa7ad" stroke="${INK}" stroke-width="2"/>`;
+  if(o.handle) s+=`<rect x="${x+w/2-4}" y="${top-50}" width="8" height="36" fill="#9aa7ad" stroke="${INK}" stroke-width="1.5"/><rect x="${x+w/2-22}" y="${top-58}" width="44" height="10" rx="4" fill="#5f6b72" stroke="${INK}" stroke-width="1.5"/>`;
+  if(o.weight) s+=`<rect x="${x+w/2-26}" y="${top-40}" width="52" height="26" rx="3" fill="#5f6b72" stroke="${INK}" stroke-width="2"/>`+T.t(x+w/2,top-22,"weight",{fs:11,c:"#fff"});
+  if(o.pins) s+=`<rect x="${x-10}" y="${top-20}" width="14" height="8" fill="${ORANGE}" stroke="${INK}" stroke-width="1.5"/><rect x="${x+w-4}" y="${top-20}" width="14" height="8" fill="${ORANGE}" stroke="${INK}" stroke-width="1.5"/>`;
+  return s; };
+
+/* ---------- gas particle engine (canvas): elastic collisions with the walls, the piston and one another ---------- */
+G.Gas=function(o){ const r=o.r||7, rnd=T.rng(o.seed||3); let n=o.n||24; const P=[]; const st={P,r,hits:[],hitCount:0};
+  const v0=()=>o.speed||46; /* pixels per second at 300 K: kept slow so students can follow each particle */
+  st.T=o.T||300;
+  const add=k=>{ for(let i=0;i<k;i++){ const a=rnd()*6.283, v=v0()*Math.sqrt(st.T/300)*(.6+.8*rnd()); P.push({x:o.x0+r+4+rnd()*(o.w-2*r-8),y:o.y0-r-4-rnd()*Math.max(10,(o.h0||120)-2*r-8),vx:Math.cos(a)*v,vy:Math.sin(a)*v,c:o.colors?o.colors[P.length%o.colors.length]:(o.col||RED),m:1}); } };
+  add(n);
+  st.setN=k=>{ if(k>P.length) add(k-P.length); else P.length=k; n=k; };
+  /* temperature changes rescale every speed, so the average kinetic energy follows the temperature */
+  st.setT=Tk=>{ const f=Math.sqrt(Tk/st.T); P.forEach(p=>{ p.vx*=f; p.vy*=f; }); st.T=Tk; };
+  st.step=(dt,box)=>{ const {x0,x1,y1,top}=box; let hits=0;
+    P.forEach(p=>{ p.x+=p.vx*dt; p.y+=p.vy*dt;
+      if(p.x<x0+r){ p.x=x0+r; p.vx=Math.abs(p.vx); hits++; st.hits.push({x:x0,y:p.y,t:0}); }
+      if(p.x>x1-r){ p.x=x1-r; p.vx=-Math.abs(p.vx); hits++; st.hits.push({x:x1,y:p.y,t:0}); }
+      if(p.y>y1-r){ p.y=y1-r; p.vy=-Math.abs(p.vy); hits++; st.hits.push({x:p.x,y:y1,t:0}); }
+      if(p.y<top+r){ p.y=top+r; p.vy=Math.abs(p.vy)+(box.push||0); hits++; st.hits.push({x:p.x,y:top,t:0}); } });
+    if(!o.noCollide) for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const p=P[i], q=P[j], dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy), D=(p.r||r)+(q.r||r);
+      if(d>0&&d<D){ const nx=dx/d, ny=dy/d, mp=p.m||1, mq=q.m||1, rel=(p.vx-q.vx)*nx+(p.vy-q.vy)*ny; if(rel>0){ const J=2*rel/(mp+mq); p.vx-=J*mq*nx; p.vy-=J*mq*ny; q.vx+=J*mp*nx; q.vy+=J*mp*ny; } const ov=(D-d)/2; p.x-=nx*ov; p.y-=ny*ov; q.x+=nx*ov; q.y+=ny*ov; } }
+    /* extra passes push apart any particles still overlapping (crowded boxes), then keep everyone inside the walls */
+    if(!o.noCollide) for(let pass=0;pass<3;pass++){ for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const p=P[i], q=P[j], dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy)||.01, D=(p.r||r)+(q.r||r); if(d<D){ const ov=(D-d)/2, nx=dx/d, ny=dy/d; p.x-=nx*ov; p.y-=ny*ov; q.x+=nx*ov; q.y+=ny*ov; } }
+      P.forEach(p=>{ const R=p.r||r; p.x=Math.min(x1-R,Math.max(x0+R,p.x)); p.y=Math.min(y1-R,Math.max(top+R,p.y)); }); }
+    st.hitCount+=hits; st.hits.forEach(h=>h.t+=dt); while(st.hits.length&&st.hits[0].t>.35) st.hits.shift(); return hits; };
+  st.draw=(c,tails)=>{ st.hits.forEach(h=>{ const a=1-h.t/.35; c.beginPath(); c.arc(h.x,h.y,4+8*(1-a),0,7); c.fillStyle=`rgba(242,183,5,${(.85*a).toFixed(2)})`; c.fill(); });
+    P.forEach(p=>{ const rr=p.r||r; if(tails){ const sp=Math.hypot(p.vx,p.vy), L=Math.min(22,sp*.16); if(L>3){ const ux=p.vx/sp, uy=p.vy/sp; c.strokeStyle=INK; c.lineWidth=1.4; c.beginPath(); c.moveTo(p.x-ux*(rr+2),p.y-uy*(rr+2)); c.lineTo(p.x-ux*(rr+2+L),p.y-uy*(rr+2+L)); c.stroke(); } }
+      c.beginPath(); c.arc(p.x,p.y,rr,0,7); c.fillStyle=p.c; c.fill(); c.lineWidth=1.5; c.strokeStyle=INK; c.stroke(); }); };
+  return st; };
+
+/* ---------- canvas helpers ---------- */
+const cvText=(c,x,y,t,o={})=>{ c.font=`${o.w||700} ${o.fs||13}px Inter,Arial`; c.fillStyle=o.c||INK; c.textAlign=o.a||"center"; c.fillText(t,x,y); };
+const cvGauge=(c,cx,cy,r,P,max)=>{ const a0=Math.PI*.75, a1=Math.PI*2.25, ang=a0+(a1-a0)*Math.max(0,Math.min(1,P/max));
+  /* dial face, a red arc along the rim up to the reading, and a short needle that never crosses the numbers */
+  c.beginPath(); c.arc(cx,cy,r,0,7); c.fillStyle="#fff"; c.fill(); c.lineWidth=3; c.strokeStyle=INK; c.stroke();
+  c.beginPath(); c.arc(cx,cy,r*.86,a0,a1); c.strokeStyle="#e6ecef"; c.lineWidth=5; c.stroke();
+  c.beginPath(); c.arc(cx,cy,r*.86,a0,ang); c.strokeStyle=RED; c.lineWidth=5; c.stroke();
+  for(let i=0;i<=6;i++){ const a=a0+(a1-a0)*i/6; c.beginPath(); c.moveTo(cx+Math.cos(a)*r*.74,cy+Math.sin(a)*r*.74); c.lineTo(cx+Math.cos(a)*r*.97,cy+Math.sin(a)*r*.97); c.strokeStyle=INK; c.lineWidth=i%2?1.2:2; c.stroke(); if(i%2===0) cvText(c,cx+Math.cos(a)*r*.55,cy+Math.sin(a)*r*.55+3.5,String(Math.round(max*i/6)),{fs:9.5,w:700,c:GRAY}); }
+  cvText(c,cx,cy+r*.8,"kPa",{fs:9.5,c:GRAY});
+  c.beginPath(); c.moveTo(cx,cy); c.lineTo(cx+Math.cos(ang)*r*.36,cy+Math.sin(ang)*r*.36); c.strokeStyle=RED; c.lineWidth=3; c.lineCap="round"; c.stroke(); c.lineCap="butt"; c.beginPath(); c.arc(cx,cy,3.5,0,7); c.fillStyle=INK; c.fill(); };
+const cvThermo=(c,x,top,len,frac,label)=>{ c.lineWidth=2; c.strokeStyle=INK; c.fillStyle="#f6fbfd"; c.beginPath(); c.roundRect? c.roundRect(x-7,top,14,len,7) : c.rect(x-7,top,14,len); c.fill(); c.stroke();
+  c.beginPath(); c.arc(x,top+len+8,12,0,7); c.fillStyle="#e23b3b"; c.fill(); c.stroke(); const h=(len-6)*Math.max(.02,Math.min(1,frac)); c.fillStyle="#e23b3b"; c.fillRect(x-3.5,top+len-h,7,h+4);
+  if(label) cvText(c,x,top-8,label,{fs:13,c:RED}); };
+
+/* ---------- graph (SVG) used by every gas-law simulation ---------- */
+G.plot=(o)=>{ const W=o.W||420,H=o.H||300, x0=58,y0=H-46,w=W-x0-18,h=H-46-20; const X=v=>x0+(v-o.xmin)/(o.xmax-o.xmin)*w, Y=v=>y0-(v-o.ymin)/(o.ymax-o.ymin)*h;
+  let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+  (o.xt||[]).forEach(v=>{ s+=`<line x1="${X(v)}" y1="${y0}" x2="${X(v)}" y2="${y0-h}" stroke="#e3ebee"/>`+T.t(X(v),y0+16,String(v),{fs:11.5,w:600,c:GRAY}); });
+  (o.yt||[]).forEach(v=>{ s+=`<line x1="${x0}" y1="${Y(v)}" x2="${x0+w}" y2="${Y(v)}" stroke="#e3ebee"/>`+T.t(x0-6,Y(v)+4,String(v),{fs:11.5,w:600,c:GRAY,a:"end"}); });
+  if(o.curve) s+=`<path d="${o.curve.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join("")}" fill="none" stroke="${o.curveCol||BLUE}" stroke-width="2.5"${o.dash?` stroke-dasharray="6 5"`:""}/>`;
+  (o.extra||[]).forEach(e=>{ s+=`<path d="${e.pts.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join("")}" fill="none" stroke="${e.col}" stroke-width="${e.w||2.5}"${e.dash?` stroke-dasharray="6 5"`:""}/>`; });
+  (o.pts||[]).forEach(p=>{ s+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="5.5" fill="${o.ptCol||RED}" stroke="${INK}" stroke-width="1.5"/>`; });
+  if(o.cur) s+=`<circle cx="${X(o.cur[0])}" cy="${Y(o.cur[1])}" r="8" fill="none" stroke="${o.ptCol||RED}" stroke-width="3"/>`;
+  s+=`<path d="M${x0} ${y0-h-6}V${y0}H${x0+w+6}" fill="none" stroke="${INK}" stroke-width="2.5"/>`+T.t(x0+w/2,H-8,o.xl,{fs:13})+`<text transform="translate(16 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13" font-weight="700" fill="${INK}">${o.yl}</text>`;
+  (o.notes||[]).forEach(n=>{ s+=T.t(X(n[0])+(n[3]||0),Y(n[1])+(n[4]||0),n[2],{fs:12,c:n[5]||GRAY,a:n[6]||"middle"}); });
+  return T.svg(W,H,s,o.aria||"graph"); };
+
+/* ---------- one simulation for every gas law ----------
+   law: "boyle" (change V, T constant), "charles" (change T, P constant: weighted piston), "gay" (change T, V constant: pinned piston),
+        "combined" (change V and T), "pressure" (change the number of particles and T, V constant) */
+G.LawSim=function(host,o={}){ const law=o.law||"boyle", CW=354, CH=420, cx=100, cw=160, by=392, pxL=140; /* 1 L of gas = 140 px of height */
+  const L={boyle:{n:N0,V:1.5,T:300,ctl:["V"]},charles:{n:N0,V:1.0,T:300,ctl:["T"]},gay:{n:N0,V:1.0,T:300,ctl:["T"]},combined:{n:N0,V:1.5,T:300,ctl:["V","T"]},pressure:{n:N0,V:1.6,T:300,ctl:["N","T"]},avogadro:{n:N0,V:1.0,T:300,ctl:["M"]},ideal:{n:N0,V:1.5,T:300,ctl:["M","V","T"]}}[law];
+  let V=L.V, Tk=L.T, nPart=24, nMol=L.n, rec=[], showLaw=false, xC=false;
+  const P=()=> law==="charles"||law==="avogadro"? 100 : nMol*R_KPA*Tk/V;
+  if(law==="charles"||law==="avogadro") V=nMol*R_KPA*Tk/100;
+  const sl=(k,lab,min,max,step,val)=>`<label class="g8-sl"><span>${lab}</span><input type="range" data-k="${k}" min="${min}" max="${max}" step="${step}" value="${val}" aria-label="${lab}"><b data-v="${k}"></b></label>`;
+  const how={boyle:"Drag the slider (or the piston handle) to change the volume. The temperature and the amount of gas stay the same. Press <b>Record</b> to plot a point.",
+    charles:"Change the temperature of the water bath. The weight on the piston keeps the pressure constant, so the piston is free to move. Press <b>Record</b> to plot a point.",
+    gay:"Change the temperature of the water bath. The pins hold the piston in place, so the volume stays the same. Press <b>Record</b> to plot a point.",
+    combined:"Change both the volume and the temperature. Press <b>Set as state 1</b>, change the conditions, then compare the two states.",
+    avogadro:"Change the amount of gas. The weight on the piston keeps the pressure constant and the temperature stays the same, so the piston is free to move. Press <b>Record</b> to plot a point.",
+    pressure:"Change the number of particles and the temperature. Each yellow flash is a particle hitting a wall. The volume stays the same.",
+    ideal:"Change the amount of gas, the volume and the temperature. The pressure follows PV = nRT, and PV ÷ nT always comes out to the same number: the ideal gas constant, R."}[law];
+  const ctl=L.ctl.map(k=>k==="V"? sl("V","Volume",.5,2.4,.05,V) : k==="T"? sl("T","Temperature",150,600,5,Tk) : k==="M"? sl("M","Moles of gas",.01,.08,.005,nMol) : sl("N","Particles",4,48,1,nPart)).join("");
+  const tblHead={boyle:["P (kPa)","V (L)","P × V"],charles:["V (L)","T (K)","V ÷ T"],gay:["P (kPa)","T (K)","P ÷ T"],combined:["P (kPa)","V (L)","T (K)","PV ÷ T"],avogadro:["V (L)","n (mol)","V ÷ n"],pressure:null,ideal:null}[law];
+  host.innerHTML=`<div class="lab-b"><p class="how">${how}</p><div class="controls g8-ctl">${ctl}</div>
+    <div class="controls">${law==="ideal"?"":law==="combined"?`<button class="btn sm" type="button" data-r="s1">Set as state 1</button>`:law!=="pressure"?`<button class="btn sm" type="button" data-r="rec">● Record</button><button class="btn ghost sm" type="button" data-r="clr">Clear</button><label class="chk"><input type="checkbox" data-r="law"> Show the law</label>${law!=="boyle"&&law!=="avogadro"?`<div class="seg" role="group" aria-label="Temperature axis"><button type="button" data-ax="K" aria-pressed="true">Kelvin</button><button type="button" data-ax="C" aria-pressed="false">Celsius</button></div>`:""}`:""}</div>
+    <div class="t7-row t7-wr g8-row"><div class="t7-cv-wrap g8-cv"></div><div class="g8-side"><div class="g8-read" data-r="read"></div>${law==="pressure"?`<div class="g8-hits" data-r="hits"></div>`:`<div class="t7-svg" data-r="gr"></div>`}${tblHead?`<table class="nt g8-tbl" data-r="tbl"></table>`:""}</div></div>
+    <div class="status" data-r="msg" aria-live="polite"></div></div>`;
+  const cv=T.canvas(CW,CH,"A cylinder of gas with a piston"), c=cv.getContext("2d"); host.querySelector(".g8-cv").appendChild(cv);
+  const gas=G.Gas({x0:cx,y0:by,w:cw,h0:V*pxL,n:nPart,T:Tk,r:7,seed:law.length*7,col:law==="pressure"?BLUE:RED});
+  const msg=host.querySelector('[data-r="msg"]');
+  let s1=null, hitsWin=[], drag=false;
+  function readout(){ const p=P(); host.querySelector('[data-r="read"]').innerHTML=`<div><small>Pressure</small><b>${fx(p,1)} kPa</b></div><div><small>Volume</small><b>${fx(V,2)} L</b></div><div><small>Temperature</small><b>${Math.round(Tk)} K</b><i>${Math.round(Tk-273)} °C</i></div><div><small>Amount of gas</small><b>${law==="pressure"?nPart+" particles":law==="ideal"||law==="avogadro"?nMol.toFixed(3)+" mol":"constant"}</b></div>`;
+    A.$$('[data-v]',host).forEach(b=>{ const k=b.dataset.v; b.textContent= k==="V"? fx(V,2)+" L" : k==="T"? Math.round(Tk)+" K" : k==="M"? nMol.toFixed(3)+" mol" : nPart; }); }
+  function graph(){ const gr=host.querySelector('[data-r="gr"]'); if(!gr) return; let o2;
+    if(law==="boyle"){ const k=nMol*R_KPA*Tk; o2={xmin:0,xmax:2.5,ymin:0,ymax:300,xt:[0,.5,1,1.5,2,2.5],yt:[0,50,100,150,200,250,300],xl:"Volume (L)",yl:"Pressure (kPa)",pts:rec.map(r=>[r.V,r.P]),cur:[V,P()],curve:showLaw?Array.from({length:60},(_,i)=>{ const v=.45+i*2.05/59; return [v,k/v]; }):null}; }
+    else if(law==="avogadro"){ const k=R_KPA*Tk/100; o2={xmin:0,xmax:.09,ymin:0,ymax:2.4,xt:[0,.02,.04,.06,.08],yt:[0,.5,1,1.5,2],xl:"Amount of gas (mol)",yl:"Volume (L)",pts:rec.map(r=>[r.n,r.V]),cur:[nMol,V],curve:showLaw?[[0,0],[.09,k*.09]]:null}; }
+    else if(law==="charles"){ const xm=xC?-300:0, xM=xC?350:650, conv=t=>xC?t-273:t; o2={xmin:xm,xmax:xM,ymin:0,ymax:2.2,xt:xC?[-300,-200,-100,0,100,200,300]:[0,100,200,300,400,500,600],yt:[0,.5,1,1.5,2],xl:xC?"Temperature (°C)":"Temperature (K)",yl:"Volume (L)",pts:rec.map(r=>[conv(r.T),r.V]),cur:[conv(Tk),V],
+      curve:showLaw?[[conv(150),nMol*R_KPA*150/100],[conv(600),nMol*R_KPA*600/100]]:null, extra:showLaw?[{pts:[[conv(0),0],[conv(150),nMol*R_KPA*150/100]],col:BLUE,dash:true}]:[], notes:showLaw?[[conv(0),0,xC?"−273 °C":"0 K",0,-10,PURPLE]]:[]}; }
+    else if(law==="gay"){ const xm=xC?-300:0, xM=xC?350:650, conv=t=>xC?t-273:t, k=nMol*R_KPA/V; o2={xmin:xm,xmax:xM,ymin:0,ymax:300,xt:xC?[-300,-200,-100,0,100,200,300]:[0,100,200,300,400,500,600],yt:[0,50,100,150,200,250,300],xl:xC?"Temperature (°C)":"Temperature (K)",yl:"Pressure (kPa)",pts:rec.map(r=>[conv(r.T),r.P]),cur:[conv(Tk),P()],
+      curve:showLaw?[[conv(150),k*150],[conv(600),k*600]]:null, extra:showLaw?[{pts:[[conv(0),0],[conv(150),k*150]],col:BLUE,dash:true}]:[], notes:showLaw?[[conv(0),0,xC?"−273 °C":"0 K",0,-10,PURPLE]]:[]}; }
+    else if(law==="ideal"){ const p=P(); gr.innerHTML=`<div class="g8-cmp"><small>PV ÷ nT</small><span class="mth">(${fx(p,1)} kPa)(${fx(V,2)} L) ÷ [(${nMol.toFixed(3)} mol)(${Math.round(Tk)} K)] = <b>${(p*V/(nMol*Tk)).toFixed(2)}</b> L·kPa/(mol·K)</span><span class="mth">In atmospheres: (${fx(p/101.3,3)} atm)(${fx(V,2)} L) ÷ [(${nMol.toFixed(3)} mol)(${Math.round(Tk)} K)] = <b>${(p/101.3*V/(nMol*Tk)).toFixed(4)}</b> L·atm/(mol·K)</span><p>Whatever the conditions, PV ÷ nT stays the same. This constant is the ideal gas constant, R.</p></div>`; return; }
+    else { const cmp=s1?`<div class="g8-cmp"><div><small>State 1</small><span class="mth">P<sub>1</sub>V<sub>1</sub> ÷ T<sub>1</sub> = (${fx(s1.P,1)})(${fx(s1.V,2)}) ÷ ${Math.round(s1.T)} = <b>${fx(s1.P*s1.V/s1.T,3)}</b></span></div><div><small>Now (state 2)</small><span class="mth">P<sub>2</sub>V<sub>2</sub> ÷ T<sub>2</sub> = (${fx(P(),1)})(${fx(V,2)}) ÷ ${Math.round(Tk)} = <b>${fx(P()*V/Tk,3)}</b></span></div><p>The two values are equal: for a fixed amount of gas, <span class="mth">P<sub>1</sub>V<sub>1</sub>/T<sub>1</sub> = P<sub>2</sub>V<sub>2</sub>/T<sub>2</sub></span>.</p></div>` : `<div class="g8-cmp"><p>Press <b>Set as state 1</b> to save the current conditions.</p></div>`;
+      gr.innerHTML=cmp; return; }
+    o2.W=420; o2.H=300; o2.aria="Graph of the recorded data"; gr.innerHTML=G.plot(o2); }
+  function table(){ const tb=host.querySelector('[data-r="tbl"]'); if(!tb) return; const rows=rec.slice(-6);
+    tb.innerHTML=`<tr>${tblHead.map(h=>`<th>${h}</th>`).join("")}</tr>`+(rows.length?rows.map(r=> law==="boyle"? `<tr><td>${fx(r.P,1)}</td><td>${fx(r.V,2)}</td><td><b>${fx(r.P*r.V,1)}</b></td></tr>` : law==="charles"? `<tr><td>${fx(r.V,3)}</td><td>${Math.round(r.T)}</td><td><b>${(r.V/r.T).toFixed(5)}</b></td></tr>` : law==="avogadro"? `<tr><td>${fx(r.V,3)}</td><td>${r.n.toFixed(3)}</td><td><b>${(r.V/r.n).toFixed(1)}</b></td></tr>` : `<tr><td>${fx(r.P,1)}</td><td>${Math.round(r.T)}</td><td><b>${(r.P/r.T).toFixed(3)}</b></td></tr>`).join("") : `<tr><td colspan="${tblHead.length}" class="muted">Recorded data appears here.</td></tr>`); }
+  function note(){ const t={boyle:V<1?"Smaller volume: the particles hit the walls more often, so the pressure is higher.":V>1.8?"Larger volume: the particles travel farther between collisions, so they hit the walls less often and the pressure is lower.":"As the volume decreases, the pressure increases (temperature constant).",
+      charles:Tk>380?"Higher temperature: the particles move faster and push the piston up until the pressure inside again balances the weight.":Tk<250?"Lower temperature: the particles slow down, so the piston sinks until the pressure inside balances the weight again.":"As the temperature increases, the volume increases (pressure constant).",
+      gay:Tk>380?"Higher temperature: the particles move faster, so they hit the walls more often and harder. The pressure rises.":Tk<250?"Lower temperature: the particles move more slowly and hit the walls less often and less hard.":"As the temperature increases, the pressure increases (volume constant).",
+      combined:"Pressure, volume and temperature change together. For a fixed amount of gas, PV ÷ T stays the same.",
+      avogadro:nMol>.06?"More gas particles hit the piston more often, so it rises until the pressure inside again balances the weight.":nMol<.025?"Fewer gas particles: fewer collisions push up on the piston, so it sinks until the pressure balances the weight again.":"As the amount of gas increases, the volume increases (temperature and pressure constant).",
+      pressure:"More particles or a higher temperature means more collisions with the walls each second, so the pressure is higher.",
+      ideal:"More moles of gas, a smaller volume or a higher temperature each raise the pressure, exactly as PV = nRT predicts."}[law]; msg.innerHTML=t; }
+  function upd(){ readout(); graph(); table(); note(); }
+  host.addEventListener("input",e=>{ const k=e.target.dataset&&e.target.dataset.k; if(!k) return; const v=+e.target.value;
+    if(k==="V") V=v; if(k==="T"){ gas.setT(v); Tk=v; if(law==="charles") V=nMol*R_KPA*Tk/100; } if(k==="N"){ nPart=v; gas.setN(v); nMol=N0*v/24; } if(k==="M"){ nMol=v; nPart=Math.max(2,Math.round(v/N0*24)); gas.setN(nPart); if(law==="avogadro") V=nMol*R_KPA*Tk/100; } upd(); });
+  const q=s=>host.querySelector(s);
+  q('[data-r="rec"]')&&q('[data-r="rec"]').addEventListener("click",()=>{ rec.push({P:P(),V,T:Tk,n:nMol}); upd(); });
+  q('[data-r="clr"]')&&q('[data-r="clr"]').addEventListener("click",()=>{ rec=[]; upd(); });
+  q('[data-r="law"]')&&q('[data-r="law"]').addEventListener("change",e=>{ showLaw=e.target.checked; graph(); });
+  q('[data-r="s1"]')&&q('[data-r="s1"]').addEventListener("click",()=>{ s1={P:P(),V,T:Tk}; graph(); });
+  A.$$('[data-ax]',host).forEach(b=>b.addEventListener("click",()=>{ xC=b.dataset.ax==="C"; A.$$('[data-ax]',host).forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); graph();
+    if(xC) msg.innerHTML="On the Celsius axis the line does not pass through the origin, so volume is <b>not</b> directly proportional to the Celsius temperature. Extending the line reaches zero at −273 °C (0 K)."; }));
+  /* drag the piston handle (Boyle and combined) */
+  if(L.ctl.includes("V")){ const pos=e=>{ const r=cv.getBoundingClientRect(); return (e.clientY-r.top)*CH/r.height; };
+    cv.addEventListener("pointerdown",e=>{ const y=pos(e), top=by-V*pxL; if(Math.abs(y-(top-30))<36){ drag=true; cv.setPointerCapture(e.pointerId); } });
+    cv.addEventListener("pointermove",e=>{ if(!drag) return; const y=pos(e); V=Math.max(.5,Math.min(2.4,Math.round((by-(y+30))/pxL*20)/20)); const s=q('[data-k="V"]'); if(s) s.value=V; upd(); });
+    cv.addEventListener("pointerup",()=>{ drag=false; }); cv.style.touchAction="none"; }
+  let shown=V;
+  T.loop(cv,(dt)=>{ shown+=(V-shown)*Math.min(1,dt*6); const top=by-shown*pxL;
+    const hits=gas.step(dt*(o.speed||1),{x0:cx,x1:cx+cw,y1:by,top}); hitsWin.push([performance.now(),hits]); while(hitsWin.length&&performance.now()-hitsWin[0][0]>2000) hitsWin.shift();
+    c.clearRect(0,0,CW,CH); c.fillStyle="#fff"; c.fillRect(0,0,CW,CH);
+    /* water bath shows the temperature */
+    if(law!=="boyle"&&law!=="pressure"&&law!=="avogadro"){ const f=(Tk-150)/450; c.fillStyle=`rgba(${Math.round(80+175*f)},${Math.round(160-60*f)},${Math.round(235-175*f)},.28)`; c.fillRect(cx-28,by-292,cw+56,292+14); c.strokeStyle="#9aa7ad"; c.lineWidth=2; c.strokeRect(cx-28,by-292,cw+56,292+14); cvText(c,cx+cw/2,by+12+10,"water bath",{fs:11,c:GRAY}); }
+    c.fillStyle="#f3f9fd"; c.fillRect(cx,top,cw,by-top);
+    gas.draw(c,true);
+    c.strokeStyle=INK; c.lineWidth=3.5; c.beginPath(); c.moveTo(cx,by-370); c.lineTo(cx,by); c.lineTo(cx+cw,by); c.lineTo(cx+cw,by-370); c.stroke();
+    c.fillStyle="#9aa7ad"; c.fillRect(cx+2,top-14,cw-4,14); c.strokeStyle=INK; c.lineWidth=2; c.strokeRect(cx+2,top-14,cw-4,14);
+    if(L.ctl.includes("V")){ c.fillStyle="#9aa7ad"; c.fillRect(cx+cw/2-4,top-50,8,36); c.strokeRect(cx+cw/2-4,top-50,8,36); c.fillStyle="#5f6b72"; c.fillRect(cx+cw/2-24,top-60,48,11); c.strokeRect(cx+cw/2-24,top-60,48,11); cvText(c,cx+cw/2,top-66,"drag",{fs:11,c:GRAY}); }
+    if(law==="charles"||law==="avogadro"){ c.fillStyle="#5f6b72"; c.fillRect(cx+cw/2-28,top-42,56,28); c.strokeRect(cx+cw/2-28,top-42,56,28); cvText(c,cx+cw/2,top-23,"weight",{fs:11,c:"#fff"}); }
+    if(law==="gay"||law==="pressure"){ c.fillStyle=ORANGE; [cx-12,cx+cw-2].forEach(x=>{ c.fillRect(x,top-22,14,8); c.strokeRect(x,top-22,14,8); }); cvText(c,cx+cw/2,top-24,"pinned: volume fixed",{fs:11,c:GRAY}); }
+    /* volume scale */
+    c.lineWidth=1.5; c.strokeStyle=GRAY; for(let v=0;v<=2.5;v+=.5){ const y=by-v*pxL; c.beginPath(); c.moveTo(cx+cw,y); c.lineTo(cx+cw+8,y); c.stroke(); cvText(c,cx+cw+12,y+4,fx(v,1)+" L",{fs:10.5,w:600,c:GRAY,a:"left"}); }
+    cvGauge(c,48,50,44,P(),300); c.strokeStyle=INK; c.lineWidth=3; c.beginPath(); c.moveTo(48,94); c.lineTo(48,by-30); c.lineTo(cx,by-30); c.stroke();
+    cvThermo(c,CW-18,70,230,(Tk-100)/550,Math.round(Tk)+" K");
+    if(law==="pressure"){ const hs=hitsWin.reduce((a,b)=>a+b[1],0)/2; const el=host.querySelector('[data-r="hits"]'); if(el&&(!el._t||performance.now()-el._t>400)){ el._t=performance.now(); el.innerHTML=`<small>Collisions with the walls each second</small><b>${Math.round(hs)}</b><div class="t7-bar g8-hbar"><i style="width:${Math.min(100,hs*3.2)}%"></i></div>`; } }
+  });
+  upd(); return {get:()=>({P:P(),V,T:Tk})}; };
+
+/* ---------- barometer: air pressure holds up a column of mercury ---------- */
+G.PLACES=[ {k:"sea",name:"Sea level (Long Island, NY)",h:0},{k:"den",name:"Denver, Colorado (1,609 m)",h:1609},{k:"mex",name:"Mexico City (2,240 m)",h:2240},{k:"ev",name:"Summit of Mount Everest (8,849 m)",h:8849},{k:"wil",name:"Eye of Hurricane Wilma, 2005 (sea level)",P:88.2} ];
+G.Barometer=function(host){ let cur=G.PLACES[0];
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose a place. Air pressure pushes down on the open dish of mercury and holds up the column in the sealed tube. The height of the column measures the air pressure.</p>
+    <div class="g8-chips" role="group" aria-label="Place">${G.PLACES.map((p,i)=>`<button type="button" class="chip-b" data-k="${p.k}" aria-pressed="${i?"false":"true"}">${p.name}</button>`).join("")}</div>
+    <div class="g8-row"><div class="t7-svg g8-art" data-r="art"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  function draw(){ const P=cur.P||G.airP(cur.h), mm=P/101.325*760, sc=.38, base=430, y0=base-36, colTop=y0-mm*sc;
+    let s=`<rect x="30" y="${y0}" width="300" height="50" rx="6" fill="#fff" stroke="${INK}" stroke-width="2.5"/><rect x="34" y="${y0+8}" width="292" height="38" fill="#aeb5bb"/>`;
+    s+=`<rect x="160" y="40" width="40" height="${y0+30-40}" fill="#fff" stroke="${INK}" stroke-width="2.5"/><rect x="164" y="${colTop}" width="32" height="${y0+28-colTop}" fill="#aeb5bb"/>`;
+    s+=`<path d="M156 ${(40+colTop)/2}H118" stroke="${INK}" stroke-width="1.3"/>`+T.t(114,(40+colTop)/2+4,"vacuum",{fs:12,c:GRAY,a:"end"});
+    for(let v=0;v<=800;v+=100){ const y=y0-v*sc; s+=`<line x1="200" y1="${y}" x2="210" y2="${y}" stroke="${INK}" stroke-width="1.5"/>`+T.t(214,y+4,String(v),{fs:11,w:600,c:GRAY,a:"start"}); }
+    s+=T.t(214,y0-800*sc-14,"mm",{fs:11,c:GRAY,a:"start"});
+    s+=`<path d="M120 ${colTop}H200" stroke="${RED}" stroke-width="2.5" stroke-dasharray="5 4"/>`+T.t(116,colTop+5,`${Math.round(mm)} mm`,{fs:15,c:RED,a:"end"});
+    const k=Math.max(1,Math.round(P/101.325*4)); for(let i=0;i<k;i++){ const xl=40+i*20, xr=320-i*20; s+=T.arrow(xl,y0-60,xl,y0-6,BLUE,3,10)+T.arrow(xr,y0-60,xr,y0-6,BLUE,3,10); }
+    s+=T.t(70,y0-70,"air pressure",{fs:12,c:BLUE})+T.t(290,y0-70,"air pressure",{fs:12,c:BLUE})+T.t(180,y0+68,"dish of mercury",{fs:12,c:GRAY});
+    host.querySelector('[data-r="art"]').innerHTML=T.svg(360,470,s,`A mercury barometer at ${cur.name}: the column is ${Math.round(mm)} mm tall`);
+    host.querySelector('[data-r="read"]').innerHTML=`<div><small>atm</small><b>${fx(P/101.325,3)}</b></div><div><small>kPa</small><b>${fx(P,1)}</b></div><div><small>mmHg</small><b>${Math.round(mm)}</b></div>`;
+    host.querySelector('[data-r="info"]').innerHTML= cur.k==="sea"? "<b>Standard pressure</b><span>At sea level the air holds up a column of mercury 760 mm tall: 1 atm = 101.3 kPa = 760 mmHg.</span>"
+      : cur.k==="wil"? "<b>A record low at sea level</b><span>The eye of Hurricane Wilma (2005) had the lowest air pressure ever measured in an Atlantic hurricane, 88.2 kPa. Low pressure at the center of a storm draws in the surrounding air.</span>"
+      : `<b>Less air above, less pressure</b><span>At ${cur.h.toLocaleString("en-US")} m there is less air above the barometer pushing down, so the column of mercury is shorter.</span>`; }
+  A.$$("[data-k]",host).forEach(b=>b.addEventListener("click",()=>{ cur=G.PLACES.find(p=>p.k===b.dataset.k); A.$$("[data-k]",host).forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); draw(); }));
+  draw(); };
+})();
+
+/* Unit 8: Gas Laws (part 2). Kinetic molecular theory, vapor pressure, Dalton and Graham simulations, and figures. */
+(function(){ const A=window.AS; if(!A||!A.U8) return; const G=A.U8, T=A.U7;
+const INK="#1b2328", RED="#E00000", BLUE="#2E75D6", GREEN="#00843c", PURPLE="#7030A0", ORANGE="#E8590C", GRAY="#5f6b72";
+const fx=(v,d=1)=>(+v).toFixed(d).replace("-","−");
+const cvText=(c,x,y,t,o={})=>{ c.font=`${o.w||700} ${o.fs||13}px Inter,Arial`; c.fillStyle=o.c||INK; c.textAlign=o.a||"center"; c.fillText(t,x,y); };
+
+/* ---------- ideal vs. real gases: the same conditions in two boxes ----------
+   Z = PV/nRT from the van der Waals equation for nitrogen (a = 1.370 L²·bar/mol², b = 0.0387 L/mol) */
+G.zN2=(Vm,Tk)=>Vm/(Vm-0.0387)-1.370/(0.08314*Tk*Vm);
+G.IdealReal=function(host){ let Tk=300, Vm=24; const W=300, H=260, N=26;
+  host.innerHTML=`<div class="lab-b"><p class="how">Change the temperature and how tightly the gas is compressed. The left box follows the kinetic molecular theory exactly. The right box is a real gas: its particles take up space and attract one another.</p>
+    <div class="controls g8-ctl"><label class="g8-sl"><span>Temperature</span><input type="range" data-k="T" min="80" max="600" step="10" value="300" aria-label="Temperature"><b data-v="T"></b></label>
+    <label class="g8-sl"><span>Pressure</span><input type="range" data-k="P" min="0" max="100" step="1" value="4" aria-label="Pressure"><b data-v="P"></b></label></div>
+    <div class="g8-row g8-two"><figure class="g8-fig"><figcaption><b>Ideal gas</b> (the model)</figcaption><div data-r="c1"></div></figure><figure class="g8-fig"><figcaption><b>Real gas</b> (nitrogen)</figcaption><div data-r="c2"></div></figure></div>
+    <div class="g8-meter" data-r="m"></div><div class="status" data-r="msg" aria-live="polite"></div></div>`;
+  const mk=k=>{ const cv=T.canvas(W,H,k), c=cv.getContext("2d"); host.querySelector(`[data-r="${k}"]`).appendChild(cv); return {cv,c}; };
+  const B1=mk("c1"), B2=mk("c2"), rnd=T.rng(8);
+  const make=()=>Array.from({length:N},()=>{ const a=rnd()*6.283; return {x:30+rnd()*(W-60),y:30+rnd()*(H-60),vx:Math.cos(a),vy:Math.sin(a)}; });
+  const P1=make(), P2=make();
+  const box=()=>{ const f=Math.max(.32,Math.min(1,Math.sqrt(Vm/24))); return {w:(W-20)*f,h:(H-20)*f}; };
+  function step(Ps,dt,real){ const b=box(), x0=(W-b.w)/2, y0=(H-b.h)/2, r=real?8:3, sp=40*Math.sqrt(Tk/300), katt=Math.min(1,40*1.370/(0.08314*Tk*Vm));
+    Ps.forEach(p=>{ const m=Math.hypot(p.vx,p.vy)||1; if(!real){ p.vx=p.vx/m*sp; p.vy=p.vy/m*sp; } p.x+=p.vx*dt; p.y+=p.vy*dt;
+      if(p.x<x0+r){ p.x=x0+r; p.vx=Math.abs(p.vx); } if(p.x>x0+b.w-r){ p.x=x0+b.w-r; p.vx=-Math.abs(p.vx); } if(p.y<y0+r){ p.y=y0+r; p.vy=Math.abs(p.vy); } if(p.y>y0+b.h-r){ p.y=y0+b.h-r; p.vy=-Math.abs(p.vy); } });
+    if(real){ /* attractions pull nearby particles together; the walls keep the average speed set by the temperature */
+      for(let i=0;i<Ps.length;i++) for(let j=i+1;j<Ps.length;j++){ const p=Ps[i], q=Ps[j], dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy)||.01;
+        if(d<44){ const f=1600/(d*d)*dt*katt; p.vx+=dx/d*f; p.vy+=dy/d*f; q.vx-=dx/d*f; q.vy-=dy/d*f; }
+        if(d<2*r){ const nx=dx/d, ny=dy/d, rel=(p.vx-q.vx)*nx+(p.vy-q.vy)*ny; if(rel>0){ p.vx-=rel*nx; p.vy-=rel*ny; q.vx+=rel*nx; q.vy+=rel*ny; } const o=(2*r-d)/2; p.x-=nx*o; p.y-=ny*o; q.x+=nx*o; q.y+=ny*o; } }
+      let ke=0; Ps.forEach(p=>ke+=p.vx*p.vx+p.vy*p.vy); const k=Math.sqrt(sp*sp*Ps.length/(ke||1)); const g=1+(k-1)*Math.min(1,dt*1.5); Ps.forEach(p=>{ p.vx*=g; p.vy*=g; }); } }
+  function draw(B,Ps,real){ const {c}=B, b=box(), x0=(W-b.w)/2, y0=(H-b.h)/2; c.fillStyle="#fff"; c.fillRect(0,0,W,H); c.fillStyle="#f3f9fd"; c.fillRect(x0,y0,b.w,b.h); c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(x0,y0,b.w,b.h);
+    if(real&&Math.abs(1-G.zN2(Vm,Tk))>.01){ c.setLineDash([3,4]); c.strokeStyle="#7aa7d9"; c.lineWidth=1.6; for(let i=0;i<Ps.length;i++) for(let j=i+1;j<Ps.length;j++){ const p=Ps[i], q=Ps[j], d=Math.hypot(q.x-p.x,q.y-p.y); if(d<30){ c.beginPath(); c.moveTo(p.x,p.y); c.lineTo(q.x,q.y); c.stroke(); } } c.setLineDash([]); }
+    Ps.forEach(p=>{ c.beginPath(); c.arc(p.x,p.y,real?8:3,0,7); c.fillStyle=BLUE; c.fill(); c.lineWidth=1.3; c.strokeStyle=INK; c.stroke(); }); }
+  const Pbar=()=>0.08314*Tk/Vm; /* ideal pressure in bar for 1 mol in Vm liters */
+  function ui(){ const z=G.zN2(Vm,Tk), dev=Math.abs(1-z)*100;
+    host.querySelector('[data-v="T"]').textContent=Tk+" K"; host.querySelector('[data-v="P"]').textContent=fx(Pbar()*0.9869,1)+" atm";
+    host.querySelector('[data-r="m"]').innerHTML=`<div><small>Real pressure ÷ ideal pressure</small><b>${z.toFixed(3)}</b></div><div class="g8-zbar"><i style="left:${Math.max(0,Math.min(100,50+(z-1)*120))}%"></i><span style="left:50%">1.000 = ideal</span></div><div><small>Difference from ideal</small><b style="color:${dev<2?GREEN:dev<10?ORANGE:RED}">${dev.toFixed(1)}%</b></div>`;
+    host.querySelector('[data-r="msg"]').innerHTML= dev<2? "<b>Behaves almost ideally.</b> The particles are far apart, so their own volume and their attractions hardly matter." : (Tk<200&&Vm<3)? "<b>Far from ideal.</b> The particles are slow and crowded, so attractions pull them together and the gas presses less than the ideal model predicts." : Vm<1.5? "<b>Crowded.</b> At high pressure the particles take up a noticeable part of the container, so the real gas does not follow the ideal model." : "<b>Some deviation.</b> Lower temperatures and higher pressures make real gases behave less like the ideal model."; }
+  host.addEventListener("input",e=>{ const k=e.target.dataset.k; if(!k) return; if(k==="T") Tk=+e.target.value; else { const f=+e.target.value/100; Vm=24*Math.pow(.15/24,f); } ui(); });
+  T.loop(B1.cv,dt=>{ step(P1,dt,false); step(P2,dt,true); draw(B1,P1,false); draw(B2,P2,true); });
+  host.querySelector('[data-k="P"]').value=4; Vm=24*Math.pow(.15/24,.04); ui(); };
+
+/* ---------- vapor pressure in a closed flask: a manometer measures the vapor ---------- */
+G.VaporFlask=function(host){ let liq="water", Tc=25, open=false; const W=560, H=360, rnd=T.rng(21), Nl=40;
+  host.innerHTML=`<div class="lab-b"><p class="how">A liquid sits in a sealed flask connected to a manometer. Molecules escape from the surface and collect above the liquid until evaporation and condensation happen at the same rate. The pressure of that vapor is the vapor pressure.</p>
+    <div class="g8-chips" role="group" aria-label="Liquid">${G.LIQ.map((l,i)=>`<button type="button" class="chip-b" data-l="${l.k}" aria-pressed="${l.k==="water"?"true":"false"}">${l.name}</button>`).join("")}</div>
+    <div class="controls g8-ctl"><label class="g8-sl"><span>Temperature</span><input type="range" data-k="T" min="0" max="90" step="1" value="25" aria-label="Temperature"><b data-v="T"></b></label><button class="btn ghost sm" type="button" data-r="rs">Empty the space above the liquid</button></div>
+    <div class="g8-row"><div class="t7-cv-wrap g8-cvw"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=T.canvas(W,H,"A sealed flask of liquid with a manometer"), c=cv.getContext("2d"); host.querySelector(".g8-cvw").appendChild(cv);
+  const fx0=60, fy0=70, fw=250, fh=250, lvl=fy0+fh-70; /* flask interior and liquid surface */
+  let gas=[], shown=0;
+  const target=()=>Math.round(Math.min(46,G.vp(liq,Tc)/2.4)); /* vapor particles drawn in proportion to the vapor pressure */
+  const ev=()=>{ const a=-Math.PI*(.2+.6*rnd()); return {x:fx0+20+rnd()*(fw-40),y:lvl-8,vx:Math.cos(a)*55,vy:Math.sin(a)*55}; };
+  function info(){ const p=G.vp(liq,Tc), L=G.LIQ.find(l=>l.k===liq);
+    host.querySelector('[data-v="T"]').textContent=Tc+" °C";
+    host.querySelector('[data-r="read"]').innerHTML=`<div><small>Liquid</small><b style="color:${L.col}">${L.name}</b></div><div><small>Temperature</small><b>${Tc} °C</b></div><div><small>Vapor pressure</small><b>${p<10?fx(p,2):fx(p,1)} kPa</b></div>`;
+    host.querySelector('[data-r="info"]').innerHTML=`<b>${L.name}: ${L.imf} intermolecular forces of the four liquids</b><span>${liq==="propanone"?"Weak attractions let many molecules escape, so propanone has a high vapor pressure.":liq==="ethanoic"?"Strong attractions hold the molecules in the liquid, so ethanoic acid has a low vapor pressure.":"Raise the temperature: more molecules have enough kinetic energy to escape, so the vapor pressure increases."}</span>`; }
+  host.addEventListener("input",e=>{ if(e.target.dataset.k==="T"){ Tc=+e.target.value; info(); } });
+  A.$$("[data-l]",host).forEach(b=>b.addEventListener("click",()=>{ liq=b.dataset.l; A.$$("[data-l]",host).forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); gas=[]; info(); }));
+  host.querySelector('[data-r="rs"]').addEventListener("click",()=>{ gas=[]; });
+  const L0=Array.from({length:Nl},(_,i)=>({x:fx0+16+(i%13)*17.5+(Math.floor(i/13)%2)*8,y:lvl+12+Math.floor(i/13)*15,ph:rnd()*6}));
+  let evT=0, cdT=0, evRate=0, cdRate=0, evN=0, cdN=0, win=0;
+  T.loop(cv,(dt,t)=>{ const tgt=target(), sp=55*Math.sqrt((Tc+273)/298), col=G.LIQ.find(l=>l.k===liq).col;
+    /* evaporation at a steady rate set by the temperature and the liquid; condensation when a vapor molecule returns to the surface */
+    evT+=dt*(0.4+tgt*.11); while(evT>1){ evT-=1; if(gas.length<60){ gas.push(ev()); evN++; } }
+    gas.forEach(p=>{ const m=Math.hypot(p.vx,p.vy)||1; p.vx=p.vx/m*sp; p.vy=p.vy/m*sp; p.x+=p.vx*dt; p.y+=p.vy*dt;
+      if(p.x<fx0+8){ p.x=fx0+8; p.vx=Math.abs(p.vx); } if(p.x>fx0+fw-8){ p.x=fx0+fw-8; p.vx=-Math.abs(p.vx); } if(p.y<fy0+8){ p.y=fy0+8; p.vy=Math.abs(p.vy); }
+      if(p.y>lvl-6){ p.dead=rnd()<Math.min(.95,.25+.7*gas.length/Math.max(1,tgt)); if(!p.dead){ p.y=lvl-6; p.vy=-Math.abs(p.vy); } else cdN++; } });
+    gas=gas.filter(p=>!p.dead);
+    win+=dt; if(win>2){ evRate=evN/win; cdRate=cdN/win; evN=0; cdN=0; win=0; }
+    const pNow=G.vp(liq,Tc)*Math.min(1,gas.length/Math.max(1,tgt)); shown+=(pNow-shown)*Math.min(1,dt*3);
+    c.fillStyle="#fff"; c.fillRect(0,0,W,H);
+    c.fillStyle="#f3f9fd"; c.fillRect(fx0,fy0,fw,fh); c.fillStyle=col+"33"; c.fillRect(fx0,lvl,fw,fy0+fh-lvl);
+    L0.forEach(p=>{ const x=p.x+Math.sin(t/700+p.ph)*2, y=p.y+Math.cos(t/800+p.ph)*1.5; c.beginPath(); c.arc(x,y,6.5,0,7); c.fillStyle=col; c.fill(); c.lineWidth=1.2; c.strokeStyle=INK; c.stroke(); });
+    gas.forEach(p=>{ c.beginPath(); c.arc(p.x,p.y,6.5,0,7); c.fillStyle=col; c.fill(); c.lineWidth=1.2; c.strokeStyle=INK; c.stroke(); });
+    c.strokeStyle=INK; c.lineWidth=3.5; c.strokeRect(fx0,fy0,fw,fh); c.fillStyle="#9aa7ad"; c.fillRect(fx0+fw/2-30,fy0-16,60,16); c.strokeRect(fx0+fw/2-30,fy0-16,60,16);
+    /* manometer: U-tube of mercury; the vapor pushes the left side down */
+    const mx=fx0+fw, my=fy0+30, ux=380, hP=Math.min(150,shown*1.5);
+    c.lineWidth=10; c.strokeStyle="#e7edf0"; c.beginPath(); c.moveTo(mx,my); c.lineTo(ux,my); c.lineTo(ux,300); c.lineTo(ux+60,300); c.lineTo(ux+60,40); c.stroke();
+    c.lineWidth=2; c.strokeStyle=INK; c.beginPath(); c.moveTo(mx,my-5); c.lineTo(ux+5,my-5); c.lineTo(ux+5,295); c.lineTo(ux+55,295); c.lineTo(ux+55,40); c.moveTo(mx,my+5); c.lineTo(ux-5,my+5); c.lineTo(ux-5,305); c.lineTo(ux+65,305); c.lineTo(ux+65,40); c.stroke();
+    const base=220; c.fillStyle="#aeb5bb"; c.fillRect(ux-4,base+hP/2,8,300-(base+hP/2)); c.fillRect(ux-4,296,68,8); c.fillRect(ux+56,base-hP/2,8,300-(base-hP/2));
+    c.strokeStyle=RED; c.setLineDash([4,3]); c.lineWidth=1.5; c.beginPath(); c.moveTo(ux-14,base+hP/2); c.lineTo(ux+80,base+hP/2); c.moveTo(ux+40,base-hP/2); c.lineTo(ux+80,base-hP/2); c.stroke(); c.setLineDash([]);
+    if(hP>14){ c.strokeStyle=RED; c.lineWidth=2; c.beginPath(); c.moveTo(ux+90,base-hP/2); c.lineTo(ux+90,base+hP/2); c.stroke(); cvText(c,ux+96,base+4,"difference",{fs:11,c:RED,a:"left"}); cvText(c,ux+96,base+18,"= vapor pressure",{fs:11,c:RED,a:"left"}); }
+    cvText(c,ux+30,330,"manometer (mercury)",{fs:11,c:GRAY}); cvText(c,fx0+fw/2,fy0+fh+24,"sealed flask",{fs:12,c:GRAY});
+    cvText(c,fx0+fw/2,lvl-10,"",{});
+    cvText(c,fx0+fw/2,30,`escaping: ${evRate.toFixed(1)} per s   returning: ${cdRate.toFixed(1)} per s`,{fs:12,c:GRAY});
+  });
+  info(); };
+
+/* ---------- interactive vapor pressure curve ---------- */
+/* legend in the empty upper-left corner of a vapor pressure graph, so the curve labels never crowd at the top */
+G.vpLegend=(x,y)=>`<rect x="${x-8}" y="${y-14}" width="132" height="${G.LIQ.length*19+8}" rx="6" fill="#fff" fill-opacity=".92" stroke="#dbe5ea"/>`+G.LIQ.map((l,i)=>`<line x1="${x}" y1="${y+i*19-4}" x2="${x+22}" y2="${y+i*19-4}" stroke="${l.col}" stroke-width="3.5"/>`+T.t(x+30,y+i*19,l.name,{fs:12.5,c:l.col,a:"start"})).join("");
+G.VPCurve=function(host,o={}){ let tSel=50, pSel=101.3, show={propanone:1,ethanol:1,water:1,ethanoic:1}; const W=640,H=430, x0=70,y0=370,w=540,h=330, tMax=125, pMax=200;
+  const X=t=>x0+t/tMax*w, Y=p=>y0-p/pMax*h, iX=x=>(x-x0)/w*tMax, iY=y=>(y0-y)/h*pMax;
+  host.innerHTML=`<div class="lab-b"><p class="how">Drag the <b style="color:${RED}">red line</b> to choose a temperature and read each liquid’s vapor pressure. Drag the <b style="color:${BLUE}">blue line</b> to set the pressure on the liquid’s surface; each liquid boils where its curve crosses that line.</p>
+    <div class="g8-chips" role="group" aria-label="Pressure presets"><span class="ctl-label">Pressure on the surface:</span>${[["101.3","Sea level (101.3 kPa)"],["83.4","Denver (83.4 kPa)"],["31.4","Mount Everest (31.4 kPa)"],["200","Pressure cooker (about 200 kPa)"]].map(([v,t])=>`<button type="button" class="chip-b" data-p="${v}" aria-pressed="${v==="101.3"?"true":"false"}">${t}</button>`).join("")}</div>
+    <div class="g8-row"><div class="t7-svg g8-vpc" data-r="g" style="touch-action:none"></div><div class="g8-side"><table class="nt g8-tbl" data-r="tbl"></table><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const gEl=host.querySelector('[data-r="g"]');
+  function draw(){ let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+    for(let t=0;t<=125;t+=25) s+=`<line x1="${X(t)}" y1="${y0}" x2="${X(t)}" y2="${y0-h}" stroke="#e3ebee"/>`+T.t(X(t),y0+18,String(t),{fs:12,w:600,c:GRAY});
+    for(let p=0;p<=200;p+=25) s+=`<line x1="${x0}" y1="${Y(p)}" x2="${x0+w}" y2="${Y(p)}" stroke="#e3ebee"/>`+T.t(x0-8,Y(p)+4,String(p),{fs:12,w:600,c:GRAY,a:"end"});
+    G.LIQ.forEach(l=>{ if(!show[l.k]) return; const pts=[]; for(let t=l.k==="ethanoic"?17:0;t<=125;t+=1){ const p=G.vp(l.k,t); if(p>pMax*1.02) break; pts.push([X(t),Y(Math.min(p,pMax))]); }
+      s+=`<path d="${pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join("")}" fill="none" stroke="${l.col}" stroke-width="3.5"/>`;
+ });
+      s+=G.vpLegend(x0+14,y0-h+16);
+    /* temperature line and pressure line */
+    s+=`<line x1="${X(tSel)}" y1="${y0}" x2="${X(tSel)}" y2="${y0-h}" stroke="${RED}" stroke-width="3" stroke-dasharray="7 5"/><rect x="${X(tSel)-9}" y="${y0-h-2}" width="18" height="${h+4}" fill="transparent" data-drag="t" style="cursor:ew-resize"/>`+T.t(X(tSel),y0-h-8,`${tSel} °C`,{fs:13,c:RED});
+    s+=`<line x1="${x0}" y1="${Y(pSel)}" x2="${x0+w}" y2="${Y(pSel)}" stroke="${BLUE}" stroke-width="3" stroke-dasharray="7 5"/><rect x="${x0}" y="${Y(pSel)-9}" width="${w}" height="18" fill="transparent" data-drag="p" style="cursor:ns-resize"/>`+T.t(pSel<140?x0+8:x0+w-6,Y(pSel)-8,`${fx(pSel,1)} kPa`,{fs:13,c:BLUE,a:pSel<140?"start":"end",st:1});
+    G.LIQ.forEach(l=>{ if(!show[l.k]) return; const p=G.vp(l.k,tSel); if(p<=pMax&&(l.k!=="ethanoic"||tSel>=17)) s+=`<circle cx="${X(tSel)}" cy="${Y(p)}" r="6" fill="${l.col}" stroke="${INK}" stroke-width="1.5"/>`;
+      const b=G.bp(l.k,pSel); if(b>=0&&b<=tMax) s+=`<circle cx="${X(b)}" cy="${Y(pSel)}" r="6" fill="#fff" stroke="${l.col}" stroke-width="3"/>`; });
+    s+=`<path d="M${x0} ${y0-h-6}V${y0}H${x0+w+6}" fill="none" stroke="${INK}" stroke-width="2.5"/>`+T.t(x0+w/2,H-14,"Temperature (°C)",{fs:14})+`<text transform="translate(18 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Vapor pressure (kPa)</text>`;
+    gEl.innerHTML=T.svg(W,H,s,"Vapor pressure curves of propanone, ethanol, water and ethanoic acid");
+    host.querySelector('[data-r="tbl"]').innerHTML=`<tr><th>Liquid</th><th>Vapor pressure at ${tSel} °C</th><th>Boils at ${fx(pSel,1)} kPa</th></tr>`+G.LIQ.map(l=>{ const p=G.vp(l.k,tSel), b=G.bp(l.k,pSel); return `<tr><td style="color:${l.col};font-weight:700">${l.name}</td><td>${l.k==="ethanoic"&&tSel<17?"(solid)":p<10?fx(p,1)+" kPa":fx(p,0)+" kPa"}</td><td>${b<=tMax?Math.round(b)+" °C":"above 125 °C"}</td></tr>`; }).join("");
+    host.querySelector('[data-r="info"]').innerHTML= Math.abs(pSel-101.3)<.2? "<b>Normal boiling point</b><span>At standard pressure (101.3 kPa), each liquid boils where its curve crosses 101.3 kPa: the normal boiling point.</span>" : pSel<101.3? "<b>Lower pressure on the surface</b><span>Less pressure pushes on the liquid, so its vapor pressure reaches the outside pressure at a lower temperature: every liquid boils at a lower temperature.</span>" : "<b>Higher pressure on the surface</b><span>The vapor pressure must climb higher before it equals the outside pressure, so every liquid boils at a higher temperature. Food in a pressure cooker cooks faster in water above 100 °C.</span>"; }
+  let drag=null; const pos=e=>{ const svg=gEl.querySelector("svg"), r=svg.getBoundingClientRect(); return [(e.clientX-r.left)*W/r.width,(e.clientY-r.top)*H/r.height]; };
+  gEl.addEventListener("pointerdown",e=>{ const d=e.target.dataset&&e.target.dataset.drag; if(d){ drag=d; gEl.setPointerCapture(e.pointerId); } else { const [x,y]=pos(e); if(x>x0&&x<x0+w&&y>y0-h&&y<y0){ drag="t"; tSel=Math.round(Math.max(0,Math.min(tMax,iX(x)))); draw(); gEl.setPointerCapture(e.pointerId); } } });
+  gEl.addEventListener("pointermove",e=>{ if(!drag) return; const [x,y]=pos(e); if(drag==="t") tSel=Math.round(Math.max(0,Math.min(tMax,iX(x)))); else { pSel=Math.round(Math.max(5,Math.min(pMax,iY(y)))*2)/2; A.$$("[data-p]",host).forEach(b=>b.setAttribute("aria-pressed","false")); } draw(); });
+  gEl.addEventListener("pointerup",()=>{ drag=null; });
+  A.$$("[data-p]",host).forEach(b=>b.addEventListener("click",()=>{ pSel=+b.dataset.p; A.$$("[data-p]",host).forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); draw(); }));
+  draw(); return {set:(t,p)=>{ tSel=t; pSel=p; draw(); }}; };
+
+/* ---------- boiling: bubbles form only when the vapor pressure reaches the pressure on the surface ---------- */
+G.BoilSim=function(host){ let Tc=60, Pout=101.3; const W=520,H=340, rnd=T.rng(5);
+  host.innerHTML=`<div class="lab-b"><p class="how">Heat the water and change the pressure on its surface. A bubble of vapor can only form inside the liquid when the vapor pressure of the water is at least as great as the pressure pushing down on the liquid.</p>
+    <div class="controls g8-ctl"><label class="g8-sl"><span>Temperature</span><input type="range" data-k="T" min="20" max="125" step="1" value="60" aria-label="Water temperature"><b data-v="T"></b></label><label class="g8-sl"><span>Pressure on surface</span><input type="range" data-k="P" min="20" max="200" step="0.5" value="101.3" aria-label="Pressure on the surface"><b data-v="P"></b></label></div>
+    <div class="g8-row"><div class="t7-cv-wrap g8-cvw"></div><div class="g8-side"><div class="g8-cmpbar" data-r="bars"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=T.canvas(W,H,"A pot of water on a burner"), c=cv.getContext("2d"); host.querySelector(".g8-cvw").appendChild(cv);
+  let bub=[];
+  function ui(){ const vp=G.vp("water",Tc), boil=vp>=Pout, bp=G.bp("water",Pout);
+    host.querySelector('[data-v="T"]').textContent=Tc+" °C"; host.querySelector('[data-v="P"]').textContent=fx(Pout,1)+" kPa";
+    const mx=210; host.querySelector('[data-r="bars"]').innerHTML=`<div><small>Vapor pressure of the water</small><div class="g8-pb"><i style="width:${Math.min(100,vp/mx*100)}%;background:${RED}"></i></div><b>${fx(vp,1)} kPa</b></div><div><small>Pressure on the surface</small><div class="g8-pb"><i style="width:${Math.min(100,Pout/mx*100)}%;background:${BLUE}"></i></div><b>${fx(Pout,1)} kPa</b></div>`;
+    host.querySelector('[data-r="info"]').innerHTML= boil? `<b style="color:${RED}">Boiling</b><span>The vapor pressure (${fx(vp,1)} kPa) has reached the pressure on the surface, so bubbles of vapor form throughout the liquid. At ${fx(Pout,1)} kPa, water boils at ${Math.round(bp)} °C.</span>` : `<b>Not boiling</b><span>The vapor pressure (${fx(vp,1)} kPa) is lower than the pressure on the surface. Molecules still evaporate from the surface, but bubbles cannot form inside. At this pressure water boils at ${Math.round(bp)} °C.</span>`; }
+  host.addEventListener("input",e=>{ const k=e.target.dataset.k; if(k==="T") Tc=+e.target.value; if(k==="P") Pout=+e.target.value; ui(); });
+  T.loop(cv,(dt,t)=>{ const vp=G.vp("water",Tc), boil=vp>=Pout;
+    if(boil&&rnd()<dt*14) bub.push({x:150+rnd()*220,y:278,r:2,vy:-30-rnd()*20});
+    bub.forEach(b=>{ b.y+=b.vy*dt; b.r=Math.min(11,b.r+dt*9); b.x+=Math.sin(t/200+b.y/9)*.3; }); bub=bub.filter(b=>b.y>150);
+    c.fillStyle="#fff"; c.fillRect(0,0,W,H);
+    const k=Math.max(1,Math.round(Pout/101.3*4)); for(let i=0;i<k;i++){ const x=170+i*(180/Math.max(1,k-1||1)); c.strokeStyle=BLUE; c.fillStyle=BLUE; c.lineWidth=3; c.beginPath(); c.moveTo(x,40); c.lineTo(x,108); c.stroke(); c.beginPath(); c.moveTo(x-7,104); c.lineTo(x+7,104); c.lineTo(x,118); c.fill(); }
+    cvText(c,260,30,"pressure on the surface",{fs:12,c:BLUE});
+    c.fillStyle="#9fd3f2"; c.fillRect(126,140,268,150); c.strokeStyle="#2a7fd0"; c.lineWidth=2; c.beginPath(); c.moveTo(126,140); c.lineTo(394,140); c.stroke();
+    bub.forEach(b=>{ c.beginPath(); c.arc(b.x,b.y,b.r,0,7); c.fillStyle="rgba(255,255,255,.9)"; c.fill(); c.strokeStyle="#2a7fd0"; c.lineWidth=1.5; c.stroke(); });
+    if(Tc>35){ for(let i=0;i<3;i++){ const x=200+i*60; c.strokeStyle="#9aa5ab"; c.lineWidth=2; c.beginPath(); for(let y=0;y<26;y++) c.lineTo(x+Math.sin((y+t/90)/4)*4,132-y); c.stroke(); } }
+    c.strokeStyle=INK; c.lineWidth=4; c.beginPath(); c.moveTo(120,120); c.lineTo(120,296); c.lineTo(400,296); c.lineTo(400,120); c.stroke();
+    c.fillStyle="#5f6b72"; c.fillRect(110,298,300,12); const f=(Tc-20)/105; c.fillStyle=`rgb(${Math.round(240)},${Math.round(160-80*f)},40)`; for(let i=0;i<6;i++){ const x=150+i*44; c.beginPath(); c.moveTo(x-8,318); c.quadraticCurveTo(x,318-10-16*f,x+8,318); c.fill(); }
+    cvText(c,450,180,`${Tc} °C`,{fs:16,c:RED}); });
+  ui(); };
+
+/* ---------- Dalton: each gas in a mixture contributes its own pressure ---------- */
+G.DaltonSim=function(host){ const gases=[{k:"N2",name:"Nitrogen, N₂",col:BLUE,n:12},{k:"O2",name:"Oxygen, O₂",col:RED,n:6},{k:"Ar",name:"Argon, Ar",col:"#F28C28",n:2}]; const W=360,H=300, perP=5; /* each particle stands for 5 kPa */
+  host.innerHTML=`<div class="lab-b"><p class="how">Add or remove particles of each gas. Every gas hits the walls on its own, so each one contributes its own partial pressure. The total pressure is the sum.</p>
+    <div class="controls g8-ctl">${gases.map(g=>`<label class="g8-sl"><span style="color:${g.col}">${g.name}</span><input type="range" data-k="${g.k}" min="0" max="20" step="1" value="${g.n}" aria-label="${g.name} particles"><b data-v="${g.k}"></b></label>`).join("")}</div>
+    <div class="g8-row"><div class="t7-cv-wrap g8-cvw"></div><div class="g8-side"><div class="t7-svg" data-r="bars"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=T.canvas(W,H,"A container holding a mixture of gases"), c=cv.getContext("2d"); host.querySelector(".g8-cvw").appendChild(cv);
+  const gas=G.Gas({x0:20,y0:H-20,w:W-40,h0:H-40,n:0,r:7,T:300});
+  const sync=()=>{ const want=[]; gases.forEach(g=>{ for(let i=0;i<g.n;i++) want.push(g.col); }); gas.setN(want.length); gas.P.forEach((p,i)=>p.c=want[i]); };
+  function ui(){ const tot=gases.reduce((a,g)=>a+g.n,0)*perP; let s="", x=40;
+    gases.forEach(g=>{ const v=g.n*perP, hh=v*1.6; s+=`<rect x="${x}" y="${250-hh}" width="56" height="${hh}" fill="${g.col}" stroke="${INK}" stroke-width="1.5"/>`+T.t(x+28,268,g.k.replace("2","₂"),{fs:13})+T.t(x+28,244-hh,v+" kPa",{fs:12.5,c:g.col}); x+=72; });
+    s+=T.t(x+6,256-tot*1.6/2,"=",{fs:22}); let yy=250; gases.forEach(g=>{ const hh=g.n*perP*1.6; s+=`<rect x="${x+26}" y="${yy-hh}" width="62" height="${hh}" fill="${g.col}" stroke="${INK}" stroke-width="1.5"/>`; yy-=hh; });
+    s+=T.t(x+57,268,"Total",{fs:13})+T.t(x+57,244-tot*1.6,tot+" kPa",{fs:13.5})+`<line x1="30" y1="250" x2="${x+100}" y2="250" stroke="${INK}" stroke-width="2"/>`;
+    host.querySelector('[data-r="bars"]').innerHTML=T.svg(x+110,280,s,"Partial pressure bars and the total pressure");
+    gases.forEach(g=>host.querySelector(`[data-v="${g.k}"]`).textContent=g.n);
+    host.querySelector('[data-r="info"]').innerHTML=`<span class="mth">P<sub>total</sub> = ${gases.map(g=>`P<sub>${g.k.replace("2","₂")}</sub>`).join(" + ")} = ${gases.map(g=>g.n*perP).join(" + ")} = ${tot} kPa</span><span>Each gas’s share of the pressure equals its share of the particles: oxygen makes up ${tot?Math.round(gases[1].n*perP/tot*100):0}% of the particles and ${tot?Math.round(gases[1].n*perP/tot*100):0}% of the pressure.</span>`; }
+  host.addEventListener("input",e=>{ const g=gases.find(x=>x.k===e.target.dataset.k); if(!g) return; g.n=+e.target.value; sync(); ui(); });
+  T.loop(cv,dt=>{ gas.step(dt,{x0:20,x1:W-20,y1:H-20,top:20}); c.fillStyle="#fff"; c.fillRect(0,0,W,H); c.fillStyle="#f3f9fd"; c.fillRect(20,20,W-40,H-40); gas.draw(c,true); c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(20,20,W-40,H-40); });
+  sync(); ui(); };
+
+/* ---------- Graham: lighter gases effuse faster through a pinhole ---------- */
+G.GASES={H2:{n:"Hydrogen",f:"H₂",M:2.02,col:"#7aa7d9"},He:{n:"Helium",f:"He",M:4.00,col:"#F2B705"},NH3:{n:"Ammonia",f:"NH₃",M:17.04,col:"#7030A0"},Ne:{n:"Neon",f:"Ne",M:20.18,col:"#E8590C"},N2:{n:"Nitrogen",f:"N₂",M:28.02,col:"#2E75D6"},O2:{n:"Oxygen",f:"O₂",M:32.00,col:"#E00000"},HCl:{n:"Hydrogen chloride",f:"HCl",M:36.46,col:"#00843c"},CO2:{n:"Carbon dioxide",f:"CO₂",M:44.01,col:"#5f6b72"},Xe:{n:"Xenon",f:"Xe",M:131.29,col:"#A98BDB"}};
+G.GrahamSim=function(host){ let a="He", b="O2"; const W=600,H=300, rnd=T.rng(13);
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose two gases at the same temperature. Both start on the left; molecules escape through the pinhole into the empty chamber on the right. Press <b>Start</b> and compare how fast each gas effuses.</p>
+    <div class="controls g8-ctl"><label class="g8-sl"><span>Gas 1</span><select data-g="a">${Object.entries(G.GASES).map(([k,g])=>`<option value="${k}"${k===a?" selected":""}>${g.n} (${g.f}, ${g.M} g/mol)</option>`).join("")}</select></label><label class="g8-sl"><span>Gas 2</span><select data-g="b">${Object.entries(G.GASES).map(([k,g])=>`<option value="${k}"${k===b?" selected":""}>${g.n} (${g.f}, ${g.M} g/mol)</option>`).join("")}</select></label><button class="btn sm" type="button" data-r="go">▶ Start</button></div>
+    <div class="g8-row"><div class="t7-cv-wrap g8-cvw g8-wide"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=T.canvas(W,H,"Two gases effusing through a pinhole"), c=cv.getContext("2d"); host.querySelector(".g8-cvw").appendChild(cv);
+  let P=[], run=false, t0=0, esc={a:0,b:0}, time=0;
+  const reset=()=>{ P=[]; esc={a:0,b:0}; time=0; ["a","b"].forEach(w=>{ const g=G.GASES[w==="a"?a:b], v=55*Math.sqrt(32/g.M); for(let i=0;i<22;i++){ const an=rnd()*6.283; let x,y,k=0; do{ x=30+rnd()*250; y=30+rnd()*240; k++; } while(k<60&&P.some(q=>Math.hypot(q.x-x,q.y-y)<16)); P.push({w,x,y,vx:Math.cos(an)*v,vy:Math.sin(an)*v,c:g.col,side:0,m:g.M}); } }); };
+  function ui(){ const ga=G.GASES[a], gb=G.GASES[b], ratio=Math.sqrt(gb.M/ga.M);
+    host.querySelector('[data-r="read"]').innerHTML=`<div><small>${ga.f} escaped</small><b style="color:${ga.col}">${esc.a}</b></div><div><small>${gb.f} escaped</small><b style="color:${gb.col}">${esc.b}</b></div><div><small>Time</small><b>${time.toFixed(1)} s</b></div>`;
+    host.querySelector('[data-r="info"]').innerHTML=`<b>Graham’s law predicts</b><span class="mth">rate<sub>${ga.f}</sub> ÷ rate<sub>${gb.f}</sub> = √(${gb.M} ÷ ${ga.M}) = ${ratio.toFixed(2)}</span><span>${ratio>1.01?`${ga.f} should effuse ${ratio.toFixed(2)} times as fast as ${gb.f}.`:ratio<.99?`${gb.f} should effuse ${(1/ratio).toFixed(2)} times as fast as ${ga.f}.`:"The two gases have nearly the same molar mass, so they effuse at nearly the same rate."}${esc.b>4&&esc.a>4?` In this run: ${esc.a} ÷ ${esc.b} = ${(esc.a/esc.b).toFixed(2)}.`:""}</span>`; }
+  A.$$("select",host).forEach(s=>s.addEventListener("change",()=>{ if(s.dataset.g==="a") a=s.value; else b=s.value; run=false; reset(); ui(); }));
+  host.querySelector('[data-r="go"]').addEventListener("click",()=>{ reset(); run=true; ui(); });
+  T.loop(cv,(dt)=>{ if(run){ time+=dt; if(time>40) run=false; }
+    P.forEach(p=>{ if(run){ p.x+=p.vx*dt; p.y+=p.vy*dt; } const L=p.side?310:20, R=p.side?W-20:290;
+      if(p.y<20+7){ p.y=27; p.vy=Math.abs(p.vy); } if(p.y>H-27){ p.y=H-27; p.vy=-Math.abs(p.vy); }
+      if(p.x<L+7){ p.x=L+7; p.vx=Math.abs(p.vx); }
+      if(!p.side&&p.x>R-7){ if(Math.abs(p.y-H/2)<14&&run){ p.side=1; p.x=318; esc[p.w]++; ui(); } else { p.x=R-7; p.vx=-Math.abs(p.vx); } }
+      if(p.side&&p.x>W-27){ p.x=W-27; p.vx=-Math.abs(p.vx); } if(p.side&&p.x<317){ p.x=317; p.vx=Math.abs(p.vx); } });
+    /* elastic collisions between particles on the same side (heavier particles are pushed less), so particles never overlap */
+    if(run) for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const p=P[i], q=P[j]; if(p.side!==q.side) continue; const dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy); if(d>0&&d<13){ const nx=dx/d, ny=dy/d, rel=(p.vx-q.vx)*nx+(p.vy-q.vy)*ny; if(rel>0){ const J=2*rel/(p.m+q.m); p.vx-=J*q.m*nx; p.vy-=J*q.m*ny; q.vx+=J*p.m*nx; q.vy+=J*p.m*ny; } const ov=(13-d)/2; p.x-=nx*ov; p.y-=ny*ov; q.x+=nx*ov; q.y+=ny*ov; } }
+    c.fillStyle="#fff"; c.fillRect(0,0,W,H); c.fillStyle="#f3f9fd"; c.fillRect(20,20,W-40,H-40);
+    P.forEach(p=>{ c.beginPath(); c.arc(p.x,p.y,6.5,0,7); c.fillStyle=p.c; c.fill(); c.strokeStyle=INK; c.lineWidth=1.3; c.stroke(); });
+    c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(20,20,W-40,H-40); c.fillStyle="#9aa7ad"; c.fillRect(290,20,20,H/2-34); c.fillRect(290,H/2+14,20,H/2-34); c.strokeRect(290,20,20,H/2-34); c.strokeRect(290,H/2+14,20,H/2-34);
+    cvText(c,155,H-6,"gas mixture",{fs:12,c:GRAY}); cvText(c,445,H-6,"empty chamber",{fs:12,c:GRAY}); cvText(c,300,H/2+4,"",{}); });
+  reset(); ui(); };
+
+/* ---------- static figures for the notes ---------- */
+/* before/after cylinders for one law */
+G.figLaw=(law)=>{ const by=250, cw=110, s0=[];
+  const parts=(x,h,col,L,seed)=>{ const r=T.rng(seed); let s=""; const pts=[]; /* a jittered grid, as widely spaced as the space allows, so no two particles (or their motion lines) overlap */
+    let sp=L>9?32:26, grid=[]; for(;sp>=16;sp-=1){ grid=[]; for(let row=0;;row++){ const py=by-14-row*sp*.87; if(py<by-h+14) break; for(let px=x+16+(row%2?sp/2:0);px<=x+cw-16;px+=sp) grid.push([px,py]); } if(grid.length>=12) break; }
+    grid=grid.map(g=>[r(),g]).sort((a,b)=>a[0]-b[0]).slice(0,12).map(a=>a[1]);
+    const P=grid.map(([gx,gy])=>{ const j=Math.max(0,(sp-16)/2-1); return [gx+(r()*2-1)*j, gy+(r()*2-1)*j*.7]; });
+    /* point each motion line where it touches nothing: not another particle, not a wall */
+    const Lm=Math.min(L,Math.max(4,sp-14));
+    P.forEach(([px,py],i)=>{ let best=null; for(let k=0;k<24;k++){ const a=r()*6.283, dx=Math.cos(a), dy=Math.sin(a);
+        const pts=[0,.5,1].flatMap(f=>[-4,4].map(o=>[px-dx*(8+Lm*f)-dy*(L>9?o:0), py-dy*(8+Lm*f)+dx*(L>9?o:0)]));
+        const ok=pts.every(([qx,qy])=>qx>x+3&&qx<x+cw-3&&qy<by-3&&qy>by-h+3&&P.every(([ox,oy],m)=>m===i||Math.hypot(ox-qx,oy-qy)>8.5));
+        if(ok){ best=[dx,dy]; break; } }
+      s+=G.dot(px,py,6,col,best?best[0]:0,best?best[1]:0,best?Lm:0); }); return s; };
+  const one=(x,h,o,lab,sub,col,L,seed)=>G.cyl(x,by,cw,h,o)+parts(x,h,col,L,seed)+T.t(x+cw/2,by+22,lab,{fs:14})+T.t(x+cw/2,by+40,sub,{fs:12.5,c:GRAY});
+  let s="", arrowLab="", left="", right="";
+  if(law==="boyle"){ left=one(60,170,{handle:1,tall:190},"Larger volume","lower pressure",RED,7,3); right=one(330,85,{handle:1,tall:190},"Smaller volume","higher pressure",RED,7,3); arrowLab="push the piston in"; s+=T.t(240,24,"Temperature constant",{fs:13,c:GRAY}); }
+  if(law==="charles"){ left=one(60,90,{weight:1,tall:190},"Lower temperature","smaller volume",BLUE,4,5); right=one(330,170,{weight:1,tall:190},"Higher temperature","larger volume",RED,13,5); arrowLab="heat the gas"; s+=T.t(240,24,"Pressure constant (the weight stays the same)",{fs:13,c:GRAY}); }
+  if(law==="gay"){ left=one(60,130,{pins:1,tall:190},"Lower temperature","lower pressure",BLUE,4,7); right=one(330,130,{pins:1,tall:190},"Higher temperature","higher pressure",RED,13,7); arrowLab="heat the gas"; s+=T.t(240,24,"Volume constant (the piston is pinned)",{fs:13,c:GRAY}); }
+  s+=left+right+T.arrow(190,by-80,310,by-80,INK,3,12)+T.t(250,by-92,arrowLab,{fs:12.5,c:GRAY});
+  return T.svg(500,300,s,{boyle:"Boyle's law: pushing the piston in at constant temperature decreases the volume and increases the pressure",charles:"Charles's law: heating a gas at constant pressure increases its volume",gay:"Gay-Lussac's law: heating a gas at constant volume increases its pressure"}[law]); };
+/* the shape of each relationship */
+G.figGraph=(law,o={})=>{ const W=o.W||300,H=o.H||240, x0=48,y0=H-40,w=W-x0-16,h=H-40-16; let s="";
+  const ax=(xl,yl)=>`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2.5"/>`+T.t(x0+w/2,H-12,xl,{fs:13})+`<text transform="translate(16 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13" font-weight="700">${yl}</text>`;
+  if(law==="boyle"){ const pts=[]; for(let i=0;i<=40;i++){ const v=.18+i*.82/40; pts.push([x0+v*w,y0-(.16/v)*h]); } s+=`<path d="${pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join("")}" fill="none" stroke="${o.col||BLUE}" stroke-width="3.5"/>`+ax("Volume","Pressure"); }
+  else if(law==="charles"||law==="gay"){ s+=`<path d="M${x0} ${y0}L${x0+w} ${y0-h*.9}" fill="none" stroke="${o.col||RED}" stroke-width="3.5"/>`+ax("Temperature (K)",law==="charles"?"Volume":"Pressure"); }
+  else if(law==="pinv"){ s+=`<path d="M${x0} ${y0}L${x0+w} ${y0-h*.9}" fill="none" stroke="${o.col||BLUE}" stroke-width="3.5"/>`+ax("1 ÷ Volume","Pressure"); }
+  else if(law==="pv"){ s+=`<path d="M${x0} ${y0-h*.55}H${x0+w}" fill="none" stroke="${o.col||PURPLE}" stroke-width="3.5"/>`+ax("Pressure","P × V"); }
+  return T.svg(W,H,s,o.aria||"graph"); };
+/* ideal gas: tiny particles, no attractions; real gas: particles with volume and attractions */
+G.figIdealReal=()=>{ const r=T.rng(4); let s=""; const box=(x,lab,sub,real)=>{ let t=`<rect x="${x}" y="40" width="200" height="170" fill="#f3f9fd" stroke="${INK}" stroke-width="3"/>`; const pts=[];
+    for(let i=0;i<12;i++){ let px,py,k=0; do{ px=x+22+r()*156; py=62+r()*126; k++; } while(k<50&&pts.some(([a,b])=>Math.hypot(a-px,b-py)<(real?26:20))); pts.push([px,py]); }
+    if(real) pts.forEach(([a,b],i)=>pts.forEach(([c,d],j)=>{ if(j>i&&Math.hypot(a-c,b-d)<46) t+=`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#7aa7d9" stroke-width="2" stroke-dasharray="3 4"/>`; }));
+    pts.forEach(([a,b])=>{ const an=r()*6.283; t+=G.dot(a,b,real?10:4,BLUE,Math.cos(an),Math.sin(an),real?6:10); });
+    return t+T.t(x+100,26,lab,{fs:15})+T.t(x+100,232,sub,{fs:12.5,c:GRAY}); };
+  s+=box(20,"Ideal gas (model)","no volume, no attractions",false)+box(320,"Real gas","particles have volume and attract",true);
+  return T.svg(540,250,s,"An ideal gas has particles with no volume and no attractions; a real gas has particles that take up space and attract one another"); };
+/* collisions with the walls cause pressure */
+G.figCollide=()=>{ let s=`<rect x="40" y="30" width="280" height="200" fill="#f3f9fd" stroke="${INK}" stroke-width="3.5"/>`; const pts=[[90,80,1,-.3],[200,70,.4,-1],[270,140,1,.2],[120,170,-1,.4],[220,190,.3,1],[170,125,-.6,-.8]];
+  pts.forEach(([x,y,dx,dy])=>s+=G.dot(x,y,9,RED,dx,dy,14));
+  [[320,140],[318,70],[40,175],[200,30],[234,230]].forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="9" fill="#F2B705" fill-opacity=".75"/>`);
+  s+=T.arrow(352,140,392,140,ORANGE,4,12)+T.arrow(352,70,392,70,ORANGE,4,12)+T.t(420,110,"each collision",{fs:13,a:"start"})+T.t(420,128,"pushes on",{fs:13,a:"start"})+T.t(420,146,"the wall",{fs:13,a:"start"});
+  s+=T.t(180,256,"Gas particles collide with the walls of their container",{fs:13,c:GRAY});
+  return T.svg(520,270,s,"Gas particles moving in straight lines collide with the walls of their container; the push of these collisions is the gas pressure"); };
+})();
+
+/* Unit 8: Gas Laws (part 3). Gas law problem games: combined gas law (with canceling the variable held constant) and the ideal gas law. */
+(function(){ const A=window.AS; if(!A||!A.U8) return; const G=A.U8, T=A.U7;
+const RED="#E00000", BLUE="#2E75D6";
+const sub=n=>`<sub>${n}</sub>`, VN={P:"P",V:"V",T:"T"}, NAME={P:"pressure",V:"volume",T:"temperature"};
+const nice=v=>{ const a=Math.abs(v); return a>=1000? String(+v.toPrecision(4)) : a>=100? String(+v.toFixed(1)) : a>=10? String(+v.toFixed(2)) : String(+v.toPrecision(3)); };
+const rnd=(lo,hi,dp)=>+(lo+Math.random()*(hi-lo)).toFixed(dp);
+const UNITS_OK={kPa:["kpa","kilopascal","kilopascals"],atm:["atm","atmosphere","atmospheres"],mmHg:["mmhg","mm hg","torr"],L:["l","liter","liters","litre"],mL:["ml","milliliter","milliliters"],K:["k","kelvin","kelvins"],"°C":["°c","c","degc","oc","celsius"],mol:["mol","mole","moles"],g:["g","gram","grams"]};
+const normU=u=>{ const s=String(u||"").trim().toLowerCase().replace(/\s+/g," "); for(const [k,a] of Object.entries(UNITS_OK)) if(a.includes(s)||k.toLowerCase()===s) return k; return s; };
+G.normU=normU;
+
+/* ---------- problem bank for the combined gas law and its special cases ---------- */
+/* each problem: given {P1,V1,T1,P2,V2,T2} as [value, unit] or null (held constant), unknown key, text */
+function tempOf(K,useC){ return useC? [Math.round(K-273),"°C"] : [Math.round(K),"K"]; }
+const fmtQ=q=>q? `${q[0].toLocaleString("en-US")} ${q[1]}` : "";
+G.gasProblem=function(level,only){ const useC=level!=="easy"&&Math.random()<.6, mixP=level==="hard"&&Math.random()<.4;
+  const law=only||A.pick(["boyle","charles","gay","combined","combined"]);
+  let g={}, unk, text, ctx;
+  const k=(x,u)=>[x,u];
+  if(law==="boyle"){ const pu=A.pick(["kPa","atm"]), P1=pu==="kPa"?rnd(80,250,1):rnd(.8,3,2), r=A.pick([.4,.5,.6,1.5,2,2.5,3]), V1=rnd(1.5,12,1), vu=A.pick(["L","mL"]), Vv=vu==="mL"?Math.round(V1*50):V1;
+    const P2=pu==="kPa"?+(P1*r).toFixed(1):+(P1*r).toFixed(2), V2=+(Vv/r).toPrecision(3);
+    if(Math.random()<.6){ unk="V2"; g={P1:k(P1,pu),V1:k(Vv,vu),P2:k(P2,pu)}; ctx=A.pick([
+        `A syringe contains <v k="V1">${fmtQ(g.V1)}</v> of air at <v k="P1">${fmtQ(g.P1)}</v>. The plunger is moved until the pressure is <v k="P2">${fmtQ(g.P2)}</v>. The temperature does not change. What is the new volume of the air?`,
+        `An air bubble has a volume of <v k="V1">${fmtQ(g.V1)}</v> at <v k="P1">${fmtQ(g.P1)}</v>. At constant temperature, the pressure on the bubble changes to <v k="P2">${fmtQ(g.P2)}</v>. What is the new volume of the bubble?`]); }
+    else { unk="P2"; g={P1:k(P1,pu),V1:k(Vv,vu),V2:k(V2,vu)}; ctx=`A gas in a cylinder with a movable piston occupies <v k="V1">${fmtQ(g.V1)}</v> at <v k="P1">${fmtQ(g.P1)}</v>. At constant temperature the piston is moved until the volume is <v k="V2">${fmtQ(g.V2)}</v>. What is the new pressure of the gas?`; } }
+  if(law==="charles"){ const T1=rnd(250,320,0), T2=A.pick([rnd(255,275,0),rnd(330,420,0)]), vu=A.pick(["L","mL"]), V1=vu==="L"?rnd(1.2,9,2):Math.round(rnd(150,900,0)), V2=+(V1*T2/T1).toPrecision(3);
+    if(Math.random()<.65){ unk="V2"; g={V1:k(V1,vu),T1:tempOf(T1,useC),T2:tempOf(T2,useC)}; ctx=T2<T1? `A gas syringe with a freely moving plunger holds <v k="V1">${fmtQ(g.V1)}</v> of air at <v k="T1">${fmtQ(g.T1)}</v>. The syringe is cooled to <v k="T2">${fmtQ(g.T2)}</v>. The pressure stays the same. What is the new volume of the air?` : `A gas in a cylinder with a freely moving piston has a volume of <v k="V1">${fmtQ(g.V1)}</v> at <v k="T1">${fmtQ(g.T1)}</v>. The gas is heated to <v k="T2">${fmtQ(g.T2)}</v> at constant pressure. What is the new volume of the gas?`; }
+    else { unk="T2"; g={V1:k(V1,vu),T1:tempOf(T1,useC),V2:k(V2,vu)}; ctx=`A sample of gas occupies <v k="V1">${fmtQ(g.V1)}</v> at <v k="T1">${fmtQ(g.T1)}</v>. At constant pressure, at what temperature (in kelvin) will the gas occupy <v k="V2">${fmtQ(g.V2)}</v>?`; } }
+  if(law==="gay"){ const pu=A.pick(["kPa","atm"]), T1=rnd(270,305,0), T2=A.pick([rnd(320,420,0),rnd(250,265,0)]), P1=pu==="kPa"?rnd(150,320,1):rnd(1.5,3.2,2);
+    unk="P2"; g={P1:k(P1,pu),T1:tempOf(T1,useC),T2:tempOf(T2,useC)}; ctx=A.pick([`A rigid aerosol can contains gas at <v k="P1">${fmtQ(g.P1)}</v> and <v k="T1">${fmtQ(g.T1)}</v>. The can is left in a hot car and its temperature rises to <v k="T2">${fmtQ(g.T2)}</v>. What is the pressure of the gas inside the can?`,
+      `The air in a car tire has a pressure of <v k="P1">${fmtQ(g.P1)}</v> at <v k="T1">${fmtQ(g.T1)}</v>. The volume of the tire does not change. What is the pressure when the temperature of the air is <v k="T2">${fmtQ(g.T2)}</v>?`,
+      `A gas is sealed in a rigid steel tank at <v k="P1">${fmtQ(g.P1)}</v> and <v k="T1">${fmtQ(g.T1)}</v>. What is its pressure at <v k="T2">${fmtQ(g.T2)}</v>?`]); if(T2<T1) ctx=`A gas is sealed in a rigid steel tank at <v k="P1">${fmtQ(g.P1)}</v> and <v k="T1">${fmtQ(g.T1)}</v>. The tank is cooled to <v k="T2">${fmtQ(g.T2)}</v>. What is the new pressure of the gas?`; }
+  if(law==="combined"){ const stp=level!=="easy"&&Math.random()<.25, T1=stp?273:rnd(270,310,0), T2=rnd(220,360,0), P1=stp?101.3:rnd(90,200,1), P2=rnd(40,250,1), V1=rnd(1.5,8,1);
+    let pu1="kPa", P1v=P1; if(mixP&&!stp){ pu1="atm"; P1v=+(P1/101.3).toFixed(2); }
+    unk=Math.random()<.7?"V2":"P2";
+    if(stp){ g={V1:k(V1,"L"),P2:k(P2,"kPa"),T2:tempOf(T2,useC),P1:k(101.3,"kPa"),T1:k(273,"K"),stp:1}; unk="V2"; ctx=`A <v k="V1">${fmtQ(g.V1)}</v> sample of gas is at STP. It is moved to a container where the pressure is <v k="P2">${fmtQ(g.P2)}</v> and the temperature is <v k="T2">${fmtQ(g.T2)}</v>. What is the new volume of the gas?`; }
+    else if(unk==="V2"){ g={P1:k(P1v,pu1),V1:k(V1,"L"),T1:tempOf(T1,useC),P2:k(P2,"kPa"),T2:tempOf(T2,useC)}; ctx=A.pick([`A flexible plastic bag holds <v k="V1">${fmtQ(g.V1)}</v> of nitrogen at <v k="P1">${fmtQ(g.P1)}</v> and <v k="T1">${fmtQ(g.T1)}</v>. It is moved to where the pressure is <v k="P2">${fmtQ(g.P2)}</v> and the temperature is <v k="T2">${fmtQ(g.T2)}</v>. What is the new volume of the bag?`,
+      `A <v k="V1">${fmtQ(g.V1)}</v> sample of gas at <v k="P1">${fmtQ(g.P1)}</v> and <v k="T1">${fmtQ(g.T1)}</v> is changed to <v k="P2">${fmtQ(g.P2)}</v> and <v k="T2">${fmtQ(g.T2)}</v>. What is the new volume of the gas?`]); }
+    else { const V2=rnd(1,9,1); g={P1:k(P1v,pu1),V1:k(V1,"L"),T1:tempOf(T1,useC),V2:k(V2,"L"),T2:tempOf(T2,useC)}; ctx=`A cylinder with a movable piston holds <v k="V1">${fmtQ(g.V1)}</v> of gas at <v k="P1">${fmtQ(g.P1)}</v> and <v k="T1">${fmtQ(g.T1)}</v>. The piston is moved to give a volume of <v k="V2">${fmtQ(g.V2)}</v>, and the temperature changes to <v k="T2">${fmtQ(g.T2)}</v>. What is the new pressure of the gas?`; } }
+  /* the variable held constant, and the answer (computed with 273 and with 273.15; either is accepted) */
+  const cons= law==="boyle"?"T" : law==="charles"?"P" : law==="gay"?"V" : null;
+  const conv=(q,want,c273)=>{ if(!q) return null; let [v,u]=q; if(u==="°C") return [v+c273,"K"]; if(want&&u!==want){ if(u==="atm"&&want==="kPa") return [v*101.3,"kPa"]; if(u==="kPa"&&want==="atm") return [v/101.3,"atm"]; } return [v,u]; };
+  const pUnit=(g.P2&&g.P2[1])||(g.P1&&g.P1[1])||"kPa";
+  const solve=c273=>{ const x={}; ["P1","V1","T1","P2","V2","T2"].forEach(kk=>{ const q=conv(g[kk],kk[0]==="P"?pUnit:null,c273); x[kk]=q?q[0]:1; }); if(cons){ x[cons+"1"]=1; x[cons+"2"]=1; }
+    const L=(x.P1*x.V1)/x.T1; if(unk==="V2") return L*x.T2/x.P2; if(unk==="P2") return L*x.T2/x.V2; if(unk==="T2") return x.P2*x.V2/L; };
+  const ansU= unk==="T2"?"K" : unk==="P2"? pUnit : (g.V1&&g.V1[1])||"L";
+  return {law,g,unk,cons,text:ctx,ans:solve(273),ans2:solve(273.15),ansU,pUnit,conv}; };
+
+/* ---------- the gas law game: the steps from the notes ----------
+   individual law pages (o.only): given → kelvin → write the law → substitute and solve → units
+   combined page: given → kelvin → write the combined gas law → cancel what is held constant → substitute and solve → units */
+G.GasLawGame=function(host,o={}){ let mode=o.mode||"easy", Pb=null, dd=null, cancel={P:0,V:0,T:0}, done={}, numOK=false;
+  const ONLY=o.only||null, LAWV={boyle:["P","V"],charles:["V","T"],gay:["P","T"]};
+  const LAWNM={boyle:"Boyle’s law",charles:"Charles’s law",gay:"Gay-Lussac’s law",combined:"the combined gas law"};
+  const v_=(v,i)=>`<i>${v}</i>${sub(i)}`, fr=(a,b)=>`<span class="cx-frac"><span>${a}</span><span>${b}</span></span>`;
+  const EQH={boyle:`<span>${v_("P",1)}${v_("V",1)}</span><b class="cx-op">=</b><span>${v_("P",2)}${v_("V",2)}</span>`,
+    charles:`${fr(v_("V",1),v_("T",1))}<b class="cx-op">=</b>${fr(v_("V",2),v_("T",2))}`,
+    gay:`${fr(v_("P",1),v_("T",1))}<b class="cx-op">=</b>${fr(v_("P",2),v_("T",2))}`,
+    combined:`${fr(v_("P",1)+v_("V",1),v_("T",1))}<b class="cx-op">=</b>${fr(v_("P",2)+v_("V",2),v_("T",2))}`};
+  const g=A.Game(host,{how: ONLY? `Solve each problem with ${LAWNM[ONLY]}, using the steps from the notes. Easy: drag the values from the problem into the table. Medium: drag the values${ONLY==='boyle'?'':', and the temperatures are often given in degrees Celsius'}. Hard: type every value and its unit.`
+    : "Solve each problem with the combined gas law, using the steps from the notes. Easy: drag the values from the problem into the table; the variable held constant is named for you. Medium: drag the values and decide which variable is held constant. Hard: type every value and its unit, and convert the units yourself."});
+  g.seg("Level",[["easy","Easy"],["med","Medium"],["hard","Hard"]],mode,v=>{ mode=v; next(); });
+  if(!ONLY) g.seg("Law",[["any","Any"],["boyle","Boyle"],["charles","Charles"],["gay","Gay-Lussac"],["combined","Combined"]],"any",v=>{ o.law=v==="any"?null:v; next(); });
+  g.button("New problem",()=>next(),"ghost");
+  const VARS=ONLY? LAWV[ONLY] : ["P","V","T"], KEYS=VARS.flatMap(v=>[v+"1",v+"2"]), lab=k=>`${k[0]}${sub(k[1])}`;
+  /* the step numbers, from the notes */
+  const N=ONLY? {giv:1,kel:2,law:3,sol:4,unit:5} : {giv:1,kel:2,law:3,can:4,sol:5,unit:6};
+  function slot(k){ return mode==="hard"? `<span class="g8-ty" data-s="${k}"><input class="ty-n" data-sup="1" placeholder="number" autocomplete="off" aria-label="${lab(k).replace(/<[^>]+>/g,"")} number"><input class="ty-u" data-unit="1" placeholder="unit" autocomplete="off" aria-label="${k} unit"></span>` : `<span class="da-slot g8-slot" data-s="${k}"></span>`; }
+  const step=(r,title,body,locked=true)=>`<div class="da-step${locked?" locked":""}" data-r="${r}"><h4>Step ${N[r]}: ${title}</h4>${body}</div>`;
+  const chk=(r,t)=>`<div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c-${r}">${t||`Check Step ${N[r]}`}</button></div>`;
+  const UNITS=["kPa","atm","mmHg","L","mL","K","°C"];
+  function next(){ g.fresh(); g.msg(""); cancel={P:0,V:0,T:0}; done={}; numOK=false; Pb=G.gasProblem(mode,ONLY||o.law);
+    const text=Pb.text.replace(/<v k="(\w+)">(.*?)<\/v>/g,(_,k,t)=>`<span class="t7-val" data-k="${k}">${t}</span>`);
+    const lawChoices=ONLY? ["boyle","charles","gay"] : ["boyle","charles","gay","combined"];
+    g.stage.innerHTML=`<div class="t7-prob">${text}</div>`+
+     step("giv","List the given variables and the unknown",`<p class="muted g8-tip">${mode==="hard"?"Type each value and its unit. Type ? for the unknown. Leave a box empty if the problem does not give that value.":"Drag each highlighted value from the problem into the table, and drag the ? to the unknown. Leave a box empty if the problem does not give that value."}</p>
+       <table class="g8-giv"><tr><th></th><th>Initial (1)</th><th>Final (2)</th></tr>${VARS.map(v=>`<tr><th>${NAME[v][0].toUpperCase()+NAME[v].slice(1)}</th><td>${lab(v+"1")} = ${slot(v+"1")}</td><td>${lab(v+"2")} = ${slot(v+"2")}</td></tr>`).join("")}</table>
+       ${mode!=="hard"?`<div class="dd-pool" data-r="pool"></div>`:`<p class="muted g8-tip">Units: kPa, atm, mmHg, L, mL, K, °C (type <b>deg</b> to get °).</p>`}`+chk("giv"),false)+
+     step("kel","If necessary, convert all temperatures to kelvin",`<div data-r="units"></div>`)+
+     step("law",ONLY?"Write down the gas law":"Write down the combined gas law",`<p class="muted g8-tip">${ONLY?`Which gas law relates the ${VARS.map(v=>NAME[v]).join(" and ")} of a gas?`:"Choose the combined gas law."}</p><div class="g8-lawch">${lawChoices.map(l=>`<button type="button" class="btn ghost g8-lawb" data-law="${l}"><span class="g8-eq">${EQH[l]}</span></button>`).join("")}</div>`)+
+     (ONLY?"":step("can","Identify the variables held constant and omit them",`<p class="muted g8-tip">${mode==="easy"&&Pb.cons?`The ${NAME[Pb.cons]} is held constant. `:""}Click a variable to cancel it from both sides if it is held constant. If nothing is held constant, cancel nothing.</p><div class="g8-cgl" data-r="cgl"></div>`+chk("can")))+
+     step("sol","Substitute and solve for the unknown",`<div class="g8-subst mth" data-r="sub"></div><div class="controls"><b class="t7-line">${lab(Pb.unk)} =</b><input class="inp" data-r="ans" data-sup="1" inputmode="decimal" style="width:140px" aria-label="answer"><button class="btn sm" type="button" data-r="go">Check Step ${N.sol}</button></div>`)+
+     step("unit","Write the final answer with units",`<div class="controls"><b class="t7-line" data-r="final">${lab(Pb.unk)} = ?</b>${mode==="hard"?`<input class="inp" data-r="uin" data-unit="1" placeholder="unit" style="width:90px" aria-label="unit">`+`<button class="btn sm" type="button" data-r="c-unit">Check Step ${N.unit}</button>`:UNITS.map(u=>`<button type="button" class="btn ghost sm g8-ub" data-ub="${u}">${u}</button>`).join("")}</div>`);
+    if(mode!=="hard"){ const cards=Object.entries(Pb.g).filter(([k])=>KEYS.includes(k)&&!(Pb.g.stp&&(k==="P1"||k==="T1"))).map(([k,q])=>({id:k,html:fmtQ(q)})); if(Pb.g.stp) cards.push({id:"P1",html:"101.3 kPa (STP)"},{id:"T1",html:"273 K (STP)"}); cards.push({id:"unk",html:"?"});
+      const srcEls=A.$$(".t7-prob .t7-val",g.stage).filter(el=>cards.some(c=>c.id===el.dataset.k)&&!(Pb.g.stp&&(el.dataset.k==="P1"||el.dataset.k==="T1")));
+      dd=A.TextDrag({root:g.root,pool:g.stage.querySelector('[data-r="pool"]'),targets:A.$$(".g8-slot",g.stage).map(el=>({el,id:el.dataset.s})),
+        sources:srcEls.map(el=>({id:el.dataset.k,el,html:fmtQ(Pb.g[el.dataset.k])})),extras:cards.filter(c=>!srcEls.some(el=>el.dataset.k===c.id)),onChange:()=>{}}); }
+    else dd=null;
+    if(!ONLY) drawCGL(); const q=s=>g.stage.querySelector(s);
+    q('[data-r="c-giv"]').addEventListener("click",checkGiv);
+    A.$$(".g8-lawb",g.stage).forEach(b=>b.addEventListener("click",()=>pickLaw(b)));
+    if(!ONLY) q('[data-r="c-can"]').addEventListener("click",checkCan);
+    q('[data-r="go"]').addEventListener("click",go); q('[data-r="ans"]').addEventListener("keydown",e=>{ if(e.key==="Enter") go(); });
+    A.$$(".g8-ub",g.stage).forEach(b=>b.addEventListener("click",()=>checkUnit(b.dataset.ub,b)));
+    if(mode==="hard"){ const ui=q('[data-r="uin"]'); q('[data-r="c-unit"]').addEventListener("click",()=>checkUnit(ui.value,ui)); ui.addEventListener("keydown",e=>{ if(e.key==="Enter") checkUnit(ui.value,ui); }); } }
+  const open=r=>{ const el=g.stage.querySelector(`[data-r="${r}"]`); el.classList.remove("locked"); };
+  /* the combined gas law with clickable variables */
+  function drawCGL(){ const t=(v,i)=>`<button type="button" class="g8-var${cancel[v]?" x":""}" data-v="${v}">${v}${sub(i)}</button>`;
+    const side=i=>`<span class="cx-frac"><span>${t("P",i)}${t("V",i)}</span><span>${t("T",i)}</span></span>`;
+    const el=g.stage.querySelector('[data-r="cgl"]'); el.innerHTML=`<div class="g8-eq">${side(1)}<b class="cx-op">=</b>${side(2)}</div>`;
+    if(!done.can) A.$$(".g8-var",el).forEach(b=>b.addEventListener("click",()=>{ if(!done.law) return; const v=b.dataset.v; cancel[v]=cancel[v]?0:1; drawCGL(); })); }
+  function read(k){ if(mode!=="hard"){ const pl=dd.placement(); const id=Object.keys(pl).find(i=>pl[i]===k); return id? (id==="unk"? "?" : id) : null; }
+    const sl=g.stage.querySelector(`.g8-ty[data-s="${k}"]`), n=sl.querySelector(".ty-n").value.trim(), u=sl.querySelector(".ty-u").value.trim(); if(!n&&!u) return null; if(n==="?") return "?"; const p=A.parseTyped(n); return {v:p?p.v:NaN,u:normU(u)}; }
+  function checkGiv(){ let bad=null; const mark=(k,ok)=>{ const el=g.stage.querySelector(`[data-s="${k}"]`); el.classList.toggle("good",ok); el.classList.toggle("bad",!ok); };
+    KEYS.forEach(k=>{ const r=read(k), want=Pb.unk===k? "?" : Pb.g[k]||null; let ok;
+      if(mode!=="hard") ok= want==="?"? r==="?" : want? r===k : r===null;
+      else ok= want==="?"? r==="?" : want? (r&&r!=="?"&&Math.abs(r.v-want[0])<=(k[0]==="T"?.2:Math.max(1e-6,Math.abs(want[0])*6e-4))&&r.u===normU(want[1])) : r===null;
+      mark(k,ok); if(!ok&&!bad) bad= want==="?"? `${lab(k)} is the unknown: it gets the ?.` : want? (mode==="hard"&&r&&r!=="?"&&Math.abs(r.v-want[0])<1e-6*Math.max(1,Math.abs(want[0]))? `Check the unit for ${lab(k)}.` : `Check ${lab(k)}: find the ${k[1]==="1"?"starting":"final"} ${NAME[k[0]]} in the problem.`) : `The problem does not give ${lab(k)}, so leave that box empty.`; });
+    if(bad){ g.lose(); g.msg(bad,"bad"); return; }
+    done.giv=true; if(dd) dd.mark(()=>true); A.$$(".g8-ty input",g.stage).forEach(i=>i.disabled=true); g.stage.querySelector('[data-r="c-giv"]').disabled=true;
+    g.msg(`✔ The given variables and the unknown are correct. Now check the temperatures (Step ${N.kel}).`,"good"); units(); }
+  /* step 2: temperatures to kelvin (and both pressures in the same unit) */
+  let need=[];
+  function units(){ need=[]; open("kel"); const el=g.stage.querySelector('[data-r="units"]');
+    ["T1","T2"].forEach(k=>{ const q=Pb.g[k]; if(q&&q[1]==="°C") need.push({k,from:q,to:"K",ans:[q[0]+273,q[0]+273.15],eq:`${lab(k)} = ${q[0]} °C + 273 =`}); });
+    if(Pb.g.P1&&Pb.g.P2&&Pb.g.P1[1]!==Pb.g.P2[1]){ const q=Pb.g.P1; need.push({k:"P1",from:q,to:Pb.g.P2[1],ans:[q[1]==="atm"?q[0]*101.3:q[0]/101.3],eq:`${lab("P1")} = ${fmtQ(q)} × (${q[1]==="atm"?"101.3 kPa ÷ 1 atm":"1 atm ÷ 101.3 kPa"}) =`}); }
+    const anyT=Pb.g.T1||Pb.g.T2;
+    if(!need.length){ el.innerHTML=`<p class="g8-ok">✔ ${!anyT? (ONLY==="boyle"?"Boyle’s law has no temperatures, so there is nothing to convert.":"No temperatures are given, so there is nothing to convert.") : "The temperatures are already in kelvin."}${Pb.g.P1&&Pb.g.P2?" Both pressures use the same unit.":""}</p>`; lawStep(); return; }
+    el.innerHTML=`<p class="muted g8-tip">${need.some(n=>n.to==="K")?"Gas law calculations need temperatures in kelvin: K = °C + 273. ":""}${need.some(n=>n.to!=="K")?"Both pressures must have the same unit: 1 atm = 101.3 kPa.":""}</p>`+need.map((n,i)=>`<div class="g8-conv"><span class="mth">${n.eq}</span><input class="inp" data-u="${i}" data-sup="1" inputmode="decimal" style="width:120px" aria-label="converted value"><b>${n.to}</b></div>`).join("")+chk("kel");
+    el.querySelector('[data-r="c-kel"]').addEventListener("click",()=>{ let ok=true; need.forEach((n,i)=>{ const inp=el.querySelector(`[data-u="${i}"]`), p=A.parseTyped(inp.value), good=p&&n.ans.some(a=>Math.abs(p.v-a)<=Math.max(.6,Math.abs(a)*.006)); A.markBox(inp,good); if(good) n.val=p.v; else ok=false; });
+      if(!ok){ g.lose(); g.msg(need.some(n=>n.to==="K")?"Add 273 to a Celsius temperature to get kelvin.":"Multiply atmospheres by 101.3 to get kilopascals.","bad"); return; }
+      el.querySelector('[data-r="c-kel"]').disabled=true; A.$$("input",el).forEach(i=>i.disabled=true); g.msg(`✔ The units are ready. Now write down the ${ONLY?"gas law":"combined gas law"} (Step ${N.law}).`,"good"); lawStep(); }); }
+  function lawStep(){ done.kel=true; open("law"); }
+  function pickLaw(b){ if(!done.kel||done.law) return; const want=ONLY||"combined", l=b.dataset.law;
+    if(l!==want){ g.lose(); b.classList.add("bad"); setTimeout(()=>b.classList.remove("bad"),700);
+      g.msg(ONLY? `That is ${LAWNM[l]}. This problem changes the ${VARS.map(v=>NAME[v]).join(" and ")}, and ${NAME[Pb.cons]} is held constant.` : "That law is a special case. Start with the combined gas law, then cancel what is held constant.","bad"); return; }
+    done.law=true; A.$$(".g8-lawb",g.stage).forEach(x=>{ x.disabled=true; x.classList.toggle("on",x===b); if(x!==b) x.style.display="none"; });
+    if(ONLY){ g.msg(`✔ ${LAWNM[ONLY][0].toUpperCase()+LAWNM[ONLY].slice(1)}. Substitute the values and solve (Step ${N.sol}).`,"good"); subst(); }
+    else { open("can"); g.msg(`✔ Now cancel any variable that is held constant (Step ${N.can}).`,"good"); } }
+  function checkCan(){ if(!done.law) return; const want=Pb.cons, chosen=Object.keys(cancel).filter(v=>cancel[v]);
+    if(chosen.length>1||(chosen[0]||null)!==want){ g.lose(); g.msg(chosen.length>1? "Only one variable can be held constant in these problems." : want? (chosen.length? `The ${NAME[chosen[0]]} is not held constant: the problem gives two different values for it.` : `One variable is held constant in this problem. Which one does the problem say stays the same (or is not given)?`) : "Nothing is held constant here: the problem gives starting and final values for all three variables, so cancel nothing.","bad"); return; }
+    done.can=true; drawCGL(); g.stage.querySelector('[data-r="c-can"]').disabled=true;
+    const nm=want==="T"?"Boyle’s law: P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub>":want==="P"?"Charles’s law: V<sub>1</sub>/T<sub>1</sub> = V<sub>2</sub>/T<sub>2</sub>":want==="V"?"Gay-Lussac’s law: P<sub>1</sub>/T<sub>1</sub> = P<sub>2</sub>/T<sub>2</sub>":"the combined gas law: P<sub>1</sub>V<sub>1</sub>/T<sub>1</sub> = P<sub>2</sub>V<sub>2</sub>/T<sub>2</sub>";
+    g.msg(`✔ ${want?`${NAME[want][0].toUpperCase()+NAME[want].slice(1)} cancels, leaving `:"Nothing cancels: use "}${nm}.`,"good"); subst(); }
+  function subst(){ const val=k=>{ if(k===Pb.unk) return `${lab(k)}`; const n=need.find(x=>x.k===k); const q=n? [n.val??n.ans[0],n.to] : Pb.g[k]; return `(${nice(q[0])} ${q[1]})`; };
+    const side=i=>{ const top=["P","V"].filter(v=>v!==Pb.cons).map(v=>val(v+i)).join(""), bot=Pb.cons!=="T"? val("T"+i) : ""; return bot? `<span class="cx-frac"><span>${top}</span><span>${bot}</span></span>` : `<span>${top}</span>`; };
+    g.stage.querySelector('[data-r="sub"]').innerHTML=`<div class="g8-eq">${side(1)}<b class="cx-op">=</b>${side(2)}</div>`;
+    open("sol"); A.fitMath&&A.fitMath(g.stage); }
+  function go(){ if(numOK) return; const inp=g.stage.querySelector('[data-r="ans"]'), p=A.parseTyped(inp.value); if(!p){ g.msg("Type your answer as a number.","warn"); return; }
+    const ok=[Pb.ans,Pb.ans2].some(a=>Math.abs(p.v-a)<=Math.abs(a)*.012); A.markBox(inp,ok);
+    if(!ok){ g.lose(); g.msg(`That value of ${lab(Pb.unk)} does not make the two sides of the equation equal. ${Pb.cons==="T"?`Divide both sides by everything multiplied by ${lab(Pb.unk)}.`:`Cross multiply, then divide both sides by everything multiplied by ${lab(Pb.unk)}.`}`,"bad"); return; }
+    numOK=true; inp.disabled=true; g.stage.querySelector('[data-r="go"]').disabled=true; open("unit");
+    g.stage.querySelector('[data-r="final"]').innerHTML=`${lab(Pb.unk)} = ${nice(Pb.ans)}`;
+    g.msg(`✔ ${lab(Pb.unk)} = ${nice(Pb.ans)}. Now give the answer its unit (Step ${N.unit}).`,"good"); }
+  function checkUnit(u,el){ if(!numOK||done.unit) return; const ok=normU(u)===normU(Pb.ansU);
+    if(el.classList.contains("g8-ub")){ el.classList.add(ok?"on":"bad"); if(!ok) setTimeout(()=>el.classList.remove("bad"),700); } else A.markBox(el,ok);
+    if(!ok){ g.lose(); g.msg(Pb.unk[0]==="T"?"Gas law temperatures are always in kelvin.":Pb.unk[0]==="P"?"The new pressure has the same unit as the other pressure in the problem.":"The new volume has the same unit as the starting volume.","bad"); return; }
+    done.unit=true; A.$$(".g8-ub",g.stage).forEach(x=>{ x.disabled=true; if(x!==el) x.style.display="none"; });
+    g.win(); g.msg(`✔ ${lab(Pb.unk)} = ${nice(Pb.ans)} ${Pb.ansU}. ${Pb.unk[0]==="V"? (Pb.ans>(Pb.g.V1||[0])[0]?"The volume increased.":"The volume decreased.") : Pb.unk[0]==="P"? (Pb.ans>((Pb.g.P1||[0])[1]===Pb.ansU?Pb.g.P1[0]:0)?"The pressure increased.":"The pressure decreased.") : Pb.ans>((Pb.g.T1||[0])[1]==="K"?Pb.g.T1[0]:(Pb.g.T1||[0])[0]+273)?"The temperature increased.":"The temperature decreased."}`,"good"); }
+  host._gas={P:()=>Pb};
+  next(); };
+
+/* ---------- the ideal gas law game (enrichment): PV = nRT ---------- */
+G.idealProblem=function(level){ const gas=A.pick([["He",4.00,"helium"],["Ne",20.18,"neon"],["N2",28.02,"nitrogen"],["O2",32.00,"oxygen"],["CO2",44.01,"carbon dioxide"],["Ar",39.95,"argon"]]);
+  const pu=A.pick(["atm","kPa"]), useC=level!=="easy"&&Math.random()<.6, useMass=level==="hard"&&Math.random()<.6;
+  const n=rnd(.15,2.5,2), Tk=Math.round(rnd(250,400,0)), V=rnd(2,40,1), P= n*0.08206*Tk/V;
+  const unk=A.pick(["V","P","n","T"]); const g={};
+  const Pq=pu==="atm"?[+P.toFixed(2),"atm"]:[+(P*101.3).toFixed(1),"kPa"], Tq=useC?[Tk-273,"°C"]:[Tk,"K"], nq=useMass?[+(n*gas[1]).toFixed(2),"g"]:[n,"mol"];
+  if(unk!=="P") g.P=Pq; if(unk!=="V") g.V=[V,"L"]; if(unk!=="n") g.n=nq; if(unk!=="T") g.T=Tq;
+  const nm=gas[2], f=gas[0].replace(/(\d)/g,"<sub>$1</sub>");
+  const text={V:`What volume does <v>${fmtQ(g.n)}</v> of ${nm} gas (${f}) occupy at <v>${fmtQ(g.P)}</v> and <v>${fmtQ(g.T)}</v>?`,
+    P:`A <v>${fmtQ(g.V)}</v> container holds <v>${fmtQ(g.n)}</v> of ${nm} gas (${f}) at <v>${fmtQ(g.T)}</v>. What is the pressure of the gas?`,
+    n:`How many moles of ${nm} gas (${f}) are in a <v>${fmtQ(g.V)}</v> tank at <v>${fmtQ(g.P)}</v> and <v>${fmtQ(g.T)}</v>?`,
+    T:`<v>${fmtQ(g.n)}</v> of ${nm} gas (${f}) fills a <v>${fmtQ(g.V)}</v> container at <v>${fmtQ(g.P)}</v>. What is the temperature of the gas in kelvin?`}[unk];
+  const R=pu==="atm"?0.08206:8.314, Pv=unk==="P"?null:Pq[0], Tv=Tk, nv=n;
+  const ans={V:nv*R*Tv/Pq[0],P:nv*R*Tv/V,n:Pq[0]*V/(R*Tv),T:Pq[0]*V/(nv*R)}[unk];
+  const ansU={V:"L",P:pu,n:"mol",T:"K"}[unk];
+  return {gas,g,unk,text,pu,R,ans,ansU,useMass,Tk,n,V}; };
+G.IdealGame=function(host){ let mode="easy", Pb=null, dd=null;
+  const g=A.Game(host,{how:"Solve PV = nRT in four steps. Easy and Medium: drag the values from the problem. Hard: type every value and its unit. Choose the value of R that matches the pressure unit, and make sure the units match R."});
+  g.seg("Level",[["easy","Easy"],["med","Medium"],["hard","Hard"]],mode,v=>{ mode=v; next(); }); g.button("New problem",()=>next(),"ghost");
+  const KEYS=["P","V","n","T"], NM={P:"Pressure",V:"Volume",n:"Amount",T:"Temperature"};
+  let conv=[], Rpick=null;
+  function slot(k){ return mode==="hard"? `<span class="g8-ty" data-s="${k}"><input class="ty-n" data-sup="1" placeholder="number" autocomplete="off" aria-label="${k} number"><input class="ty-u" data-unit="1" placeholder="unit" autocomplete="off" aria-label="${k} unit"></span>` : `<span class="da-slot g8-slot" data-s="${k}"></span>`; }
+  function next(){ g.fresh(); g.msg(""); Pb=G.idealProblem(mode); conv=[]; Rpick=null;
+    g.stage.innerHTML=`<div class="t7-prob">${Pb.text.replace(/<v>(.*?)<\/v>/g,'<span class="t7-val">$1</span>')}</div>
+     <div class="da-step" data-r="s1"><h4>Step 1: Write down the given information</h4><table class="g8-giv">${KEYS.map(k=>`<tr><th>${NM[k]}</th><td><i>${k}</i> = ${slot(k)}</td></tr>`).join("")}</table>
+       ${mode!=="hard"?`<div class="dd-pool" data-r="pool"></div>`:`<p class="muted g8-tip">Type ? for the unknown. Units: atm, kPa, L, mL, mol, g, K, °C.</p>`}<div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c1">Check Step 1</button></div></div>
+     <div class="da-step locked" data-r="s2"><h4>Step 2: Choose R</h4><p class="muted g8-tip">The ideal gas constant must use the same pressure unit as the problem.</p><div class="g8-rch">${[["0.08206","0.08206 L·atm/(mol·K)"],["8.314","8.314 L·kPa/(mol·K)"]].map(([v,t])=>`<button type="button" class="btn ghost t7-eqb" data-R="${v}"><span class="t7-line">R = ${t}</span></button>`).join("")}</div></div>
+     <div class="da-step locked" data-r="s3"><h4>Step 3: Make sure the units are correct</h4><div data-r="units"></div></div>
+     <div class="da-step locked" data-r="s4"><h4>Step 4: Solve the equation</h4><div class="g8-subst mth" data-r="sub"></div><div class="controls"><b class="t7-line">${Pb.unk} =</b><input class="inp" data-r="ans" data-sup="1" inputmode="decimal" style="width:140px" aria-label="answer"><b>${Pb.ansU}</b><button class="btn sm" type="button" data-r="go">Check answer</button></div></div>`;
+    if(mode!=="hard"){ const cards=Object.entries(Pb.g).map(([k,q])=>({id:k,html:fmtQ(q)})).concat([{id:"unk",html:"?"}]);
+      const norm=t=>t.replace(/<[^>]+>/g,"").replace(/\s+/g," ").trim(), used=new Set();
+      const srcs=A.$$(".t7-prob .t7-val",g.stage).map(el=>{ const c=cards.find(c=>!used.has(c.id)&&c.id!=="unk"&&norm(c.html)===norm(el.innerHTML)); if(!c) return null; used.add(c.id); el.dataset.k=c.id; return {id:c.id,el,html:c.html}; }).filter(Boolean);
+      dd=A.TextDrag({root:g.root,pool:g.stage.querySelector('[data-r="pool"]'),targets:A.$$(".g8-slot",g.stage).map(el=>({el,id:el.dataset.s})),sources:srcs,extras:cards.filter(c=>!used.has(c.id)),onChange:()=>{}}); }
+    const q=s=>g.stage.querySelector(s); q('[data-r="c1"]').addEventListener("click",check1);
+    A.$$("[data-R]",g.stage).forEach(b=>b.addEventListener("click",()=>pickR(b))); q('[data-r="go"]').addEventListener("click",go); q('[data-r="ans"]').addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); }
+  function read(k){ if(mode!=="hard"){ const pl=dd.placement(); const id=Object.keys(pl).find(i=>pl[i]===k); return id? (id==="unk"?"?":id) : null; }
+    const sl=g.stage.querySelector(`.g8-ty[data-s="${k}"]`), n=sl.querySelector(".ty-n").value.trim(), u=sl.querySelector(".ty-u").value.trim(); if(n==="?") return "?"; if(!n) return null; const p=A.parseTyped(n); return {v:p?p.v:NaN,u:normU(u)}; }
+  function check1(){ let bad=null; KEYS.forEach(k=>{ const r=read(k), want=Pb.unk===k?"?":Pb.g[k]; const ok= want==="?"? r==="?" : mode!=="hard"? r===k : (r&&r!=="?"&&Math.abs(r.v-want[0])<1e-6*Math.max(1,Math.abs(want[0]))&&r.u===normU(want[1]));
+      const el=g.stage.querySelector(`[data-s="${k}"]`); el.classList.toggle("good",ok); el.classList.toggle("bad",!ok); if(!ok&&!bad) bad= want==="?"? `${k} is the unknown: it gets the ?.` : `Check the ${NM[k].toLowerCase()}.`; });
+    if(bad){ g.lose(); g.msg(bad,"bad"); return; } if(dd) dd.mark(()=>true); A.$$(".g8-ty input",g.stage).forEach(i=>i.disabled=true); g.stage.querySelector('[data-r="c1"]').disabled=true;
+    g.stage.querySelector('[data-r="s2"]').classList.remove("locked"); g.msg("✔ Now choose the value of R (Step 2).","good"); }
+  function pickR(b){ if(Rpick) return; const v=+b.dataset.R, ok=(v===0.08206)===(Pb.pu==="atm"); A.markBox(b,ok);
+    if(!ok){ g.lose(); g.msg(`The pressure in this problem is in ${Pb.pu}, so R must use ${Pb.pu}.`,"bad"); return; }
+    Rpick=v; A.$$("[data-R]",g.stage).forEach(x=>x.disabled=true); g.msg("✔ R matches the pressure unit.","good"); units(); }
+  function units(){ const el=g.stage.querySelector('[data-r="units"]'); g.stage.querySelector('[data-r="s3"]').classList.remove("locked"); conv=[];
+    if(Pb.g.T&&Pb.g.T[1]==="°C") conv.push({k:"T",eq:`T = ${Pb.g.T[0]} °C + 273 =`,ans:[Pb.g.T[0]+273,Pb.g.T[0]+273.15],to:"K"});
+    if(Pb.g.n&&Pb.g.n[1]==="g") conv.push({k:"n",eq:`n = ${fmtQ(Pb.g.n)} × (1 mol ÷ ${Pb.gas[1]} g) =`,ans:[Pb.g.n[0]/Pb.gas[1]],to:"mol"});
+    if(!conv.length){ el.innerHTML=`<p class="g8-ok">✔ The units already match R: volume in liters, amount in moles, temperature in kelvin.</p>`; subst(); return; }
+    el.innerHTML=conv.map((c,i)=>`<div class="g8-conv"><span class="mth">${c.eq}</span><input class="inp" data-u="${i}" data-sup="1" inputmode="decimal" style="width:120px" aria-label="converted value"><b>${c.to}</b></div>`).join("")+`<div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c3">Check Step 3</button></div>`;
+    el.querySelector('[data-r="c3"]').addEventListener("click",()=>{ let ok=true; conv.forEach((c,i)=>{ const inp=el.querySelector(`[data-u="${i}"]`), p=A.parseTyped(inp.value), good=p&&c.ans.some(a=>Math.abs(p.v-a)<=Math.max(.6*(c.to==="K"),Math.abs(a)*.01)); A.markBox(inp,good); if(good) c.val=p.v; else ok=false; });
+      if(!ok){ g.lose(); g.msg("Kelvin = °C + 273. Moles = grams ÷ molar mass.","bad"); return; } A.$$("input,button",el).forEach(i=>i.disabled=true); g.msg("✔ The units match R. Substitute and solve (Step 4).","good"); subst(); }); }
+  function subst(){ const v=k=>{ if(k===Pb.unk) return k; const c=conv.find(x=>x.k===k), q=c?[c.val??c.ans[0],c.to]:Pb.g[k]; return `(${nice(q[0])} ${q[1]})`; };
+    g.stage.querySelector('[data-r="sub"]').innerHTML=`<div class="g8-eq"><span>${v("P")}${v("V")}</span><b class="cx-op">=</b><span>${v("n")}(${Rpick} ${Pb.pu==="atm"?"L·atm/(mol·K)":"L·kPa/(mol·K)"})${v("T")}</span></div>`;
+    g.stage.querySelector('[data-r="s4"]').classList.remove("locked"); A.fitMath&&A.fitMath(g.stage); }
+  function go(){ const inp=g.stage.querySelector('[data-r="ans"]'), p=A.parseTyped(inp.value); if(!p){ g.msg("Type your answer as a number.","warn"); return; }
+    const alt=Pb.unk==="T"? Pb.ans : Pb.ans; const ok=Math.abs(p.v-Pb.ans)<=Math.abs(Pb.ans)*.015||Math.abs(p.v-alt)<=Math.abs(alt)*.015; A.markBox(inp,ok);
+    if(!ok){ g.lose(); g.msg(`Divide both sides by everything multiplied by ${Pb.unk}. Check that R matches the pressure unit.`,"bad"); return; }
+    g.win(); g.msg(`✔ ${Pb.unk} = ${nice(Pb.ans)} ${Pb.ansU}.`,"good"); }
+  next(); };
+
+/* ---------- reading vapor pressure curves ---------- */
+G.vpFig=(o={})=>{ const W=560,H=380, x0=64,y0=330,w=470,h=300, X=t=>x0+t/125*w, Y=p=>y0-p/200*h; let s="";
+  for(let t=0;t<=125;t+=25) s+=`<line x1="${X(t)}" y1="${y0}" x2="${X(t)}" y2="${y0-h}" stroke="#e3ebee"/>`+T.t(X(t),y0+18,String(t),{fs:12,w:600,c:"#5f6b72"});
+  for(let p=0;p<=200;p+=25) s+=`<line x1="${x0}" y1="${Y(p)}" x2="${x0+w}" y2="${Y(p)}" stroke="#e3ebee"/>`+T.t(x0-8,Y(p)+4,String(p),{fs:12,w:600,c:"#5f6b72",a:"end"});
+  s+=`<line x1="${x0}" y1="${Y(101.3)}" x2="${x0+w}" y2="${Y(101.3)}" stroke="#9aa7ad" stroke-dasharray="5 4"/>`+T.t(x0+8,Y(101.3)-6,"101.3 kPa",{fs:11.5,c:"#5f6b72",a:"start"});
+  G.LIQ.forEach(l=>{ const pts=[]; for(let t=l.k==="ethanoic"?17:0;t<=125;t++){ const p=G.vp(l.k,t); if(p>205) break; pts.push([X(t),Y(Math.min(p,200))]); } s+=`<path d="${pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join("")}" fill="none" stroke="${l.col}" stroke-width="3.5"/>`; }); s+=G.vpLegend(x0+14,y0-h+16);
+  s+=`<path d="M${x0} ${y0-h-4}V${y0}H${x0+w+4}" fill="none" stroke="#1b2328" stroke-width="2.5"/>`+T.t(x0+w/2,H-10,"Temperature (°C)",{fs:13.5})+`<text transform="translate(16 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13.5" font-weight="700">Vapor pressure (kPa)</text>`;
+  return T.svg(W,H,s,"Vapor pressure curves of propanone, ethanol, water and ethanoic acid"); };
+G.VPQuiz=function(host){ const g=A.Game(host,{how:"Read the vapor pressure curves to answer each question. Read values to the nearest 5 kPa or 5 °C."});
+  g.button("Next",()=>next(),"ghost");
+  const near=(v,st)=>Math.round(v/st)*st;
+  function make(){ const L=A.pick(G.LIQ), kind=A.pick(["vp","vp","bp","nbp","imf","hi"]);
+    if(kind==="vp"){ const t=A.pick(L.k==="ethanoic"?[60,70,80,90,100,110]:L.k==="propanone"?[20,25,30,35,40,45,50,55]:[30,40,50,60,70,80]); const a=near(G.vp(L.k,t),5); return {q:`What is the vapor pressure of ${L.name.toLowerCase()} at ${t} °C?`,ans:a,unit:"kPa",ch:[a,a+15,Math.max(5,a-15),a+30].map(x=>x+" kPa"),c0:a+" kPa",ex:`Go up from ${t} °C to the ${L.name.toLowerCase()} curve, then across to the pressure axis: about ${a} kPa.`}; }
+    if(kind==="bp"){ const P=A.pick([50,75,125,150]); const b=near(G.bp(L.k,P),5); return {q:`What is the boiling point of ${L.name.toLowerCase()} when the pressure on its surface is ${P} kPa?`,c0:b+" °C",ch:[b,b+10,b-10,b+20].map(x=>x+" °C"),ex:`A liquid boils when its vapor pressure equals the pressure on its surface. Go across from ${P} kPa to the curve, then down: about ${b} °C.`}; }
+    if(kind==="nbp"){ const b=near(G.bp(L.k,101.3),1); return {q:`What is the normal boiling point of ${L.name.toLowerCase()}?`,c0:b+" °C",ch:[b,b+12,b-12,100===b?b+25:100].map(x=>x+" °C"),ex:`The normal boiling point is read at standard pressure, 101.3 kPa: about ${b} °C.`}; }
+    if(kind==="imf") return {q:"Which liquid has the strongest intermolecular forces?",c0:"ethanoic acid",ch:["ethanoic acid","water","ethanol","propanone"],ex:"Ethanoic acid has the lowest vapor pressure at every temperature, so its molecules attract one another most strongly."};
+    const t=A.pick([30,40,50,60]); return {q:`At ${t} °C, which liquid has the highest vapor pressure?`,c0:"propanone",ch:["propanone","ethanol","water","ethanoic acid"],ex:"Propanone’s curve is highest at every temperature: its intermolecular forces are the weakest of the four."}; }
+  let cur=null;
+  function next(){ g.fresh(); g.msg(""); cur=make(); const ch=A.shuffle([...new Set(cur.ch)]);
+    g.stage.innerHTML=`<div class="g8-vpq"><div class="t7-svg">${G.vpFig()}</div><div class="g8-side"><div class="qp"><div class="qp-t txt">${cur.q}</div></div><div class="g8-ch">${ch.map(c=>`<button type="button" class="btn ghost" data-c="${c}">${c}</button>`).join("")}</div></div></div>`;
+    A.$$("[data-c]",g.stage).forEach(b=>b.addEventListener("click",()=>{ if(g.stage.dataset.done) return; const ok=b.dataset.c===cur.c0; A.markBox(b,ok); if(ok){ g.win(); g.stage.dataset.done=1; g.msg(`✔ ${cur.ex}`,"good"); } else { g.lose(); g.msg(cur.ex,"bad"); } })); delete g.stage.dataset.done; }
+  next(); };
+
+/* ---------- Dalton's law calculations ---------- */
+G.DaltonGame=function(host){ const g=A.Game(host,{how:"Find the partial pressure in two steps: first the fraction of the moles that belong to that gas, then that fraction of the total pressure."}); g.button("New problem",()=>next(),"ghost");
+  const GS=[["O<sub>2</sub>","oxygen"],["N<sub>2</sub>","nitrogen"],["H<sub>2</sub>","hydrogen"],["He","helium"],["Ar","argon"],["CO<sub>2</sub>","carbon dioxide"]];
+  let P0=null;
+  function next(){ g.fresh(); g.msg(""); const pick=A.shuffle(GS).slice(0,A.pick([2,3])), mol=pick.map(()=>A.pick([.5,1,1.5,2,2.5,3,4])), Pt=A.pick([[101.3,"kPa"],[1.00,"atm"],[2.50,"atm"],[150.,"kPa"],[760,"mmHg"]]), i=A.rand(0,pick.length-1), tot=mol.reduce((a,b)=>a+b,0);
+    P0={pick,mol,Pt,i,tot,frac:mol[i]/tot,ans:mol[i]/tot*Pt[0]};
+    g.stage.innerHTML=`<div class="t7-prob">A container holds ${pick.map((x,k)=>`<span class="t7-val">${mol[k]} mol</span> of ${x[1]} (${x[0]})`).join(", ")} at a total pressure of <span class="t7-val">${Pt[0]} ${Pt[1]}</span>. What is the partial pressure of the ${pick[i][1]}?</div>
+     <div class="da-step"><h4>Step 1: Fraction of the moles that are ${pick[i][1]}</h4><div class="g8-conv"><span class="mth">mol ${pick[i][0]} ÷ total mol = ${mol[i]} ÷ (${mol.join(" + ")}) =</span><input class="inp" data-r="f" inputmode="decimal" style="width:110px" aria-label="mole fraction"><button class="btn sm" type="button" data-r="c1">Check Step 1</button></div></div>
+     <div class="da-step locked" data-r="s2"><h4>Step 2: Partial pressure</h4><div class="g8-conv"><span class="mth" data-r="m2"></span><input class="inp" data-r="a" inputmode="decimal" style="width:120px" aria-label="partial pressure"><b>${Pt[1]}</b><button class="btn sm" type="button" data-r="c2">Check answer</button></div></div>`;
+    g.stage.querySelector('[data-r="c1"]').addEventListener("click",()=>{ const inp=g.stage.querySelector('[data-r="f"]'), p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-P0.frac)<=.006; A.markBox(inp,ok); if(!ok){ g.lose(); g.msg("Divide the moles of this gas by the total moles of all the gases.","bad"); return; }
+      g.msg("✔ That fraction of the particles is this gas, so it supplies that fraction of the pressure.","good"); g.stage.querySelector('[data-r="s2"]').classList.remove("locked"); g.stage.querySelector('[data-r="m2"]').innerHTML=`P<sub>${P0.pick[P0.i][0]}</sub> = (${(+P0.frac.toFixed(3))})(${P0.Pt[0]} ${P0.Pt[1]}) =`; });
+    g.stage.querySelector('[data-r="c2"]').addEventListener("click",()=>{ const inp=g.stage.querySelector('[data-r="a"]'), p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-P0.ans)<=Math.abs(P0.ans)*.012; A.markBox(inp,ok); if(!ok){ g.lose(); g.msg("Multiply the fraction by the total pressure.","bad"); return; } g.win(); g.msg(`✔ The partial pressure is ${+P0.ans.toPrecision(3)} ${P0.Pt[1]}.`,"good"); }); }
+  next(); };
+
+/* ---------- Graham's law calculations ---------- */
+G.GrahamGame=function(host){ const g=A.Game(host,{how:"Compare the rates of effusion of two gases at the same temperature: the lighter gas is faster. Rate₁ ÷ rate₂ = √(M₂ ÷ M₁)."}); g.button("New problem",()=>next(),"ghost");
+  const K=Object.keys(G.GASES); let P0=null;
+  function next(){ g.fresh(); g.msg(""); let a,b; do{ a=A.pick(K); b=A.pick(K); } while(a===b||Math.abs(G.GASES[a].M-G.GASES[b].M)<3); if(G.GASES[a].M>G.GASES[b].M) [a,b]=[b,a];
+    const ga=G.GASES[a], gb=G.GASES[b], r=Math.sqrt(gb.M/ga.M); P0={a,b,r};
+    g.stage.innerHTML=`<div class="t7-prob">At the same temperature, how many times faster does ${ga.n.toLowerCase()} (${ga.f}, <span class="t7-val">${ga.M} g/mol</span>) effuse than ${gb.n.toLowerCase()} (${gb.f}, <span class="t7-val">${gb.M} g/mol</span>)?</div>
+     <div class="da-step"><h4>Step 1: Which gas is faster?</h4><div class="g8-rch">${[a,b].map(k=>`<button type="button" class="btn ghost" data-f="${k}">${G.GASES[k].f}</button>`).join("")}</div></div>
+     <div class="da-step locked" data-r="s2"><h4>Step 2: Calculate the ratio</h4><div class="g8-conv"><span class="mth">rate<sub>${ga.f}</sub> ÷ rate<sub>${gb.f}</sub> = √(${gb.M} g/mol ÷ ${ga.M} g/mol) =</span><input class="inp" data-r="a" inputmode="decimal" style="width:110px" aria-label="ratio"><button class="btn sm" type="button" data-r="c2">Check answer</button></div></div>`;
+    A.$$("[data-f]",g.stage).forEach(bt=>bt.addEventListener("click",()=>{ const ok=bt.dataset.f===a; A.markBox(bt,ok); if(!ok){ g.lose(); g.msg("At the same temperature both gases have the same average kinetic energy, so the particles with less mass must move faster.","bad"); return; } g.msg(`✔ ${ga.f} has the smaller molar mass, so it effuses faster.`,"good"); g.stage.querySelector('[data-r="s2"]').classList.remove("locked"); }));
+    g.stage.querySelector('[data-r="c2"]').addEventListener("click",()=>{ const inp=g.stage.querySelector('[data-r="a"]'), p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-P0.r)<=P0.r*.012; A.markBox(inp,ok); if(!ok){ g.lose(); g.msg("Divide the larger molar mass by the smaller one, then take the square root.","bad"); return; } g.win(); g.msg(`✔ ${ga.f} effuses ${P0.r.toFixed(2)} times as fast as ${gb.f}.`,"good"); }); }
+  next(); };
+
+/* ---------- the four variables that describe a gas ---------- */
+G.figVars=()=>{ let s=G.cyl(120,250,140,150,{handle:1,tall:170}); const r=T.rng(9), pts=[];
+  for(let i=0;i<10;i++){ let x,y,k=0; do{ x=134+r()*112; y=114+r()*124; k++; } while(k<60&&pts.some(([a,b])=>Math.hypot(a-x,b-y)<26)); pts.push([x,y]); const a=r()*6.283; s+=G.dot(x,y,7,"#E00000",Math.cos(a),Math.sin(a),8); }
+  s+=G.gauge(56,70,34,100,300)+`<path d="M56 104V200H120" fill="none" stroke="#1b2328" stroke-width="3"/>`;
+  s+=U.thermo(300,70,150,14,13,.45,"#e23b3b",2)+`<path d="M286 210H262" stroke="#1b2328" stroke-width="2"/>`;
+  s+=`<path d="M270 100v150" stroke="#5f6b72" stroke-width="2"/><path d="M264 100h12M264 250h12" stroke="#5f6b72" stroke-width="2"/>`;
+  const lab=(x,y,t,sub,c,a="middle")=>T.t(x,y,t,{fs:15,c,a})+T.t(x,y+17,sub,{fs:12,c:"#5f6b72",a});
+  s+=lab(56,140,"P","pressure (gauge)","#E00000")+lab(340,300,"T","temperature (thermometer)","#E8590C")+lab(190,290,"n","amount of gas (moles)","#2E75D6")+lab(390,168,"V","volume (scale)","#00843c","start")+`<path d="M384 164H278" stroke="#00843c" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+  return T.svg(520,320,s,"A sample of gas in a cylinder: its pressure (gauge), volume (scale), temperature (thermometer) and amount (moles)"); };
+const U=A.U1;
+
+/* ---------- data sources for Unit 8 pages ---------- */
+(function(){ const SRC=A.SOURCES=A.SOURCES||{};
+  Object.assign(SRC,{ NISTK:`Molar gas constant R = 8.314 462 618 J/(mol·K) (= 8.314 L·kPa/(mol·K)) and Boltzmann constant k = 1.380 649 × 10<sup>−23</sup> J/K: NIST, <i>CODATA Internationally Recommended Values of the Fundamental Physical Constants</i> (physics.nist.gov/constants).`, RT25G:`Combined gas law, STP, 1 atm = 101.3 kPa and K = °C + 273.15: New York State Education Department, <i>Reference Tables for Physical Science: Chemistry</i>, 2025 Edition.`,
+    USSA:`Air pressure at altitude: <i>U.S. Standard Atmosphere, 1976</i>, NOAA, NASA and U.S. Air Force, 1976. Pressure = 101.325 kPa × (1 − 2.25577 × 10<sup>−5</sup> h)<sup>5.25588</sup>.`,
+    WILMA:`Hurricane Wilma, 882 mb: R. J. Pasch, E. S. Blake, H. D. Cobb III and D. P. Roberts, <i>Tropical Cyclone Report: Hurricane Wilma</i>, National Hurricane Center, NOAA, 2006.`,
+    ANT:`Vapor pressures from the Antoine equation: J. A. Dean, <i>Lange’s Handbook of Chemistry</i>, 15th ed., McGraw-Hill, 1999 (propanone, ethanol, water, ethanoic acid).`,
+    VDW:`Van der Waals constants for nitrogen (a = 1.370 L²·bar/mol², b = 0.0387 L/mol): J. R. Rumble (ed.), <i>CRC Handbook of Chemistry and Physics</i>, 104th ed., CRC Press, 2023.`,
+    MM:`Molar masses: New York State Education Department, <i>Reference Tables for Physical Science: Chemistry</i>, 2025 Edition, Periodic Table of the Elements.`,
+    AIR:`Composition of dry air (78.08% nitrogen, 20.95% oxygen, 0.93% argon by volume): NOAA Global Monitoring Laboratory; J. R. Rumble (ed.), <i>CRC Handbook of Chemistry and Physics</i>, 104th ed., 2023.` });
+  const PAGES={"g-variables":["RT25G"],"g-pressure":["RT25G","USSA","WILMA"],"g-kmt":["VDW"],"g-boyle":["RT25G"],"g-charles":["RT25G"],"g-gaylussac":["RT25G"],"g-combined":["RT25G"],"g-ideal":["RT25G","MM","NISTK"],"g-vapor":["ANT","USSA"],"g-dalton":["AIR"],"g-graham":["MM"],"g-practice":["RT25G","ANT"],"g-avogadro":["RT25G","NISTK"],"g-maxwell":["NISTK"]};
+  const old=A.U3&&A.U3.addSources; if(A.U3) A.U3.addSources=(slug)=>{ if(!PAGES[slug]) return old&&old(slug); const wrap=document.querySelector(".wrap"); if(!wrap||wrap.querySelector(".sources")) return;
+    const box=A.h("section",{class:"sources"}); box.innerHTML=`<h3>Data Sources</h3><ol>${PAGES[slug].map(k=>`<li>${SRC[k]}</li>`).join("")}</ol>`; const lc=wrap.querySelector(".part.lc"); lc? wrap.insertBefore(box,lc) : wrap.appendChild(box); }; })();
+})();
+
+/* Unit 0 · Graphs & Proportional Relationships (Nov 12): figures, the Build-a-Graph lab, the relationship explorer, the slope and graph-shape games. */
+(function(){ const A=window.AS, L=A&&A.U0, T=A&&A.U7, G=A&&A.U8; if(!L||!T||!G) return;
+const INK="#1b2328", BLUE="#2E75D6", RED="#E00000", GRAY="#5f6b72", GREEN="#00843c", ORANGE="#E8590C", PURPLE="#7030A0";
+const fx=(v,d)=>Number(v).toFixed(d).replace("-","−");
+
+/* ---------- shared plotting geometry (same look as the Unit 8 graphs) ---------- */
+const frame=(o)=>{ const W=(o.W||520)+(o.RP||0),H=o.H||340, x0=o.x0||62,y0=H-48,w=(o.W||520)-x0-20,h=H-48-(o.top||24);
+  const X=v=>x0+(v-o.xmin)/(o.xmax-o.xmin)*w, Y=v=>y0-(v-o.ymin)/(o.ymax-o.ymin)*h;
+  const inv=(px,py)=>[o.xmin+(px-x0)/w*(o.xmax-o.xmin), o.ymin+(y0-py)/h*(o.ymax-o.ymin)];
+  let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+  (o.xt||[]).forEach(v=>{ s+=`<line x1="${X(v)}" y1="${y0}" x2="${X(v)}" y2="${y0-h}" stroke="#e3ebee"/>`+(o.noXlab?"":T.t(X(v),y0+17,String(v),{fs:12,w:600,c:GRAY})); });
+  (o.yt||[]).forEach(v=>{ s+=`<line x1="${x0}" y1="${Y(v)}" x2="${x0+w}" y2="${Y(v)}" stroke="#e3ebee"/>`+(o.noYlab?"":T.t(x0-7,Y(v)+4,String(v),{fs:12,w:600,c:GRAY,a:"end"})); });
+  const axes=`<path d="M${x0} ${y0-h-6}V${y0}H${x0+w+6}" fill="none" stroke="${INK}" stroke-width="2.5"/>`+T.t(x0+w/2,H-9,o.xl||"",{fs:13.5})+`<text transform="translate(17 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13.5" font-weight="700" fill="${INK}">${o.yl||""}</text>`;
+  return {W,H,x0,y0,w,h,X,Y,inv,s,axes}; };
+const path=(F,pts)=>pts.map((p,i)=>(i?"L":"M")+F.X(p[0]).toFixed(1)+" "+F.Y(p[1]).toFixed(1)).join("");
+const dot=(F,p,col=RED,r=5.5)=>`<circle cx="${F.X(p[0]).toFixed(1)}" cy="${F.Y(p[1]).toFixed(1)}" r="${r}" fill="${col}" stroke="${INK}" stroke-width="1.5"/>`;
+
+/* ---------- data ---------- */
+/* NOAA GML, Mauna Loa annual mean CO2 (ppm) */
+L.CO2=[[1959,315.98],[1970,325.68],[1980,338.76],[1990,354.45],[2000,369.71],[2010,390.10],[2020,414.21],[2023,421.08]];
+/* a gas-collection experiment: volume of gas in a syringe every 10 s */
+L.SYR=[[0,0.0],[10,8.5],[20,16.4],[30,24.8],[40,33.1],[50,41.0]];
+/* zinc samples (density of zinc 7.14 g/cm3); masses rounded as a balance would read them */
+L.ZN=[[1.00,7.2],[2.00,14.2],[3.00,21.5],[4.00,28.5],[5.00,35.7]];
+
+/* ---------- figures ---------- */
+/* the parts of a graph, on the Mauna Loa carbon dioxide record */
+L.figCO2=(o={})=>{ const F=frame({W:600,RP:o.parts?170:0,H:370,xmin:1950,xmax:2030,ymin:300,ymax:440,xt:[1950,1960,1970,1980,1990,2000,2010,2020,2030],yt:[300,320,340,360,380,400,420,440],xl:"Year",yl:"Carbon dioxide in air (ppm)",top:44});
+  let s=F.s+T.t(F.x0+F.w/2,20,"Carbon Dioxide in the Air at Mauna Loa, Hawaii vs. Year",{fs:14.5});
+  /* smooth curve through the yearly means */
+  const P=L.CO2, sm=[]; for(let i=0;i<P.length-1;i++){ const [a,b]=P[i],[c,d]=P[i+1]; for(let k=0;k<10;k++){ const t=k/10; const m0=i?(d-P[i-1][1])/(c-P[i-1][0]):(d-b)/(c-a), m1=i<P.length-2?(P[i+2][1]-b)/(P[i+2][0]-a):(d-b)/(c-a); const h=c-a, t2=t*t,t3=t2*t; sm.push([a+t*h,(2*t3-3*t2+1)*b+(t3-2*t2+t)*h*m0+(-2*t3+3*t2)*d+(t3-t2)*h*m1]); } } sm.push(P[P.length-1]);
+  s+=`<path d="${path(F,sm)}" fill="none" stroke="${BLUE}" stroke-width="3"/>`+P.map(p=>dot(F,p,BLUE,5)).join("");
+  if(o.read){ const x=1995, y=362; s+=`<path d="M${F.X(x)} ${F.y0}V${F.Y(y)}H${F.x0}" fill="none" stroke="${RED}" stroke-width="2.2" stroke-dasharray="6 4"/>`+`<circle cx="${F.X(x)}" cy="${F.Y(y)}" r="6" fill="none" stroke="${RED}" stroke-width="2.5"/>`+T.t(F.X(x)+10,F.Y(y)+22,"1995: about 362 ppm",{fs:12.5,c:RED,a:"start"});
+    s+=`<path d="${path(F,[[2023,421.08],[2030,440]])}" fill="none" stroke="${GRAY}" stroke-width="2.5" stroke-dasharray="3 5"/>`+T.t(F.X(2026),F.Y(440)-6,"extrapolated",{fs:11.5,c:GRAY}); }
+  if(o.parts){ const LX=F.x0+F.w+30; const call=(x,y,ty,txt)=>`<path d="M${x} ${y}L${LX-6} ${ty}" fill="none" stroke="${ORANGE}" stroke-width="1.8"/><circle cx="${x}" cy="${y}" r="3.5" fill="${ORANGE}"/>`+T.t(LX,ty+4,txt,{fs:12.5,c:ORANGE,a:"start"});
+    s+=call(F.x0+F.w/2+200,16,26,"title: y vs. x");
+    s+=call(F.X(2015),F.Y(402),F.Y(392),"smooth line or best-fit");
+    s+=call(F.X(2015),F.Y(402),F.Y(392)+16,"line, not dot-to-dot").replace(/<path[^>]*>|<circle[^>]*>/g,"");
+    s+=call(F.X(2030)+8,F.y0+13,F.y0-6,"even scale: every space");
+    s+=call(F.X(2030)+8,F.y0+13,F.y0+10,"is 10 years").replace(/<path[^>]*>|<circle[^>]*>/g,"");
+    s+=call(F.x0+F.w/2+22,F.H-14,F.H-14,"axis label with unit"); }
+  return T.svg(F.W,F.H,s+F.axes,"Line graph of the yearly average carbon dioxide in the air at Mauna Loa, Hawaii, rising from about 316 ppm in 1959 to about 421 ppm in 2023"); };
+
+/* zinc mass vs volume with the rise and run marked */
+L.figZinc=()=>{ const F=frame({W:520,H:350,xmin:0,xmax:6,ymin:0,ymax:45,xt:[0,1,2,3,4,5,6],yt:[0,5,10,15,20,25,30,35,40,45],xl:"Volume (cm³)",yl:"Mass (g)",top:30});
+  let s=F.s+T.t(F.x0+F.w/2,18,"Mass vs. Volume of Zinc Samples",{fs:14.5});
+  s+=`<path d="${path(F,[[0,0],[6,42.84]])}" stroke="${BLUE}" stroke-width="2.8" fill="none"/>`+L.ZN.map(p=>dot(F,p)).join("");
+  const a=[1,7.14],b=[5,35.7];
+  s+=`<path d="M${F.X(a[0])} ${F.Y(a[1])}H${F.X(b[0])}V${F.Y(b[1])}" fill="none" stroke="${ORANGE}" stroke-width="2.5" stroke-dasharray="7 4"/>`;
+  s+=T.t((F.X(a[0])+F.X(b[0]))/2,F.Y(a[1])+20,"run: Δx = 5.00 − 1.00 = 4.00 cm³",{fs:12.5,c:ORANGE});
+  s+=T.t(F.X(b[0])+8,(F.Y(a[1])+F.Y(b[1]))/2,"rise: Δy",{fs:12.5,c:ORANGE,a:"start"})+T.t(F.X(b[0])+8,(F.Y(a[1])+F.Y(b[1]))/2+16,"= 28.6 g",{fs:12.5,c:ORANGE,a:"start"});
+  return T.svg(F.W,F.H,s+F.axes,"Straight-line graph of mass against volume for five zinc samples, with a rise of 28.6 g over a run of 4.00 cubic centimeters"); };
+
+/* one small graph of a relationship shape (used by the figure, the explorer key and the game) */
+L.shapeSvg=(k,o={})=>{ const W=o.W||170,H=o.H||140, x0=26,y0=H-24,w=W-x0-12,h=H-24-12; let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`; const col=o.col||BLUE;
+  const pts=[]; for(let i=0;i<=40;i++){ const t=i/40; let y;
+    if(k==="direct") y=t*.9; else if(k==="inverse"){ y=.12/(t+.03); if(y>1) continue; } else if(k==="linear") y=.3+t*.6; else if(k==="none") y=.55; else if(k==="decrease") y=.9-t*.75; pts.push([x0+t*w, y0-y*h]); }
+  s+=`<path d="${pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join("")}" fill="none" stroke="${col}" stroke-width="3"/>`;
+  s+=`<path d="M${x0} ${y0-h-4}V${y0}H${x0+w+4}" fill="none" stroke="${INK}" stroke-width="2"/>`+T.t(x0+w/2,H-6,o.xl||"x",{fs:11.5})+T.t(12,y0-h/2+4,o.yl||"y",{fs:11.5});
+  return T.svg(W,H,s,o.aria||({direct:"straight line through the origin",inverse:"curve that falls steeply then levels off",linear:"straight line that does not pass through the origin",none:"horizontal line",decrease:"straight line that slopes down"}[k])); };
+
+L.figShapes=()=>{ const card=(k,t,sub,col)=>`<div class="lg-shape"><div class="lg-sh-t" style="color:${col}">${t}</div>${L.shapeSvg(k,{col})}<div class="lg-sh-s">${sub}</div></div>`;
+  return `<div class="lg-shapes">${card("direct","Directly proportional","straight line through the origin<br>y ÷ x = constant",BLUE)}${card("inverse","Inversely proportional","curve that levels off<br>x × y = constant",RED)}${card("linear","Linear, not proportional","straight line, does not<br>pass through the origin",GREEN)}${card("none","y remains constant","horizontal line (slope = 0)<br>y stays the same as x changes",GRAY)}</div>`; };
+
+/* enrichment: linearizing an inverse relationship (air in a sealed syringe at constant temperature: P × V = 6000 kPa·mL) */
+L.SYRP=[[20,300],[30,200],[40,150],[60,100],[120,50]];
+L.figLinearize=()=>{ const A1=frame({W:330,H:300,xmin:0,xmax:130,ymin:0,ymax:320,xt:[0,20,40,60,80,100,120],yt:[0,40,80,120,160,200,240,280,320],xl:"Volume (mL)",yl:"Pressure (kPa)",top:30});
+  const c=[]; for(let v=19;v<=130;v+=1) c.push([v,6000/v]);
+  let s1=A1.s+T.t(A1.x0+A1.w/2,18,"Pressure vs. Volume",{fs:13.5})+`<path d="${path(A1,c)}" fill="none" stroke="${PURPLE}" stroke-width="2.6"/>`+L.SYRP.map(p=>dot(A1,p,PURPLE,5)).join("")+A1.axes;
+  const B1=frame({W:330,H:300,xmin:0,xmax:0.055,ymin:0,ymax:320,xt:[0,0.01,0.02,0.03,0.04,0.05],yt:[0,40,80,120,160,200,240,280,320],xl:"1/Volume (1/mL)",yl:"Pressure (kPa)",top:30});
+  let s2=B1.s+T.t(B1.x0+B1.w/2,18,"Pressure vs. 1/Volume",{fs:13.5})+`<path d="${path(B1,[[0,0],[0.053,318]])}" fill="none" stroke="${PURPLE}" stroke-width="2.6"/>`+L.SYRP.map(([v,p])=>dot(B1,[1/v,p],PURPLE,5)).join("")+T.t(B1.X(0.036),B1.Y(80),"slope = 6000 kPa·mL",{fs:12.5,c:PURPLE})+B1.axes;
+  return `<div class="lg-two">${T.svg(330,300,s1,"A curve: pressure falls as volume increases")}<div class="lg-arrow">plot P vs. 1/V<br>→</div>${T.svg(330,300,s2,"A straight line through the origin: pressure against one over volume")}</div>`; };
+
+/* ---------- Words: the independent / dependent / controlled variable sort ---------- */
+L.VAR_ITEMS=[
+ ["A student dissolves 5.0 g of sugar in 100 mL of water at 20, 40, 60 and 80 °C and times how long each takes to dissolve.<br><b>The temperature of the water</b>","iv","The student chose these temperatures on purpose: temperature is the independent variable."],
+ ["A student dissolves 5.0 g of sugar in 100 mL of water at 20, 40, 60 and 80 °C and times how long each takes to dissolve.<br><b>The time for the sugar to dissolve</b>","dv","The time is measured, and it depends on the temperature: the dependent variable."],
+ ["A student dissolves 5.0 g of sugar in 100 mL of water at 20, 40, 60 and 80 °C and times how long each takes to dissolve.<br><b>The mass of sugar (5.0 g)</b>","cv","The mass is kept the same in every trial so it cannot affect the results: a controlled variable."],
+ ["A class measures the mass of zinc samples with volumes of 1, 2, 3, 4 and 5 cm³.<br><b>The mass of each sample</b>","dv","The mass is measured for each chosen volume: the dependent variable."],
+ ["A class measures the mass of zinc samples with volumes of 1, 2, 3, 4 and 5 cm³.<br><b>The volume of each sample</b>","iv","The class chose the volumes: the independent variable."],
+ ["A student drops a 1.0 g piece of magnesium into acid solutions of different concentrations and counts the bubbles in one minute.<br><b>The concentration of the acid</b>","iv","The concentration is changed on purpose: the independent variable."],
+ ["A student drops a 1.0 g piece of magnesium into acid solutions of different concentrations and counts the bubbles in one minute.<br><b>The number of bubbles in one minute</b>","dv","The bubbles are counted, and the count depends on the concentration: the dependent variable."],
+ ["A student drops a 1.0 g piece of magnesium into acid solutions of different concentrations and counts the bubbles in one minute.<br><b>The temperature of the acid solutions</b>","cv","Every solution is kept at the same temperature so temperature cannot change the result: a controlled variable."],
+ ["A student dissolves 1, 2, 3 and 4 g of calcium chloride in separate 100 mL samples of water and measures the temperature change of each.<br><b>The temperature change of the water</b>","dv","The temperature change is measured, and it depends on the mass dissolved: the dependent variable."],
+ ["A student dissolves 1, 2, 3 and 4 g of calcium chloride in separate 100 mL samples of water and measures the temperature change of each.<br><b>The volume of water (100 mL)</b>","cv","The volume of water is the same in every trial: a controlled variable."],
+ ["A student records the volume of gas collected in a syringe every 10 seconds.<br><b>The time</b>","iv","The student chose when to read the syringe (every 10 s): time is the independent variable."]];
+L.VarSort=host=>A.U3.TapSort(host,{prompt:"This variable is…",how:"Independent variable: changed on purpose by the experimenter. Dependent variable: measured, and it depends on the independent variable. Controlled variable: kept the same in every trial.",items:L.VAR_ITEMS,choices:[["iv","Independent"],["dv","Dependent"],["cv","Controlled"]],hint:"Ask: did the experimenter choose it (independent), measure it (dependent) or keep it the same (controlled)?"});
+
+/* ---------- LAB: Build a Graph ---------- */
+L.GraphLab=function(host){ const D=L.SYR; let step=1, axisOK=false, scale=null, pts=[], line=[[0,20],[60,20]], drag=-1;
+  const SC={good:{ymax:50,yt:[0,10,20,30,40,50]}, big:{ymax:500,yt:[0,100,200,300,400,500]}, short:{ymax:40,yt:[0,10,20,30,40]}};
+  host.innerHTML=`<div class="lab-b"><p class="how">A student collects the gas made by a reaction in a syringe and reads the volume every 10 seconds. Build the graph one step at a time, the way you would on graph paper.</p>
+   <div class="lg-lab"><div class="lg-left"><table class="nt lg-tbl"><tr><th>Time (s)</th><th>Volume of gas (mL)</th></tr>${D.map((r,i)=>`<tr data-i="${i}"><td>${r[0]}</td><td>${fx(r[1],1)}</td></tr>`).join("")}</table></div>
+   <div class="lg-right"><div class="lg-step" data-r="step"></div><div class="t7-svg lg-plot" data-r="plot"></div><div class="status" data-r="msg" aria-live="polite"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`), msg=(h,c="")=>{ const m=$("msg"); m.className="status "+c; m.innerHTML=h; };
+  const F=()=>frame({W:520,H:350,xmin:0,xmax:60,ymin:0,ymax:scale?SC[scale].ymax:50,xt:[0,10,20,30,40,50,60],yt:scale?SC[scale].yt:[],xl:axisOK?"Time (s)":"",yl:axisOK?"Volume of gas (mL)":"",noYlab:!scale,top:20});
+  function draw(){ const f=F(); let s=f.s, hs="";
+    if(step>=4){ s+=`<line data-l="1" x1="${f.X(line[0][0])}" y1="${f.Y(line[0][1])}" x2="${f.X(line[1][0])}" y2="${f.Y(line[1][1])}" stroke="${BLUE}" stroke-width="3"/>`;
+      if(step===4) line.forEach((p,i)=>{ hs+=`<circle data-h="${i}" cx="${f.X(p[0])}" cy="${f.Y(p[1])}" r="11" fill="#fff" stroke="${BLUE}" stroke-width="3" style="cursor:grab"/>`; }); }
+    s+=pts.map(p=>dot(f,p)).join("");
+    $("plot").innerHTML=T.svg(f.W,f.H,s+f.axes+hs,"Graph paper for the volume of gas against time");
+    const sv=$("plot").querySelector("svg"); sv.style.touchAction="none";
+    const toData=e=>{ const r=sv.getBoundingClientRect(); return f.inv((e.clientX-r.left)/r.width*f.W,(e.clientY-r.top)/r.height*f.H); };
+    if(step===3) sv.addEventListener("pointerdown",e=>{ const [x,y]=toData(e), i=pts.length, want=D[i]; if(!want) return;
+      const sx=Math.round(x/10)*10, sy=Math.round(y*2)/2;
+      if(Math.abs(sx-want[0])>0.1){ msg(`Plot the row for <b>${want[0]} s</b>: start on the x-axis at ${want[0]} s.`,"bad"); return; }
+      if(Math.abs(sy-want[1])>1.6){ msg(`At ${want[0]} s the volume is ${fx(want[1],1)} mL. Go up from ${want[0]} s until you reach ${fx(want[1],1)} mL on the y-axis scale.`,"bad"); return; }
+      pts.push([want[0],want[1]]); hl(); draw();
+      if(pts.length===D.length){ step=4; ui(); draw(); } else msg(`✔ Point ${i+1} plotted. Now the row for ${D[i+1][0]} s.`,"good"); });
+    if(step===4){ sv.addEventListener("pointerdown",e=>{ const t=e.target.closest("[data-h]"); if(t){ drag=+t.dataset.h; sv.setPointerCapture(e.pointerId); } });
+      sv.addEventListener("pointermove",e=>{ if(drag<0) return; const [x,y]=toData(e); line[drag]=[Math.max(0,Math.min(60,x)),Math.max(0,Math.min(SC[scale].ymax,y))];
+        const L1=sv.querySelector("[data-l]"); L1.setAttribute("x"+(drag+1),f.X(line[drag][0])); L1.setAttribute("y"+(drag+1),f.Y(line[drag][1]));
+        const hd=sv.querySelector(`[data-h="${drag}"]`); hd.setAttribute("cx",f.X(line[drag][0])); hd.setAttribute("cy",f.Y(line[drag][1])); });
+      sv.addEventListener("pointerup",()=>{ drag=-1; }); } }
+  function hl(){ A.$$("tr[data-i]",host).forEach(r=>r.classList.toggle("lg-on",step===3&&+r.dataset.i===pts.length)); A.$$("tr[data-i]",host).forEach(r=>r.classList.toggle("lg-done",+r.dataset.i<pts.length)); }
+  function ui(){ const S=$("step");
+    if(step===1){ S.innerHTML=`<b>Step 1: Label the axes.</b> Which variable goes on the x-axis?<div class="lg-btns"><button type="button" class="btn ghost" data-a="t">Time (s)</button><button type="button" class="btn ghost" data-a="v">Volume of gas (mL)</button></div>`;
+      A.$$("[data-a]",S).forEach(b=>b.addEventListener("click",()=>{ if(b.dataset.a==="t"){ axisOK=true; step=2; msg("✔ Time is the independent variable: the student chose when to read the syringe. It goes on the x-axis, and the volume (dependent variable) goes on the y-axis.","good"); ui(); draw(); } else msg("The volume depends on how much time has passed, so it is the dependent variable. The independent variable goes on the x-axis.","bad"); })); }
+    else if(step===2){ S.innerHTML=`<b>Step 2: Choose a scale for the y-axis.</b> The volumes run from 0.0 to 41.0 mL.<div class="lg-btns lg-col">${[["good","0 to 50 mL, every 10 mL"],["big","0 to 500 mL, every 100 mL"],["short","0 to 40 mL, every 10 mL"],["each","0, 8.5, 16.4, 24.8, 33.1, 41.0 (one line for each value)"]].map(([k,t])=>`<button type="button" class="btn ghost" data-s="${k}">${t}</button>`).join("")}</div>`;
+      A.$$("[data-s]",S).forEach(b=>b.addEventListener("click",()=>{ const k=b.dataset.s;
+        if(k==="good"){ scale="good"; step=3; msg("✔ An even scale that fits all of the data and uses most of the grid.","good"); ui(); hl(); draw(); }
+        else msg(k==="big"?"Every value would be squeezed into the bottom tenth of the graph. Choose a scale where the data fill most of the grid.":k==="short"?"41.0 mL would be off the top of the graph. The scale must include every value.":"The spaces between those values are not equal. Every interval on a scale must be the same size.","bad"); })); }
+    else if(step===3){ S.innerHTML=`<b>Step 3: Plot the points.</b> Click the graph where each point belongs, starting with the highlighted row.`; msg("Start with the row for 0 s."); }
+    else if(step===4){ S.innerHTML=`<b>Step 4: Draw the line of best fit.</b> Drag the two white handles. A best-fit line follows the trend of the points, with about as many points above it as below. It does not connect the dots.<div class="lg-btns"><button type="button" class="btn" data-r="chk4">Check Step 4</button></div>`; msg("Drag the handles so the line follows the points.");
+      $("chk4").addEventListener("click",()=>{ const [[a,b],[c,d]]=line; if(Math.abs(c-a)<15){ msg("Spread the two handles far apart, one near each end of the data.","bad"); return; }
+        const m=(d-b)/(c-a), q=b-m*a; const rms=Math.sqrt(D.reduce((t,[x,y])=>t+(m*x+q-y)**2,0)/D.length);
+        if(rms<=1.6){ step=5; line=[[0,q],[60,m*60+q]]; draw(); ui(); msg("✔ The line follows the trend of the data.","good"); }
+        else msg(rms<5?"Close. Move the handles so the line passes through the middle of the points, with about as many points on each side.":"The line does not follow the points yet. The points rise steadily, so the line should rise from the lower left to the upper right.","bad"); }); }
+    else if(step===5){ S.innerHTML=`<b>Step 5: Find the slope.</b> Use two points on the line far apart: (0 s, 0.0 mL) and (50 s, 41.0 mL). Slope = Δy ÷ Δx.<div class="lg-ans"><span>slope =</span><input type="text" inputmode="decimal" class="lg-in" data-r="sl" aria-label="slope"><select data-r="u" aria-label="unit"><option value="">unit</option><option>mL/s</option><option>s/mL</option><option>mL·s</option></select><button type="button" class="btn" data-r="chk5">Check Step 5</button></div>`; msg("");
+      $("chk5").addEventListener("click",()=>{ const v=parseFloat($("sl").value), u=$("u").value, ok=Math.abs(v-0.82)<=0.02;
+        if(!ok){ A.markBox($("sl"),false); msg("Slope = (41.0 mL − 0.0 mL) ÷ (50 s − 0 s). Divide the change in volume by the change in time.","bad"); return; }
+        if(u!=="mL/s"){ msg("The number is right. The unit of a slope is the y-axis unit divided by the x-axis unit.","bad"); return; }
+        A.markBox($("sl"),true); step=6; S.innerHTML=`<b>Done.</b> The slope, 0.82 mL/s, is the rate at which gas was produced: 0.82 mL every second.<div class="lg-btns"><button type="button" class="btn ghost" data-r="again">Start over</button></div>`; msg("✔ Slope = 41.0 mL ÷ 50 s = 0.82 mL/s.","good"); $("again").addEventListener("click",reset); }); } }
+  function reset(){ step=1; axisOK=false; scale=null; pts=[]; line=[[0,20],[60,20]]; msg(""); ui(); hl(); draw(); }
+  reset(); };
+
+/* ---------- SIM: relationship explorer ---------- */
+L.RelExplorer=function(host){ let kind="direct", k=4, enr=false, sel=2, seen=new Set();
+  const KIND={direct:{t:"Directly proportional",f:"y = kx",col:BLUE,y:x=>k*x,ex:"Coming up in Unit 8: at constant pressure, the volume of a gas is directly proportional to its Kelvin temperature."},
+    inverse:{t:"Inversely proportional",f:"y = k ÷ x",col:RED,y:x=>k*6/x,ex:"Coming up in Unit 8: at constant temperature, the volume of a gas is inversely proportional to its pressure."},
+    linear:{t:"Linear, not proportional",f:"y = kx + 10",col:GREEN,y:x=>k*x+10,ex:"Example: Kelvin temperature = Celsius temperature + 273. The graph is a straight line, but doubling the Celsius temperature does not double the Kelvin temperature."}};
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose a relationship and change the constant k. Watch the table: for one kind of relationship y ÷ x stays the same, and for another x × y stays the same. Click a row to see that point on the graph.</p>
+   <div class="controls g8-ctl"><div class="seg" role="group" aria-label="Relationship">${Object.entries(KIND).map(([q,v])=>`<button type="button" data-k="${q}" aria-pressed="${q===kind}">${v.t}</button>`).join("")}</div><label class="g8-sl"><span>Constant k</span><input type="range" min="1" max="8" step="1" value="${k}" data-r="k" aria-label="constant k"><b data-r="kv"></b></label></div>
+   <label class="chk lg-enr"><input type="checkbox" data-r="enr"> Enrichment: plot y against 1/x (straightens an inverse graph)</label>
+   <div class="g8-row"><div class="t7-svg lg-ex-g" data-r="g"></div><div class="g8-side"><table class="nt lg-tbl lg-ex-t" data-r="t"></table><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=q=>host.querySelector(`[data-r="${q}"]`);
+  function draw(){ const K=KIND[kind], xs=[1,2,3,4,5,6], rows=xs.map(x=>[x,K.y(x)]); $("kv").textContent=k;
+    const lin=enr&&kind==="inverse";
+    const rev=seen.has(kind); const hk=q=>rev&&kind===q?' class="lg-k"':"";
+    $("t").innerHTML=`<tr><th>x</th><th>y</th><th${hk("direct")}>y ÷ x</th><th${hk("inverse")}>x × y</th></tr>`+rows.map(([x,y],i)=>`<tr data-i="${i}" class="${i===sel?"lg-on":""}"><td>${x}</td><td>${fx(y,1)}</td><td${hk("direct")}>${fx(y/x,2)}</td><td${hk("inverse")}>${fx(x*y,1)}</td></tr>`).join("");
+    A.$$("tr[data-i]",$("t")).forEach(r=>r.addEventListener("click",()=>{ sel=+r.dataset.i; draw(); }));
+    const ymax=kind==="inverse"?(lin?50:50):kind==="linear"?60:50;
+    let f, s, axesExtra="";
+    if(lin){ f=frame({W:460,H:330,xmin:0,xmax:1.1,ymin:0,ymax:ymax,xt:[0,.2,.4,.6,.8,1],yt:[0,10,20,30,40,50],xl:"1/x",yl:"y",top:16}); s=f.s;
+      s+=`<path d="${path(f,[[0,0],[1.1,k*6*1.1]].map(p=>[p[0],Math.min(p[1],ymax)]))}" fill="none" stroke="${PURPLE}" stroke-width="3"/>`+rows.map(([x,y],i)=>dot(f,[1/x,y],i===sel?ORANGE:PURPLE,i===sel?8:5.5)).join(""); }
+    else { f=frame({W:460,H:330,xmin:0,xmax:6.5,ymin:0,ymax,xt:[0,1,2,3,4,5,6],yt:kind==="linear"?[0,10,20,30,40,50,60]:[0,10,20,30,40,50],xl:"x",yl:"y",top:16}); s=f.s;
+      const cur=[]; for(let i=0;i<=120;i++){ const x=0.05+i*6.45/120, y=K.y(x); if(y<=ymax*1.02) cur.push([x,y]); }
+      if(kind!=="inverse") cur.unshift([0,K.y(0)]);
+      s+=`<path d="${path(f,cur)}" fill="none" stroke="${K.col}" stroke-width="3"/>`+rows.map(([x,y],i)=>y<=ymax?dot(f,[x,y],i===sel?ORANGE:K.col,i===sel?8:5.5):"").join("");
+      const [sx,sy]=rows[sel]; if(sy<=ymax) s+=`<path d="M${f.X(sx)} ${f.y0}V${f.Y(sy)}H${f.x0}" fill="none" stroke="${ORANGE}" stroke-width="2" stroke-dasharray="5 4"/>`; }
+    $("g").innerHTML=T.svg(f.W,f.H,s+f.axes,"Graph of the selected relationship");
+    const a=rows[1], b=rows[3];
+    if(!rev){ $("info").innerHTML=`<b>Investigate</b><span>Click a row to see its point on the graph, then move the k slider. Compare the y ÷ x and x × y columns: does either one stay the same in every row? What happens to y when x doubles?</span><button type="button" class="btn ghost" data-r="rv">Show the pattern</button>`; $("rv").onclick=()=>{ seen.add(kind); draw(); }; return; }
+    $("info").innerHTML=`<b>${KIND[kind].t}: ${KIND[kind].f}</b><span>When x doubles from ${a[0]} to ${b[0]}, y goes from ${fx(a[1],1)} to ${fx(b[1],1)}: ${kind==="direct"?"y doubles too.":kind==="inverse"?"y is cut in half.":"y does not double, because of the +10."}</span><span>${kind==="direct"?"y ÷ x is the same in every row: k = "+k+".":kind==="inverse"?"x × y is the same in every row: "+(k*6)+".":"Neither y ÷ x nor x × y stays the same."}</span>${lin?`<span style="color:${PURPLE}"><b>Enrichment:</b> plotting y against 1/x turns the curve into a straight line through the origin. Its slope is the constant x × y = ${k*6}.</span>`:""}<span class="muted">${KIND[kind].ex}</span>`; }
+  A.$$("[data-k]",host).forEach(b=>b.addEventListener("click",()=>{ kind=b.dataset.k; A.$$("[data-k]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+  $("k").addEventListener("input",e=>{ k=+e.target.value; draw(); }); $("k").addEventListener("change",()=>{ seen.add(kind); draw(); }); $("enr").addEventListener("change",e=>{ enr=e.target.checked; draw(); });
+  draw(); };
+
+/* ---------- GAME: which graph? (data table or statement → shape) ---------- */
+L.SHAPE_STATEMENTS=[
+ ["The mass of a sample of a pure metal is directly proportional to its volume.","direct","Directly proportional: a straight line through the origin (zero volume has zero mass)."],
+ ["At constant temperature, doubling the pressure on a gas cuts its volume in half.","inverse","Doubling one variable halves the other: inversely proportional, a curve."],
+ ["Kelvin temperature compared with Celsius temperature (K = °C + 273).","linear","A straight line that crosses the y-axis at 273, not at the origin."],
+ ["The boiling point of water at 1 atm compared with the volume of water in the pot.","none","Water boils at 100 °C at 1 atm whatever the volume: the boiling point remains constant as the volume changes (a horizontal line)."],
+ ["The number of moles in a sample of water compared with its mass.","direct","Moles = mass ÷ 18.0 g/mol: directly proportional, a line through the origin."],
+ ["The density of a sample of pure copper compared with the size of the sample.","none","Density is a property of the substance: it remains constant as the sample size changes (a horizontal line)."],
+ ["The total mass of a beaker of water as more water is added (the empty beaker has a mass of 50 g).","linear","The line rises steadily but starts at 50 g, not at zero: linear, not proportional."]];
+L.ShapeGame=function(host){ const g=A.Game(host,{how:"Decide which graph matches the data or the description. Check the data: if y ÷ x is constant, the relationship is direct; if x × y is constant, it is inverse."});
+  g.button("Skip",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="qp"><div class="qp-t" data-r="q"></div></div><div class="lg-choices" data-r="o"></div>`;
+  const $=k=>g.stage.querySelector(`[data-r="${k}"]`); let cur=null, bag=[];
+  const NAMES={direct:"Directly proportional",inverse:"Inversely proportional",linear:"Linear, not proportional",none:"y remains constant as x changes"};
+  function table(){ const kind=A.pick(["direct","inverse","linear","none"]), k=A.pick([2,3,4,5,6]), xs=[1,2,3,4,6], b=A.pick([5,10,20]);
+    const ys=xs.map(x=>kind==="direct"?k*x:kind==="inverse"?k*12/x:kind==="linear"?k*x+b:k*5);
+    const ctx=A.pick([["Volume (L)","Mass (g)"],["Time (s)","Distance (m)"],["Trial","Reading"],["x","y"]]);
+    return [`What kind of relationship do these data show?<table class="nt lg-qt"><tr><th>${ctx[0]}</th>${xs.map(x=>`<td>${x}</td>`).join("")}</tr><tr><th>${ctx[1]}</th>${ys.map(y=>`<td>${+y.toFixed(1)}</td>`).join("")}</tr></table>`,kind,
+      kind==="direct"?`y ÷ x = ${k} in every column: directly proportional.`:kind==="inverse"?`x × y = ${k*12} in every column: inversely proportional.`:kind==="linear"?`y rises by ${k} each time x rises by 1, but y ÷ x is not constant (the line starts at ${b}): linear, not proportional.`:"y stays the same in every column: y remains constant as x changes (a horizontal line with a slope of 0)."]; }
+  function next(){ g.fresh(); g.msg(""); if(!bag.length) bag=A.shuffle(L.SHAPE_STATEMENTS.slice());
+    cur= Math.random()<.45? table() : bag.pop(); $("q").innerHTML=cur[0];
+    const O=$("o"); O.innerHTML=""; delete O.dataset.done;
+    A.shuffle(["direct","inverse","linear","none"]).forEach(k=>{ const b=A.h("button",{type:"button",class:"lg-choice"}); b.innerHTML=L.shapeSvg(k,{W:150,H:118})+`<span>${NAMES[k]}</span>`;
+      b.addEventListener("click",()=>{ if(O.dataset.done) return; if(k===cur[1]){ b.classList.add("right"); O.dataset.done=1; g.win(); g.msg("✔ "+cur[2],"good"); g.later(next,2600); } else { b.classList.add("wrong"); g.lose(); g.msg("Not quite. Try y ÷ x and x × y for two of the columns, or ask what happens to y when x doubles.","bad"); } }); O.appendChild(b); }); }
+  next(); };
+
+/* ---------- GAME: slope from a graph ---------- */
+L.SLOPE_CTX=[
+ {xl:"Volume (cm³)",yl:"Mass (g)",xu:"cm³",yu:"g",u:"g/cm³",m:[2.70,8.90,10.5,11.3,19.3],x:[0,1,2,3,4,5],what:"density"},
+ {xl:"Time (s)",yl:"Volume of gas (mL)",xu:"s",yu:"mL",u:"mL/s",m:[0.40,0.60,1.2,1.5,2.5],x:[0,10,20,30,40,50],what:"rate of gas production"},
+ {xl:"Time (min)",yl:"Temperature (°C)",xu:"min",yu:"°C",u:"°C/min",m:[2.5,4.0,5.0,7.5,-3.0],x:[0,2,4,6,8,10],b:20,what:"rate of temperature change"}];
+L.SlopeGame=function(host){ const g=A.Game(host,{how:"Read two points on the line that are far apart, then divide the rise (Δy) by the run (Δx). Include the unit: the y-axis unit over the x-axis unit."});
+  g.button("New graph",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="t7-svg lg-plot" data-r="g"></div><div class="lg-ans"><span>slope =</span><input type="text" inputmode="decimal" class="lg-in" data-r="v" aria-label="slope"><select data-r="u" aria-label="unit"></select><button type="button" class="btn" data-r="c">Check</button></div>`;
+  const $=k=>g.stage.querySelector(`[data-r="${k}"]`); let C, m, b; const cbtn=$("c");
+  function next(){ g.fresh(); g.msg(""); C=A.pick(L.SLOPE_CTX); m=A.pick(C.m); b=C.b!=null?(m<0?60:C.b):0; const v=$("v"); v.value=""; v.classList.remove("ok","no");
+    const xs=C.x, xmax=xs[xs.length-1], ys=xs.map(x=>m*x+b), ymaxRaw=Math.max(...ys,b), step=ymaxRaw>200?50:ymaxRaw>80?20:ymaxRaw>40?10:ymaxRaw>16?5:ymaxRaw>8?2:1, ymax=Math.ceil(ymaxRaw/step)*step+step;
+    const yt=[]; for(let y=0;y<=ymax+1e-9;y+=step) yt.push(+y.toFixed(2));
+    const f=frame({W:520,H:340,xmin:0,xmax:xmax,ymin:0,ymax,xt:xs,yt,xl:C.xl,yl:C.yl,top:16});
+    const i1=1, i2=xs.length-1, p1=[xs[i1],ys[i1]], p2=[xs[i2],ys[i2]];
+    let s=f.s+`<path d="${path(f,[[0,b],[xmax,m*xmax+b]])}" fill="none" stroke="${BLUE}" stroke-width="3"/>`;
+    [p1,p2].forEach(p=>{ s+=`<path d="M${f.X(p[0])} ${f.y0}V${f.Y(p[1])}H${f.x0}" fill="none" stroke="${ORANGE}" stroke-width="1.8" stroke-dasharray="5 4"/>`+dot(f,p,ORANGE,6.5)+T.t(f.X(p[0])+(m<0&&p===p1?10:-10),f.Y(p[1])+(m<0&&p===p2?22:-10),`(${p[0]}, ${String(+p[1].toFixed(2)).replace("-","−")})`,{fs:12.5,c:ORANGE,a:m<0&&p===p1?"start":"end",st:1}); });
+    $("g").innerHTML=T.svg(f.W,f.H,s+f.axes,`Straight-line graph of ${C.yl} against ${C.xl}`);
+    $("u").innerHTML=`<option value="">unit</option>`+A.shuffle([C.u,`${C.xu}/${C.yu}`,`${C.yu}·${C.xu}`]).map(u=>`<option>${u}</option>`).join("");
+    cbtn.onclick=()=>{ const val=parseFloat($("v").value.replace("−","-")), u=$("u").value; if(isNaN(val)){ g.msg("Type the slope as a number.","warn"); return; }
+      const ok=Math.abs(val-m)<=Math.abs(m)*.02+1e-9; A.markBox($("v"),ok);
+      if(!ok){ g.lose(); g.msg(`Slope = (${+p2[1].toFixed(2)} − ${+p1[1].toFixed(2)}) ÷ (${p2[0]} − ${p1[0]}). ${m<0?"The line slopes down, so the slope is negative.":""}`,"bad"); return; }
+      if(u!==C.u){ g.msg("The number is right. The unit is the y-axis unit divided by the x-axis unit.","bad"); return; }
+      g.win(); g.msg(`✔ Slope = ${String(+(p2[1]-p1[1]).toFixed(2)).replace("-","−")} ${C.yu} ÷ ${p2[0]-p1[0]} ${C.xu} = ${String(m).replace("-","−")} ${C.u}, the ${C.what}.`,"good"); }; }
+  next(); };
+
+/* ---------- sources ---------- */
+(function(){ const SRC={CO2:'Mauna Loa annual mean carbon dioxide, 1959–2023: X. Lan, P. Tans and K. W. Thoning, <i>Trends in globally-averaged CO<sub>2</sub> determined from NOAA Global Monitoring Laboratory measurements</i>, NOAA GML. <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noopener">gml.noaa.gov/ccgg/trends</a>',
+    DENS:'Densities of zinc (7.14 g/cm³), aluminum, nickel, silver, lead and gold: J. R. Rumble (ed.), <i>CRC Handbook of Chemistry and Physics</i>, 104th ed., CRC Press, 2023.'};
+  const PAGES={"l-graphs":["CO2","DENS"]};
+  const old=A.U3&&A.U3.addSources; if(A.U3) A.U3.addSources=(slug)=>{ if(!PAGES[slug]) return old&&old(slug); const wrap=document.querySelector(".wrap"); if(!wrap||wrap.querySelector(".sources")) return;
+    const box=A.h("section",{class:"sources"}); box.innerHTML=`<h3>Data Sources</h3><ol>${PAGES[slug].map(k=>`<li>${SRC[k]}</li>`).join("")}</ol>`; const lc=wrap.querySelector(".part.lc"); lc? wrap.insertBefore(box,lc) : wrap.appendChild(box); }; })();
+})();
+
+/* Unit 6 · Interactive #6 (Nov 12): Limiting Reactant Beakers. 2Al + 3CuSO4 → Al2(SO4)3 + 3Cu.
+   Each beaker holds 3.19 g CuSO4 (0.0200 mol) dissolved in water; aluminum foil of 0.18, 0.36 or 0.72 g is added. */
+(function(){ const A=window.AS, S=A&&A.U6, T=A&&A.U7; if(!S||!T) return;
+const INK="#1b2328", GRAY="#5f6b72", rng=T.rng;
+const CU0=0.0200, MAL=26.98, MCU=63.55;
+const CASES=[{m:0.18},{m:0.36},{m:0.72}].map(c=>{ const nAl=c.m/MAL, needCu=nAl*1.5; const usedCu=Math.min(CU0,needCu), usedAl=usedCu/1.5;
+  return {...c,nAl,usedCu,cuLeft:CU0-usedCu,alLeft:c.m-usedAl*MAL,cuMade:usedCu*MCU,lim: needCu<CU0-1e-6?"Al":needCu>CU0+1e-6?"CuSO4":"none"}; });
+const mix=(a,b,t)=>{ const h=x=>[1,3,5].map(i=>parseInt(x.slice(i,i+2),16)); const A1=h(a),B1=h(b); return "#"+A1.map((v,i)=>Math.round(v+(B1[i]-v)*t).toString(16).padStart(2,"0")).join(""); };
+
+/* one beaker. f = fraction of the reaction finished (0–1) */
+S.beakerAl=(c,f,o={})=>{ const W=o.W||200,H=o.H||230, x=30,w=140,top=40,bot=200; const r=rng(o.seed||7);
+  const blueLeft=(CU0-c.usedCu*f)/CU0, col=mix("#eef5f9","#2b78c9",Math.pow(blueLeft,.8)), lev=top+34;
+  let s=`<path d="M${x} ${top}V${bot-8}q0 8 8 8h${w-16}q8 0 8-8V${top}" fill="none" stroke="${INK}" stroke-width="3"/>`;
+  s=`<path d="M${x+2} ${lev}V${bot-8}q0 6 6 6h${w-16}q6 0 6-6V${lev}Z" fill="${col}"/>`+`<line x1="${x+2}" y1="${lev}" x2="${x+w-2}" y2="${lev}" stroke="#ffffff" stroke-opacity=".6" stroke-width="2"/>`+s;
+  /* copper: reddish-brown grains on the bottom, more as it forms */
+  const N=28, nCu=Math.round(c.cuMade*f/1.27*N), slots=[]; for(let row=0;row<2;row++) for(let k=0;k<14;k++) slots.push([x+12+k*8.6+(row?4.3:0), bot-8-row*7.2]);
+  const ord=slots.map((p,i)=>[r(),i]).sort((a,b)=>a[0]-b[0]).map(a=>a[1]).sort((a,b)=>(a>=14)-(b>=14));
+  for(let i=0;i<nCu;i++){ const [gx,gy]=slots[ord[i]]; s+=`<circle cx="${gx.toFixed(1)}" cy="${gy.toFixed(1)}" r="3.6" fill="${i%3?"#D2843B":"#c0742f"}" stroke="#7a3510" stroke-width=".8"/>`; }
+  /* aluminum foil: a crumpled silver piece that shrinks as it reacts */
+  const al=c.m-(c.m-c.alLeft)*f, k=Math.sqrt(al/0.72);
+  if(al>0.004){ const cx=x+w*0.62, cy=bot-26, R=30*k+2; const pts=[]; for(let i=0;i<9;i++){ const a=i/9*6.283, rr=R*(.72+.28*((i*37)%7)/7); pts.push([cx+Math.cos(a)*rr,cy+Math.sin(a)*rr*.55]); }
+    s+=`<path d="M${pts.map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join("L")}Z" fill="#cfd5da" stroke="#7c868d" stroke-width="1.6"/><path d="M${cx-R*.4} ${cy-R*.15}l${R*.3} ${R*.2}l${R*.25} ${-R*.18}" fill="none" stroke="#f4f7f9" stroke-width="1.4"/>`; }
+  /* coating of copper on the foil while it reacts */
+  if(f>0&&f<1&&al>0.004) s+=`<circle cx="${x+w*0.62}" cy="${bot-26}" r="${(30*k)*0.5}" fill="#D2843B" fill-opacity="${(.35*f).toFixed(2)}"/>`;
+  if(o.label) s+=T.t(x+w/2,24,o.label,{fs:15});
+  return T.svg(W,H,s,o.aria||"Beaker of copper(II) sulfate solution with aluminum foil"); };
+
+S.LimBeakers=function(host){ let mode="run", sel=0, f=0, raf=0, order=[0,1,2];
+  host.innerHTML=`<div class="lab-b"><p class="how">Each beaker holds the same blue solution: 3.19 g of copper(II) sulfate (0.0200 mol) dissolved in water. Aluminum foil reacts with it: 2Al + 3CuSO<sub>4</sub> → Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> + 3Cu. The blue color comes from the copper(II) ions, and the reddish-brown solid is copper.</p>
+   <div class="controls"><div class="seg" role="group" aria-label="Mode"><button type="button" data-m="run" aria-pressed="true">Run the reactions</button><button type="button" data-m="match" aria-pressed="false">Match the beakers</button></div></div>
+   <div data-r="run"><div class="controls"><span class="ctl-label">Mass of aluminum:</span><div class="seg" role="group" aria-label="Mass of aluminum">${CASES.map((c,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===0}">${c.m.toFixed(2)} g Al</button>`).join("")}</div><button type="button" class="btn" data-r="go">Add the aluminum</button></div>
+     <div class="g8-row"><div class="t7-svg lb-one" data-r="bk"></div><div class="g8-side"><table class="nt lb-tbl" data-r="tbl"></table><div class="t7-card" data-r="info"></div></div></div></div>
+   <div data-r="match" hidden><p class="how">These three beakers have finished reacting. Each received a different mass of aluminum. Match each beaker to its mass, and choose its limiting reactant.</p>
+     <div class="lb-three" data-r="three"></div><div class="lg-btns"><button type="button" class="btn" data-r="chk">Check</button><button type="button" class="btn ghost" data-r="new">Shuffle</button></div><div class="status" data-r="msg" aria-live="polite"></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  function table(c,ff){ const d=v=>v.toFixed(4); const nCuLeft=CU0-c.usedCu*ff, alLeft=c.m-(c.m-c.alLeft)*ff;
+    $("tbl").innerHTML=`<tr><th></th><th>Start</th><th>Now</th></tr><tr><td>Al (g)</td><td>${c.m.toFixed(2)}</td><td>${alLeft.toFixed(2)}</td></tr><tr><td>CuSO<sub>4</sub> (mol)</td><td>0.0200</td><td>${d(nCuLeft)}</td></tr><tr><td>Cu formed (g)</td><td>0.00</td><td>${(c.cuMade*ff).toFixed(2)}</td></tr>`; }
+  function info(c,ff){ const need=(c.nAl*1.5).toFixed(4);
+    $("info").innerHTML= ff<1? `<b>${c.m.toFixed(2)} g Al = ${c.nAl.toFixed(4)} mol Al</b><span>From the mole ratio, ${c.nAl.toFixed(4)} mol Al can react with ${need} mol CuSO<sub>4</sub> (3 mol CuSO<sub>4</sub> for every 2 mol Al). The beaker holds 0.0200 mol CuSO<sub>4</sub>.</span>`
+      : c.lim==="Al"? `<b>Aluminum is the limiting reactant.</b><span>All of the foil is used up, but the solution is still blue: copper(II) sulfate is left over, so it is the excess reactant.</span>`
+      : c.lim==="CuSO4"? `<b>Copper(II) sulfate is the limiting reactant.</b><span>The blue color is gone, so all of the copper(II) ions reacted, but ${c.alLeft.toFixed(2)} g of foil is left over: aluminum is the excess reactant.</span>`
+      : `<b>Neither reactant is left over.</b><span>The blue color is gone and so is the foil: 0.36 g Al is exactly the amount needed to react with 0.0200 mol CuSO<sub>4</sub>.</span>`; }
+  function drawRun(){ const c=CASES[sel]; $("bk").innerHTML=S.beakerAl(c,f,{W:200,H:230,seed:11}); table(c,f); info(c,f); }
+  function go(){ cancelAnimationFrame(raf); f=0; const t0=performance.now(); const step=t=>{ f=Math.min(1,(t-t0)/4500); drawRun(); if(f<1) raf=requestAnimationFrame(step); }; raf=requestAnimationFrame(step); }
+  A.$$("[data-i]",host).forEach(b=>b.addEventListener("click",()=>{ sel=+b.dataset.i; A.$$("[data-i]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); cancelAnimationFrame(raf); f=0; drawRun(); }));
+  $("go").addEventListener("click",go);
+  function drawMatch(){ $("three").innerHTML=order.map((ci,k)=>{ const L="ABC"[k]; return `<div class="lb-card">${S.beakerAl(CASES[ci],1,{W:200,H:230,seed:11+k,label:"Beaker "+L})}
+      <label>Mass of Al <select data-a="${k}"><option value="">choose</option>${CASES.map((c,i)=>`<option value="${i}">${c.m.toFixed(2)} g</option>`).join("")}</select></label>
+      <label>Limiting reactant <select data-l="${k}"><option value="">choose</option><option value="Al">Al</option><option value="CuSO4">CuSO₄</option><option value="none">neither (both used up)</option></select></label></div>`; }).join("");
+    const m=$("msg"); m.className="status"; m.textContent=""; }
+  $("new").addEventListener("click",()=>{ order=A.shuffle([0,1,2]); drawMatch(); });
+  $("chk").addEventListener("click",()=>{ let ok=0, blank=false; order.forEach((ci,k)=>{ const a=host.querySelector(`[data-a="${k}"]`), l=host.querySelector(`[data-l="${k}"]`); if(!a.value||!l.value) blank=true;
+      const ga=+a.value===ci, gl=l.value===CASES[ci].lim; A.markBox(a,ga); A.markBox(l,gl); if(ga&&gl) ok++; });
+    const m=$("msg"); if(blank){ m.className="status warn"; m.textContent="Choose a mass and a limiting reactant for every beaker."; return; }
+    if(ok===3){ m.className="status good"; m.innerHTML="✔ All three matched. Blue solution left over = excess CuSO<sub>4</sub> (Al was limiting). Foil left over = excess Al (CuSO<sub>4</sub> was limiting). Neither left = exactly the right amounts."; }
+    else { m.className="status bad"; m.innerHTML=`${ok} of 3 beakers are fully correct. Look at two clues: is the solution still blue (copper(II) sulfate left over)? Is there foil left (aluminum left over)? The amount of copper on the bottom also tells how far the reaction went.`; } });
+  A.$$("[data-m]",host).forEach(b=>b.addEventListener("click",()=>{ mode=b.dataset.m; A.$$("[data-m]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); $("run").hidden=mode!=="run"; $("match").hidden=mode!=="match"; if(mode==="match"){ order=A.shuffle([0,1,2]); drawMatch(); } }));
+  drawRun(); };
+})();
+/* Unit 4 · Choosing materials (Nov 12): match a material's properties to the criteria and constraints of a design */
+(function(){ const A=window.AS, B=A&&A.U4; if(!B) return;
+const M={cu:["Copper, Cu","metallic","1085 °C","yes","does not dissolve"],nacl:["Sodium chloride, NaCl","ionic","801 °C","no (yes when dissolved)","dissolves"],kcl:["Potassium chloride, KCl","ionic","770 °C","no (yes when dissolved)","dissolves"],
+  sugar:["Sucrose (sugar), C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>","molecular (polar)","186 °C","no","dissolves"],wax:["Paraffin wax","molecular (nonpolar)","about 60 °C","no","does not dissolve"],
+  sio2:["Quartz, SiO<sub>2</sub>","network covalent","1713 °C","no","does not dissolve"],al:["Aluminum, Al","metallic","660 °C","yes","does not dissolve"],diamond:["Diamond, C","network covalent","does not melt below 3500 °C","no","does not dissolve"]};
+B.MATERIAL_TASKS=[
+ {q:"<b>Design:</b> the wire inside a phone charging cable.<br><b>Criteria:</b> conducts electricity as a solid; bends without breaking.",opts:["cu","nacl","sio2","wax"],ans:"cu",why:"Copper is metallic: its mobile electrons carry a current in the solid, and its layers of ions slide without breaking, so it bends into wire."},
+ {q:"<b>Design:</b> the lining of a furnace that runs at 1500 °C.<br><b>Criteria:</b> stays solid at 1500 °C; does not conduct electricity.",opts:["al","sio2","nacl","sugar"],ans:"sio2",why:"Quartz is a network solid: breaking its network of covalent bonds takes so much energy that it melts only at 1713 °C, and it has no mobile charged particles."},
+ {q:"<b>Design:</b> a coating that keeps water out of wood.<br><b>Criteria:</b> does not dissolve in water; can be melted and spread on at a low temperature.",opts:["wax","nacl","sugar","cu"],ans:"wax",why:"Paraffin wax is nonpolar and molecular: it does not dissolve in polar water, and its weak intermolecular forces give it a low melting point."},
+ {q:"<b>Design:</b> the substance dissolved in water to make a solution that carries an electric current between two metal plates.<br><b>Criteria:</b> dissolves in water; the solution conducts electricity.",opts:["kcl","sugar","wax","sio2"],ans:"kcl",why:"KCl is ionic: it dissolves in water, and its freed ions move through the solution and carry the current. Sugar dissolves but forms no ions."},
+ {q:"<b>Design:</b> the tip of a drill bit for cutting stone.<br><b>Criteria:</b> extremely hard; does not soften from the heat of drilling.",opts:["diamond","al","wax","nacl"],ans:"diamond",why:"Diamond is a network solid: every atom is covalently bonded in all directions, which makes it the hardest substance and extremely heat resistant. NaCl is hard but brittle."},
+ {q:"<b>Design:</b> a lightweight frame for a bicycle.<br><b>Criteria:</b> strong and does not shatter when struck. <b>Constraint:</b> must melt below 1000 °C so it can be cast into shape.",opts:["al","sio2","nacl","diamond"],ans:"al",why:"Aluminum is metallic, so it is malleable instead of brittle, and it melts at 660 °C, below the 1000 °C constraint. Quartz and diamond do not melt that low; NaCl shatters."}];
+B.MaterialGame=function(host){ const g=A.Game(host,{how:"Read the criteria (what the design must do) and any constraint (a limit). Use the property data to choose the material that meets every requirement."});
+  g.button("Skip",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="qp"><div class="qp-t mg-q" data-r="q"></div></div><div class="mg-opts" data-r="o"></div>`;
+  const $=k=>g.stage.querySelector(`[data-r="${k}"]`); let bag=[], cur;
+  function next(){ g.fresh(); g.msg(""); if(!bag.length) bag=A.shuffle(B.MATERIAL_TASKS.slice()); cur=bag.pop(); $("q").innerHTML=cur.q;
+    const O=$("o"); O.innerHTML=""; delete O.dataset.done;
+    A.shuffle(cur.opts.slice()).forEach(k=>{ const m=M[k]; const b=A.h("button",{type:"button",class:"mg-card"}); b.innerHTML=`<b>${m[0]}</b><span class="mg-type">${m[1]}</span><dl><dt>Melting point</dt><dd>${m[2]}</dd><dt>Conducts as a solid</dt><dd>${m[3]}</dd><dt>In water</dt><dd>${m[4]}</dd></dl>`;
+      b.addEventListener("click",()=>{ if(O.dataset.done) return; if(k===cur.ans){ b.classList.add("right"); O.dataset.done=1; g.win(); g.msg("✔ "+cur.why,"good"); g.later(next,4200); } else { b.classList.add("wrong"); g.lose(); g.msg("That material fails at least one requirement. Check each criterion against its property data.","bad"); } }); O.appendChild(b); }); }
+  next(); };
+})();
+
+/* Batch of Nov 12 interactives: Avogadro balloons (s-molvolume), the sample slicer (m-props), Collect the Copper (s-yield). */
+(function(){ const A=window.AS, S=A&&A.U6, T=A&&A.U7; if(!S||!T) return;
+const INK="#1b2328", GRAY="#5f6b72", BLUE="#2E75D6", RED="#E00000", GREEN="#00843c", ORANGE="#E8590C";
+const fx=(v,d)=>Number(v).toFixed(d).replace("-","−");
+
+/* ---------- Equal Volumes, Equal Moles (Avogadro's law) ---------- */
+const GASES={He:{n:"Helium",f:"He",M:4.00,col:"#E8A33D",atoms:1},CH4:{n:"Methane",f:"CH<sub>4</sub>",M:16.05,col:"#00B050",atoms:5},N2:{n:"Nitrogen",f:"N<sub>2</sub>",M:28.02,col:"#7030A0",atoms:2},O2:{n:"Oxygen",f:"O<sub>2</sub>",M:32.00,col:"#E00000",atoms:2},Ar:{n:"Argon",f:"Ar",M:39.95,col:"#A6A6A6",atoms:1},CO2:{n:"Carbon dioxide",f:"CO<sub>2</sub>",M:44.01,col:"#00B050",atoms:3}};
+S.AvogadroBalloons=function(host){ const st=[{g:"He",n:1.0},{g:"CO2",n:1.0}]; let touched=0, cond="stp", raf=0, t0=performance.now();
+  const VM={stp:22.4,room:24.5};
+  host.innerHTML=`<div class="lab-b"><p class="how">Fill two balloons with any gases and choose the number of moles in each. Both balloons are at the same temperature and pressure. Compare their volumes, the number of particles and their masses.</p>
+   <div class="controls"><span class="ctl-label">Conditions:</span><div class="seg" role="group" aria-label="Conditions"><button type="button" data-c="stp" aria-pressed="true">STP (0 °C, 101.3 kPa)</button><button type="button" data-c="room" aria-pressed="false">Room (25 °C, 101.3 kPa)</button></div></div>
+   <div class="av-cols">${st.map((b,i)=>`<div class="av-col"><div class="controls av-ctl"><label class="av-sel">Balloon ${"AB"[i]} <select data-g="${i}" aria-label="Gas in balloon ${"AB"[i]}">${Object.entries(GASES).map(([k,v])=>`<option value="${k}"${k===b.g?" selected":""}>${v.n}</option>`).join("")}</select></label><label class="g8-sl"><span>Moles</span><input type="range" min="0.5" max="2" step="0.5" value="${b.n}" data-n="${i}" aria-label="Moles in balloon ${"AB"[i]}"><b data-v="${i}"></b></label></div><div class="t7-svg av-pic" data-r="pic${i}"></div></div>`).join("")}</div>
+   <table class="nt av-tbl" data-r="tbl"></table><div class="t7-card" data-r="info"></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  /* fixed particle positions per balloon (non-overlapping), 8 particles shown per mole */
+  const SP={He:15,Ar:17,N2:20,O2:20,CH4:21,CO2:32};
+  const layout=(n,R,seed,sp)=>{ const r=T.rng(seed), pts=[], N=Math.round(n*6); for(let row=-12;row<=12;row++) for(let col=-12;col<=12;col++){ const x=(col+(row%2?0.5:0))*sp, y=row*sp*0.87; if(Math.hypot(x,y/0.92)<=R-sp*0.6&&Math.abs(x)<=R*(y>R*.4?1.25-y/R:1)-sp*.5) pts.push([x,y]); } return pts.map(p=>[r(),p]).sort((a,b)=>a[0]-b[0]).slice(0,N).map(a=>a[1]); };
+  const mol=(g,x,y)=>{ const G=GASES[g]; if(g==="He"||g==="Ar") return T.ball(x,y,g==="He"?4.5:6,g==="He"?"#FFE0B3":G.col,{sw:1.2});
+    if(g==="CO2") return T.ball(x-6,y,4,RED,{sw:1})+T.ball(x+6,y,4,RED,{sw:1})+T.ball(x,y,4.6,"#00B050",{sw:1});
+    if(g==="CH4") return [[-5,-4],[5,-4],[-5,5],[5,5]].map(([a,b])=>T.ball(x+a,y+b,2.6,"#2E75D6",{sw:.9})).join("")+T.ball(x,y,4.4,"#00B050",{sw:1});
+    return T.ball(x-3.5,y,4.3,G.col,{sw:1})+T.ball(x+3.5,y,4.3,G.col,{sw:1}); };
+  function pic(i,t){ const b=st[i], G=GASES[b.g], V=b.n*VM[cond], R=54*Math.sqrt(b.n)*(cond==="room"?1.045:1), cx=130, cy=130;
+    let s=A.balloonSVG? A.balloonSVG(cx,cy+R*.05,R*1.06,G.col,{alpha:.16,string:Math.max(14,262-(cy+R*1.2)),wob:Math.sin(t*1.4)*2}) : `<ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="${R*0.95}" fill="${G.col}" fill-opacity=".12" stroke="${G.col}" stroke-width="2.6"/>`;
+    const pts=layout(b.n,R,9+i*31+Object.keys(GASES).indexOf(b.g),SP[b.g]); pts.forEach((p,k)=>{ const w=Math.sin(t*1.3+k*1.7)*1.4, w2=Math.cos(t*1.1+k*2.3)*1.4; s+=mol(b.g,cx+p[0]+w,cy+R*.1+p[1]+w2); });
+    s+=T.t(cx,20,`${G.n}: ${fx(b.n,1)} mol`,{fs:14})+T.t(cx,292,`Volume = ${fx(V,1)} L`,{fs:14,c:BLUE});
+    return T.svg(260,300,s,`Balloon of ${G.n} holding ${b.n} moles, volume ${fx(V,1)} liters`); }
+  function table(){ $("tbl").innerHTML=`<tr><th></th><th>Gas</th><th>Moles</th><th>Particles</th><th>Volume (L)</th><th>Molar mass (g/mol)</th><th>Mass (g)</th></tr>`+st.map((b,i)=>{ const G=GASES[b.g]; return `<tr><td><b>${"AB"[i]}</b></td><td>${G.f}</td><td>${fx(b.n,1)}</td><td>${(()=>{ const v=b.n*6.02e23, e=Math.floor(Math.log10(v)); return fx(v/10**e,2)+" × 10<sup>"+e+"</sup>"; })()}</td><td>${fx(b.n*VM[cond],1)}</td><td>${fx(G.M,2)}</td><td>${fx(b.n*G.M,1)}</td></tr>`; }).join("");
+    const [a,b]=st, same=a.n===b.n;
+    if(touched<2){ $("info").innerHTML=`<b>Investigate</b><span>Balloon A holds 1.0 mol of helium and balloon B holds 1.0 mol of carbon dioxide. Compare their volumes and masses in the table. Then change the gas or the number of moles in one balloon (try at least two changes). What decides the volume of a gas at the same temperature and pressure?</span>`; return; }
+    $("info").innerHTML= same? `<b>Same number of moles, same volume.</b><span>Each dot stands for 1/6 of a mole. Both balloons hold ${fx(a.n,1)} mol, so they hold the same number of particles and have the same volume${a.g!==b.g?`, even though the ${GASES[a.g].n.toLowerCase()} balloon has a mass of ${fx(a.n*GASES[a.g].M,1)} g and the ${GASES[b.g].n.toLowerCase()} balloon ${fx(b.n*GASES[b.g].M,1)} g`:""}. This is Avogadro’s law.</span>`
+      : `<b>More moles, more volume.</b><span>Balloon ${a.n>b.n?"A":"B"} holds ${fx(Math.max(a.n,b.n)/Math.min(a.n,b.n),1)} times as many moles, so it has ${fx(Math.max(a.n,b.n)/Math.min(a.n,b.n),1)} times the volume. At ${cond==="stp"?"STP":"25 °C and 101.3 kPa"}, every mole of gas occupies ${VM[cond]} L.</span>`; }
+  function frame(now){ if(!host.isConnected) return; const t=(now-t0)/1000; [0,1].forEach(i=>$("pic"+i).innerHTML=pic(i,t)); raf=requestAnimationFrame(frame); }
+  function upd(){ st.forEach((b,i)=>host.querySelector(`[data-v="${i}"]`).textContent=fx(b.n,1)+" mol"); table(); }
+  A.$$("[data-g]",host).forEach(sel=>sel.addEventListener("change",()=>{ st[+sel.dataset.g].g=sel.value; touched++; upd(); }));
+  A.$$("[data-n]",host).forEach(sl=>sl.addEventListener("change",()=>{ touched++; upd(); })); A.$$("[data-n]",host).forEach(sl=>sl.addEventListener("input",()=>{ st[+sl.dataset.n].n=+sl.value; upd(); }));
+  A.$$("[data-c]",host).forEach(b=>b.addEventListener("click",()=>{ cond=b.dataset.c; A.$$("[data-c]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); upd(); }));
+  upd(); raf=requestAnimationFrame(frame); };
+
+/* ---------- Collect the Copper: a percent yield lab ---------- */
+S.CopperYieldLab=function(host){ const AL=0.27, THEO=+(AL/26.98*1.5*63.55).toFixed(3); /* 0.954 g */
+  let step=0, rinse=null, dry=null, loss=0, actual=0, f=0, raf=0;
+  const CASE={m:AL,usedCu:AL/26.98*1.5,cuLeft:0.0200-AL/26.98*1.5,alLeft:0,cuMade:THEO*1.27/1.272};
+  host.innerHTML=`<div class="lab-b"><p class="how">A student adds 0.27 g of aluminum foil to a beaker of copper(II) sulfate solution (0.0200 mol CuSO<sub>4</sub>, in excess) and collects the copper that forms: 2Al + 3CuSO<sub>4</sub> → Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> + 3Cu. Your choices at each step change how much copper ends up on the balance.</p>
+   <div class="cy-steps" data-r="steps"></div>
+   <div class="g8-row"><div class="t7-svg cy-pic" data-r="pic"></div><div class="g8-side"><div class="lg-step" data-r="panel"></div><div class="status" data-r="msg" aria-live="polite"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`), msg=(h,c="")=>{ const m=$("msg"); m.className="status "+c; m.innerHTML=h; };
+  const NAMES=["Theoretical yield","React","Filter","Dry","Weigh","Percent yield"];
+  const steps=()=>{ $("steps").innerHTML=NAMES.map((n,i)=>`<span class="cy-st ${i<step?"done":i===step?"on":""}">${i+1}. ${n}</span>`).join(""); };
+  /* scenes */
+  const funnel=(cu,water)=>{ let s=`<path d="M60 70H200L148 150V196H112V150Z" fill="#f4f8fa" stroke="${INK}" stroke-width="2.5"/><path d="M72 76H188L142 146H118Z" fill="#fffdf4" stroke="#c9c1a6" stroke-width="1.5"/>`;
+    const r=T.rng(5); for(let i=0;i<Math.round(cu*22);i++){ const x=104+ (i%9)*6.4+r()*2, y=136-Math.floor(i/9)*6; s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#D2843B" stroke="#7a3d10" stroke-width=".7"/>`; }
+    s+=`<path d="M100 214h60v60q0 6-6 6h-48q-6 0-6-6z" fill="${water?"#dbe9f3":"#fff"}" stroke="${INK}" stroke-width="2.5"/>`+T.t(130,298,"filtrate",{fs:12,c:GRAY});
+    return s; };
+  const balance=(mass,label)=>`<rect x="40" y="210" width="190" height="60" rx="8" fill="#e9eef1" stroke="${INK}" stroke-width="2.5"/><rect x="70" y="228" width="130" height="30" rx="4" fill="#0f2a1c"/><text x="190" y="250" text-anchor="end" font-family="monospace" font-size="20" fill="#7CFC9A">${mass}</text><rect x="70" y="196" width="130" height="10" rx="3" fill="#b7c0c6" stroke="${INK}" stroke-width="1.5"/>`+T.t(135,292,label,{fs:12,c:GRAY});
+  const paper=(cu,wet)=>{ let s=`<ellipse cx="135" cy="186" rx="62" ry="12" fill="${wet?"#e3eef6":"#fffdf4"}" stroke="#c9c1a6" stroke-width="1.5"/>`; const r=T.rng(8); for(let i=0;i<Math.round(cu*22);i++){ const x=100+(i%10)*7+(Math.floor(i/10)%2?3.5:0), y=184-Math.floor(i/10)*6.2; s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#D2843B" stroke="#7a3d10" stroke-width=".7"/>`; } return s; };
+  function scene(){ let s="";
+    if(step<=1) s=S.beakerAl(CASE,f,{W:260,H:300}).replace(/^<svg[^>]*>|<\/svg>$/g,"");
+    else if(step===2) s=funnel(rinse===null?0:(THEO-loss)/THEO,rinse!==null)+(rinse===false?`<path d="M190 240h50v40q0 6-6 6h-38q-6 0-6-6z" fill="#fff" stroke="${INK}" stroke-width="2"/>`+[...Array(4)].map((_,i)=>`<circle cx="${200+i*8}" cy="279" r="3" fill="#D2843B" stroke="#7a3d10" stroke-width=".7"/>`).join("")+T.t(215,300,"copper left in beaker",{fs:11,c:RED}):"");
+    else if(step===3) s=`<path d="M60 192q75 26 150 0" fill="#eef4f7" stroke="${INK}" stroke-width="2"/>`+paper((THEO-loss)/THEO,dry!=="dry")+T.t(135,226,"filter paper on a watch glass",{fs:12,c:GRAY})+(dry==="dry"?`<rect x="20" y="40" width="230" height="120" rx="10" fill="#fff4e8" stroke="${ORANGE}" stroke-width="2"/>`+T.t(135,70,"drying oven, 110 °C",{fs:13,c:ORANGE}):"");
+    else s=paper((THEO-loss)/THEO,dry!=="dry")+balance(actual.toFixed(3)+" g","copper on filter paper (paper tared)");
+    $("pic").innerHTML=T.svg(260,310,s,"Lab equipment for the current step"); }
+  function panel(){ const P=$("panel"); steps();
+    if(step===0){ P.innerHTML=`<b>Step 1: Calculate the theoretical yield of copper.</b><br>0.27 g Al → moles Al → moles Cu (3 mol Cu for every 2 mol Al) → grams Cu. Molar masses: Al 26.98 g/mol, Cu 63.55 g/mol.<div class="lg-ans"><input type="text" inputmode="decimal" class="lg-in" data-r="ty" aria-label="theoretical yield in grams"><span>g Cu</span><button type="button" class="btn" data-r="c0">Check Step 1</button></div>`;
+      $("c0").onclick=()=>{ const v=parseFloat($("ty").value); const ok=Math.abs(v-THEO)<=0.006; A.markBox($("ty"),ok); if(!ok){ msg("0.27 g ÷ 26.98 g/mol = 0.0100 mol Al. × (3 mol Cu ÷ 2 mol Al) = 0.0150 mol Cu. × 63.55 g/mol = ? g Cu.","bad"); return; } msg(`✔ Theoretical yield = ${THEO.toFixed(3)} g Cu. This is the most copper that 0.27 g of aluminum can make.`,"good"); step=1; panel(); scene(); }; }
+    else if(step===1){ P.innerHTML=`<b>Step 2: Run the reaction.</b> Add the foil and wait until it is completely used up.<div class="lg-btns"><button type="button" class="btn" data-r="go">Add the aluminum</button></div>`;
+      $("go").onclick=()=>{ cancelAnimationFrame(raf); const t0=performance.now(); const tick=t=>{ f=Math.min(1,(t-t0)/4000); scene(); if(f<1) raf=requestAnimationFrame(tick); else { msg("✔ The foil is gone and copper has formed. The solution is still pale blue: CuSO<sub>4</sub> was in excess.","good"); step=2; panel(); scene(); } }; raf=requestAnimationFrame(tick); }; }
+    else if(step===2){ P.innerHTML=`<b>Step 3: Filter out the copper.</b> Pour the mixture through filter paper. Some copper sticks to the beaker.<div class="lg-btns lg-col"><button type="button" class="btn ghost" data-k="rinse">Rinse the beaker with water and pour the rinse through the filter too</button><button type="button" class="btn ghost" data-k="pour">Just pour once and move on</button></div>`;
+      A.$$("[data-k]",P).forEach(b=>b.onclick=()=>{ rinse=b.dataset.k==="rinse"; loss=(rinse?0.012:0.085)+Math.round(Math.random()*8)/1000; msg(rinse?"Rinsing washed most of the copper onto the filter paper.":"Some copper was left stuck in the beaker. That copper will not be weighed.",rinse?"good":"warn"); step=3; panel(); scene(); }); }
+    else if(step===3){ P.innerHTML=`<b>Step 4: Dry the copper.</b> The copper and filter paper are still wet.<div class="lg-btns lg-col"><button type="button" class="btn ghost" data-k="dry">Dry it in an oven, then cool and weigh</button><button type="button" class="btn ghost" data-k="wet">Weigh it now, while it is still damp</button></div>`;
+      A.$$("[data-k]",P).forEach(b=>b.onclick=()=>{ dry=b.dataset.k; const water=dry==="wet"?0.135:0; actual=+(THEO-loss+water).toFixed(3); msg(dry==="dry"?"Dried: only copper is left on the paper.":"The paper and copper still hold water, and the balance will count that water as copper.",dry==="dry"?"good":"warn"); step=4; panel(); scene(); }); }
+    else if(step===4){ P.innerHTML=`<b>Step 5: Weigh the copper.</b> The balance was zeroed (tared) with a clean, dry filter paper, so it shows the mass of whatever is on the paper.<div class="lg-btns"><button type="button" class="btn" data-r="w">Record the mass</button></div>`; $("w").onclick=()=>{ msg(`Actual yield = ${actual.toFixed(3)} g.`,""); step=5; panel(); }; }
+    else if(step===5){ P.innerHTML=`<b>Step 6: Calculate the percent yield.</b><br>Percent yield = (actual yield ÷ theoretical yield) × 100 = (${actual.toFixed(3)} g ÷ ${THEO.toFixed(3)} g) × 100<div class="lg-ans"><input type="text" inputmode="decimal" class="lg-in" data-r="py" aria-label="percent yield"><span>%</span><button type="button" class="btn" data-r="c5">Check Step 6</button></div>`;
+      $("c5").onclick=()=>{ const v=parseFloat($("py").value), pyv=actual/THEO*100, ok=Math.abs(v-pyv)<=0.6; A.markBox($("py"),ok); if(!ok){ msg("Divide the actual yield by the theoretical yield, then multiply by 100.","bad"); return; }
+        const why= pyv>100? `Over 100%: the damp copper carried water onto the balance, so the actual yield is too high.` : rinse? `Close to 100%: rinsing and drying kept the losses small. The little copper still lost stayed on the glassware.` : `Below 100%: copper left in the beaker was never weighed.`;
+        P.innerHTML=`<b>Percent yield = ${pyv.toFixed(1)}%</b><br>${why}${!rinse&&dry==="wet"?" Here two errors partly cancel: lost copper lowers the mass while water raises it.":""}<div class="lg-btns"><button type="button" class="btn ghost" data-r="again">Try different choices</button></div>`; msg("✔ "+pyv.toFixed(1)+"%","good");
+        $("again").onclick=()=>{ step=1; f=0; rinse=null; dry=null; msg("Theoretical yield is still "+THEO.toFixed(3)+" g. Run the reaction again."); panel(); scene(); }; }; } }
+  panel(); scene(); };
+})();
+
+/* ---------- Unit 1: the sample slicer (intensive vs. extensive properties) ---------- */
+(function(){ const A=window.AS, L=A&&A.U0, T=A&&A.U7; if(!L||!T) return; const INK="#1b2328", GRAY="#5f6b72";
+const SUB={al:{n:"Aluminum",d:2.70,mp:"660 °C",bp:"2519 °C",col:"silver-gray",fill:"#c9cfd4",u:"cm³"},au:{n:"Gold",d:19.3,mp:"1064 °C",bp:"2856 °C",col:"yellow",fill:"#e8c547",u:"cm³"},water:{n:"Water (20 °C)",d:0.998,mp:"0 °C",bp:"100 °C",col:"colorless",fill:"#cfe6f5",u:"mL"}};
+L.SampleSlicer=function(host){ let k="al", V=40, moves=0;
+  host.innerHTML=`<div class="lab-b"><p class="how">Change the size of the sample, or cut it in half. Watch which properties change with the amount of matter (extensive) and which stay the same (intensive).</p>
+   <div class="controls g8-ctl"><div class="seg" role="group" aria-label="Substance">${Object.entries(SUB).map(([q,s])=>`<button type="button" data-k="${q}" aria-pressed="${q===k}">${s.n}</button>`).join("")}</div><label class="g8-sl"><span>Sample size</span><input type="range" min="5" max="80" step="1" value="${V}" data-r="v" aria-label="sample volume"><b data-r="vv"></b></label><button type="button" class="btn ghost" data-r="half">Cut in half</button></div>
+   <div class="g8-row"><div class="t7-svg ss-pic" data-r="pic"></div><div class="g8-side"><table class="nt ss-tbl" data-r="tbl"></table><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=q=>host.querySelector(`[data-r="${q}"]`); let last=null;
+  function draw(){ const s=SUB[k]; $("vv").textContent=V+" "+s.u;
+    const side=Math.cbrt(V)*26; let g="";
+    if(k==="water"){ const h=V*2.6; g=`<path d="M70 60V260q0 8 8 8h104q8 0 8-8V60" fill="none" stroke="${INK}" stroke-width="3"/><rect x="73" y="${266-h}" width="114" height="${h}" fill="${s.fill}"/>`+[20,40,60,80].map(m=>`<line x1="70" y1="${266-m*2.6}" x2="84" y2="${266-m*2.6}" stroke="${INK}" stroke-width="1.5"/>`+T.t(92,266-m*2.6+4,m+" mL",{fs:11,c:GRAY,a:"start"})).join(""); }
+    else { const x=130-side*0.55, y=250-side; g=`<path d="M${x} ${y}h${side}l${side*0.35} ${-side*0.3}h${-side}z" fill="#fff" fill-opacity=".55" stroke="${INK}" stroke-width="2"/><path d="M${x+side} ${y}v${side}l${side*0.35} ${-side*0.3}v${-side}z" fill="${s.fill}" stroke="${INK}" stroke-width="2" style="filter:brightness(.8)"/><rect x="${x}" y="${y}" width="${side}" height="${side}" fill="${s.fill}" stroke="${INK}" stroke-width="2"/>`+`<rect x="40" y="250" width="200" height="10" fill="#b7c0c6" stroke="${INK}" stroke-width="1.5"/>`; }
+    $("pic").innerHTML=T.svg(280,290,g,`${s.n} sample, ${V} ${s.u}`);
+    const m=(s.d*V);
+    const rows=[["Mass",(m>=100?m.toFixed(0):m.toFixed(1))+" g","ext"],["Volume",V+" "+s.u,"ext"],["Density",s.d+" g/"+s.u,"int"],["Melting point",s.mp,"int"],["Boiling point",s.bp,"int"],["Color",s.col,"int"]];
+    $("tbl").innerHTML=`<tr><th>Property</th><th>Value</th>${moves>=2?"<th>Type</th>":""}</tr>`+rows.map(([p,v,t])=>`<tr class="${t==="ext"&&last!==null&&last!==V?"ss-ch":""}"><td>${p}</td><td><b>${v}</b></td>${moves>=2?`<td class="${t==="ext"?"ss-ext":"ss-int"}">${t==="ext"?"Extensive: changes":"Intensive: stays the same"}</td>`:""}</tr>`).join("");
+    if(moves<2){ $("info").innerHTML=`<b>Investigate</b><span>Change the size of the sample at least twice, or cut it in half. Watch the table: which properties change when the amount of matter changes, and which stay the same?</span>`; last=V; return; }
+    $("info").innerHTML=`<b>Density = mass ÷ volume = ${(m>=100?m.toFixed(0):m.toFixed(1))} g ÷ ${V} ${s.u} = ${s.d} g/${s.u}</b><span>Mass and volume both change with the size of the sample, but their ratio does not. That is why density, like melting point and color, can be used to identify a substance.</span>`; last=V; }
+  $("v").addEventListener("input",e=>{ V=+e.target.value; draw(); }); $("v").addEventListener("change",()=>{ moves++; draw(); });
+  $("half").addEventListener("click",()=>{ V=Math.max(5,Math.round(V/2)); $("v").value=V; moves++; draw(); });
+  A.$$("[data-k]",host).forEach(b=>b.addEventListener("click",()=>{ k=b.dataset.k; A.$$("[data-k]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); last=null; draw(); }));
+  draw(); };
+})();
+
+/* ---------- Unit 5: testing the products of combustion (r-predict-comb) ---------- */
+(function(){ const A=window.AS, R=A&&A.U5, T=A&&A.U7; if(!R||!T) return; const INK="#1b2328", GRAY="#5f6b72";
+const FUELS={wax:{n:"Candle (paraffin wax)",C:true,H:true,eq:{r:["C25H52","O2"],p:["CO2","H2O"],c:[1,38,25,26]},flame:"#F6A21E"},
+  eth:{n:"Ethanol burner",C:true,H:true,eq:{r:["C2H5OH","O2"],p:["CO2","H2O"],c:[1,3,2,3]},flame:"#3b82f6"},
+  but:{n:"Butane lighter",C:true,H:true,eq:{r:["C4H10","O2"],p:["CO2","H2O"],c:[2,13,8,10]},flame:"#F6A21E"},
+  h2:{n:"Hydrogen gas jet",C:false,H:true,eq:{r:["H2","O2"],p:["H2O"],c:[2,1,2]},flame:"#9ec5ff"}};
+R.CombustionTests=function(host){ let k="wax", held=0, cobalt=null, lime=null, raf=0, t0=performance.now(), holding=false, hs=0;
+  host.innerHTML=`<div class="lab-b"><p class="how">Hold a cold, dry beaker upside down over the flame, then test what collects inside. Cobalt chloride paper turns from blue to pink when it touches water. Limewater turns milky when carbon dioxide bubbles into it.</p>
+   <div class="controls"><span class="ctl-label">Fuel:</span><div class="seg" role="group" aria-label="Fuel">${Object.entries(FUELS).map(([q,f])=>`<button type="button" data-k="${q}" aria-pressed="${q===k}">${f.n}</button>`).join("")}</div></div>
+   <div class="controls"><button type="button" class="btn" data-r="hold">Hold the beaker over the flame</button><button type="button" class="btn ghost" data-r="co">Touch cobalt chloride paper to the inside</button><button type="button" class="btn ghost" data-r="li">Pour in limewater and swirl</button></div>
+   <div class="g8-row"><div class="t7-svg ct-pic" data-r="pic"></div><div class="g8-side"><table class="nt ct-tbl" data-r="tbl"></table><div class="t7-card" data-r="info"></div><div data-r="q"></div></div></div></div>`;
+  const $=q=>host.querySelector(`[data-r="${q}"]`), F=()=>FUELS[k];
+  function scene(t){ const f=F(); let s="";
+    /* burner / candle */
+    if(k==="wax") s+=`<rect x="122" y="250" width="36" height="70" rx="3" fill="#f7f1e3" stroke="${INK}" stroke-width="2"/><line x1="140" y1="250" x2="140" y2="240" stroke="${INK}" stroke-width="2"/>`;
+    else if(k==="eth") s+=`<path d="M108 320h64l-8-44h-48z" fill="#e8f2fb" stroke="${INK}" stroke-width="2"/><rect x="132" y="252" width="16" height="24" fill="#cfd5da" stroke="${INK}" stroke-width="1.6"/>`;
+    else if(k==="but") s+=`<rect x="124" y="252" width="32" height="68" rx="6" fill="#e05252" stroke="${INK}" stroke-width="2"/><rect x="128" y="240" width="24" height="14" fill="#9aa4ab" stroke="${INK}" stroke-width="1.6"/>`;
+    else s+=`<path d="M136 320V246h8v74" fill="#cfd5da" stroke="${INK}" stroke-width="2"/><rect x="118" y="300" width="44" height="20" rx="3" fill="#9aa4ab" stroke="${INK}" stroke-width="1.6"/>`;
+    const fl=Math.sin(t*9)*2+Math.sin(t*13)*1.5, top=196+fl;
+    s+=`<path d="M140 ${top} C128 214 128 232 140 242 C152 232 152 214 140 ${top}Z" fill="${f.flame}" fill-opacity=".85"/><path d="M140 ${top+18} C134 226 134 236 140 241 C146 236 146 226 140 ${top+18}Z" fill="#fff" fill-opacity=".6"/>`;
+    /* inverted beaker */
+    const by=holding||held? 70 : 20, bx=90;
+    if(lime!==null){ /* beaker turned right side up, set aside, limewater swirled inside */ const bx=172, by=150;
+      s+=`<g><path d="M${bx} ${by}V${by+112}q0 8 8 8h84q8 0 8-8V${by}" transform="scale(1)" fill="#f4f9fc" fill-opacity=".55" stroke="${INK}" stroke-width="2.5"/><path d="M${bx+2} ${by+88}h96v24q0 6-6 6h-84q-6 0-6-6z" fill="${lime?"#dfe3e6":"#e8f4ff"}"/>`+(lime?[...Array(40)].map((_,i)=>`<circle cx="${bx+8+(i*13)%86}" cy="${by+94+(i*7)%20}" r="1.6" fill="#b9c0c6"/>`).join(""):"")+T.t(bx+50,by-8,"limewater, swirled",{fs:12,c:GRAY});
+      s+=`</g>`; return T.svg(280,330,s,`${f.n}: limewater test`); }
+    s+=`<g><path d="M${bx} ${by+120}V${by+8}q0-8 8-8h84q8 0 8 8V${by+120}" fill="#f4f9fc" fill-opacity=".55" stroke="${INK}" stroke-width="2.5"/>`;
+    if(f.H&&hs>0.05){ const n=Math.round(hs*22); for(let i=0;i<n;i++){ const x=bx+10+(i*29)%80, y=by+14+((i*17)%90); s+=`<ellipse cx="${x}" cy="${y}" rx="2.2" ry="3" fill="#cfe8f8" stroke="#7fb3d5" stroke-width=".8"/>`; } }
+    s+=`</g>`;
+    if(cobalt!==null) s+=`<rect x="200" y="${by+40}" width="44" height="14" rx="2" fill="${cobalt?"#e7a2c0":"#5b8fd6"}" stroke="${INK}" stroke-width="1.5"/>`+T.t(222,by+70,cobalt?"pink":"still blue",{fs:12,c:cobalt?"#b0306a":"#2b5aa0"});
+    return T.svg(280,330,s,`${f.n} burning under an upside-down beaker`); }
+  function table(){ const f=F(); $("tbl").innerHTML=`<tr><th>Test</th><th>Result</th><th>Means</th></tr><tr><td>Mist inside the beaker</td><td>${hs<1?"—":f.H?"droplets form":"none"}</td><td>${hs<1?"":f.H?"a liquid formed":""}</td></tr><tr><td>Cobalt chloride paper</td><td>${cobalt===null?"—":cobalt?"blue → pink":"stays blue"}</td><td>${cobalt===null?"":cobalt?"<b>water</b> formed":"no water"}</td></tr><tr><td>Limewater</td><td>${lime===null?"—":lime?"turns milky":"stays clear"}</td><td>${lime===null?"":lime?"<b>carbon dioxide</b> formed":"no carbon dioxide"}</td></tr>`; }
+  function ask(){ if(cobalt===null||lime===null){ $("q").innerHTML=""; $("info").innerHTML=`<b>${F().n}</b><span>${hs<1?"Hold the beaker over the flame first.":"Now test what collected in the beaker."}</span>`; return; }
+    $("info").innerHTML=`<b>Which elements must the fuel contain?</b><span>The oxygen in the products could have come from the air, so only the other elements can be concluded.</span>`;
+    $("q").innerHTML=`<div class="lg-btns">${[["C","carbon"],["H","hydrogen"]].map(([e,n])=>`<label class="chk"><input type="checkbox" data-e="${e}"> ${n}</label>`).join("")}<button type="button" class="btn" data-r="cq">Check</button></div><div class="status" data-r="qm"></div>`;
+    $("cq").onclick=()=>{ const C=host.querySelector('[data-e="C"]').checked, H=host.querySelector('[data-e="H"]').checked, f=F(), m=$("qm");
+      if(C===f.C&&H===f.H){ m.className="status good"; m.innerHTML=`✔ ${f.C?"Carbon dioxide shows the fuel contains carbon, and water shows it contains hydrogen":"Water shows the fuel contains hydrogen. No carbon dioxide formed, so it contains no carbon"}.<div class="ct-eq">${R.eqHTML(f.eq)}</div>${f.C?"":"Burning hydrogen is a synthesis reaction, not the combustion of a hydrocarbon."}`; }
+      else { m.className="status bad"; m.textContent="Use the test results: water contains hydrogen and carbon dioxide contains carbon. Each element in the products came from the fuel or from the oxygen in the air."; } }; }
+  function frame(now){ if(!host.isConnected) return; const t=(now-t0)/1000; if(holding){ hs=Math.min(1,hs+0.004); if(hs>=1){ holding=false; held=1; table(); ask(); } } $("pic").innerHTML=scene(t); raf=requestAnimationFrame(frame); }
+  function reset(){ held=0; holding=false; hs=0; cobalt=null; lime=null; table(); ask(); }
+  $("hold").onclick=()=>{ if(held||holding) return; holding=true; };
+  $("co").onclick=()=>{ if(!held){ $("info").innerHTML="<b>Hold the beaker over the flame first.</b>"; return; } cobalt=F().H; table(); ask(); };
+  $("li").onclick=()=>{ if(!held){ $("info").innerHTML="<b>Hold the beaker over the flame first.</b>"; return; } if(cobalt===null){ $("info").innerHTML="<b>Test the droplets with cobalt chloride paper first</b><span>The limewater would wash them away.</span>"; return; } lime=F().C; table(); ask(); };
+  A.$$("[data-k]",host).forEach(b=>b.addEventListener("click",()=>{ k=b.dataset.k; A.$$("[data-k]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); reset(); }));
+  reset(); raf=requestAnimationFrame(frame); };
+})();
+
+/* Unit 9 Solutions (saved for later, Nov 12): Interactive #11 dissolving salt vs sugar vs ink, and the solubility curve explorer. Namespace Z = A.U9. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const Z=A.U9=A.U9||{};
+const INK="#1b2328", GRAY="#5f6b72", BLUE="#2E75D6", RED="#E00000", GREEN="#00843c";
+
+/* ---------- #11 Dissolving: sodium chloride vs sugar vs ink ---------- */
+Z.DissolveSim=function(host){ let kind="salt", P=[], raf=0, last=0, t=0, stir=false, bulb=0;
+  const W=520,H=340, X0=20,X1=500,Y0=14,Y1=314;
+  host.innerHTML=`<div class="lab-b"><p class="how">Drop each solute into water and watch the particles. Water molecules (red oxygen, blue hydrogens) pull particles off the solid. A conductivity tester shows whether the solution contains ions that are free to move.</p>
+   <div class="controls"><div class="seg" role="group" aria-label="Solute"><button type="button" data-k="salt" aria-pressed="true">Sodium chloride (NaCl)</button><button type="button" data-k="sugar" aria-pressed="false">Sugar (C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>)</button><button type="button" data-k="ink" aria-pressed="false">Ink (dye)</button></div><label class="chk"><input type="checkbox" data-r="stir"> Stir</label><button type="button" class="btn ghost" data-r="reset">Start over</button></div>
+   <div class="g8-row"><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Particle view of a solid dissolving in water"></canvas><div class="g8-side"><div class="t7-svg z9-bulb" data-r="bulb"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`); const rnd=T.rng(17);
+  const R={w:14,na:7,cl:10,sug:12,dye:8};
+  function setup(){ P=[]; const r=T.rng(kind==="salt"?3:kind==="sugar"?5:7);
+    /* the solid, as a block of particles at the bottom center */
+    if(kind==="salt"){ for(let row=0;row<4;row++) for(let col=0;col<6;col++){ const cat=(row+col)%2===0; P.push({t:cat?"na":"cl",r:cat?R.na:R.cl,x:200+col*20,y:Y1-12-row*20,vx:0,vy:0,fixed:true}); } }
+    else if(kind==="sugar"){ for(let row=0;row<3;row++) for(let col=0;col<5;col++) P.push({t:"sug",r:R.sug,x:196+col*26,y:Y1-14-row*26,vx:0,vy:0,fixed:true}); }
+    else { for(let row=0;row<3;row++) for(let col=0;col<5;col++) P.push({t:"dye",r:R.dye,x:220+col*17+(row%2?8:0),y:Y0+20+row*15,vx:0,vy:0,fixed:true}); }
+    /* water molecules everywhere else */
+    let tries=0; while(P.filter(p=>p.t==="w").length<48&&tries<5000){ tries++; const x=X0+12+r()*(X1-X0-24), y=Y0+12+r()*(Y1-Y0-24); if(P.every(q=>Math.hypot(q.x-x,q.y-y)>q.r+R.w+2)){ const a=r()*6.283; P.push({t:"w",r:R.w,x,y,vx:Math.cos(a)*30,vy:Math.sin(a)*30,ang:r()*6.283,fixed:false}); } }
+    t=0; bulb=0; }
+  const free=()=>P.filter(p=>p.t!=="w"&&!p.fixed);
+  function release(){ /* pull one edge particle off the solid: water must be touching it */ const solid=P.filter(p=>p.fixed); if(!solid.length) return;
+    const edge=solid.filter(p=>solid.filter(q=>q!==p&&Math.hypot(q.x-p.x,q.y-p.y)<30).length<(kind==="ink"?6:4));
+    const cand=(edge.length?edge:solid).filter(p=>P.some(w=>w.t==="w"&&Math.hypot(w.x-p.x,w.y-p.y)<p.r+R.w+8));
+    const p=A.pick(cand.length?cand:edge.length?edge:solid); p.fixed=false; const a=-Math.PI/2+(rnd()-.5)*2; p.vx=Math.cos(a)*22; p.vy=Math.sin(a)*22; }
+  function step(dt){ t+=dt; const rate=(kind==="ink"?1.6:0.9)*(stir?2.2:1);
+    if(Math.floor((t-dt)*rate)!==Math.floor(t*rate)) release();
+    P.forEach(p=>{ if(p.fixed) return; const sp=p.t==="w"?34:p.t==="sug"?14:18;
+      p.vx+=(rnd()-.5)*sp*dt*6; p.vy+=(rnd()-.5)*sp*dt*6; if(stir){ const cx=(X0+X1)/2, cy=(Y0+Y1)/2, dx=p.x-cx, dy=p.y-cy, d=Math.hypot(dx,dy)||1; p.vx+=-dy/d*40*dt; p.vy+=dx/d*40*dt; }
+      const v=Math.hypot(p.vx,p.vy), m=sp*(stir?1.8:1); if(v>m){ p.vx*=m/v; p.vy*=m/v; }
+      p.x+=p.vx*dt; p.y+=p.vy*dt;
+      if(p.x<X0+p.r){p.x=X0+p.r;p.vx=Math.abs(p.vx);} if(p.x>X1-p.r){p.x=X1-p.r;p.vx=-Math.abs(p.vx);} if(p.y<Y0+p.r){p.y=Y0+p.r;p.vy=Math.abs(p.vy);} if(p.y>Y1-p.r){p.y=Y1-p.r;p.vy=-Math.abs(p.vy);} });
+    /* keep every particle apart (no overlaps) */
+    for(let pass=0;pass<2;pass++) for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const a=P[i], b=P[j], dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy)||.01, D=a.r+b.r+1; if(d<D){ const o=(D-d), nx=dx/d, ny=dy/d; if(a.fixed&&b.fixed) continue; if(a.fixed){ b.x+=nx*o; b.y+=ny*o; } else if(b.fixed){ a.x-=nx*o; a.y-=ny*o; } else { a.x-=nx*o/2; a.y-=ny*o/2; b.x+=nx*o/2; b.y+=ny*o/2; } } }
+    /* water orientation: oxygen toward a nearby cation, hydrogens toward a nearby anion */
+    P.forEach(w=>{ if(w.t!=="w") return; let best=null, bd=40; free().concat(P.filter(p=>p.fixed)).forEach(p=>{ if(p.t==="na"||p.t==="cl"||p.t==="sug"){ const d=Math.hypot(p.x-w.x,p.y-w.y); if(d<bd){ bd=d; best=p; } } });
+      if(best&&(best.t==="na"||best.t==="cl")){ const to=Math.atan2(best.y-w.y,best.x-w.x); const want=best.t==="na"? to : to+Math.PI; let da=((want-w.ang+Math.PI*3)%(Math.PI*2))-Math.PI; w.ang+=da*Math.min(1,dt*5); } else w.ang+=dt*(rnd()-.5)*3; });
+    const ions=free().filter(p=>p.t==="na"||p.t==="cl").length; bulb+=(Math.min(1,ions/12)-bulb)*Math.min(1,dt*2); }
+  function draw(){ c.clearRect(0,0,W,H); c.fillStyle="#eef7fd"; c.fillRect(X0,Y0,X1-X0,Y1-Y0); c.strokeStyle=INK; c.lineWidth=2.5; c.strokeRect(X0,Y0,X1-X0,Y1-Y0);
+    P.forEach(p=>{ if(p.t==="w"){ const ux=-Math.cos(p.ang), uy=-Math.sin(p.ang); /* hydrogens point away from ang+π side */
+        /* Nov 14: O–H bond lines; atoms spaced so each line shows */ const hx=(k)=>p.x+Math.cos(p.ang+Math.PI+k)*10.5, hy=(k)=>p.y+Math.sin(p.ang+Math.PI+k)*10.5;
+        c.strokeStyle=INK; c.lineWidth=1.3; [.95,-.95].forEach(k=>{ c.beginPath(); c.moveTo(p.x,p.y); c.lineTo(hx(k),hy(k)); c.stroke(); });
+        [.95,-.95].forEach(k=>{ c.beginPath(); c.arc(hx(k),hy(k),3.4,0,7); c.fillStyle="#2E75D6"; c.fill(); c.strokeStyle=INK; c.lineWidth=1; c.stroke(); });
+        c.beginPath(); c.arc(p.x,p.y,5.6,0,7); c.fillStyle=RED; c.fill(); c.stroke(); return; }
+      const col=p.t==="na"?"#A98BDB":p.t==="cl"?"#F28C28":p.t==="sug"?"#f4e3b5":"#7b2cbf";
+      c.beginPath(); c.arc(p.x,p.y,p.r,0,7); c.fillStyle=col; c.fill(); c.strokeStyle=INK; c.lineWidth=1.4; c.stroke();
+      if(p.t==="na"||p.t==="cl"){ c.fillStyle="#fff"; c.font="bold 11px Inter,Arial"; c.textAlign="center"; c.fillText(p.t==="na"?"+":"−",p.x,p.y+4); } });
+    c.fillStyle=GRAY; c.font="bold 12px Inter,Arial"; c.textAlign="left"; c.fillText("magnified view (particles not to scale)",X0,H-6); }
+  function side(){ const n=free().length, tot=P.filter(p=>p.t!=="w").length, b=bulb;
+    $("bulb").innerHTML=T.svg(200,150,`<circle cx="100" cy="52" r="30" fill="${b>.05?`rgba(255,214,10,${(.25+.75*b).toFixed(2)})`:"#f2f4f5"}" stroke="${INK}" stroke-width="2.5"/>${b>.3?[...Array(8)].map((_,i)=>{ const a=i/8*6.283; return `<line x1="${100+Math.cos(a)*36}" y1="${52+Math.sin(a)*36}" x2="${100+Math.cos(a)*46}" y2="${52+Math.sin(a)*46}" stroke="#F2B705" stroke-width="3"/>`; }).join(""):""}<rect x="88" y="80" width="24" height="16" fill="#9aa4ab" stroke="${INK}" stroke-width="1.5"/>`+T.t(100,124,b>.3?"Bulb lights: ions carry the current":"Bulb stays dark",{fs:12.5})+T.t(100,142,"conductivity tester",{fs:11,c:GRAY}),"Conductivity tester");
+    $("info").innerHTML= kind==="salt"? `<b>${n} of ${tot} ions dissolved</b><span>NaCl <b>dissociates</b>: it separates into Na<sup>+</sup> and Cl<sup>−</sup> ions. The partially negative oxygen ends of water molecules face the Na<sup>+</sup> ions, and the partially positive hydrogen ends face the Cl<sup>−</sup> ions. Free-moving ions let the solution conduct electricity.</span>`
+      : kind==="sugar"? `<b>${n} of ${tot} molecules dissolved</b><span>Sugar molecules separate from each other but stay whole: no ions form. Polar water molecules attract the polar sugar molecules (like dissolves like). With no ions, the solution does not conduct electricity.</span>`
+      : `<b>${n} of ${tot} dye molecules spread out</b><span>The dye molecules mix into the water by diffusion: they spread from where they are concentrated to where they are not, until the color is even throughout. No ions form, so the bulb stays dark.</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.05,(now-(last||now))/1000); last=now; step(dt); draw(); if(Math.floor(now/300)!==Math.floor((now-dt*1000)/300)) side(); raf=requestAnimationFrame(loop); }
+  A.$$("[data-k]",host).forEach(b=>b.addEventListener("click",()=>{ kind=b.dataset.k; A.$$("[data-k]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); setup(); side(); }));
+  $("stir").addEventListener("change",e=>{ stir=e.target.checked; }); $("reset").addEventListener("click",()=>{ setup(); side(); });
+  setup(); side(); raf=requestAnimationFrame(loop); };
+
+/* ---------- Solubility curve explorer ---------- */
+/* g solute per 100 g water at 0, 20, 40, 60, 80, 100 °C (MilliporeSigma solubility table) */
+Z.SOL={KNO3:{n:"KNO<sub>3</sub>",t:"potassium nitrate",col:"#E00000",v:[13.25,31.66,63.9,109.9,169,245.2]},NaNO3:{n:"NaNO<sub>3</sub>",t:"sodium nitrate",col:"#E8590C",v:[70.7,88.3,104.9,124.7,148,176]},
+  NH4Cl:{n:"NH<sub>4</sub>Cl",t:"ammonium chloride",col:"#7030A0",v:[29.7,37.56,46,55.3,65.6,77.3]},KCl:{n:"KCl",t:"potassium chloride",col:"#00843c",v:[28.15,34.24,40.3,45.6,51,56.2]},
+  NaCl:{n:"NaCl",t:"sodium chloride",col:"#2E75D6",v:[35.6,35.8,36.42,37.05,38.05,39.2]},KClO3:{n:"KClO<sub>3</sub>",t:"potassium chlorate",col:"#5f6b72",v:[3.3,7.3,14.5,25.9,39.7,56.2]}};
+Z.solAt=(k,T0)=>{ const v=Z.SOL[k].v, i=Math.min(4,Math.max(0,Math.floor(T0/20))), f=(T0-i*20)/20;
+  /* monotone cubic (Fritsch–Carlson) through the six points */
+  const m=v.map((_,j)=>j===0?(v[1]-v[0])/20:j===5?(v[5]-v[4])/20:((v[j+1]-v[j-1])/40));
+  const h=20, y0=v[i], y1=v[i+1], m0=m[i], m1=m[i+1], t2=f*f, t3=t2*f; return (2*t3-3*t2+1)*y0+(t3-2*t2+f)*h*m0+(-2*t3+3*t2)*y1+(t3-t2)*h*m1; };
+Z.SolCurve=function(host){ let k="KNO3", Tc=40, g=50;
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose a solute, a temperature and the mass of solute stirred into 100 g of water. The point shows where the mixture falls on the solubility curve. Any solute above the curve cannot dissolve and settles to the bottom.</p>
+   <div class="controls"><div class="seg" role="group" aria-label="Solute">${Object.entries(Z.SOL).map(([q,s])=>`<button type="button" data-k="${q}" aria-pressed="${q===k}">${s.n}</button>`).join("")}</div></div>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>Temperature</span><input type="range" min="0" max="100" step="1" value="${Tc}" data-r="T" aria-label="temperature"><b data-r="Tv"></b></label><label class="g8-sl"><span>Solute added</span><input type="range" min="0" max="200" step="1" value="${g}" data-r="g" aria-label="grams of solute"><b data-r="gv"></b></label></div>
+   <div class="g8-row"><div class="t7-svg z9-graph" data-r="gr"></div><div class="g8-side"><div class="t7-svg z9-beaker" data-r="bk"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=q=>host.querySelector(`[data-r="${q}"]`);
+  function draw(){ $("Tv").textContent=Tc+" °C"; $("gv").textContent=g+" g";
+    const Wd=520,Hd=380,x0=58,y0=Hd-48,w=Wd-x0-20,h=Hd-48-20, X=v=>x0+v/100*w, Y=v=>y0-v/150*h;
+    let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+    for(let v=0;v<=100;v+=10) s+=`<line x1="${X(v)}" y1="${y0}" x2="${X(v)}" y2="${y0-h}" stroke="#e3ebee"/>`+T.t(X(v),y0+17,String(v),{fs:12,w:600,c:GRAY});
+    for(let v=0;v<=150;v+=10) s+=`<line x1="${x0}" y1="${Y(v)}" x2="${x0+w}" y2="${Y(v)}" stroke="${v%50?"#eef3f5":"#dbe5ea"}"/>`+(v%10===0?T.t(x0-7,Y(v)+4,String(v),{fs:11.5,w:600,c:GRAY,a:"end"}):"");
+    const labs=[]; Object.entries(Z.SOL).forEach(([q,S])=>{ const pts=[]; for(let T0=0;T0<=100;T0+=1){ const v=Z.solAt(q,T0); if(v>152) break; pts.push([X(T0),Y(v)]); }
+      s+=`<path d="${pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join("")}" fill="none" stroke="${S.col}" stroke-width="${q===k?4:2}" stroke-opacity="${q===k?1:.45}"/>`;
+      const e=pts[pts.length-1]; labs.push({q,S,x:Math.min(e[0]+3,x0+w-2),y:Math.max(e[1]-6,y0-h+12),end:e[0]>x0+w-50}); });
+    labs.filter(l=>l.end).sort((a,b)=>a.y-b.y).forEach((l,i,arr)=>{ if(i&&l.y-arr[i-1].y<14) l.y=arr[i-1].y+14; });
+    labs.forEach(({q,S,x,y,end})=>{ s+=`<text x="${x}" y="${y}" text-anchor="${end?"end":"start"}" font-family="Inter,Arial" font-size="12" font-weight="800" fill="${S.col}" fill-opacity="${q===k?1:.6}">${S.n.replace(/<sub>(.*?)<\/sub>/g,'<tspan baseline-shift="sub" font-size="9">$1</tspan>')}</text>`; });
+    const sol=Z.solAt(k,Tc), py=Math.min(g,150); s+=`<path d="M${X(Tc)} ${y0}V${Y(py)}H${x0}" fill="none" stroke="${INK}" stroke-width="1.6" stroke-dasharray="5 4"/><circle cx="${X(Tc)}" cy="${Y(py)}" r="7" fill="#fff" stroke="${INK}" stroke-width="3"/>`;
+    s+=`<path d="M${x0} ${y0-h-6}V${y0}H${x0+w+6}" fill="none" stroke="${INK}" stroke-width="2.5"/>`+T.t(x0+w/2,Hd-9,"Temperature (°C)",{fs:13.5})+`<text transform="translate(16 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13.5" font-weight="700" fill="${INK}">Solute per 100 g of water (g)</text>`;
+    $("gr").innerHTML=T.svg(Wd,Hd,s,"Solubility curves of six salts against temperature");
+    /* beaker */
+    const dis=Math.min(g,sol), ex=Math.max(0,g-sol), S=Z.SOL[k]; let b=`<path d="M40 30V170q0 8 8 8h124q8 0 8-8V30" fill="none" stroke="${INK}" stroke-width="3"/><path d="M42 60V170q0 6 6 6h124q6 0 6-6V60Z" fill="#dff0fb"/>`;
+    const nEx=Math.min(36,Math.round(ex/2.5)); for(let i=0;i<nEx;i++){ const row=Math.floor(i/12), x=54+(i%12)*10.5+(row%2?5:0), y=169-row*10; b+=`<rect x="${x-3.5}" y="${y-3.5}" width="7" height="7" fill="#fff" stroke="${GRAY}" stroke-width="1" transform="rotate(${(i*37)%90} ${x} ${y})"/>`; }
+    b+=T.t(110,200,"100 g of water",{fs:12,c:GRAY});
+    $("bk").innerHTML=T.svg(220,210,b,ex>0?"Beaker with undissolved solid on the bottom":"Beaker with all of the solute dissolved");
+    const state= Math.abs(g-sol)<=1? "saturated" : g<sol? "unsaturated" : "saturated, with excess solid";
+    $("info").innerHTML=`<b>${state[0].toUpperCase()+state.slice(1)}</b><span>At ${Tc} °C, 100 g of water can dissolve about ${sol.toFixed(1)} g of ${S.t}. ${g<sol-1?`The ${g} g added all dissolves, and about ${(sol-g).toFixed(1)} g more could dissolve: the point is below the curve.`:Math.abs(g-sol)<=1?"The solution holds as much solute as it can: the point is on the curve.":`Only ${sol.toFixed(1)} g dissolves. The other ${ex.toFixed(1)} g stays as a solid on the bottom: the point is above the curve.`}</span>`; }
+  A.$$("[data-k]",host).forEach(b=>b.addEventListener("click",()=>{ k=b.dataset.k; A.$$("[data-k]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+  $("T").addEventListener("input",e=>{ Tc=+e.target.value; draw(); }); $("g").addEventListener("input",e=>{ g=+e.target.value; draw(); });
+  draw(); };
+})();
+
+/* Unit 10 Kinetics & Equilibrium (saved for later, Nov 12): potential energy diagram that builds as the reaction proceeds, and a collision theory simulation. Namespace K = A.U10. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const K=A.U10=A.U10||{};
+const INK="#1b2328", GRAY="#5f6b72", BLUE="#2E75D6", RED="#E00000", GREEN="#00843c", ORANGE="#E8590C", PURPLE="#7030A0";
+
+/* ---------- Potential energy diagram: A2 + B2 → 2AB ---------- */
+K.PEDiagram=function(host){ let exo=true, cat=false, prog=0, play=false, raf=0, last=0;
+  host.innerHTML=`<div class="lab-b"><p class="how">Drag the slider (or press Play) to move the reaction forward. The graph is drawn as the reaction happens, and the particle view shows what the molecules are doing at that moment.</p>
+   <div class="controls"><div class="seg" role="group" aria-label="Reaction type"><button type="button" data-x="1" aria-pressed="true">Exothermic</button><button type="button" data-x="0" aria-pressed="false">Endothermic</button></div><label class="chk"><input type="checkbox" data-r="cat"> Add a catalyst</label><button type="button" class="btn" data-r="play">Play</button></div>
+   <div class="controls"><label class="g8-sl k10-sl"><span>Reaction progress</span><input type="range" min="0" max="1000" value="0" data-r="p" aria-label="reaction progress"><b data-r="pv"></b></label></div>
+   <div class="g8-row"><div class="t7-svg k10-g" data-r="g"></div><div class="g8-side"><div class="t7-svg k10-part" data-r="part"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  const lev=()=>({R:exo?160:110, P:exo?95:170, top:cat?205:250});
+  const E=(x,L)=>{ /* smooth path: flat reactants, hump, flat products. x in 0..1 */ const s=t=>t*t*(3-2*t);
+    if(x<.25) return L.R; if(x<.5) return L.R+(L.top-L.R)*s((x-.25)/.25); if(x<.75) return L.top+(L.P-L.top)*s((x-.5)/.25); return L.P; };
+  function graph(){ const L=lev(), W=520,H=360,x0=60,y0=H-46,w=W-x0-24,h=H-46-24, X=v=>x0+v*w, Y=v=>y0-v/300*h;
+    let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+    /* faint full path, and the uncatalyzed path when a catalyst is used */
+    const pathOf=(L2,upto)=>{ const pts=[]; for(let i=0;i<=200*upto;i++){ const x=i/200; pts.push([X(x),Y(E(x,L2))]); } return pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(""); };
+    if(cat) s+=`<path d="${pathOf({...L,top:250},1)}" fill="none" stroke="${GRAY}" stroke-width="2" stroke-dasharray="6 5"/>`+T.t(X(.5),Y(250)-8,"without catalyst",{fs:11.5,c:GRAY});
+    s+=`<path d="${pathOf(L,1)}" fill="none" stroke="#cfd8dd" stroke-width="2.5"/>`;
+    s+=`<path d="${pathOf(L,prog)}" fill="none" stroke="${cat?PURPLE:BLUE}" stroke-width="4"/>`;
+    const cx=X(prog), cy=Y(E(prog,L)); s+=`<circle cx="${cx}" cy="${cy}" r="8" fill="${ORANGE}" stroke="${INK}" stroke-width="2"/>`;
+    /* labels appear once the reaction has reached them */
+    s+=T.t(X(.1),Y(L.R)+18,"reactants",{fs:12.5,c:GRAY});
+    if(prog>=.5){ const ax=X(.2); s+=`<line x1="${ax}" y1="${Y(L.top)}" x2="${X(.5)}" y2="${Y(L.top)}" stroke="${GRAY}" stroke-dasharray="3 4"/><path d="M${ax} ${Y(L.R)}V${Y(L.top)}" stroke="${RED}" stroke-width="2.2" marker-end="url(#k10a)" marker-start="url(#k10a)"/>`+T.t(ax-6,(Y(L.R)+Y(L.top))/2-2,"activation",{fs:12,c:RED,a:"end"})+T.t(ax-6,(Y(L.R)+Y(L.top))/2+13,"energy",{fs:12,c:RED,a:"end"})+T.t(X(.53),Y(L.top)-10,"activated complex",{fs:12.5,c:INK,a:"start"}); }
+    if(prog>=.85){ s+=T.t(X(.88),Y(L.P)-10,"products",{fs:12.5,c:GRAY})+`<path d="M${X(.97)} ${Y(L.R)}V${Y(L.P)}" stroke="${GREEN}" stroke-width="2.2" marker-end="url(#k10a)"/>`+`<line x1="${X(.25)}" y1="${Y(L.R)}" x2="${X(.99)}" y2="${Y(L.R)}" stroke="${GRAY}" stroke-dasharray="3 4"/>`+T.t(X(.95),(Y(L.R)+Y(L.P))/2+4,`ΔH ${exo?"< 0":"> 0"}`,{fs:12.5,c:GREEN,a:"end"}); }
+    s+=`<defs><marker id="k10a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>`.replace('fill="currentColor"',`fill="${INK}"`);
+    s+=`<path d="M${x0} ${y0-h-6}V${y0}H${x0+w+6}" fill="none" stroke="${INK}" stroke-width="2.5"/>`+T.t(x0+w/2,H-12,"Reaction coordinate (progress of the reaction) →",{fs:13.5})+`<text transform="translate(18 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="13.5" font-weight="700" fill="${INK}">Potential energy →</text>`;
+    $("g").innerHTML=T.svg(W,H,s,"Potential energy diagram drawn up to the current point of the reaction"); }
+  function particles(){ const p=prog, W=260,H=170; let s=`<rect x="1" y="1" width="${W-2}" height="${H-2}" rx="10" fill="#f6fafb" stroke="#dbe5ea"/>`;
+    const ball=(x,y,col,l)=>T.ball(x,y,13,col)+T.t(x,y+4,l,{fs:11,c:"#fff"});
+    const bond=(a,b,c,d,op=1)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${INK}" stroke-width="3" stroke-opacity="${op}"/>`;
+    /* approach (0–.25), stretch (.25–.5), activated complex (.5), new bonds (.5–.75), separate (.75–1) */
+    const ap=Math.min(1,p/.5), sep=Math.max(0,(p-.5)/.5);
+    const gapY=60-38*ap+38*sep; /* distance between the two molecules */
+    const stretch=p<.5? 26+8*Math.max(0,(p-.25)/.25) : 34-8*Math.min(1,(p-.5)/.25);
+    const ax=W/2-stretch/2, bx=W/2+stretch/2, ty=H/2-gapY/2, by=H/2+gapY/2;
+    const oldOp=p<.5?1-Math.max(0,(p-.3)/.2)*.7:Math.max(0,.3-(p-.5)*2), newOp=p<.5?Math.max(0,(p-.3)/.2)*.5:Math.min(1,.5+(p-.5)*2);
+    s+=bond(ax,ty,bx,ty,oldOp)+bond(ax,by,bx,by,oldOp)+bond(ax,ty,ax,by,newOp)+bond(bx,ty,bx,by,newOp);
+    if(p>=.75){ const d=(p-.75)/.25*40; s=`<rect x="1" y="1" width="${W-2}" height="${H-2}" rx="10" fill="#f6fafb" stroke="#dbe5ea"/>`+bond(ax-d,ty,ax-d,by)+bond(bx+d,ty,bx+d,by)+ball(ax-d,ty,RED,"A")+ball(ax-d,by,BLUE,"B")+ball(bx+d,ty,RED,"A")+ball(bx+d,by,BLUE,"B"); }
+    else s+=ball(ax,ty,RED,"A")+ball(bx,ty,RED,"A")+ball(ax,by,BLUE,"B")+ball(bx,by,BLUE,"B");
+    const lab=p<.2?"A₂ and B₂ approach":p<.45?"Collision: old bonds stretch":p<.56?"Activated complex: old bonds half|broken, new bonds half formed":p<.8?"New A–B bonds form":"Two AB molecules move apart";
+    lab.split("|").forEach((l,i,arr)=>{ s+=T.t(W/2,H-10-(arr.length-1-i)*14,l,{fs:11.5,c:INK}); });
+    $("part").innerHTML=T.svg(W,H,s,lab.replace("|"," ")); }
+  function info(){ $("pv").textContent=Math.round(prog*100)+"%";
+    $("info").innerHTML=`<b>${exo?"Exothermic":"Endothermic"}${cat?", with a catalyst":""}</b><span>${prog<.5?"Energy must be absorbed to stretch and break bonds. The reactants climb toward the activated complex.":prog<.85?"Forming new bonds releases energy, so the potential energy falls.":exo?"The products have less potential energy than the reactants: energy was released (ΔH is negative).":"The products have more potential energy than the reactants: energy was absorbed (ΔH is positive)."}</span>${cat?`<span>The catalyst provides a different pathway with a lower activation energy. The energies of the reactants and products, and ΔH, do not change.</span>`:""}`; }
+  function all(){ graph(); particles(); info(); }
+  $("p").addEventListener("input",e=>{ prog=+e.target.value/1000; play=false; $("play").textContent="Play"; all(); });
+  $("play").addEventListener("click",()=>{ play=!play; $("play").textContent=play?"Pause":"Play"; if(play&&prog>=1) prog=0; last=0; if(play) raf=requestAnimationFrame(tick); });
+  function tick(now){ if(!play||!host.isConnected) return; const dt=last?(now-last)/1000:0; last=now; prog=Math.min(1,prog+dt/9); $("p").value=Math.round(prog*1000); all(); if(prog>=1){ play=false; $("play").textContent="Play"; return; } raf=requestAnimationFrame(tick); }
+  A.$$("[data-x]",host).forEach(b=>b.addEventListener("click",()=>{ exo=b.dataset.x==="1"; A.$$("[data-x]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); all(); }));
+  $("cat").addEventListener("change",e=>{ cat=e.target.checked; all(); });
+  all(); };
+
+/* ---------- Collision theory: what makes a reaction faster ---------- */
+K.CollisionSim=function(host){ let Tk=300, nA=14, cat=false, P=[], made=0, hits=0, hist=[], tt=0, raf=0, last=0, flashes=[];
+  const W=460,H=300, r=10;
+  host.innerHTML=`<div class="lab-b"><p class="how">Red A and blue B particles react only when they collide with enough energy (the activation energy). Change the temperature, the concentration and the catalyst, and compare the rate of reaction.</p>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>Temperature</span><input type="range" min="200" max="600" step="10" value="${Tk}" data-r="T" aria-label="temperature"><b data-r="Tv"></b></label><label class="g8-sl"><span>Concentration</span><input type="range" min="6" max="24" step="2" value="${nA}" data-r="n" aria-label="particles of each reactant"><b data-r="nv"></b></label><label class="chk"><input type="checkbox" data-r="cat"> Catalyst</label><button type="button" class="btn ghost" data-r="reset">Start over</button></div>
+   <div class="g8-row"><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Reacting particles in a container"></canvas><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-svg" data-r="gr"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`), rnd=T.rng(23);
+  const speed=()=>70*Math.sqrt(Tk/300);
+  function setup(){ P=[]; made=0; hits=0; hist=[]; tt=0; flashes=[]; const add=(t)=>{ let x,y,k=0; do{ x=20+rnd()*(W-40); y=20+rnd()*(H-40); k++; } while(k<200&&P.some(q=>Math.hypot(q.x-x,q.y-y)<2*r+4)); const a=rnd()*6.283, v=speed()*(.5+rnd()); P.push({t,x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v}); };
+    for(let i=0;i<nA;i++){ add("A"); add("B"); } }
+  function step(dt){ tt+=dt; const Ea=cat?1.0:3.5; /* threshold on (relative speed / typical speed at 300 K)^2 */
+    /* heat bath: each particle's speed drifts toward its own value drawn from the temperature's spread, so the sample stays at the set temperature */
+    P.forEach(p=>{ if(p.s==null||rnd()<dt*.4) p.s=speed()*(.35+rnd()*1.3); const v=Math.hypot(p.vx,p.vy)||1, k=1+(p.s/v-1)*Math.min(1,dt*1.5); p.vx*=k; p.vy*=k; });
+    P.forEach(p=>{ p.x+=p.vx*dt; p.y+=p.vy*dt; const R=p.t==="AB"?r*2.4:r; if(p.x<R){p.x=R;p.vx=Math.abs(p.vx);} if(p.x>W-R){p.x=W-R;p.vx=-Math.abs(p.vx);} if(p.y<R){p.y=R;p.vy=Math.abs(p.vy);} if(p.y>H-R){p.y=H-R;p.vy=-Math.abs(p.vy);} });
+    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const a=P[i], b=P[j]; if(a.dead||b.dead) continue; const ra=a.t==="AB"?r*2.4:r, rb=b.t==="AB"?r*2.4:r, dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy); if(d>0&&d<ra+rb){
+      const nx=dx/d, ny=dy/d, rel=(a.vx-b.vx)*nx+(a.vy-b.vy)*ny;
+      if(rel>0){ const e=(rel/70)**2, ab=(a.t==="A"&&b.t==="B")||(a.t==="B"&&b.t==="A"); if(ab) hits++; if(ab&&e>Ea){ /* reaction: they join as one AB product */ a.t="AB"; a.vx=(a.vx+b.vx)/2; a.vy=(a.vy+b.vy)/2; a.x=(a.x+b.x)/2; a.y=(a.y+b.y)/2; b.dead=true; made++; flashes.push({x:a.x,y:a.y,t:0}); continue; }
+        a.vx-=rel*nx; a.vy-=rel*ny; b.vx+=rel*nx; b.vy+=rel*ny; }
+      const o=(ra+rb-d)/2; a.x-=nx*o; a.y-=ny*o; b.x+=nx*o; b.y+=ny*o; } }
+    P=P.filter(p=>!p.dead); flashes.forEach(f=>f.t+=dt); flashes=flashes.filter(f=>f.t<.6);
+    if(Math.floor(tt)!==Math.floor(tt-dt)) hist.push(made); }
+  function draw(){ c.clearRect(0,0,W,H); c.fillStyle="#f7fbfd"; c.fillRect(0,0,W,H); c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(1.5,1.5,W-3,H-3);
+    flashes.forEach(f=>{ c.beginPath(); c.arc(f.x,f.y,10+f.t*30,0,7); c.fillStyle=`rgba(242,183,5,${(.6*(1-f.t/.6)).toFixed(2)})`; c.fill(); });
+    P.forEach(p=>{ if(p.t==="AB"){ const ang=Math.atan2(p.vy,p.vx), ox=Math.cos(ang)*r*1.35, oy=Math.sin(ang)*r*1.35; c.beginPath(); c.moveTo(p.x-ox,p.y-oy); c.lineTo(p.x+ox,p.y+oy); c.strokeStyle=INK; c.lineWidth=2; c.stroke(); [[p.x-ox,p.y-oy,RED],[p.x+ox,p.y+oy,BLUE]].forEach(([x,y,col])=>{ c.beginPath(); c.arc(x,y,r,0,7); c.fillStyle=col; c.fill(); c.strokeStyle=INK; c.lineWidth=1.4; c.stroke(); }); return; }
+      c.beginPath(); c.arc(p.x,p.y,r,0,7); c.fillStyle=p.t==="A"?RED:BLUE; c.fill(); c.strokeStyle=INK; c.lineWidth=1.4; c.stroke(); }); }
+  function side(){ $("Tv").textContent=Tk+" K"; $("nv").textContent=nA+" each";
+        $("read").innerHTML=`<div><small>A–B collisions</small><b>${hits}</b></div><div><small>Effective (made AB)</small><b>${made}</b></div><div><small>Time</small><b>${Math.floor(tt)} s</b></div>`;
+    const Wg=300,Hg=150, x0=36,y0=Hg-26,w=Wg-x0-10,h=Hg-26-10, tm=Math.max(20,hist.length), ym=Math.max(nA,4); let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+    s+=`<path d="${hist.map((v,i)=>(i?"L":"M")+(x0+i/tm*w).toFixed(1)+" "+(y0-v/ym*h).toFixed(1)).join("")}" fill="none" stroke="${BLUE}" stroke-width="2.5"/>`;
+    s+=`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2"/>`+T.t(x0+w/2,Hg-6,"time (s)",{fs:11.5})+T.t(x0-6,y0-h+8,String(ym),{fs:10.5,a:"end",c:GRAY})+T.t(x0-6,y0+4,"0",{fs:10.5,a:"end",c:GRAY})+`<text transform="translate(12 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="11.5" font-weight="700">AB made</text>`;
+    $("gr").innerHTML=T.svg(Wg,Hg,s,"Graph of product made against time");
+    $("info").innerHTML=`<b>Why the rate changes</b><span>A reaction needs collisions with the right energy. A higher temperature makes particles move faster, so they collide more often and more collisions have enough energy. A higher concentration means more collisions. A catalyst lowers the activation energy, so more collisions are effective.</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.04,last?(now-last)/1000:0); last=now; step(dt); draw(); if(Math.floor(now/400)!==Math.floor((now-dt*1000)/400)) side(); raf=requestAnimationFrame(loop); }
+  $("T").addEventListener("input",e=>{ const f=Math.sqrt(+e.target.value/Tk); Tk=+e.target.value; P.forEach(p=>{ p.vx*=f; p.vy*=f; p.s=null; }); side(); });
+  $("n").addEventListener("input",e=>{ nA=+e.target.value; setup(); side(); });
+  $("cat").addEventListener("change",e=>{ cat=e.target.checked; side(); }); $("reset").addEventListener("click",()=>{ setup(); side(); });
+  setup(); side(); raf=requestAnimationFrame(loop); };
+})();
+
+/* Unit 11 Acids & Bases (saved for later, Nov 12): pH scale explorer with indicators, and a neutralization titration tracked with bromothymol blue. Namespace AB = A.U11. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const AB=A.U11=A.U11||{};
+const INK="#1b2328", GRAY="#5f6b72";
+const fx=(v,d)=>Number(v).toFixed(d).replace("-","−");
+/* everyday substances (approximate pH): OpenStax Chemistry 2e Fig. 14.2; rain: USGS */
+AB.SUBST=[["Gastric juice",1.5],["Lime juice",2.0],["Wine",3.5],["Coffee",5.0],["Normal rain",5.6],["Pure water",7.0],["Blood",7.4],["Milk of magnesia",10.5],["Household ammonia",11.9]];
+/* indicator transition ranges (approximate) and colors */
+AB.IND={bromo:{n:"Bromothymol blue",lo:6.0,hi:7.6,a:"#e8c51e",b:"#2f5fd0",mid:"#4fa05a"},phen:{n:"Phenolphthalein",lo:8.2,hi:10.0,a:"#ffffff",b:"#e0218a"},litmus:{n:"Litmus",lo:4.5,hi:8.3,a:"#d1343a",b:"#3b5bc4",mid:"#7b4a8e"},meth:{n:"Methyl orange",lo:3.2,hi:4.4,a:"#d6402b",b:"#f2c230",mid:"#ee8a2c"}};
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)), mix=(a,b,t)=>"#"+hex(a).map((v,i)=>Math.round(v+(hex(b)[i]-v)*Math.max(0,Math.min(1,t))).toString(16).padStart(2,"0")).join("");
+AB.indColor=(k,pH)=>{ const I=AB.IND[k]; if(pH<=I.lo) return I.a; if(pH>=I.hi) return I.b; const t=(pH-I.lo)/(I.hi-I.lo); return I.mid? (t<.5?mix(I.a,I.mid,t*2):mix(I.mid,I.b,(t-.5)*2)) : mix(I.a,I.b,t); };
+const sci=v=>{ const e=Math.floor(Math.log10(v)+1e-9), m=v/10**e; return `${fx(m,1)} × 10<sup>${e}</sup>`; };
+
+/* ---------- pH scale explorer ---------- */
+AB.PHExplorer=function(host){ let pH=7.0, ind="bromo";
+  host.innerHTML=`<div class="lab-b"><p class="how">Drag the slider or click an everyday substance. Watch the concentration of hydronium ions (H<sub>3</sub>O<sup>+</sup>) and hydroxide ions (OH<sup>−</sup>), and the color of the indicator in a test tube.</p>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>pH</span><input type="range" min="0" max="14" step="0.1" value="7" data-r="p" aria-label="pH"><b data-r="pv"></b></label><div class="seg" role="group" aria-label="Indicator">${Object.entries(AB.IND).map(([k,I])=>`<button type="button" data-i="${k}" aria-pressed="${k===ind}">${I.n}</button>`).join("")}</div></div>
+   <div class="ab-chips">${AB.SUBST.map(([n,v],i)=>`<button type="button" class="chip-b" data-s="${i}">${n} (about ${fx(v,1)})</button>`).join("")}</div>
+   <div class="g8-row"><div class="t7-svg ab-scale" data-r="scale"></div><div class="g8-side"><div class="t7-svg ab-tube" data-r="tube"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  function draw(){ $("pv").textContent=fx(pH,1);
+    const W=560,H=250,x0=30,w=500, X=v=>x0+v/14*w; let s="";
+    for(let i=0;i<14;i++){ const c=i<7?mix("#d93a2b","#f2e14c",i/7):mix("#7cc576","#4b3fb5",(i-7)/7); s+=`<rect x="${X(i)}" y="70" width="${w/14}" height="34" fill="${i===7?"#7cc576":c}"/>`; }
+    s+=`<rect x="${x0}" y="70" width="${w}" height="34" fill="none" stroke="${INK}" stroke-width="2"/>`;
+    for(let i=0;i<=14;i++) s+=`<line x1="${X(i)}" y1="104" x2="${X(i)}" y2="110" stroke="${INK}" stroke-width="1.5"/>`+T.t(X(i),124,String(i),{fs:12,w:700});
+    s+=T.t(X(3.5),58,"← more acidic",{fs:13,c:"#c0392b"})+T.t(X(7),58,"neutral",{fs:13,c:"#2e7d32"})+T.t(X(10.5),58,"more basic →",{fs:13,c:"#3b3bb5"});
+    s+=`<path d="M${X(pH)} 66l-8-14h16z" fill="${INK}"/><line x1="${X(pH)}" y1="66" x2="${X(pH)}" y2="108" stroke="${INK}" stroke-width="2.5"/>`;
+    /* substances below the scale, staggered so labels never overlap */
+    AB.SUBST.forEach(([n,v],i)=>{ const y=150+(i%3)*30; s+=`<line x1="${X(v)}" y1="110" x2="${X(v)}" y2="${y-10}" stroke="#b9c3c8" stroke-dasharray="2 3"/><circle cx="${X(v)}" cy="${y-6}" r="3" fill="${GRAY}"/>`+T.t(X(v),y+8,n,{fs:11.5,c:GRAY}); });
+    $("scale").innerHTML=T.svg(W,H,s,`pH scale with the pointer at pH ${fx(pH,1)}`);
+    const col=AB.indColor(ind,pH); let t=`<path d="M60 30V160a20 20 0 0 0 40 0V30" fill="#fff" stroke="${INK}" stroke-width="2.5"/><path d="M62 80V160a18 18 0 0 0 36 0V80Z" fill="${col}" ${col==="#ffffff"?'stroke="#e3e8eb"':""}/>`+T.t(80,212,AB.IND[ind].n,{fs:12.5});
+    $("tube").innerHTML=T.svg(160,224,t,`Test tube with ${AB.IND[ind].n}`);
+    const h=10**-pH, oh=10**-(14-pH);
+    $("info").innerHTML=`<b>pH ${fx(pH,1)}: ${pH<6.95?"acidic":pH>7.05?"basic":"neutral"}</b><span>[H<sub>3</sub>O<sup>+</sup>] = ${sci(h)} M &nbsp; [OH<sup>−</sup>] = ${sci(oh)} M</span><span>${pH<6.95?"There are more hydronium ions than hydroxide ions.":pH>7.05?"There are more hydroxide ions than hydronium ions.":"Hydronium and hydroxide ions are equal."} Each drop of 1 pH unit means 10 times as many hydronium ions.</span>`; }
+  $("p").addEventListener("input",e=>{ pH=+e.target.value; draw(); });
+  A.$$("[data-s]",host).forEach(b=>b.addEventListener("click",()=>{ pH=AB.SUBST[+b.dataset.s][1]; $("p").value=pH; draw(); }));
+  A.$$("[data-i]",host).forEach(b=>b.addEventListener("click",()=>{ ind=b.dataset.i; A.$$("[data-i]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+  draw(); };
+
+/* ---------- Neutralization titration: NaOH into HCl with bromothymol blue ---------- */
+AB.Titration=function(host){ const Va=25.0, Mb=0.100; let Ma=0, Vb=0, endV=null, flow=0, raf=0, last=0, swirl=0;
+  host.innerHTML=`<div class="lab-b"><p class="how">The flask holds 25.0 mL of hydrochloric acid of unknown concentration and a few drops of bromothymol blue. Add 0.100 M sodium hydroxide from the buret. Stop when the solution turns green (neutral), then find the concentration of the acid.</p>
+   <div class="controls"><button type="button" class="btn" data-a="1">Add 1.00 mL</button><button type="button" class="btn ghost" data-a="0.1">Add 0.10 mL</button><button type="button" class="btn ghost" data-a="0.05">Add one drop (0.05 mL)</button><button type="button" class="btn ghost" data-r="new">New acid sample</button></div>
+   <div class="g8-row"><div class="t7-svg ab-ti" data-r="pic"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-svg" data-r="gr"></div><div class="lg-step" data-r="calc"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`); let pts=[];
+  const pHof=v=>{ const na=Ma*Va/1000, nb=Mb*v/1000, V=(Va+v)/1000; if(Math.abs(na-nb)<1e-12) return 7; if(na>nb){ const h=(na-nb)/V; return -Math.log10(h); } const oh=(nb-na)/V; return 14+Math.log10(oh); };
+  function fresh(){ Ma=A.pick([0.084,0.092,0.108,0.116,0.124,0.132]); Vb=0; endV=null; pts=[[0,pHof(0)]]; draw(); calc(); }
+  function draw(){ const pH=pHof(Vb), col=AB.indColor("bromo",pH);
+    let s=`<rect x="128" y="10" width="20" height="200" rx="3" fill="#fff" stroke="${INK}" stroke-width="2"/><rect x="130" y="${12+Vb/50*196}" width="16" height="${196-Vb/50*196}" fill="#e9f1f8"/>`;
+    for(let m=0;m<=50;m+=10) s+=`<line x1="148" y1="${12+m/50*196}" x2="156" y2="${12+m/50*196}" stroke="${INK}"/>`+T.t(160,16+m/50*196,m+" mL",{fs:10.5,a:"start",c:GRAY});
+    s+=`<path d="M134 210h8v16h-8z" fill="#cfd5da" stroke="${INK}" stroke-width="1.5"/><path d="M136 226l2 10 2-10" fill="${INK}"/>`;
+    if(flow>0) s+=`<circle cx="138" cy="${244+((performance.now()/6)%20)}" r="2.6" fill="#cfe2f3" stroke="#7fa7c9"/>`;
+    s+=`<path d="M118 262h40l42 92q4 10-8 10h-108q-12 0-8-10z" fill="#fff" fill-opacity=".6" stroke="${INK}" stroke-width="2.5"/><path d="M102 318h72l22 36q3 7-6 7h-104q-9 0-6-7z" fill="${col}" fill-opacity=".85"/>`;
+    s+=`<rect x="70" y="372" width="136" height="14" rx="3" fill="#c9cfd4" stroke="${INK}" stroke-width="1.5"/>`;
+    $("pic").innerHTML=T.svg(280,400,s,"Buret dripping sodium hydroxide into a flask of acid with bromothymol blue");
+    $("read").innerHTML=`<div><small>NaOH added</small><b>${fx(Vb,2)} mL</b></div><div><small>pH meter</small><b>${fx(pH,2)}</b></div><div><small>Color</small><b>${pH<6?"yellow":pH>7.6?"blue":"green"}</b></div>`;
+    const W=300,H=180,x0=36,y0=H-28,w=W-x0-12,h=H-28-10, X=v=>x0+v/50*w, Y=v=>y0-v/14*h; let g=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/><line x1="${x0}" y1="${Y(7)}" x2="${x0+w}" y2="${Y(7)}" stroke="#cfe6cf" stroke-dasharray="4 4"/>`;
+    g+=`<path d="${pts.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join("")}" fill="none" stroke="#2E75D6" stroke-width="2.5"/>`;
+    g+=`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2"/>`+T.t(x0+w/2,H-6,"NaOH added (mL)",{fs:11.5})+[0,7,14].map(v=>T.t(x0-5,Y(v)+4,String(v),{fs:10.5,a:"end",c:GRAY})).join("")+[0,25,50].map(v=>T.t(X(v),y0+13,String(v),{fs:10.5,c:GRAY})).join("")+`<text transform="translate(12 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="11.5" font-weight="700">pH</text>`;
+    $("gr").innerHTML=T.svg(W,H,g,"Graph of pH against volume of NaOH added"); }
+  function calc(){ const C=$("calc");
+    if(endV===null){ C.innerHTML=`<b>Goal:</b> reach the endpoint, when the indicator first turns green and stays green. Slow down with single drops near the end.`; return; }
+    C.innerHTML=`<b>Endpoint reached at ${fx(endV,2)} mL of NaOH.</b> Find the molarity of the HCl. HCl + NaOH → NaCl + H<sub>2</sub>O (1 : 1).<br>Moles NaOH = M × V = (0.100 M)(${fx(endV/1000,5)} L). Moles HCl = moles NaOH. M<sub>HCl</sub> = moles ÷ 0.0250 L.<div class="lg-ans"><span>M<sub>HCl</sub> =</span><input type="text" inputmode="decimal" class="lg-in" data-r="m" aria-label="molarity of HCl"><span>M</span><button type="button" class="btn" data-r="cm">Check</button></div><div class="status" data-r="mm"></div>`;
+    $("cm").onclick=()=>{ const v=parseFloat($("m").value), want=Mb*endV/Va, ok=Math.abs(v-want)<=want*.02; A.markBox($("m"),ok); const m=$("mm"); m.className="status "+(ok?"good":"bad"); m.innerHTML=ok?`✔ M<sub>HCl</sub> = (0.100 M × ${fx(endV,2)} mL) ÷ 25.0 mL = ${fx(want,3)} M. The true value was ${fx(Ma,3)} M.`:"Moles of NaOH at the endpoint equal moles of HCl. Divide those moles by the acid’s volume in liters (0.0250 L)."; }; }
+  A.$$("[data-a]",host).forEach(b=>b.addEventListener("click",()=>{ if(Vb>=50) return; const dv=+b.dataset.a; Vb=Math.min(50,+(Vb+dv).toFixed(2)); flow=1; setTimeout(()=>{ flow=0; draw(); },350); pts.push([Vb,pHof(Vb)]);
+    const pH=pHof(Vb); if(endV===null&&pH>=6.0){ if(pH>7.6&&dv>0.1){ endV=null; $("calc").innerHTML=`<b>Overshot!</b> The solution went straight to blue, so the endpoint is somewhere in the last ${fx(dv,2)} mL. Press <b>New acid sample</b> and add single drops as the color starts to change.`; } else { endV=Vb; calc(); } }
+    draw(); }));
+  $("new").addEventListener("click",fresh);
+  fresh(); };
+})();
+
+/* Unit 12 Electrochemistry and Unit 13 Nuclear (saved for later, Nov 12): Build a Galvanic Cell; Half-Life simulation. Namespaces EC = A.U12, NU = A.U13. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const EC=A.U12=A.U12||{}, NU=A.U13=A.U13||{};
+const INK="#1b2328", GRAY="#5f6b72", BLUE="#2E75D6", RED="#E00000", GREEN="#00843c", ORANGE="#E8590C";
+const fx=(v,d)=>Number(v).toFixed(d).replace("-","−");
+
+/* standard reduction potentials at 25 °C (V) */
+EC.HALF={Ag:{ion:"Ag<sup>+</sup>",n:1,E:0.80,metal:"#c9ced3",sol:"#f4f6f8"},Cu:{ion:"Cu<sup>2+</sup>",n:2,E:0.34,metal:"#c87533",sol:"#7fb3e6"},Pb:{ion:"Pb<sup>2+</sup>",n:2,E:-0.13,metal:"#6d7378",sol:"#f2f4f5"},
+  Fe:{ion:"Fe<sup>2+</sup>",n:2,E:-0.44,metal:"#8a8f94",sol:"#dfeed9"},Zn:{ion:"Zn<sup>2+</sup>",n:2,E:-0.76,metal:"#a9b1b8",sol:"#f6f7f8"},Mg:{ion:"Mg<sup>2+</sup>",n:2,E:-2.37,metal:"#d6dadd",sol:"#f6f7f8"}};
+EC.Galvanic=function(host){ let L="Zn", R="Cu", t0=performance.now(), raf=0, run=0, last=0;
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose a metal electrode for each half-cell. Each metal sits in a solution of its own ions, and a salt bridge connects the two solutions. The voltmeter shows the cell voltage, and the animation shows which way electrons and ions move.</p>
+   <div class="controls"><label class="av-sel">Left electrode <select data-s="L" aria-label="left electrode">${Object.keys(EC.HALF).map(k=>`<option${k===L?" selected":""}>${k}</option>`).join("")}</select></label><label class="av-sel">Right electrode <select data-s="R" aria-label="right electrode">${Object.keys(EC.HALF).map(k=>`<option${k===R?" selected":""}>${k}</option>`).join("")}</select></label><button type="button" class="btn ghost" data-r="reset">Reset the electrodes</button></div>
+   <div class="g8-row"><div class="t7-svg ec-pic" data-r="pic"></div><div class="g8-side"><table class="nt ec-tbl" data-r="tbl"></table><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  function roles(){ if(L===R) return null; const a=EC.HALF[L].E<EC.HALF[R].E?L:R, c=a===L?R:L; return {anode:a,cathode:c,E:EC.HALF[c].E-EC.HALF[a].E}; }
+  function scene(t){ const ro=roles(), W=600,H=364; let s="";
+    const cell=(x,k,role)=>{ const h=EC.HALF[k], loss=role==="anode"?Math.min(.35,run*.01):0, gain=role==="cathode"?Math.min(.35,run*.01):0;
+      let g=`<path d="${`M${x} 170V300q0 12 12 12h136q12 0 12-12V170`}" fill="#fff" fill-opacity=".6" stroke="${INK}" stroke-width="2.5"/><path d="M${x+2} 200V300q0 10 10 10h136q10 0 10-10V200Z" fill="${h.sol}" fill-opacity=".9"/>`;
+      const ew=26*(1-loss)+26*gain*0.8; g+=`<rect x="${x+80-ew/2}" y="120" width="${ew}" height="150" fill="${h.metal}" stroke="${INK}" stroke-width="2"/>`;
+      if(gain>0) for(let i=0;i<Math.round(gain*30);i++) g+=`<circle cx="${x+80+((i%2)?1:-1)*(ew/2+2)}" cy="${150+(i*11)%110}" r="2.4" fill="${EC.HALF[k].metal}" stroke="${INK}" stroke-width=".6"/>`;
+      g+=T.t(x+80,332,`${k} in ${h.ion.replace(/<sup>(.*?)<\/sup>/,(m,q)=>q.replace("2","²").replace("+","⁺"))} solution`,{fs:12.5,c:GRAY});
+      if(role) g+=T.t(x+80,352,role==="anode"?"ANODE (oxidation)":"CATHODE (reduction)",{fs:12.5,c:role==="anode"?RED:BLUE});
+      return g; };
+    s+=cell(50,L,ro?(ro.anode===L?"anode":"cathode"):null)+cell(380,R,ro?(ro.anode===R?"anode":"cathode"):null);
+    /* salt bridge */
+    s+=`<path d="M175 230V150q0-14 14-14h222q14 0 14 14V230" fill="none" stroke="#e8dcc0" stroke-width="22"/><path d="M175 230V150q0-14 14-14h222q14 0 14 14V230" fill="none" stroke="${INK}" stroke-width="1.5" stroke-dasharray="2 0" opacity=".25"/>`+T.t(300,128,"salt bridge (KNO₃)",{fs:12,c:GRAY});
+    /* wire + voltmeter */
+    s+=`<path d="M130 120V40H270M330 40H460V120" fill="none" stroke="${INK}" stroke-width="2.5"/><circle cx="300" cy="40" r="28" fill="#fff" stroke="${INK}" stroke-width="2.5"/>`+T.t(300,46,ro?fx(ro.E,2)+" V":"0.00 V",{fs:15});
+    if(ro){ const dir=ro.anode===L?1:-1; /* electrons travel anode → cathode through the wire */
+      for(let i=0;i<6;i++){ const f=((t*0.35+i/6)%1), path=[[130,120],[130,40],[270,40],[330,40],[460,40],[460,120]], seg=[80,140,60,130,80], tot=490; let d=(dir>0?f:1-f)*tot, k=0; while(k<4&&d>seg[k]){ d-=seg[k]; k++; } const [a,b]=[path[k],path[k+1]], q=Math.min(1,d/seg[k]); const x=a[0]+(b[0]-a[0])*q, y=a[1]+(b[1]-a[1])*q; if(!(x>264&&x<336)) s+=A.P.electron(x,y,5.5); }
+      s+=T.arrow(ro.anode===L?175:425,26,ro.anode===L?235:365,26,"#b58900",2.5,9)+T.t(300,10,"electrons flow from anode to cathode",{fs:11.5,c:"#8a6d00"});
+      /* salt bridge ions: K+ drift toward the cathode, NO3- toward the anode */
+      const br=[[175,230],[175,150],[189,136],[411,136],[425,150],[425,230]], bl=[80,20,222,20,80], btot=422, at=d=>{ let k=0; while(k<4&&d>bl[k]){ d-=bl[k]; k++; } const a=br[k], b=br[k+1], q=Math.min(1,d/bl[k]); return [a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q]; };
+      const toR=ro.cathode===R; for(let i=0;i<4;i++){ const f=((t*0.12+i/4)%1); const [kx,ky]=at((toR?f:1-f)*btot), [nx,ny]=at((toR?1-f:f)*btot);
+        s+=`<circle cx="${kx}" cy="${ky}" r="5.5" fill="#B7B7B7" stroke="${INK}" stroke-width=".8"/><text x="${kx}" y="${ky+3}" text-anchor="middle" font-size="8" font-weight="800" fill="${INK}">+</text><circle cx="${nx}" cy="${ny}" r="5.5" fill="#7030A0" stroke="${INK}" stroke-width=".8"/><text x="${nx}" y="${ny+3}" text-anchor="middle" font-size="9" font-weight="800" fill="#fff">−</text>`; } }
+    return T.svg(W,H,s,ro?`Galvanic cell: ${ro.anode} anode, ${ro.cathode} cathode, ${fx(ro.E,2)} volts`:"Two identical half-cells produce no voltage"); }
+  function side(){ const ro=roles();
+    $("tbl").innerHTML=`<tr><th>Half-reaction (reduction)</th><th>E° (V)</th></tr>`+Object.entries(EC.HALF).sort((a,b)=>b[1].E-a[1].E).map(([k,h])=>`<tr class="${k===L||k===R?"ec-on":""}"><td>${h.ion} + ${h.n}e<sup>−</sup> → ${k}</td><td>${h.E>0?"+":""}${fx(h.E,2)}</td></tr>`).join("");
+    if(!ro){ $("info").innerHTML=`<b>No voltage</b><span>Both half-cells are the same, so neither metal pulls electrons more strongly than the other.</span>`; return; }
+    const a=EC.HALF[ro.anode], c=EC.HALF[ro.cathode];
+    $("info").innerHTML=`<b>E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub> = (${c.E>0?"+":""}${fx(c.E,2)} V) − (${a.E>0?"+":""}${fx(a.E,2)} V) = ${fx(ro.E,2)} V</b>
+      <span><b style="color:${RED}">Anode (oxidation):</b> ${ro.anode} → ${a.ion} + ${a.n}e<sup>−</sup>. The ${ro.anode} electrode loses mass.</span>
+      <span><b style="color:${BLUE}">Cathode (reduction):</b> ${c.ion} + ${c.n}e<sup>−</sup> → ${ro.cathode}. Metal plates onto the ${ro.cathode} electrode.</span>
+      <span>In the salt bridge, K<sup>+</sup> ions (gray) move toward the cathode and NO<sub>3</sub><sup>−</sup> ions (purple) move toward the anode, keeping both solutions neutral.</span><span>The metal with the lower (more negative) E° is oxidized. A positive E°<sub>cell</sub> means the reaction happens on its own.</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=last?(now-last)/1000:0; last=now; if(roles()) run+=dt; $("pic").innerHTML=scene((now-t0)/1000); raf=requestAnimationFrame(loop); }
+  A.$$("[data-s]",host).forEach(sel=>sel.addEventListener("change",()=>{ if(sel.dataset.s==="L") L=sel.value; else R=sel.value; run=0; side(); }));
+  $("reset").addEventListener("click",()=>{ run=0; });
+  side(); raf=requestAnimationFrame(loop); };
+
+/* ---------- Half-life ---------- */
+/* half-lives: NNDC / NIST data, rounded */
+NU.ISO=[{k:"I131",n:"Iodine-131",hl:8.02,u:"days",use:"treating thyroid disease"},{k:"Co60",n:"Cobalt-60",hl:5.27,u:"years",use:"radiation therapy and sterilizing equipment"},{k:"C14",n:"Carbon-14",hl:5730,u:"years",use:"radiocarbon dating"},{k:"Tc99m",n:"Technetium-99m",hl:6.0,u:"hours",use:"medical imaging"}];
+NU.HalfLife=function(host){ let iso=NU.ISO[0], N0=400, alive=[], tHL=0, run=false, raf=0, last=0, hist=[[0,400]], rnd=T.rng(31);
+  host.innerHTML=`<div class="lab-b"><p class="how">Each square is a radioactive atom. In every half-life, each atom has a 50% chance of decaying. Press Run (or step one half-life at a time) and watch how many atoms remain.</p>
+   <div class="controls"><div class="seg" role="group" aria-label="Isotope">${NU.ISO.map((I,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===0}">${I.n}</button>`).join("")}</div></div>
+   <div class="controls"><button type="button" class="btn" data-r="run">Run</button><button type="button" class="btn ghost" data-r="step">Next half-life</button><button type="button" class="btn ghost" data-r="reset">Start over</button></div>
+   <div class="g8-row"><div class="t7-svg nu-grid" data-r="grid"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-svg" data-r="gr"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  function reset(){ alive=[...Array(N0)].map(()=>({on:true,at:Math.floor(rnd()*1e9)})); tHL=0; hist=[[0,N0]]; run=false; $("run").textContent="Run"; draw(); }
+  /* decay over a small time step: probability 1 − 0.5^(dt in half-lives) */
+  function decay(dHL){ const p=1-Math.pow(.5,dHL); alive.forEach(a=>{ if(a.on&&rnd()<p) a.on=false; }); tHL+=dHL; hist.push([tHL,alive.filter(a=>a.on).length]); }
+  function draw(){ const n=alive.filter(a=>a.on).length; let s=""; const cols=20, sz=17;
+    alive.forEach((a,i)=>{ const x=6+(i%cols)*sz, y=6+Math.floor(i/cols)*sz; s+=`<rect x="${x}" y="${y}" width="${sz-3}" height="${sz-3}" rx="3" fill="${a.on?"#f2b705":"#dfe5e8"}" stroke="${a.on?"#a07800":"#c3ccd1"}" stroke-width="1"/>`; });
+    $("grid").innerHTML=T.svg(cols*sz+9,Math.ceil(N0/cols)*sz+9,s,`${n} of ${N0} atoms remain undecayed`);
+    $("read").innerHTML=`<div><small>Time</small><b>${fx(tHL*iso.hl,iso.hl>100?0:1)} ${iso.u}</b></div><div><small>Half-lives</small><b>${fx(tHL,1)}</b></div><div><small>Atoms left</small><b>${n} (${fx(n/N0*100,0)}%)</b></div>`;
+    const W=300,H=180,x0=40,y0=H-28,w=W-x0-12,h=H-28-12, X=v=>x0+v/6*w, Y=v=>y0-v/N0*h; let g=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+    for(let k=0;k<=6;k++) g+=`<line x1="${X(k)}" y1="${y0}" x2="${X(k)}" y2="${y0-h}" stroke="#e3ebee"/>`+T.t(X(k),y0+13,String(k),{fs:10.5,c:GRAY});
+    const ideal=[]; for(let i=0;i<=60;i++){ const v=i/10; ideal.push([X(v),Y(N0*Math.pow(.5,v))]); } g+=`<path d="${ideal.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join("")}" fill="none" stroke="#c9d3d8" stroke-width="2" stroke-dasharray="5 4"/>`;
+    g+=`<path d="${hist.filter(p=>p[0]<=6).map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join("")}" fill="none" stroke="${ORANGE}" stroke-width="2.6"/>`;
+    g+=`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2"/>`+T.t(x0+w/2,H-4,"number of half-lives",{fs:11.5})+[0,N0/2,N0].map(v=>T.t(x0-5,Y(v)+4,String(v),{fs:10.5,a:"end",c:GRAY})).join("");
+    $("gr").innerHTML=T.svg(W,H,g,"Graph of atoms remaining against number of half-lives");
+    $("info").innerHTML=`<b>${iso.n}: half-life ${iso.hl} ${iso.u}</b><span>Used for ${iso.use}. After each half-life, about half of the remaining atoms are left: ${N0} → ${N0/2} → ${N0/4} → ${N0/8}… Each atom decays at random, so the real count (orange) wanders around the ideal curve (dashed).</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=last?(now-last)/1000:0; last=now; if(run&&tHL<6){ decay(dt*0.5); draw(); if(tHL>=6){ run=false; $("run").textContent="Run"; } } raf=requestAnimationFrame(loop); }
+  $("run").addEventListener("click",()=>{ run=!run; $("run").textContent=run?"Pause":"Run"; });
+  $("step").addEventListener("click",()=>{ run=false; $("run").textContent="Run"; if(tHL<6){ const k=Math.floor(tHL+1e-9)+1; decay(k-tHL); draw(); } });
+  $("reset").addEventListener("click",reset);
+  A.$$("[data-i]",host).forEach(b=>b.addEventListener("click",()=>{ iso=NU.ISO[+b.dataset.i]; A.$$("[data-i]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); reset(); }));
+  reset(); raf=requestAnimationFrame(loop); };
+})();
+
+/* Unit 14 Organic Chemistry (saved for later, Nov 12): Hydrocarbon Builder. Namespace OR = A.U14. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const OR=A.U14=A.U14||{};
+const INK="#1b2328", GRAY="#5f6b72", BLUE="#2E75D6", RED="#E00000";
+OR.PRE=["meth","eth","prop","but","pent","hex","hept","oct"];
+OR.Builder=function(host){ let n=4, bond=1, pos=1, quiz=false, target=null;
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose the number of carbon atoms and the type of carbon–carbon bond. The builder adds hydrogen atoms so that every carbon forms exactly 4 bonds, then gives the formula and the name.</p>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>Carbon atoms</span><input type="range" min="1" max="8" step="1" value="${n}" data-r="n" aria-label="number of carbon atoms"><b data-r="nv"></b></label>
+   <div class="seg" role="group" aria-label="Bond type"><button type="button" data-b="1" aria-pressed="true">Single bonds only (alkane)</button><button type="button" data-b="2" aria-pressed="false">One double bond (alkene)</button><button type="button" data-b="3" aria-pressed="false">One triple bond (alkyne)</button></div>
+   <label class="g8-sl" data-r="poswrap"><span>Multiple bond after carbon</span><input type="range" min="1" max="7" step="1" value="1" data-r="pos" aria-label="position of the multiple bond"><b data-r="pv"></b></label></div>
+   <div class="t7-svg or-pic" data-r="pic"></div><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  function name(){ const p=OR.PRE[n-1]; if(bond===1) return p+"ane"; const suf=bond===2?"ene":"yne"; return (n>=4?`${Math.min(pos,n-pos)}-`:"")+p+suf; }
+  function draw(){ if(bond>1&&n<2){ n=2; $("n").value=2; } const maxPos=Math.max(1,n-1); if(pos>maxPos) pos=maxPos; $("pos").max=maxPos; $("pos").value=pos;
+    $("nv").textContent=n; $("pv").textContent=pos; $("poswrap").style.display=bond>1&&n>2?"":"none";
+    A.$$("[data-b]",host).forEach(b=>{ b.disabled=n<2&&b.dataset.b!=="1"; });
+    const gap=74, W=Math.max(360,n*gap+120), H=230, x0=(W-(n-1)*gap)/2, y=H/2;
+    const order=i=>bond>1&&i===pos-1?bond:1; /* bond between carbon i and i+1 */
+    let s="", Hcount=0;
+    for(let i=0;i<n-1;i++){ const o=order(i), x1=x0+i*gap+14, x2=x0+(i+1)*gap-14; for(let k=0;k<o;k++){ const dy=(k-(o-1)/2)*7; s+=`<line x1="${x1}" y1="${y+dy}" x2="${x2}" y2="${y+dy}" stroke="${o>1?RED:INK}" stroke-width="2.6"/>`; } }
+    for(let i=0;i<n;i++){ const x=x0+i*gap; const used=(i>0?order(i-1):0)+(i<n-1?order(i):0), hs=4-used; Hcount+=hs;
+      const spots=[]; if(i===0) spots.push([-1,0]); if(i===n-1) spots.push([1,0]); spots.push([0,-1],[0,1]);
+      /* place hydrogens on the free sides: ends first take the outer side */
+      const take=(i===0||i===n-1)? spots : [[0,-1],[0,1]]; take.slice(0,hs).forEach(([dx,dy])=>{ const hx=x+dx*52, hy=y+dy*52; s+=`<line x1="${x+dx*14}" y1="${y+dy*14}" x2="${hx-dx*11}" y2="${hy-dy*11}" stroke="${INK}" stroke-width="2.4"/>`+T.t(hx,hy+6,"H",{fs:17,c:BLUE}); });
+      s+=T.t(x,y+7,"C",{fs:20}); }
+    $("pic").innerHTML=T.svg(W,H,s,`Structural formula of ${name()}`);
+    const formula=`C${n>1?"<sub>"+n+"</sub>":""}H<sub>${Hcount}</sub>`;
+    const gen=bond===1?"C<sub>n</sub>H<sub>2n+2</sub>":bond===2?"C<sub>n</sub>H<sub>2n</sub>":"C<sub>n</sub>H<sub>2n−2</sub>";
+    $("read").innerHTML=`<div><small>Molecular formula</small><b>${formula}</b></div><div><small>Name</small><b>${name()}</b></div><div><small>General formula</small><b>${gen}</b></div>`;
+    $("info").innerHTML=`<b>${bond===1?"Alkane: saturated":"Alk"+(bond===2?"ene":"yne")+": unsaturated"}</b><span>${bond===1?"Every carbon–carbon bond is a single bond, so each carbon holds as many hydrogen atoms as it can.":`The ${bond===2?"double":"triple"} bond uses ${bond===2?"two":"four"} of the bonding positions that hydrogen atoms could otherwise fill, so the molecule has ${bond===2?2:4} fewer hydrogen atoms than the alkane with ${n} carbons.`} The prefix “${OR.PRE[n-1]}-” means ${n} carbon atom${n>1?"s":""}.${bond>1&&n>=4?" The number in the name gives the first carbon of the multiple bond, counted from the end closer to it.":""}</span>`; }
+  $("n").addEventListener("input",e=>{ n=+e.target.value; if(n<2) bond=1, A.$$("[data-b]",host).forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.b==="1"))); draw(); });
+  $("pos").addEventListener("input",e=>{ pos=+e.target.value; draw(); });
+  A.$$("[data-b]",host).forEach(b=>b.addEventListener("click",()=>{ bond=+b.dataset.b; A.$$("[data-b]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+  draw(); };
+})();
+
+/* Saved-unit interactives, part 2 (Nov 12): Unit 9 Make a Solution (molarity), Unit 12 Electrolysis of Water, Unit 13 Nuclear Decay Builder. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const Z=A.U9=A.U9||{}, EC=A.U12=A.U12||{}, NU=A.U13=A.U13||{};
+const INK="#1b2328", GRAY="#5f6b72", BLUE="#2E75D6", RED="#E00000", GREEN="#00843c";
+const fx=(v,d)=>Number(v).toFixed(d).replace("-","−");
+
+/* ---------- Unit 9: make a solution of known molarity ---------- */
+Z.SOLUTES={cuso4:{n:"Copper(II) sulfate pentahydrate",f:"CuSO<sub>4</sub>·5H<sub>2</sub>O",M:249.72,col:"#2f7fd0"},nacl:{n:"Sodium chloride",f:"NaCl",M:58.44,col:null},glu:{n:"Glucose",f:"C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>",M:180.18,col:null}};
+Z.MolarityLab=function(host){ let k="cuso4", g=6.24, V=250;
+  host.innerHTML=`<div class="lab-b"><p class="how">Weigh out a solute, dissolve it, and fill a volumetric flask to the line with water. The molarity is the moles of solute divided by the liters of solution: M = n ÷ V.</p>
+   <div class="controls"><div class="seg" role="group" aria-label="Solute">${Object.entries(Z.SOLUTES).map(([q,s])=>`<button type="button" data-k="${q}" aria-pressed="${q===k}">${s.n}</button>`).join("")}</div></div>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>Mass of solute</span><input type="range" min="0.5" max="30" step="0.01" value="${g}" data-r="g" aria-label="grams of solute"><b data-r="gv"></b></label><div class="seg" role="group" aria-label="Flask volume">${[100,250,500].map(v=>`<button type="button" data-v="${v}" aria-pressed="${v===V}">${v} mL flask</button>`).join("")}</div></div>
+   <div class="g8-row"><div class="t7-svg z9-flask" data-r="pic"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="lg-step" data-r="calc"></div></div></div></div>`;
+  const $=q=>host.querySelector(`[data-r="${q}"]`);
+  function draw(){ const S=Z.SOLUTES[k], n=g/S.M, M=n/(V/1000); $("gv").textContent=fx(g,2)+" g";
+    const sc=V===100?.75:V===250?1:1.25, cx=130, by=300; let s="";
+    const bw=110*sc, nh=24, neckTop=by-150*sc-70, lineY=neckTop+26;
+    const col=S.col? (()=>{ const t=Math.min(1,M/0.4); const a=[234,244,250], b=[47,127,208]; return "rgb("+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(",")+")"; })() : "#eef6fb";
+    s+=`<path d="M${cx-nh/2} ${neckTop}V${by-150*sc}C${cx-nh/2} ${by-120*sc} ${cx-bw/2} ${by-95*sc} ${cx-bw/2} ${by-45*sc}Q${cx-bw/2} ${by} ${cx-bw/2+14} ${by}H${cx+bw/2-14}Q${cx+bw/2} ${by} ${cx+bw/2} ${by-45*sc}C${cx+bw/2} ${by-95*sc} ${cx+nh/2} ${by-120*sc} ${cx+nh/2} ${by-150*sc}V${neckTop}" fill="${col}" stroke="${INK}" stroke-width="2.5"/>`;
+    s+=`<rect x="${cx-nh/2+1.5}" y="${neckTop}" width="${nh-3}" height="${lineY-neckTop}" fill="#fff"/><line x1="${cx-nh/2-6}" y1="${lineY}" x2="${cx+nh/2+6}" y2="${lineY}" stroke="${RED}" stroke-width="2"/>`+T.t(cx+nh/2+10,lineY+4,`${V} mL line`,{fs:11.5,c:RED,a:"start"});
+    s+=T.t(cx,by+24,`${V} mL volumetric flask`,{fs:12.5,c:GRAY});
+    $("pic").innerHTML=T.svg(260,340,s,`Volumetric flask holding ${V} mL of solution`);
+    $("read").innerHTML=`<div><small>Moles of solute</small><b>${fx(n,4)} mol</b></div><div><small>Volume of solution</small><b>${fx(V/1000,3)} L</b></div><div><small>Molarity</small><b>${fx(M,3)} M</b></div>`;
+    $("calc").innerHTML=`<b>Calculation</b><br>n = ${fx(g,2)} g × (1 mol ÷ ${S.M} g) = ${fx(n,4)} mol<br>M = n ÷ V = ${fx(n,4)} mol ÷ ${fx(V/1000,3)} L = <b>${fx(M,3)} M</b>${S.col?"<br>The deeper the blue, the more concentrated the copper(II) ions.":""}<br><span class="muted">Note: the solute is dissolved first, then water is added up to the line, so the volume is the volume of the whole solution, not of the water alone.</span>`; }
+  $("g").addEventListener("input",e=>{ g=+e.target.value; draw(); });
+  A.$$("[data-k]",host).forEach(b=>b.addEventListener("click",()=>{ k=b.dataset.k; A.$$("[data-k]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+  A.$$("[data-v]",host).forEach(b=>b.addEventListener("click",()=>{ V=+b.dataset.v; A.$$("[data-v]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+  draw(); };
+
+/* ---------- Unit 12: electrolysis of water ---------- */
+EC.Electrolysis=function(host){ let on=false, t=0, raf=0, last=0, rnd=T.rng(41), bub=[];
+  host.innerHTML=`<div class="lab-b"><p class="how">A battery forces electricity through water (with a little sodium sulfate dissolved so it conducts). Gas collects in each tube. Compare the volumes of the two gases.</p>
+   <div class="controls"><button type="button" class="btn" data-r="sw">Connect the battery</button><button type="button" class="btn ghost" data-r="reset">Empty the tubes</button></div>
+   <div class="g8-row"><div class="t7-svg ec-ely" data-r="pic"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=q=>host.querySelector(`[data-r="${q}"]`);
+  function vols(){ const h2=Math.min(40,t*2.0); return {h2,o2:h2/2}; }
+  function scene(){ const {h2,o2}=vols(), W=420,H=360, top=40, len=200, mlpx=len/45; let s="";
+    const tube=(x,gas,vol,lab,col)=>{ let g=`<rect x="${x}" y="${top}" width="44" height="${len}" fill="#e8f3fb" stroke="${INK}" stroke-width="2.4"/><rect x="${x+2}" y="${top+2}" width="40" height="${vol*mlpx}" fill="#ffffff"/>`;
+      for(let m=0;m<=40;m+=10) g+=`<line x1="${x+44}" y1="${top+m*mlpx}" x2="${x+52}" y2="${top+m*mlpx}" stroke="${INK}"/>`+T.t(x+56,top+m*mlpx+4,m+" mL",{fs:10,a:"start",c:GRAY});
+      g+=T.t(x+22,top-10,lab,{fs:13,c:col}); return g; };
+    s+=tube(110,"O2",o2,"oxygen, O₂",RED)+tube(270,"H2",h2,"hydrogen, H₂",BLUE);
+    s+=`<path d="M110 240V300H314V240" fill="none" stroke="${INK}" stroke-width="2.4"/><rect x="112" y="242" width="200" height="56" fill="#e8f3fb"/>`;
+    /* electrodes */
+    s+=`<rect x="126" y="200" width="12" height="80" fill="#9aa4ab" stroke="${INK}" stroke-width="1.5"/><rect x="286" y="200" width="12" height="80" fill="#9aa4ab" stroke="${INK}" stroke-width="1.5"/>`;
+    s+=`<path d="M132 280V330H180M244 330H292V280" fill="none" stroke="${INK}" stroke-width="2.2"/><rect x="180" y="316" width="64" height="28" rx="4" fill="${on?"#ffe08a":"#eee"}" stroke="${INK}" stroke-width="2"/>`+T.t(212,335,"battery",{fs:11.5})+T.t(170,325,"+",{fs:15,c:RED})+T.t(254,325,"−",{fs:15,c:BLUE});
+    s+=T.t(132,354,"anode (+)",{fs:11,c:RED})+T.t(292,354,"cathode (−)",{fs:11,c:BLUE});
+    bub.forEach(b=>{ s+=`<circle cx="${b.x}" cy="${b.y}" r="${b.r}" fill="#fff" stroke="#8fb8cc" stroke-width="1"/>`; });
+    return T.svg(W,H,s,`Electrolysis apparatus: ${fx(h2,1)} mL hydrogen and ${fx(o2,1)} mL oxygen`); }
+  function side(){ const {h2,o2}=vols();
+    $("read").innerHTML=`<div><small>Hydrogen</small><b>${fx(h2,1)} mL</b></div><div><small>Oxygen</small><b>${fx(o2,1)} mL</b></div><div><small>Ratio H₂ : O₂</small><b>${o2>0.05?fx(h2/o2,1)+" : 1":"—"}</b></div>`;
+    $("info").innerHTML=`<b>2H<sub>2</sub>O(ℓ) → 2H<sub>2</sub>(g) + O<sub>2</sub>(g)</b><span>Electrical energy drives a reaction that would not happen on its own (an electrolytic cell). Two molecules of hydrogen form for every one molecule of oxygen, and at the same temperature and pressure equal volumes of gas hold equal numbers of molecules, so the hydrogen volume is twice the oxygen volume.</span><span><b style="color:${RED}">Anode (oxidation):</b> oxygen gas forms. <b style="color:${BLUE}">Cathode (reduction):</b> hydrogen gas forms.</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=last?Math.min(.05,(now-last)/1000):0; last=now;
+    if(on&&t<20){ t+=dt; [[132,1],[292,2]].forEach(([x,rate])=>{ if(rnd()<dt*8*rate) bub.push({x:x+(rnd()-.5)*10,y:240+rnd()*30,r:2+rnd()*1.5}); }); }
+    bub.forEach(b=>b.y-=dt*60); const {h2,o2}=vols(), lvl=x=>40+(x<200?o2:h2)*(200/45); bub=bub.filter(b=>b.y>lvl(b.x)+3);
+    $("pic").innerHTML=scene(); if(Math.floor(now/300)!==Math.floor((now-dt*1000)/300)) side(); if(t>=20&&on){ on=false; $("sw").textContent="Connect the battery"; }
+    raf=requestAnimationFrame(loop); }
+  $("sw").addEventListener("click",()=>{ on=!on; $("sw").textContent=on?"Disconnect":"Connect the battery"; });
+  $("reset").addEventListener("click",()=>{ t=0; bub=[]; on=false; $("sw").textContent="Connect the battery"; side(); });
+  side(); raf=requestAnimationFrame(loop); };
+
+/* ---------- Unit 13: nuclear decay builder ---------- */
+NU.DECAYS=[{p:[92,238],m:"alpha"},{p:[88,226],m:"alpha"},{p:[6,14],m:"beta"},{p:[53,131],m:"beta"},{p:[15,32],m:"beta"},{p:[19,40],m:"beta"},{p:[11,22],m:"positron"},{p:[86,222],m:"alpha"},{p:[27,60],m:"beta"},{p:[9,18],m:"positron"}];
+NU.PART={alpha:{s:"He",A:4,Z:2,n:"alpha particle"},beta:{s:"e",A:0,Z:-1,n:"beta particle"},positron:{s:"e",A:0,Z:1,n:"positron"}};
+NU.DecayBuilder=function(host){ const g=A.Game(host,{how:"Complete the nuclear equation. Mass numbers (top) and atomic numbers (bottom) must add up to the same totals on both sides."});
+  g.button("Next isotope",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="qp"><div class="qp-t" data-r="q"></div></div><div class="nu-eq" data-r="eq"></div><div class="lg-ans"><span>Product:</span><label>mass number <input type="text" inputmode="numeric" class="lg-in nu-in" data-r="A" aria-label="mass number"></label><label>atomic number <input type="text" inputmode="numeric" class="lg-in nu-in" data-r="Z" aria-label="atomic number"></label><label>symbol <input type="text" class="lg-in nu-in" data-r="S" aria-label="element symbol"></label><button type="button" class="btn" data-r="c">Check</button></div>`;
+  const $=k=>g.stage.querySelector(`[data-r="${k}"]`), cbtn=$("c"); let cur, bag=[];
+  const nuc=(A0,Z0,s,col=INK)=>`<span class="nu-nuc" style="color:${col}"><span class="nu-az"><span>${A0}</span><span>${Z0}</span></span><span class="nu-s">${s}</span></span>`;
+  function next(){ g.fresh(); g.msg(""); if(!bag.length) bag=A.shuffle(NU.DECAYS.slice()); cur=bag.pop(); ["A","Z","S"].forEach(k=>{ $(k).value=""; $(k).classList.remove("ok","no"); });
+    const [Z0,A0]=cur.p, P=NU.PART[cur.m], el=A.EL[Z0];
+    cur.ans={A:A0-P.A,Z:Z0-P.Z}; cur.ans.s=A.EL[cur.ans.Z].sym;
+    $("q").innerHTML=`${el.name}-${A0} undergoes <b>${cur.m==="alpha"?"alpha decay":cur.m==="beta"?"beta decay":"positron emission"}</b>. What is the product?`;
+    $("eq").innerHTML=`${nuc(A0,Z0,el.sym)}<span class="nu-op">→</span>${nuc(P.A,P.Z,P.s,RED)}<span class="nu-op">+</span><span class="nu-q">?</span>`; }
+  cbtn.onclick=()=>{ const a=parseInt($("A").value), z=parseInt($("Z").value), sy=$("S").value.trim(); const okA=a===cur.ans.A, okZ=z===cur.ans.Z, okS=sy.toLowerCase()===cur.ans.s.toLowerCase()&&sy[0]===sy[0].toUpperCase();
+    A.markBox($("A"),okA); A.markBox($("Z"),okZ); A.markBox($("S"),okS);
+    if(okA&&okZ&&okS){ g.win(); g.msg(`✔ ${cur.ans.s}-${cur.ans.A}: mass numbers ${cur.p[1]} = ${NU.PART[cur.m].A} + ${cur.ans.A}; atomic numbers ${cur.p[0]} = ${NU.PART[cur.m].Z<0?"(−1)":NU.PART[cur.m].Z} + ${cur.ans.Z}.`,"good"); g.later(next,3200); }
+    else { g.lose(); g.msg(!okA||!okZ?"Subtract the particle’s mass number and atomic number from the starting nucleus. For a beta particle (atomic number −1), subtracting −1 adds 1.":"The atomic number identifies the element: find it on the Periodic Table.","bad"); } };
+  next(); };
+})();
+
+/* Unit 10 (saved, Nov 12): dynamic equilibrium and Le Châtelier's principle for a reversible reaction A ⇌ B. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const K=A.U10=A.U10||{};
+const INK="#1b2328", GRAY="#5f6b72", BLUE="#2E75D6", RED="#E00000";
+K.EquilibriumSim=function(host){ let P=[], hist=[], t=0, raf=0, last=0, hot=false, fwd=0, rev=0, win=[];
+  const W=420,H=280,r=8, rnd=T.rng(51);
+  const kf=()=>hot?0.10:0.30, kr=()=>hot?0.30:0.10; /* forward reaction is exothermic: heating favors the reverse reaction */
+  host.innerHTML=`<div class="lab-b"><p class="how">A (red) changes into B (blue), and B changes back into A, in a closed container: A ⇌ B + heat. Watch the amounts level off, then add a stress and see how the system responds.</p>
+   <div class="controls"><button type="button" class="btn ghost" data-r="addA">Add 20 A</button><button type="button" class="btn ghost" data-r="remB">Remove half of B</button><label class="chk"><input type="checkbox" data-r="hot"> Heat the container</label><button type="button" class="btn ghost" data-r="reset">Start over (all A)</button></div>
+   <div class="g8-row"><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Particles of A and B changing back and forth"></canvas><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-svg" data-r="gr"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  const add=(type,k)=>{ for(let i=0;i<k;i++){ let x,y,n=0; do{ x=r+4+rnd()*(W-2*r-8); y=r+4+rnd()*(H-2*r-8); n++; } while(n<200&&P.some(q=>Math.hypot(q.x-x,q.y-y)<2*r+3)); const a=rnd()*6.283; P.push({t:type,x,y,vx:Math.cos(a)*40,vy:Math.sin(a)*40,fl:0}); } };
+  function reset(){ P=[]; hist=[]; t=0; win=[]; add("A",40); }
+  function step(dt){ t+=dt; let f=0, b=0;
+    P.forEach(p=>{ p.fl=Math.max(0,p.fl-dt); if(p.t==="A"&&rnd()<kf()*dt){ p.t="B"; p.fl=.5; f++; } else if(p.t==="B"&&p.fl===0&&rnd()<kr()*dt){ p.t="A"; p.fl=.5; b++; }
+      p.x+=p.vx*dt; p.y+=p.vy*dt; if(p.x<r){p.x=r;p.vx=Math.abs(p.vx);} if(p.x>W-r){p.x=W-r;p.vx=-Math.abs(p.vx);} if(p.y<r){p.y=r;p.vy=Math.abs(p.vy);} if(p.y>H-r){p.y=H-r;p.vy=-Math.abs(p.vy);} });
+    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const a=P[i], q=P[j], dx=q.x-a.x, dy=q.y-a.y, d=Math.hypot(dx,dy); if(d>0&&d<2*r){ const nx=dx/d, ny=dy/d, rel=(a.vx-q.vx)*nx+(a.vy-q.vy)*ny; if(rel>0){ a.vx-=rel*nx; a.vy-=rel*ny; q.vx+=rel*nx; q.vy+=rel*ny; } const o=(2*r-d)/2; a.x-=nx*o; a.y-=ny*o; q.x+=nx*o; q.y+=ny*o; } }
+    P.forEach(p=>{ p.x=Math.min(W-r,Math.max(r,p.x)); p.y=Math.min(H-r,Math.max(r,p.y)); });
+    win.push([t,f,b]); while(win.length&&t-win[0][0]>4) win.shift();
+    if(Math.floor(t*2)!==Math.floor((t-dt)*2)) hist.push([t,P.filter(p=>p.t==="A").length,P.filter(p=>p.t==="B").length]); }
+  function draw(){ c.clearRect(0,0,W,H); c.fillStyle="#f7fbfd"; c.fillRect(0,0,W,H); c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(1.5,1.5,W-3,H-3);
+    P.forEach(p=>{ if(p.fl>0){ c.beginPath(); c.arc(p.x,p.y,r+5*p.fl/.5,0,7); c.fillStyle="rgba(242,183,5,.35)"; c.fill(); } c.beginPath(); c.arc(p.x,p.y,r,0,7); c.fillStyle=p.t==="A"?RED:BLUE; c.fill(); c.strokeStyle=INK; c.lineWidth=1.3; c.stroke(); }); }
+  function side(){ const nA=P.filter(p=>p.t==="A").length, nB=P.length-nA, f=win.reduce((s,w)=>s+w[1],0)/4, b=win.reduce((s,w)=>s+w[2],0)/4;
+    $("read").innerHTML=`<div><small>A</small><b style="color:${RED}">${nA}</b></div><div><small>B</small><b style="color:${BLUE}">${nB}</b></div><div><small>A→B / B→A per s</small><b>${f.toFixed(1)} / ${b.toFixed(1)}</b></div>`;
+    const Wg=300,Hg=170,x0=34,y0=Hg-26,w=Wg-x0-10,h=Hg-26-10, tm=Math.max(30,t), ym=Math.max(40,...hist.map(q=>Math.max(q[1],q[2]))), X=v=>x0+(v-Math.max(0,tm-60))/Math.min(60,tm)*w, Y=v=>y0-v/ym*h;
+    const vis=hist.filter(q=>q[0]>=tm-60); let g=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+    [[1,RED],[2,BLUE]].forEach(([k,col])=>{ g+=`<path d="${vis.map((q,i)=>(i?"L":"M")+X(q[0]).toFixed(1)+" "+Y(q[k]).toFixed(1)).join("")}" fill="none" stroke="${col}" stroke-width="2.5"/>`; });
+    g+=`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2"/>`+T.t(x0+w/2,Hg-6,"time",{fs:11.5})+T.t(x0-5,y0-h+8,String(ym),{fs:10.5,a:"end",c:GRAY})+T.t(x0-5,y0+4,"0",{fs:10.5,a:"end",c:GRAY});
+    $("gr").innerHTML=T.svg(Wg,Hg,g,"Graph of the number of A and B particles over time");
+    const eq=Math.abs(f-b)<Math.max(1,.25*(f+b))&&t>8;
+    $("info").innerHTML=eq? `<b>Equilibrium</b><span>A is still changing into B and B into A, but the two changes happen at the same rate, so the amounts stay about the same. This is a <b>dynamic</b> equilibrium.${hot?" Heating favors the reverse (endothermic) reaction, so there is more A than before.":""}</span>`
+      : `<b>Shifting</b><span>${f>b?"The forward reaction (A → B) is faster than the reverse, so B builds up.":"The reverse reaction (B → A) is faster than the forward, so A builds up."} The amounts keep changing until the two rates become equal.</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.05,last?(now-last)/1000:0); last=now; step(dt); draw(); if(Math.floor(now/400)!==Math.floor((now-dt*1000)/400)) side(); raf=requestAnimationFrame(loop); }
+  $("addA").addEventListener("click",()=>add("A",20));
+  $("remB").addEventListener("click",()=>{ let k=Math.floor(P.filter(p=>p.t==="B").length/2); P=P.filter(p=>!(p.t==="B"&&k-->0)); });
+  $("hot").addEventListener("change",e=>{ hot=e.target.checked; P.forEach(p=>{ const s=hot?1.4:1/1.4; p.vx*=s; p.vy*=s; }); });
+  $("reset").addEventListener("click",reset);
+  reset(); side(); raf=requestAnimationFrame(loop); };
+})();
+
+/* Unit 14 (saved, Nov 12): functional group sort */
+(function(){ const A=window.AS, P=A&&A.U3; if(!P) return; const OR=A.U14=A.U14||{};
+const s=x=>x.replace(/(\d)/g,"<sub>$1</sub>");
+OR.FG_ITEMS=[[s("CH3CH2OH"),"alc","An –OH group bonded to a carbon chain: an alcohol."],[s("CH3COOH"),"acid","A –COOH group: an organic (carboxylic) acid."],[s("CH3COOCH3"),"ester","A –COO– between two carbon groups: an ester."],
+ [s("CH3COCH3"),"ketone","A C=O in the middle of the chain: a ketone."],[s("CH3CHO"),"ald","A C=O at the end of the chain (–CHO): an aldehyde."],[s("CH3OCH3"),"ether","An –O– between two carbon groups: an ether."],
+ [s("CH3NH2"),"amine","An –NH<sub>2</sub> group bonded to carbon: an amine."],[s("CH3CH2Cl"),"hal","A halogen atom replaces a hydrogen: a halide (halocarbon)."],[s("CH3CH2CH2OH"),"alc","An –OH group: an alcohol."],[s("HCOOH"),"acid","A –COOH group: an organic acid."],
+ [s("CH3CH2COOCH2CH3"),"ester","–COO– between carbon groups: an ester."],[s("CH3CH2NH2"),"amine","An –NH<sub>2</sub> group: an amine."]];
+OR.FunctionalSort=host=>P.TapSort(host,{prompt:"This compound is…",how:"Find the group of atoms that is not just carbon and hydrogen. Its arrangement decides the class of the compound.",items:OR.FG_ITEMS,choices:[["alc","Alcohol"],["acid","Organic acid"],["ester","Ester"],["ald","Aldehyde"],["ketone","Ketone"],["ether","Ether"],["amine","Amine"],["hal","Halide"]],hint:"Look for –OH (alcohol), –COOH (acid), –COO– (ester), –CHO (aldehyde), C=O inside the chain (ketone), –O– (ether), –NH₂ (amine) or a halogen (halide)."});
+})();
+
+/* Unit 12 (saved, Nov 12): electroplating a key with copper */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const EC=A.U12=A.U12||{}; const INK="#1b2328", GRAY="#5f6b72", RED="#E00000", BLUE="#2E75D6";
+EC.Electroplate=function(host){ let on=false, q=0, raf=0, last=0, cur=1.0;
+  host.innerHTML=`<div class="lab-b"><p class="how">A steel key (the cathode) and a copper strip (the anode) sit in copper(II) sulfate solution, connected to a battery. Turn on the current and watch copper move from the strip onto the key.</p>
+   <div class="controls g8-ctl"><button type="button" class="btn" data-r="sw">Turn on the current</button><label class="g8-sl"><span>Current</span><input type="range" min="0.2" max="2" step="0.1" value="1" data-r="I" aria-label="current"><b data-r="Iv"></b></label><button type="button" class="btn ghost" data-r="reset">New key</button></div>
+   <div class="g8-row"><div class="t7-svg ec-ely" data-r="pic"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  /* copper moved (g): 63.55 g per 2 mol of electrons; 96 485 C per mol of electrons */
+  const mCu=()=>q/96485/2*63.55;
+  function scene(t){ const m=mCu(), f=Math.min(1,m/0.6); let s=`<path d="M70 120V300q0 12 12 12h256q12 0 12-12V120" fill="#fff" fill-opacity=".6" stroke="${INK}" stroke-width="2.5"/><path d="M72 150V300q0 10 10 10h256q10 0 10-10V150Z" fill="#7fb3e6" fill-opacity=".85"/>`;
+    const sw=30*(1-f*.45); s+=`<rect x="${120-sw/2}" y="90" width="${sw}" height="190" fill="#c87533" stroke="${INK}" stroke-width="2"/>`+T.t(120,330,"copper strip (anode, +)",{fs:12,c:RED});
+    const kc=`rgb(${Math.round(170+30*f)},${Math.round(176-60*f)},${Math.round(183-130*f)})`;
+    s+=`<g transform="translate(300 190)"><circle cx="0" cy="-50" r="22" fill="${kc}" stroke="${INK}" stroke-width="2"/><circle cx="0" cy="-50" r="8" fill="#7fb3e6" stroke="${INK}" stroke-width="1.5"/><path d="M-6 -28V70h12V58h10v-8H6v-6h8v-8H6V-28z" fill="${kc}" stroke="${INK}" stroke-width="2"/></g>`+T.t(300,330,"steel key (cathode, −)",{fs:12,c:BLUE});
+    s+=`<path d="M120 90V40H190M230 40H300V140" fill="none" stroke="${INK}" stroke-width="2.4"/><rect x="190" y="26" width="40" height="28" rx="4" fill="${on?"#ffe08a":"#eee"}" stroke="${INK}" stroke-width="2"/>`+T.t(210,45,"⚡",{fs:13});
+    if(on) for(let i=0;i<4;i++){ const ff=((t*0.5*cur+i/4)%1), x=130+ff*160, y=230+Math.sin(ff*6+i)*18; s+=`<circle cx="${x}" cy="${y}" r="6" fill="#D2843B" stroke="${INK}" stroke-width=".8"/><text x="${x}" y="${y+3}" text-anchor="middle" font-size="7" font-weight="800" fill="#fff">2+</text>`; }
+    return T.svg(420,340,s,"Electroplating cell"); }
+  function side(){ const m=mCu(); $("Iv").textContent=cur.toFixed(1)+" A";
+    $("read").innerHTML=`<div><small>Copper lost by strip</small><b>${m.toFixed(3)} g</b></div><div><small>Copper gained by key</small><b>${m.toFixed(3)} g</b></div><div><small>Time</small><b>${Math.round(q/cur||0)} s</b></div>`;
+    $("info").innerHTML=`<b>Anode: Cu → Cu<sup>2+</sup> + 2e<sup>−</sup> &nbsp;·&nbsp; Cathode: Cu<sup>2+</sup> + 2e<sup>−</sup> → Cu</b><span>The battery pulls electrons away from the copper strip, so copper atoms there become Cu<sup>2+</sup> ions and dissolve. At the key, Cu<sup>2+</sup> ions gain electrons and plate out as copper metal. The mass lost by the strip equals the mass gained by the key, and the solution stays the same blue. A larger current plates copper faster.</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.05,last?(now-last)/1000:0); last=now; if(on&&mCu()<0.6) q+=cur*dt*120; $("pic").innerHTML=scene(now/1000); if(Math.floor(now/300)!==Math.floor((now-dt*1000)/300)) side(); raf=requestAnimationFrame(loop); }
+  $("sw").addEventListener("click",()=>{ on=!on; $("sw").textContent=on?"Turn off the current":"Turn on the current"; });
+  $("I").addEventListener("input",e=>{ cur=+e.target.value; side(); }); $("reset").addEventListener("click",()=>{ q=0; side(); });
+  side(); raf=requestAnimationFrame(loop); };
+})();
+
+/* Unit 13 (saved, Nov 12): fission chain reaction */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const NU=A.U13=A.U13||{}; const INK="#1b2328", GRAY="#5f6b72";
+NU.ChainReaction=function(host){ let N=[], U=[], F=[], raf=0, last=0, splits=0, rnd=T.rng(61), ctrl=false;
+  const W=520,H=320;
+  host.innerHTML=`<div class="lab-b"><p class="how">Fire one neutron into a sample of uranium-235. Each nucleus that absorbs a neutron splits into two smaller nuclei and releases 2 or 3 more neutrons, which can split more nuclei. Turn on the control rods to absorb some neutrons.</p>
+   <div class="controls"><button type="button" class="btn" data-r="fire">Fire a neutron</button><label class="chk"><input type="checkbox" data-r="ctrl"> Control rods in</label><button type="button" class="btn ghost" data-r="reset">New sample</button></div>
+   <div class="g8-row"><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Chain reaction of uranium-235 nuclei"></canvas><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  function reset(){ N=[]; F=[]; splits=0; U=[]; for(let row=0;row<7;row++) for(let col=0;col<11;col++) U.push({x:60+col*40+(row%2?20:0)+(rnd()-.5)*6,y:30+row*43+(rnd()-.5)*6,on:true}); side(); }
+  function fire(){ N.push({x:12,y:H/2+(rnd()-.5)*60,vx:180,vy:(rnd()-.5)*40}); }
+  function step(dt){ N.forEach(n=>{ n.x+=n.vx*dt; n.y+=n.vy*dt; if(n.x<0||n.x>W||n.y<0||n.y>H) n.dead=true;
+      if(ctrl&&!n.dead&&[[150,0],[330,0]].some(([rx])=>Math.abs(n.x-rx)<6)&&rnd()<.5) n.dead=true;
+      if(!n.dead) for(const u of U){ if(u.on&&Math.hypot(u.x-n.x,u.y-n.y)<20){ u.on=false; n.dead=true; splits++; const k=rnd()<.5?2:3; for(let i=0;i<k;i++){ const a=rnd()*6.283; N.push({x:u.x,y:u.y,vx:Math.cos(a)*170,vy:Math.sin(a)*170}); } const a=rnd()*6.283; F.push({x:u.x,y:u.y,vx:Math.cos(a)*45,vy:Math.sin(a)*45,c:"#F2B705",t:0},{x:u.x,y:u.y,vx:-Math.cos(a)*45,vy:-Math.sin(a)*45,c:"#E8590C",t:0}); break; } } });
+    N=N.filter(n=>!n.dead); F.forEach(f=>{ f.t+=dt; f.x+=f.vx*dt; f.y+=f.vy*dt; }); F=F.filter(f=>f.t<1.0); }
+  function draw(){ c.clearRect(0,0,W,H); c.fillStyle="#fbfcfd"; c.fillRect(0,0,W,H); c.strokeStyle=INK; c.lineWidth=2; c.strokeRect(1,1,W-2,H-2);
+    if(ctrl) [150,330].forEach(x=>{ c.fillStyle="#9aa4ab"; c.fillRect(x-5,0,10,H); });
+    U.forEach(u=>{ if(!u.on) return; c.beginPath(); c.arc(u.x,u.y,12,0,7); c.fillStyle="#3b6fd8"; c.fill(); c.strokeStyle=INK; c.lineWidth=1.2; c.stroke(); c.fillStyle="#fff"; c.font="bold 8px Inter,Arial"; c.textAlign="center"; c.fillText("235",u.x,u.y+3); });
+    F.forEach(f=>{ c.globalAlpha=Math.max(0,1-f.t); c.beginPath(); c.arc(f.x,f.y,8,0,7); c.fillStyle=f.c; c.fill(); c.strokeStyle=INK; c.lineWidth=1; c.stroke(); if(f.t<.3){ c.beginPath(); c.arc(f.x,f.y,8+f.t*60,0,7); c.strokeStyle=`rgba(242,183,5,${(1-f.t/.3).toFixed(2)})`; c.lineWidth=3; c.stroke(); } c.globalAlpha=1; });
+    N.forEach(n=>{ c.beginPath(); c.arc(n.x,n.y,4.5,0,7); c.fillStyle="#00B050"; c.fill(); c.strokeStyle=INK; c.lineWidth=1; c.stroke(); }); }
+  function side(){ $("read").innerHTML=`<div><small>Nuclei split</small><b>${splits}</b></div><div><small>Free neutrons</small><b>${N.length}</b></div><div><small>U-235 left</small><b>${U.filter(u=>u.on).length}</b></div>`;
+    $("info").innerHTML=`<b>Nuclear fission</b><span>Green dots are neutrons; blue circles are U-235 nuclei; yellow and orange circles are the smaller nuclei produced. ¹n + ²³⁵U → two smaller nuclei + 2 or 3 neutrons + a large amount of energy. Each split releases neutrons that can split other nuclei: a chain reaction. ${ctrl?"The control rods absorb neutrons, so fewer nuclei split and the reaction stays under control, as in a nuclear power plant.":"With nothing to absorb neutrons, the number of splits grows very quickly."}</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.04,last?(now-last)/1000:0); last=now; step(dt); draw(); if(Math.floor(now/300)!==Math.floor((now-dt*1000)/300)) side(); raf=requestAnimationFrame(loop); }
+  $("fire").addEventListener("click",fire); $("ctrl").addEventListener("change",e=>{ ctrl=e.target.checked; side(); }); $("reset").addEventListener("click",reset);
+  reset(); raf=requestAnimationFrame(loop); };
+})();
+
+/* Nov 14: drag highlighted values straight out of a word problem.
+   A.TextDrag({root, sources:[{id, el}], extras:[{id, html}], pool, targets:[{el,id}], onChange})
+   - each source is a highlighted span inside the problem text; it stays in the text (marked "used") and a copy chip goes into the slot
+   - extras (e.g. "?" or STP values that are not written in the problem) sit in a small pool
+   - one chip per slot; a value can be in one slot at a time; drag a chip out of a slot (or click it, then click the problem) to remove it
+   API matches A.DragDrop "later" mode: placement() → {cardId: slotId}, mark(fn(card,slotId)), remaining() */
+(function(){ const A=window.AS; if(!A) return;
+A.TextDrag=function(o){ const cards=new Map(); let armed=null; const root=o.root||document;
+  const mine=new Set(o.targets.map(t=>t.id)); let off=false;
+  const tgtOf=el=>{ const t=el&&el.closest("[data-dd-t]"); return t&&mine.has(t.dataset.ddT)&&!off? t : null; };
+  o.targets.forEach(t=>{ t.el.dataset.ddT=t.id; t.el.tabIndex=0; t.el.setAttribute("role","button"); t.el.classList.add("tx-slot");
+    t.el.addEventListener("click",ev=>{ if(!off&&armed&&!ev.target.closest(".tx-chip")) place(armed,t.el); });
+    t.el.addEventListener("keydown",ev=>{ if((ev.key==="Enter"||ev.key===" ")&&armed){ ev.preventDefault(); place(armed,t.el); } }); });
+  const add=(id,src,html)=>{ cards.set(id,{id,src,html:html||src.innerHTML,where:null,chip:null}); wire(src,id); };
+  (o.sources||[]).forEach(s=>{ s.el.classList.add("tx-src"); s.el.tabIndex=0; s.el.setAttribute("role","button"); s.el.setAttribute("aria-label",`Value ${s.el.textContent}: drag it into the setup`); add(s.id,s.el,s.html); });
+  if(o.pool&&o.extras&&o.extras.length){ o.pool.innerHTML=`<span class="tx-pool-l">${o.poolLabel||"Also use:"}</span>`; o.extras.forEach(c=>{ const el=A.h("span",{class:"tx-src tx-extra",tabindex:"0",role:"button"},c.html); o.pool.appendChild(el); add(c.id,el,c.html); }); }
+  else if(o.pool) o.pool.hidden=true;
+  function setArmed(id){ A.$$(".tx-src.armed,.tx-chip.armed",root).forEach(x=>x.classList.remove("armed")); armed=id; if(id){ const r=cards.get(id); r.src.classList.add("armed"); r.chip&&r.chip.classList.add("armed"); } }
+  function wire(el,id){
+    el.addEventListener("pointerdown",ev=>{ if(off) return; ev.preventDefault(); const sx=ev.clientX, sy=ev.clientY; let moved=false, gh=null, hot=null;
+      const mv=e=>{ if(!moved&&Math.hypot(e.clientX-sx,e.clientY-sy)>5){ moved=true; gh=A.h("div",{class:"dd-card dd-ghost"},cards.get(id).html); document.body.appendChild(gh); }
+        if(!gh) return; gh.style.left=e.clientX+"px"; gh.style.top=e.clientY+"px"; const h=tgtOf(document.elementFromPoint(e.clientX,e.clientY));
+        if(h!==hot){ hot&&hot.classList.remove("drop-hot"); hot=h; hot&&hot.classList.add("drop-hot"); } };
+      const up=e=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up); gh&&gh.remove(); hot&&hot.classList.remove("drop-hot");
+        if(!moved){ setArmed(armed===id?null:id); return; } const tg=tgtOf(document.elementFromPoint(e.clientX,e.clientY)); if(tg) place(id,tg); };
+      document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); });
+    el.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); setArmed(armed===id?null:id); } }); }
+  let nInst=0; const reused=src=>{ let u=false; cards.forEach(q=>{ if(q.src===src&&q.where) u=true; }); return u; };
+  function clear(id){ const r=cards.get(id); if(!r||!r.where) return; const slot=root.querySelector(`[data-dd-t="${r.where}"]`); r.chip&&r.chip.remove(); r.chip=null; slot&&slot.classList.remove("filled","good","bad"); r.where=null; r.src.classList.toggle("used",reused(r.src)); if(r.inst) cards.delete(id); }
+  function place(id,slot){ let r=cards.get(id); if(!r) return; const sid=slot.dataset.ddT;
+    /* reuse: the same highlighted value can go into several boxes (a cube's side three times) */
+    if(o.reuse&&!r.inst){ const nid=id+"~"+(++nInst); cards.set(nid,{id:nid,base:id,src:r.src,html:r.html,where:null,chip:null,inst:true}); id=nid; r=cards.get(id); }
+    /* whatever was in the slot goes back */ cards.forEach(q=>{ if(q.where===sid&&q.id!==id) clear(q.id); });
+    clear(id); const chip=A.h("span",{class:"dd-card tx-chip",tabindex:"0",role:"button","aria-label":"Placed value; drag it out to remove"},r.html);
+    (slot.querySelector(".dd-body,.tx-body")||slot).appendChild(chip); r.chip=chip; r.where=sid; slot.classList.add("filled"); r.src.classList.add("used");
+    /* dragging a placed chip out of the slot removes it (or moves it to another slot) */
+    chip.addEventListener("pointerdown",ev=>{ if(off) return; ev.preventDefault(); ev.stopPropagation(); let moved=false, gh=null; const sx=ev.clientX, sy=ev.clientY;
+      const mv=e=>{ if(!moved&&Math.hypot(e.clientX-sx,e.clientY-sy)>5){ moved=true; gh=A.h("div",{class:"dd-card dd-ghost"},r.html); document.body.appendChild(gh); } if(gh){ gh.style.left=e.clientX+"px"; gh.style.top=e.clientY+"px"; } };
+      const up=e=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up); gh&&gh.remove();
+        if(!moved){ clear(id); setArmed(null); o.onChange&&o.onChange(); return; } const tg=tgtOf(document.elementFromPoint(e.clientX,e.clientY)); if(tg) place(id,tg); else { clear(id); o.onChange&&o.onChange(); } };
+      document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); });
+    setArmed(null); o.onChange&&o.onChange(); }
+  return { placement(){ const m={}; cards.forEach((r,id)=>{ if(!(o.reuse&&!r.inst)) m[id]=r.where; }); return m; }, baseOf(id){ const r=cards.get(id); return r&&r.base||id; },
+    mark(fn){ cards.forEach(r=>{ if(!r.chip) return; const ok=fn({id:r.id},r.where); r.chip.classList.toggle("placed",ok); r.chip.classList.toggle("wrongp",!ok); }); },
+    lock(){ off=true; setArmed(null); }, remaining(){ let n=0; cards.forEach(r=>{ if(!r.where) n++; }); return n; }, disarm(){ setArmed(null); } }; };
+})();
+
+/* Nov 14: molecules drawn with bond lines (one line per shared pair), and three Unit 10 interactives:
+   K.RateEquil (2NO2 ⇌ N2O4: forward and reverse rates meet), K.LeChat (N2 + 3H2 ⇌ 2NH3 + heat: drag stresses, predict, watch the shift, scale analogy),
+   K.RateLab (temperature, surface area, concentration, pressure, with a lab notebook). */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T) return; const K=A.U10=A.U10||{};
+const INK="#1b2328", GRAY="#5f6b72";
+/* ---------- molecules with bond lines ---------- */
+A.ACOL=Object.assign({H:"#2E75D6",O:"#E00000",C:"#00B050",N:"#7030A0",Cl:"#F28C28",S:"#FFD200",I:"#6b3fa0",F:"#9ACD32",Br:"#8B2500",A:"#E00000",B:"#2E75D6"},A.ACOL||{});
+A.ARAD={H:4.6,C:6.6,N:6.6,O:6.6,Cl:7.6,S:7.6,I:8.4,F:6,Br:8,A:6.6,B:6.6};
+/* geometry in px at scale 1: atoms [element, x, y], bonds [i, j, order] */
+A.MOLS=Object.assign({
+  H2:{a:[["H",-8,0],["H",8,0]],b:[[0,1,1]]},
+  N2:{a:[["N",-10,0],["N",10,0]],b:[[0,1,3]]},
+  O2:{a:[["O",-10,0],["O",10,0]],b:[[0,1,2]]},
+  Cl2:{a:[["Cl",-11,0],["Cl",11,0]],b:[[0,1,1]]},
+  NH3:{a:[["N",0,0],["H",0,-17],["H",-14.7,8.5],["H",14.7,8.5]],b:[[0,1,1],[0,2,1],[0,3,1]]},
+  H2O:{a:[["O",0,-3],["H",-14,8],["H",14,8]],b:[[0,1,1],[0,2,1]]},
+  CO2:{a:[["C",0,0],["O",-19,0],["O",19,0]],b:[[0,1,2],[0,2,2]]},
+  CH4:{a:[["C",0,0],["H",0,-17],["H",17,0],["H",0,17],["H",-17,0]],b:[[0,1,1],[0,2,1],[0,3,1],[0,4,1]]},
+  HCl:{a:[["H",-10,0],["Cl",8,0]],b:[[0,1,1]]},
+  NO2:{a:[["N",0,4],["O",-17,-6],["O",17,-6]],b:[[0,1,2],[0,2,1]]},
+  N2O4:{a:[["N",-10,0],["N",10,0],["O",-22,-13],["O",-22,13],["O",22,-13],["O",22,13]],b:[[0,1,1],[0,2,2],[0,3,1],[1,4,2],[1,5,1]]},
+  A2:{a:[["A",-10,0],["A",10,0]],b:[[0,1,1]]}, B2:{a:[["B",-10,0],["B",10,0]],b:[[0,1,1]]}, AB:{a:[["A",-10,0],["B",10,0]],b:[[0,1,1]]}
+},A.MOLS||{});
+A.molR=k=>{ const m=A.MOLS[k]; return Math.max(...m.a.map(([e,x,y])=>Math.hypot(x,y)+(A.ARAD[e]||6.6))); };
+/* canvas */
+A.drawMol=(c,k,x,y,ang=0,s=1,alpha=1)=>{ const m=A.MOLS[k], co=Math.cos(ang), si=Math.sin(ang), P=m.a.map(([e,ax,ay])=>[e,x+(ax*co-ay*si)*s,y+(ax*si+ay*co)*s]);
+  c.save(); c.globalAlpha=alpha; c.strokeStyle=INK; c.lineWidth=1.6*Math.max(.8,s); c.lineCap="round";
+  m.b.forEach(([i,j,n])=>{ const [,x1,y1]=P[i], [,x2,y2]=P[j], d=Math.hypot(x2-x1,y2-y1)||1, nx=-(y2-y1)/d, ny=(x2-x1)/d, gap=3.4*s;
+    for(let q=0;q<n;q++){ const o=(q-(n-1)/2)*gap; c.beginPath(); c.moveTo(x1+nx*o,y1+ny*o); c.lineTo(x2+nx*o,y2+ny*o); c.stroke(); } });
+  P.forEach(([e,px,py])=>{ c.beginPath(); c.arc(px,py,(A.ARAD[e]||6.6)*s,0,7); c.fillStyle=A.ACOL[e]||"#999"; c.fill(); c.lineWidth=1.2; c.stroke(); });
+  c.restore(); };
+/* svg */
+A.molSVG=(k,x,y,ang=0,s=1)=>{ const m=A.MOLS[k], co=Math.cos(ang), si=Math.sin(ang), P=m.a.map(([e,ax,ay])=>[e,x+(ax*co-ay*si)*s,y+(ax*si+ay*co)*s]); let o="";
+  m.b.forEach(([i,j,n])=>{ const [,x1,y1]=P[i], [,x2,y2]=P[j], d=Math.hypot(x2-x1,y2-y1)||1, nx=-(y2-y1)/d, ny=(x2-x1)/d, gap=3.4*s;
+    for(let q=0;q<n;q++){ const off=(q-(n-1)/2)*gap; o+=`<path d="M${(x1+nx*off).toFixed(1)} ${(y1+ny*off).toFixed(1)}L${(x2+nx*off).toFixed(1)} ${(y2+ny*off).toFixed(1)}" stroke="${INK}" stroke-width="${(1.6*Math.max(.8,s)).toFixed(2)}" stroke-linecap="round"/>`; } });
+  P.forEach(([e,px,py])=>o+=`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${((A.ARAD[e]||6.6)*s).toFixed(1)}" fill="${A.ACOL[e]||"#999"}" stroke="${INK}" stroke-width="1.2"/>`); return o; };
+const F=s=>A.subUnit?A.subUnit(s):s;
+
+/* shared: bouncing molecules in a box */
+function Box(W,H,rnd){ const M=[]; return { M,
+  add(k,x,y,v=26){ const R=A.molR(k); if(x==null){ let n=0; do{ x=R+4+rnd()*(W-2*R-8); y=R+4+rnd()*(H-2*R-8); n++; } while(n<300&&M.some(q=>Math.hypot(q.x-x,q.y-y)<q.R+R+2)); }
+    const a=rnd()*6.283; const m={k,R,x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,ang:rnd()*6.283,w:(rnd()-.5)*.8,fl:0,fade:1}; M.push(m); return m; },
+  move(dt,top=0,onHit){ M.forEach(p=>{ p.x+=p.vx*dt; p.y+=p.vy*dt; p.ang+=p.w*dt; p.fl=Math.max(0,p.fl-dt);
+      if(p.x<p.R){p.x=p.R;p.vx=Math.abs(p.vx);} if(p.x>W-p.R){p.x=W-p.R;p.vx=-Math.abs(p.vx);} if(p.y<top+p.R){p.y=top+p.R;p.vy=Math.abs(p.vy);} if(p.y>H-p.R){p.y=H-p.R;p.vy=-Math.abs(p.vy);} });
+    for(let i=0;i<M.length;i++) for(let j=i+1;j<M.length;j++){ const a=M[i], b=M[j]; if(a.dead||b.dead) continue; const dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy), rr=(a.R+b.R)*.9;
+      if(d>0&&d<rr){ const nx=dx/d, ny=dy/d, rel=(a.vx-b.vx)*nx+(a.vy-b.vy)*ny; if(rel>0){ if(onHit&&onHit(a,b,rel)) continue; a.vx-=rel*nx; a.vy-=rel*ny; b.vx+=rel*nx; b.vy+=rel*ny; } const o=(rr-d)/2; a.x-=nx*o; a.y-=ny*o; b.x+=nx*o; b.y+=ny*o; } }
+    for(let i=M.length-1;i>=0;i--) if(M[i].dead) M.splice(i,1); },
+  draw(c){ M.forEach(p=>{ if(p.fl>0){ c.beginPath(); c.arc(p.x,p.y,p.R+6*p.fl,0,7); c.fillStyle=`rgba(242,183,5,${(.45*p.fl).toFixed(2)})`; c.fill(); } A.drawMol(c,p.k,p.x,p.y,p.ang,1,p.fade); }); } }; }
+const frame=(c,W,H)=>{ c.clearRect(0,0,W,H); c.fillStyle="#f7fbfd"; c.fillRect(0,0,W,H); c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(1.5,1.5,W-3,H-3); };
+const keyHTML=ks=>`<div class="k10-key">${ks.map(([k,lab])=>`<span>${T.svg(62,48,A.molSVG(k,31,24,0,.95),lab)}<b>${F(lab)}</b></span>`).join("")}</div>`;
+function lineGraph(Wg,Hg,series,{xmax,ymax,xl,yl,legend}){ const x0=38,y0=Hg-28,w=Wg-x0-10,h=Hg-28-14, X=v=>x0+v/xmax*w, Y=v=>y0-v/ymax*h;
+  let g=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+  series.forEach(s=>{ if(s.pts.length>1) g+=`<path d="${s.pts.map((q,i)=>(i?"L":"M")+X(q[0]).toFixed(1)+" "+Y(q[1]).toFixed(1)).join("")}" fill="none" stroke="${s.col}" stroke-width="2.6" ${s.dash?'stroke-dasharray="6 4"':""}/>`; });
+  g+=`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2"/>`+T.t(x0+w/2,Hg-8,xl,{fs:11.5})+`<text transform="translate(12 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="11.5" font-weight="700">${yl}</text>`+T.t(x0-5,y0-h+8,String(+ymax.toFixed(1)),{fs:10.5,a:"end",c:GRAY})+T.t(x0-5,y0+4,"0",{fs:10.5,a:"end",c:GRAY});
+  if(legend){ let lx=x0+8; series.forEach(s=>{ g+=`<path d="M${lx} ${y0-h+10}h18" stroke="${s.col}" stroke-width="3" ${s.dash?'stroke-dasharray="6 4"':""}/>`+T.t(lx+22,y0-h+14,s.name,{fs:11.5,a:"start",c:s.col}); lx+=s.name.length*6.6+40; }); }
+  return `<div class="k10-gw" style="max-width:${Wg+40}px">`+T.svg(Wg,Hg,g,yl+" against "+xl)+`</div>`; }
+
+/* ========== 1. Rates meet: 2NO2 ⇌ N2O4 ========== */
+K.RateEquil=function(host){ const W=460,H=320, rnd=T.rng(77); let box, t=0, raf=0, last=0, ev=[], hist=[], paused=false, ff=1, seenEq=false;
+  const PF=.3, KR=.035; /* chance that an NO2–NO2 collision joins; chance per second that one N2O4 splits */
+  host.innerHTML=`<div class="lab-b"><p class="how">Brown nitrogen dioxide (NO<sub>2</sub>) molecules join in pairs to form colorless dinitrogen tetroxide (N<sub>2</sub>O<sub>4</sub>), and N<sub>2</sub>O<sub>4</sub> molecules split back into NO<sub>2</sub>, in a closed container: 2NO<sub>2</sub>(g) ⇌ N<sub>2</sub>O<sub>4</sub>(g). Start the reaction and watch both rates on the graph.</p>
+   <div class="controls"><button type="button" class="btn" data-r="sNO2"><span>Start with NO<sub>2</sub> only</span></button><button type="button" class="btn ghost" data-r="sN2O4"><span>Start with N<sub>2</sub>O<sub>4</sub> only</span></button><button type="button" class="btn ghost" data-r="pause">Pause</button><label class="chk"><input type="checkbox" data-r="ff"> Fast-forward (×3)</label></div>
+   <div class="g8-row"><div><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Molecules of NO2 joining and N2O4 splitting"></canvas>${keyHTML([["NO2","NO2"],["N2O4","N2O4"]])}</div>
+   <div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-svg" data-r="rg"></div><div class="t7-svg" data-r="cg"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  function start(kind){ box=Box(W,H,rnd); t=0; ev=[]; hist=[]; seenEq=false; if(kind==="NO2") for(let i=0;i<32;i++) box.add("NO2"); else for(let i=0;i<16;i++) box.add("N2O4"); side(); }
+  function step(dt){ t+=dt;
+    box.move(dt,0,(a,b)=>{ if(a.k==="NO2"&&b.k==="NO2"&&rnd()<PF){ a.k="N2O4"; a.R=A.molR("N2O4"); a.x=(a.x+b.x)/2; a.y=(a.y+b.y)/2; a.vx=(a.vx+b.vx)/2; a.vy=(a.vy+b.vy)/2; a.fl=1; b.dead=true; ev.push([t,1]); return true; } return false; });
+    box.M.slice().forEach(m=>{ if(m.k==="N2O4"&&m.fl===0&&rnd()<KR*dt){ const ca=Math.cos(m.ang), sa=Math.sin(m.ang); m.k="NO2"; m.R=A.molR("NO2"); const v=Math.hypot(m.vx,m.vy)||26;
+      const n=box.add("NO2",m.x+ca*16,m.y+sa*16); m.x-=ca*16; m.y-=sa*16; m.vx=-ca*v; m.vy=-sa*v; n.vx=ca*v; n.vy=sa*v; m.fl=n.fl=.8; ev.push([t,-1]); } });
+    while(ev.length&&t-ev[0][0]>6) ev.shift();
+    if(Math.floor(t)!==Math.floor(t-dt)){ const f=ev.filter(e=>e[1]>0).length/Math.min(6,Math.max(1,t)), r=ev.filter(e=>e[1]<0).length/Math.min(6,Math.max(1,t)); hist.push([t,f,r,box.M.filter(m=>m.k==="NO2").length,box.M.filter(m=>m.k==="N2O4").length]); } }
+  function side(){ const n1=box.M.filter(m=>m.k==="NO2").length, n2=box.M.length-n1, L=hist[hist.length-1]||[0,0,0], tm=Math.max(40,Math.ceil(t/20)*20);
+    $("read").innerHTML=`<div><small>NO<sub>2</sub></small><b style="color:#8B2500">${n1}</b></div><div><small>N<sub>2</sub>O<sub>4</sub></small><b>${n2}</b></div><div><small>Time</small><b>${Math.floor(t)} s</b></div>`;
+    const rm=Math.max(1,...hist.map(h=>Math.max(h[1],h[2])));
+    $("rg").innerHTML=lineGraph(320,170,[{name:"forward rate",col:"#c0392b",pts:hist.map(h=>[h[0],h[1]])},{name:"reverse rate",col:"#2E75D6",dash:1,pts:hist.map(h=>[h[0],h[2]])}],{xmax:tm,ymax:Math.ceil(rm*1.15*10)/10,xl:"time (s)",yl:"rate (changes/s)",legend:1});
+    $("cg").innerHTML=lineGraph(320,150,[{name:"NO₂",col:"#8B2500",pts:hist.map(h=>[h[0],h[3]])},{name:"N₂O₄",col:"#7030A0",dash:1,pts:hist.map(h=>[h[0],h[4]])}],{xmax:tm,ymax:34,xl:"time (s)",yl:"molecules",legend:1});
+    const close=hist.length>14&&hist.slice(-6).every(h=>Math.abs(h[1]-h[2])<=Math.max(.35,.3*(h[1]+h[2])/2)); if(close) seenEq=true;
+    $("info").innerHTML= !hist.length? `<b>Predict</b><span>At the start, which reaction will be faster: forward (2NO<sub>2</sub> → N<sub>2</sub>O<sub>4</sub>) or reverse (N<sub>2</sub>O<sub>4</sub> → 2NO<sub>2</sub>)? Start the reaction and check the rate graph.</span>`
+      : !seenEq? `<b>Watch the rates</b><span>${L[1]>L[2]?"Right now the forward rate is greater than the reverse rate.":"Right now the reverse rate is greater than the forward rate."} Keep watching how the two rates and the numbers of molecules change.</span>`
+      : `<b>Equilibrium</b><span>The forward and reverse rates are now equal. Molecules are still joining and splitting, but the numbers of NO<sub>2</sub> and N<sub>2</sub>O<sub>4</sub> stay about the same. This is a <b>dynamic equilibrium</b>. The amounts of NO<sub>2</sub> and N<sub>2</sub>O<sub>4</sub> are constant, but not equal. Try starting from the other side.</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.04,last?(now-last)/1000:0); last=now; if(!paused) for(let i=0;i<ff;i++) step(dt); frame(c,W,H); box.draw(c); if(Math.floor(now/500)!==Math.floor((now-dt*1000)/500)) side(); raf=requestAnimationFrame(loop); }
+  $("sNO2").addEventListener("click",()=>start("NO2")); $("sN2O4").addEventListener("click",()=>start("N2O4"));
+  $("pause").addEventListener("click",e=>{ paused=!paused; e.target.textContent=paused?"Resume":"Pause"; });
+  $("ff").addEventListener("change",e=>ff=e.target.checked?3:1);
+  start("NO2"); paused=true; $("pause").textContent="Resume"; hist=[]; side(); raf=requestAnimationFrame(loop);
+  host._eq={get t(){return t;},get hist(){return hist;},step}; };
+
+/* ========== 2. Le Châtelier: N2 + 3H2 ⇌ 2NH3 + heat ========== */
+K.LeChat=function(host){ const W=470,H=320, rnd=T.rng(31); let box, raf=0, last=0, lastK="", Kc, heatLvl=0, phase="eq", plan=null, before=null, stressTxt="", tilt=0, tiltT=0, queue=[], qt=0;
+  const N0={N2:5,H2:12,NH3:8}, CAP=34;
+  const cnt=()=>({N2:box.M.filter(m=>m.k==="N2").length,H2:box.M.filter(m=>m.k==="H2").length,NH3:box.M.filter(m=>m.k==="NH3").length});
+  const lnQ=n=>2*Math.log(Math.max(.5,n.NH3))-Math.log(Math.max(.5,n.N2))-3*Math.log(Math.max(.5,n.H2));
+  const STRESS=[["N2","+4 N₂","add N₂"],["H2","+8 H₂","add H₂"],["NH3","+4 NH₃","add NH₃"],["rmN2","− half the N₂","remove N₂"],["rmNH3","− half the NH₃","remove NH₃"],["heat","🔥 add heat","raise the temperature"],["cool","❄ remove heat","lower the temperature"]];
+  host.innerHTML=`<div class="lab-b"><p class="how">This closed container holds nitrogen, hydrogen and ammonia at equilibrium: N<sub>2</sub>(g) + 3H<sub>2</sub>(g) ⇌ 2NH<sub>3</sub>(g) + heat. Drag a stress onto the container (or tap a stress, then tap the container). Predict the shift, then watch the system respond.</p>
+   <div class="k10-eq" data-r="eq"></div>
+   <div class="k10-stress" data-r="pal">${STRESS.map(([k,l])=>`<button type="button" class="k10-st" data-s="${k}">${l}</button>`).join("")}<button type="button" class="btn ghost sm" data-r="reset">Start over</button></div>
+   <div class="g8-row"><div class="k10-drop" data-r="drop"><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Molecules of nitrogen, hydrogen and ammonia at equilibrium"></canvas>${keyHTML([["N2","N2"],["H2","H2"],["NH3","NH3"]])}</div>
+   <div class="g8-side"><div class="k10-pred" data-r="pred" hidden></div><div data-r="tab"></div><div class="t7-svg" data-r="scale"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  function reset(){ box=Box(W,H,rnd); Object.entries(N0).forEach(([k,n])=>{ for(let i=0;i<n;i++) box.add(k,null,null,22); }); Kc=lnQ(N0); heatLvl=0; phase="eq"; plan=null; before=null; tilt=0; tiltT=0; queue=[]; $("pred").hidden=true; eqLine(0); table(); scale(); info(); }
+  function eqLine(dir){ $("eq").innerHTML=`<span>N<sub>2</sub> + 3H<sub>2</sub></span><span class="k10-arr ${dir>0?"r":dir<0?"l":""}"><b class="f">⟶</b><b class="b">⟵</b></span><span>2NH<sub>3</sub> + heat</span>${dir?`<em>${dir>0?"shifts right: more products form":"shifts left: more reactants form"}</em>`:""}`; }
+  function apply(k){ if(phase!=="eq") return; lastK=k; before=cnt(); const n=before;
+    const take=(type,frac)=>{ let r=Math.floor(n[type]*frac); box.M.filter(m=>m.k===type).slice(0,r).forEach(m=>m.dead=true); box.M.splice(0,box.M.length,...box.M.filter(m=>!m.dead)); };
+    const put=(type,q)=>{ for(let i=0;i<q&&box.M.length<CAP;i++){ const m=box.add(type,null,null,22); m.fl=1.4; } };
+    if(k==="N2") put("N2",4); else if(k==="H2") put("H2",8); else if(k==="NH3") put("NH3",4); else if(k==="rmN2") take("N2",.5); else if(k==="rmNH3") take("NH3",.5);
+    else if(k==="heat"){ heatLvl++; Kc-=1.6; } else if(k==="cool"){ heatLvl--; Kc+=1.6; }
+    stressTxt=STRESS.find(s=>s[0]===k)[2];
+    /* the extent of reaction that brings the system closest to equilibrium */
+    const now=cnt(); let best=0, bd=Infinity; for(let x=-Math.floor(now.NH3/2);x<=Math.min(now.N2,Math.floor(now.H2/3));x++){ const q={N2:now.N2-x,H2:now.H2-3*x,NH3:now.NH3+2*x}; if(q.N2<1||q.H2<1||q.NH3<1) continue; const d=Math.abs(lnQ(q)-Kc); if(d<bd){ bd=d; best=x; } }
+    const dir=Math.sign(Kc-lnQ(now)); if(Math.sign(best)!==dir){ const q={N2:now.N2-dir,H2:now.H2-3*dir,NH3:now.NH3+2*dir}; if(q.N2>=1&&q.H2>=1&&q.NH3>=1) best=dir; } /* every stress produces a visible shift */
+    plan={x:best,after:{N2:now.N2-best,H2:now.H2-3*best,NH3:now.NH3+2*best},mid:now};
+    tilt=Math.max(-1,Math.min(1,(Kc-lnQ(now))/2.2)); /* + : the reactant side is "heavier" */
+    phase="predict"; eqLine(0); table(); scale(); info();
+    $("pred").hidden=false; $("pred").innerHTML=`<b>Stress: ${stressTxt}.</b> Which way will the equilibrium shift?<div class="k10-pb"><button type="button" class="btn ghost" data-p="-1">⟵ Left (toward reactants)</button><button type="button" class="btn ghost" data-p="1">Right (toward products) ⟶</button></div><div class="status" data-r="pm"></div>`;
+    A.$$("[data-p]",$("pred")).forEach(b=>b.addEventListener("click",()=>{ const p=+b.dataset.p, dir=Math.sign(best); const ok=p===dir; A.markBox(b,ok);
+      if(!ok){ $("pm").className="status bad"; $("pm").innerHTML="Look at the scale: which side did the stress make heavier? The system shifts away from the side that gained (or toward the side that lost)."; return; }
+      $("pm").className="status good"; $("pm").innerHTML="✔ Watch the shift."; A.$$("[data-p]",$("pred")).forEach(x=>x.disabled=true); go(); })); }
+  function go(){ phase="shift"; const d=Math.sign(plan.x); eqLine(d); queue=Array(Math.abs(plan.x)).fill(d); qt=.3; }
+  function event(d){ const near=(type,n,cx,cy)=>box.M.filter(m=>m.k===type&&!m.dead).sort((a,b)=>Math.hypot(a.x-cx,a.y-cy)-Math.hypot(b.x-cx,b.y-cy)).slice(0,n);
+    if(d>0){ const n2=near("N2",1,W/2,H/2)[0]; if(!n2) return; const hs=near("H2",3,n2.x,n2.y); if(hs.length<3) return; const cx=(n2.x+hs.reduce((s,h)=>s+h.x,0))/4, cy=(n2.y+hs.reduce((s,h)=>s+h.y,0))/4;
+      [n2,...hs].forEach(m=>m.dead=true); box.M.splice(0,box.M.length,...box.M.filter(m=>!m.dead)); [-1,1].forEach(s=>{ const m=box.add("NH3",cx+s*16,cy,22); m.fl=1; }); }
+    else { const a=near("NH3",2,W/2,H/2); if(a.length<2) return; const cx=(a[0].x+a[1].x)/2, cy=(a[0].y+a[1].y)/2; a.forEach(m=>m.dead=true); box.M.splice(0,box.M.length,...box.M.filter(m=>!m.dead));
+      const m=box.add("N2",cx,cy,22); m.fl=1; for(let i=0;i<3;i++){ const h=box.add("H2",cx+Math.cos(i*2.1)*26,cy+Math.sin(i*2.1)*26,22); h.fl=1; } } }
+  function table(){ const n=cnt(), b=before;
+    const row=(k,lab)=>{ const v0=b?b[k]:n[k], v=n[k], ar=!b||phase!=="done"?"":v>v0?`<b class="up">↑ increased</b>`:v<v0?`<b class="dn">↓ decreased</b>`:`<b>no change</b>`;
+      return `<tr><td>${lab}</td><td>${b?b[k]:"—"}</td><td>${plan&&phase!=="eq"?plan.mid[k]:"—"}</td><td>${phase==="done"?v:"—"}</td><td>${ar}</td></tr>`; };
+    $("tab").innerHTML=`<table class="k10-tab"><tr><th>Molecules</th><th>At equilibrium</th><th>Right after the stress</th><th>New equilibrium</th><th>Overall change</th></tr>${row("N2","N<sub>2</sub>")}${row("H2","H<sub>2</sub>")}${row("NH3","NH<sub>3</sub>")}<tr><td>Temperature</td><td colspan="4">${heatLvl>0?"higher than at the start":heatLvl<0?"lower than at the start":"starting temperature"}</td></tr></table>`; }
+  function scale(){ const a=tiltT*16*Math.PI/180, Wg=320, Hg=170, cx=160, cy=60, L=110, lx=cx-L*Math.cos(a), ly=cy+L*Math.sin(a), rx=cx+L*Math.cos(a), ry=cy-L*Math.sin(a);
+    const pan=(x,y,lab,col)=>`<path d="M${x} ${y}l-34 44h68z" fill="none" stroke="${GRAY}" stroke-width="1.5"/><path d="M${x-44} ${y+44}h88a44 14 0 0 1 -88 0z" fill="${col}" stroke="${INK}" stroke-width="2"/>`+T.t(x,y+74,lab,{fs:12.5});
+    let s=`<path d="M${cx} ${cy}L${cx-22} ${Hg-14}H${cx+22}z" fill="#d7dee1" stroke="${INK}" stroke-width="2"/><path d="M${lx} ${ly}L${rx} ${ry}" stroke="${INK}" stroke-width="6" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" fill="${INK}"/>`;
+    s+=pan(lx,ly,"reactants","#ffd9d9")+pan(rx,ry,"products","#d9e8ff");
+    if(phase==="predict"||phase==="shift"){ const onL=/^(N2|H2|rmN2)$/.test(lastK), rem=/^(rm|cool)/.test(lastK), x=onL?lx:rx, y=onL?ly:ry;
+      s+=`<rect x="${x-30}" y="${y+16}" width="60" height="26" rx="4" fill="${rem?"none":"#fff4e0"}" stroke="#e07b00" stroke-width="2" ${rem?'stroke-dasharray="5 3"':""}/>`+T.t(x,y+34,rem?"removed":"added",{fs:12,c:"#b35c00"}); }
+    $("scale").innerHTML=`<div class="k10-sc-h"><b>Scale analogy</b> <span>${phase==="predict"?"The stress has tipped the balance.":phase==="shift"?"The shift is moving the system back into balance…":"In balance: the system is at equilibrium."}</span></div>`+`<div class="k10-gw" style="max-width:330px;margin:0 auto">`+T.svg(Wg,Hg,s,"A balance tipped toward the side the stress made heavier")+`</div>`+`<small class="muted">Analogy only: at equilibrium the forward and reverse <b>rates</b> are balanced. The amounts of reactants and products do not have to be equal.</small>`; }
+  function info(){ $("info").innerHTML= phase==="done"? `<b>Le Châtelier’s principle</b><span>When a stress is placed on a system at equilibrium, the system shifts in the direction that relieves the stress, then settles at a new equilibrium. Try another stress.</span>` : phase==="eq"? `<b>At equilibrium</b><span>The molecules keep reacting in both directions at equal rates, so the numbers stay the same. Drag a stress onto the container.</span>` : `<b>Stress: ${stressTxt}</b><span>${phase==="predict"?"Predict the shift using the balance and the table.":"Molecules are reacting in the direction that relieves the stress."}</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.04,last?(now-last)/1000:0); last=now; box.move(dt);
+    if(phase==="shift"){ qt-=dt; if(qt<=0){ if(queue.length){ event(queue.shift()); qt=.55; table(); } else { phase="done"; tilt=0; eqLine(Math.sign(plan.x)); table(); scale(); info(); } } }
+    const goal=phase==="predict"||(phase==="shift"&&queue.length)? tilt*(phase==="shift"&&plan.x? queue.length/Math.abs(plan.x):1) : 0;
+    if(Math.abs(goal-tiltT)>.003){ tiltT+=(goal-tiltT)*Math.min(1,dt*3); scale(); }
+    frame(c,W,H); box.draw(c); if(heatLvl){ c.font="700 13px Inter,Arial"; c.fillStyle=heatLvl>0?"#c0392b":"#2E75D6"; c.fillText(heatLvl>0?"temperature raised":"temperature lowered",10,H-10); } raf=requestAnimationFrame(loop); }
+  /* drag a stress chip onto the container (or tap, then tap the container) */
+  let armed=null;
+  A.$$(".k10-st",host).forEach(b=>{ b.addEventListener("pointerdown",ev=>{ ev.preventDefault(); const sx=ev.clientX, sy=ev.clientY; let gh=null;
+    const mv=e=>{ if(!gh&&Math.hypot(e.clientX-sx,e.clientY-sy)>6){ gh=A.h("div",{class:"dd-card dd-ghost"},b.innerHTML); document.body.appendChild(gh); } if(gh){ gh.style.left=e.clientX+"px"; gh.style.top=e.clientY+"px"; $("drop").classList.toggle("drop-hot",!!document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-r="drop"]')); } };
+    const up=e=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up); $("drop").classList.remove("drop-hot");
+      if(gh){ gh.remove(); if(document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-r="drop"]')) apply(b.dataset.s); } else { armed=armed===b.dataset.s?null:b.dataset.s; A.$$(".k10-st",host).forEach(x=>x.classList.toggle("armed",x.dataset.s===armed)); } };
+    document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); }); });
+  $("drop").addEventListener("click",()=>{ if(armed){ const k=armed; armed=null; A.$$(".k10-st",host).forEach(x=>x.classList.remove("armed")); apply(k); } });
+  $("reset").addEventListener("click",reset);
+  reset(); raf=requestAnimationFrame(loop); host._lc={apply,get phase(){return phase;},get plan(){return plan;},cnt}; };
+
+/* ========== 3. Reaction rate lab ========== */
+K.RateLab=function(host){ const W=500,H=330, rnd=T.rng(5); let mode="zn", Tc=25, surf="chunk", M=1, Pa=1, run=null, raf=0, last=0, trials=[], ff=1;
+  const LIQ=130, GOAL={zn:10,gas:8};
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose a reaction and set the conditions. Press <b>Run trial</b> and time how long it takes to make the product. Each finished trial is recorded in the lab notebook. Change one variable at a time.</p>
+   <div class="controls"><span class="ctl-label">Reaction</span><div class="seg" data-r="mode"><button type="button" aria-pressed="true" data-v="zn">Zn(s) + 2HCl(aq)</button><button type="button" aria-pressed="false" data-v="gas">A<sub>2</sub>(g) + B<sub>2</sub>(g)</button></div><label class="chk"><input type="checkbox" data-r="ff"> Fast-forward (×3)</label></div>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>Temperature</span><input type="range" min="15" max="45" step="10" value="25" data-r="T" aria-label="temperature"><b data-r="Tv"></b></label><label class="g8-sl"><span>Concentration</span><input type="range" min="1" max="3" step="1" value="1" data-r="M" aria-label="concentration"><b data-r="Mv"></b></label>
+    <label class="g8-sl"><span>Pressure</span><input type="range" min="1" max="3" step="1" value="1" data-r="P" aria-label="pressure"><b data-r="Pv"></b></label><span class="g8-sl" data-r="surfw"><span>Zinc</span><span class="seg" data-r="surf"><button type="button" aria-pressed="true" data-v="chunk">one piece</button><button type="button" aria-pressed="false" data-v="pieces">4 pieces</button><button type="button" aria-pressed="false" data-v="powder">powder</button></span></span></div>
+   <div class="controls"><button type="button" class="btn" data-r="go">▶ Run trial</button><button type="button" class="btn ghost" data-r="stop">Stop</button><span class="muted" data-r="eqn"></span></div>
+   <div class="g8-row"><div><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Reaction container"></canvas><div data-r="key"></div></div>
+   <div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="k10-nb"><div class="k10-nb-h"><b>Lab notebook</b><button type="button" class="btn ghost sm" data-r="clr">Clear</button></div><div data-r="nb"></div></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  const pR=()=>Math.min(1,.25*Math.pow(2,(Tc-25)/10)), vS=()=>40*Math.sqrt((Tc+273)/298), TS=2; /* model clock runs 2 s per real second */
+  function solids(){ /* same total amount of zinc, cut differently: more exposed surface */ const y=H-8;
+    if(surf==="chunk") return [{x:W/2-48,y:y-48,w:96,h:48}]; if(surf==="pieces") return [0,1,2,3].map(i=>({x:62+i*104,y:y-34,w:34,h:34}));
+    return Array.from({length:15},(_,i)=>({x:10+i*32.6,y:y-17,w:18,h:17})); }
+  function setup(){ const S={mode,Tc,surf,M,Pa,t:0,made:0,acc:0,jit:.98+rnd()*.04,box:Box(W,H,rnd),bub:[],solid:mode==="zn"?solids():[],gasTop:0,done:false};
+    if(mode==="zn"){ for(let i=0;i<16*M;i++) addAcid(S); } else { S.gasTop=(H-6)-(H-12)/Pa; for(let i=0;i<6*M;i++){ place(S,"A2"); place(S,"B2"); } }
+    return S; }
+  function place(S,k){ const R=A.molR(k); let x,y,n=0; do{ x=R+4+rnd()*(W-2*R-8); y=S.gasTop+R+4+rnd()*(H-S.gasTop-2*R-8); n++; } while(n<300&&S.box.M.some(q=>Math.hypot(q.x-x,q.y-y)<q.R+R)); S.box.add(k,x,y,vS()); }
+  function addAcid(S){ let x,y,n=0; do{ x=10+rnd()*(W-20); y=LIQ+10+rnd()*(H-LIQ-30); n++; } while(n<200&&(S.solid.some(s=>x>s.x-9&&x<s.x+s.w+9&&y>s.y-9)||S.box.M.some(q=>Math.hypot(q.x-x,q.y-y)<15))); const m=S.box.add("HCl",x,y,vS()); m.R=7; }
+  /* the model rate (product per second): rate ∝ concentration × exposed surface (zinc) or ∝ [A2][B2] (gases), doubling for each 10 °C rise.
+     The particles show the collisions; product forms at collisions, paced by the model rate so repeated trials agree within a few percent. */
+  const lam=S=>S.mode==="zn"? .4*S.M*({chunk:1,pieces:2,powder:3.2})[S.surf]*Math.pow(2,(S.Tc-25)/10) : .2*Math.pow(S.M*S.Pa,2)*Math.pow(2,(S.Tc-25)/10);
+  function step(dt){ const S=run; if(!S||S.done) return; dt*=TS; S.t+=dt; S.acc=(S.acc||0)+lam(S)*S.jit*dt;
+    if(S.mode==="zn"){ S.box.move(dt,LIQ);
+      S.box.M.forEach(p=>{ for(const s of S.solid){ if(p.x>s.x-p.R&&p.x<s.x+s.w+p.R&&p.y>s.y-p.R&&p.y<s.y+s.h+p.R){ const dl=p.x-(s.x-p.R), dr=s.x+s.w+p.R-p.x, dt2=p.y-(s.y-p.R);
+          const m=Math.min(dl,dr,dt2); if(m===dt2){ p.y=s.y-p.R; p.vy=-Math.abs(p.vy); } else if(m===dl){ p.x=s.x-p.R; p.vx=-Math.abs(p.vx); } else { p.x=s.x+s.w+p.R; p.vx=Math.abs(p.vx); }
+          if(S.acc>=1){ S.acc-=1; p.dead=true; S.bub.push({x:p.x,y:p.y,a:rnd()*6}); S.made++; } } } });
+      if(S.acc>=2){ S.acc-=1; const s=A.pick(S.solid); S.bub.push({x:s.x+rnd()*s.w,y:s.y-6,a:rnd()*6}); S.made++; }
+      S.box.M.splice(0,S.box.M.length,...S.box.M.filter(p=>!p.dead)); while(S.box.M.length<16*S.M) addAcid(S); /* acid in excess: concentration stays about the same */
+      S.bub.forEach(b=>{ b.y-=40*dt; b.a+=dt; }); S.bub=S.bub.filter(b=>b.y>LIQ+4);
+    } else { const join=(a,b)=>{ a.k="AB"; b.k="AB"; a.fl=b.fl=1; S.acc-=1; S.made+=2; };
+      S.box.move(dt,S.gasTop,(a,b)=>{ if(S.acc>=1&&(a.k==="A2"&&b.k==="B2"||a.k==="B2"&&b.k==="A2")){ join(a,b); } return false; });
+      if(S.acc>=1.6){ const as=S.box.M.filter(m=>m.k==="A2"), bs=S.box.M.filter(m=>m.k==="B2"); let best=null, bd=1e9; as.forEach(a=>bs.forEach(b=>{ const d=Math.hypot(a.x-b.x,a.y-b.y); if(d<bd){ bd=d; best=[a,b]; } })); if(best) join(...best); } }
+    if(S.made>=GOAL[S.mode]){ S.done=true; const tr={n:trials.length+1,mode:S.mode,Tc:S.Tc,M:S.M,Pa:S.Pa,surf:S.mode==="zn"?S.surf:"—",time:S.t,rate:GOAL[S.mode]/S.t}; trials.push(tr); notebook(); info(tr); lock(false); } }
+  function draw(){ const S=run||setup(); if(!run) run=S; frame(c,W,H);
+    if(S.mode==="zn"){ const airH=(LIQ-12)/S.Pa, pis=LIQ-airH; c.fillStyle="#dff0fb"; c.fillRect(3,LIQ,W-6,H-LIQ-3); c.strokeStyle="#7fb3d9"; c.lineWidth=2; c.beginPath(); c.moveTo(3,LIQ); c.lineTo(W-3,LIQ); c.stroke();
+      c.fillStyle="#9aa6aa"; c.fillRect(3,pis-12,W-6,12); c.fillRect(W/2-8,0,16,pis-12); c.fillStyle=INK; c.font="700 12px Inter,Arial"; c.fillText(`air above the solution · ${S.Pa} atm`,12,pis+16);
+      S.solid.forEach(s=>{ c.fillStyle="#a7b0b5"; c.fillRect(s.x,s.y,s.w,s.h); c.strokeStyle=INK; c.lineWidth=1.5; c.strokeRect(s.x,s.y,s.w,s.h); });
+      S.box.M.forEach(p=>{ A.drawMol(c,"HCl",p.x,p.y,p.ang,.5); });
+      S.bub.forEach(b=>{ c.beginPath(); c.arc(b.x,b.y,9,0,7); c.fillStyle="rgba(255,255,255,.7)"; c.fill(); c.strokeStyle="#7fb3d9"; c.lineWidth=1; c.stroke(); A.drawMol(c,"H2",b.x,b.y,b.a,.6); });
+      c.fillStyle=INK; c.font="700 12px Inter,Arial"; c.fillText("zinc",S.solid[0].x,S.solid[0].y-4); }
+    else { c.fillStyle="#9aa6aa"; c.fillRect(3,S.gasTop-12,W-6,12); c.fillRect(W/2-8,0,16,Math.max(0,S.gasTop-12)); S.box.draw(c); c.fillStyle=INK; c.font="700 12px Inter,Arial"; c.fillText(`${S.Pa} atm`,12,S.gasTop+16); } }
+  function readout(){ const S=run; if(!S) return; $("read").innerHTML=`<div><small>Time</small><b>${S.t.toFixed(1)} s</b></div><div><small>${S.mode==="zn"?"H<sub>2</sub> bubbles":"AB made"}</small><b>${S.made} / ${GOAL[S.mode]}</b></div><div><small>Status</small><b style="font-size:15px">${S.done?"finished":S.t>0?"running":"ready"}</b></div>`; }
+  function notebook(){ $("nb").innerHTML= trials.length? `<table class="k10-tab"><tr><th>#</th><th>Reaction</th><th>Temp (°C)</th><th>Conc. (M)</th><th>Pressure (atm)</th><th>Zinc</th><th>Time (s)</th><th>Rate (per s)</th></tr>${trials.map(r=>`<tr><td>${r.n}</td><td>${r.mode==="zn"?"Zn + HCl":"A<sub>2</sub> + B<sub>2</sub>"}</td><td>${r.Tc}</td><td>${r.M.toFixed(1)}</td><td>${r.Pa}</td><td>${r.surf}</td><td>${r.time.toFixed(1)}</td><td>${r.rate.toFixed(2)}</td></tr>`).join("")}</table>` : `<p class="muted">No trials yet. Each finished trial is added here.</p>`; }
+  function info(tr){ $("info").innerHTML= tr? `<b>Trial ${tr.n} finished</b><span>${GOAL[tr.mode]} ${tr.mode==="zn"?"bubbles of hydrogen gas":"molecules of AB"} in ${tr.time.toFixed(1)} s. Compare it with a trial that differs in only one variable. Which changes made the reaction faster? Which made no difference?</span>`
+      : `<b>Plan your trials</b><span>${mode==="zn"?"Acid particles react only when they hit the zinc’s surface with enough energy. Bubbles of H<sub>2</sub> rise out of the solution.":"A<sub>2</sub> and B<sub>2</sub> molecules react only when they collide with enough energy."} Run a first trial at the starting settings, then change one variable.</span>`; }
+  function sync(){ $("Tv").textContent=Tc+" °C"; $("Mv").textContent=M.toFixed(1)+(mode==="zn"?" M HCl":" M each"); $("Pv").textContent=Pa+" atm"; $("surfw").hidden=mode!=="zn";
+    $("eqn").innerHTML=mode==="zn"? "Zn(s) + 2HCl(aq) → ZnCl<sub>2</sub>(aq) + H<sub>2</sub>(g)" : "A<sub>2</sub>(g) + B<sub>2</sub>(g) → 2AB(g)";
+    $("key").innerHTML=mode==="zn"? keyHTML([["HCl","HCl"],["H2","H2"]]) : keyHTML([["A2","A2"],["B2","B2"],["AB","AB"]]); }
+  const lock=on=>A.$$('[data-r="T"],[data-r="M"],[data-r="P"],[data-r="surf"] button,[data-r="mode"] button',host).forEach(x=>x.disabled=on);
+  function fresh(){ run=setup(); draw(); readout(); info(); }
+  $("go").addEventListener("click",()=>{ run=setup(); run.t=0.0001; lock(true); readout(); });
+  $("stop").addEventListener("click",()=>{ if(run) run.done=true; lock(false); readout(); });
+  $("clr").addEventListener("click",()=>{ trials=[]; notebook(); });
+  $("ff").addEventListener("change",e=>ff=e.target.checked?3:1);
+  $("T").addEventListener("input",e=>{ Tc=+e.target.value; sync(); fresh(); }); $("M").addEventListener("input",e=>{ M=+e.target.value; sync(); fresh(); }); $("P").addEventListener("input",e=>{ Pa=+e.target.value; sync(); fresh(); });
+  A.$$('[data-r="surf"] button',host).forEach(b=>b.addEventListener("click",()=>{ surf=b.dataset.v; A.$$('[data-r="surf"] button',host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); fresh(); }));
+  A.$$('[data-r="mode"] button',host).forEach(b=>b.addEventListener("click",()=>{ mode=b.dataset.v; A.$$('[data-r="mode"] button',host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); sync(); fresh(); }));
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.04,last?(now-last)/1000:0); last=now;
+    if(run&&run.t>0&&!run.done){ for(let i=0;i<ff;i++) step(dt); if(run.done) lock(false); }
+    draw(); if(Math.floor(now/250)!==Math.floor((now-dt*1000)/250)) readout(); raf=requestAnimationFrame(loop); }
+  sync(); notebook(); fresh(); raf=requestAnimationFrame(loop); host._rl={get run(){return run;},step,get trials(){return trials;}}; };
+})();
+
+/* Nov 14: electromagnetic spectrum drawn like the 2025 Reference Table (radio on the left, gamma on the right; wavelength in m on top,
+   frequency in Hz below; visible light expanded "not to scale" with the Reference Table's color boundaries), plus a click-the-region game. */
+(function(){ const A=window.AS; if(!A) return; const INK="#1b2328", FT='font-family="Inter,Arial"';
+const sup=n=>String(n).replace("-","−");
+const P10=(n,fs=12.5)=>`10<tspan dy="-6" font-size="${(fs*.74).toFixed(1)}">${sup(n)}</tspan><tspan dy="6"> </tspan>`;
+/* regions by log10(wavelength in m): boundaries are approximate and blend into each other */
+A.EMREG=[["Radio","radio",4.6,-1,"#ffa8a8",2],["Microwave","micro",-1,-2.95,"#ffc98f",0],["Infrared","ir",-2.95,Math.log10(7e-7),"#ffb38a",1],["Visible light","vis",Math.log10(7e-7),Math.log10(4e-7),null,-1],["Ultraviolet","uv",Math.log10(4e-7),-8,"#c9a8ff",2],["X-ray","xray",-8,-11,"#a9b8ff",0],["Gamma","gamma",-11,-13.6,"#93dcf2",1]];
+/* the 2026 Reference Table's visible bands: name, wavelength boundaries (m), frequency boundaries (Hz), color */
+A.EMVIS=[["Red",7.00e-7,6.25e-7,4.28e14,4.80e14,"#e8352e"],["Orange",6.25e-7,5.90e-7,4.80e14,5.08e14,"#ff8a1f"],["Yellow",5.90e-7,5.65e-7,5.08e14,5.31e14,"#ffd21f"],["Green",5.65e-7,5.00e-7,5.31e14,6.00e14,"#2fb64a"],["Blue/Violet",5.00e-7,4.00e-7,6.00e14,7.50e14,"#4a55e0"]];
+A.emRegion=lg=>A.EMREG.find(r=>lg<=r[2]&&lg>r[3])||(lg>4?A.EMREG[0]:A.EMREG[6]);
+const shade=(h,k)=>"#"+[1,3,5].map(i=>Math.round(parseInt(h.slice(i,i+2),16)*k).toString(16).padStart(2,"0")).join("");
+/* layout follows the Reference Table: visible light expanded above (wavelengths) and below (frequencies), wavelength axis, overlapping region bars in three rows, frequency axis */
+A.emSpectrum=function(o={}){ const W=o.W||1000, L=40, R=W-20, hi=4.6, lo=-13.6, X=lg=>L+(hi-lg)/(hi-lo)*(R-L), id="em"+Math.random().toString(36).slice(2,7);
+  const yVt=34, hVb=30, yWl=136, yAx=176, yWave=186, yBar=[222,260,298], hB=28, yFx=344, yVb=420, H=o.game? yVb+hVb+54 : yVb+hVb+104;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:${o.min||760}px;display:block" role="img" aria-label="The electromagnetic spectrum: radio, microwave, infrared, visible, ultraviolet, X-ray and gamma, from long wavelength and low frequency on the left to short wavelength and high frequency on the right">`;
+  const v0=X(Math.log10(7e-7)), v1=X(Math.log10(4e-7));
+  s+=`<defs><linearGradient id="${id}v" x1="0" x2="1">${[700,650,600,560,520,480,440,400].map((nm,i)=>`<stop offset="${(i/7).toFixed(3)}" stop-color="${A.wl2rgb(nm)}"/>`).join("")}</linearGradient>
+    <linearGradient id="${id}fl" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="${id}fr" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="1"/></linearGradient>
+    <linearGradient id="${id}e" x1="0" x2="1"><stop offset="0" stop-color="#ffa8a8"/><stop offset=".5" stop-color="#ffd21f"/><stop offset="1" stop-color="#7a3fd0"/></linearGradient></defs>`;
+  const T2=(x,y,t,fs=13,w=400,anc="middle",col=INK)=>`<text x="${x}" y="${y}" text-anchor="${anc}" ${FT} font-size="${fs}" font-weight="${w}" fill="${col}">${t}</text>`;
+  /* visible light expansion: Blue/Violet is drawn twice as wide, as on the Reference Table */
+  const ex0=W/2-215, ex1=W/2+345, u=(ex1-ex0)/6, bx=i=>ex0+u*i, bw=i=>i===4?2*u:u;
+  const visStrip=(y,top)=>{ let t=""; A.EMVIS.forEach(([n,la,lb,fa,fb,col],i)=>{ t+=`<rect ${o.game?`class="em-hit" data-reg="vis-${i}"`:""} x="${bx(i)}" y="${y}" width="${bw(i)}" height="${hVb}" fill="${col}" stroke="#fff" stroke-width="2"/>`+T2(bx(i)+bw(i)/2,y+hVb/2+5,n,13,800,"middle",i===2?INK:"#fff"); });
+    t+=`<rect x="${ex0}" y="${y}" width="${ex1-ex0}" height="${hVb}" fill="none" stroke="${INK}" stroke-width="1.6" rx="2" pointer-events="none"/>`;
+    const labs= top? [...A.EMVIS.map(v=>v[1]),4.00e-7].map(v=>`${(v/1e-7).toFixed(2)} × ${P10(-7,11.5)}`) : [...A.EMVIS.map(v=>v[3]),7.50e14].map(v=>`${(v/1e14).toFixed(2)} × ${P10(14,11.5)}`);
+    labs.forEach((l,i)=>{ const x=i<5?bx(i):ex1; t+=`<path d="M${x} ${top?y-6:y+hVb}v6" stroke="${INK}"/>`+T2(x,top?y-10:y+hVb+18,l,11.5); }); return t; };
+  s+=visStrip(yVt,true)+T2(W/2+40,yVt+hVb+22,`Visible Light <tspan font-weight="500" fill="#5f6b72">(not to scale)</tspan>`,13,800);
+  /* connectors stop above the tick labels so no line crosses text; a small rainbow cap marks where they point */
+  const cy1=yAx-38; s+=`<path d="M${ex0} ${yVt+hVb}L${v0} ${cy1}M${ex1} ${yVt+hVb}L${v1} ${cy1}" stroke="#9aa6aa" stroke-width="1.3" stroke-dasharray="5 4"/><rect x="${v0}" y="${cy1}" width="${v1-v0}" height="5" fill="url(#${id}v)"/>`;
+  if(!o.game) s+=`<rect x="${L}" y="12" width="${Math.min(170,ex0-L-40)}" height="78" rx="10" fill="#fff" stroke="${INK}" stroke-width="1.4"/>`+[`Spectral boundaries`,`are not discrete;`,`neighboring forms`,`of radiation overlap.`].map((t,i)=>T2(L+Math.min(170,ex0-L-40)/2,31+i*16,t,12,600)).join("");
+  /* wavelength axis */
+  s+=T2(L,yWl,`<tspan font-weight="800">Wavelength in a vacuum</tspan> (m)`,14,400,"start")+`<path d="M${L} ${yAx}H${R}" stroke="${INK}" stroke-width="2"/>`;
+  for(let k=4;k>=-13;k--) s+=`<path d="M${X(k)} ${yAx}v-8" stroke="${INK}" stroke-width="1.5"/>`+T2(X(k),yAx-14,P10(k),12.5);
+  /* a wave that gets shorter from left to right, on its own row (no labels on it) */
+  let d="", ph=0; for(let x=L;x<=R;x+=1){ const lamPx=Math.max(7,150*Math.pow(.82,(x-L)/((R-L)/17))); ph+=2*Math.PI/lamPx; d+=(x===L?"M":"L")+x+" "+(yWave+12+Math.sin(ph)*8).toFixed(1); }
+  s+=`<path d="${d}" fill="none" stroke="#7a8a90" stroke-width="1.6"/>`;
+  /* visible sliver through the bar rows */
+  s+=`<rect ${o.game?'class="em-hit" data-reg="vis"':""} x="${v0}" y="${yAx+1}" width="${v1-v0}" height="${yFx-yAx-2}" fill="url(#${id}v)"/>`;
+  /* region bars, overlapping like the Reference Table */
+  A.EMREG.forEach(r=>{ if(r[1]==="vis") return; const a=X(Math.min(hi,r[2])), b=X(Math.max(lo,r[3])), y=yBar[r[5]], col=r[4], openL=r[2]>=hi, openR=r[3]<=lo;
+    s+=`<rect ${o.game?`class="em-hit" data-reg="${r[1]}"`:""} x="${a}" y="${y}" width="${b-a}" height="${hB}" rx="${openL||openR?0:7}" fill="${col}" stroke="${shade(col,.62)}" stroke-width="1.6"/>`;
+    if(openL) s+=`<rect x="${a}" y="${y-1}" width="60" height="${hB+2}" fill="url(#${id}fl)" pointer-events="none"/>`; if(openR) s+=`<rect x="${b-60}" y="${y-1}" width="60" height="${hB+2}" fill="url(#${id}fr)" pointer-events="none"/>`;
+    const m=Math.max(a+50,Math.min(b-50,(a+b)/2)); s+=`<g pointer-events="none">${T2(m,y+hB/2+5,r[0],13.5,800)}</g>`; });
+  /* frequency axis */
+  s+=`<path d="M${L} ${yFx}H${R}" stroke="${INK}" stroke-width="2"/>`;
+  for(let n=5;n<=21;n++){ const lg=Math.log10(2.998e8)-n; if(lg>hi||lg<lo) continue; s+=`<path d="M${X(lg)} ${yFx}v8" stroke="${INK}" stroke-width="1.5"/>`+T2(X(lg),yFx+24,P10(n),12.5); }
+  s+=T2(L,yFx+52,`<tspan font-weight="800">Frequency</tspan> (Hz)`,14,400,"start");
+  const cy2=yFx+34; s+=`<rect x="${v0}" y="${cy2-5}" width="${v1-v0}" height="5" fill="url(#${id}v)"/><path d="M${v0} ${cy2}L${ex0} ${yVb}M${v1} ${cy2}L${ex1} ${yVb}" stroke="#9aa6aa" stroke-width="1.3" stroke-dasharray="5 4"/>`+visStrip(yVb,false)+T2(W/2+40,yVb+hVb+42,`Visible Light <tspan font-weight="500" fill="#5f6b72">(not to scale)</tspan>`,13,800);
+  if(!o.game){ const ye=yVb+hVb+82; s+=`<path d="M${L+120} ${ye-6}H${R-150}V${ye-13}L${R-122} ${ye}L${R-150} ${ye+13}V${ye+6}H${L+120}z" fill="url(#${id}e)" stroke="${INK}" stroke-width="1.2"/>`+T2(L+112,ye+5,"lower energy",13,800,"end")+T2(R-114,ye+5,"higher energy",13,800,"start"); }
+  return s+`</svg>`; };
+
+/* ---------- game: click the region that matches a wavelength or frequency ---------- */
+A.EMClickGame=function(host){ const g=A.Game(host,{how:"Read the wavelength or frequency, then click that region of the spectrum. For visible light, click the color in the expanded Visible Light strip."});
+  let lvl="m"; g.seg("Given",[["m","Wavelength (m)"],["nm","Wavelength (nm)"],["hz","Frequency (Hz)"],["mix","Mixed"]],lvl,v=>{ lvl=v; next(); });
+  g.button("New value",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="qp"><small data-r="ask">Which type of light has a</small><div class="qp-t" data-r="q"></div></div><div class="tbl-wrap em-game" data-r="sp">${A.emSpectrum({game:1,min:720})}</div>`;
+  const $=k=>g.stage.querySelector(`[data-r="${k}"]`);
+  let cur=null, tries=0;
+  const sci=(v,dp=1)=>{ const e=Math.floor(Math.log10(v)+1e-9), m=v/Math.pow(10,e); return `${m.toFixed(dp)} × 10<sup>${sup(e)}</sup>`; };
+  function next(){ g.fresh(); g.msg(""); tries=0; A.$$(".em-hit",g.stage).forEach(r=>r.classList.remove("good","bad"));
+    let kind=lvl==="mix"?A.pick(["m","nm","hz"]):lvl, reg, lg, visI=-1;
+    const pool=kind==="nm"? A.EMREG.filter(r=>["ir","vis","uv","xray"].includes(r[1])) : A.EMREG;
+    do{ reg=A.pick(pool); } while(cur&&reg[1]===cur.reg&&pool.length>1);
+    if(reg[1]==="vis"){ visI=A.rand(0,4); const b=A.EMVIS[visI]; lg=Math.log10(b[2]+(b[1]-b[2])*(.25+Math.random()*.5)); }
+    else { const a=Math.min(reg[2],kind==="nm"&&reg[1]==="ir"?-4.3:reg[2]), z=Math.max(reg[3],-12.5); lg=a+(z-a)*(.18+Math.random()*.64); if(kind==="nm"&&reg[1]==="xray") lg=-8.3-Math.random()*1.4; }
+    const lam=Math.pow(10,lg), f=2.998e8/lam;
+    const txt= kind==="m"? `wavelength of <b>${sci(lam)} m</b>` : kind==="nm"? `wavelength of <b>${(()=>{ const nm=lam*1e9; return nm>=100? Math.round(nm).toLocaleString() : nm>=10? nm.toFixed(0) : nm.toFixed(1); })()} nm</b> <span class="muted">(1 nm = 1 × 10<sup>−9</sup> m)</span>` : `frequency of <b>${sci(f)} Hz</b>`;
+    cur={reg:reg[1],visI,lam,f,kind}; $("q").innerHTML=txt; }
+  g.stage.addEventListener("click",e=>{ const h=e.target.closest(".em-hit"); if(!h||!cur||cur.done) return; const r=h.dataset.reg;
+    const want= cur.reg==="vis"? "vis-"+cur.visI : cur.reg;
+    if(r==="vis"&&cur.reg==="vis"){ g.msg("Yes, it is visible light. Now click its color in the expanded Visible Light strip below.","warn"); return; }
+    if(r===want){ h.classList.add("good"); cur.done=true; const nm=A.EMREG.find(x=>x[1]===cur.reg)[0];
+      if(tries===0) g.win(); g.msg(`✔ ${cur.reg==="vis"?A.EMVIS[cur.visI][0]+" (visible light)":nm}. ${cur.kind==="hz"?`On the Reference Table, find ${sci(cur.f)} Hz on the frequency scale and look straight up.`:`Find the power of ten on the wavelength scale and look straight down.`}`,"good"); g.later(next,2600); return; }
+    tries++; g.lose(); h.classList.add("bad"); setTimeout(()=>h.classList.remove("bad"),700);
+    const hint= cur.kind==="hz"? "Use the frequency scale under the strip. Look at the power of ten." : cur.kind==="nm"? "Convert to meters first: multiply the nanometers by 1 × 10⁻⁹. Then use the wavelength scale above the strip." : (r.startsWith("vis-")? "Visible light is only from 4.00 × 10⁻⁷ m to 7.00 × 10⁻⁷ m. Check the power of ten." : "Find that power of ten on the wavelength scale above the strip.");
+    g.msg(`Not that region. ${hint}`,"bad"); });
+  next(); host._em={get cur(){return cur;}}; };
+})();
+
+/* Nov 14: Unit 11 Acids & Bases interactives: AB.PHParticles (click a pH, see H3O+ and OH− change 10× per step),
+   AB.IndicatorGame (test an unknown with indicators, then set the pH range), AB.TitrationLab (drag solutions, titrate, notebook, n = MV). */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T||!A.U11) return; const AB=A.U11, INK="#1b2328", GRAY="#5f6b72";
+/* indicator ranges and colors (approximate, from common reference charts) */
+Object.assign(AB.IND,{ bcg:{n:"Bromocresol green",lo:3.8,hi:5.4,a:"#e6cf2a",b:"#2a62c9",mid:"#5fa36a"}, thy:{n:"Thymol blue",lo:8.0,hi:9.6,a:"#e8c51e",b:"#2f5fd0",mid:"#58a05f"} });
+AB.IND.meth.lo=3.1;
+const HC="#2E75D6", OC="#E00000";
+const sciH=e=>`1 × 10<sup>${String(e).replace("-","−")}</sup>`;
+const phCol=p=>{ const a=["#d93a2b","#e8602c","#f08a2a","#f5b32b","#f2d635","#c9e04a","#8fd25a","#5cbf6b","#3fb08f","#3b9bbd","#3d7fd0","#4865c9","#5a4fc0","#5d3fae","#4f2f8f"]; return a[Math.max(0,Math.min(14,Math.round(p)))]; };
+
+/* ---------- 1. pH and particles ---------- */
+AB.PHParticles=function(host){ let pH=7, prev=null;
+  const W=480,H=300;
+  host.innerHTML=`<div class="lab-b"><p class="how">Click a pH on the scale. The sample shows hydronium ions (H<sub>3</sub>O<sup>+</sup>, blue) and hydroxide ions (OH<sup>−</sup>, red). Water molecules are not drawn. Compare the numbers of ions as you move one step at a time.</p>
+   <div class="t7-svg ab-phs" data-r="scale"></div>
+   <div class="g8-row"><div><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Particle diagram of hydronium and hydroxide ions"></canvas><div class="k10-key"><span><svg width="22" height="22"><circle cx="11" cy="11" r="5" fill="${HC}" stroke="${INK}"/></svg><b>H<sub>3</sub>O<sup>+</sup></b></span><span><svg width="22" height="22"><circle cx="11" cy="11" r="5" fill="${OC}" stroke="${INK}"/></svg><b>OH<sup>−</sup></b></span></div></div>
+   <div class="g8-side"><div class="g8-read" data-r="read" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div><div class="t7-svg" data-r="bars"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  /* the drawn sample holds 10^(7−pH) H3O+ for every 1 at pH 7; past 1000 particles one dot stands for more ions */
+  const scaleFor=n=>n>2000? Math.pow(10,Math.ceil(Math.log10(n/2000))) : 1;
+  function draw(){ const nH=Math.pow(10,7-pH), nO=Math.pow(10,pH-7), big=Math.max(nH,nO), sc=scaleFor(big), dH=Math.round(nH/sc), dO=Math.round(nO/sc), rnd=T.rng(Math.round(pH*7)+3);
+    c.clearRect(0,0,W,H); c.fillStyle="#eef7fd"; c.fillRect(0,0,W,H); c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(1.5,1.5,W-3,H-3);
+    const tot=dH+dO, r=tot>600?2.2:tot>150?3.6:tot>30?5.5:8;
+    const put=(n,col)=>{ for(let i=0;i<n;i++){ const x=6+r+rnd()*(W-12-2*r), y=6+r+rnd()*(H-12-2*r); c.beginPath(); c.arc(x,y,r,0,7); c.fillStyle=col; c.fill(); if(r>3){ c.strokeStyle=INK; c.lineWidth=1; c.stroke(); } } };
+    put(dO,OC); put(dH,HC);
+    if(sc>1){ c.fillStyle="rgba(255,255,255,.9)"; c.fillRect(8,H-34,250,26); c.fillStyle=INK; c.font="700 13px Inter,Arial"; c.fillText(`each dot = ${sc.toLocaleString()} ions (zoomed out)`,16,H-16); }
+    if(dO===0&&nO>0){ c.fillStyle="rgba(255,255,255,.9)"; c.fillRect(W-232,8,224,26); c.fillStyle=OC; c.font="700 12.5px Inter,Arial"; c.fillText("OH⁻ ions are too few to show here",W-224,26); }
+    if(dH===0&&nH>0){ c.fillStyle="rgba(255,255,255,.9)"; c.fillRect(W-232,8,224,26); c.fillStyle=HC; c.font="700 12.5px Inter,Arial"; c.fillText("H₃O⁺ ions are too few to show here",W-224,26); }
+    /* scale */
+    const SW=760, x0=30, w=700, X=v=>x0+v/14*w; let s="";
+    for(let i=0;i<=14;i++){ const x=X(i)-w/30; s+=`<g class="ab-ph" data-p="${i}" style="cursor:pointer"><rect x="${x+2}" y="40" width="${w/15-4}" height="40" rx="7" fill="${phCol(i)}" stroke="${i===pH?INK:"#fff"}" stroke-width="${i===pH?3.5:1}"/><text x="${X(i)}" y="66" text-anchor="middle" font-family="Inter,Arial" font-size="16" font-weight="800" fill="${i>=4&&i<=8?INK:"#fff"}">${i}</text></g>`; }
+    s+=T.t(X(3),26,"← more acidic",{fs:13,c:"#c0392b"})+T.t(X(7),26,"neutral",{fs:13,c:"#2e7d32"})+T.t(X(11),26,"more basic →",{fs:13,c:"#3b3bb5"});
+    $("scale").innerHTML=T.svg(SW,92,s,"pH scale from 0 to 14; click a pH");
+    A.$$(".ab-ph",$("scale")).forEach(gp=>gp.addEventListener("click",()=>{ prev=pH; pH=+gp.dataset.p; draw(); }));
+    $("read").innerHTML=`<div><small>[H<sub>3</sub>O<sup>+</sup>]</small><b style="color:${HC}">${sciH(-pH)} M</b></div><div><small>[OH<sup>−</sup>]</small><b style="color:${OC}">${sciH(pH-14)} M</b></div>`;
+    /* log bar chart: one bar segment per factor of 10 */
+    const BW=330, BH=110, bx=110; let b="";
+    [["H₃O⁺",-pH,HC,26],["OH⁻",pH-14,OC,70]].forEach(([n,e,col,y])=>{ const len=(e+14)/14*(BW-bx-10); b+=T.t(bx-8,y+14,n,{fs:13,a:"end",c:col})+`<rect x="${bx}" y="${y}" width="${Math.max(2,len)}" height="22" rx="4" fill="${col}" opacity=".85"/>`; for(let k=1;k<14;k++){ const xx=bx+k/14*(BW-bx-10); if(xx<bx+len) b+=`<path d="M${xx} ${y}v22" stroke="#fff" stroke-width="1"/>`; } });
+    b+=T.t(bx,104,"each block = 10 times more",{fs:11,a:"start",c:GRAY});
+    $("bars").innerHTML=`<div style="max-width:360px">`+T.svg(BW,BH,b,"Concentration bars on a power-of-ten scale")+`</div>`;
+    const d=prev==null?0:pH-prev, f=Math.pow(10,Math.abs(d));
+    $("info").innerHTML= prev==null? `<b>pH ${pH}: ${pH<7?"acidic":pH>7?"basic":"neutral"}</b><span>Click pH 6, then pH 5, then pH 4. Count how the number of H<sub>3</sub>O<sup>+</sup> ions changes with each step.</span>`
+      : `<b>pH ${prev} → pH ${pH}</b><span>${d===0?"Same pH.":`The H<sub>3</sub>O<sup>+</sup> concentration became <b>${f.toLocaleString()} times ${d<0?"greater":"smaller"}</b> (${Math.abs(d)} step${Math.abs(d)>1?"s":""} on the pH scale). The OH<sup>−</sup> concentration changed the other way by the same factor.`}</span>`; }
+  draw(); };
+
+/* ---------- 2. Indicator game: narrow down the pH of an unknown ---------- */
+AB.IndicatorGame=function(host){ const KEYS=["meth","bcg","litmus","bromo","thy","phen"];
+  const g=A.Game(host,{how:"Drag an indicator onto a test tube of the unknown solution (or tap an indicator, then tap a tube). Use the indicator chart to read each color. Then click the pH scale to set the lowest and highest pH the solution could have, and press Check."});
+  g.button("Check",()=>check()); g.button("New unknown",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="ig-wrap"><div><div class="ig-pal" data-r="pal">${KEYS.map(k=>`<button type="button" class="ig-ind" data-k="${k}">${A.U11.IND[k].n}</button>`).join("")}</div>
+     <div class="ig-tubes" data-r="tubes"></div></div><div class="t7-svg" data-r="chart"></div></div>
+   <div class="ig-scale"><div class="ig-sh"><b>Set the range:</b> click the scale to place the <b>lowest</b> possible pH, then the <b>highest</b>. Click again to move the nearer marker.</div><div class="t7-svg" data-r="scale"></div></div>`;
+  const $=k=>g.stage.querySelector(`[data-r="${k}"]`); let U=null, tests=[], lo=null, hi=null, armed=null;
+  /* indicator chart: each indicator's colors across the pH scale */
+  (function chart(){ const W=520, x0=128, w=372, X=p=>x0+p/14*w; let s="";
+    KEYS.forEach((k,i)=>{ const y=10+i*30; s+=T.t(x0-8,y+15,AB.IND[k].n,{fs:12,a:"end"}); for(let p=0;p<13.95;p+=.1) s+=`<rect x="${X(p)}" y="${y}" width="${Math.min(w/140+.6,X(14)-X(p))}" height="20" fill="${AB.indColor(k,p+.05)}"/>`; s+=`<rect x="${x0}" y="${y}" width="${w}" height="20" fill="none" stroke="${INK}" stroke-width="1"/>`; });
+    for(let p=0;p<=14;p+=2) s+=`<path d="M${X(p)} ${10+KEYS.length*30}v5" stroke="${INK}"/>`+T.t(X(p),28+KEYS.length*30,String(p),{fs:11.5});
+    $("chart").innerHTML=`<b style="font-size:14px;color:var(--ink)">Indicator chart</b>`+T.svg(W,40+KEYS.length*30,s,"Colors of six indicators across the pH scale"); })();
+  function tubes(){ $("tubes").innerHTML=[0,1,2].map(i=>{ const t=tests[i], col=t?AB.indColor(t,U):"#eaf4fb";
+      return `<div class="ig-tube" data-i="${i}">${T.svg(70,150,`<path d="M18 10V118a17 17 0 0 0 34 0V10" fill="#fff" stroke="${INK}" stroke-width="2.5"/><path d="M20 50V118a15 15 0 0 0 30 0V50Z" fill="${col}" ${col==="#ffffff"?'stroke="#dfe5e8"':""}/>`,"test tube")}<small>${t?AB.IND[t].n:"unknown + ?"}</small></div>`; }).join("");
+    A.$$(".ig-tube",g.stage).forEach(el=>el.addEventListener("click",()=>{ if(armed) use(armed,+el.dataset.i); })); }
+  function use(k,i){ if(tests.includes(k)){ g.msg("You already tested with that indicator.","warn"); return; } tests[i]=k; armed=null; A.$$(".ig-ind",g.stage).forEach(b=>b.classList.toggle("armed",false)); A.$$(".ig-ind",g.stage).forEach(b=>b.classList.toggle("used",tests.includes(b.dataset.k))); tubes(); }
+  function scale(){ const W=760, x0=30, w=700, X=p=>x0+p/14*w; let s="";
+    for(let p=0;p<13.95;p+=.1) s+=`<rect x="${X(p)}" y="22" width="${Math.min(w/140+.6,X(14)-X(p))}" height="30" fill="${phCol(p)}" opacity=".55"/>`;
+    s+=`<rect x="${x0}" y="22" width="${w}" height="30" fill="none" stroke="${INK}" stroke-width="2"/>`; for(let p=0;p<=14;p++) s+=`<path d="M${X(p)} 52v6" stroke="${INK}"/>`+T.t(X(p),72,String(p),{fs:12,w:700});
+    if(lo!=null&&hi!=null) s+=`<rect x="${X(lo)}" y="18" width="${X(hi)-X(lo)}" height="38" fill="rgba(27,35,40,.12)" stroke="${INK}" stroke-width="2" stroke-dasharray="5 3"/>`;
+    [[lo,"lowest"],[hi,"highest"]].forEach(([v,l])=>{ if(v==null) return; s+=`<path d="M${X(v)} 14V60" stroke="${INK}" stroke-width="3"/><path d="M${X(v)} 14l-7-10h14z" fill="${INK}"/>`+T.t(Math.max(x0+50,Math.min(x0+w-50,X(v))),94,`${l}: ${v.toFixed(1)}`,{fs:12.5,w:700}); });
+    $("scale").innerHTML=T.svg(W,100,s,"pH scale for setting the possible range");
+    const sv=$("scale").querySelector("svg"); sv.style.cursor="crosshair";
+    sv.addEventListener("click",e=>{ const r=sv.getBoundingClientRect(), p=Math.max(0,Math.min(14,Math.round(((e.clientX-r.left)/r.width*W-x0)/w*14*10)/10));
+      if(lo==null) lo=p; else if(hi==null) hi=p; else if(Math.abs(p-lo)<Math.abs(p-hi)) lo=p; else hi=p; if(lo!=null&&hi!=null&&lo>hi) [lo,hi]=[hi,lo]; scale(); }); }
+  function bounds(){ let L=0, H=14; tests.forEach(k=>{ if(!k) return; const I=AB.IND[k]; if(U<=I.lo) H=Math.min(H,I.lo); else if(U>=I.hi) L=Math.max(L,I.hi); else { L=Math.max(L,I.lo); H=Math.min(H,I.hi); } }); return [L,H]; }
+  function check(){ const n=tests.filter(Boolean).length; if(n<2){ g.msg("Test the unknown with at least two indicators first.","warn"); return; }
+    if(lo==null||hi==null){ g.msg("Click the pH scale twice to set the lowest and highest possible pH.","warn"); return; }
+    const [L,H]=bounds();
+    if(lo>U+1e-9||hi<U-1e-9){ g.lose(); g.msg("The real pH is outside your range. Look at each tube’s color again: a color at one end of an indicator’s range means the pH is past that end.","bad"); return; }
+    if(Math.abs(lo-L)>.15||Math.abs(hi-H)>.15){ g.lose(); g.msg(lo<L-.15||hi>H+.15? "Your range is wider than your results allow. Use each color to cut the range down: which end of each indicator’s range does the solution’s color show?" : "Your range is narrower than your tests can prove. Only use the boundaries where an indicator changes color.","bad"); return; }
+    g.win(); g.msg(`✔ The pH must be between ${L.toFixed(1)} and ${H.toFixed(1)}. (The unknown’s pH was ${U.toFixed(1)}.) ${n<3?"A third indicator might narrow it more.":""}`,"good"); }
+  function next(){ g.fresh(); g.msg(""); U=Math.round((1.5+Math.random()*11)*10)/10; tests=[]; lo=hi=null; armed=null; A.$$(".ig-ind",g.stage).forEach(b=>b.classList.remove("used","armed")); tubes(); scale(); }
+  /* drag (or tap) an indicator onto a tube */
+  A.$$(".ig-ind",g.stage).forEach(b=>b.addEventListener("pointerdown",ev=>{ ev.preventDefault(); const sx=ev.clientX, sy=ev.clientY; let gh=null;
+    const mv=e=>{ if(!gh&&Math.hypot(e.clientX-sx,e.clientY-sy)>6){ gh=A.h("div",{class:"dd-card dd-ghost"},"💧 "+b.textContent); document.body.appendChild(gh); } if(gh){ gh.style.left=e.clientX+"px"; gh.style.top=e.clientY+"px"; } };
+    const up=e=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up);
+      if(gh){ gh.remove(); const t=document.elementFromPoint(e.clientX,e.clientY)?.closest(".ig-tube"); if(t&&g.stage.contains(t)) use(b.dataset.k,+t.dataset.i); }
+      else { armed=armed===b.dataset.k?null:b.dataset.k; A.$$(".ig-ind",g.stage).forEach(x=>x.classList.toggle("armed",x.dataset.k===armed)); } };
+    document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); }));
+  next(); host._ig={get U(){return U;},use,bounds,set(a,b){ lo=a; hi=b; scale(); },check}; };
+
+/* ---------- 3. Titration lab ---------- */
+AB.TitrationLab=function(host){ const Va=25.0, Mb=0.100; let Ma, Veq, V0, Vb, st, raf=0, last=0, flow=0, pinkT=0;
+  host.innerHTML=`<div class="lab-b"><p class="how">Find the molarity of a hydrochloric acid solution. Drag each bottle to the right place, add base from the buret until the indicator turns the faintest pink that stays, then record your data and calculate.</p>
+   <div class="tl-shelf" data-r="shelf"><button type="button" class="tl-bot" data-b="base">NaOH(aq)<small>0.100 M</small></button><button type="button" class="tl-bot" data-b="acid">HCl(aq)<small>unknown M · 25.0 mL</small></button><button type="button" class="tl-bot" data-b="ind">Phenol&shy;phthalein<small>indicator</small></button></div>
+   <div class="g8-row"><div class="tl-rig"><div class="t7-svg" data-r="rig"></div>
+     <div class="controls tl-ctl"><button type="button" class="btn" data-r="fast">Hold: fast</button><button type="button" class="btn ghost" data-r="slow">Hold: slow</button><button type="button" class="btn ghost" data-r="drop">Add 1 drop</button><button type="button" class="btn ghost" data-r="reset">New trial</button></div>
+     <div class="status" data-r="msg" aria-live="polite"></div></div>
+   <div class="g8-side"><div class="k10-nb"><div class="k10-nb-h"><b>Lab notebook</b></div><div data-r="nb"></div></div><div data-r="calc"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`), say=(m,c="")=>{ $("msg").className="status "+c; $("msg").innerHTML=m; };
+  function reset(){ Ma=Math.round((0.075+Math.random()*.07)*1000)/1000; Veq=Ma*Va/Mb; V0=Math.round((0.3+Math.random()*1.6)*100)/100; Vb=V0; st={base:false,acid:false,ind:false,done:false,over:false,read0:null,read1:null,used:null}; pinkT=0; flow=0;
+    A.$$(".tl-bot",host).forEach(b=>b.classList.remove("used")); say("Drag the NaOH bottle onto the buret, the HCl bottle onto the flask, and the indicator onto the flask."); rig(); notebook(); $("calc").innerHTML=""; }
+  const color=()=>{ if(!st.ind||!st.acid) return st.acid?"#eaf4fb":"none"; const ex=Vb-V0-Veq; if(ex<0) return pinkT>0&&ex>-2.5? `rgba(240,120,190,${(pinkT*.7*(1+ex/2.5)).toFixed(2)})` : "#f6fbff"; return ex<.06? "#f7c6e2" : ex<.3? "#ef8cc4" : "#d6338f"; };
+  function rig(){ const W=330, H=440, bx=150, by=20, bh=270, s0=bx-9; let s="";
+    /* stand */ s+=`<rect x="40" y="${H-18}" width="230" height="12" rx="3" fill="#8a979c"/><rect x="60" y="20" width="8" height="${H-30}" fill="#8a979c"/><rect x="64" y="150" width="${bx-58}" height="7" fill="#8a979c"/>`;
+    /* buret: 0 mL at the top, 50 mL at the bottom */ const yv=v=>by+10+v/50*bh;
+    s+=`<rect x="${s0}" y="${by}" width="18" height="${bh+20}" rx="3" fill="#fff" stroke="${INK}" stroke-width="2"/>`;
+    if(st.base) s+=`<rect x="${s0+2}" y="${yv(Vb)}" width="14" height="${by+bh+18-yv(Vb)}" fill="#cfe6ff"/>`;
+    for(let v=0;v<=50;v++) s+=`<path d="M${s0} ${yv(v)}h${v%5?5:9}" stroke="${INK}" stroke-width="${v%5?.7:1.2}"/>`+(v%10?"":T.t(s0-6,yv(v)+4,String(v),{fs:10.5,a:"end"}));
+    s+=`<path d="M${bx-4} ${by+bh+20}h8v14l-3 10h-2l-3-10z" fill="#fff" stroke="${INK}" stroke-width="1.6"/><rect x="${bx-14}" y="${by+bh+24}" width="28" height="7" rx="2" fill="${flow?"#e07b00":"#5f6b72"}"/>`;
+    if(flow&&st.base) s+=`<path d="M${bx} ${by+bh+44}V${H-120}" stroke="#9cc8f5" stroke-width="${flow>1?3:1.5}" stroke-dasharray="${flow>1?"none":"3 6"}"/>`;
+    /* flask */ const fy=H-125; s+=`<path d="M${bx-13} ${fy}v34l-42 66a8 8 0 0 0 7 12h96a8 8 0 0 0 7-12l-42-66v-34z" fill="#fff" stroke="${INK}" stroke-width="2.4"/>`;
+    if(st.acid) s+=`<path d="M${bx-36} ${fy+72}l-19 30a8 8 0 0 0 7 12h96a8 8 0 0 0 7-12l-19-30z" fill="${color()}" stroke="none" opacity=".95"/>`;
+    s+=`<rect x="70" y="${H-18-0}" width="0" height="0"/>`+T.t(bx,H-2,"flask",{fs:11,c:GRAY})+T.t(s0+40,by+8,"buret",{fs:11,c:GRAY,a:"start"});
+    /* zoom window of the buret reading */ const zx=230, zy=120, zh=130, zr=Vb, top=Math.floor(zr)-1.5, Y=v=>zy+(v-top)/3*zh;
+    s+=`<rect x="${zx}" y="${zy}" width="88" height="${zh}" rx="8" fill="#fff" stroke="${INK}" stroke-width="2"/><clipPath id="tlz"><rect x="${zx}" y="${zy}" width="88" height="${zh}" rx="8"/></clipPath><g clip-path="url(#tlz)">`;
+    if(st.base) s+=`<rect x="${zx}" y="${Y(zr)}" width="88" height="${zh}" fill="#cfe6ff"/><path d="M${zx} ${Y(zr)-2}q44 10 88 0" fill="none" stroke="#5b8fc9" stroke-width="2"/>`;
+    for(let v=Math.ceil(top*10)/10;v<=top+3;v=Math.round((v+.1)*10)/10){ const big=Math.abs(v-Math.round(v))<.01; s+=`<path d="M${zx} ${Y(v)}h${big?34:Math.abs(v*10%5)<.01?24:14}" stroke="${INK}" stroke-width="${big?1.6:.8}"/>`+(big?T.t(zx+40,Y(v)+5,String(Math.round(v)),{fs:13,a:"start",w:700}):""); }
+    s+=`</g>`+T.t(zx+44,zy-8,"buret close-up",{fs:11,c:GRAY});
+    s+=`<path d="M${s0+18} ${yv(Vb)}L${zx} ${zy+zh/2}" stroke="#8a979c" stroke-dasharray="3 3"/>`;
+    $("rig").innerHTML=T.svg(W,H,s,"Buret of sodium hydroxide over a flask of hydrochloric acid");
+    $("rig").querySelector("svg").dataset.drop="rig"; }
+  const num=v=>{ const x=A.parseTyped(v); return x?x.v:NaN; };
+  function notebook(){ const row=(lab,val)=>`<tr><th>${lab}</th><td>${val}</td></tr>`, inp=(k,ok,v)=> ok!=null? `<span class="t7-val" data-v="${ok}">${v}</span>` : `<input class="inp" data-k="${k}" inputmode="decimal" style="width:96px" aria-label="${k}"> mL <button type="button" class="btn sm ghost" data-c="${k}">Record</button>`;
+    $("nb").innerHTML=`<table class="k10-tab tl-nb">${row("Volume of HCl(aq)",`<span class="t7-val" data-v="25.0">25.0 mL</span> = <span class="t7-val" data-v="0.0250">0.0250 L</span>`)}${row("Molarity of NaOH(aq)",`<span class="t7-val" data-v="0.100">0.100 M</span>`)}
+      ${row("Initial buret reading",st.base?inp("read0",st.read0,st.read0!=null?st.read0.toFixed(2)+" mL":""):"—")}${row("Final buret reading",st.done?inp("read1",st.read1,st.read1!=null?st.read1.toFixed(2)+" mL":""):"—")}
+      ${row("Volume of NaOH used",st.read1!=null?inp("used",st.used,st.used!=null?st.used.toFixed(2)+" mL":""):"—")}</table><small class="muted">Read the bottom of the curved surface in the close-up, to the hundredths place (0.01 mL).</small>`;
+    A.$$("[data-c]",$("nb")).forEach(b=>b.addEventListener("click",()=>{ const k=b.dataset.c, el=$("nb").querySelector(`[data-k="${k}"]`), v=num(el.value);
+      const want= k==="read0"?V0 : k==="read1"?Vb : st.read1-st.read0;
+      if(!(Math.abs(v-want)<=(k==="used"?.011:.03))){ A.markBox(el,false); say(k==="used"?"Subtract: final reading − initial reading.":"Read the buret again in the close-up: each small line is 0.1 mL. Estimate the hundredths place.","bad"); return; }
+      st[k]=k==="used"? +(st.read1-st.read0).toFixed(2) : v; notebook(); if(k==="used") calc(); else if(k==="read0") say("Recorded. Now open the stopcock and titrate. Slow down near the endpoint.",""); })); }
+  function calc(){ const VL=st.used/1000, n=Mb*VL, M=n/Va*1000;
+    $("calc").innerHTML=`<div class="da-step"><h4>Step 1: Convert the volume of NaOH to liters</h4><div class="g8-conv"><span class="mth">${st.used.toFixed(2)} mL ÷ 1000 =</span><input class="inp" data-r="vl" inputmode="decimal" style="width:120px"> L <button type="button" class="btn sm" data-r="c1">Check</button></div></div><div data-r="c2"></div><div data-r="c3"></div>`;
+    $("calc").querySelector('[data-r="c1"]').addEventListener("click",()=>{ const el=$("calc").querySelector('[data-r="vl"]'), ok=Math.abs(num(el.value)-VL)<=VL*.003+1e-6; A.markBox(el,ok); if(!ok){ say("Divide the milliliters by 1000 (1 L = 1000 mL).","bad"); return; }
+      $("nb").querySelector("table").insertAdjacentHTML("beforeend",`<tr><th>Volume of NaOH used (L)</th><td><span class="t7-val" data-v="${VL}">${VL.toFixed(5).replace(/0+$/,"")} L</span></td></tr>`);
+      say("Step 2: moles of NaOH. Drag the values from the notebook into n = MV.","");
+      A.U1.Calc($("calc").querySelector('[data-r="c2"]'),{drag:{src:$("nb"),tip:"Drag each value from the lab notebook into its box."},lhs:{sym:"n",name:"moles of NaOH",unit:"mol"},form:"line",terms:[{sym:"M",name:"molarity of NaOH",unit:"M",val:Mb},"×",{sym:"V",name:"volume of NaOH",unit:"L",val:VL,atol:VL*.002}],ans:n,tol:.01,check:v=>A.lenient(v,n,{sf:3}),ansText:n.toPrecision(3),
+        onCorrect:()=>{ say("The equation HCl + NaOH → NaCl + H<sub>2</sub>O shows 1 mol HCl reacts with 1 mol NaOH, so the moles of HCl equal the moles of NaOH. Step 3: the molarity of the acid.","good");
+          A.U1.Calc($("calc").querySelector('[data-r="c3"]'),{drag:{src:$("nb"),extras:[{v:+n.toPrecision(3),html:`${n.toPrecision(3)} mol`}],label:"From Step 2:",tip:"Drag each value from the lab notebook (or Step 2) into its box."},lhs:{sym:"M",name:"molarity of HCl",unit:"M"},form:"frac",num:{sym:"n",name:"moles of HCl",unit:"mol",val:n,atol:n*.01},den:{sym:"V",name:"volume of HCl",unit:"L",val:.025,atol:1e-5},ans:M,check:v=>A.lenient(v,M,{sf:3}),ansText:M.toPrecision(3),
+            onCorrect:()=>say(`✔ The HCl is ${M.toPrecision(3)} M. (The bottle’s true value was ${Ma.toFixed(3)} M.)`,"good")}); }}); }); }
+  /* dragging bottles */
+  A.$$(".tl-bot",host).forEach(b=>b.addEventListener("pointerdown",ev=>{ ev.preventDefault(); if(b.classList.contains("used")) return; const sx=ev.clientX, sy=ev.clientY; let gh=null;
+    const mv=e=>{ if(!gh&&Math.hypot(e.clientX-sx,e.clientY-sy)>6){ gh=A.h("div",{class:"dd-card dd-ghost"},b.innerHTML); document.body.appendChild(gh); } if(gh){ gh.style.left=e.clientX+"px"; gh.style.top=e.clientY+"px"; } };
+    const up=e=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up); if(!gh) { say("Drag the bottle onto the buret or the flask.","warn"); return; } gh.remove();
+      const sv=$("rig").querySelector("svg"), r=sv.getBoundingClientRect(); if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) return;
+      const y=(e.clientY-r.top)/r.height*440, onBuret=y<300, k=b.dataset.b;
+      if(k==="base"&&!onBuret){ say("The standard solution (the one whose molarity you know) goes in the buret, so its volume can be measured.","bad"); return; }
+      if(k!=="base"&&onBuret){ say(k==="acid"?"The unknown acid goes in the flask; a pipet measures exactly 25.0 mL.":"The indicator goes in the flask with the acid.","bad"); return; }
+      if(k==="ind"&&!st.acid){ say("Put the acid in the flask first.","warn"); return; }
+      st[k]=true; b.classList.add("used"); rig(); notebook();
+      say(st.base&&st.acid&&st.ind? "Ready. Record the initial buret reading in the notebook, then titrate." : k==="base"?"The buret is filled with 0.100 M NaOH.":k==="acid"?"25.0 mL of HCl is in the flask.":"Two drops of phenolphthalein added: colorless in acid.",""); };
+    document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); }));
+  const ready=()=>{ if(!(st.base&&st.acid&&st.ind)){ say("Set up the buret and flask first.","warn"); return false; } if(st.read0==null){ say("Record the initial buret reading first.","warn"); return false; } if(st.done){ say("This trial is finished. Press New trial to repeat.","warn"); return false; } return true; };
+  const hold=(k,rate)=>{ const b=$(k); b.addEventListener("pointerdown",()=>{ if(ready()) flow=rate; }); ["pointerup","pointerleave"].forEach(e=>b.addEventListener(e,()=>{ if(flow===rate){ flow=0; rig(); } })); };
+  hold("fast",3); hold("slow",.4);
+  $("drop").addEventListener("click",()=>{ if(!ready()) return; Vb+=.05; pinkT=1; after(); rig(); });
+  $("reset").addEventListener("click",reset);
+  function after(){ const ex=Vb-V0-Veq; if(ex>=0&&!st.done){ st.done=true; flow=0; st.over=ex>.3; notebook();
+      say(st.over? "The solution turned dark pink: you went past the endpoint. You can still record the data, but the result will be too high. Try a new trial and slow down near the end." : "✔ A faint pink color stays: this is the endpoint. Record the final buret reading.", st.over?"warn":"good"); } }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.05,last?(now-last)/1000:0); last=now;
+    if(flow&&!st.done){ Vb=Math.min(50,Vb+flow*dt*(Vb-V0>Veq-2?1:1)); pinkT=Math.min(1,pinkT+dt*2); after(); rig(); } else if(pinkT>0&&!st.done){ pinkT=Math.max(0,pinkT-dt*.8); rig(); }
+    raf=requestAnimationFrame(loop); }
+  reset(); raf=requestAnimationFrame(loop); host._tl={get st(){return st;},get V0(){return V0;},get Vb(){return Vb;},get Veq(){return Veq;},get Ma(){return Ma;}}; };
+})();
+
+/* Nov 14: Unit 9 Solutions: Z.Colligative (freezing point depression and boiling point elevation with an environment temperature and an animated phase change)
+   and Z.IonsGame (how many ions a soluble ionic compound forms, and what that does to the freezing point). */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T||!A.drawMol) return; const Z=A.U9=A.U9||{}; const INK="#1b2328", GRAY="#5f6b72";
+const KF=1.86, KB=0.512; /* water: °C·kg/mol (CRC Handbook) */
+const SOL={sugar:{n:"Sugar (C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>)",i:1,parts:[["sug",1]]},nacl:{n:"Sodium chloride (NaCl)",i:2,parts:[["na",1],["cl",1]]},cacl2:{n:"Calcium chloride (CaCl<sub>2</sub>)",i:3,parts:[["ca",1],["cl",2]]}};
+const PSTY={sug:{r:10,col:"#00B050",lab:""},na:{r:6.5,col:"#A98BDB",lab:"+"},ca:{r:7.5,col:"#9aa3a8",lab:"2+"},cl:{r:9,col:"#F28C28",lab:"−"}};
+function ionDot(c,k,x,y){ const p=PSTY[k]; if(k==="sug"){ c.beginPath(); for(let j=0;j<6;j++){ const a=j*Math.PI/3; c[j?"lineTo":"moveTo"](x+Math.cos(a)*p.r,y+Math.sin(a)*p.r); } c.closePath(); c.fillStyle=p.col; c.fill(); c.strokeStyle=INK; c.lineWidth=1.3; c.stroke(); return; }
+  c.beginPath(); c.arc(x,y,p.r,0,7); c.fillStyle=p.col; c.fill(); c.strokeStyle=INK; c.lineWidth=1.2; c.stroke(); c.fillStyle=INK; c.font=`800 ${p.r>8?10:9}px Inter,Arial`; c.textAlign="center"; c.fillText(p.lab,x,y+3.5); c.textAlign="left"; }
+
+/* ---------- colligative properties ---------- */
+Z.Colligative=function(host){ let kind="nacl", m=0, Tenv=20, raf=0, last=0, solid=0, boil=0, P=[], rnd=T.rng(41);
+  const W=440,H=320, LIQ=80;
+  host.innerHTML=`<div class="lab-b"><p class="how">Dissolve a solute in water and change its concentration. The thermometer shows the solution’s freezing point and boiling point. Move the environment temperature and watch what happens to the particles.</p>
+   <div class="controls"><span class="ctl-label">Solute</span><div class="seg" data-r="kind">${Object.entries(SOL).map(([k,s])=>`<button type="button" data-v="${k}" aria-pressed="${k===kind}">${s.n}</button>`).join("")}</div></div>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>Solute added</span><input type="range" min="0" max="3" step="0.5" value="0" data-r="m" aria-label="moles of solute per kilogram of water"><b data-r="mv"></b></label><label class="g8-sl"><span>Environment</span><input type="range" min="-12" max="106" step="1" value="20" data-r="T" aria-label="environment temperature"><b data-r="Tv"></b></label></div>
+   <div class="g8-row"><div><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Particles of the solution"></canvas><div class="k10-key" data-r="key"></div></div><div class="t7-svg z9-th" data-r="th"></div><div class="g8-side" style="flex-basis:260px"><div class="g8-read" data-r="read" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  const fp=()=>-KF*m*SOL[kind].i, bp=()=>100+KB*m*SOL[kind].i;
+  /* water molecules on a lattice (ice) or free (liquid/gas); solute particles always free in the spaces */
+  function build(){ P=[]; const cols=8, rows=4;
+    for(let r=0;r<rows;r++) for(let q=0;q<cols;q++){ const lx=36+q*52+(r%2)*22, ly=H-38-r*52; P.push({w:1,lx,ly,x:lx,y:ly,vx:(rnd()-.5)*40,vy:(rnd()-.5)*40,ang:rnd()*6,va:(rnd()-.5)}); }
+    const n=Math.round(m*4); SOL[kind].parts.forEach(([k,q])=>{ for(let j=0;j<n*q;j++) P.push({w:0,k,x:30+rnd()*(W-60),y:LIQ+20+rnd()*(H-LIQ-40),vx:(rnd()-.5)*40,vy:(rnd()-.5)*40}); });
+    $("key").innerHTML=`<span>${T.svg(46,40,A.molSVG("H2O",23,22,0,1),"water")}<b>H<sub>2</sub>O</b></span>`+SOL[kind].parts.map(([k])=>`<span><svg width="24" height="24"><circle cx="12" cy="12" r="${PSTY[k].r}" fill="${PSTY[k].col}" stroke="${INK}"/></svg><b>${({sug:"sugar molecule",na:"Na<sup>+</sup>",ca:"Ca<sup>2+</sup>",cl:"Cl<sup>−</sup>"})[k]}</b></span>`).join(""); }
+  function step(dt){ const tS=Tenv<fp()-.05?1:0, tB=Tenv>=bp()?1:0; solid+=(tS-solid)*Math.min(1,dt*.6); boil+=(tB-boil)*Math.min(1,dt*.8);
+    const sp=(20+Math.max(-10,Tenv)*.6)*(1-solid*.85);
+    P.forEach(p=>{ const top=p.w&&boil>.5&&p.vapor? 8 : LIQ; const bot=H-10;
+      p.x+=p.vx*dt; p.y+=p.vy*dt; const v=Math.hypot(p.vx,p.vy)||1, k=1+(sp/v-1)*Math.min(1,dt*2); p.vx*=k; p.vy*=k;
+      const m=p.w?20:12; if(p.x<m){p.x=m;p.vx=Math.abs(p.vx);} if(p.x>W-m){p.x=W-m;p.vx=-Math.abs(p.vx);} if(p.y<top+m){p.y=top+m;p.vy=Math.abs(p.vy);} if(p.y>H-m){p.y=H-m;p.vy=-Math.abs(p.vy);}
+      if(p.w){ p.ang+=p.va*dt*(1-solid); if(boil>.5&&!p.vapor&&rnd()<dt*.25) { p.vapor=true; p.vy=-40; } if(boil<.3&&p.vapor&&p.y>LIQ) p.vapor=false; if(boil<.3&&p.vapor) p.vy=Math.abs(p.vy); }
+    });
+    /* simple spacing so particles do not overlap */
+    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const a=P[i], b=P[j], ra=a.w?19:PSTY[a.k].r, rb=b.w?19:PSTY[b.k].r, dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy), mn=ra+rb; if(d>0&&d<mn){ const o=(mn-d)/2, nx=dx/d, ny=dy/d; a.x-=nx*o; a.y-=ny*o; b.x+=nx*o; b.y+=ny*o; } } }
+  function draw(){ c.clearRect(0,0,W,H); c.fillStyle="#f7fbfd"; c.fillRect(0,0,W,H);
+    c.fillStyle=solid>.5?"#e8f3fb":"#dff0fb"; c.fillRect(3,LIQ,W-6,H-LIQ-3); c.strokeStyle="#7fb3d9"; c.lineWidth=2; c.beginPath(); c.moveTo(3,LIQ); c.lineTo(W-3,LIQ); c.stroke();
+    c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(1.5,1.5,W-3,H-3);
+    P.forEach(p=>{ const x=p.w? p.x+(p.lx-p.x)*solid*(p.vapor?0:1) : p.x, y=p.w? p.y+(p.ly-p.y)*solid*(p.vapor?0:1) : p.y; if(p.w&&solid>.98){ p.x=x; p.y=y; }
+      if(p.w) A.drawMol(c,"H2O",x,y,p.ang*(1-solid),1); else ionDot(c,p.k,x,y); });
+    const tag=t=>{ c.font="700 13px Inter,Arial"; const w=c.measureText(t).width; c.fillStyle="rgba(255,255,255,.92)"; c.fillRect(8,8,w+12,22); c.fillStyle=INK; c.fillText(t,14,24); };
+    if(boil>.5) tag("boiling: water molecules escape as a gas"); else if(solid>.5) tag("frozen: water molecules locked in place"); }
+  /* two zoomed thermometers, one near freezing and one near boiling, so the small shifts are readable */
+  function thermo(){ const Wt=330, Ht=340; let s="";
+    const one=(x,lo,hi,title,marks)=>{ const top=40, bot=270, Y=v=>bot-(v-lo)/(hi-lo)*(bot-top), cl=v=>Math.max(lo,Math.min(hi,v)); let o=T.t(x+18,16,title,{fs:12.5,w:800});
+      o+=`<rect x="${x-9}" y="${top-10}" width="18" height="${bot-top+20}" rx="9" fill="#fff" stroke="${INK}" stroke-width="2"/><circle cx="${x}" cy="${bot+26}" r="16" fill="#e23b3b" stroke="${INK}" stroke-width="2"/><rect x="${x-4}" y="${Y(cl(Tenv))}" width="8" height="${bot+12-Y(cl(Tenv))}" fill="#e23b3b"/>`;
+      for(let v=Math.ceil(lo);v<=hi;v++){ const big=v%2===0; o+=`<path d="M${x-9} ${Y(v)}h${big?-8:-4}" stroke="${INK}"/>`+(big?T.t(x-20,Y(v)+4,String(v).replace("-","−"),{fs:10.5,a:"end"}):""); }
+      marks.forEach(([v,col,lab])=>{ if(v<lo-.01||v>hi+.01) return; o+=`<path d="M${x+9} ${Y(v)}H${x+30}" stroke="${col}" stroke-width="2.5"/>`+T.t(x+34,Y(v)+4,lab,{fs:11.5,a:"start",c:col,w:800}); });
+      if(Tenv>=lo&&Tenv<=hi) o+=`<path d="M${x-26} ${Y(Tenv)}H${x+26}" stroke="#e07b00" stroke-width="3" stroke-dasharray="6 4"/>`;
+      else o+=T.t(x+22,Tenv>hi?top+4:bot+32,Tenv>hi?"↑ warmer":"↓ colder",{fs:10.5,c:"#b35c00",a:"start"});
+      return o; };
+    s+=one(52,-12,4,"Near freezing",[[0,"#8a979c","0 °C pure"],...(m>0?[[fp(),"#2E75D6",`FP ${fp().toFixed(1).replace("-","−")}`]]:[])]);
+    s+=one(212,96,106,"Near boiling",[[100,"#8a979c","100 °C pure"],...(m>0?[[bp(),"#c0392b",`BP ${bp().toFixed(1)}`]]:[])]);
+    s+=T.t(Wt/2,Ht-4,`Dashed orange line: environment (${Tenv} °C)`.replace("-","−"),{fs:11,c:"#b35c00"});
+    $("th").innerHTML=T.svg(Wt,Ht,s,"Thermometers near the freezing point and near the boiling point, with the environment temperature"); }
+  function side(){ $("mv").textContent=`${m.toFixed(1)} mol per kg of water`; $("Tv").textContent=`${Tenv} °C`.replace("-","−");
+    const ph= Tenv<fp()-.05? "solid (frozen)" : Tenv>=bp()? "gas (boiling)" : "liquid";
+    $("read").innerHTML=`<div><small>Freezing point</small><b style="color:#2E75D6">${fp().toFixed(1).replace("-","−")} °C</b></div><div><small>Boiling point</small><b style="color:#c0392b">${bp().toFixed(1)} °C</b></div><div><small>Particles of solute</small><b>${m===0?"none":`${(m*SOL[kind].i).toFixed(1)} mol per kg`}</b></div><div><small>Phase at ${Tenv} °C</small><b style="font-size:15px">${ph}</b></div>`;
+    $("info").innerHTML= m===0? `<b>Pure water</b><span>Pure water freezes at 0 °C and boils at 100 °C at standard pressure. Add some solute and watch the two marks on the thermometer.</span>` : `<b>${SOL[kind].i===1?"Each sugar molecule stays whole":`Each formula unit breaks into ${SOL[kind].i} ions`}</b><span>Compare the freezing and boiling points for the three solutes at the same amount added. What do the solute particles do to the temperature range in which the solution stays liquid?</span>`; }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.04,last?(now-last)/1000:0); last=now; step(dt); draw(); raf=requestAnimationFrame(loop); }
+  $("m").addEventListener("input",e=>{ m=+e.target.value; build(); thermo(); side(); });
+  $("T").addEventListener("input",e=>{ Tenv=+e.target.value; thermo(); side(); });
+  A.$$('[data-r="kind"] button',host).forEach(b=>b.addEventListener("click",()=>{ kind=b.dataset.v; A.$$('[data-r="kind"] button',host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); build(); thermo(); side(); }));
+  build(); thermo(); side(); raf=requestAnimationFrame(loop); host._cg={set(o){ if(o.m!=null) m=o.m; if(o.T!=null) Tenv=o.T; if(o.kind){ kind=o.kind; A.$$('[data-r="kind"] button',host).forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v===kind))); } build(); thermo(); side(); },step}; };
+
+/* ---------- how many ions? ---------- */
+const ION={Na:["Na<sup>+</sup>","#A98BDB"],K:["K<sup>+</sup>","#8e7cc3"],Li:["Li<sup>+</sup>","#c9a7e8"],NH4:["NH<sub>4</sub><sup>+</sup>","#7030A0"],Ca:["Ca<sup>2+</sup>","#9aa3a8"],Mg:["Mg<sup>2+</sup>","#7fbf7f"],Al:["Al<sup>3+</sup>","#b0b8c0"],Fe:["Fe<sup>3+</sup>","#b5651d"],
+  Cl:["Cl<sup>−</sup>","#F28C28"],NO3:["NO<sub>3</sub><sup>−</sup>","#2E75D6"],CO3:["CO<sub>3</sub><sup>2−</sup>","#00B050"],SO4:["SO<sub>4</sub><sup>2−</sup>","#FFD200"],PO4:["PO<sub>4</sub><sup>3−</sup>","#E00000"],C2H3O2:["C<sub>2</sub>H<sub>3</sub>O<sub>2</sub><sup>−</sup>","#5f9ea0"],HCO3:["HCO<sub>3</sub><sup>−</sup>","#3cb371"]};
+const FAKE={Na2:"Na<sub>2</sub><sup>2+</sup>",Cl2:"Cl<sub>2</sub><sup>2−</sup>",N:"N<sup>3−</sup>",O:"O<sup>2−</sup>",C:"C<sup>4+</sup>",S:"S<sup>2−</sup>",P:"P<sup>3−</sup>",K2:"K<sub>2</sub><sup>2+</sup>",Ca2:"Ca<sub>2</sub><sup>4+</sup>",NO3x:"NO<sub>3</sub><sup>3−</sup>"};
+Z.CMPDS=[["NaCl",{Na:1,Cl:1},["Cl2"]],["KNO<sub>3</sub>",{K:1,NO3:1},["N","O"]],["CaCl<sub>2</sub>",{Ca:1,Cl:2},["Cl2"]],["Na<sub>2</sub>CO<sub>3</sub>",{Na:2,CO3:1},["Na2","C"]],["MgCl<sub>2</sub>",{Mg:1,Cl:2},["Cl2"]],["Ca(NO<sub>3</sub>)<sub>2</sub>",{Ca:1,NO3:2},["NO3x","N"]],
+  ["Al(NO<sub>3</sub>)<sub>3</sub>",{Al:1,NO3:3},["N","O"]],["K<sub>3</sub>PO<sub>4</sub>",{K:3,PO4:1},["P","K2"]],["NH<sub>4</sub>Cl",{NH4:1,Cl:1},["N"]],["NaC<sub>2</sub>H<sub>3</sub>O<sub>2</sub>",{Na:1,C2H3O2:1},["C","O"]],["Li<sub>2</sub>SO<sub>4</sub>",{Li:2,SO4:1},["S","O"]],["FeCl<sub>3</sub>",{Fe:1,Cl:3},["Cl2"]],["NaHCO<sub>3</sub>",{Na:1,HCO3:1},["C","O"]],["(NH<sub>4</sub>)<sub>2</sub>CO<sub>3</sub>",{NH4:2,CO3:1},["N","C"]],
+  ["C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (glucose)",{},["C","O"]],["C<sub>12</sub>H<sub>22</sub>O<sub>11</sub> (sucrose)",{},["C","O"]]];
+Z.IonsGame=function(host){ const g=A.Game(host,{how:"Step 1: drag the particles that one formula unit forms in water into the beaker (or tap them). Step 2: use the number of particles to compare freezing points."});
+  g.button("New compound",()=>next(),"ghost");
+  g.stage.innerHTML=`<div class="qp"><small>When this compound dissolves in water, what particles form?</small><div class="qp-t" data-r="q"></div></div>
+   <div class="zi-row"><div class="zi-pal" data-r="pal"></div><div class="zi-beaker" data-r="bk" aria-label="beaker"></div></div>
+   <div class="controls" style="justify-content:center"><button type="button" class="btn" data-r="c1">Check particles</button><button type="button" class="btn ghost" data-r="mol">It stays as whole molecules</button><button type="button" class="btn ghost" data-r="clr">Empty beaker</button></div>
+   <div class="da-step locked" data-r="s2"><h4>Step 2: Compare freezing points</h4><div data-r="q2"></div></div>`;
+  const $=k=>g.stage.querySelector(`[data-r="${k}"]`); let cur=null, put={}, wholeMol=false, s1=false;
+  const nIons=c=>Object.values(c[1]).reduce((a,b)=>a+b,0)||1;
+  function beaker(){ const items=Object.entries(put).flatMap(([k,n])=>Array(n).fill(k)); const rnd=T.rng(items.length*7+3);
+    let s=`<path d="M20 20V180a12 12 0 0 0 12 12H208a12 12 0 0 0 12-12V20" fill="#fff" stroke="${INK}" stroke-width="3"/><rect x="23" y="60" width="194" height="128" fill="#dff0fb"/>`;
+    if(wholeMol) s+=`<rect x="90" y="100" width="60" height="40" rx="8" fill="#e9f7ec" stroke="#00843c" stroke-width="2"/>`+T.t(120,125,"molecule",{fs:12,c:"#00843c"});
+    items.forEach((k,i)=>{ const col=(ION[k]||[0,"#bbb"])[1], x=40+(i%6)*30+rnd()*6, y=80+Math.floor(i/6)*36+rnd()*6; s+=`<circle cx="${x}" cy="${y}" r="13" fill="${col}" stroke="${INK}" stroke-width="1.4"/>`; });
+    $("bk").innerHTML=T.svg(240,200,s,"Beaker with the particles placed so far")+`<div class="zi-list">${Object.entries(put).map(([k,n])=>`<button type="button" class="zi-chip in" data-k="${k}">${n} ${ION[k]?ION[k][0]:FAKE[k]} ✕</button>`).join("")||`<span class="muted">empty</span>`}</div>`;
+    A.$$(".zi-chip.in",$("bk")).forEach(b=>b.addEventListener("click",()=>{ const k=b.dataset.k; put[k]--; if(!put[k]) delete put[k]; beaker(); })); }
+  function add(k){ if(s1) return; wholeMol=false; put[k]=(put[k]||0)+1; beaker(); }
+  function next(){ g.fresh(); g.msg(""); let c; do{ c=A.pick(Z.CMPDS); } while(cur&&c===cur); cur=c; put={}; wholeMol=false; s1=false; $("q").innerHTML=c[0]; $("s2").classList.add("locked"); $("q2").innerHTML="";
+    /* palette: the right ions plus look-alike wrong ones */
+    const real=Object.keys(c[1]), extra=A.shuffle(Object.keys(ION).filter(k=>!real.includes(k))).slice(0,3), fakes=c[2];
+    const pal=A.shuffle([...real,...extra,...fakes]);
+    $("pal").innerHTML=pal.map(k=>`<button type="button" class="zi-chip" data-k="${k}"><span class="sw" style="background:${ION[k]?ION[k][1]:"#ddd"}"></span>${ION[k]?ION[k][0]:FAKE[k]}</button>`).join("");
+    A.$$(".zi-chip",$("pal")).forEach(b=>{ b.addEventListener("pointerdown",ev=>{ ev.preventDefault(); const sx=ev.clientX, sy=ev.clientY; let gh=null;
+      const mv=e=>{ if(!gh&&Math.hypot(e.clientX-sx,e.clientY-sy)>6){ gh=A.h("div",{class:"dd-card dd-ghost"},b.innerHTML); document.body.appendChild(gh); } if(gh){ gh.style.left=e.clientX+"px"; gh.style.top=e.clientY+"px"; } };
+      const up=e=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up); if(gh){ gh.remove(); if(document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-r="bk"]')) add(b.dataset.k); } else add(b.dataset.k); };
+      document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); }); });
+    beaker(); }
+  $("clr").addEventListener("click",()=>{ if(s1) return; put={}; wholeMol=false; beaker(); });
+  $("mol").addEventListener("click",()=>{ if(s1) return; put={}; wholeMol=true; beaker(); });
+  $("c1").addEventListener("click",()=>{ if(s1) return; const want=cur[1], ionic=Object.keys(want).length>0;
+    if(!ionic){ if(wholeMol){ ok1(); } else { g.lose(); g.msg("This compound is made of nonmetals only (a molecular compound). It dissolves as whole molecules and does not form ions.","bad"); } return; }
+    if(wholeMol){ g.lose(); g.msg("This is an ionic compound (a metal or NH<sub>4</sub><sup>+</sup> with a nonmetal or polyatomic ion). It separates into ions in water.","bad"); return; }
+    const fake=Object.keys(put).find(k=>!ION[k]); if(fake){ g.lose(); g.msg(`${FAKE[fake]} is not an ion this compound forms. Polyatomic ions stay together as one ion, and subscripts outside the ion tell how many of that ion form.`,"bad"); return; }
+    const wrong=Object.keys(put).find(k=>!want[k]); if(wrong){ g.lose(); g.msg(`${ION[wrong][0]} is not in ${cur[0]}.`,"bad"); return; }
+    const miss=Object.keys(want).find(k=>(put[k]||0)!==want[k]); if(miss){ g.lose(); g.msg(`Check the number of ${ION[miss][0]} ions. The subscript tells how many of that ion are in one formula unit.`,"bad"); return; }
+    ok1(); });
+  function ok1(){ s1=true; const n=nIons(cur); g.msg(`✔ One formula unit of ${cur[0]} gives ${n} particle${n>1?"s":""} in solution.`,"good"); $("s2").classList.remove("locked");
+    let o; do{ o=A.pick(Z.CMPDS); } while(o===cur); const no=nIons(o);
+    $("q2").innerHTML=`<p>Two solutions each contain <b>1.0 mole</b> of solute dissolved in <b>1 kg of water</b>: ${cur[0]} and ${o[0]}. Which solution has the <b>lower freezing point</b>?</p><div class="controls"><button type="button" class="btn ghost" data-a="a"><span>${cur[0]}</span></button><button type="button" class="btn ghost" data-a="b"><span>${o[0]}</span></button><button type="button" class="btn ghost" data-a="s">They are the same</button></div>`;
+    A.$$("[data-a]",$("q2")).forEach(b=>b.addEventListener("click",()=>{ const ans= n>no?"a":n<no?"b":"s", ok=b.dataset.a===ans; A.markBox(b,ok);
+      if(!ok){ g.lose(); g.msg(`${o[0]} forms ${no} particle${no>1?"s":""} per formula unit${Object.keys(o[1]).length?"":" (molecule)"}. The freezing point goes down more when there are more dissolved particles.`,"bad"); return; }
+      g.win(); g.msg(`✔ ${ans==="s"?"Both":`${ans==="a"?cur[0]:o[0]}`} ${ans==="s"?"make the same number of particles, so the freezing points are the same":`makes more dissolved particles (${Math.max(n,no)} vs ${Math.min(n,no)} per formula unit), so it lowers the freezing point more`}. More particles also raise the boiling point more.`,"good"); A.$$("[data-a]",$("q2")).forEach(x=>x.disabled=true); })); }
+  next(); host._ig={get cur(){return cur;},add,check:()=>$("c1").click()}; };
+})();
+
+/* Nov 14: Unit 14 Organic Molecule Generator: place atoms on a grid, set bond orders, and the generator fills in hydrogen atoms,
+   draws the structural formula and gives the molecular formula (and a name for unbranched chains). Challenge mode checks targets. */
+(function(){ const A=window.AS, T=A&&A.U7; if(!T||!A.U14) return; const OR=A.U14, INK="#1b2328", GRAY="#5f6b72";
+const VAL={C:4,N:3,O:2,F:1,Cl:1,Br:1,I:1}, COL={C:"#00B050",H:"#2E75D6",O:"#E00000",N:"#7030A0",F:"#9ACD32",Cl:"#F28C28",Br:"#8B2500",I:"#6b3fa0"};
+const HAL={F:"fluoro",Cl:"chloro",Br:"bromo",I:"iodo"};
+const sub=s=>s.replace(/(\d+)/g,"<sub>$1</sub>");
+OR.CHAL=[["methane","CH4"],["ethane","C2H6"],["propane","C3H8"],["butane","C4H10"],["ethene","C2H4"],["propene","C3H6"],["1-butene","C4H8"],["2-butene","C4H8"],["ethyne","C2H2"],["2-pentyne","C5H8"],["methanol","CH4O"],["1-propanol","C3H8O"],["2-propanol","C3H8O"],["chloromethane","CH3Cl"],["2-bromobutane","C4H9Br"],["an isomer of butane (C4H10) that is not butane","C4H10",(nm)=>nm!=="butane"],["an isomer of C5H12 with a branch","C5H12",(nm)=>nm!=="pentane"]];
+OR.Generator=function(host){ const CW=9, RH=5, S=72, OX=44, OY=40; let atoms={}, bonds={}, tool="C", last=null, chal=null;
+  const key=(c,r)=>c+","+r, bkey=(a,b)=>a<b?a+"|"+b:b+"|"+a, pos=k=>k.split(",").map(Number);
+  host.innerHTML=`<div class="lab-b"><p class="how">Choose an atom and click a grid point to place it. A new atom bonds to the atom you placed or selected last if they are next to each other. Choose <b>Bond</b> and click between two atoms to add a bond or change it (single → double → triple → none). The generator adds hydrogen atoms so each atom has its usual number of bonds.</p>
+   <div class="controls"><div class="seg or-tools" data-r="tools">${["C","O","N","Cl","Br","F","bond","erase"].map(t=>`<button type="button" data-t="${t}" aria-pressed="${t===tool}">${t==="bond"?"Bond":t==="erase"?"Erase":t}</button>`).join("")}</div><button type="button" class="btn ghost" data-r="clear">Clear</button><button type="button" class="btn ghost" data-r="chal">Challenge</button></div>
+   <div class="or-chal" data-r="cq" hidden></div>
+   <div class="g8-row"><div class="t7-svg or-grid" data-r="grid"></div><div class="g8-side"><div class="g8-read" data-r="read" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  const used=k=>Object.entries(bonds).filter(([b])=>b.split("|").includes(k)).reduce((s,[,o])=>s+o,0);
+  const nbrs=k=>Object.keys(bonds).filter(b=>b.split("|").includes(k)).map(b=>b.split("|").find(x=>x!==k));
+  const adj=(a,b)=>{ const [c1,r1]=pos(a), [c2,r2]=pos(b); return Math.abs(c1-c2)+Math.abs(r1-r2)===1; };
+  function place(k){ if(atoms[k]){ last=k; draw(); return; } atoms[k]=tool;
+    if(last&&atoms[last]&&adj(last,k)&&used(last)<VAL[atoms[last]]) bonds[bkey(last,k)]=1; else { const n=[[1,0],[-1,0],[0,1],[0,-1]].map(([dc,dr])=>{ const [c,r]=pos(k); return key(c+dc,r+dr); }).filter(x=>atoms[x]&&x!==k&&used(x)<VAL[atoms[x]]); if(n.length===1) bonds[bkey(n[0],k)]=1; }
+    last=k; draw(); }
+  function cycle(a,b){ const bk=bkey(a,b), o=bonds[bk]||0; let nx=(o+1)%4; while(nx>0&&(used(a)-o+nx>VAL[atoms[a]]||used(b)-o+nx>VAL[atoms[b]])) nx=(nx+1)%4; if(nx) bonds[bk]=nx; else delete bonds[bk]; draw(); }
+  function erase(k){ delete atoms[k]; Object.keys(bonds).forEach(b=>{ if(b.split("|").includes(k)) delete bonds[b]; }); if(last===k) last=null; draw(); }
+  /* analysis */
+  function analyze(){ const ks=Object.keys(atoms); if(!ks.length) return null; const cnt={C:0,H:0};
+    ks.forEach(k=>{ cnt[atoms[k]]=(cnt[atoms[k]]||0)+1; cnt.H+=VAL[atoms[k]]-used(k); });
+    /* connected? */ const seen=new Set([ks[0]]), st=[ks[0]]; while(st.length){ const k=st.pop(); nbrs(k).forEach(n=>{ if(!seen.has(n)){ seen.add(n); st.push(n); } }); }
+    const order=["C","H",...Object.keys(cnt).filter(e=>e!=="C"&&e!=="H").sort()]; const mf=order.filter(e=>cnt[e]).map(e=>e+(cnt[e]>1?cnt[e]:"")).join("");
+    return {cnt,mf,connected:seen.size===ks.length,name:name(ks)}; }
+  function name(ks){ const C=ks.filter(k=>atoms[k]==="C"), other=ks.filter(k=>atoms[k]!=="C"); if(!C.length||C.length>8) return null;
+    /* unbranched carbon chain only: each carbon has at most 2 carbon neighbors, and it is not a ring */
+    const cn=k=>nbrs(k).filter(n=>atoms[n]==="C"); if(C.some(k=>cn(k).length>2)) return {branched:true};
+    const ends=C.filter(k=>cn(k).length<=1); if(C.length>1&&ends.length!==2) return null;
+    let chain=[ends[0]||C[0]]; while(chain.length<C.length){ const nx=cn(chain[chain.length-1]).find(n=>!chain.includes(n)); if(!nx) return null; chain.push(nx); }
+    if(other.length>1) return null; let sub=null; if(other.length){ const o=other[0], on=nbrs(o); if(on.length!==1||atoms[on[0]]!=="C"||bonds[bkey(o,on[0])]!==1) return null; if(atoms[o]==="N") return null; sub={el:atoms[o],at:chain.indexOf(on[0])+1}; }
+    const mult=[]; for(let i=0;i<chain.length-1;i++){ const o=bonds[bkey(chain[i],chain[i+1])]; if(o>1) mult.push([i+1,o]); } if(mult.length>1) return null;
+    const n=chain.length, P=OR.PRE[n-1]; let flip=false;
+    /* number from the end closer to the functional group (OH, then the multiple bond, then the halogen) */
+    const fpos=sub&&sub.el==="O"? sub.at : mult.length? mult[0][0]+.5 : sub? sub.at : 0; if(fpos&&fpos>(n+1)/2) flip=true;
+    const fl=x=>flip? n+1-x : x;
+    if(sub&&sub.el==="O"){ if(mult.length) return null; const p=fl(sub.at); return {name:(n>=3?`${p}-`:"")+P+"anol"}; }
+    let base= mult.length? (n>=4?`${Math.min(fl(mult[0][0]),fl(mult[0][0]+1))}-`:"")+P+(mult[0][1]===2?"ene":"yne") : P+"ane";
+    if(sub){ const p=fl(sub.at); base=(n>=3?`${p}-`:"")+HAL[sub.el]+base; } return {name:base}; }
+  function draw(){ const W=OX*2+(CW-1)*S, H=OY*2+(RH-1)*S, X=c=>OX+c*S, Y=r=>OY+r*S; let s="";
+    for(let r=0;r<RH;r++) for(let c=0;c<CW;c++) if(!atoms[key(c,r)]) s+=`<circle class="or-pt" data-k="${key(c,r)}" cx="${X(c)}" cy="${Y(r)}" r="5" fill="#cfd8dc"/>`;
+    /* bonds */ Object.entries(bonds).forEach(([b,o])=>{ const [a,z]=b.split("|"), [c1,r1]=pos(a), [c2,r2]=pos(z), x1=X(c1), y1=Y(r1), x2=X(c2), y2=Y(r2), d=Math.hypot(x2-x1,y2-y1), nx=-(y2-y1)/d, ny=(x2-x1)/d;
+      for(let q=0;q<o;q++){ const off=(q-(o-1)/2)*7; s+=`<path d="M${x1+nx*off} ${y1+ny*off}L${x2+nx*off} ${y2+ny*off}" stroke="${INK}" stroke-width="2.6"/>`; } });
+    /* bond hit zones between neighbors that both hold atoms */
+    if(tool==="bond") Object.keys(atoms).forEach(k=>{ const [c,r]=pos(k); [[1,0],[0,1]].forEach(([dc,dr])=>{ const k2=key(c+dc,r+dr); if(atoms[k2]) s+=`<rect class="or-bz" data-a="${k}" data-b="${k2}" x="${(X(c)+X(c+dc))/2-14}" y="${(Y(r)+Y(r+dr))/2-14}" width="28" height="28" rx="6" fill="rgba(224,123,0,.12)" stroke="#e07b00" stroke-dasharray="3 2"/>`; }); });
+    /* hydrogens on free sides */ Object.keys(atoms).forEach(k=>{ let h=VAL[atoms[k]]-used(k); const [c,r]=pos(k);
+      [[0,-1],[0,1],[-1,0],[1,0]].forEach(([dc,dr])=>{ if(h<=0) return; const nk=key(c+dc,r+dr); if(atoms[nk]&&bonds[bkey(k,nk)]!=null) return; if(atoms[nk]) return; h--; const hx=X(c)+dc*S*.46, hy=Y(r)+dr*S*.46; s+=`<path d="M${X(c)+dc*14} ${Y(r)+dr*14}L${hx-dc*9} ${hy-dr*9}" stroke="${INK}" stroke-width="2.2"/><circle cx="${hx}" cy="${hy}" r="9" fill="${COL.H}" stroke="${INK}" stroke-width="1.2"/>`+T.t(hx,hy+4,"H",{fs:11,c:"#fff",w:800}); });
+      if(h>0) s+=T.t(X(c)+18,Y(r)-16,`+${h}H`,{fs:11,c:"#c0392b",w:800}); });
+    /* atoms */ Object.entries(atoms).forEach(([k,e])=>{ const [c,r]=pos(k); s+=`<g class="or-at" data-k="${k}"><circle cx="${X(c)}" cy="${Y(r)}" r="${e==="C"?15:14}" fill="${COL[e]}" stroke="${k===last?"#e07b00":INK}" stroke-width="${k===last?3.5:1.6}"/>`+T.t(X(c),Y(r)+5,e,{fs:e.length>1?12:14,c:e==="Br"||e==="N"||e==="I"?"#fff":"#fff",w:800})+`</g>`; });
+    $("grid").innerHTML=T.svg(W,H,s,"Molecule building grid");
+    const sv=$("grid").querySelector("svg");
+    A.$$(".or-pt",sv).forEach(p=>p.addEventListener("click",()=>{ if(tool==="bond"||tool==="erase") return; place(p.dataset.k); }));
+    A.$$(".or-at",sv).forEach(p=>p.addEventListener("click",()=>{ if(tool==="erase") erase(p.dataset.k); else { last=p.dataset.k; draw(); } }));
+    A.$$(".or-bz",sv).forEach(p=>p.addEventListener("click",()=>cycle(p.dataset.a,p.dataset.b)));
+    report(); }
+  function report(){ const r=analyze();
+    if(!r){ $("read").innerHTML=""; $("info").innerHTML=`<b>Start building</b><span>Place a carbon atom. Then place more atoms next to it to build a chain.</span>`; return; }
+    const nm=r.name&&r.name.name;
+    $("read").innerHTML=`<div><small>Molecular formula</small><b>${sub(r.mf)}</b></div><div><small>Name</small><b style="font-size:15px">${nm||"—"}</b></div><div><small>Carbon atoms</small><b>${r.cnt.C||0}</b></div><div><small>Hydrogen atoms</small><b>${r.cnt.H}</b></div>`;
+    let note= !r.connected? "Some atoms are not bonded to the rest of the molecule. Connect them with the Bond tool." : nm? `This structural formula shows every atom and every bond. Its molecular formula, ${sub(r.mf)}, only counts the atoms.` : r.name&&r.name.branched? "This chain has a branch. Branched isomers have the same molecular formula as the straight chain but a different structure." : "The generator names unbranched chains with one functional group. This molecule is beyond its naming, but the formula is correct.";
+    $("info").innerHTML=`<b>${r.connected?"Structure":"Not connected"}</b><span>${note}</span>`;
+    if(chal&&r.connected){ const ok=r.mf===chal[1]&&(chal[2]? chal[2](nm||"",r) : nm===chal[0]); if(ok&&!chal.done){ chal.done=true; $("cq").innerHTML=`<b>✔ Challenge complete:</b> ${chal[0]} (${sub(chal[1])}). <button type="button" class="btn sm" data-r="cn">Next challenge</button>`; $("cq").className="or-chal ok"; $("cq").querySelector("button").addEventListener("click",newChal); } } }
+  function newChal(){ let c; do{ c=A.pick(OR.CHAL); } while(chal&&c[0]===chal[0]); chal=c.slice(); $("cq").hidden=false; $("cq").className="or-chal"; $("cq").innerHTML=`<b>Challenge:</b> build <b>${chal[0]}</b>. <span class="muted">Molecular formula: ${sub(chal[1])}</span>`; atoms={}; bonds={}; last=null; draw(); }
+  A.$$("[data-t]",host).forEach(b=>b.addEventListener("click",()=>{ tool=b.dataset.t; A.$$("[data-t]",host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+  $("clear").addEventListener("click",()=>{ atoms={}; bonds={}; last=null; if(chal) chal.done=false; draw(); });
+  $("chal").addEventListener("click",newChal);
+  draw(); host._og={place,cycle,set t(v){ tool=v; },analyze,newChal,get chal(){return chal;}}; };
+})();
+
+/* Nov 14: covalent bonds drawn as lines (one line per shared pair) in every Unit 5/6 particle picture.
+   Atoms joined by a covalent bond are spaced apart so the bond line shows; ions still touch (ionic bonds have no line).
+   Bond orders come from each atom's usual number of bonds (H 1, O 2, N 3, C 4 …), so CO2 shows O=C=O and N2 shows N≡N. */
+(function(){ const A=window.AS, R=A&&A.U5; if(!R||!R.layoutMol) return;
+const VAL={H:1,C:4,N:3,O:2,F:1,Cl:1,Br:1,I:1,S:2,P:3,B:3,Si:4};
+const FIX={SO2:{"0-1":2},SO3:{"0-1":2},H2SO4:{"0-1":2,"0-2":2},NO2:{"0-1":2},N2O4:{"0-2":2,"1-4":2},P4O10:{},NO:{"0-1":2},O3:{"0-1":2}};
+const ION_VAL={NO3:{N:4},CO3:{},SO4:{S:6},PO4:{P:5},ClO3:{Cl:5},ClO4:{Cl:7},SO3:{S:4},NH4:{N:4},C2H3O2:{},OH:{O:2},HCO3:{},CN:{}};
+const metal=s=>R.METALS? R.METALS.has(s) : /^(Li|Na|K|Rb|Cs|Be|Mg|Ca|Sr|Ba|Al|Fe|Cu|Zn|Ag|Ni|Sn|Pb|Cr|Mn|Co|Ti|Au|Hg)$/.test(s);
+const memo={}; const prevMol=R.layoutMol, RINGS=new Set(["C6H6","C5H10","C6H12","P4O10","C6H12O6r"]);
+/* two polyatomic ions that the cluster layout cannot draw correctly */
+if(R.SHAPE2){ const D=Math.PI/180, P=(x,y,a,l)=>[x+Math.cos(a*D)*l,y+Math.sin(a*D)*l];
+  R.SHAPE2.C2H3O2=[{s:"C",x:-9,y:0},{s:"C",x:9,y:0},...[120,180,240].map(a=>{ const [x,y]=P(-9,0,a,15); return {s:"H",x,y}; }),...[-55,55].map(a=>{ const [x,y]=P(9,0,a,18); return {s:"O",x,y}; })];
+  R.SHAPE2.HCO3=[{s:"C",x:0,y:0},{s:"O",x:0,y:-18},{s:"O",x:-15.6,y:9},{s:"O",x:15.6,y:9},{s:"H",x:28,y:2}]; }
+R.bondify=(atoms0,f)=>{ const a=atoms0.map(x=>({s:x.s,x:x.x,y:x.y})), n=a.length; if(n<2) return {atoms:a,bonds:[]};
+  const d=(i,j)=>Math.hypot(a[i].x-a[j].x,a[i].y-a[j].y), bonds=[], has=new Set(), add=(i,j,o)=>{ const k=i<j?i+"-"+j:j+"-"+i; if(has.has(k)) return; has.add(k); bonds.push([Math.min(i,j),Math.max(i,j),o]); };
+  /* tree: each atom (after the first) joins its nearest earlier non-H atom (an H atom joins its nearest non-H atom anywhere) */
+  for(let i=1;i<n;i++){ const H=a[i].s==="H"; let cand=[...Array(n).keys()].filter(j=>j!==i&&a[j].s!=="H"&&(H||j<i)); if(!cand.length) cand=[...Array(i).keys()];
+    let best=cand[0]; cand.forEach(j=>{ if(d(i,j)<d(i,best)) best=j; }); add(best,i,metal(a[i].s)!==metal(a[best].s)?0:1); }
+  /* ring closures: two non-H atoms about one bond length apart that are not yet bonded */
+  const typ=bonds.filter(b=>a[b[0]].s!=="H"&&a[b[1]].s!=="H").map(b=>d(b[0],b[1])), L0=typ.length?typ.sort((x,y)=>x-y)[Math.floor(typ.length/2)]:0; let ring=false;
+  if(L0&&RINGS.has(f)) for(let i=0;i<n;i++) for(let j=i+1;j<n;j++){ if(a[i].s==="H"||a[j].s==="H"||has.has(i+"-"+j)) continue; if(metal(a[i].s)||metal(a[j].s)) continue; if(d(i,j)<L0*1.12){ add(i,j,1); ring=true; } }
+  /* bond orders: raise bonds between atoms that still have spare valence (fixed table first) */
+  const fx=FIX[f]; if(fx) bonds.forEach(b=>{ const o=fx[b[0]+"-"+b[1]]; if(o) b[2]=o; });
+  else { const iv=ION_VAL[f]||{}, rem=a.map((x,i)=>(iv[x.s]||VAL[x.s]||0)-bonds.filter(b=>b[2]&&(b[0]===i||b[1]===i)).length);
+    let ch=true; while(ch){ ch=false; for(const b of bonds){ if(b[2]&&b[2]<3&&rem[b[0]]>0&&rem[b[1]]>0&&a[b[0]].s!=="H"&&a[b[1]].s!=="H"){ b[2]++; rem[b[0]]--; rem[b[1]]--; ch=true; } } } }
+  /* spacing: covalent neighbors sit a gap apart so the line shows; ionic neighbors touch */
+  const need=b=>R.rad(a[b[0]].s)+R.rad(a[b[1]].s)+(b[2]?7:0);
+  if(ring){ const k=Math.max(1,...bonds.filter(b=>b[2]).map(b=>need(b)/(d(b[0],b[1])||1))); a.forEach(p=>{ p.x*=k; p.y*=k; }); }
+  else { const adj=a.map(()=>[]); bonds.forEach(b=>{ adj[b[0]].push(b); adj[b[1]].push(b); }); const out=a.map(p=>({...p})), seen=new Set([0]), q=[0];
+    while(q.length){ const i=q.shift(); adj[i].forEach(b=>{ const j=b[0]===i?b[1]:b[0]; if(seen.has(j)) return; seen.add(j); let dx=a[j].x-a[i].x, dy=a[j].y-a[i].y, L=Math.hypot(dx,dy)||1; const t=need(b); out[j].x=out[i].x+dx/L*t; out[j].y=out[i].y+dy/L*t; q.push(j); }); }
+    out.forEach((p,i)=>{ a[i].x=p.x; a[i].y=p.y; }); }
+  const xs=a.map(p=>p.x), ys=a.map(p=>p.y), cx=(Math.min(...xs)+Math.max(...xs))/2, cy=(Math.min(...ys)+Math.max(...ys))/2; a.forEach(p=>{ p.x-=cx; p.y-=cy; });
+  return {atoms:a,bonds}; };
+R.molB=f=>memo[f]||(memo[f]=R.bondify(prevMol(f),f));
+R.layoutMol=f=>R.molB(f).atoms;
+R.bondsSVG=(atoms,bonds,x,y,k,op=1)=>bonds.map(([i,j,o])=>R.bondSVG? R.bondSVG(x+atoms[i].x*k,y+atoms[i].y*k,x+atoms[j].x*k,y+atoms[j].y*k,o,k,op) : "").join("");
+/* the bonds of a placed molecule or polyatomic ion (atoms already in drawing coordinates, same order as R.molB) */
+R.bondsAt=(f,pts,k,op=1)=>{ const B=R.molB(f).bonds; return B.map(([i,j,o])=>pts[i]&&pts[j]? R.bondSVG(pts[i].x,pts[i].y,pts[j].x,pts[j].y,o,k,op) : "").join(""); };
+const prevSVG=R.molSVG;
+R.molSVG=(f,x,y,o={})=>{ const k=o.k||1, U=R.unitLayout(f), tx=o.text===false?{k,text:false}:{k};
+  if(!U){ const M=R.molB(f); return R.bondsSVG(M.atoms,M.bonds,x,y,k)+M.atoms.map(a=>R.atom(x+a.x*k,y+a.y*k,a.s,tx)).join(""); }
+  let s=R.unitEnv(U,x,y,k);
+  U.ions.forEach(io=>{ if(io.poly) s+=R.ionRing(x+io.cx*k,y+io.cy*k,io.R*k,k); });
+  U.ions.forEach(io=>{ if(io.poly) s+=R.bondsAt(io.f,io.atoms.map(a=>({x:x+a.x*k,y:y+a.y*k})),k); });
+  U.ions.forEach(io=>io.atoms.forEach(a=>s+=R.atom(x+a.x*k,y+a.y*k,a.s,tx)));
+  if(o.tags!==false) U.ions.forEach(io=>s+=R.ionTag(io,x,y,k));
+  return s; };
+/* reaction animation: bond lines fade out as bonds break and fade in as new bonds form */
+const prevScene=R.rxnScene;
+R.rxnScene=(eq,t,o={})=>{ let s=prevScene(eq,t,o); const W=o.w||560, H=o.h||220, n=eq.r.length, c=eq.c, u=t%1, ease=v=>v<0?0:v>1?1:v*v*(3-2*v), br=ease((u-.2)/.15), pd=ease((u-.8)/.1);
+  const grid=(L,off,x0,x1)=>{ const items=[]; L.forEach((f,i)=>{ for(let j=0;j<c[off+i];j++) items.push(f); }); const cols=Math.ceil(Math.sqrt(items.length*1.4)), rows=Math.ceil(items.length/cols); return {items,cols,rows,cw:(x1-x0)/cols,ch:(H-70)/rows,x0}; };
+  const G1=grid(eq.r,0,10,W*.46), G2=grid(eq.p,n,W*.54,W-10), fit=G=>Math.min(...G.items.map(f=>{ const [hw,hh]=R.extWH(f); return Math.min((G.cw-8)/(2*hw+6),(G.ch-6)/(2*hh+4)); })), K=o.k||Math.min(1.8,fit(G1),fit(G2));
+  const lines=(G,op)=>G.items.map((f,q)=>{ if(R.unitLayout(f)) return ""; const cx=G.x0+G.cw*((q%G.cols)+.5), cy=34+G.ch*((Math.floor(q/G.cols))+.5), M=R.molB(f); return R.bondsSVG(M.atoms,M.bonds,cx,cy,K,op); }).join("");
+  let add=""; if(br<1) add+=lines(G1,(1-br).toFixed(2)); if(pd>0) add+=lines(G2,pd.toFixed(2));
+  /* bond lines go under the atoms: insert them right after the background and labels */
+  if(W<430){ /* small players: shorter captions so no text runs past the edge */
+    s=s.replace(">(faded: the reactants before)<",">(faded: before)<").replace(/(<text[^>]*font-size=")12\.5("[^>]*>)([^<]*)(<\/text>)$/,(m,a,b,t,e)=>a+"11.5"+b+(u<.2?"Reactant particles…":u<.35?"…bonds break…":u<.8?"…the same atoms rearrange…":"…new bonds form. Same atoms.")+e); }
+  const at=s.search(/<g|<circle/); return at>0? s.slice(0,at)+add+s.slice(at) : s+add; };
+/* wording in the particle key */
+const prevKey=R.particleKey;
+if(prevKey) R.particleKey=()=>prevKey().replace("in a molecule the atoms touch","in a molecule, covalent bonds are drawn as lines between atoms").replace("bonded atoms touch","each line = one shared pair");
+})();
+
+/* Unit 4 pictures (intermolecular forces, hydration, polarity): bonded atoms spaced apart with bond lines.
+   Solid lines inside a molecule are covalent bonds; the dashed lines between molecules stay the intermolecular attractions. */
+(function(){ const A=window.AS, B=A&&A.U4; if(!B||!B.MT) return;
+const VAL={H:1,C:4,N:3,O:2,F:1,Cl:1,Br:1,I:1,S:2,P:3};
+B.MTB={};
+Object.keys(B.MT).forEach(k=>{ const at=B.MT[k], n=at.length, d=(i,j)=>Math.hypot(at[i][1]-at[j][1],at[i][2]-at[j][2]), bonds=[];
+  for(let i=1;i<n;i++){ const H=at[i][0]==="H"; let cand=[...Array(n).keys()].filter(j=>j!==i&&at[j][0]!=="H"&&(H||j<i)); if(!cand.length) cand=[...Array(i).keys()]; let b=cand[0]; cand.forEach(j=>{ if(d(i,j)<d(i,b)) b=j; }); bonds.push([b,i,1]); }
+  /* in the oil and glycerol pictures the chains are drawn left to right: join each carbon to the previous atom in its chain */
+  const rem=at.map((a,i)=>(VAL[a[0]]||1)-bonds.filter(b=>b[0]===i||b[1]===i).length); let ch=true; while(ch){ ch=false; for(const b of bonds){ if(b[2]<3&&rem[b[0]]>0&&rem[b[1]]>0&&at[b[0]][0]!=="H"&&at[b[1]][0]!=="H"&&!["hex","oil","glyc","alc","sugar"].includes(k)){ b[2]++; rem[b[0]]--; rem[b[1]]--; ch=true; } } }
+  /* push atoms apart along each bond so a short line shows between them */
+  const out=at.map(a=>a.slice()), seen=new Set([0]), q=[0];
+  while(q.length){ const i=q.shift(); bonds.filter(b=>b[0]===i||b[1]===i).forEach(b=>{ const j=b[0]===i?b[1]:b[0]; if(seen.has(j)) return; seen.add(j); const dx=at[j][1]-at[i][1], dy=at[j][2]-at[i][2], L=Math.hypot(dx,dy)||1, t=at[i][3]+at[j][3]+Math.max(3.5,.42*Math.min(at[i][3],at[j][3]));
+    out[j][1]=out[i][1]+dx/L*Math.max(L,t); out[j][2]=out[i][2]+dy/L*Math.max(L,t); q.push(j); }); }
+  const xs=out.map(a=>a[1]), ys=out.map(a=>a[2]), cx=(Math.min(...xs)+Math.max(...xs))/2, cy=(Math.min(...ys)+Math.max(...ys))/2; out.forEach(a=>{ a[1]-=cx; a[2]-=cy; });
+  B.MT[k]=out; B.MTB[k]=bonds; });
+const prevAtoms=B.molAtoms; B.molAtoms=(k,x,y,a,sc)=>{ const r=prevAtoms(k,x,y,a,sc); r.k=k; return r; };
+const line=(x1,y1,x2,y2,o,w)=>{ const d=Math.hypot(x2-x1,y2-y1)||1, nx=-(y2-y1)/d, ny=(x2-x1)/d; let s=""; for(let q=0;q<o;q++){ const f=(q-(o-1)/2)*3.2; s+=`<line x1="${(x1+nx*f).toFixed(1)}" y1="${(y1+ny*f).toFixed(1)}" x2="${(x2+nx*f).toFixed(1)}" y2="${(y2+ny*f).toFixed(1)}" stroke="#1b2328" stroke-width="${w}" stroke-linecap="round"/>`; } return s; };
+B.bondLines=(atoms,k)=>{ const bs=B.MTB[k||atoms.k]; if(!bs) return ""; const w=Math.max(1.2,Math.min(2.2,(atoms[0]&&atoms[0].r||8)*.18)); return bs.map(([i,j,o])=>atoms[i]&&atoms[j]? line(atoms[i].x,atoms[i].y,atoms[j].x,atoms[j].y,o,w) : "").join(""); };
+const prevDraw=B.atomsDraw; B.atomsDraw=(atoms,o={})=>B.bondLines(atoms)+prevDraw(atoms,o);
+/* water pictures used on the bonding and polarity pages */
+B.waterG=(ang,o={})=>{ const sc=o.sc||1.5, h=[[-17,-13],[-17,13]]; let s=`<g transform="rotate(${ang.toFixed(1)}) scale(${sc})">${h.map(([x,y])=>`<line x1="0" y1="0" x2="${x}" y2="${y}" stroke="#1b2328" stroke-width="1.6"/>`).join("")}${B.atomC(h[0][0],h[0][1],7,"H")}${B.atomC(h[1][0],h[1][1],7,"H")}${B.atomC(0,0,11,"O")}</g>`;
+  if(o.q){ const c=Math.cos(ang*Math.PI/180), sn=Math.sin(ang*Math.PI/180), lab=(lx,ly,t,col)=>`<text x="${(lx*c-ly*sn).toFixed(1)}" y="${(lx*sn+ly*c+4).toFixed(1)}" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="800" fill="${col}" stroke="#fff" stroke-width="3" paint-order="stroke">${t}</text>`; s+=lab(34,0,"δ−","#c40000")+lab(-48,0,"δ+","#005ea3"); }
+  return s; };
+B.molecBox=(o={})=>{ const W=o.w||210, H=o.h||150, sc=o.sc||1.15, pts=[[42,40,10],[112,32,150],[176,46,250],[60,110,300],[132,100,40],[184,118,200]];
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="${o.label||"Particle diagram of a molecular substance: separate water molecules, each made of atoms joined by covalent bonds (lines)"}"><rect x="1" y="1" width="${W-2}" height="${H-2}" rx="10" fill="#f4f9fc" stroke="#cfe0ea"/>`;
+  pts.forEach(([x,y,r])=>{ const X=x*W/210, Y=y*H/150, d=21*sc, hs=[r-52,r+52].map(a=>[X+Math.cos(a*Math.PI/180)*d,Y+Math.sin(a*Math.PI/180)*d]);
+    hs.forEach(([hx,hy])=>s+=`<line x1="${X}" y1="${Y}" x2="${hx.toFixed(1)}" y2="${hy.toFixed(1)}" stroke="#1b2328" stroke-width="1.6"/>`); hs.forEach(([hx,hy])=>s+=B.atomC(hx,hy,6.5*sc,"H")); s+=B.atomC(X,Y,10*sc,"O"); });
+  return s+`</svg>`; };
+})();
+
+/* Nov 14: Unit 8 additions from his Gas Laws PowerPoint: G.AvogadroGame (V1/n1 = V2/n2 in his solving steps) and G.MBSim (Maxwell–Boltzmann distribution). */
+(function(){ const A=window.AS, G=A&&A.U8, T=A&&A.U7; if(!G||!T) return; const INK="#1b2328", GRAY="#5f6b72";
+const sub=s=>`<sub>${s}</sub>`;
+/* ---------- Avogadro's law problems ---------- */
+const AVO=[
+ {t:(v1,n1,n2)=>`A balloon holds <v k="n1">${n1} mol</v> of helium and has a volume of <v k="V1">${v1} L</v>. More helium is added at constant temperature and pressure until the balloon holds <v k="n2">${n2} mol</v>. What is the new volume of the balloon?`,unk:"V2",g:()=>{ const n1=A.pick([0.150,0.200,0.250,0.300]), f=A.pick([1.5,2,2.4]); return {n1,n2:+(n1*f).toFixed(3),V1:A.pick([3.60,4.80,6.10,7.35])}; }},
+ {t:(v1,n1,v2)=>`A ${A.pick(["tank","syringe","cylinder with a movable piston"])} holds <v k="V1">${v1} L</v> of nitrogen gas, which is <v k="n1">${n1} mol</v>. Some of the gas is released at constant temperature and pressure until the volume is <v k="V2">${v2} L</v>. How many moles of gas remain?`,unk:"n2",g:()=>{ const V1=A.pick([2.40,3.00,4.50,6.00]), n1=A.pick([0.100,0.125,0.200,0.250]); return {V1,n1,V2:+(V1*A.pick([.4,.5,.6,.75])).toFixed(2)}; }},
+ {t:(v1,n1,v2)=>`At constant temperature and pressure, <v k="n1">${n1} mol</v> of oxygen gas occupies <v k="V1">${v1} L</v>. How many moles of oxygen gas occupy <v k="V2">${v2} L</v> under the same conditions?`,unk:"n2",g:()=>{ const n1=A.pick([0.500,0.750,1.20]), V1=+(n1*24.5).toFixed(1); return {n1,V1,V2:A.pick([18.0,30.0,45.5,61.2])}; }}];
+G.AvogadroGame=function(host){ let mode="easy", Pb=null, dd=null, ok1=false, ok2=false;
+  const g=A.Game(host,{how:"Solve each problem with the steps from the notes. Easy: drag the highlighted values from the problem into the table. Hard: type each value."});
+  g.seg("Level",[["easy","Easy"],["hard","Hard"]],mode,v=>{ mode=v; next(); });
+  g.button("New problem",()=>next(),"ghost");
+  const KEYS=["V1","n1","V2","n2"], lab=k=>`${k[0]}${sub(k[1])}`, U={V:"L",n:"mol"};
+  function next(){ g.fresh(); g.msg(""); ok1=ok2=false; const tpl=A.pick(AVO), v=tpl.g();
+    const vals={V1:v.V1,n1:v.n1,V2:v.V2,n2:v.n2}; vals[tpl.unk]=null;
+    const known=KEYS.filter(k=>vals[k]!=null), ans= tpl.unk==="V2"? v.V1*v.n2/v.n1 : v.n1*v.V2/v.V1;
+    const fm=k=>k[0]==="V"? (+vals[k]).toFixed(2).replace(/\.?0+$/,m=>m.startsWith(".")&&m.length>1?"":m) : String(vals[k]);
+    const fV=x=>(+x).toFixed(2), fN=x=>(+x).toFixed(3), fmt=k=>k[0]==="V"? fV(vals[k]) : fN(vals[k]);
+    const txt=tpl.unk==="V2"? tpl.t(fV(vals.V1),fN(vals.n1),fN(v.n2)) : tpl.t(fV(vals.V1),fN(vals.n1),fV(vals.V2));
+    Pb={vals,unk:tpl.unk,ans,fmt};
+    g.stage.innerHTML=`<div class="t7-prob">${txt.replace(/<v k="(\w+)">(.*?)<\/v>/g,(_,k,t)=>`<span class="t7-val" data-k="${k}">${t}</span>`)}</div>
+     <div class="da-step" data-r="s1"><h4>Step 1: Read the question and list all given variables and the unknown</h4><p class="muted g8-tip">${mode==="hard"?"Type each value. Type ? for the unknown.":"Drag each highlighted value from the problem into the table, and drag the ? to the unknown."}</p>
+       <table class="g8-giv"><tr><th></th><th>Initial (1)</th><th>Final (2)</th></tr>${["V","n"].map(x=>`<tr><th>${x==="V"?"Volume":"Moles"}</th>${[1,2].map(i=>`<td>${lab(x+i)} = ${mode==="hard"?`<input class="inp" data-s="${x+i}" style="width:90px" aria-label="${x+i}"> ${U[x]}`:`<span class="da-slot g8-slot" data-s="${x+i}"><span class="dd-body"></span></span>`}</td>`).join("")}</tr>`).join("")}</table>
+       ${mode!=="hard"?`<div class="dd-pool" data-r="pool"></div>`:""}<div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c1">Check Step 1</button></div></div>
+     <div class="da-step"><h4>Step 2: If necessary, convert all temperatures to kelvin</h4><p class="muted g8-tip">Temperature is held constant in Avogadro’s law problems, so no conversion is needed.</p></div>
+     <div class="da-step locked" data-r="s3"><h4>Step 3: Write down the gas law</h4><div class="controls" data-r="laws">${A.shuffle([["avo",`<span class="cx-frac"><span>V<sub>1</sub></span><span>n<sub>1</sub></span></span> = <span class="cx-frac"><span>V<sub>2</sub></span><span>n<sub>2</sub></span></span>`],["inv","V<sub>1</sub>n<sub>1</sub> = V<sub>2</sub>n<sub>2</sub>"],["cha",`<span class="cx-frac"><span>V<sub>1</sub></span><span>T<sub>1</sub></span></span> = <span class="cx-frac"><span>V<sub>2</sub></span><span>T<sub>2</sub></span></span>`]]).map(([k,h])=>`<button type="button" class="btn ghost mth g8-law" data-l="${k}">${h}</button>`).join("")}</div></div>
+     <div class="da-step locked" data-r="s4"><h4>Step 4: Substitute the variables and solve for the unknown</h4><div class="g8-subst mth" data-r="sub"></div><div class="controls"><b class="t7-line">${lab(Pb.unk)} =</b><input class="inp" data-r="ans" inputmode="decimal" style="width:130px" aria-label="answer"><b>${U[Pb.unk[0]]}</b><button class="btn sm" type="button" data-r="go">Check answer</button></div></div>`;
+    if(mode!=="hard"){ const srcs=A.$$(".t7-prob .t7-val",g.stage).map(el=>({id:el.dataset.k,el,html:el.innerHTML}));
+      dd=A.TextDrag({root:g.root,pool:g.stage.querySelector('[data-r="pool"]'),poolLabel:"Unknown:",targets:A.$$(".g8-slot",g.stage).map(el=>({el,id:el.dataset.s})),sources:srcs,extras:[{id:"unk",html:"?"}],onChange:()=>{}}); }
+    const q=s=>g.stage.querySelector(s);
+    q('[data-r="c1"]').addEventListener("click",check1);
+    A.$$(".g8-law",g.stage).forEach(b=>b.addEventListener("click",()=>{ if(!ok1||ok2) return; const good=b.dataset.l==="avo"; A.markBox(b,good);
+      if(!good){ g.lose(); g.msg(b.dataset.l==="inv"?"Volume and moles are directly proportional, so their ratio (V ÷ n) stays the same, not their product.":"Temperature is held constant here; the law must relate volume and moles.","bad"); return; }
+      ok2=true; q('[data-r="s4"]').classList.remove("locked"); g.msg("");
+      const sv=k=>Pb.vals[k]==null? `<b>${lab(k)}</b>` : `(${Pb.fmt(k)} ${U[k[0]]})`;
+      q('[data-r="sub"]').innerHTML=`<span class="cx-frac"><span>${sv("V1")}</span><span>${sv("n1")}</span></span> = <span class="cx-frac"><span>${sv("V2")}</span><span>${sv("n2")}</span></span>`; }));
+    q('[data-r="go"]').addEventListener("click",go); q('[data-r="ans"]').addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); }
+  function check1(){ if(ok1) return; let bad=null;
+    KEYS.forEach(k=>{ let got; if(mode==="hard"){ const el=g.stage.querySelector(`input[data-s="${k}"]`), t=el.value.trim(); got= t==="?"? "?" : (A.parseTyped(t)||{}).v; const want=Pb.vals[k]==null?"?":Pb.vals[k]; const ok= want==="?"? got==="?" : Math.abs(got-want)<1e-6; A.markBox(el,ok); if(!ok&&!bad) bad=k; }
+      else { const pl=dd.placement(), id=Object.keys(pl).find(i=>pl[i]===k), want=Pb.vals[k]==null?"unk":k, ok=id===want; const el=g.stage.querySelector(`.g8-slot[data-s="${k}"]`); el.classList.toggle("good",ok); el.classList.toggle("bad",!ok); if(!ok&&!bad) bad=k; } });
+    if(bad){ g.lose(); g.msg(`Check ${lab(bad)}: the initial values come before the change, and the final values after it.`,"bad"); return; }
+    ok1=true; dd&&dd.lock&&dd.lock(); g.stage.querySelector('[data-r="s3"]').classList.remove("locked"); g.msg("✔ Step 1 is correct. Now choose the gas law.","good"); }
+  function go(){ if(!ok2) return; const el=g.stage.querySelector('[data-r="ans"]'), p=A.parseTyped(el.value), v=p?p.v:NaN, ok=A.lenient? A.lenient(el.value,Pb.ans,{sf:3}) : Math.abs(v-Pb.ans)/Pb.ans<.01; A.markBox(el,!!ok);
+    if(!ok){ g.lose(); g.msg("Cross multiply, then divide both sides by the number next to the unknown. Check your arithmetic.","bad"); return; }
+    g.win(); g.msg(`✔ ${lab(Pb.unk)} = ${Pb.ans.toPrecision(3)} ${U[Pb.unk[0]]}. ${Pb.unk==="V2"?"More gas particles → a larger volume.":"A smaller volume → fewer moles of gas."}`,"good"); g.later(next,3200); }
+  next(); host._avo={get Pb(){return Pb;}}; };
+
+/* ---------- Maxwell–Boltzmann distribution ---------- */
+G.figMB=(o={})=>{ const kB=1.381e-23, Wg=o.W||340, Hg=o.H||220, x0=36, y0=Hg-34, w=Wg-x0-12, h=Hg-34-14, Emax=70e-21, X=E=>x0+E/Emax*w, f=(E,t)=>2*Math.sqrt(E/Math.PI)*Math.pow(kB*t,-1.5)*Math.exp(-E/(kB*t)), ym=f(kB*300/2,300)*1.18, Y=v=>y0-v/ym*h;
+  const cur=(t,c,d)=>{ let p=""; for(let i=0;i<=100;i++){ const E=i/100*Emax; p+=(i?"L":"M")+X(E).toFixed(1)+" "+Y(f(E,t)).toFixed(1); } return `<path d="${p}" fill="none" stroke="${c}" stroke-width="3" ${d?'stroke-dasharray="7 5"':""}/>`; };
+  let s=cur(300,"#2E75D6")+cur(700,"#c0392b")+`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2"/>`+T.t(x0+w/2,Hg-10,"Kinetic energy",{fs:12})+`<text transform="translate(14 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="700">Number of particles</text>`;
+  s+=T.t(X(5.2e-21),Y(f(2.07e-21,300))+4,"low temperature",{fs:12,c:"#2E75D6",a:"start"})+T.t(X(16e-21),Y(f(16e-21,700))-10,"high temperature",{fs:12,c:"#c0392b",a:"start"});
+  return T.svg(Wg,Hg,s,"Maxwell-Boltzmann curves at a low and a high temperature"); };
+G.MBSim=function(host){ const kB=1.381e-23, W=420, H=300, N=60, rnd=T.rng(13); let Tk=300, cmp=true, moved=new Set(), raf=0, last=0;
+  const fE=(E,Tk)=>{ const kT=kB*Tk; return 2*Math.sqrt(E/Math.PI)*Math.pow(kT,-1.5)*Math.exp(-E/kT); }; /* fraction of particles per joule */
+  const sampleE=Tk=>{ /* draw a kinetic energy from the distribution (sum of three squared normal speeds) */ const kT=kB*Tk; let s=0; for(let i=0;i<3;i++){ const u=rnd()||1e-9, v=rnd(); const z=Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); s+=z*z; } return s*kT/2; };
+  host.innerHTML=`<div class="lab-b"><p class="how">Each particle is colored by its kinetic energy. Change the temperature and watch the particles and the distribution curve. Turn on the 300 K curve to compare.</p>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>Temperature</span><input type="range" min="150" max="900" step="10" value="300" data-r="T" aria-label="temperature"><b data-r="Tv"></b></label><label class="chk"><input type="checkbox" data-r="cmp" checked> Show the 300 K curve</label></div>
+   <div class="g8-row"><div><canvas class="z9-cv" width="${W}" height="${H}" aria-label="Gas particles colored by kinetic energy"></canvas><div class="mb-key"><span>low kinetic energy</span><i></i><span>high kinetic energy</span></div></div>
+   <div class="g8-side"><div class="g8-read" data-r="read" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div><div class="t7-svg" data-r="gr"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const cv=host.querySelector("canvas"), c=cv.getContext("2d"), $=k=>host.querySelector(`[data-r="${k}"]`);
+  const P=[]; for(let i=0;i<N;i++){ const a=rnd()*6.283; P.push({x:12+rnd()*(W-24),y:12+rnd()*(H-24),a,E:sampleE(Tk)}); }
+  const spd=E=>Math.sqrt(E/(kB*300))*26; /* px/s: slow enough to follow */
+  const col=E=>{ const f=Math.max(0,Math.min(1,E/(kB*Tk)/4)); const r=Math.round(46+f*(224-46)), gg=Math.round(117+f*(0-117)*.6), b=Math.round(214+f*(0-214)); return `rgb(${r},${gg},${b})`; };
+  function retemp(old){ /* scale every particle's energy with the temperature, keeping the shape of the distribution */ P.forEach(p=>p.E*=Tk/old); }
+  function graph(){ const Wg=360, Hg=230, x0=44, y0=Hg-40, w=Wg-x0-14, h=Hg-40-16, ref=cmp&&Tk!==300;
+    /* the axes follow the curves: the energy axis runs far enough for each curve to return to zero, and the tallest peak fits */
+    const hiT=Math.max(Tk,ref?300:0), raw=kB*hiT*7.5/1e-21, step=raw>40?20:10, Emax=Math.max(20,Math.ceil(raw/step)*step)*1e-21;
+    const ymax=Math.max(fE(kB*Tk/2,Tk),ref?fE(kB*300/2,300):0)*1.12, X=E=>x0+E/Emax*w, Y=v=>y0-v/ymax*h;
+    const curve=(Tt,colr,dash)=>{ let d=""; for(let i=0;i<=120;i++){ const E=i/120*Emax; d+=(i?"L":"M")+X(E).toFixed(1)+" "+Y(fE(E,Tt)).toFixed(1); } return `<path d="${d}" fill="none" stroke="${colr}" stroke-width="3" ${dash?'stroke-dasharray="7 5"':""}/>`; };
+    const avg=Tt=>1.5*kB*Tt; let s=`<rect x="${x0}" y="${y0-h}" width="${w}" height="${h}" fill="#fbfdfe"/>`;
+    if(cmp&&Tk!==300) s+=curve(300,"#8a979c",true)+`<path d="M${X(avg(300))} ${y0}V${y0-h+14}" stroke="#8a979c" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+    s+=curve(Tk,Tk>=300?"#c0392b":"#2E75D6",false)+`<path d="M${X(avg(Tk))} ${y0}V${y0-h+6}" stroke="${INK}" stroke-width="2" stroke-dasharray="5 4"/>`+T.t(Math.min(X(avg(Tk))+4,x0+w-60),y0-h+16,"average KE",{fs:11.5,a:"start"});
+    s+=`<path d="M${x0} ${y0-h}V${y0}H${x0+w}" fill="none" stroke="${INK}" stroke-width="2"/>`;
+    for(let e=0;e<=Emax/1e-21+.01;e+=step) s+=`<path d="M${X(e*1e-21)} ${y0}v5" stroke="${INK}"/>`+T.t(X(e*1e-21),y0+18,String(e),{fs:11});
+    s+=T.t(x0+w/2,Hg-6,"Kinetic energy (× 10⁻²¹ J)",{fs:12})+`<text transform="translate(14 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="700">Number of particles</text>`;
+    if(cmp&&Tk!==300){ s+=`<path d="M${x0+w-150} ${y0-h+64}h20" stroke="#8a979c" stroke-width="3" stroke-dasharray="7 5"/>`+T.t(x0+w-126,y0-h+68,"300 K",{fs:11.5,a:"start",c:GRAY})+`<path d="M${x0+w-150} ${y0-h+82}h20" stroke="${Tk>=300?"#c0392b":"#2E75D6"}" stroke-width="3"/>`+T.t(x0+w-126,y0-h+86,`${Tk} K`,{fs:11.5,a:"start"}); }
+    $("gr").innerHTML=`<div style="max-width:420px">`+T.svg(Wg,Hg,s,"Maxwell-Boltzmann distribution curve of kinetic energy")+`</div>`; }
+  function side(){ $("Tv").textContent=`${Tk} K`; const avg=1.5*kB*Tk, hi=Math.exp(-(10e-21)/(kB*Tk))*(1+2*Math.sqrt(10e-21/(kB*Tk*Math.PI))); /* fraction above 10 × 10⁻²¹ J (approx.) */
+    let frac=0; for(let i=0;i<400;i++){ const E=10e-21+i*0.25e-21; frac+=fE(E,Tk)*0.25e-21; }
+    $("read").innerHTML=`<div><small>Average kinetic energy</small><b>${(avg/1e-21).toFixed(2)} × 10<sup>−21</sup> J</b></div><div><small>Particles above 10 × 10<sup>−21</sup> J</small><b>${(frac*100).toFixed(1)}%</b></div>`;
+    $("info").innerHTML= moved.size<2? `<b>Predict</b><span>What do you think will happen to the shape of the curve when the temperature increases? Move the slider up and down, then compare with the 300 K curve.</span>`
+      : `<b>What the curve shows</b><span>Not all particles have the same kinetic energy: some have more than the average and some have less. When the temperature increases, the total number of particles does not change (the area under the curve stays the same), but the curve spreads out and the <b>proportion of particles at higher kinetic energies increases</b>. The average kinetic energy increases in proportion to the Kelvin temperature.</span>`; }
+  $("T").addEventListener("input",e=>{ const old=Tk; Tk=+e.target.value; retemp(old); moved.add(Tk>old?"up":"down"); graph(); side(); });
+  $("cmp").addEventListener("change",e=>{ cmp=e.target.checked; graph(); });
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.04,last?(now-last)/1000:0); last=now;
+    c.clearRect(0,0,W,H); c.fillStyle="#f7fbfd"; c.fillRect(0,0,W,H); c.strokeStyle=INK; c.lineWidth=3; c.strokeRect(1.5,1.5,W-3,H-3);
+    P.forEach(p=>{ const v=spd(p.E); p.x+=Math.cos(p.a)*v*dt; p.y+=Math.sin(p.a)*v*dt;
+      if(p.x<8){ p.x=8; p.a=Math.PI-p.a; } if(p.x>W-8){ p.x=W-8; p.a=Math.PI-p.a; } if(p.y<8){ p.y=8; p.a=-p.a; } if(p.y>H-8){ p.y=H-8; p.a=-p.a; }
+    });
+    /* particles bounce off each other without exchanging energy, so they never overlap and each keeps its color */
+    for(let i=0;i<N;i++) for(let j=i+1;j<N;j++){ const a=P[i], b=P[j], dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy); if(d>0&&d<13){ const t=a.a; a.a=b.a; b.a=t; const o=(13-d)/2, nx=dx/d, ny=dy/d; a.x-=nx*o; a.y-=ny*o; b.x+=nx*o; b.y+=ny*o; } }
+    P.forEach(p=>{ c.beginPath(); c.arc(p.x,p.y,6,0,7); c.fillStyle=col(p.E); c.fill(); c.strokeStyle=INK; c.lineWidth=1; c.stroke(); });
+    raf=requestAnimationFrame(loop); }
+  graph(); side(); raf=requestAnimationFrame(loop); host._mb={set(t){ const o=Tk; Tk=t; retemp(o); moved.add(t>o?"up":"down"); graph(); side(); }}; };
+})();
+
+/* Unit 8: vapor pressure and intermolecular forces: water vs. propanone in sealed containers (particle diagram) */
+(function(){ const A=window.AS, G=A&&A.U8; if(!G) return; const INK="#1b2328", GRAY="#5f6b72", O="#E00000", H="#2E75D6", C="#00B050";
+const atom=(x,y,r,f)=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${f}" stroke="${INK}" stroke-width="1.3"/>`;
+const bond=(a,b,off=0)=>{ const dx=b[0]-a[0], dy=b[1]-a[1], L=Math.hypot(dx,dy), nx=-dy/L*off, ny=dx/L*off; return `<line x1="${(a[0]+nx).toFixed(1)}" y1="${(a[1]+ny).toFixed(1)}" x2="${(b[0]+nx).toFixed(1)}" y2="${(b[1]+ny).toFixed(1)}" stroke="${INK}" stroke-width="1.6"/>`; };
+const rot=(x,y,a)=>p=>[x+p[0]*Math.cos(a)-p[1]*Math.sin(a), y+p[0]*Math.sin(a)+p[1]*Math.cos(a)];
+/* molecules as atom lists, so they can be placed without overlapping */
+function molWater(x,y,deg){ const R=rot(x,y,deg*Math.PI/180), o=R([0,-3]), h1=R([-12.5,9]), h2=R([12.5,9]);
+  return {at:[[...o,8,O],[...h1,4.8,H],[...h2,4.8,H]],b:[[o,h1],[o,h2]]}; }
+function molProp(x,y,deg){ const R=rot(x,y,deg*Math.PI/180), c0=R([0,0]), o=R([0,-17]), cl=R([-15,8.5]), cr=R([15,8.5]);
+  const HL=[[-27,4],[-20,19],[-9,19]].map(R), HR=[[27,4],[20,19],[9,19]].map(R);
+  return {at:[[...cl,6.5,C],[...cr,6.5,C],[...c0,6.5,C],[...o,7,O],...HL.concat(HR).map(h=>[...h,3.8,H])],b:[[c0,o,2.4],[c0,o,-2.4],[c0,cl],[c0,cr],...HL.map(h=>[cl,h]),...HR.map(h=>[cr,h])]}; }
+const drawMol=m=>m.b.map(b=>bond(b[0],b[1],b[2]||0)).join("")+m.at.map(a=>atom(a[0],a[1],a[2],a[3])).join("");
+G.svgWater=(x,y,d=0)=>drawMol(molWater(x,y,d)); G.svgPropanone=(x,y,d=0)=>drawMol(molProp(x,y,d));
+/* place n molecules in a rectangle, no atom closer than gap to another atom, a wall or a keep-out box */
+function place(make,n,rect,seed,gap,keep=[]){ let s=seed; const rnd=()=>{ s=(s*16807)%2147483647; return s/2147483647; }; const out=[], all=[];
+  for(let t=0;t<40000&&out.length<n;t++){ const m=make(rect[0]+rnd()*rect[2],rect[1]+rnd()*rect[3],rnd()*360);
+    const ok=m.at.every(a=>a[0]-a[2]>rect[0]+2&&a[0]+a[2]<rect[0]+rect[2]-2&&a[1]-a[2]>rect[1]+2&&a[1]+a[2]<rect[1]+rect[3]-2
+      &&!keep.some(k=>a[0]+a[2]>k[0]&&a[0]-a[2]<k[0]+k[2]&&a[1]+a[2]>k[1]&&a[1]-a[2]<k[1]+k[3])
+      &&all.every(b=>Math.hypot(a[0]-b[0],a[1]-b[1])>a[2]+b[2]+gap));
+    if(ok){ out.push(m); all.push(...m.at); } }
+  return out; }
+G.figVPimf=(o={})=>{ const W=600, Hh=362;
+  const box=(x0,name,f,liq,vap,kp,frac,imf,col)=>{ const y0=72, w=250, h=230, surf=y0+120;
+    let s=`<text x="${x0+w/2}" y="24" text-anchor="middle" font-size="16" font-weight="700" fill="${INK}">${name}</text><text x="${x0+w/2}" y="44" text-anchor="middle" font-size="13" fill="${GRAY}">${f}</text>`;
+    /* gauge on the lid */
+    const gx=x0+w-46, gy=y0-16, a=Math.PI*(1-frac);
+    s+=`<rect x="${gx-4}" y="${y0-6}" width="8" height="8" fill="#9aa7ad" stroke="${INK}" stroke-width="1.2"/><circle cx="${gx}" cy="${gy}" r="17" fill="#fff" stroke="${INK}" stroke-width="2"/>`;
+    for(let i=0;i<=4;i++){ const b=Math.PI*(1-i/4); s+=`<line x1="${(gx+Math.cos(b)*12).toFixed(1)}" y1="${(gy-Math.sin(b)*12).toFixed(1)}" x2="${(gx+Math.cos(b)*15).toFixed(1)}" y2="${(gy-Math.sin(b)*15).toFixed(1)}" stroke="${INK}" stroke-width="1.2"/>`; }
+    s+=`<line x1="${gx}" y1="${gy}" x2="${(gx+Math.cos(a)*12).toFixed(1)}" y2="${(gy-Math.sin(a)*12).toFixed(1)}" stroke="${O}" stroke-width="2.2" stroke-linecap="round"/><circle cx="${gx}" cy="${gy}" r="2.2" fill="${INK}"/>`;
+    s+=`<text x="${gx-24}" y="${gy+5}" text-anchor="end" font-size="13" font-weight="700" fill="${INK}">${kp}</text>`;
+    /* container: vapor space, liquid, walls */
+    s+=`<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="#f3f9fd"/><rect x="${x0}" y="${surf}" width="${w}" height="${y0+h-surf}" fill="${col}"/><line x1="${x0}" y1="${surf}" x2="${x0+w}" y2="${surf}" stroke="#7aa6c2" stroke-width="1.5"/>`;
+    const mk=name==="Water"?molWater:molProp, keepL=[[x0,surf,52,24]], keepV=[[x0,y0,52,28]];
+    place(mk,liq[0],[x0,surf+2,w,y0+h-surf-2],liq[1],liq[2],keepL).forEach(m=>s+=drawMol(m));
+    place(mk,vap[0],[x0,y0,w,surf-y0-4],vap[1],14,keepV).forEach(m=>s+=drawMol(m));
+    s+=`<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="none" stroke="${INK}" stroke-width="3"/><rect x="${x0-4}" y="${y0-6}" width="${w+8}" height="7" fill="#9aa7ad" stroke="${INK}" stroke-width="1.5"/>`;
+    s+=`<text x="${x0+8}" y="${y0+20}" font-size="12" fill="${GRAY}" font-style="italic">vapor</text><text x="${x0+8}" y="${surf+16}" font-size="12" fill="${GRAY}" font-style="italic">liquid</text>`;
+    s+=`<text x="${x0+w/2}" y="${y0+h+26}" text-anchor="middle" font-size="14" font-weight="700" fill="${imf[0]}">${imf[1]}</text><text x="${x0+w/2}" y="${y0+h+46}" text-anchor="middle" font-size="13" fill="${INK}">${imf[2]}</text>`;
+    return s; };
+  const s=box(20,"Water","H₂O, 25 °C",[18,7,2.2],[1,11],"3.2 kPa",3.2/40,["#2E75D6","Strong intermolecular forces","Few molecules escape: low vapor pressure"],"#cfe5f6")
+    +box(330,"Propanone","CH₃COCH₃, 25 °C",[7,5,1.8],[5,23],"30.7 kPa",30.7/40,["#E00000","Weak intermolecular forces","Many molecules escape: high vapor pressure"],"#d6f0de");
+  return `<svg viewBox="0 0 ${W} ${Hh}" width="100%" style="max-width:${o.W||W}px" role="img" aria-label="Two sealed containers at 25 °C. Water, with strong intermolecular forces, has one molecule in the vapor and a vapor pressure of 3.2 kilopascals. Propanone, with weak intermolecular forces, has five molecules in the vapor and a vapor pressure of 30.7 kilopascals." font-family="var(--f-body, sans-serif)">${s}</svg>`; };
+})();
+
+/* ---------- balloons: one shared drawing, and an animated balloon lab (Boyle, Charles, Avogadro) ---------- */
+(function(){ const A=window.AS, G=A&&A.U8, T=A&&A.U7; if(!G||!T) return; const INK="#1b2328", GRAY="#5f6b72";
+let gid=0;
+const mix=(hex,w,f)=>{ const n=parseInt(hex.slice(1),16), c=[n>>16&255,n>>8&255,n&255].map(v=>Math.round(v+(w-v)*f)); return `rgb(${c.join(",")})`; };
+/* a balloon of "radius" R centered at (cx, cy): teardrop body, sheen, knot and curly string. o.alpha sets how see-through it is. */
+A.balloonSVG=(cx,cy,R,col,o={})=>{ const id="bln"+(++gid), a=o.alpha??.28, f=n=>n.toFixed(1);
+  const P=`M${f(cx)} ${f(cy-R)}C${f(cx+.56*R)} ${f(cy-R)} ${f(cx+R)} ${f(cy-.6*R)} ${f(cx+R)} ${f(cy-.05*R)}C${f(cx+R)} ${f(cy+.5*R)} ${f(cx+.45*R)} ${f(cy+.95*R)} ${f(cx+.07*R)} ${f(cy+1.08*R)}L${f(cx-.07*R)} ${f(cy+1.08*R)}C${f(cx-.45*R)} ${f(cy+.95*R)} ${f(cx-R)} ${f(cy+.5*R)} ${f(cx-R)} ${f(cy-.05*R)}C${f(cx-R)} ${f(cy-.6*R)} ${f(cx-.56*R)} ${f(cy-R)} ${f(cx)} ${f(cy-R)}Z`;
+  const ny=cy+1.08*R, sl=o.string??60, wob=o.wob||0;
+  let s=`<defs><radialGradient id="${id}" cx="36%" cy="30%" r="75%"><stop offset="0" stop-color="${mix(col,255,.75)}" stop-opacity="${Math.min(1,a+.15)}"/><stop offset=".7" stop-color="${col}" stop-opacity="${a}"/><stop offset="1" stop-color="${mix(col,0,.25)}" stop-opacity="${Math.min(1,a+.2)}"/></radialGradient></defs>`;
+  if(sl>0) s+=`<path d="M${f(cx)} ${f(ny+7)}c${f(-6+wob)} ${f(sl*.18)} ${f(7+wob)} ${f(sl*.32)} 0 ${f(sl*.5)}s${f(-7-wob)} ${f(sl*.34)} 0 ${f(sl*.5)}" fill="none" stroke="${GRAY}" stroke-width="1.5"/>`;
+  s+=`<path d="${P}" fill="url(#${id})" stroke="${mix(col,0,.2)}" stroke-width="2.4"/>`;
+  s+=`<path d="M${f(cx-5)} ${f(ny+8)}L${f(cx)} ${f(ny-1)}L${f(cx+5)} ${f(ny+8)}Z" fill="${col}" stroke="${mix(col,0,.3)}" stroke-width="1.2" stroke-linejoin="round"/>`;
+  if(o.sheen!==false) s+=`<ellipse cx="${f(cx-.45*R)}" cy="${f(cy-.48*R)}" rx="${f(.13*R)}" ry="${f(.27*R)}" transform="rotate(28 ${f(cx-.45*R)} ${f(cy-.48*R)})" fill="#fff" fill-opacity=".6"/>`;
+  return s; };
+/* points inside the balloon body (a slightly tall ellipse, kept clear of the neck) */
+const inside=(u,v)=>u*u+v*v<=1;
+G.BalloonLab=function(host,o={}){ const mode=o.mode||"charles", W=420, H=330, cx=210, cy=138, Rmax=108, rnd=T.rng(31);
+  const S={charles:{lo:-40,hi:120,step:1,v:25,lab:"Temperature"},boyle:{lo:50,hi:200,step:1,v:101,lab:"Pressure outside"},avogadro:{lo:.05,hi:.4,step:.05,v:.1,lab:"Moles of helium"}}[mode];
+  let x=S.v, R=0, raf=0, last=0, moved=new Set();
+  const col=mode==="avogadro"?"#E8A33D":mode==="boyle"?"#2E75D6":"#E00000";
+  const Tk=()=>mode==="charles"? x+273 : 298, Pk=()=>mode==="boyle"? x : 101.3, nn=()=>mode==="avogadro"? x : .082;
+  const vol=()=> mode==="charles"? 2.00*(x+273)/298 : mode==="boyle"? 2.00*101.3/x : x*24.5;
+  const Rt=()=> mode==="charles"? Rmax*Math.sqrt((x+273)/393) : mode==="boyle"? Rmax*Math.pow(50/x,.4) : Rmax*Math.sqrt(x/.4);
+  const Np=()=> mode==="avogadro"? Math.round(x*100) : 18;
+  host.innerHTML=`<div class="lab-b"><p class="how">${mode==="charles"?"Heat or cool the air around a balloon. The pressure of the air outside stays the same.":mode==="boyle"?"The balloon sits in a sealed jar. Pump air into the jar or out of it to change the pressure on the balloon. The temperature stays the same.":"Add helium to the balloon or let some out. The temperature and the pressure stay the same."}</p>
+   <div class="controls g8-ctl"><label class="g8-sl"><span>${S.lab}</span><input type="range" min="${S.lo}" max="${S.hi}" step="${S.step}" value="${S.v}" data-r="x" aria-label="${S.lab}"><b data-r="xv"></b></label></div>
+   <div class="g8-row"><div class="t7-svg bl-pic" data-r="pic"></div><div class="g8-side"><div class="g8-read" data-r="read" style="grid-template-columns:repeat(3,minmax(0,1fr))"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+  const $=k=>host.querySelector(`[data-r="${k}"]`);
+  /* particles in balloon coordinates (u, v from −1 to 1), so they ride along as the balloon grows and shrinks */
+  let P=[], hits=[];
+  const spd=()=>38*Math.sqrt(Tk()/298);
+  function sync(){ const n=Np(); while(P.length<n){ const a=rnd()*6.283; let u,v; do{ u=rnd()*1.6-.8; v=rnd()*1.6-.8; }while(!inside(u/.85,v/.85)); P.push({u,v,a,born:1}); } P.length=n; }
+  const outside=[]; for(let i=0;i<60;i++) outside.push({x:30+rnd()*360,y:20+rnd()*280,a:rnd()*6.283});
+  function read(){ const V=vol();
+    $("xv").textContent= mode==="charles"? `${x} °C` : mode==="boyle"? `${x} kPa` : `${x.toFixed(2)} mol`;
+    $("read").innerHTML=`<div><small>Pressure</small><b>${Pk().toFixed(1)} kPa</b>${mode==="boyle"?"":"<i>constant</i>"}</div><div><small>Temperature</small><b>${Tk()} K</b><i>${mode==="charles"?`${x} °C`:"constant"}</i></div><div><small>Volume</small><b>${V.toFixed(2)} L</b></div>`;
+    const up=moved.has("up"), dn=moved.has("down");
+    $("info").innerHTML= !(up&&dn)? `<b>Try it</b><span>Move the slider both ways and watch the particles hitting the inside of the balloon. Each orange flash is a particle striking the wall.</span>`
+     : mode==="charles"? `<b>${x>=25?"Warmer: the balloon expands.":"Colder: the balloon shrinks."}</b><span>When the gas is cooled, its particles slow down and strike the inside of the balloon less often and less forcefully. The pressure of the air outside stays the same, so the balloon is pushed inward until the pressure inside equals the pressure outside again. Heating does the opposite. Volume and Kelvin temperature are directly proportional: V ÷ T stays at ${(vol()/Tk()).toFixed(4)} L/K.</span>`
+     : mode==="boyle"? `<b>${x>101?"More pressure outside: the balloon shrinks.":"Less pressure outside: the balloon expands."}</b><span>Pumping air into the jar packs more air particles around the balloon, so they push harder on its outside and squeeze it smaller. In a smaller volume the gas particles inside travel a shorter distance between collisions and hit the walls more often, until the pressure inside matches the pressure outside. P × V stays at ${(Pk()*vol()).toFixed(0)} kPa·L.</span>`
+     : `<b>${x>.1?"More helium: a bigger balloon.":"Less helium: a smaller balloon."}</b><span>Each dot stands for 0.01 mol of helium. Adding particles means more collisions with the inside of the balloon each second, so the balloon expands until the pressure inside again equals the pressure outside. Volume and moles are directly proportional: V ÷ n stays at 24.5 L/mol.</span>`; }
+  function draw(t){ const Tn=Tk(); let s="";
+    /* surroundings */
+    if(mode==="charles"){ const h=(x-S.lo)/(S.hi-S.lo); const bg=h<.4? mix("#cfe6fb",255,h/.4*.8) : mix("#ffd9b8",255,(1-h)/.6*.8); s+=`<rect x="0" y="0" width="${W}" height="${H}" fill="${bg}"/>`;
+      /* thermometer */ const ty=40, th=230, lv=ty+th-12-((x-S.lo)/(S.hi-S.lo))*(th-40)-14; s+=`<rect x="370" y="${ty}" width="16" height="${th}" rx="8" fill="#fff" stroke="${INK}" stroke-width="2"/><rect x="375" y="${lv}" width="6" height="${ty+th-lv-6}" fill="#E00000"/><circle cx="378" cy="${ty+th+6}" r="13" fill="#E00000" stroke="${INK}" stroke-width="2"/>`+T.t(378,ty-10,`${x} °C`,{fs:13});
+      if(x<10) for(let i=0;i<9;i++){ const fx_=30+i*36+((i*53)%17), fy=((t*14+i*41)%300); s+=`<text x="${fx_}" y="${fy}" font-size="13" fill="#7aa6c2" text-anchor="middle">❄</text>`; }
+      if(x>60) for(let i=0;i<7;i++){ const wx=40+i*48, ph=(t*.6+i*.37)%1; s+=`<path d="M${wx} ${H-10-ph*120}q-6 -10 0 -20q6 -10 0 -20" fill="none" stroke="#E8590C" stroke-opacity="${.5*(1-ph)}" stroke-width="2"/>`; } }
+    else s+=`<rect x="0" y="0" width="${W}" height="${H}" fill="#f7fbfd"/>`;
+    if(mode==="boyle"){ /* bell jar with outside air particles: more of them at higher pressure */
+      s+=`<path d="M40 ${H-24}V70Q40 14 120 14H300Q380 14 380 70V${H-24}" fill="#eef5fa" stroke="${INK}" stroke-width="3"/><rect x="24" y="${H-24}" width="372" height="14" fill="#9aa7ad" stroke="${INK}" stroke-width="2"/><path d="M396 ${H-17}h18" stroke="${INK}" stroke-width="5"/>`+T.t(370,H-30,"to pump",{fs:11,c:GRAY,a:"end"});
+      const nOut=Math.round(outside.length*(x/200)); outside.slice(0,nOut).forEach(p=>{ const dx=(p.x-cx)/R, dy=(p.y-cy)/(R*1.05); if(dx*dx+dy*dy<1.25||p.y>H-36||p.x<50||p.x>370||p.y<26) return; s+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.2" fill="#9aa7ad"/>`; }); }
+    if(mode==="avogadro"){ /* helium tank on the side */ const ky=cy+1.08*R+8; s+=`<path d="M36 ${H-132}C36 ${H-150} 70 ${H-8} 120 ${H-8}S${cx} ${H-8} ${cx} ${ky}" fill="none" stroke="#5f6b72" stroke-width="4" stroke-linecap="round"/><rect x="14" y="${H-118}" width="44" height="104" rx="12" fill="#c9ced1" stroke="${INK}" stroke-width="2"/><rect x="28" y="${H-132}" width="16" height="16" fill="#9aa7ad" stroke="${INK}" stroke-width="1.5"/>`+T.t(36,H-60,"He",{fs:14}); }
+    s+=A.balloonSVG(cx,cy,R,col,{alpha:.22,string:mode==="avogadro"?0:mode==="boyle"?Math.max(10,H-34-(cy+1.08*R)-8):Math.min(60,H-(cy+1.08*R)-14),wob:Math.sin(t*1.5)*2});
+    /* wall impacts: flash at the wall, brighter and bigger for faster particles */
+    hits.forEach(h=>{ const k=h.life/.35; s+=`<circle cx="${(cx+h.u*R).toFixed(1)}" cy="${(cy+h.v*R).toFixed(1)}" r="${(4+8*h.str*(1-k)).toFixed(1)}" fill="none" stroke="#E8590C" stroke-width="2" stroke-opacity="${(1-k).toFixed(2)}"/>`; });
+    const hue=Math.max(0,Math.min(1,(Tn-233)/160)), pc=`rgb(${Math.round(46+178*hue)},${Math.round(117-80*hue)},${Math.round(214-190*hue)})`;
+    P.forEach(p=>{ s+=`<circle cx="${(cx+p.u*R).toFixed(1)}" cy="${(cy+p.v*R).toFixed(1)}" r="5.2" fill="${mode==="avogadro"?"#FFE0B3":pc}" stroke="${INK}" stroke-width="1.2"/>`; });
+    $("pic").innerHTML=T.svg(W,H,s,`A balloon of gas, volume ${vol().toFixed(2)} liters`); }
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.05,last?(now-last)/1000:0); last=now; const t=now/1000;
+    R+=(Rt()-R)*Math.min(1,dt*3); /* the balloon eases to its new size */
+    const v=spd()/R; P.forEach(p=>{ p.u+=Math.cos(p.a)*v*dt; p.v+=Math.sin(p.a)*v*dt; const ex=p.u/.86, ey=p.v/.9;
+      if(ex*ex+ey*ey>1){ const m=Math.hypot(ex,ey), nx=ex/m, ny=ey/m; p.u=nx*.86*.995; p.v=ny*.9*.995; const dx=Math.cos(p.a), dy=Math.sin(p.a), d=dx*nx+dy*ny; if(d>0){ p.a=Math.atan2(dy-2*d*ny,dx-2*d*nx); hits.push({u:nx*.93,v:ny*.97,life:0,str:Math.min(1.3,spd()/45)}); } } });
+    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const a=P[i], b=P[j], dx=(b.u-a.u)*R, dy=(b.v-a.v)*R, d=Math.hypot(dx,dy), m=13.5; if(d>0&&d<m){ const t2=a.a; a.a=b.a; b.a=t2; const o2=(m-d)/2/R, nx=dx/d, ny=dy/d; a.u-=nx*o2; a.v-=ny*o2; b.u+=nx*o2; b.v+=ny*o2; } }
+    if(mode==="boyle") outside.forEach(p=>{ p.x+=Math.cos(p.a)*30*dt; p.y+=Math.sin(p.a)*30*dt; if(p.x<50||p.x>370) p.a=Math.PI-p.a; if(p.y<26||p.y>H-36) p.a=-p.a; p.x=Math.max(50,Math.min(370,p.x)); p.y=Math.max(26,Math.min(H-36,p.y)); });
+    hits.forEach(h=>h.life+=dt); hits=hits.filter(h=>h.life<.35);
+    draw(t); raf=requestAnimationFrame(loop); }
+  $("x").addEventListener("input",e=>{ const o2=x; x=+e.target.value; if(x!==o2) moved.add(x>o2?"up":"down"); sync(); read(); });
+  R=Rt(); sync(); read(); draw(0); raf=requestAnimationFrame(loop);
+  host._bl={set(v){ const o2=x; x=v; host.querySelector('[data-r="x"]').value=v; moved.add(v>o2?"up":"down"); sync(); read(); }}; };
 })();
 
 /* ================= SECTION PICTURES, UNITS 0–5 =================

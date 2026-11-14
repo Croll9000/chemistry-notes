@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Practice Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Gas Laws · Practice</span><h1>Practice Arcade</h1><p>Games from the whole unit in one place, plus Regents-style questions. These games are for practice and do not give a completion code.</p></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+  <nav class="jump" aria-label="Jump to"><b>Jump to:</b> <a href="#a1">Gas Law Problems</a> <a href="#a2">Which Relationship?</a> <a href="#a3">Pressure Conversions</a> <a href="#a4">Read the Curves</a> <a href="#a5">Ideal or Real?</a> <a href="#lc">Regents Practice</a></nav>
+
+  <section class="lab" id="a1">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Gas Law Problems</h3></div>
+    <div id="gl-host"></div>
+  </section>
+
+  <section class="lab" id="a2">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Which Relationship?</h3></div>
+    <div id="wr-host"></div>
+  </section>
+
+  <section class="lab" id="a3">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Pressure Conversions</h3></div>
+    <div id="pc-host"></div>
+  </section>
+
+  <section class="lab" id="a4">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Read the Curves</h3></div>
+    <div id="vq-host"></div>
+  </section>
+
+  <section class="lab" id="a5">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Which Behaves More Ideally?</h3></div>
+    <div id="ig-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Regents practice"><div class="pn"><small>Check</small><span>✓</span></div><h2>Regents Practice</h2><p>Mixed questions from the whole unit.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, P=A.U3, L=A.U0;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figLaw("charles")}</div>`;
+G.GasLawGame(A.$("#gl-host"));
+P.TapSort(A.$("#wr-host"),{prompt:"Which relationship explains this observation?",how:"Decide which variable is held constant, then which two variables change.",choices:[["b","Pressure and volume (T constant)"],["c","Volume and temperature (P constant)"],["g","Pressure and temperature (V constant)"]],items:[
+ ["A sealed bag of chips puffs up when carried up a mountain.","b","The outside pressure falls, so the volume of the gas in the bag increases."],["A balloon shrinks when it is put in a freezer.","c","Lower temperature, smaller volume, at constant (air) pressure."],["The pressure in a car tire rises after a long drive.","g","The tire’s volume barely changes, so the higher temperature raises the pressure."],
+ ["Pushing in a sealed syringe gets harder as the volume shrinks.","b","Smaller volume, higher pressure, at constant temperature."],["A dented table-tennis ball pops out in hot water.","c","Heating the gas inside increases its volume."],["An aerosol can may burst if it is heated.","g","The rigid can keeps the volume constant, so heating raises the pressure."],
+ ["Air bubbles from a diver grow as they rise to the surface.","b","The water pressure decreases as the bubbles rise, so their volume increases."],["Bread dough rises in a warm oven.","c","The gas bubbles in the dough expand as they are heated."]]});
+L.DABuilder(A.$("#pc-host"),{eq:{atmkPa:[[1,"atm"],[101.3,"kPa"]],atmmm:[[1,"atm"],[760,"mmHg"]]},probs:[["atm","kPa",["atmkPa"],["atmmm"],[0.25,3.5]],["kPa","atm",["atmkPa"],["atmmm"],[25,350]],["mmHg","atm",["atmmm"],["atmkPa"],[200,1500]],["atm","mmHg",["atmmm"],["atmkPa"],[0.2,2.5]],["kPa","mmHg",["atmkPa","atmmm"],[],[40,250]],["mmHg","kPa",["atmmm","atmkPa"],[],[300,900]]]});
+G.VPQuiz(A.$("#vq-host"));
+P.TapSort(A.$("#ig-host"),{prompt:"Which gas, or which conditions, behave more like an ideal gas?",how:"Ideal behavior: high temperature, low pressure, and small, nonpolar particles with weak intermolecular forces.",choices:[["a","First"],["b","Second"]],items:[
+ ["He or HCl at STP","a","He is small and nonpolar."],["N<sub>2</sub> at 500 K or at 100 K (same pressure)","a","High temperature favors ideal behavior."],["O<sub>2</sub> at 0.5 atm or at 50 atm (same temperature)","a","Low pressure favors ideal behavior."],["Xe or H<sub>2</sub> at STP","b","H<sub>2</sub> has the weakest intermolecular forces."],["NH<sub>3</sub> or Ne at STP","b","NH<sub>3</sub> is polar and hydrogen bonds."]]});
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"At STP, which sample of gas has the same number of particles as 3 L of neon?",choices:["2.2 L of argon","3 L of CO<sub>2</sub>","22.4 L of helium","30 L of H<sub>2</sub>"],ans:2,explain:"Equal volumes of gases at the same temperature and pressure contain the same number of particles (Avogadro’s law)."},
+ {type:"mc",stem:"A 220.0 mL sample of helium at 105 kPa and 275 K is compressed to 95.0 mL at 310. K. What is the new pressure?",choices:["51.1 kPa","216 kPa","243 kPa","274 kPa"],ans:4,explain:"(105)(220.0)/275 = P₂(95.0)/310, so P₂ = 274 kPa."},
+ {type:"mc",stem:"Which temperature change would cause the volume of a sample of an ideal gas to double when the pressure remains the same?",choices:["from 200 °C to 400 °C","from 400 °C to 200 °C","from 200 K to 400 K","from 400 K to 200 K"],ans:3,explain:"Volume is proportional to the Kelvin temperature."},
+ {type:"mc",stem:"Which change is exothermic?",choices:["vaporization of ethanol","condensation of water vapor","melting of ice","sublimation of iodine"],ans:2,explain:"Condensation releases heat as particles move closer together."},
+ {type:"mc",stem:"Based on the vapor pressure curves, which substance has the weakest intermolecular forces?",choices:["ethanoic acid","ethanol","propanone","water"],ans:3,explain:"Propanone has the highest vapor pressure at every temperature."},
+ {type:"text",stem:"A gas occupies 3.0 L at 2.0 atm. At constant temperature, what is its volume at 1.5 atm?",unit:"L",width:100,check:v=>A.lenient(v,4.0,{dp:1}),explain:"(2.0)(3.0) = (1.5)V₂, so V₂ = 4.0 L."},
+ {type:"text",stem:"Convert 0.750 atm to mmHg.",unit:"mmHg",width:110,check:v=>A.lenient(v,570,{sf:3}),explain:"0.750 atm × 760 mmHg/atm = 570. mmHg."},
+ {type:"cr",stem:"A sealed balloon is taken from a warm car into cold air. Using the kinetic molecular theory, explain what happens to the balloon’s volume.",parts:["Explanation"],model:["The gas particles lose kinetic energy and move more slowly, so they push less on the inside of the balloon. The balloon shrinks until the pressure inside equals the pressure outside: its volume decreases."],noCredit:"An answer that says the particles get smaller."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("g-practice");AS.completion(document.querySelector(".wrap"),"g-practice");AS.chrome("g-practice");</script>
+</body>
+</html>

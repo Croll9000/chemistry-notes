@@ -86,7 +86,7 @@
     <div class="lab-h"><span class="tag">Lab</span><h3>Wave Explorer</h3></div>
     <div class="lab-b">
       <p class="how">Slide through the electromagnetic spectrum. Watch the wavelength, frequency and energy change together.</p>
-      <div class="controls"><span class="ctl-label">Wavelength</span><input type="range" id="wv-r" min="-12" max="1" step="0.02" value="-6.3" style="flex:1;min-width:200px;accent-color:var(--teal)" aria-label="Wavelength (log scale)"></div>
+      <div class="controls"><span class="ctl-label">Wavelength</span><span class="muted">long</span><input type="range" id="wv-r" min="-12" max="1" step="0.02" value="-6.3" style="flex:1;min-width:200px;accent-color:var(--teal);direction:rtl" aria-label="Wavelength (log scale), long wavelengths on the left"><span class="muted">short</span></div>
       <div class="controls"><span class="ctl-label">Jump to</span><div class="seg" id="wv-jump"></div></div>
       <div class="stage"><canvas id="wv-cv" width="960" height="220" aria-label="Wave at the chosen wavelength"></canvas></div>
       <div class="readout" id="wv-read"></div>
@@ -95,6 +95,11 @@
   </section>
 
 <p class="bridge">Rank four photons from highest to lowest energy. Drag each one into a slot on the energy ladder.</p>
+
+  <section class="lab" id="emgame">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Name That Light</h3></div>
+    <div id="emg-host"></div>
+  </section>
 
   <section class="lab" id="rank">
     <div class="lab-h"><span class="tag game">Game</span><h3>Energy Ranking</h3></div>
@@ -145,32 +150,8 @@ A.$("#en-art").innerHTML=`<div style="display:flex;align-items:center;gap:14px;f
 /* EM chart: regions on top, then separate rows for wavelength, frequency and energy */
 const REG=[["Gamma Rays",-14,-11],["X-Rays",-11,-8],["Ultraviolet",-8,Math.log10(4e-7)],["Visible",Math.log10(4e-7),Math.log10(7e-7)],["Infrared",Math.log10(7e-7),-3],["Microwaves",-3,-1],["Radio Waves",-1,4]];
 const regionOf=lg=>REG.find(r=>lg>=r[1]&&lg<r[2])||(lg<-14?REG[0]:REG[6]);
-(function(){
-  const W=980,L=150,R=W-20,lo=-13,hi=3,x=v=>L+(v-lo)/(hi-lo)*(R-L);
-  const cols=["#7a3fd0","#2a7fd0","#22b7f0","#ffffff","#ff7a3b","#ffa31a","#e04848"];
-  let s=`<svg viewBox="0 0 ${W} 336" width="100%" style="min-width:760px" role="img" aria-label="Electromagnetic spectrum with wavelength, frequency and energy">`;
-  s+=`<defs><linearGradient id="vis"><stop offset="0" stop-color="${A.wl2rgb(400)}"/><stop offset=".25" stop-color="${A.wl2rgb(470)}"/><stop offset=".5" stop-color="${A.wl2rgb(540)}"/><stop offset=".7" stop-color="${A.wl2rgb(585)}"/><stop offset="1" stop-color="${A.wl2rgb(690)}"/></linearGradient><linearGradient id="eng" x1="1" x2="0"><stop offset="0" stop-color="#0070C0"/><stop offset="1" stop-color="#e00000"/></linearGradient></defs>`;
-  const lab=(y,t)=>`<text x="${L-12}" y="${y}" text-anchor="end" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#1b2328">${t}</text>`;
-  // row 1: region bands with names above
-  s+=lab(56,"Type of radiation");
-  REG.forEach(([n,a,b],i)=>{ const xa=x(Math.max(a,lo)), xb=x(Math.min(b,hi)); s+=`<rect x="${xa}" y="38" width="${xb-xa}" height="30" fill="${i===3?"url(#vis)":cols[i]}" opacity="${i===3?1:.32}" stroke="#1b2328"/>`; const nm=i===3?"Visible":n; s+=`<text x="${(xa+xb)/2}" y="${i===3?28:58}" text-anchor="middle" font-family="Inter,Arial" font-size="${i===3?12:13}" font-weight="700" fill="#1b2328">${nm}</text>`; });
-  // row 2: wavelength
-  const y2=104; s+=lab(y2+4,"Wavelength (m)")+`<path d="M${L} ${y2}H${R}" stroke="#1b2328" stroke-width="1.5"/>`;
-  for(let k=-12;k<=2;k+=2){ s+=`<line x1="${x(k)}" y1="${y2-5}" x2="${x(k)}" y2="${y2+5}" stroke="#1b2328"/><text x="${x(k)}" y="${y2+22}" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" fill="#1b2328">10<tspan dy="-6" font-size="9.5">${k}</tspan></text>`; }
-  // row 3: frequency (f = c / wavelength)
-  const y3=150; s+=lab(y3+4,"Frequency (Hz)")+`<path d="M${L} ${y3}H${R}" stroke="#1b2328" stroke-width="1.5"/>`;
-  for(let n=20;n>=6;n-=2){ const lg=Math.log10(3e8)-n; if(lg<lo||lg>hi) continue; s+=`<line x1="${x(lg)}" y1="${y3-5}" x2="${x(lg)}" y2="${y3+5}" stroke="#1b2328"/><text x="${x(lg)}" y="${y3+22}" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" fill="#1b2328">10<tspan dy="-6" font-size="9.5">${n}</tspan></text>`; }
-  // row 4: energy arrow
-  const y4=200; s+=lab(y4+5,"Energy");
-  s+=`<path d="M${R-4} ${y4-1.5}L${L+22} ${y4-9}V${y4-15}L${L} ${y4}L${L+22} ${y4+15}V${y4+9}L${R-4} ${y4+1.5}z" fill="#f2b705" stroke="#1b2328"/><text x="${L+24}" y="${y4-18}" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328">higher energy</text><text x="${R}" y="${y4-14}" text-anchor="end" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328">lower energy</text>`;
-  // visible detail strip
-  const vx=nm=>300+(nm-380)/(750-380)*600; const bands=[["Violet",380,450],["Blue",450,495],["Green",495,570],["Yellow",570,590],["Orange",590,620],["Red",620,750]];
-  s+=`<path d="M${x(Math.log10(4e-7))} 68L${vx(380)} 252M${x(Math.log10(7e-7))} 68L${vx(750)} 252" stroke="#c9d3d6" stroke-dasharray="3 3"/>`;
-  [400,500,600,700].forEach(t=>{ s+=`<line x1="${vx(t)}" y1="246" x2="${vx(t)}" y2="252" stroke="#1b2328"/><text x="${vx(t)}" y="242" text-anchor="middle" font-family="Inter,Arial" font-size="11.5" fill="#1b2328">${t} nm</text>`; });
-  bands.forEach(([n,a,b])=>{ const w=vx(b)-vx(a), mid=(vx(a)+vx(b))/2, inside=w>50; s+=`<rect x="${vx(a)}" y="252" width="${w}" height="26" fill="${A.wl2rgb((a+b)/2)}" stroke="#1b2328" stroke-width=".8"/>`; s+= inside? `<text x="${mid}" y="270" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="700" fill="${n==="Violet"||n==="Blue"?"#fff":"#111"}">${n}</text>` : `<text x="${mid}" y="${n==="Yellow"?294:308}" text-anchor="middle" font-family="Inter,Arial" font-size="11.5" font-weight="700" fill="#1b2328">${n}</text><line x1="${mid}" y1="278" x2="${mid}" y2="${n==="Yellow"?284:298}" stroke="#1b2328"/>`; });
-  s+=`<text x="${vx(565)}" y="326" text-anchor="middle" font-family="Inter,Arial" font-size="12" fill="#4a5257">visible light: about 4.00 × 10⁻⁷ m (400 nm) to 7.00 × 10⁻⁷ m (700 nm)</text>`;
-  s+=`</svg>`; A.$("#em-chart").innerHTML=s;
-})();
+A.$("#em-chart").innerHTML=A.emSpectrum();
+A.EMClickGame(A.$("#emg-host"));
 
 /* frequency figure: same speed for both waves, a stopwatch shows one (slowed-down) second, and counters show crests passing the marker */
 (function(){ const cv=A.$("#fq-cv"), c=cv.getContext("2d"); const W=cv.width, H=cv.height, XM=330, SEC=4000, V=360; /* V: pixels per "second" for BOTH waves */
@@ -200,7 +181,7 @@ const regionOf=lg=>REG.find(r=>lg>=r[1]&&lg<r[2])||(lg<-14?REG[0]:REG[6]);
 /* wave explorer */
 (function(){
   const cv=A.$("#wv-cv"), c=cv.getContext("2d"), r=A.$("#wv-r");
-  const presets=[["Gamma",-12],["X-ray",-9.3],["UV",-7.6],["Violet",Math.log10(410e-9)],["Green",Math.log10(530e-9)],["Red",Math.log10(660e-9)],["Infrared",-5],["Microwave",-2],["Radio",0.5]];
+  const presets=[["Radio",0.5],["Microwave",-2],["Infrared",-5],["Red",Math.log10(660e-9)],["Green",Math.log10(530e-9)],["Violet",Math.log10(410e-9)],["UV",-7.6],["X-ray",-9.3],["Gamma",-12]];
   A.$("#wv-jump").innerHTML=presets.map(([n,v])=>`<button type="button" data-v="${v}">${n}</button>`).join("");
   A.$$("#wv-jump button").forEach(b=>b.addEventListener("click",()=>{ r.value=b.dataset.v; t=0; }));
   let t=0; const V=1.6; /* every wave moves at the same speed across the screen (all light travels at c), so shorter waves pass by more often */
