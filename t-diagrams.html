@@ -90,7 +90,7 @@ function pd(o={}){ const W=600,H=400, x0=70,y0=340,w=500,h=300, X=t=>x0+t*w, Y=p
   let s=`<path d="M${X(0)} ${Y(1)}V${Y(0)}H${X(1)}" fill="none" stroke="${INK}" stroke-width="2.5"/>`;
   s+=`<path d="M${X(0)} ${Y(.02)}Q${X(.2)} ${Y(.08)} ${X(tp[0])} ${Y(tp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="M${X(tp[0])} ${Y(tp[1])}Q${X(.58)} ${Y(.38)} ${X(cp[0])} ${Y(cp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="${sl}" stroke="${INK}" stroke-width="3"/>`;
   s+=`<circle cx="${X(tp[0])}" cy="${Y(tp[1])}" r="7" fill="#F2B705" stroke="${INK}" stroke-width="2"/><circle cx="${X(cp[0])}" cy="${Y(cp[1])}" r="7" fill="#6a2c9a" stroke="${INK}" stroke-width="2"/>`;
-  s+=T.t(X(.14),Y(.6),"Solid",{fs:20,c:T.PH.s})+T.t(X(.6),Y(.75),"Liquid",{fs:20,c:T.PH.l})+T.t(X(.7),Y(.2),"Gas",{fs:20,c:T.PH.g});
+  s+=T.t(X(.14),Y(.6),"Solid",{fs:20,c:T.PH.s})+T.t(X(.46),Y(.68),"Liquid",{fs:20,c:T.PH.l})+T.t(X(.7),Y(.2),"Gas",{fs:20,c:T.PH.g});
   if(!o.letters){ s+=T.t(X(tp[0])+14,Y(tp[1])+22,"Triple point",{fs:13,a:"start"})+T.t(X(cp[0])-12,Y(cp[1])+4,"Critical point",{fs:13,a:"end"});
     s+=`<line x1="${X(0)}" y1="${Y(.5)}" x2="${X(1)}" y2="${Y(.5)}" stroke="#9aa7ad" stroke-dasharray="5 5"/>`+T.t(X(1)-2,Y(.5)-6,"1 atm",{fs:12,a:"end",c:"#5f6b72"});
     s+=T.t(X(.04),Y(.12),"Sublimation ↗",{fs:12,a:"start",c:"#5f6b72"});

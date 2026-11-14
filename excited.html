@@ -11,24 +11,19 @@
 </head>
 <body>
 <style>
-.xs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}
+.xs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,640px),1fr));gap:14px}
 .xs-panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .xs-panel.b{border-color:#c9b3e0}
 .xs-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .xs-head .dot{width:14px;height:14px;border-radius:50%}
 .xs-svg{display:flex;justify-content:center}
-.xs-svg svg{max-width:100%;height:auto}
+.xs-svg svg{max-width:100%;height:auto;overflow:hidden}
 .xs-spec{display:flex;flex-direction:column;gap:3px}
 .xs-spec small{font-size:12.5px;color:var(--body)}
-.xs-log{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
-.xs-log ol{margin:0;padding:6px 10px 8px 34px;display:flex;flex-direction:column;gap:5px;font-size:14.5px;color:var(--ink)}
-.xs-log li.ev{list-style:none;margin-left:-24px;font-weight:700;color:var(--teal-ink);display:flex;align-items:center;gap:8px;margin-top:4px}
-.xs-log li.ev.b{color:var(--purple)}
-.xs-log li.now{background:#fff3b0;border-radius:4px;outline:2px solid var(--orange);outline-offset:1px}
-.eslider{position:relative;touch-action:none;user-select:none;cursor:pointer;outline:none}
-.eslider:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
-.e-read{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.e-read b.val{font-size:26px;color:var(--ink);font-variant-numeric:tabular-nums;min-width:120px}
+.xs-body{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap}
+.xs-lad svg{max-width:100%;height:auto}
+.eslider{position:relative;touch-action:none;user-select:none;cursor:pointer;outline:none}.eslider:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+.xs-sread{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.xs-sread b{color:var(--ink)}
 </style>
 <main class="wrap">
   <section class="hero">
@@ -109,12 +104,11 @@
     <div class="lab-b">
       <div class="controls"><span class="ctl-label">Atom</span><select class="sel" id="xs-a"></select><label class="switch"><input type="checkbox" id="xs-cmp"> Compare with</label><select class="sel" id="xs-b" disabled></select>
         <span class="ctl-label" style="margin-left:auto">Speed</span><div class="seg" id="xs-speed" role="group" aria-label="Animation speed"><button type="button" aria-pressed="true" data-v="1">Normal</button><button type="button" aria-pressed="false" data-v="2.2">Slow</button><button type="button" aria-pressed="false" data-v="4">Very slow</button></div></div>
-      <div class="e-read"><span class="ctl-label">Energy</span><b class="val" id="xs-val"></b><span class="muted" id="xs-hint"></span></div>
-      <div id="xs-slider"></div>
-      <div class="controls"><button class="btn" type="button" id="xs-go">⚡ Send energy into the atom</button><button class="btn ghost" type="button" id="xs-replay">↺ Replay last event</button><button class="btn ghost" type="button" id="xs-reset">Reset atoms</button></div>
-      <div class="status" id="xs-msg" aria-live="polite">Pick an amount of energy, then send it in. Try one of the marked amounts first.</div>
+      <div id="xs-chips"></div>
+      <div class="controls"><button class="btn" type="button" id="xs-go">Send the photon</button><button class="btn ghost" type="button" id="xs-replay">↺ Replay</button><button class="btn ghost" type="button" id="xs-reset">Reset atoms</button></div>
+      <div class="status" id="xs-msg" aria-live="polite">Set the photon’s energy with the slider (or type it), then send it into the atom. Compare it with the energy levels on the ladder.</div>
       <div class="xs-grid" id="xs-panels"></div>
-      <p class="muted">Energies are in electron-volts (eV), a very small unit used for single atoms. Values are the real energies of each atom’s outermost electron (NIST Atomic Spectra Database). Simplified picture: each outer dashed ring stands for one of the electron’s allowed excited levels.</p>
+      <p class="muted">Energies are in electron-volts (eV), a very small unit used for single atoms. Values are the real energies of each atom’s outermost electron (NIST Atomic Spectra Database). Simplified picture: each outer dashed ring stands for one of the electron’s allowed excited levels. The ladder beside the atom shows the same levels by energy.</p>
     </div>
     <div class="labq" id="lq-excite"></div>
   </section>
@@ -187,226 +181,196 @@ function wavy(x1,y1,x2,y2,col,amp=6,wl=26){ const dx=x2-x1, dy=y2-y1, L=Math.hyp
   A.$("#ion-art").innerHTML=`<div class="col">${A.iso({A:7,Z:3,sym:"Li",cls:"mid"})}${a}<b style="color:var(--ink)">1. The outer electron absorbs a photon</b></div>${arrowLbl("","#f2b705")}<div class="col">${A.iso({A:7,Z:3,sym:"Li",charge:1,cls:"mid"})}${b}<b style="color:var(--ink)">2. The electron is free: Li becomes Li<sup>+</sup></b></div>`;
 })();
 
-/* ---------------- Excite an Atom ---------------- */
+/* ---------------- Excite an Atom (Nov 14 rebuild: photon buttons, energy ladder, smooth constant-speed photons) ---------------- */
 (function(){
   /* Outermost-electron energy levels in eV above the ground state, NIST ASD. Downward transitions [to, weight]. */
   const ATOMS={
-    H:{Z:1,A:1,name:"Hydrogen",core:[],lv:[["n=1 (ground)",0],["n=2",10.204],["n=3",12.094],["n=4",12.755],["n=5",13.061]],ie:13.606,down:{1:[[0,1]],2:[[1,.6],[0,.4]],3:[[2,.3],[1,.4],[0,.3]],4:[[3,.2],[2,.25],[1,.3],[0,.25]]}},
-    Li:{Z:3,A:7,name:"Lithium",core:[2],lv:[["ground (2s)",0],["level 1 (2p)",1.848],["level 2 (3s)",3.373],["level 3 (3d)",3.879],["level 4 (4s)",4.341]],ie:5.392,down:{1:[[0,1]],2:[[1,1]],3:[[1,1]],4:[[1,1]]}},
-    Na:{Z:11,A:23,name:"Sodium",core:[2,8],lv:[["ground (3s)",0],["level 1 (3p)",2.104],["level 2 (4s)",3.191],["level 3 (4p)",3.753],["level 4 (5s)",4.116]],ie:5.139,down:{1:[[0,1]],2:[[1,1]],3:[[0,.6],[2,.4]],4:[[1,.75],[3,.25]]}},
-    K:{Z:19,A:39,name:"Potassium",core:[2,8,8],lv:[["ground (4s)",0],["level 1 (4p)",1.614],["level 2 (5s)",2.607],["level 3 (5p)",3.064],["level 4 (6s)",3.403]],ie:4.341,down:{1:[[0,1]],2:[[1,1]],3:[[0,.6],[2,.4]],4:[[1,.7],[3,.3]]}}
+    H:{Z:1,A:1,name:"Hydrogen",core:[],lv:[["ground",0],["level 1",10.204],["level 2",12.094],["level 3",12.755],["level 4",13.061]],ie:13.606,miss:[11.20,8.50],down:{1:[[0,1]],2:[[1,.6],[0,.4]],3:[[2,.3],[1,.4],[0,.3]],4:[[3,.2],[2,.25],[1,.3],[0,.25]]}},
+    Li:{Z:3,A:7,name:"Lithium",core:[2],lv:[["ground",0],["level 1",1.848],["level 2",3.373],["level 3",3.879],["level 4",4.341]],ie:5.392,miss:[2.60,1.30],down:{1:[[0,1]],2:[[1,1]],3:[[1,1]],4:[[1,1]]}},
+    Na:{Z:11,A:23,name:"Sodium",core:[2,8],lv:[["ground",0],["level 1",2.104],["level 2",3.191],["level 3",3.753],["level 4",4.116]],ie:5.139,miss:[2.60,1.50],down:{1:[[0,1]],2:[[1,1]],3:[[0,.6],[2,.4]],4:[[1,.75],[3,.25]]}},
+    K:{Z:19,A:39,name:"Potassium",core:[2,8,8],lv:[["ground",0],["level 1",1.614],["level 2",2.607],["level 3",3.064],["level 4",3.403]],ie:4.341,miss:[2.00,1.20],down:{1:[[0,1]],2:[[1,1]],3:[[0,.6],[2,.4]],4:[[1,.7],[3,.3]]}}
   };
-  const HC=1239.84, COL={a:"#1f8fa8",b:"#7030A0"};
-  let speed=1, E=null, cmp=false, busy=false;
-  const panels={};
+  const HC=1239.84, COL={a:"#1f8fa8",b:"#7030A0"}, V=260; /* photon speed, px per second at Normal */
+  let speed=1, E=null, cmp=false, busy=false; const panels={};
   const selA=A.$("#xs-a"), selB=A.$("#xs-b");
   Object.entries(ATOMS).forEach(([k,v])=>{ selA.appendChild(A.h("option",{value:k},v.name)); selB.appendChild(A.h("option",{value:k},v.name)); });
   selA.value="Na"; selB.value="K";
   const region=nm=>nm<380?"ultraviolet (invisible)":nm>750?"infrared (invisible)":A.colorName(nm);
+  const pcol=nm=>nm>=380&&nm<=750? A.wl2rgb(nm) : "#8a979c";
   const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  const F="font-family=\"Inter,Arial\"";
+  /* a photon is a rigid wave packet: the same shape every frame, moved with a transform, so it never wobbles */
+  const WAVE=(()=>{ let d=""; for(let t=-66;t<=-10;t+=2){ const env=Math.sin(Math.PI*(t+66)/56); d+=(t===-66?"M":"L")+t+" "+(Math.sin(t/12*2*Math.PI)*6.5*env).toFixed(2); } return d; })();
+  function photon(x,y,deg,col,label,op=1){
+    let s=`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${deg})" opacity="${op}"><path d="${WAVE}" fill="none" stroke="${col}" stroke-width="3.6" stroke-linecap="round"/><path d="M1 0L-12 -7L-12 7z" fill="${col}" stroke="#1b2328" stroke-width=".8"/></g>`;
+    if(label) s+=`<text x="${x.toFixed(1)}" y="${(y-15).toFixed(1)}" text-anchor="middle" ${F} font-size="13" font-weight="800" fill="#1b2328" stroke="#fff" stroke-width="3.5" paint-order="stroke" opacity="${op}">${label}</text>`;
+    return s;
+  }
 
-  /* ----- one atom panel ----- */
+  /* ----- one atom panel: Bohr model + energy ladder ----- */
   function Panel(key, side){
-    const at=ATOMS[key], SIZE=430;
-    const shells=at.core.concat([1,0,0,0,0]);
-    const geo=A.bohrGeom({p:at.Z,n:at.A-at.Z,shells,size:SIZE});
-    const gi=at.core.length;                       // ring index of the ground level
-    const ringOf=lvl=>geo.rings[gi+lvl];
-    const ang=-38*Math.PI/180;
-    const st={key,at,side,level:0,ion:false,ex:null,ey:null,overlay:"",spec:{},invis:[],events:[],hl:null};
+    const at=ATOMS[key], SIZE=360, PAD=34;
+    const geo=A.bohrGeom({p:at.Z,n:at.A-at.Z,shells:at.core.concat([1,0,0,0,0]),size:SIZE});
+    const gi=at.core.length, ringOf=l=>geo.rings[gi+l], ang=-38*Math.PI/180;
+    const posFor=r=>[geo.cx+r*Math.cos(ang), geo.cy+r*Math.sin(ang)];
+    const st={key,at,side,level:0,ion:false,ex:null,ey:null,eE:0,ph:"",lad:"",flash:0,spec:{},invis:[]};
     const el=A.h("div",{class:"xs-panel"+(side==="b"?" b":"")});
-    el.innerHTML=`<div class="xs-head"><span class="dot" style="background:${COL[side]}"></span><b style="color:var(--ink);font-size:17px">${at.name}</b>${A.iso({A:at.A,Z:at.Z,sym:A.bySym[key.toLowerCase()].sym})}<span class="muted" style="margin-left:auto">ionization energy ${at.ie.toFixed(2)} eV</span></div><div class="xs-svg"></div><div class="status xs-state"></div><div class="xs-spec"><b style="font-size:13px;color:var(--ink)">Emission spectrum (light given off so far)</b><div class="xs-strip"></div><small class="xs-inv"></small></div><div class="xs-log"><ol></ol></div>`;
-    const svgBox=el.querySelector(".xs-svg"), stateEl=el.querySelector(".xs-state"), logEl=el.querySelector("ol");
-    const baseSVG=(ion)=>{
-      const sh=at.core.concat([ion?0:0,0,0,0,0]);
-      let s=A.bohrSVG({p:at.Z,n:at.A-at.Z,shells:sh,size:SIZE,er:geo.er,label:`${at.name} atom`});
-      let lab="";
-      at.lv.forEach(([nm,e],i)=>{ const r=ringOf(i); const y=geo.cy-r; const t=`${i===0?"ground":"level "+i} · ${e.toFixed(2)} eV`, tw=t.length*7.3+10; lab+=`<rect x="${geo.cx-10-tw}" y="${y-9}" width="${tw}" height="18" rx="9" fill="#fff" stroke="${i===0?"#1b2328":"#b9c5c9"}" stroke-width="1"/><text x="${geo.cx-15}" y="${y+4.5}" text-anchor="end" font-family="Inter,Arial" font-size="13" font-weight="800" fill="${i===0?"#1b2328":"#4a5257"}">${t}</text>`; });
-      return s.replace(`viewBox="0 0 ${SIZE} ${SIZE}" width="${SIZE}" height="${SIZE}"`,`viewBox="0 -18 ${SIZE} ${SIZE+18}" width="${SIZE}" height="${SIZE+18}"`).replace("</svg>",lab+"</svg>");
-    };
-    let base=baseSVG(false);
-    function posFor(r){ return [geo.cx+r*Math.cos(ang), geo.cy+r*Math.sin(ang)]; }
+    el.innerHTML=`<div class="xs-head"><span class="dot" style="background:${COL[side]}"></span><b style="color:var(--ink);font-size:17px">${at.name}</b>${A.iso({A:at.A,Z:at.Z,sym:A.bySym[key.toLowerCase()].sym})}<span class="muted" style="margin-left:auto">ionization energy ${at.ie.toFixed(2)} eV</span></div><div class="xs-body"><div class="xs-svg"></div><div class="xs-lad"></div></div><div class="status xs-state"></div><div class="xs-spec"><b style="font-size:13px;color:var(--ink)">Emission spectrum (light given off so far)</b><div class="xs-strip"></div><small class="xs-inv"></small></div>`;
+    const svgBox=el.querySelector(".xs-svg"), ladBox=el.querySelector(".xs-lad"), stateEl=el.querySelector(".xs-state");
+    /* atom: static picture + one overlay group that is redrawn each frame */
+    const W1=SIZE+2*PAD;
+    svgBox.innerHTML=A.bohrSVG({p:at.Z,n:at.A-at.Z,shells:at.core.concat([0,0,0,0,0]),size:SIZE,er:geo.er,label:`${at.name} atom`})
+      .replace(`viewBox="0 0 ${SIZE} ${SIZE}" width="${SIZE}" height="${SIZE}"`,`viewBox="${-PAD} ${-PAD} ${W1} ${W1}" width="${W1}" height="${W1}" overflow="hidden"`).replace(/<\/svg>\s*$/,`<g class="ov"></g></svg>`);
+    const ov=svgBox.querySelector(".ov");
+    /* ladder: energy levels drawn to scale, ionization at the top */
+    const LW=238, LH=W1, top=46, bot=LH-34, yE=e=>bot-(e/at.ie)*(bot-top), lx1=28, lx2=118;
+    const ys=at.lv.map(l=>yE(l[1])), ly=ys.slice();
+    for(let it=0;it<60;it++){ for(let i=1;i<ly.length;i++){ const gap=ly[i-1]-ly[i]; if(gap<16){ const m=(16-gap)/2; ly[i-1]+=m; ly[i]-=m; } } for(let i=0;i<ly.length;i++) ly[i]=Math.max(top+12,Math.min(bot,ly[i])); }
+    let L=`<svg viewBox="0 0 ${LW} ${LH}" width="${LW}" height="${LH}" role="img" aria-label="Energy levels of the outermost electron of ${at.name.toLowerCase()}">`;
+    L+=`<rect x="${lx1-6}" y="8" width="${lx2-lx1+12}" height="${top-8}" fill="${COL[side]}" opacity=".1"/><path d="M${lx1-6} ${top}H${lx2+6}" stroke="${COL[side]}" stroke-width="2.6"/><text x="${(lx1+lx2)/2}" y="24" text-anchor="middle" ${F} font-size="11.5" font-weight="800" fill="${COL[side]}">electron leaves</text><text x="${(lx1+lx2)/2}" y="38" text-anchor="middle" ${F} font-size="11.5" font-weight="700" fill="${COL[side]}">(ionization)</text><text x="${lx2+10}" y="${top+4}" ${F} font-size="12" font-weight="800" fill="${COL[side]}">${at.ie.toFixed(2)} eV</text>`;
+    L+=`<path d="M12 ${bot+6}V${top-26}" stroke="#4a5257" stroke-width="1.6"/><path d="M12 ${top-32}l-5 9h10z" fill="#4a5257"/><text x="8" y="${(top+bot)/2}" transform="rotate(-90 8 ${(top+bot)/2})" text-anchor="middle" ${F} font-size="11.5" font-weight="700" fill="#4a5257" dy="-2">energy</text>`;
+    at.lv.forEach(([nm,e],i)=>{ L+=`<path d="M${lx1} ${ys[i]}H${lx2}" stroke="${i?"#1b2328":"#1b2328"}" stroke-width="${i?2:3}"/>`;
+      if(Math.abs(ly[i]-ys[i])>1) L+=`<path d="M${lx2} ${ys[i]}L${lx2+8} ${ly[i]}" stroke="#9aa6aa" stroke-width="1"/>`;
+      L+=`<text x="${lx2+10}" y="${ly[i]+4}" ${F} font-size="12.5" font-weight="${i?700:800}" fill="#1b2328">${nm} · ${e.toFixed(2)} eV</text>`; });
+    L+=`<g class="ov"></g></svg>`; ladBox.innerHTML=L; const lov=ladBox.querySelector(".ov");
+    const ladX=(lx1+lx2)/2;
     function draw(){
-      let s=base;
-      let extra=st.overlay;
-      if(st.ion && st.ex===null){ const [gx,gy]=posFor(ringOf(0)); extra+=`<circle cx="${gx}" cy="${gy}" r="${geo.er}" fill="#fff" stroke="#1b2328" stroke-width="1.6" stroke-dasharray="3 2"/>`; }
-      if(!st.ion || st.ex!==null){
-        const [x,y]= st.ex!==null? [st.ex,st.ey] : posFor(ringOf(st.level));
-        const moved = st.ex!==null || st.level>0;
-        if(moved){ const [gx,gy]=posFor(ringOf(0)); extra=`<circle cx="${gx}" cy="${gy}" r="${geo.er}" fill="#fff" stroke="#1b2328" stroke-width="1.6" stroke-dasharray="3 2"/>`+extra; }
-        extra+=`<circle cx="${x}" cy="${y}" r="${geo.er+6}" fill="rgba(242,183,5,.25)" stroke="#e0a400" stroke-width="2"/>`+A.P.electron(x,y,geo.er,"#f2b705");
-      }
-      svgBox.innerHTML=s.replace("</svg>",extra+"</svg>");
+      let s=""; const rc=ringOf(st.level);
+      if(!st.ion&&st.ex===null) s+=`<circle cx="${geo.cx}" cy="${geo.cy}" r="${rc}" fill="none" stroke="#e0a400" stroke-width="2.4" opacity=".55"/>`;
+      const [gx,gy]=posFor(ringOf(0)); const moved=st.ion||st.ex!==null||st.level>0;
+      if(moved) s+=`<circle cx="${gx}" cy="${gy}" r="${geo.er}" fill="#fff" stroke="#1b2328" stroke-width="1.6" stroke-dasharray="3 2"/>`;
+      if(!st.ion||st.ex!==null){ const [x,y]=st.ex!==null?[st.ex,st.ey]:posFor(rc);
+        if(st.flash>0) s+=`<circle cx="${x}" cy="${y}" r="${geo.er+6+18*(1-st.flash)}" fill="none" stroke="#f2b705" stroke-width="3" opacity="${st.flash.toFixed(2)}"/>`;
+        s+=`<circle cx="${x}" cy="${y}" r="${geo.er+5}" fill="rgba(242,183,5,.25)" stroke="#e0a400" stroke-width="2"/>`+A.P.electron(x,y,geo.er,"#f2b705"); }
+      ov.innerHTML=s+st.ph;
+      let l=st.lad; if(!st.ion||st.eE<=at.ie+.6) l+=`<circle cx="${ladX}" cy="${yE(Math.min(st.eE,at.ie+.55))}" r="7.5" fill="#f2b705" stroke="#1b2328" stroke-width="1.4" opacity="${st.ion&&st.ex===null?0:1}"/>`;
+      lov.innerHTML=l;
     }
     function stateText(){
-      const sh=at.core.concat(st.ion?[]:[1]);
-      if(st.ion){ stateEl.className="status bad"; stateEl.innerHTML=`Ionized: ${A.iso({sym:A.bySym[key.toLowerCase()].sym,charge:1})} (the electron left).`; return; }
-      if(st.level===0){ stateEl.className="status good"; stateEl.innerHTML=`Ground state. Outermost electron (gold) in its lowest level.`; }
-      else { stateEl.className="status warn"; stateEl.innerHTML=`Excited state: the outermost electron is in ${at.lv[st.level][0].replace(/ \(.*\)/,"")} (${at.lv[st.level][1].toFixed(2)} eV above the ground state).`; }
+      if(st.ion){ stateEl.className="status bad"; stateEl.innerHTML=`Ionized: the electron left the atom, so it is now the ion ${A.iso({sym:A.bySym[key.toLowerCase()].sym,charge:1})}.`; return; }
+      if(st.level===0){ stateEl.className="status good"; stateEl.innerHTML=`<b>Ground state</b>: the outermost electron (gold) is in its lowest available level.`; }
+      else { stateEl.className="status warn"; stateEl.innerHTML=`<b>Excited state</b>: the outermost electron is in ${at.lv[st.level][0]}, ${at.lv[st.level][1].toFixed(2)} eV above the ground state.`; }
     }
     function addLine(nm){ if(nm>=380&&nm<=750){ const k=nm.toFixed(1); st.spec[k]=(st.spec[k]||0)+1; } else st.invis.push(nm); paintSpec(); }
     function paintSpec(){
       const lines=Object.keys(st.spec).map(k=>[+k,1]);
       el.querySelector(".xs-strip").innerHTML=A.spectrumSVG(lines,{w:560,h:34,lo:380,hi:750,label:`emission spectrum of ${at.name}`});
       const inv=[...new Set(st.invis.map(n=>Math.round(n)))];
-      el.querySelector(".xs-inv").innerHTML= lines.length||inv.length ? (lines.length?`Visible: ${lines.map(l=>`${Math.round(l[0])} nm`).join(", ")}. `:"")+(inv.length?`Invisible: ${inv.map(n=>`${n} nm (${n<380?"UV":"IR"})`).join(", ")}.`:"") : "No light emitted yet.";
+      el.querySelector(".xs-inv").innerHTML= lines.length||inv.length ? (lines.length?`Visible: ${lines.map(l=>`${Math.round(l[0])} nm`).join(", ")}. `:"")+(inv.length?`Invisible: ${inv.map(n=>`${n} nm (${n<380?"UV":"IR"})`).join(", ")}.`:"") : "No light given off yet.";
     }
-    function log(html,cls=""){ const li=A.h("li",{class:cls},html); logEl.appendChild(li); logEl.parentElement.scrollTop=logEl.parentElement.scrollHeight; return li; }
-    function reset(){ st.level=0; st.ion=false; st.ex=null; st.ey=null; st.overlay=""; st.spec={}; st.invis=[]; st.events=[]; logEl.innerHTML=""; base=baseSVG(false); draw(); stateText(); paintSpec(); }
-    /* ---- plan an event: list of steps {t:text, dur, run(p)} ---- */
+    function reset(){ Object.assign(st,{level:0,ion:false,ex:null,ey:null,eE:0,ph:"",lad:"",flash:0,spec:{},invis:[]}); draw(); stateText(); paintSpec(); }
+    /* geometry of the incoming photon: it travels left in a straight line at the height of the electron */
+    const [tx0,ty0]=posFor(ringOf(0)), SX=SIZE+PAD+70, TX=tx0+geo.er+3, EXX=-PAD-70;
     function plan(Ein){
-      const steps=[], tol=Math.max(.02,at.ie*.006);
-      if(st.ion){ steps.push({text:`The atom is already an ion. Reset to try again.`,dur:.4,kind:"note"}); return {steps,summary:"already ionized"}; }
-      const from=st.level, Ecur=at.lv[from][1];
-      const target=at.lv.findIndex(([n,e],i)=>i>from && Math.abs((e-Ecur)-Ein)<=tol);
-      const [x0,y0]=posFor(ringOf(from));
-      const inStep={kind:"in",dur:1.1,text:`${Ein.toFixed(2)} eV of energy arrives at the atom.`};
-      steps.push(inStep);
-      if(Ecur+Ein>=at.ie-1e-9){
-        const extra=Ecur+Ein-at.ie;
-        steps.push({kind:"ionize",dur:1.5,text:`It is more than enough to remove the electron (${(at.ie-Ecur).toFixed(2)} eV needed). The electron <b>leaves the atom</b>: ionization${extra>0.05?`. The extra ${extra.toFixed(2)} eV becomes the electron’s speed`:""}.`,from});
-        return {steps,summary:`${Ein.toFixed(2)} eV → ionized`};
+      const steps=[], tol=Math.max(.02,at.ie*.006), nmIn=HC/Ein, lab=`${Ein.toFixed(2)} eV`;
+      if(st.ion){ steps.push({kind:"note",dur:.6,text:`The atom is already an ion. Press Reset atoms to try again.`}); return {steps,summary:"already ionized"}; }
+      const target=at.lv.findIndex(([n,e],i)=>i>0&&Math.abs(e-Ein)<=tol);
+      if(Ein<at.ie-1e-9&&target<0){
+        steps.push({kind:"pass",dur:(SX-EXX)/V,col:pcol(nmIn),lab,text:`${lab} does not match the energy difference between the ground state and any higher level of ${at.name.toLowerCase()}. The electron <b>cannot absorb</b> this photon, so it passes straight through the atom.`});
+        return {steps,summary:`${lab}: not absorbed`};
       }
-      if(target<0){
-        steps.push({kind:"miss",dur:1.0,text:`${Ein.toFixed(2)} eV doesn’t match the difference between any two of ${at.name.toLowerCase()}’s energy levels, so the electron <b>can’t absorb it</b>. The energy passes by.`});
-        return {steps,summary:`${Ein.toFixed(2)} eV → not absorbed`};
+      steps.push({kind:"in",dur:(SX-TX)/V,col:pcol(nmIn),lab,text:`A photon carrying ${lab} of energy travels toward the atom.`});
+      if(Ein>=at.ie-1e-9){
+        steps.push({kind:"ionize",dur:1.5,text:`${lab} is at least the ${at.ie.toFixed(2)} eV needed to remove the electron. The electron absorbs it and <b>leaves the atom</b>: the atom becomes a positive ion.`});
+        return {steps,summary:`${lab}: ionized`};
       }
-      steps.push({kind:"jump",dur:1.1,text:`The amount matches a jump exactly. The electron <b>absorbs</b> the energy and jumps up to ${at.lv[target][0].replace(/ \(.*\)/,"")}: an <b>excited state</b>.`,from,to:target});
-      steps.push({kind:"wait",dur:.7,text:`The electron doesn’t stay in the excited state for long…`});
+      steps.push({kind:"jump",dur:1.0,from:0,to:target,text:`${lab} exactly matches the jump from the ground state to ${at.lv[target][0]}. The electron <b>absorbs</b> the photon and moves up: an <b>excited state</b>.`});
+      steps.push({kind:"wait",dur:.8,text:`An excited state is unstable, so the electron does not stay there…`});
       let cur=target;
       while(cur>0){
         const opts=at.down[cur]; let r=Math.random(), nx=opts[0][0]; for(const [t,w] of opts){ r-=w; if(r<=0){ nx=t; break; } }
         const dE=at.lv[cur][1]-at.lv[nx][1], nm=HC/dE;
-        steps.push({kind:"drop",dur:1.6,text:`It falls to ${nx===0?"the <b>ground state</b>":at.lv[nx][0].replace(/ \(.*\)/,"")} and <b>emits a photon</b> of ${dE.toFixed(2)} eV: ${Math.round(nm)} nm, ${region(nm)}.`,from:cur,to:nx,nm});
+        steps.push({kind:"drop",dur:2.0,from:cur,to:nx,nm,dE,text:`The electron falls to ${nx===0?"the <b>ground state</b>":at.lv[nx][0]} and <b>releases</b> ${dE.toFixed(2)} eV as a photon of light: ${Math.round(nm)} nm, ${region(nm)}.`});
         cur=nx;
       }
-      return {steps,summary:`${Ein.toFixed(2)} eV → excited, then light`};
+      return {steps,summary:`${lab}: absorbed, then light given off`};
     }
     function runStep(step,p){
-      st.overlay="";
-      if(step.kind==="in"||step.kind==="miss"){
-        const [tx,ty]=posFor(ringOf(st.level));
-        const sx=SIZE-8, sy=-10, dist=Math.hypot(tx-sx,ty-sy);
-        let hx,hy;
-        if(step.kind==="in"){ const k=ease(p)*(1-(geo.er+8)/dist); hx=sx+(tx-sx)*k; hy=sy+(ty-sy)*k; }
-        else { const k=1+(p*1.1); hx=sx+(tx-sx)*k; hy=sy+(ty-sy)*k; }
-        st.overlay=packet(sx,sy,hx,hy,"#e0a400",step.kind==="in"?"energy in":"");
+      st.ph=""; st.lad=""; st.flash=0;
+      if(step.kind==="in"||step.kind==="pass"){
+        const x= step.kind==="in"? SX+(TX-SX)*p : SX+(EXX-SX)*p;
+        st.ph=photon(x,ty0,180,step.col,step.lab);
       } else if(step.kind==="jump"||step.kind==="drop"){
-        const r0=ringOf(step.from), r1=ringOf(step.to), r=r0+(r1-r0)*ease(Math.min(1,p*1.6));
-        [st.ex,st.ey]=posFor(r);
-        if(step.kind==="drop"){
-          const [ox,oy]=posFor(r1); const q=Math.max(0,(p-.25)/.75);
-          if(q>0){ const ex2=SIZE-6, ey2=SIZE-14, hx=ox+(ex2-ox)*ease(q), hy=oy+(ey2-oy)*ease(q); const vis=step.nm>=380&&step.nm<=750; st.overlay=packet(ox,oy,hx,hy,vis?A.wl2rgb(step.nm):"#8a979c",(q>.35?`${Math.round(step.nm)} nm`:""),true); }
-        }
-        if(p>=1){ st.level=step.to; st.ex=null; }
+        const r0=ringOf(step.from), r1=ringOf(step.to), k=ease(Math.min(1,p/(step.kind==="drop"?.55:.85)));
+        [st.ex,st.ey]=posFor(r0+(r1-r0)*k); st.eE=at.lv[step.from][1]+(at.lv[step.to][1]-at.lv[step.from][1])*k;
+        const y0=yE(at.lv[step.from][1]), y1=yE(st.eE);
+        if(step.kind==="jump"){ st.flash=Math.max(0,1-p*2.2); if(Math.abs(y1-y0)>10) st.lad=`<path d="M${ladX} ${y0}V${y1+8}" stroke="#e0a400" stroke-width="3"/><path d="M${ladX} ${y1}l-6 10h12z" fill="#e0a400"/>`; }
+        else { const c=pcol(step.nm); if(Math.abs(y1-y0)>10) st.lad=`<path d="M${ladX} ${y0}V${y1-8}" stroke="${c}" stroke-width="3"/><path d="M${ladX} ${y1}l-6 -10h12z" fill="${c}" stroke="#1b2328" stroke-width=".6"/>`;
+          const q=(p-.5)/.5; if(q>0){ const [ox,oy]=posFor(r1), dir=28*Math.PI/180, Lmax=SIZE*.95; st.ph=photon(ox+Math.cos(dir)*Lmax*q,oy+Math.sin(dir)*Lmax*q,28,c,`${Math.round(step.nm)} nm`); } }
+        if(p>=1){ st.level=step.to; st.ex=null; st.eE=at.lv[step.to][1]; }
       } else if(step.kind==="ionize"){
-        const r0=ringOf(step.from), r=r0+(SIZE*.7)*ease(p);
-        [st.ex,st.ey]=posFor(r);
+        const r0=ringOf(0); st.flash=Math.max(0,1-p*3); [st.ex,st.ey]=posFor(r0+(SIZE*.75)*p); st.eE=at.ie*Math.min(1.04,p*1.3);
         if(p>=1){ st.ion=true; st.ex=null; }
       }
-      if(p>=1){ st.overlay=""; if(step.kind==="drop") addLine(step.nm); stateText(); }
+      if(p>=1){ st.ph=""; st.lad=""; st.flash=0; if(step.kind==="drop") addLine(step.nm); stateText(); }
       draw();
     }
-    function packet(x1,y1,x2,y2,col,label,out){
-      const dx=x2-x1, dy=y2-y1, L=Math.hypot(dx,dy); if(L<4) return "";
-      const ux=dx/L, uy=dy/L, nx=-uy, ny=ux, tailLen=Math.min(L,110), start=L-tailLen;
-      let d=""; for(let t=start;t<=L-12;t+=2){ const w=Math.sin(t/11*2*Math.PI)*6; d+=(t===start?"M":"L")+(x1+ux*t+nx*w).toFixed(1)+" "+(y1+uy*t+ny*w).toFixed(1); }
-      const bx=x2-ux*14, by=y2-uy*14;
-      let s=`<path d="${d}" fill="none" stroke="${col}" stroke-width="3.5" stroke-linecap="round"/><path d="M${x2} ${y2}L${bx+nx*8} ${by+ny*8}L${bx-nx*8} ${by-ny*8}z" fill="${col}" stroke="#000" stroke-width=".8"/>`;
-      if(label) s+=`<text x="${x2+(out?-8:-10)}" y="${y2+(out?-12:22)}" text-anchor="end" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328" stroke="#fff" stroke-width="3" paint-order="stroke">${label}</text>`;
-      return s;
-    }
     draw(); stateText(); paintSpec();
-    return {el,st,plan,runStep,reset,log,draw,stateText,snapshot(){ return {level:st.level,ion:st.ion}; },restore(s){ st.level=s.level; st.ion=s.ion; st.ex=null; st.overlay=""; draw(); stateText(); }};
+    return {el,st,plan,runStep,reset,draw,stateText,snapshot(){ return {level:st.level,ion:st.ion}; },restore(s){ st.level=s.level; st.ion=s.ion; st.ex=null; st.eE=s.ion?at.ie:at.lv[s.level][1]; st.ph=""; st.lad=""; draw(); stateText(); }};
   }
 
-  /* ----- shared energy slider with each atom’s marks ----- */
-  const SL=A.$("#xs-slider");
-  function scaleMax(){ const ks=[selA.value].concat(cmp?[selB.value]:[]); return Math.max(...ks.map(k=>ATOMS[k].ie))*1.12; }
-  function drawSlider(){
-    const W=900, ks=[["a",selA.value]].concat(cmp?[["b",selB.value]]:[]), max=scaleMax();
-    const H=58+ks.length*44, x=v=>30+(v/max)*(W-60);
-    let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block" aria-hidden="true">`;
-    s+=`<rect x="30" y="22" width="${W-60}" height="10" rx="5" fill="#e6eef0" stroke="#b8c6ca"/>`;
-    for(let v=0;v<=max+1e-9;v+= max>10?2:max>6?1:.5){ s+=`<line x1="${x(v)}" y1="34" x2="${x(v)}" y2="40" stroke="#4a5257"/><text x="${x(v)}" y="52" text-anchor="middle" font-family="Inter,Arial" font-size="11" fill="#4a5257">${+v.toFixed(1)} eV</text>`; }
-    ks.forEach(([side,k],row)=>{
-      const at=ATOMS[k], y0=70+row*44, col=COL[side];
-      s+=`<text x="30" y="${y0+4}" font-family="Inter,Arial" font-size="12" font-weight="800" fill="${col}">${at.name}</text>`;
-      let alt=0;
-      at.lv.slice(1).forEach(([nm,e],i)=>{ alt=1-alt; s+=`<line x1="${x(e)}" y1="27" x2="${x(e)}" y2="${y0+6}" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/><circle cx="${x(e)}" cy="27" r="5" fill="${col}"/><text x="${x(e)}" y="${y0+18+(alt?0:11)}" text-anchor="middle" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="${col}">L${i+1} ${e.toFixed(2)}</text>`; });
-      s+=`<rect x="${x(at.ie)}" y="18" width="${W-30-x(at.ie)}" height="18" fill="${col}" opacity=".12"/><line x1="${x(at.ie)}" y1="14" x2="${x(at.ie)}" y2="${y0+6}" stroke="${col}" stroke-width="2.6"/><text x="${x(at.ie)+4}" y="${y0+18}" font-family="Inter,Arial" font-size="11" font-weight="800" fill="${col}">ionize ≥ ${at.ie.toFixed(2)}</text>`;
-    });
-    if(E!==null) s+=`<circle cx="${x(E)}" cy="27" r="11" fill="#fff" stroke="#e07b00" stroke-width="4"/><text x="${x(E)}" y="12" text-anchor="middle" font-family="Inter,Arial" font-size="12" font-weight="800" fill="#e07b00">${E.toFixed(2)}</text>`;
-    s+=`</svg>`;
-    SL.innerHTML=`<div class="eslider" tabindex="0" role="slider" aria-label="Energy sent into the atom, in eV" aria-valuemin="0" aria-valuemax="${max.toFixed(2)}" aria-valuenow="${(E??0).toFixed(2)}">${s}</div>`;
-    const box=SL.firstChild;
-    const setFromX=cx=>{ const r=box.getBoundingClientRect(); const v=((cx-r.left)/r.width*W-30)/(W-60)*max; setE(Math.max(0,Math.min(max,v)),true); };
-    box.addEventListener("pointerdown",e=>{ e.preventDefault(); box.focus(); setFromX(e.clientX); const mv=m=>setFromX(m.clientX); const up=()=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up); }; document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); });
-    box.addEventListener("keydown",e=>{ const step=e.shiftKey?.1:.01; if(e.key==="ArrowRight"||e.key==="ArrowUp"){ e.preventDefault(); setE(Math.min(max,(E??0)+step)); } if(e.key==="ArrowLeft"||e.key==="ArrowDown"){ e.preventDefault(); setE(Math.max(0,(E??0)-step)); } if(e.key==="Enter") fire(); });
-  }
-  function setE(v,snap){
-    const max=scaleMax();
-    if(snap){ const marks=[selA.value].concat(cmp?[selB.value]:[]).flatMap(k=>ATOMS[k].lv.slice(1).map(l=>l[1]).concat([ATOMS[k].ie])); const th=max*.008; const near=marks.find(m=>Math.abs(m-v)<=th); if(near!==undefined) v=near; }
-    E=Math.round(v*1000)/1000; A.$("#xs-val").textContent=`${E.toFixed(2)} eV`;
-    const k=selA.value, at=ATOMS[k]; const lv=at.lv.findIndex(l=>Math.abs(l[1]-E)<.02);
-    A.$("#xs-hint").innerHTML= E>=at.ie? `at or above ${at.name.toLowerCase()}’s ionization energy` : lv>0? `matches the jump to level ${lv} in ${at.name.toLowerCase()}` : `between marks: ${at.name.toLowerCase()}’s ground-state electron can’t absorb this amount`;
-    drawSlider();
+  /* ----- photon energy slider: a spectrum bar (IR → visible → UV) plus a box to type an exact value ----- */
+  function chips(){
+    const ks=[selA.value].concat(cmp?[selB.value]:[]), max=Math.ceil(Math.max(...ks.map(k=>ATOMS[k].ie))*1.15), W=900, x0=20, x1=W-20, X=e=>x0+(e/max)*(x1-x0);
+    const box=A.$("#xs-chips"); box.className="xs-slide";
+    let bar=""; for(let px=x0;px<x1;px+=2){ const e=(px-x0)/(x1-x0)*max, nm=e>0?HC/e:1e9; bar+=`<rect x="${px}" y="30" width="2.4" height="22" fill="${nm>=380&&nm<=750?A.wl2rgb(nm):nm>750?"#d9c2bb":"#cbbfe3"}"/>`; }
+    const xv=X(HC/750), xu=X(HC/380);
+    let s=`<svg viewBox="0 0 ${W} 84" width="100%" style="display:block" aria-hidden="true">${bar}<rect x="${x0}" y="30" width="${x1-x0}" height="22" fill="none" stroke="#1b2328" stroke-width="1.5" rx="3"/>`;
+    s+=`<text x="${(x0+xv)/2}" y="22" text-anchor="middle" ${F} font-size="12.5" font-weight="800" fill="#8a4b3a">infrared (invisible)</text><text x="${(xv+xu)/2}" y="22" text-anchor="middle" ${F} font-size="12.5" font-weight="800" fill="#1b2328">visible</text><text x="${(xu+x1)/2}" y="22" text-anchor="middle" ${F} font-size="12.5" font-weight="800" fill="#5a3f8f">ultraviolet (invisible)</text>`;
+    for(let v=0;v<=max;v+=max>10?2:1) s+=`<path d="M${X(v)} 52v6" stroke="#4a5257"/><text x="${X(v)}" y="72" text-anchor="middle" ${F} font-size="12" fill="#4a5257">${v} eV</text>`;
+    s+=`<g class="xs-hd"></g></svg>`;
+    box.innerHTML=`<div class="xs-sread"><span class="ctl-label">Photon energy</span><input class="inp" id="xs-in" inputmode="decimal" autocomplete="off" style="width:92px" aria-label="photon energy in eV"><b>eV</b><span class="muted" id="xs-nm"></span></div><div class="eslider" tabindex="0" role="slider" aria-label="Photon energy in eV" aria-valuemin="0" aria-valuemax="${max}">${s}</div>`;
+    const sl=box.querySelector(".eslider"), hd=box.querySelector(".xs-hd"), inp=box.querySelector("#xs-in");
+    function set(v,fromInput){ E=Math.max(0.01,Math.min(max,Math.round(v*100)/100)); const nm=HC/E, vis=nm>=380&&nm<=750;
+      hd.innerHTML=`<path d="M${X(E)} 26v30" stroke="#1b2328" stroke-width="2"/><circle cx="${X(E)}" cy="41" r="11" fill="#fff" stroke="#e07b00" stroke-width="4"/>`;
+      if(!fromInput) inp.value=E.toFixed(2); sl.setAttribute("aria-valuenow",E.toFixed(2));
+      box.querySelector("#xs-nm").innerHTML=`= ${Math.round(nm)} nm, ${vis?A.colorName(nm)+" light":nm<380?"ultraviolet":"infrared"}`; }
+    const fromX=cx=>{ const r=sl.getBoundingClientRect(); set(((cx-r.left)/r.width*W-x0)/(x1-x0)*max); };
+    sl.addEventListener("pointerdown",e=>{ if(busy) return; e.preventDefault(); sl.focus(); fromX(e.clientX); const mv=m=>fromX(m.clientX), up=()=>{ document.removeEventListener("pointermove",mv); document.removeEventListener("pointerup",up); }; document.addEventListener("pointermove",mv); document.addEventListener("pointerup",up); });
+    sl.addEventListener("keydown",e=>{ const st=e.shiftKey?.1:.01; if(e.key==="ArrowRight"||e.key==="ArrowUp"){ e.preventDefault(); set(E+st); } if(e.key==="ArrowLeft"||e.key==="ArrowDown"){ e.preventDefault(); set(E-st); } if(e.key==="Enter") fire(); });
+    inp.addEventListener("input",()=>{ const v=parseFloat(inp.value); if(v>0) set(v,true); });
+    inp.addEventListener("keydown",e=>{ if(e.key==="Enter") fire(); });
+    set(E??1.00);
   }
 
   /* ----- panels, firing, replay ----- */
-  function build(){
-    const host=A.$("#xs-panels"); host.innerHTML="";
+  function build(){ const host=A.$("#xs-panels"); host.innerHTML="";
     panels.a=Panel(selA.value,"a"); host.appendChild(panels.a.el);
     if(cmp){ panels.b=Panel(selB.value,"b"); host.appendChild(panels.b.el); } else delete panels.b;
-    drawSlider();
-  }
+    chips(); }
   let lastEvent=null;
   function playEvent(ev, isReplay){
     busy=true; A.$("#xs-go").disabled=true; A.$("#xs-replay").disabled=true;
-    const list=Object.keys(ev.plans);
-    list.forEach(s=>{ if(isReplay) panels[s].restore(ev.before[s]); });
-    // each panel plays its own steps in parallel; narration rows are added (or highlighted on replay) as steps begin
+    const list=Object.keys(ev.plans); list.forEach(s=>panels[s].restore(ev.before[s]));
     let done=0;
-    list.forEach(side=>{
-      const P=panels[side], steps=ev.plans[side].steps; let i=0;
-      const rows=isReplay? ev.rows[side] : [];
-      if(!isReplay){ const head=P.log(`Energy sent: ${ev.E.toFixed(2)} eV <button class="btn ghost sm" type="button">↺ replay</button>`,"ev"+(side==="b"?" b":"")); head.querySelector("button").addEventListener("click",()=>{ if(!busy) playEvent(ev,true); }); ev.heads[side]=head; }
+    list.forEach(side=>{ const P=panels[side], steps=ev.plans[side].steps; let i=0;
       function next(){
-        if(i>=steps.length){ rows.forEach(r=>r.classList.remove("now")); if(++done===list.length){ busy=false; A.$("#xs-go").disabled=false; A.$("#xs-replay").disabled=false; if(!isReplay){ list.forEach(s=>ev.after[s]=panels[s].snapshot()); } summary(ev); } return; }
-        const stp=steps[i];
-        rows.forEach(r=>r.classList.remove("now"));
-        let row;
-        if(isReplay) row=rows[i]; else { row=P.log(stp.text); rows.push(row); }
-        row&&row.classList.add("now"); row&&row.scrollIntoView({block:"nearest"});
-        if(!isReplay) ev.rows[side]=rows;
-        A.$("#xs-msg").className="status"; A.$("#xs-msg").innerHTML=(list.length>1?`<b style="color:${COL[side]}">${ATOMS[P.st.key].name}:</b> `:"")+stp.text;
+        if(i>=steps.length){ if(++done===list.length){ busy=false; A.$("#xs-go").disabled=false; A.$("#xs-replay").disabled=false; summary(ev); } return; }
+        const stp=steps[i]; if(side==="a"||list.length===1){ A.$("#xs-msg").className="status"; }
+        const m=A.$("#xs-msg"); const tag=list.length>1?`<b style="color:${COL[side]}">${ATOMS[P.st.key].name}:</b> `:"";
+        if(list.length>1){ m.dataset[side]=tag+stp.text; m.innerHTML=list.map(s=>m.dataset[s]||"").filter(Boolean).join("<br>"); } else m.innerHTML=stp.text;
         const dur=stp.dur*1000*speed, t0=performance.now();
         if(stp.kind==="note"||stp.kind==="wait"){ setTimeout(()=>{ i++; next(); },dur); return; }
-        const frame=now=>{ const p=Math.min(1,(now-t0)/dur); P.runStep(stp,p); if(p<1) requestAnimationFrame(frame); else { i++; setTimeout(next,180*speed); } };
+        const frame=now=>{ const p=Math.min(1,(now-t0)/dur); P.runStep(stp,p); if(p<1) requestAnimationFrame(frame); else { i++; next(); } };
         requestAnimationFrame(frame);
       }
-      next();
-    });
+      next(); });
   }
-  function summary(ev){
+  function summary(ev){ const m=A.$("#xs-msg"); delete m.dataset.a; delete m.dataset.b;
     const parts=Object.keys(ev.plans).map(s=>`<b style="color:${COL[s]}">${ATOMS[panels[s].st.key].name}</b>: ${ev.plans[s].summary}`);
-    const m=A.$("#xs-msg"); m.className="status good"; m.innerHTML=parts.join(" · ")+(Object.keys(ev.plans).length>1?". The same energy can do different things to different atoms, because each element has its own energy levels.":". Use ↺ to watch it again with the narration.");
-  }
-  function fire(){
-    if(busy) return;
-    if(E===null||E<=0){ A.$("#xs-msg").className="status warn"; A.$("#xs-msg").textContent="Choose an amount of energy on the slider first."; return; }
-    const ev={E,plans:{},before:{},after:{},rows:{},heads:{}};
-    Object.keys(panels).forEach(s=>{ ev.before[s]=panels[s].snapshot(); ev.plans[s]=panels[s].plan(E); });
-    lastEvent=ev; playEvent(ev,false);
-  }
+    m.className="status good"; m.innerHTML=parts.join(" · ")+(Object.keys(ev.plans).length>1?". The same photon can do different things to different atoms, because each element has its own energy levels.":". Press ↺ Replay to watch it again, or set a new photon energy."); }
+  function fire(){ if(busy) return;
+    if(E===null||E<=0){ A.$("#xs-msg").className="status warn"; A.$("#xs-msg").textContent="Set the photon’s energy first."; return; }
+    const ev={E,plans:{},before:{}}; Object.keys(panels).forEach(s=>{ ev.before[s]=panels[s].snapshot(); ev.plans[s]=panels[s].plan(E); });
+    lastEvent=ev; playEvent(ev,false); }
   A.$("#xs-go").addEventListener("click",fire);
-  A.$("#xs-replay").addEventListener("click",()=>{ if(lastEvent&&!busy) playEvent(lastEvent,true); else if(!lastEvent){ A.$("#xs-msg").textContent="Send some energy in first."; } });
+  A.$("#xs-replay").addEventListener("click",()=>{ if(lastEvent&&!busy) playEvent(lastEvent,true); else if(!lastEvent){ A.$("#xs-msg").textContent="Send a photon first."; } });
   A.$("#xs-reset").addEventListener("click",()=>{ if(busy) return; Object.values(panels).forEach(p=>p.reset()); lastEvent=null; A.$("#xs-msg").className="status"; A.$("#xs-msg").textContent="Atoms reset to the ground state."; });
-  selA.addEventListener("change",()=>{ if(busy) return; build(); setE(E??0); });
-  selB.addEventListener("change",()=>{ if(busy) return; build(); setE(E??0); });
-  A.$("#xs-cmp").addEventListener("change",e=>{ if(busy){ e.target.checked=cmp; return; } cmp=e.target.checked; selB.disabled=!cmp; build(); setE(E??0); });
+  selA.addEventListener("change",()=>{ if(busy) return; lastEvent=null; build(); });
+  selB.addEventListener("change",()=>{ if(busy) return; lastEvent=null; build(); });
+  A.$("#xs-cmp").addEventListener("change",e=>{ if(busy){ e.target.checked=cmp; return; } cmp=e.target.checked; selB.disabled=!cmp; lastEvent=null; build(); });
   A.$$("#xs-speed button").forEach(b=>b.addEventListener("click",()=>{ speed=+b.dataset.v; A.$$("#xs-speed button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); }));
-  build(); setE(ATOMS.Na.lv[1][1]);
+  build();
 })();
 
 /* ground / excited / impossible */

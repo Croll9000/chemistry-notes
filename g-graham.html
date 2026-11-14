@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Graham’s Law of Effusion</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Gas Laws · 12 · Enrichment</span><h1>Graham’s Law of Effusion</h1><p>At the same temperature, lighter gas particles move faster. Graham’s law: the rate of effusion is inversely proportional to the square root of the molar mass.</p>
+    <div class="pe-chips"><span>HS-PS1-9</span><span>HS-PS3-2</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Scale, Proportion &amp; Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Effusion"><div class="pn"><small>Part</small><span>1</span></div><h2>Graham’s Law of Effusion</h2><p>During the Second World War, scientists separated uranium-235 from uranium-238 by forcing uranium hexafluoride gas through thousands of porous barriers. Molecules containing the lighter isotope passed through only about 0.4% faster, so the gas had to pass through barrier after barrier. In this section, we will discuss Graham’s law, which predicts how quickly gases escape through tiny openings.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Effusion and Graham’s Law</h2></div>
+    <div class="body">
+      <p class="intro">Natural gas has no odor of its own, so gas companies add a small amount of a strong-smelling sulfur compound that lets people notice a leak as the gas spreads through a room. At the same temperature, all gas particles have the same average kinetic energy, so lighter particles must move faster. In 1846, Thomas Graham showed how the rate at which a gas escapes depends on the mass of its particles.</p>
+      <ul>
+        <li>Gas particles are constantly in motion. If they are released in a small part of a container, they eventually spread out until every region of the container has an equal concentration of the gas.
+          <ul><li><span class="def">Diffusion</span> – the process of particles moving from areas of high concentration to areas of low concentration.</li>
+          <li>The rate of diffusion depends on the temperature and concentration of the gas, the volume of the container and the molar mass of the gas.</li></ul></li>
+        <li>Gases can also move through small holes.
+          <ul><li><span class="def">Effusion</span> – the process in which a gas escapes a container through a small hole.</li>
+          <li>The rate of effusion depends on the temperature and concentration of the gas, the size of the hole and the molar mass of the particles.</li></ul></li>
+        <li>At the same temperature, gases have the same average kinetic energy (KE = ½mv²), so <span class="kr">lighter particles move faster</span> and effuse faster.</li>
+        <li>This means that <span class="kb">smaller particles effuse more quickly</span>, while <span class="kg">larger particles effuse more slowly</span>.</li>
+        <li><span class="def">Graham’s Law of Effusion</span> – the rate of diffusion or effusion of a gas is inversely proportional to the square root of its molar mass.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span><span class="cx-frac"><span>rate<sub>1</sub></span><span>rate<sub>2</sub></span></span></span><span>=</span><span><span class="g8-rt"><svg class="g8-rs" viewBox="0 0 14 40" preserveAspectRatio="none" aria-hidden="true"><path d="M1 25 L4 23 L8 38 L13.5 1" fill="none" stroke="currentColor" stroke-width="2.2" vector-effect="non-scaling-stroke"/></svg><span class="g8-rb"><span class="cx-frac"><span>M<sub>2</sub></span><span>M<sub>1</sub></span></span></span></span></span></div><div class="mathbox" style="font-size:16px"><span>rate – rate of effusion</span><span>M – molar mass (g/mol)</span><span>1 and 2 – the two gases</span></div></div>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="gsim">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Effusion Race</h3></div>
+    <div id="gs-host"></div>
+  </section>
+
+  <section class="lab enr" id="ggame">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Graham’s Law Problems</h3></div>
+    <div id="gg-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:14px;font-size:26px;font-weight:800;color:#1b2328;display:flex;justify-content:center;align-items:center;gap:8px" class="mth"><span class="cx-frac"><span>rate<sub>1</sub></span><span>rate<sub>2</sub></span></span> = <span class="g8-rt"><svg class="g8-rs" viewBox="0 0 14 40" preserveAspectRatio="none" aria-hidden="true"><path d="M1 25 L4 23 L8 38 L13.5 1" fill="none" stroke="currentColor" stroke-width="2.2" vector-effect="non-scaling-stroke"/></svg><span class="g8-rb"><span class="cx-frac"><span>M<sub>2</sub></span><span>M<sub>1</sub></span></span></span></span></div>`;
+S.workedTabs(A.$("#ex1"),[{label:"NH₃ vs CO₂",...S.wk("Ex: How many times faster is the rate of effusion of NH₃ than the rate of effusion of CO₂ at the same temperature?",[["<b>Step 1:</b> Write the molar masses.","M(NH₃) = 17.04 g/mol, M(CO₂) = 44.01 g/mol"],["<b>Step 2:</b> Write Graham’s law with the faster gas as gas 1.","rate(NH₃) ÷ rate(CO₂) = √(M(CO₂) ÷ M(NH₃))"],["<b>Step 3:</b> Substitute and calculate.","√(44.01 ÷ 17.04) = √2.583 = 1.61"]])},{label:"He vs Ar",...S.wk("Ex: Equal amounts of helium and argon are placed in a porous container. Which gas escapes faster, and how many times faster?",[["<b>Step 1:</b> Compare the molar masses.","M(He) = 4.00 g/mol, M(Ar) = 39.95 g/mol: helium is lighter, so it is faster."],["<b>Step 2:</b> Write Graham’s law.","rate(He) ÷ rate(Ar) = √(39.95 ÷ 4.00)"],["<b>Step 3:</b> Calculate.","√9.99 = 3.16: helium escapes 3.16 times as fast."]])},{label:"Find M",...S.wk("Ex: A gas effuses 1/4 as fast as hydrogen (H₂, 2.02 g/mol). What is its molar mass?",[["<b>Step 1:</b> Write Graham’s law.","rate(gas) ÷ rate(H₂) = √(M(H₂) ÷ M(gas))"],["<b>Step 2:</b> Substitute.","1/4 = √(2.02 ÷ M)"],["<b>Step 3:</b> Square both sides and solve.","1/16 = 2.02 ÷ M → M = 32.3 g/mol"]])},{label:"He vs CH₄",...S.wk("Ex: At the same temperature, how many times faster does helium (He) effuse than methane (CH₄)?",[["<b>Step 1:</b> Write the molar masses.","M(He) = 4.003 g/mol, M(CH₄) = 16.04 g/mol"],["<b>Step 2:</b> Write Graham’s law with the faster gas as gas 1.","rate(He) ÷ rate(CH₄) = √(M(CH₄) ÷ M(He))"],["<b>Step 3:</b> Substitute and calculate.","√(16.04 ÷ 4.003) = √4.007 = 2.00"],["<b>Step 4:</b> Write the final answer.","Helium effuses 2.00 times faster than methane."]])}]);
+G.GrahamSim(A.$("#gs-host")); G.GrahamGame(A.$("#gg-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "The escape of gas particles through a tiny opening is ___.", "a": "effusion"}, {"s": "The spreading of one gas through another is ___.", "a": "diffusion"}, {"s": "At the same temperature, lighter gas particles move ___.", "a": "faster"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"According to Graham’s law, how many times faster does H<sub>2</sub> effuse than O<sub>2</sub> at the same temperature?",choices:["0.25","2.0","4.0","16"],ans:3,explain:"√(32.00 ÷ 2.016) = √15.9 = 4.0."},
+ {type:"mc",stem:"At the same temperature, which gas effuses fastest?",choices:["Xe","O<sub>2</sub>","He","CO<sub>2</sub>"],ans:3,explain:"Helium has the smallest molar mass, so its particles move fastest."},
+ {type:"text",stem:"How many times faster does H<sub>2</sub> (2.02 g/mol) effuse than O<sub>2</sub> (32.00 g/mol)?",unit:"",width:100,check:v=>A.lenient(v,3.98,{sf:2}),explain:"√(32.00 ÷ 2.02) = 3.98."},
+ {type:"cr",stem:"Two gases are at the same temperature. Explain why the gas with smaller particles effuses faster.",parts:["Explanation"],model:["At the same temperature the gases have the same average kinetic energy (½mv²). Particles with a smaller mass must therefore move faster, so they reach and pass through the opening more often."],noCredit:"An answer that says smaller particles fit through the hole more easily."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("g-graham");AS.completion(document.querySelector(".wrap"),"g-graham");AS.chrome("g-graham");</script>
+</body>
+</html>

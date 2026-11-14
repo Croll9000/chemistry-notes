@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Charles’s Law</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Gas Laws · 5</span><h1>Charles’s Law</h1><p>At constant pressure, the volume of a gas is directly proportional to its Kelvin temperature: V<sub>1</sub>/T<sub>1</sub> = V<sub>2</sub>/T<sub>2</sub>.</p>
+    <div class="pe-chips"><span>HS-PS1-9</span><span>SEP: Analyzing &amp; Interpreting Data</span><span>CCC: Patterns</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="The law"><div class="pn"><small>Part</small><span>1</span></div><h2>Charles’s Law</h2><p>A balloon carried from a 25 °C room into a −18 °C freezer shrinks to about 86% of its volume, and it fills out again as it warms. Cooling slows the gas particles, so they push less on the inside of the balloon until the gas takes up less space. In this section, we will discuss Charles’s law, the relationship between the volume and the temperature of a gas.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Charles’s Law</h2></div>
+    <div class="body">
+      <p class="intro">Bread rises in the oven partly because the gas bubbles inside the dough expand as they are heated. In 1787, Jacques Charles found that many different gases expand by the same fraction for each degree of heating when the pressure is kept constant.</p>
+      <ul>
+        <li><span class="def">Charles’s Law</span> – the volume of a gas is directly proportional to the temperature of the gas when pressure is held constant.</li>
+        <li>When the <span class="kr">temperature increases</span>, the <span class="kr">volume increases</span> by the same percentage. When the <span class="kb">temperature decreases</span>, the <span class="kb">volume decreases</span> by the same percentage (temperatures in kelvin).</li>
+        <li>Volume and Kelvin temperature are <span class="kg">directly proportional</span>: doubling the Kelvin temperature doubles the volume.
+          <ul><li>The volume divided by the temperature stays the same: <span class="mth">V ÷ T = constant</span>.</li></ul></li>
+        <li>Explanation using particles: when a gas is <span class="kp">cooled</span>, its particles slow down and strike the walls of the container <span class="kp">less often and less forcefully</span>. Since the external pressure stays the same, the walls of a flexible container such as a balloon are pushed inward, and the container shrinks until the pressure inside equals the pressure outside again. When a gas is heated, the opposite happens: the faster particles strike the walls harder and the container expands.</li>
+        <li><span class="ko">Temperatures must be in kelvin.</span> A graph of volume against Kelvin temperature is a straight line through the origin. On a Celsius axis, the line extended to zero volume reaches −273 °C, absolute zero.
+          <ul><li><span class="def">Absolute Zero</span> – the lowest possible temperature, 0 K (−273 °C), where particles have the least possible kinetic energy (see <a href="t-temp.html">Unit 7: Temperature &amp; Temperature Scales</a>).</li><li>The Kelvin scale starts at absolute zero, so a Kelvin temperature is directly proportional to the average kinetic energy of the particles. A Celsius temperature is not: 20 °C is not twice as hot as 10 °C.</li></ul></li>
+      </ul>
+      <div class="center"><div class="fbox"><span><span class="cx-frac"><span>V<sub>1</sub></span><span>T<sub>1</sub></span></span></span><span>=</span><span><span class="cx-frac"><span>V<sub>2</sub></span><span>T<sub>2</sub></span></span></span></div><div class="mathbox" style="font-size:16px"><span>V – volume</span><span>T – temperature (K)</span><span>1 – initial, 2 – final</span></div></div>
+      <div class="t7-grid"><div class="t7-fig" id="law-art"></div><div class="t7-fig" id="gr-art"></div></div>
+      <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Consider a balloon on a cold day. The gas particles inside slow down and push on the balloon less, so they move closer together and the volume of the balloon decreases. On the other hand, if the balloon is heated, the particles speed up and push harder, and the balloon grows as the gas particles move farther away from each other.</div></div></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="bl">
+    <div class="lab-h"><span class="tag sim">Animation</span><h3>Balloon Demo: Heating and Cooling a Balloon</h3></div>
+    <div id="bl-host"></div>
+  </section>
+
+  <section class="lab" id="sim">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Charles’s Law Lab</h3></div>
+    <div id="sim-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Solving problems"><div class="pn"><small>Part</small><span>2</span></div><h2>Solving Charles’s Law Problems</h2><p>A dented table-tennis ball dropped into hot water often pops back into shape within seconds: heating the air sealed inside from about 20 °C to about 80 °C makes it expand by about 20%. Charles’s law predicts how much a gas expands for a given change in temperature. In this section, we will solve Charles’s law problems.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Solving Problems</h2></div>
+    <div class="body">
+      <p class="intro">Charles’s law problems compare the volume and temperature of the same gas before and after a change, at constant pressure. The temperatures must always be converted to kelvin: a gas at 20 °C heated to 40 °C does not double in volume.</p>
+      <ul>
+        <li>Steps for solving gas law problems:
+          <ol><li>Read the question and list all given variables and the unknown.</li><li>If necessary, convert all temperatures to kelvin.</li><li>Write down Charles’s Law.</li><li>Substitute the variables into the equation and solve for the unknown algebraically.</li><li>Write the final answer with units.</li></ol></li>
+        <li>The two pressures must have the same unit, and so must the two volumes.</li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="game">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Charles’s Law Problems</h3></div>
+    <div id="gl-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figLaw("charles")}</div>`;
+A.$("#law-art").innerHTML=G.figLaw("charles"); A.$("#gr-art").innerHTML=G.figGraph("charles",{W:320,H:250});
+G.LawSim(A.$("#sim-host"),{law:"charles"});G.BalloonLab(A.$("#bl-host"),{mode:"charles"});
+S.workedTabs(A.$("#ex1"),[{label:"Find V₂",...S.wk("Ex: A sample of nitrogen gas has a volume of 3.00 L at 25 °C. It is heated to 100. °C at constant pressure. What is the new volume?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 3.00 L, T₁ = 25 °C, T₂ = 100. °C, V₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ = 25 + 273 = 298 K, T₂ = 100. + 273 = 373 K"],["<b>Step 3:</b> Write down the gas law.","V₁/T₁ = V₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(3.00 L)/(298 K) = (V₂)/(373 K) → V₂ = 3.76 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 3.76 L"]])},{label:"Find T₂",...S.wk("Ex: A gas occupies 250. mL at 300. K. At constant pressure, at what temperature will it occupy 500. mL?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 250. mL, T₁ = 300. K, V₂ = 500. mL, T₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ is already in kelvin."],["<b>Step 3:</b> Write down the gas law.","V₁/T₁ = V₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(250. mL)/(300. K) = (500. mL)/(T₂) → T₂ = 600. K"],["<b>Step 5:</b> Write the final answer with units.","T₂ = 600. K (327 °C)"]])}]);
+G.GasLawGame(A.$("#gl-host"),{only:"charles"});
+A.VocabCheck(A.$("#vc-host"),[{"s": "As the temperature of a gas increases at constant pressure, its volume ___.", "a": "increases"}, {"s": "Volume and Kelvin temperature are ___ proportional.", "a": "directly"}, {"s": "Gas law calculations always use temperatures in ___.", "a": "kelvin"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"Which temperature change would cause the volume of a sample of an ideal gas to double when the pressure remains the same?",choices:["from 200 °C to 400 °C","from 400 °C to 200 °C","from 200 K to 400 K","from 400 K to 200 K"],ans:3,explain:"Volume is proportional to the Kelvin temperature, so the Kelvin temperature must double."},
+ {type:"mc",stem:"Which graph represents the relationship between the volume and the Kelvin temperature of a gas at constant pressure?",choices:["a straight line through the origin","a curve that falls and levels off","a horizontal line","a straight line that falls"],ans:1,explain:"V and T (K) are directly proportional: a straight line through the origin."},
+ {type:"text",stem:"A gas occupies 2.00 L at 300. K. What is its volume at 450. K at constant pressure?",unit:"L",width:100,check:v=>A.lenient(v,3.0,{dp:1}),explain:"(2.00 L)/(300. K) = V₂/(450. K), so V₂ = 3.00 L."},
+ {type:"text",stem:"A 1.50 L sample of gas at 27 °C is cooled to −73 °C at constant pressure. What is its new volume?",unit:"L",width:100,check:v=>A.lenient(v,1.0,{dp:1}),explain:"T₁ = 300 K, T₂ = 200 K: (1.50 L)/(300 K) = V₂/(200 K), so V₂ = 1.00 L."},
+ {type:"cr",stem:"A balloon is placed in a freezer. Explain, in terms of the motion of the gas particles, why the balloon shrinks.",parts:["Explanation"],model:["At a lower temperature the particles have less kinetic energy and move more slowly. They push on the inside of the balloon less, so the balloon shrinks until the pressure inside equals the pressure outside."],noCredit:"An answer that says the particles shrink."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("g-charles");AS.completion(document.querySelector(".wrap"),"g-charles");AS.chrome("g-charles");</script>
+</body>
+</html>

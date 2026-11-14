@@ -70,7 +70,7 @@
     <div id="hc-host"></div>
   </section>
 
-  <div class="part" id="p3" data-short="Cooling curves"><div class="pn"><small>Part</small><span>3</span></div><h2>Cooling Curves</h2><p>Steam at 100 °C causes far worse burns than water at 100 °C, because each gram of steam releases 2,260 J as it condenses on the skin. A cooling curve shows the same phase changes as a heating curve in reverse, and its flat segments are where heat is released at a constant temperature. In this section, we will read cooling curves.</p></div>
+  <div class="part" id="p3" data-short="Cooling curves"><div class="pn"><small>Part</small><span>3</span></div><h2>Cooling Curves</h2><p>Molten lead poured into a mold to cast fishing weights stays at 327 °C, its freezing point, until all of it has turned solid, even though heat is leaving it the whole time. A cooling curve shows the same phase changes as a heating curve in reverse, and its flat segments are where heat is released at a constant temperature. In this section, we will read cooling curves.</p></div>
 
   <section class="note">
     <div class="tile"><h2>Cooling Curve</h2></div>
@@ -123,11 +123,11 @@ T.HeatCurve(A.$("#cc-host"),{cool:true});
 T.CurveMatch(A.$("#cm-host"));
 /* a heating curve with lettered segments for the questions */
 const lettered=()=>{ const xs=[60,140,250,340,520,600], ys=[260,200,200,110,110,40]; let s=`<line x1="50" y1="280" x2="630" y2="280" stroke="#1b2328" stroke-width="2.5"/><line x1="50" y1="280" x2="50" y2="20" stroke="#1b2328" stroke-width="2.5"/><polyline points="${xs.map((x,i)=>x+","+ys[i]).join(" ")}" fill="none" stroke="#E00000" stroke-width="4"/>`;
-  "ABCDE".split("").forEach((l,i)=>{ const mx=(xs[i]+xs[i+1])/2, my=(ys[i]+ys[i+1])/2; s+=`<circle cx="${mx}" cy="${my-18}" r="12" fill="#fff" stroke="#1b2328" stroke-width="2"/>`+T.t(mx,my-13,l,{fs:13}); });
+  "ABCDE".split("").forEach((l,i)=>{ const mx=(xs[i]+xs[i+1])/2, my=(ys[i]+ys[i+1])/2; const dx=xs[i+1]-xs[i], dy=ys[i+1]-ys[i], L=Math.hypot(dx,dy), bx=mx+dy/L*22, by=my-dx/L*22; s+=`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="12" fill="#fff" stroke="#1b2328" stroke-width="2"/>`+T.t(bx,by+5,l,{fs:13}); });
   return T.svg(660,310,s+T.t(340,304,"Heat added / time",{fs:14})+`<text transform="translate(18 150) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="14" font-weight="700">Temperature</text>`,"Heating curve with segments A to E"); };
 A.VocabCheck(A.$("#vc-host"),[{"s": "A graph of temperature as heat is added is a ___.", "a": "heating curve"}, {"s": "On a sloped segment, the ___ of the particles increases.", "a": "kinetic energy"}, {"s": "On a flat segment, the ___ of the particles increases.", "a": "potential energy"}, {"s": "A graph of temperature as heat is removed is a ___.", "a": "cooling curve"}]);
 A.QSet(A.$("#qs"),[
- {type:"mc",stem:`${lettered()}<br>During which segment is the substance melting?`,choices:["A","B","C","D"],ans:2,explain:"B is the first flat segment, at the melting point."},
+ {type:"mc",stem:`The heating curve below is for a pure substance. During which segment is the substance melting?<br>${lettered()}`,choices:["A","B","C","D"],ans:2,explain:"B is the first flat segment, at the melting point."},
  {type:"mc",stem:"During segment D of the same curve, the average kinetic energy of the particles",choices:["increases","decreases","stays the same","becomes zero"],ans:3,explain:"D is flat (vaporization). The temperature, and so the average kinetic energy, stays the same; potential energy increases."},
  {type:"mc",stem:"During segment C, the heat added mainly",choices:["increases the potential energy of the particles","increases the kinetic energy of the particles","breaks bonds within the molecules","decreases the potential energy of the particles"],ans:2,explain:"C slopes upward: the liquid’s temperature rises, so kinetic energy increases."},
  {type:"mc",stem:"Why is segment D longer than segment B?",choices:["Vaporization requires more heat than melting.","Melting requires more heat than vaporization.","The liquid has a higher specific heat capacity.","Heat is added faster during D."],ans:1,explain:"For water, vaporization takes 2260 J/g and melting takes 334 J/g."},

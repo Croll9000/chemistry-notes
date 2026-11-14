@@ -69,6 +69,7 @@ const blurbs={
  "l-accuracy":["Accuracy vs. precision, and calculating percent error.",["Target practice","Calibration check","Percent error practice"]],
  "l-temp":["The Celsius and Kelvin scales and converting with K = °C + 273.15.",["Celsius–Kelvin thermometer","Convert it!"]],
  "l-convert":["Equivalences, conversion factors and the step-by-step factor-label method, including metric prefixes and multistep conversions.",["Conversion factor builder","Which conversion factor?"]],
+ "l-graphs":["Independent and dependent variables, making and reading graphs, slope, and direct and inverse relationships.",["Build a graph","Relationship explorer","Which graph?"]],
  "l-practice":["Games from every subtopic in one place.",["Measurement station","Sig figs","Conversions"]]
 };
 A.$("#toc").innerHTML=A.UNIT0.map((p,i)=>{ const b=blurbs[p.slug]; const last=p.slug==="l-practice"; return `<a class="tcard${last?" arcade":""}" href="${p.slug}.html"><span class="num">${last?"★":i+1}</span><span class="tc"><h3>${p.title}</h3><p>${b[0]}</p><span class="tools">${b[1].map(t=>`<span>${t}</span>`).join("")}</span></span></a>`; }).join("");

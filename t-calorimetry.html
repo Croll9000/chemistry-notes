@@ -62,7 +62,7 @@
       <ul>
         <li>The heat of fusion (H<sub>f</sub>) or heat of vaporization (H<sub>v</sub>) of a substance can be measured with calorimetry:
           <ul><li>The heat absorbed by the melting substance equals the heat lost by the water.</li></ul></li>
-        <li>For ice: if the warm water is cooled exactly to 0 °C, the melted ice stays at 0 °C, so all of the heat lost by the water went into melting the ice. Then <span class="mth">H<sub>f</sub> = −q<sub>water</sub> ÷ m<sub>ice melted</sub></span>.</li>
+        <li>For ice: if the warm water is cooled exactly to 0 °C, the melted ice stays at 0 °C, so all of the heat lost by the water went into melting the ice. The heat absorbed by the ice is <span class="mth">q<sub>ice</sub> = −q<sub>water</sub></span>, and <span class="mth">q<sub>ice</sub> = m<sub>ice melted</sub>H<sub>f</sub></span>.</li>
         <li>The mass of ice that melted is found by weighing: (mass of water after the leftover ice is removed) − (mass of the warm water at the start).</li>
       </ul>
       <div class="center"><div class="fbox"><span>m<sub>x</sub>H<sub>f</sub></span><span>=</span><span>−m<sub>water</sub>c<sub>water</sub>ΔT<sub>water</sub></span></div><div class="mathbox" style="font-size:16px"><span>m<sub>x</sub> – mass of the substance that changes phase (g)</span><span>H<sub>f</sub> – heat of fusion (J/g)</span><span>m<sub>water</sub> – mass of the water (g)</span><span>ΔT<sub>water</sub> – change in temperature of the water</span></div></div>
@@ -109,7 +109,7 @@ const W3=S.wk("Ex: Ice is added to 120.0 g of water at 32.0 °C. When the water 
  ["<b>Step 1:</b> Heat lost by the warm water.","q<sub>water</sub> = (120.0 g)(4.18 J/g·K)(0.0 °C − 32.0 °C) = −16,051 J"],
  ["<b>Step 2:</b> Heat absorbed by the melting ice.","q<sub>ice</sub> = −q<sub>water</sub> = +16,051 J"],
  ["<b>Step 3:</b> Mass of ice that melted.","168.1 g − 120.0 g = 48.1 g"],
- ["<b>Step 4:</b> Heat of fusion.","H<sub>f</sub> = 16,051 J ÷ 48.1 g = 334 J/g"]]);
+ ["<b>Step 4:</b> Heat of fusion: substitute into q = mH<sub>f</sub> and solve for H<sub>f</sub>.","16,051 J = (48.1 g)H<sub>f</sub>, so H<sub>f</sub> = 334 J/g"]]);
 S.workedTabs(A.$("#ex2"),[{label:"Heat of fusion of ice",...W3}]);
 T.CalLab(A.$("#lab-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "Measuring the heat absorbed or released in a change is ___.", "a": "calorimetry"}, {"s": "An insulated device used to measure heat is a ___.", "a": "calorimeter"}, {"s": "If the water in a calorimeter gets warmer, the reaction is ___.", "a": "exothermic"}]);

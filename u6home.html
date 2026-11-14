@@ -67,7 +67,8 @@ const blurbs={
  "s-multistep":["The mole triangle, mass–mass conversions and multistep stoichiometry.",["Mole triangle converter","Stoichiometry builder"]],
  "s-percent":["Percent composition by mass, naming hydrates, and the percent of water in a hydrate.",["Percent calculator","Name the hydrate","Heating a hydrate"]],
  "s-empirical":["Empirical and molecular formulas. Enrichment: percent composition to empirical formula.",["Empirical or molecular?","Percent to formula"]],
- "s-limiting":["Limiting and excess reagents, theoretical yield and percent yield.",["Burger lab","Limiting reagent calculator"]],
+ "s-limiting":["Limiting and excess reagents: which reactant runs out first and which is left over.",["Burger lab","Limiting reactant beakers","Limiting reagent calculator"]],
+ "s-yield":["Theoretical yield, actual yield and percent yield.",["Percent yield calculator"]],
  "s-practice":["Games from every subtopic plus Regents-style questions.",["Conversion builder","Regents practice"]]};
 A.$("#toc").innerHTML=A.UNIT6.map((p,i)=>{ const b=blurbs[p.slug]; const last=p.slug==="s-practice"; return `<a class="tcard${last?" arcade":p.enr?" enr":""}" href="${p.slug}.html"><span class="num">${last?"★":i+1}</span><span class="tc"><h3>${p.title}${p.enr?' <span style="color:var(--purple);font-size:13px;font-weight:800">ENRICHMENT</span>':""}</h3><p>${b[0]}</p><span class="tools">${b[1].map(t=>`<span>${t}</span>`).join("")}</span></span></a>`; }).join("");
 

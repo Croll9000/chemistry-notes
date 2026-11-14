@@ -111,6 +111,12 @@
     </div>
   </section>
 
+  <section class="lab" id="slicer">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Sample Slicer</h3></div>
+    <div id="ss-host"></div>
+  </section>
+
+
   <p class="bridge">Physical and chemical properties match the two kinds of change: physical changes and chemical changes.</p>
 
   <section class="lab" id="vocab">
@@ -128,6 +134,7 @@
 <script>(function(){
 
 const A=AS, U=A.U1;
+A.U0.SampleSlicer(A.$("#ss-host"));
 const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" text-anchor="${o.a||"middle"}" font-family="Inter,Arial" font-size="${o.fs||14}" font-weight="${o.fw||700}" fill="${o.c||"#1b2328"}">${t}</text>`;
 const balance=(reading,obj,o)=>U.balance(reading,obj||"",o||{w:240,h:171});
 const shade=(hex,k)=>{ const n=parseInt(hex.slice(1),16); let r=n>>16,g=n>>8&255,b=n&255; const f=v=>Math.max(0,Math.min(255,Math.round(k>0? v+(255-v)*k : v*(1+k)))); return "#"+[f(r),f(g),f(b)].map(v=>v.toString(16).padStart(2,"0")).join(""); };

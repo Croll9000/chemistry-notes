@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>The Ideal Gas Law</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Gas Laws · 9 · Enrichment</span><h1>The Ideal Gas Law</h1><p>The ideal gas law, PV = nRT, relates the pressure, volume, temperature and number of moles of a gas through the ideal gas constant, R.</p>
+    <div class="pe-chips"><span>HS-PS1-9</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Scale, Proportion &amp; Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Ideal gas law"><div class="pn"><small>Part</small><span>1</span></div><h2>The Ideal Gas Law</h2><p>A driver’s airbag fills with about 60 L of nitrogen gas in roughly 30 milliseconds, produced by a reaction inside the steering wheel. To know how much propellant the reaction needs, engineers must connect the amount of gas, in moles, to the volume, pressure and temperature it will have. In this section, we will discuss the ideal gas law, the one equation that relates all four gas variables.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>The Ideal Gas Law</h2></div>
+    <div class="body">
+      <p class="intro">The combined gas law compares one sample of gas before and after a change, so it never needs to know how much gas there is. The ideal gas law describes a single state of a gas and includes the amount of gas, so it can answer questions such as how many moles of helium fill a balloon.</p>
+      <ul>
+        <li>The state variables of a gas (pressure, volume, temperature and amount) are all linked: if one variable changes, at least one of the others changes as well.</li>
+        <li>For any ideal gas, the product of its pressure and volume divided by the product of its number of moles and temperature, PV ÷ nT, equals the same constant value, the ideal gas constant.</li>
+        <li><span class="def">Ideal Gas Law</span> – the equation relating the four state variables (pressure, volume, temperature and number of moles) for an ideal gas.</li>
+        <li><span class="def">Ideal Gas Constant (R)</span> – the constant of proportionality relating pressure, volume, temperature and number of moles in an ideal gas.
+          <ul><li><span class="kr">R = 8.314 L·kPa/(mol·K)</span> when pressure is in kilopascals.</li><li><span class="kb">R = 0.08206 L·atm/(mol·K)</span> when pressure is in atmospheres.</li>
+          <li>R can be written with other pressure units too: <span class="mth">R = 62.36 L·mmHg/(mol·K)</span> when pressure is in millimeters of mercury.</li></ul></li>
+        <li>To use R, the units must match it: <span class="kg">pressure in atm (or kPa), volume in liters, amount in moles and temperature in kelvin</span>.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>PV</span><span>=</span><span>nRT</span></div><div class="mathbox" style="font-size:16px"><span>P – pressure (atm or kPa)</span><span>V – volume (L)</span><span>n – number of moles (mol)</span><span>R – ideal gas constant</span><span>T – temperature (K)</span></div></div>
+
+    </div>
+  </section>
+
+  <section class="note enr">
+    <div class="tile"><h2>The Meaning of R</h2></div>
+    <div class="body">
+      <p class="intro">For every ideal gas, under every set of conditions, the combination PV ÷ nT comes out to the same number. That number is R. Its value can be found from the molar volume at STP, which you learned in Unit 6.</p>
+      <ul>
+        <li>Rearranging PV = nRT gives <span class="mth">R = PV ÷ nT</span>: R is the value of PV ÷ nT for any ideal gas.</li>
+        <li>At STP, 1 mole of an ideal gas occupies 22.4 L at 1 atm and 273 K:
+          <ul><li><span class="mth">R = (1 atm)(22.4 L) ÷ [(1 mol)(273 K)] = 0.0821 L·atm/(mol·K)</span>, which rounds the more precise value 0.08206 L·atm/(mol·K)</li>
+          <li>With pressure in kilopascals: <span class="mth">R = (101.3 kPa)(22.4 L) ÷ [(1 mol)(273 K)] = 8.31 L·kPa/(mol·K)</span>, which rounds the more precise value 8.314 L·kPa/(mol·K)</li></ul></li>
+        <li>R is the same for every gas because, in the ideal model, the pressure of a gas depends only on how many particles there are and how fast they move, not on what the particles are.</li>
+        <li>The combined gas law comes from the ideal gas law: for a fixed amount of gas, <span class="mth">PV ÷ T = nR</span>, which is constant.</li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="rsim">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Finding R</h3></div>
+    <div id="r-host"></div>
+  </section>
+
+  <div class="part enr" id="p2" data-short="Solving problems"><div class="pn"><small>Part</small><span>2</span></div><h2>Solving Ideal Gas Law Problems</h2><p>A small helium tank sold for party balloons releases about 250 L of helium at room pressure, enough to fill around 30 balloons. With the ideal gas law, the number of moles, and therefore the mass, of helium in any balloon can be calculated from its volume, pressure and temperature. In this section, we will solve ideal gas law problems.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Solving Problems</h2></div>
+    <div class="body">
+      <p class="intro">Ideal gas law problems give three of the four variables P, V, n and T and ask for the fourth. Most mistakes come from units: R fixes the units of every other quantity in the equation.</p>
+      <ul>
+        <li>Steps for solving ideal gas law problems:
+          <ol><li>Write down the given information.</li><li>Choose R to match the pressure unit.</li><li>Make sure the units are correct: K = °C + 273; volume in liters; grams to moles with n = m ÷ M.</li><li>Substitute into PV = nRT and solve the equation algebraically.</li></ol></li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="igame">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Ideal Gas Law Problems</h3></div>
+    <div id="ig-host"></div>
+  </section>
+
+  <div class="part enr" id="p3" data-short="Gas density"><div class="pn"><small>Part</small><span>3</span></div><h2>Density of a Gas</h2><p>A liter of carbon dioxide at room temperature has a mass of about 1.8 g, half again as much as a liter of air, which is why carbon dioxide collects in low places such as cellars and wells. The density of a gas depends on its molar mass, its pressure and its temperature. In this section, we will use the ideal gas law to calculate the density of a gas.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Ideal Gas Density</h2></div>
+    <div class="body">
+      <p class="intro">Substituting n = m ÷ M into PV = nRT and rearranging gives an equation for the density of a gas, D = m ÷ V. Heavier molecules, higher pressure and lower temperature all make a gas denser.</p>
+      <ul>
+        <li>Gas density equation: <span class="mth">PM = DRT</span>, where M is the molar mass (g/mol) and D is the density (g/L).</li>
+        <li>At the same temperature and pressure, <span class="kr">a gas with a larger molar mass is denser</span>.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>PM</span><span>=</span><span>DRT</span></div><div class="mathbox" style="font-size:16px"><span>P – pressure (atm)</span><span>M – molar mass (g/mol)</span><span>D – density (g/L)</span><span>R – 0.08206 L·atm/(mol·K)</span><span>T – temperature (K)</span></div></div>
+      <div id="ex2" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:14px;font-size:44px;font-weight:800;color:#1b2328;display:flex;justify-content:center" class="mth">PV = nRT</div>`;
+G.LawSim(A.$("#r-host"),{law:"ideal"});
+S.workedTabs(A.$("#ex1"),[{label:"Find V",...S.wk("Ex: What volume will a 2.5 g sample of He(g) occupy at 130 kPa and 60 °C?",[["<b>Step 1:</b> Write down the given information.","m = 2.5 g He, P = 130 kPa, T = 60 °C, V = ?"],["<b>Step 2:</b> Choose R to match the pressure unit.","R = 8.314 L·kPa/(mol·K)"],["<b>Step 3:</b> Make sure the units are correct.","n = 2.5 g × (1 mol ÷ 4.0 g) = 0.625 mol; T = 60 + 273 = 333 K"],["<b>Step 4:</b> Substitute and solve.","(130 kPa)(V) = (0.625 mol)(8.314 L·kPa/(mol·K))(333 K) → V = 13.3 L"]])},{label:"Find n",...S.wk("Ex: A 4.0 L cylinder of helium is at a pressure of 2.3 atm and a temperature of 23 °C. How many moles of helium does it contain?",[["<b>Step 1:</b> Write down the given information.","V = 4.0 L, P = 2.3 atm, T = 23 °C, n = ?"],["<b>Step 2:</b> Choose R to match the pressure unit.","R = 0.08206 L·atm/(mol·K)"],["<b>Step 3:</b> Make sure the units are correct.","T = 23 + 273 = 296 K"],["<b>Step 4:</b> Substitute and solve.","(2.3 atm)(4.0 L) = n(0.08206 L·atm/(mol·K))(296 K) → n = 0.38 mol"]])}]); S.workedTabs(A.$("#ex2"),[{label:"Gas density",...S.wk("Ex: What is the density of Ne(g) at 800. mmHg and 350. K?",[["<b>Step 1:</b> Write down the given information.","M = 20.18 g/mol, P = 800. mmHg, T = 350. K, D = ?"],["<b>Step 2:</b> Choose the equation and R.","PM = DRT, R = 0.08206 L·atm/(mol·K)"],["<b>Step 3:</b> Make sure the units are correct.","P = 800. mmHg × (1 atm ÷ 760 mmHg) = 1.05 atm"],["<b>Step 4:</b> Substitute and solve.","(1.05 atm)(20.18 g/mol) = D(0.08206 L·atm/(mol·K))(350. K) → D = 0.74 g/L"]])}]);
+G.IdealGame(A.$("#ig-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "The law that relates pressure, volume, temperature and moles of a gas is the ___.", "a": "ideal gas law"}, {"s": "The constant R in PV = nRT is the ___.", "a": "ideal gas constant"}, {"s": "When pressure is in atmospheres, R = ___ L·atm/(mol·K).", "a": "0.08206"}, {"s": "To use R, the temperature must be in ___.", "a": "kelvin"}]);
+A.QSet(A.$("#qs"),[
+{type:"text",stem:"How many moles of gas are present at 1.5 atm and 312 K in a 3.2 L container? (R = 0.08206 L·atm/(mol·K))",unit:"mol",width:100,check:v=>A.lenient(v,0.1874,{sf:2}),explain:"n = PV ÷ RT = (1.5)(3.2) ÷ [(0.08206)(312)] = 0.19 mol."},
+ {type:"text",stem:"A 1.5 mol sample of gas is at 78 kPa and 50. °C. What is its volume? (R = 8.314 L·kPa/(mol·K))",unit:"L",width:100,check:v=>A.lenient(v,51.6,{sf:2}),explain:"V = nRT ÷ P = (1.5)(8.314)(323) ÷ 78 = 52 L."},
+ {type:"mc",stem:"Which value of R must be used when the pressure is given in kilopascals?",choices:["0.08206 L·atm/(mol·K)","8.314 L·kPa/(mol·K)","22.4 L/mol","101.3 kPa/atm"],ans:2,explain:"R must have the same pressure unit as the problem: 8.314 L·kPa/(mol·K)."},
+ {type:"mc",stem:"At the same temperature and pressure, which gas has the greatest density?",choices:["He","N<sub>2</sub>","CO<sub>2</sub>","H<sub>2</sub>"],ans:3,explain:"Density is proportional to molar mass: CO<sub>2</sub> (44 g/mol) is the heaviest."},
+ {type:"cr",stem:"Show that R = 0.0821 L·atm/(mol·K) using the molar volume of a gas at STP.",parts:["Calculation"],model:["R = PV ÷ nT = (1 atm)(22.4 L) ÷ [(1 mol)(273 K)] = 0.0821 L·atm/(mol·K)."],noCredit:"An answer without the STP values substituted."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("g-ideal");AS.completion(document.querySelector(".wrap"),"g-ideal");AS.chrome("g-ideal");</script>
+</body>
+</html>

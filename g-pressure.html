@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Gas Pressure</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Gas Laws · 2</span><h1>Gas Pressure</h1><p>Gas particles collide with the walls of their container, and the force of those collisions is the pressure. Chemists measure pressure in atm, kPa and mmHg: 1 atm = 101.3 kPa = 760 mmHg.</p>
+    <div class="pe-chips"><span>HS-PS1-9</span><span>HS-PS3-2</span><span>SEP: Developing &amp; Using Models</span><span>CCC: Cause &amp; Effect</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Pressure"><div class="pn"><small>Part</small><span>1</span></div><h2>Gas Pressure</h2><p>At sea level, the air pushes on every square centimeter of your skin with a force of about 10 newtons, about the weight of a 1 kg bag of sugar. That force comes from an enormous number of air molecules colliding with every surface they touch. In this section, we will discuss what pressure is and why gases exert it.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Pressure</h2></div>
+    <div class="body">
+      <p class="intro">You do not feel the air pushing on you because the fluids inside your body push back with the same pressure. Seal a plastic water bottle on a mountaintop and drive back down, and the outside air crushes it: the air at the bottom of the mountain pushes harder than the air sealed inside.</p>
+      <ul>
+        <li>Gas particles are constantly moving and colliding with each other and with the walls of their container. When they collide with the walls, they apply a force to them. <span class="kr">This force, per unit area, is the pressure.</span></li>
+        <li><span class="def">Pressure (P)</span> – the amount of force per unit area acting on a surface.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>P</span><span>=</span><span><span class="cx-frac"><span>F</span><span>A</span></span></span></div><div class="mathbox" style="font-size:16px"><span>P – pressure (Pa)</span><span>F – force (N)</span><span>A – surface area (m<sup>2</sup>)</span></div></div>
+      <div id="exF" style="margin:4px 0 12px"></div>
+      <ul>
+        <li>The pressure of a gas increases when the particles hit the walls <span class="kb">more often</span> or <span class="kb">harder</span>:
+          <ul><li><span class="kg">More particles</span> in the same container means more collisions each second.</li>
+          <li>A <span class="kg">higher temperature</span> means faster particles, which hit the walls more often and harder.</li>
+          <li>A <span class="kg">smaller volume</span> means the particles reach the walls more often.</li></ul></li>
+      </ul>
+      <div class="t7-fig" id="col-art"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="psim">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Collisions Make Pressure</h3></div>
+    <div id="ps-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Measuring pressure"><div class="pn"><small>Part</small><span>2</span></div><h2>Measuring Pressure</h2><p>In 1643, Evangelista Torricelli filled a glass tube with mercury, turned it upside down in a dish of mercury, and found that the column fell until it was about 760 mm tall. The air pushing down on the dish held the rest of the column up, so the height of the mercury measured the pressure of the air. In this section, we will discuss how the pressure of the air and of a gas in a container are measured.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Barometers and Pressure Gauges</h2></div>
+    <div class="body">
+      <p class="intro">Weather forecasters watch the air pressure closely: falling pressure often means an approaching storm, and rising pressure means clearing skies. The pressure of the air above us also changes with altitude, because there is less air pushing down at the top of a mountain than at sea level.</p>
+      <ul>
+        <li><span class="def">Barometer</span> – an instrument used to measure air (atmospheric) pressure.
+          <ul><li>The first barometers used inverted tubes whose bases were submerged in mercury. The pressure of the surrounding gas pushed the mercury up the tube.</li>
+          <li><span class="kr">The higher the external pressure, the higher the column of mercury rises.</span> The height of the mercury column measures the external gas pressure.</li>
+          <li>At sea level, the column is 760 mm tall. This is <span class="kb">standard pressure: 1 atm = 101.3 kPa = 760 mmHg</span>.</li>
+          <li>The <span class="kg">higher the altitude, the lower the air pressure</span>, because there is less air above pushing down.</li></ul></li>
+        <li><span class="def">Pressure Gauge</span> – an instrument used to measure the pressure of a gas inside a container, such as a tire or a gas cylinder.</li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="lab" id="baro">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Barometer</h3></div>
+    <div id="ba-host"></div>
+  </section>
+
+  <div class="part" id="p3" data-short="Units of pressure"><div class="pn"><small>Part</small><span>3</span></div><h2>Units of Pressure</h2><p>A weather report in the United States might give the air pressure as 29.92 inches of mercury, while a forecaster in Europe gives the same reading as 1013 hectopascals. Both describe one force over one area, so any pressure unit can be converted into another with dimensional analysis. In this section, we will discuss the three units of pressure used in chemistry and convert between them.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Pressure Units and Conversions</h2></div>
+    <div class="body">
+      <p class="intro">Pressure units came from the instruments used to measure them. The millimeter of mercury is the height of a mercury column, the atmosphere is the average pressure of the air at sea level, and the pascal is the SI unit, one newton of force on one square meter.</p>
+      <ul>
+        <li>The two most common units of pressure are kilopascals (kPa) and atmospheres (atm). A less commonly used unit is millimeters of mercury (mmHg).</li>
+        <li>Three units of pressure are used in chemistry:
+          <ul><li><span class="def">Atmosphere (atm)</span> – the average pressure of the air at sea level.</li>
+          <li><span class="def">Kilopascal (kPa)</span> – 1000 pascals; the pascal is the SI unit of pressure.</li>
+          <li><span class="def">Millimeter of mercury (mmHg)</span> – the pressure that holds up a column of mercury 1 mm tall. It is also called the torr.</li></ul></li>
+        <li><span class="kr">1 atm = 101.3 kPa = 760 mmHg</span>. The Reference Table gives 1 atm = 101.3 kPa.</li>
+        <li>Convert between the units with dimensional analysis: put the unit you want to cancel on the bottom of the conversion factor.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>1 atm</span><span>=</span><span>101.3 kPa</span><span>=</span><span>760 mmHg</span></div></div>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="pconv">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Pressure Conversions</h3></div>
+    <div id="pc-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figCollide()}</div>`;
+A.$("#col-art").innerHTML=G.figCollide();
+G.LawSim(A.$("#ps-host"),{law:"pressure"});
+G.Barometer(A.$("#ba-host"));
+S.workedTabs(A.$("#exF"),[{label:"Find P",...S.wk("Ex: A gas pushes on a piston with an area of 0.0050 m<sup>2</sup> with a total force of 500. N. What pressure does the gas exert, in kPa?",[["<b>Step 1:</b> List the given values and the unknown.","F = 500. N, A = 0.0050 m<sup>2</sup>, P = ?"],["<b>Step 2:</b> Write down the formula.","P = F ÷ A"],["<b>Step 3:</b> Substitute and solve.","P = (500. N) ÷ (0.0050 m<sup>2</sup>) = 100,000 Pa"],["<b>Step 4:</b> Write the final answer with units.","P = 100,000 Pa = 100. kPa (1 kPa = 1000 Pa)"]])}]);
+S.workedTabs(A.$("#ex1"),[
+ {label:"kPa → atm",...S.wk("Ex: Convert 85.0 kPa to atmospheres.",[["<b>Step 1:</b> Write the given quantity.","85.0 kPa"],["<b>Step 2:</b> Multiply by a conversion factor with kPa on the bottom.","85.0 kPa × (1 atm ÷ 101.3 kPa)"],["<b>Step 3:</b> Calculate.","= 0.839 atm"]])},
+ {label:"mmHg → kPa",...S.wk("Ex: Convert 650. mmHg to kilopascals.",[["<b>Step 1:</b> Write the given quantity.","650. mmHg"],["<b>Step 2:</b> Convert mmHg to atm, then atm to kPa.","650. mmHg × (1 atm ÷ 760 mmHg) × (101.3 kPa ÷ 1 atm)"],["<b>Step 3:</b> Calculate.","= 86.6 kPa"]])}]);
+L.DABuilder(A.$("#pc-host"),{eq:{atmkPa:[[1,"atm"],[101.3,"kPa"]],atmmm:[[1,"atm"],[760,"mmHg"]]},probs:[["atm","kPa",["atmkPa"],["atmmm"],[0.25,3.5]],["kPa","atm",["atmkPa"],["atmmm"],[25,350]],["mmHg","atm",["atmmm"],["atmkPa"],[200,1500]],["atm","mmHg",["atmmm"],["atmkPa"],[0.2,2.5]],["kPa","mmHg",["atmkPa","atmmm"],[],[40,250]],["mmHg","kPa",["atmmm","atmkPa"],[],[300,900]]]});
+A.VocabCheck(A.$("#vc-host"),[{"s": "Force applied over an area is ___.", "a": "pressure"}, {"s": "An instrument used to measure air pressure is a ___.", "a": "barometer"}, {"s": "An instrument used to measure the pressure of a gas in a container is a ___.", "a": "pressure gauge"}, {"s": "The average pressure of the air at sea level is one ___.", "a": "atmosphere"}, {"s": "Gas pressure is caused by particles colliding with the ___ of their container.", "a": "walls"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"Why does a gas exert pressure on the walls of its container?",choices:["Its particles are attracted to the walls.","Its particles collide with the walls.","Its particles are larger than the walls’ particles.","Its particles stop moving at the walls."],ans:2,explain:"Each collision pushes on the wall; together the collisions produce the pressure."},
+ {type:"text",stem:"Convert 2.50 atm to kilopascals.",unit:"kPa",width:110,check:v=>A.lenient(v,253.25,{sf:3}),explain:"2.50 atm × 101.3 kPa/atm = 253 kPa."},
+ {type:"text",stem:"Convert 380 mmHg to atmospheres.",unit:"atm",width:110,check:v=>A.lenient(v,0.5,{dp:2}),explain:"380 mmHg × (1 atm ÷ 760 mmHg) = 0.500 atm."},
+ {type:"mc",stem:"The number of gas particles in a rigid container is doubled at constant temperature. The pressure",choices:["decreases","stays the same","increases","becomes zero"],ans:3,explain:"Twice as many particles hit the walls each second, so the pressure increases."},
+ {type:"mc",stem:"A barometer is carried from sea level to the top of a mountain. The height of its mercury column",choices:["increases, because the air pressure increases","decreases, because the air pressure decreases","stays the same, because mercury is a liquid","decreases, because the air pressure increases"],ans:2,explain:"There is less air above the top of a mountain, so the air pressure is lower and holds up a shorter column."},
+ {type:"cr",stem:"A sealed container of gas is heated. Explain, in terms of particle collisions, why the pressure of the gas increases.",parts:["Explanation"],model:["Heating increases the average kinetic energy of the particles, so they move faster. They collide with the walls more often and with more force, so the pressure increases."],noCredit:"An answer that says the particles get bigger, or that does not mention collisions."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("g-pressure");AS.completion(document.querySelector(".wrap"),"g-pressure");AS.chrome("g-pressure");</script>
+</body>
+</html>

@@ -481,13 +481,12 @@ A.$("#highT").innerHTML=`<div style="display:flex;gap:10px;align-items:center">$
 
 A.$("#imf-art").innerHTML=(()=>{
   /* intermolecular forces are drawn as dotted lines stretching from one molecule to the next (never solid lines or arrows) */
-  const water=(x,y)=>U.atom(x,y,26,"O")+U.atom(x+35,y+25,17,"H")+U.atom(x+35,y-25,17,"H");
-  const oxy=(x,y)=>U.atom(x,y,24,"O")+U.atom(x+38,y,24,"O");
+  const bl=(x1,y1,x2,y2,n=1)=>{ let o=""; const d=Math.hypot(x2-x1,y2-y1), nx=-(y2-y1)/d, ny=(x2-x1)/d; for(let k=0;k<n;k++){ const f=(k-(n-1)/2)*6; o+=`<line x1="${x1+nx*f}" y1="${y1+ny*f}" x2="${x2+nx*f}" y2="${y2+ny*f}" stroke="#1b2328" stroke-width="3"/>`; } return o; }, water=(x,y)=>bl(x,y,x+41,y+30)+bl(x,y,x+41,y-30)+U.atom(x,y,26,"O")+U.atom(x+41,y+30,17,"H")+U.atom(x+41,y-30,17,"H"), oxy=(x,y)=>bl(x,y,x+60,y,2)+U.atom(x,y,24,"O")+U.atom(x+60,y,24,"O");
   const dots=(x1,x2,y,strong)=>`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="#1b2328" stroke-width="${strong?5:2.5}" stroke-linecap="round" stroke-dasharray="${strong?"0.1 10":"0.1 9"}"/>`;
   const y=100;
-  const left=oxy(70,y)+oxy(262,y)+dots(134,236,y,false);
+  const left=oxy(70,y)+oxy(262,y)+dots(160,232,y,false);
   /* from a hydrogen of the left molecule to the oxygen of the right molecule (edge to edge) */
-  const hx=595, hy=y-25, ox=700, oy=y, L=Math.hypot(ox-hx,oy-hy), ux=(ox-hx)/L, uy=(oy-hy)/L;
+  const hx=601, hy=y-30, ox=700, oy=y, L=Math.hypot(ox-hx,oy-hy), ux=(ox-hx)/L, uy=(oy-hy)/L;
   const hbond=`<line x1="${(hx+ux*19).toFixed(1)}" y1="${(hy+uy*19).toFixed(1)}" x2="${(ox-ux*29).toFixed(1)}" y2="${(oy-uy*29).toFixed(1)}" stroke="#1b2328" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 10"/>`;
   const right=water(560,y)+water(700,y)+hbond;
   return `<svg width="900" height="210" viewBox="0 0 900 210" role="img" aria-label="Weaker attractions: two oxygen molecules far apart joined by a thin dotted line. Stronger attractions: two water molecules close together joined by a thick dotted line." style="max-width:100%;height:auto">
