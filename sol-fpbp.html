@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Calculating Freezing and Boiling Points</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Solutions · 12</span><h1>Calculating Freezing and Boiling Points</h1><p>Enrichment: ΔT = iKm for freezing point depression and boiling point elevation.</p>
+    <div class="pe-chips"><span>HS-PS1-3</span><span>SEP: Developing &amp; Using Models</span><span>CCC: Cause &amp; Effect</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Calculations"><div class="pn"><small>Part</small><span>1</span></div><h2>Calculating Freezing and Boiling Points</h2><p>Airline crews spray airplanes with a heated mixture of propylene glycol and water before winter takeoffs. The mixture must stay liquid at the temperature of the wings, so the amount of glycol is calculated from how much each mole of solute lowers the freezing point of water. In this section we will discuss how to calculate the change in freezing point and boiling point of a solution.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>ΔT = iKm</h2></div>
+    <div class="body">
+      <p class="intro">For a dilute solution, the change in freezing point or boiling point is proportional to the molality of dissolved particles.</p>
+      <ul>
+        <li>The <span class="def">van ’t Hoff factor (i)</span> – the number of particles one formula unit or molecule forms when it dissolves (1 for sugar, 2 for NaCl, 3 for CaCl<sub>2</sub>).</li>
+        <li>For water, K<sub>f</sub> = 1.86 °C/m and K<sub>b</sub> = 0.512 °C/m.</li>
+        <li><span class="kr">The freezing point of the solution is the normal freezing point minus ΔT</span>; <span class="kb">the boiling point is the normal boiling point plus ΔT</span>.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>ΔT<sub>f</sub></span><span>=</span><span>iK<sub>f</sub>m</span></div><div class="mathbox" style="font-size:16px"><span>ΔT<sub>f</sub> – freezing point depression (°C)</span><span>i – van ’t Hoff factor</span><span>K<sub>f</sub> – freezing point constant (°C/m)</span><span>m – molality (m)</span></div></div>
+      <div class="center"><div class="fbox"><span>ΔT<sub>b</sub></span><span>=</span><span>iK<sub>b</sub>m</span></div><div class="mathbox" style="font-size:16px"><span>ΔT<sub>b</sub> – boiling point elevation (°C)</span><span>K<sub>b</sub> – boiling point constant (°C/m)</span></div></div>
+      <ul>
+        <li>Steps to calculating a new freezing or boiling point:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>List the variables and the unknown,</b> each with its unit.</li><li><b>Find i and the molality</b> (convert grams to moles and grams of solvent to kilograms).</li><li><b>Write down the equation.</b></li><li><b>Substitute and solve for ΔT.</b></li><li><b>Subtract ΔT from the freezing point, or add it to the boiling point,</b> and write the final answer with units.</li></ol></li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="fpg">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Freezing and Boiling Point Problems</h3></div>
+    <div id="fp-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f7f6a6eac6"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const Z=A.U9;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:14px;font-size:28px;font-weight:800;color:#1b2328;text-align:center" class="mth">ΔT = iKm</div>`;
+S.workedTabs(A.$("#ex1"),[{label:"Freezing point",enr:true,...S.wk("Ex: Calculate the new freezing point of a solution containing 14.0 g of NaCl dissolved in 0.600 kg of water.",[["List the variables and the unknown.","mass NaCl = 14.0 g, mass of water = 0.600 kg, K<sub>f</sub> = 1.86 °C/m, ΔT<sub>f</sub> = ?"],["Find i and the molality.","i = 2; moles = <span class='wf'><span>14.0 g</span><span>58.44 g/mol</span></span> = 0.240 mol; m = <span class='wf'><span>0.240 mol</span><span>0.600 kg</span></span> = 0.399 m"],["Write down the equation.","ΔT<sub>f</sub> = iK<sub>f</sub>m"],["Substitute and solve for ΔT.","ΔT<sub>f</sub> = (2)(1.86 °C/m)(0.399 m) = 1.48 °C"],["Subtract ΔT from the freezing point.","0.00 °C − 1.48 °C = −1.48 °C"]])},{label:"Boiling point",enr:true,...S.wk("Ex: What is the boiling point of a solution of 1.00 mol of CaCl<sub>2</sub> in 1.00 kg of water?",[["List the variables and the unknown.","1.00 mol CaCl<sub>2</sub>, 1.00 kg water, K<sub>b</sub> = 0.512 °C/m, ΔT<sub>b</sub> = ?"],["Find i and the molality.","i = 3; m = <span class='wf'><span>1.00 mol</span><span>1.00 kg</span></span> = 1.00 m"],["Write down the equation.","ΔT<sub>b</sub> = iK<sub>b</sub>m"],["Substitute and solve for ΔT.","ΔT<sub>b</sub> = (3)(0.512 °C/m)(1.00 m) = 1.54 °C"],["Add ΔT to the boiling point.","100.00 °C + 1.54 °C = 101.54 °C"]])}]);
+Z.ConcSolve(A.$("#fp-host"),{types:["fp"]});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The number of particles a solute forms per formula unit is the ___ factor.", "a": "van ’t Hoff"}, {"s": "For water, K_f is ___ °C/m.", "a": "1.86"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"What is the freezing point depression of a 1.0 m solution of sucrose in water (K<sub>f</sub> = 1.86 °C/m)?",choices:["0.93 °C","1.86 °C","3.72 °C","5.58 °C"],ans:2,explain:"i = 1: ΔT = (1)(1.86 °C/m)(1.0 m) = 1.86 °C."},
+ {type:"mc",stem:"The van ’t Hoff factor for MgCl<sub>2</sub> is",choices:["1","2","3","4"],ans:3,explain:"Mg²⁺ + 2Cl⁻: 3 particles."},
+ {type:"cr",stem:"Calculate the boiling point of a solution of 0.500 mol of NaCl in 1.00 kg of water (K<sub>b</sub> = 0.512 °C/m).",parts:["Work and answer"],model:["ΔT = (2)(0.512 °C/m)(0.500 m) = 0.512 °C; boiling point = 100.512 °C (about 100.51 °C)"],noCredit:"100.256 °C (i = 1)."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("sol-fpbp");AS.completion(document.querySelector(".wrap"),"sol-fpbp");AS.chrome("sol-fpbp");</script>
+</body>
+</html>

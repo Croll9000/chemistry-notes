@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Rate of Dissolving</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Solutions · 3</span><h1>Rate of Dissolving</h1><p>Temperature, surface area and stirring change how fast a solute dissolves.</p>
+    <div class="pe-chips"><span>HS-PS1-3</span><span>SEP: Developing &amp; Using Models</span><span>CCC: Structure &amp; Function</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Rate"><div class="pn"><small>Part</small><span>1</span></div><h2>The Rate of Dissolving</h2><p>A sugar cube dropped into a cup of iced tea can sit on the bottom for minutes, while a spoonful of granulated sugar stirred into hot tea disappears in seconds. Both cups could eventually dissolve the same amount of sugar: what differs is how quickly it happens. In this section we will discuss the factors that change the rate of dissolving.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Factors That Affect the Rate of Dissolving</h2></div>
+    <div class="body">
+      <p class="intro">A solute dissolves from its surface, as solvent particles collide with it and pull its particles away. Anything that brings more solvent particles into contact with the surface, or makes their collisions more frequent and forceful, speeds up dissolving.</p>
+      <ul>
+        <li>The <span class="def">rate of dissolving</span> is how quickly a solute dissolves. It is different from solubility, which is how much solute can dissolve.</li>
+        <li>Factors that increase the rate of dissolving:
+          <ul><li><span class="kr">Increasing the temperature</span> – solvent particles move faster and collide with the solute more often and with more force.</li>
+          <li><span class="kb">Increasing the surface area</span> (crushing or grinding the solute) – more solute particles are exposed to the solvent at once.</li>
+          <li><span class="kg">Stirring or shaking</span> – brings fresh solvent into contact with the solute.</li></ul></li>
+        <li>Stirring and surface area change only how fast a solute dissolves, not how much can dissolve.</li>
+      </ul>
+      <div class="t7-fig" id="rate-art"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="race">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Dissolving Race</h3></div>
+    <div id="rr-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f7f6a6eac6"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const Z=A.U9;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${Z.figRate()}</div>`;
+A.$("#rate-art").innerHTML=Z.figRate(); Z.RateRace(A.$("#rr-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "How quickly a solute dissolves is the ___ of dissolving.", "a": "rate"}, {"s": "Crushing a solute increases its ___ area.", "a": "surface"}, {"s": "Stirring brings fresh ___ into contact with the solute.", "a": "solvent"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"The solubility of a salt in a given volume of water depends primarily on the",choices:["surface area of the salt crystals","temperature of the water","rate at which the salt and water are stirred","pressure on the surface of the water"],ans:2,explain:"Surface area and stirring change only the rate; temperature changes how much can dissolve."},
+ {type:"mc",stem:"Which change would make 5 g of sugar dissolve faster in 100 mL of water?",choices:["using one large sugar crystal","cooling the water","stirring the mixture","using less water"],ans:3,explain:"Stirring brings fresh solvent into contact with the sugar."},
+ {type:"mc",stem:"Crushing a solid solute increases its rate of dissolving because crushing",choices:["increases the surface area exposed to the solvent","increases the solubility of the solute","raises the temperature of the solvent","decreases the mass of the solute"],ans:1,explain:"More of the solute’s particles are exposed to the solvent at once."},
+ {type:"cr",stem:"Explain, in terms of particles, why sugar dissolves faster in hot water than in cold water.",parts:["Explanation"],model:["In hot water the water molecules move faster, so they collide with the sugar more often and with more force, pulling sugar molecules away faster."],noCredit:"An answer that does not refer to the motion or collisions of the particles."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("sol-rate");AS.completion(document.querySelector(".wrap"),"sol-rate");AS.chrome("sol-rate");</script>
+</body>
+</html>

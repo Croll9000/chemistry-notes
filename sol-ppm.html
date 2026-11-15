@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Parts per Million</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Solutions · 8</span><h1>Parts per Million</h1><p>Parts per million measures very dilute solutions: grams of solute per 1,000,000 grams of solution.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Scale, Proportion &amp; Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="ppm"><div class="pn"><small>Part</small><span>1</span></div><h2>Parts per Million</h2><p>The U.S. Environmental Protection Agency limits fluoride in public drinking water to 4.0 mg per liter. A liter of water has a mass of about 1,000,000 mg, so this limit means 4.0 parts of fluoride for every million parts of water. For solutions this dilute, percents and molarities give awkwardly small numbers, so chemists use parts per million instead. In this section we will discuss parts per million and how to calculate it.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Parts per Million (ppm)</h2></div>
+    <div class="body">
+      <p class="intro">Parts per million compares the mass of a solute with the mass of the whole solution, scaled up so that very small amounts become easy-to-read numbers.</p>
+      <ul>
+        <li><span class="def">Parts per Million (ppm)</span> – the number of grams of solute in every 1,000,000 grams of solution.</li>
+        <li>Parts per million is used for very dilute solutions, such as pollutants or minerals dissolved in water.
+          <ul><li>For water, 1 ppm is about 1 mg of solute in every liter.</li></ul></li>
+        <li><span class="kr">The mass of the solution is the mass of the solute plus the mass of the solvent.</span></li>
+      </ul>
+      <div class="center"><div class="fbox"><span>ppm</span><span>=</span><span><span class="cx-frac"><span>mass of solute</span><span>mass of solution</span></span> × 1 000 000</span></div><div class="mathbox" style="font-size:16px"><span>ppm – parts per million</span><span>mass of solute (g)</span><span>mass of solution (g) = mass of solute + mass of solvent</span></div></div>
+      <ul>
+        <li>Steps to solving parts per million problems:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>List the variables and the unknown,</b> each with its unit.</li><li><b>Find the mass of the solution</b> by adding the mass of the solute and the mass of the solvent, if needed.</li><li><b>Write down the equation.</b></li><li><b>Substitute and solve.</b></li><li><b>Write the final answer with units (ppm).</b></li></ol></li>
+      </ul>
+      <div class="t7-fig" id="ppm-art"></div>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="pg">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Parts per Million Problems</h3></div>
+    <div id="pg-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f7f6a6eac6"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const Z=A.U9;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${Z.figPpm()}</div>`;
+A.$("#ppm-art").innerHTML=Z.figPpm();
+S.workedTabs(A.$("#ex1"),[{label:"Glucose",...S.wk("Ex: 2.5 g of C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> is dissolved in 100. g of water. What is the concentration in parts per million?",[["List the variables and the unknown.","mass of solute = 2.5 g, mass of water = 100. g, ppm = ?"],["Find the mass of the solution.","2.5 g + 100. g = 102.5 g"],["Write down the equation.","ppm = <span class='wf'><span>mass of solute</span><span>mass of solution</span></span> × 1 000 000"],["Substitute and solve.","ppm = <span class='wf'><span>2.5 g</span><span>102.5 g</span></span> × 1 000 000"],["Write the final answer with units.","24 000 ppm"]])},{label:"Dissolved oxygen",...S.wk("Ex: A 1000. g sample of lake water contains 0.0090 g of dissolved oxygen. What is the oxygen concentration in ppm?",[["List the variables and the unknown.","mass of solute = 0.0090 g, mass of solution = 1000. g, ppm = ?"],["Write down the equation.","ppm = <span class='wf'><span>mass of solute</span><span>mass of solution</span></span> × 1 000 000"],["Substitute and solve.","ppm = <span class='wf'><span>0.0090 g</span><span>1000. g</span></span> × 1 000 000"],["Write the final answer with units.","9.0 ppm"]])}]);
+Z.ConcSolve(A.$("#pg-host"),{types:["ppm"]});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The grams of solute in every 1,000,000 grams of solution is ___.", "a": "parts per million"}, {"s": "The mass of a solution equals the mass of solute plus the mass of the ___.", "a": "solvent"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"What is the concentration of a solution, in parts per million, if 0.02 gram of Na<sub>3</sub>PO<sub>4</sub> is dissolved in 1000 grams of solution?",choices:["20 ppm","2 ppm","0.2 ppm","200 ppm"],ans:1,explain:"(0.02 g ÷ 1000 g) × 1 000 000 = 20 ppm.".replace("÷","/")},
+ {type:"mc",stem:"A 2000.-gram sample of water contains 0.0040 gram of dissolved lead. What is the lead concentration?",choices:["0.50 ppm","2.0 ppm","4.0 ppm","8.0 ppm"],ans:2,explain:"(0.0040 g ÷ 2000. g) × 1 000 000 = 2.0 ppm.".replace("÷","/")},
+ {type:"mc",stem:"Parts per million is most useful for expressing the concentration of",choices:["very dilute solutions","saturated solutions","concentrated acids","pure liquids"],ans:1,explain:"ppm turns very small concentrations into easy numbers."},
+ {type:"cr",stem:"A 500. g water sample contains 0.012 g of nitrate ions. Calculate the nitrate concentration in parts per million.",parts:["Work and answer"],model:["(0.012 g ÷ 500. g) × 1 000 000 = 24 ppm"],noCredit:"An answer that omits the factor of 1 000 000."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("sol-ppm");AS.completion(document.querySelector(".wrap"),"sol-ppm");AS.chrome("sol-ppm");</script>
+</body>
+</html>

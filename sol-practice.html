@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Practice Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Solutions · Practice</span><h1>Practice Arcade</h1><p>Games from the whole unit in one place, plus Regents-style questions. These games are for practice and do not give a completion code.</p></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+  <nav class="jump" aria-label="Jump to"><b>Jump to:</b> <a href="#a1">Solubility Curves</a> <a href="#a2">Saturation</a> <a href="#a3">Soluble or Not?</a> <a href="#a4">Concentration Problems</a> <a href="#a5">Freezing Points</a> <a href="#lc">Regents Practice</a></nav>
+
+  <section class="lab" id="a1">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Read the Solubility Curves</h3></div>
+    <div id="cg-host"></div>
+  </section>
+
+  <section class="lab" id="a2">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Unsaturated, Saturated or Supersaturated?</h3></div>
+    <div id="sat-host"></div>
+  </section>
+
+  <section class="lab" id="a3">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Soluble or Not?</h3></div>
+    <div id="sg-host"></div>
+  </section>
+
+  <section class="lab" id="a4">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Concentration Problems</h3></div>
+    <div id="cs-host"></div>
+  </section>
+
+  <section class="lab" id="a5">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Lowest Freezing Point?</h3></div>
+    <div id="fc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Regents Practice"><div class="pn"><small>Check</small><span>✓</span></div><h2>Regents Practice</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f7f6a6eac6"></script>
+<script>(function(){
+
+const A=AS, Z=A.U9;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${Z.figSat()}</div>`;
+Z.CurveGame(A.$("#cg-host")); Z.SatGame(A.$("#sat-host")); Z.SolGame(A.$("#sg-host")); Z.ConcSolve(A.$("#cs-host"),{types:["M","ppm","pm","pv"]}); Z.FPCompare(A.$("#fc-host"));
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Which phrase describes a solution?",choices:["a homogeneous mixture","a heterogeneous mixture","a compound","an element"],ans:1,explain:"A solution is a homogeneous mixture."},
+ {type:"mc",stem:"Which substance is most soluble in a nonpolar solvent such as hexane?",choices:["CH<sub>3</sub>OH","NaOH","CaCl<sub>2</sub>","F<sub>2</sub>"],ans:4,explain:"F₂ is nonpolar: like dissolves like."},
+ {type:"mc",fig:()=>A.U9.figCurves({W:480,H:380}),stem:"How many grams of KNO<sub>3</sub> must be added to a saturated solution of KNO<sub>3</sub> in 100. g of water at 30 °C to saturate it again at 50 °C?",choices:["24 g","38 g","46 g","84 g"],ans:2,explain:"About 84 g dissolves at 50 °C and about 46 g at 30 °C: 84 g − 46 g = 38 g."},
+ {type:"mc",stem:"What is the molarity of a solution that contains 4.0 mol of NaOH in 2.0 L of solution?",choices:["0.50 M","2.0 M","4.0 M","8.0 M"],ans:2,explain:"n = MV: 4.0 mol = M(2.0 L), so M = 2.0 M."},
+ {type:"mc",stem:"A 1000.-gram sample of drinking water contains 0.0015 gram of copper ions. What is the concentration of copper ions?",choices:["0.15 ppm","1.5 ppm","15 ppm","150 ppm"],ans:2,explain:"(0.0015 g / 1000. g) × 1 000 000 = 1.5 ppm."},
+ {type:"mc",stem:"Which 1.0 M solution has the highest boiling point?",choices:["NaCl","CaCl<sub>2</sub>","C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>","KNO<sub>3</sub>"],ans:2,explain:"CaCl₂ forms 3 ions per formula unit: the most dissolved particles."},
+ {type:"cr",stem:"A student dissolves 30. g of NH<sub>4</sub>Cl in 100. g of water at 40 °C. Using the solubility curves, state whether the solution is saturated or unsaturated, and determine how many more grams of NH<sub>4</sub>Cl can dissolve at 40 °C.",fig:()=>A.U9.figCurves({W:480,H:380}),parts:["Saturated or unsaturated","Additional mass"],model:["unsaturated","about 16 g (about 46 g − 30. g)"],noCredit:"saturated, or a mass outside 14–18 g."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("sol-practice");AS.completion(document.querySelector(".wrap"),"sol-practice");AS.chrome("sol-practice");</script>
+</body>
+</html>

@@ -1939,7 +1939,7 @@ canvas.z9-cv{width:100%;max-width:520px;height:auto;background:#fff;border:1px s
 .wk-stack{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
 .wv{font-style:normal;font-family:var(--f-math)}
 .wk-arr{font-family:var(--f-body);font-weight:700;color:#5f6b72;margin-right:4px}
-.s6-fmath .mth.wk-words{font-family:var(--f-body);font-size:17px;color:var(--ink);white-space:normal!important}
+.s6-fmath .mth.wk-words{font-family:var(--f-math);font-style:italic;font-size:19px;color:var(--ink);white-space:normal!important}
 .wk-giv.wk-2 th:first-child{text-transform:none;letter-spacing:0;font-size:14px;color:#3d4a52;padding-right:6px}
 .wk-giv.wk-2 tr:first-child th{text-align:center}
 .s6-fmath .mth i[style]{margin-left:.12em}
@@ -2110,3 +2110,29 @@ li>.wf,.xl>.wf,li>span>.wf{margin:0 3px}
 /* Hess worked examples: the label column is wide enough for "reverse B:" so labels never run into the equations */
 .hs-wk.hs-wk4{grid-template-columns:22px 104px minmax(0,1fr) 190px}
 @media(max-width:720px){.hs-wk.hs-wk4{grid-template-columns:18px minmax(0,1fr)}.hs-wk4 .hs-wl{grid-column:2}.hs-wk4 .hs-we{grid-column:2;flex-wrap:wrap!important;white-space:normal!important}.hs-wk4 .hs-wd{grid-column:2}.hs-wk4 .hs-wp{grid-row:span 1}}
+.cc-ctl{flex-wrap:wrap;gap:10px 18px}
+.cc-step{display:inline-flex;align-items:center;gap:6px}
+.cc-step b{min-width:66px;text-align:center;font-family:var(--f-math);font-style:italic;font-size:17px}
+.cc-step .btn{min-width:36px;padding:4px 10px;font-size:18px;line-height:1}
+.t7-revt[aria-pressed="true"]{background:var(--teal,#0f8a9d);color:#fff;border-color:transparent}
+.q-fig{max-width:560px;margin:6px 0 10px 34px;background:#fff;border:1px solid #e0e9ef;border-radius:10px;padding:6px}
+.q-fig svg{width:100%;height:auto;display:block}
+@media (max-width:600px){.q-fig{margin-left:0}}
+.g8-lawb .g8-eq,.g8-lawb .g8-eq *{font-weight:400}
+.g8-lawb .g8-eq{font-size:22px}
+.g8-lawb .g8-eq .cx-frac{font-size:1em}
+.g8-lawb .g8-eq .cx-op{font-weight:400}
+.kp-ask{margin:10px 0 6px;font-size:16px}
+.rg-bars{display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
+.rg-bl{display:flex;justify-content:space-between;gap:8px;font-size:14px}.rg-bl b{font-weight:700}
+.rg-bt{height:12px;background:#e8eef1;border-radius:6px;overflow:hidden}.rg-bt i{display:block;height:100%;border-radius:6px;transition:width .2s}
+.rg-ideal{font-weight:800;padding:6px 10px;border-radius:8px;font-size:14.5px}.rg-i0{background:#e5f6ea;color:#0a7a3a}.rg-i1{background:#fff4dd;color:#8a5a00}.rg-i2{background:#fdeeee;color:#b00000}
+.rg-q p{margin:8px 0 6px}.rg-q .btn{display:block;width:100%;text-align:left;margin:4px 0}.rg-fb{font-size:14px}
+.z9-fm{display:inline}
+.z9-ch{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.z9-big{font-size:30px;margin:4px 0}
+.z9-ss{display:flex;gap:28px;margin:8px 0;font-size:17px}
+.z9-eqs{display:flex;flex-wrap:wrap;gap:8px}.z9-eqs .btn{min-height:0;padding:6px 12px}
+.z9-giv td{vertical-align:middle}.z9-giv .btn{margin:2px}
+.z9-last{display:block;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-weight:700}
+.z9-subs button{min-width:0}
