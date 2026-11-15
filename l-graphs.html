@@ -7,7 +7,7 @@
 <title>Graphs & Proportional Relationships</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=78e509c3e2">
+<link rel="stylesheet" href="site.css?v=da3bcc4746">
 </head>
 <body>
 <main class="wrap">
@@ -86,7 +86,7 @@
     <div class="body">
       <p class="intro">The slope of a graph tells how fast the dependent variable changes when the independent variable changes. A steeper line means a faster change. The slope often has a meaning of its own: on a graph of mass against volume, the slope is the density.</p>
       <ul>
-        <li><span class="def">Slope</span> – the change in y divided by the change in x.</li>
+        <li><span class="def">Slope</span> – the change in y divided by the change in x (rise over run).</li>
         <li>Pick two points <span class="kr">on the line</span> that are far apart. Use data points only if the line passes through them.</li>
         <li>The unit of a slope is the <span class="kb">y-axis unit divided by the x-axis unit</span>, for example g/cm³ or mL/s.</li>
         <li>A line that rises has a positive slope, a line that falls has a negative slope, and a horizontal line has a slope of zero.</li>
@@ -113,13 +113,13 @@
       <p class="intro">Many relationships in chemistry follow one of a few simple patterns. Recognizing the pattern in a table or a graph makes it possible to predict what happens when one variable changes. The gas laws in Unit 8 are built on these patterns.</p>
       <ul>
         <li><span class="def">Direct Relationship</span> – as one variable increases, the other <span class="kr">increases</span>.
-          <ul><li><b>Directly proportional</b>: y ÷ x is constant (y = kx). The graph is a <span class="kr">straight line through the origin</span>, and doubling x doubles y.</li></ul></li>
+          <ul><li><b>Directly proportional</b>: <span class="mth"><span class="wf"><span>y</span><span>x</span></span></span> is constant (<span class="mth">y = kx</span>). The graph is a <span class="kr">straight line through the origin</span>, and doubling x doubles y.</li></ul></li>
         <li><span class="def">Inverse Relationship</span> – as one variable increases, the other <span class="kb">decreases</span>.
-          <ul><li><b>Inversely proportional</b>: x × y is constant (y = k ÷ x). The graph is a <span class="kb">curve</span> that falls steeply and then levels off, and doubling x cuts y in half.</li></ul></li>
-        <li>A straight line that does not pass through the origin is <span class="kg">linear but not proportional</span>: y ÷ x is not constant.
+          <ul><li><b>Inversely proportional</b>: <span class="mth">x × y</span> is constant (<span class="mth">y = <span class="wf"><span>k</span><span>x</span></span></span>). The graph is a <span class="kb">curve</span> that falls steeply and then levels off, and doubling x cuts y in half.</li></ul></li>
+        <li>A straight line that does not pass through the origin is <span class="kg">linear but not proportional</span>: <span class="mth"><span class="wf"><span>y</span><span>x</span></span></span> is not constant.
           <ul><li>Example: Kelvin temperature = Celsius temperature + 273.</li></ul></li>
         <li>A horizontal line has a slope of zero: <b>y remains constant as x changes</b>.</li>
-        <li>To test data: calculate y ÷ x and x × y for several points. Whichever stays the same identifies the relationship.</li>
+        <li>To test data: calculate <span class="mth"><span class="wf"><span>y</span><span>x</span></span></span> and <span class="mth">x × y</span> for several points. Whichever stays the same identifies the relationship.</li>
       </ul>
       <div class="" id="shapes-art"></div>
       <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Air in a sealed syringe at constant temperature: 60 mL at 100 kPa, 40 mL at 150 kPa and 30 mL at 200 kPa. Pressure × volume = 6000 kPa·mL every time, so the volume is inversely proportional to the pressure. (This is Boyle’s law, in Unit 8.)</div></div></div>
@@ -142,8 +142,8 @@
     <div class="body">
       <p class="intro">A curved graph is hard to test by eye, because many different curves look alike. A straight line is easy to check, and its slope can be measured. Scientists therefore change one of the variables before plotting, so that the graph becomes a straight line.</p>
       <ul>
-        <li><span class="def">Linearization</span> – changing the data (for example, plotting 1 ÷ x instead of x) so that the graph becomes a straight line.</li>
-        <li>If y is <b>inversely proportional</b> to x (y = k ÷ x), plot <span class="kr">y vs. 1/x</span>.</li>
+        <li><span class="def">Linearization</span> – changing the data (for example, plotting <span class="mth"><span class="wf"><span>1</span><span>x</span></span></span> instead of x) so that the graph becomes a straight line.</li>
+        <li>If y is <b>inversely proportional</b> to x (<span class="mth">y = <span class="wf"><span>k</span><span>x</span></span></span>), plot <span class="kr">y vs. <span class="mth"><span class="wf"><span>1</span><span>x</span></span></span></span>.</li>
         <li>If the new graph is a straight line through the origin, the inverse relationship is confirmed, and the <span class="kb">slope is the constant k</span> (k = x × y).</li>
       </ul>
       <div class="" id="lin-art"></div>
@@ -163,7 +163,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=78e509c3e2"></script>
+<script src="site.js?v=da3bcc4746"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
@@ -171,7 +171,7 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
 A.$("#co2-parts").innerHTML=L.figCO2({parts:1}); A.$("#co2-read").innerHTML=L.figCO2({read:1});
 A.$("#zn-art").innerHTML=L.figZinc(); A.$("#lin-art").innerHTML=L.figLinearize(); A.$("#shapes-art").innerHTML=L.figShapes();
 L.VarSort(A.$("#vs-host")); L.GraphLab(A.$("#gl-host")); L.SlopeGame(A.$("#sl-host")); L.RelExplorer(A.$("#re-host")); L.ShapeGame(A.$("#sg-host"));
-S.workedTabs(A.$("#ex-sl"),[{label:"Density of zinc",...S.wk("Ex: Use the graph of mass vs. volume for zinc to find the slope of the line. What does the slope represent?",[["<b>Step 1:</b> Choose two points on the line that are far apart.","(1.00 cm³, 7.14 g) and (5.00 cm³, 35.7 g)"],["<b>Step 2:</b> Find the change in y (Δy).","Δy = 35.7 g − 7.14 g = 28.6 g"],["<b>Step 3:</b> Find the change in x (Δx).","Δx = 5.00 cm³ − 1.00 cm³ = 4.00 cm³"],["<b>Step 4:</b> Divide, and include the unit.","slope = 28.6 g ÷ 4.00 cm³ = 7.15 g/cm³ (the density of zinc)"]])},{label:"Negative slope",...S.wk("Ex: A cup of tea cools from 70. °C at 2.0 min to 30. °C at 10.0 min along a straight line. What is the slope?",[["<b>Step 1:</b> Choose two points on the line.","(2.0 min, 70. °C) and (10.0 min, 30. °C)"],["<b>Step 2:</b> Find the change in y (Δy).","Δy = 30. °C − 70. °C = −40. °C"],["<b>Step 3:</b> Find the change in x (Δx).","Δx = 10.0 min − 2.0 min = 8.0 min"],["<b>Step 4:</b> Divide, and include the unit.","slope = −40. °C ÷ 8.0 min = −5.0 °C/min (the tea cools 5.0 °C each minute)"]])}]);
+S.workedTabs(A.$("#ex-sl"),[{label:"Density of zinc",...S.wk("Ex: Use the graph of mass vs. volume for zinc to find the slope of the line. What does the slope represent?",[["<b>Step 1:</b> Choose two points on the line that are far apart.","(1.00 cm³, 7.14 g) and (5.00 cm³, 35.7 g)"],["<b>Step 2:</b> Find the rise (Δy).","Δy = 35.7 g − 7.14 g = 28.6 g"],["<b>Step 3:</b> Find the run (Δx).","Δx = 5.00 cm³ − 1.00 cm³ = 4.00 cm³"],["<b>Step 4:</b> Divide, and include the unit.","slope = 28.6 g ÷ 4.00 cm³ = 7.15 g/cm³ (the density of zinc)"]])},{label:"Negative slope",...S.wk("Ex: A cup of tea cools from 70. °C at 2.0 min to 30. °C at 10.0 min along a straight line. What is the slope?",[["<b>Step 1:</b> Choose two points on the line.","(2.0 min, 70. °C) and (10.0 min, 30. °C)"],["<b>Step 2:</b> Find the rise (Δy).","Δy = 30. °C − 70. °C = −40. °C"],["<b>Step 3:</b> Find the run (Δx).","Δx = 10.0 min − 2.0 min = 8.0 min"],["<b>Step 4:</b> Divide, and include the unit.","slope = −40. °C ÷ 8.0 min = −5.0 °C/min (the tea cools 5.0 °C each minute)"]])}]);
 A.VocabCheck(A.$("#vc-host"),[{"s": "The variable the experimenter changes on purpose is the ___ variable.", "a": "independent"}, {"s": "The variable that is measured is the ___ variable.", "a": "dependent"}, {"s": "A variable kept the same in every trial is a ___ variable.", "a": "controlled"}, {"s": "Reading a value between measured data points is ___.", "a": "interpolation"}, {"s": "The change in y divided by the change in x is the ___.", "a": "slope"}, {"s": "When x × y stays constant, the variables are ___ proportional.", "a": "inversely"}]);
 A.QSet(A.$("#qs"),[
 {type:"mc",stem:"In an experiment, the variable that the experimenter changes on purpose is the",choices:["dependent variable","independent variable","controlled variable","measured variable"],ans:2,explain:"The independent variable is changed on purpose; the dependent variable is measured."},

@@ -7,7 +7,7 @@
 <title>The Ideal Gas Law</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=78e509c3e2">
+<link rel="stylesheet" href="site.css?v=da3bcc4746">
 </head>
 <body>
 <main class="wrap">
@@ -25,7 +25,7 @@
       <p class="intro">The combined gas law compares one sample of gas before and after a change, so it never needs to know how much gas there is. The ideal gas law describes a single state of a gas and includes the amount of gas, so it can answer questions such as how many moles of helium fill a balloon.</p>
       <ul>
         <li>The state variables of a gas (pressure, volume, temperature and amount) are all linked: if one variable changes, at least one of the others changes as well.</li>
-        <li>For any ideal gas, the product of its pressure and volume divided by the product of its number of moles and temperature, PV ÷ nT, equals the same constant value, the ideal gas constant.</li>
+        <li>For any ideal gas, the product of its pressure and volume divided by the product of its number of moles and temperature, <span class="mth"><span class="wf"><span>PV</span><span>nT</span></span></span>, equals the same constant value, the ideal gas constant.</li>
         <li><span class="def">Ideal Gas Law</span> – the equation relating the four state variables (pressure, volume, temperature and number of moles) for an ideal gas.</li>
         <li><span class="def">Ideal Gas Constant (R)</span> – the constant of proportionality relating pressure, volume, temperature and number of moles in an ideal gas.
           <ul><li><span class="kr">R = 8.314 L·kPa/(mol·K)</span> when pressure is in kilopascals.</li><li><span class="kb">R = 0.08206 L·atm/(mol·K)</span> when pressure is in atmospheres.</li>
@@ -40,15 +40,17 @@
   <section class="note enr">
     <div class="tile"><h2>The Meaning of R</h2></div>
     <div class="body">
-      <p class="intro">For every ideal gas, under every set of conditions, the combination PV ÷ nT comes out to the same number. That number is R. Its value can be found from the molar volume at STP, which you learned in Unit 6.</p>
+      <p class="intro">For every ideal gas, under every set of conditions, the combination <span class="mth"><span class="wf"><span>PV</span><span>nT</span></span></span> comes out to the same number. That number is R. Its value can be found from the molar volume at STP, which you learned in Unit 6.</p>
+      <div class="drv-row"><div class="drv-main">
       <ul>
-        <li>Rearranging PV = nRT gives <span class="mth">R = PV ÷ nT</span>: R is the value of PV ÷ nT for any ideal gas.</li>
-        <li>At STP, 1 mole of an ideal gas occupies 22.4 L at 1 atm and 273 K:
-          <ul><li><span class="mth">R = (1 atm)(22.4 L) ÷ [(1 mol)(273 K)] = 0.0821 L·atm/(mol·K)</span>, which rounds the more precise value 0.08206 L·atm/(mol·K)</li>
-          <li>With pressure in kilopascals: <span class="mth">R = (101.3 kPa)(22.4 L) ÷ [(1 mol)(273 K)] = 8.31 L·kPa/(mol·K)</span>, which rounds the more precise value 8.314 L·kPa/(mol·K)</li></ul></li>
+        <li>Rearranging PV = nRT gives <span class="mth">R = <span class="wf"><span>PV</span><span>nT</span></span></span>. For any ideal gas, <span class="mth"><span class="wf"><span>PV</span><span>nT</span></span></span> is equal to the same value, R.</li>
+        <li>The value of R can be calculated from the molar volume of a gas: at STP, 1 mole of an ideal gas occupies 22.4 L at 1 atm (101.3 kPa) and 273 K. The calculation is shown in the box.
+          <ul><li>Using 1 atm gives 0.0821 L·atm/(mol·K), which rounds the more precise value <span class="kb">0.08206 L·atm/(mol·K)</span>.</li>
+          <li>Using 101.3 kPa gives 8.31 L·kPa/(mol·K), which rounds the more precise value <span class="kr">8.314 L·kPa/(mol·K)</span>.</li></ul></li>
         <li>R is the same for every gas because, in the ideal model, the pressure of a gas depends only on how many particles there are and how fast they move, not on what the particles are.</li>
-        <li>The combined gas law comes from the ideal gas law: for a fixed amount of gas, <span class="mth">PV ÷ T = nR</span>, which is constant.</li>
+        <li>The combined gas law comes from the ideal gas law: for a fixed amount of gas, <span class="mth"><span class="wf"><span>PV</span><span>T</span></span> = nR</span>, which is constant.</li>
       </ul>
+      </div><aside class="drv"><div class="drv-t">Calculating R from the molar volume</div><div class="drv-r"><span class="mth">PV = nRT</span></div><div class="drv-r"><span class="mth">R = <span class="wf"><span>PV</span><span>nT</span></span></span><small>Divide both sides by nT.</small></div><div class="drv-r"><span class="mth">R = <span class="wf"><span>(1 atm)(22.4 L)</span><span>(1 mol)(273 K)</span></span> = 0.0821 <span class="wf"><span>L·atm</span><span>mol·K</span></span></span><small>Pressure in atmospheres.</small></div><div class="drv-r"><span class="mth">R = <span class="wf"><span>(101.3 kPa)(22.4 L)</span><span>(1 mol)(273 K)</span></span> = 8.31 <span class="wf"><span>L·kPa</span><span>mol·K</span></span></span><small>Pressure in kilopascals.</small></div></aside></div>
 
     </div>
   </section>
@@ -66,7 +68,7 @@
       <p class="intro">Ideal gas law problems give three of the four variables P, V, n and T and ask for the fourth. Most mistakes come from units: R fixes the units of every other quantity in the equation.</p>
       <ul>
         <li>Steps for solving ideal gas law problems:
-          <ol><li>Write down the given information.</li><li>Choose R to match the pressure unit.</li><li>Make sure the units are correct: K = °C + 273; volume in liters; grams to moles with n = m ÷ M.</li><li>Substitute into PV = nRT and solve the equation algebraically.</li></ol></li>
+          <ol><li>Write down the given information.</li><li>Choose R to match the pressure unit.</li><li>Make sure the units are correct: K = °C + 273; volume in liters; grams to moles with <span class="mth">n = <span class="wf"><span>m</span><span>M</span></span></span>.</li><li>Substitute into PV = nRT and solve the equation algebraically.</li></ol></li>
       </ul>
       <div id="ex1" style="margin-top:12px"></div>
 
@@ -83,11 +85,18 @@
   <section class="note enr">
     <div class="tile"><h2>Ideal Gas Density</h2></div>
     <div class="body">
-      <p class="intro">Substituting n = m ÷ M into PV = nRT and rearranging gives an equation for the density of a gas, D = m ÷ V. Heavier molecules, higher pressure and lower temperature all make a gas denser.</p>
+      <p class="intro">Substituting <span class="mth">n = <span class="wf"><span>m</span><span>M</span></span></span> into PV = nRT and rearranging gives an equation for the density of a gas, <span class="mth">D = <span class="wf"><span>m</span><span>V</span></span></span>. Heavier molecules, higher pressure and lower temperature all make a gas denser.</p>
+      <div class="drv-row"><div class="drv-main">
       <ul>
-        <li>Gas density equation: <span class="mth">PM = DRT</span>, where M is the molar mass (g/mol) and D is the density (g/L).</li>
-        <li>At the same temperature and pressure, <span class="kr">a gas with a larger molar mass is denser</span>.</li>
+        <li>The density of a gas is its mass per unit volume, <span class="mth">D = <span class="wf"><span>m</span><span>V</span></span></span>. Gas densities are usually given in grams per liter (g/L).</li>
+        <li>The number of moles of a gas equals its mass divided by its molar mass, <span class="mth">n = <span class="wf"><span>m</span><span>M</span></span></span>.</li>
+        <li>Substituting <span class="mth">n = <span class="wf"><span>m</span><span>M</span></span></span> into PV = nRT and replacing <span class="mth"><span class="wf"><span>m</span><span>V</span></span></span> with D gives an equation for the density of a gas, <span class="mth">PM = DRT</span>, where M is the molar mass (g/mol) and D is the density (g/L). The steps are shown in the box.</li>
+        <li>Solving for D shows how the density of a gas depends on the conditions: <span class="mth">D = <span class="wf"><span>PM</span><span>RT</span></span></span>.
+          <ul><li><span class="kr">A gas with a larger molar mass is denser</span> at the same temperature and pressure. Equal volumes hold equal numbers of particles, so heavier particles mean more mass in each liter.</li>
+          <li><span class="kb">Increasing the pressure increases the density</span>, because more particles are packed into each liter.</li>
+          <li><span class="kg">Increasing the temperature decreases the density</span>, because the gas expands and each liter holds fewer particles.</li></ul></li>
       </ul>
+      </div><aside class="drv"><div class="drv-t">Deriving the gas density equation</div><div class="drv-r"><span class="mth">PV = nRT</span></div><div class="drv-r"><span class="mth">PV = <span class="wf"><span>m</span><span>M</span></span>RT</span><small>Replace n with <span class="mth"><span class="wf"><span>m</span><span>M</span></span></span>.</small></div><div class="drv-r"><span class="mth">PVM = mRT</span><small>Multiply both sides by M.</small></div><div class="drv-r"><span class="mth">PM = <span class="wf"><span>m</span><span>V</span></span>RT</span><small>Divide both sides by V.</small></div><div class="drv-r"><span class="mth">PM = DRT</span><small>Density is mass divided by volume: <span class="mth">D = <span class="wf"><span>m</span><span>V</span></span></span>.</small></div></aside></div>
       <div class="center"><div class="fbox"><span>PM</span><span>=</span><span>DRT</span></div><div class="mathbox" style="font-size:16px"><span>P – pressure (atm)</span><span>M – molar mass (g/mol)</span><span>D – density (g/L)</span><span>R – 0.08206 L·atm/(mol·K)</span><span>T – temperature (K)</span></div></div>
       <div id="ex2" style="margin-top:12px"></div>
 
@@ -105,7 +114,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=78e509c3e2"></script>
+<script src="site.js?v=da3bcc4746"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
@@ -119,7 +128,7 @@ A.QSet(A.$("#qs"),[
  {type:"text",stem:"A 1.5 mol sample of gas is at 78 kPa and 50. °C. What is its volume? (R = 8.314 L·kPa/(mol·K))",unit:"L",width:100,check:v=>A.lenient(v,51.6,{sf:2}),explain:"V = nRT ÷ P = (1.5)(8.314)(323) ÷ 78 = 52 L."},
  {type:"mc",stem:"Which value of R must be used when the pressure is given in kilopascals?",choices:["0.08206 L·atm/(mol·K)","8.314 L·kPa/(mol·K)","22.4 L/mol","101.3 kPa/atm"],ans:2,explain:"R must have the same pressure unit as the problem: 8.314 L·kPa/(mol·K)."},
  {type:"mc",stem:"At the same temperature and pressure, which gas has the greatest density?",choices:["He","N<sub>2</sub>","CO<sub>2</sub>","H<sub>2</sub>"],ans:3,explain:"Density is proportional to molar mass: CO<sub>2</sub> (44 g/mol) is the heaviest."},
- {type:"cr",stem:"Show that R = 0.0821 L·atm/(mol·K) using the molar volume of a gas at STP.",parts:["Calculation"],model:["R = PV ÷ nT = (1 atm)(22.4 L) ÷ [(1 mol)(273 K)] = 0.0821 L·atm/(mol·K)."],noCredit:"An answer without the STP values substituted."}
+ {type:"cr",stem:"Show that R = 0.0821 L·atm/(mol·K) using the molar volume of a gas at STP.",parts:["Calculation"],model:["<span class='mth'>R = <span class='wf'><span>PV</span><span>nT</span></span> = <span class='wf'><span>(1 atm)(22.4 L)</span><span>(1 mol)(273 K)</span></span> = 0.0821 L·atm/(mol·K)</span>."],noCredit:"An answer without the STP values substituted."}
 ]);
 
 })();</script>

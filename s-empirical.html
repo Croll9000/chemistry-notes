@@ -7,7 +7,7 @@
 <title>Empirical & Molecular Formulas</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=78e509c3e2">
+<link rel="stylesheet" href="site.css?v=da3bcc4746">
 </head>
 <body>
 <main class="wrap">
@@ -28,7 +28,7 @@
           <ul><li>Another type of formula, known as an empirical formula, conveys only the simplest ratio of elements in a compound.</li><li>Data collected in a lab will often give information about the empirical but not the molecular formula.</li><li><span class="def">Molecular Formula</span> – indicates how many atoms of each element are present in a compound.</li>
           <li><span class="def">Empirical Formula</span> – indicates the simplest (lowest whole-number) ratio of elements in a compound.</li></ul></li>
         
-      </ul><div class="xbox xs"><span class="xtag">Example</span><div class="xbody"><div class="xl">Glucose, C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> ÷ 6 → CH<sub>2</sub>O (empirical formula)</div></div></div>
+      </ul><div class="xbox xs"><span class="xtag">Example</span><div class="xbody"><div class="xl">Glucose, C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>: dividing every subscript by 6 gives CH<sub>2</sub>O (empirical formula).</div></div></div>
       <div class="center" id="emp-art"></div>
     </div>
   </section>
@@ -105,7 +105,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=78e509c3e2"></script>
+<script src="site.js?v=da3bcc4746"></script>
 <script>(function(){
 
 const A=AS, S=A.U6, R=A.U5;
@@ -132,7 +132,7 @@ A.$("#mol-art2").innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:22px;jus
      ["Determine the mass of the empirical formula.",`CH<sub>2</sub>O: 12.01 + 2(1.01) + 16.00 = ${m("CH2O")} g/mol`],
      ["Divide the molar mass of the compound by the mass of the empirical formula.",`180.18 g/mol ÷ ${m("CH2O")} g/mol = 6`],
      ["Multiply the subscripts in the empirical formula by the answer from step 2.",`C<sub>1×6</sub>H<sub>2×6</sub>O<sub>1×6</sub> → ${big("C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>")}`]]}]); }
-A.$("#ex1").innerHTML=`<div class="exbox">Ex: A compound is found to be 25.2% hydrogen and 74.8% carbon by mass. Determine the compound’s empirical formula.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Step 1: grams in 100 g</th><th>Step 2: moles</th><th>Step 3: ÷ smallest</th><th>Subscript</th></tr><tr><td><b>C</b></td><td>74.8 g</td><td>74.8 ÷ 12.01 = 6.23 mol</td><td>6.23 ÷ 6.23 = 1.00</td><td>1</td></tr><tr><td><b>H</b></td><td>25.2 g</td><td>25.2 ÷ 1.01 = 25.0 mol</td><td>25.0 ÷ 6.23 = 4.01</td><td>4</td></tr></table></div><p class="center"><b>Step 4:</b> the empirical formula is CH<sub>4</sub>.</p>`;
+A.$("#ex1").innerHTML=`<div class="exbox">Ex: A compound is found to be 25.2% hydrogen and 74.8% carbon by mass. Determine the compound’s empirical formula.</div><div class="tbl-wrap"><table class="nt calc-t" style="margin:6px auto"><tr><th>Element</th><th>Step 1: grams in 100 g</th><th>Step 2: moles</th><th>Step 3: divide by the smallest</th><th>Subscript</th></tr><tr><td><b>C</b></td><td>74.8 g</td><td><span class="mth"><span class="wf"><span>74.8 g</span><span>12.01 g/mol</span></span> = 6.23 mol</span></td><td><span class="mth"><span class="wf"><span>6.23 mol</span><span>6.23 mol</span></span> = 1.00</span></td><td>1</td></tr><tr><td><b>H</b></td><td>25.2 g</td><td><span class="mth"><span class="wf"><span>25.2 g</span><span>1.01 g/mol</span></span> = 25.0 mol</span></td><td><span class="mth"><span class="wf"><span>25.0 mol</span><span>6.23 mol</span></span> = 4.01</span></td><td>4</td></tr></table></div><p class="center"><b>Step 4:</b> the empirical formula is CH<sub>4</sub>.</p>`;
 S.PctEmpGame(A.$("#pe-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "A formula that shows how many atoms of each element are in a compound is a ___.", "a": "molecular formula"}, {"s": "A formula that shows the simplest whole-number ratio of elements is an ___.", "a": "empirical formula"}]);
 A.QSet(A.$("#qs"),[
