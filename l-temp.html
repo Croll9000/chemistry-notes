@@ -6,8 +6,8 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Temperature Conversions</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=da3bcc4746">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=61ad9216fb">
 </head>
 <body>
 <style>
@@ -142,7 +142,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=da3bcc4746"></script>
+<script src="site.js?v=61ad9216fb"></script>
 <script>(function(){
 
 const A=AS, L=A.U0, U=A.U1, T=L.T;
@@ -187,8 +187,8 @@ A.$("#ke-hi").innerHTML=`<b style="color:#c40000">High temperature</b>${gasBox(9
   const V=t=>50.0*(t+273.15)/273.15;
   s+=`<line x1="${tx(-273.15)}" y1="${vy(0)}" x2="${tx(0)}" y2="${vy(V(0))}" stroke="#2E75D6" stroke-width="2.5" stroke-dasharray="8 6"/><line x1="${tx(0)}" y1="${vy(V(0))}" x2="${tx(100)}" y2="${vy(V(100))}" stroke="#2E75D6" stroke-width="3"/>`;
   [0,25,50,75,100].forEach(t=>s+=`<circle cx="${tx(t)}" cy="${vy(V(t))}" r="6" fill="#2E75D6" stroke="#1b2328" stroke-width="1.2"/>`);
-  s+=`<circle cx="${tx(-273.15)}" cy="${vy(0)}" r="7" fill="#E00000" stroke="#1b2328" stroke-width="1.2"/>`+T(tx(-273.15)+22,vy(0)-28,"absolute zero",{fs:14,c:"#c40000",a:"start"})+T(tx(-273.15)+40,vy(0)-10,"−273.15 °C = 0 K",{fs:13,c:"#c40000",fw:400,a:"start"});
-  s+=T(tx(50),vy(V(50))-28,"measured",{fs:13,c:"#005ea3"})+T(tx(-140),vy(V(-140))-24,"extended (extrapolated)",{fs:13,c:"#005ea3",fw:400});
+  s+=`<circle cx="${tx(-273.15)}" cy="${vy(0)}" r="7" fill="#E00000" stroke="#1b2328" stroke-width="1.2"/>`+`<line x1="${tx(-273.15)}" y1="${vy(0)-9}" x2="${tx(-273.15)}" y2="${vy(0)-66}" stroke="#c40000" stroke-width="1.2"/>`+T(tx(-273.15)-4,vy(0)-90,"absolute zero",{fs:14,c:"#c40000",a:"start"})+T(tx(-273.15)-4,vy(0)-73,"−273.15 °C = 0 K",{fs:13,c:"#c40000",fw:400,a:"start"});
+  s+=T(tx(50),vy(V(50))-28,"measured",{fs:13,c:"#005ea3"})+T(tx(-140),vy(V(-140))+24,"extended (extrapolated)",{fs:13,c:"#005ea3",fw:400,a:"start"});
   A.$("#graph").innerHTML=s+`</svg>`; })();
 
 /* particle motion simulation: speed ∝ √T */

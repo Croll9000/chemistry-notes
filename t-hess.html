@@ -6,8 +6,8 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Hess’s Law</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=da3bcc4746">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=61ad9216fb">
 </head>
 <body>
 <main class="wrap">
@@ -25,7 +25,8 @@
       <p class="intro">Two hikers can reach the same mountain summit by different trails: one climbs a steep, direct path and the other follows a long, winding road. However different their routes, both gain exactly the same height. Enthalpy behaves the same way. Some reactions, such as forming ethanol directly from carbon, hydrogen and oxygen, cannot be carried out cleanly in a calorimeter, but their enthalpy can still be found by adding up reactions that can be measured.</p>
       <ul>
         <li>Enthalpy is a <span class="kr">state function</span>, meaning that the only things that determine its value are its starting and ending states.
-          <ul><li>For a chemical reaction, the steps by which reactants turn into products have no bearing on the heat released or absorbed by the process.</li>
+          <ul><li><span class="def">State Function</span> – a quantity whose value depends only on the initial and final states of a system, not on the path taken between them.</li>
+          <li>For a chemical reaction, the steps by which reactants turn into products have no bearing on the heat released or absorbed by the process.</li>
           <li>The only things that matter are the starting and ending enthalpies of the particles.</li></ul></li>
         <li><span class="def">Hess’s Law</span> – a chemical reaction can be expressed as the sum of other reactions, in which case the enthalpy of the overall reaction is the sum of the enthalpies of the component reactions.</li>
         <li>Steps to solving Hess’s law problems:
@@ -62,12 +63,12 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=da3bcc4746"></script>
+<script src="site.js?v=61ad9216fb"></script>
 <script>(function(){
 
 const A=AS, T=A.U7, S=A.U6;
-A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figHess()}</div>`;
-A.$("#hess-art").innerHTML=T.figHess();
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figHessPath()}</div>`;
+A.$("#hess-art").innerHTML=T.figHessPath();
 T.hessExamples(A.$("#ex-hess"),T.HESS_EX);
 T.DeltaHGame(A.$("#dh-host"));
 T.HessGame(A.$("#hb-host"));
@@ -75,7 +76,9 @@ A.VocabCheck(A.$("#vc-host"),[{"s": "A quantity that depends only on the startin
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Enthalpy is a state function. This means that the ΔH of a reaction depends only on",choices:["the number of steps in the reaction","the starting and ending states","how fast the reaction occurs","the temperature of the calorimeter"],ans:2,explain:"Only the starting and ending enthalpies matter, not the path between them."},
  {type:"mc",stem:"A reaction has ΔH = −120 kJ. When the reaction is reversed and multiplied by 2, its ΔH becomes",choices:["−240 kJ","−60 kJ","+240 kJ","+60 kJ"],ans:3,explain:"Reversing switches the sign (+120 kJ); multiplying by 2 doubles it (+240 kJ)."},
- {type:"text",stem:"Given A → B ΔH = +50 kJ and B → C ΔH = −80 kJ, what is ΔH for A → C?",unit:"kJ",width:110,check:v=>A.lenient(v,-30,{dp:0}),explain:"Add the two steps: +50 + (−80) = −30 kJ."},
+ {type:"text",stem:`Use the two steps in the table to find ΔH for the target reaction, A → C.<div class="tbl-wrap" style="margin-top:8px"><table class="nt hs-qt"><tr><th></th><th>Reaction</th><th>ΔH</th></tr><tr><td><b>1</b></td><td>A → B</td><td>+50 kJ</td></tr><tr><td><b>2</b></td><td>B → C</td><td>−80 kJ</td></tr><tr><td><b>Target</b></td><td>A → C</td><td>?</td></tr></table></div>`,unit:"kJ",width:110,check:v=>A.lenient(v,-30,{dp:0}),explain:"Add the two steps: +50 + (−80) = −30 kJ."},
+ {type:"text",stem:`Nitrogen dioxide, the brown gas in smog, forms from nitrogen and oxygen in two steps. Use the equations in the table to find ΔH for the target reaction.<div class="tbl-wrap" style="margin-top:8px"><table class="nt hs-qt"><tr><th></th><th>Reaction</th><th>ΔH</th></tr><tr><td><b>1</b></td><td>N<sub>2</sub>(g) + O<sub>2</sub>(g) → 2NO(g)</td><td>+180.6 kJ</td></tr><tr><td><b>2</b></td><td>2NO(g) + O<sub>2</sub>(g) → 2NO<sub>2</sub>(g)</td><td>−114.2 kJ</td></tr><tr><td><b>Target</b></td><td>N<sub>2</sub>(g) + 2O<sub>2</sub>(g) → 2NO<sub>2</sub>(g)</td><td>?</td></tr></table></div>`,unit:"kJ",width:110,check:v=>A.lenient(v,66.4,{dp:1}),explain:"The two equations already add up to the target: 2NO(g) cancels. ΔH = +180.6 kJ + (−114.2 kJ) = +66.4 kJ."},
+ {type:"text",stem:`Carbon monoxide is hard to make in a calorimeter, because some of the carbon always burns all the way to CO<sub>2</sub>. Use the equations in the table to find ΔH for the target reaction. (Hint: one equation must be reversed.)<div class="tbl-wrap" style="margin-top:8px"><table class="nt hs-qt"><tr><th></th><th>Reaction</th><th>ΔH</th></tr><tr><td><b>1</b></td><td>C(s) + O<sub>2</sub>(g) → CO<sub>2</sub>(g)</td><td>−393.5 kJ</td></tr><tr><td><b>2</b></td><td>CO(g) + ½O<sub>2</sub>(g) → CO<sub>2</sub>(g)</td><td>−283.0 kJ</td></tr><tr><td><b>Target</b></td><td>C(s) + ½O<sub>2</sub>(g) → CO(g)</td><td>?</td></tr></table></div>`,unit:"kJ",width:110,check:v=>A.lenient(v,-110.5,{dp:1}),explain:"Keep equation 1 and reverse equation 2 (ΔH = +283.0 kJ), so CO<sub>2</sub>(g) cancels. ΔH = −393.5 kJ + 283.0 kJ = −110.5 kJ."},
  {type:"mc",stem:"When reactions are added using Hess’s law, a substance that appears on both the reactant side and the product side",choices:["is doubled","cancels out","must be reversed","changes the sign of ΔH"],ans:2,explain:"Equal amounts on both sides cancel, just like terms in algebra."}]);
 
 })();</script>
