@@ -7,7 +7,7 @@
 <title>Kinetic Molecular Theory</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -32,15 +32,15 @@
           <li>Collisions between gas particles are <span class="kg">perfectly elastic</span>: no kinetic energy is lost in collisions. Momentum can be transferred, but the total kinetic energy stays the same.</li>
           <li><span class="kp">There are no intermolecular forces between gas particles.</span></li>
           <li><span class="ko">The average kinetic energy of a gas is proportional to its Kelvin temperature.</span></li></ol></li>
-        <li>Each postulate explains a property of gases:
-          <ul><li>Particles far apart with no volume → gases can be compressed.</li><li>Constant, random motion → gases fill their container and mix completely.</li><li>Collisions with the walls → gases exert pressure.</li></ul></li>
+        <li>The postulates of the kinetic molecular theory explain the properties of gases:
+          <ul><li>Gas particles are far apart and have negligible volume, so gases can be compressed.</li><li>Gas particles are in constant, random motion, so gases fill their containers and mix completely.</li><li>Gas particles collide with the walls of their container, so gases exert pressure.</li></ul></li>
       </ul>
 
     </div>
   </section>
 
   <section class="lab" id="kmtg">
-    <div class="lab-h"><span class="tag game">Game</span><h3>Kinetic Molecular Theory: True or False?</h3></div>
+    <div class="lab-h"><span class="tag game">Game</span><h3>Spot the Broken Postulate</h3></div>
     <div id="kt-host"></div>
   </section>
 
@@ -57,23 +57,37 @@
         <li><span class="def">Real Gas</span> – a non-ideal gas whose particles occupy space and exert intermolecular forces on one another.</li>
       </ul>
       <div class="center"><table class="nt g8-cmpt"><tr><th></th><th>Ideal Gas</th><th>Real Gas</th></tr><tr><th>Particle size</th><td>Particles have no volume</td><td>Particles have some volume</td></tr><tr><th>Intermolecular forces</th><td>No attractive forces between particles</td><td>Some attractive forces between particles</td></tr><tr><th>Motion</th><td>Particles move in random, straight lines</td><td>Attractions between particles can pull them out of straight-line motion</td></tr></table></div>
-      <ul>
-        <li>Depending on the conditions, gas particles can behave more or less like ideal gases.</li>
-        <li><span class="kr">Real gases behave most like ideal gases at high temperature and low pressure.</span>
-          <ul><li><i>High temperature</i>: particles with high kinetic energy move fast and have little time to interact with each other.</li>
-          <li><i>Low pressure</i>: the particles spread far apart, so their size is negligible compared to the volume of their container and their intermolecular forces are weaker.</li></ul></li>
-        <li>Real gases behave least like ideal gases at <span class="kb">low temperature and high pressure</span>, where the particles are slow and crowded together. Under these conditions, a real gas can condense into a liquid.</li>
-        <li>Gases with <span class="kg">small, nonpolar particles</span>, such as hydrogen (H<sub>2</sub>) and helium (He), behave most like ideal gases, because their intermolecular forces are the weakest.</li>
-      </ul>
       <div class="t7-fig" id="ir-art"></div>
-      <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Of H<sub>2</sub>, CO<sub>2</sub>, HCl and Xe at STP, H<sub>2</sub> behaves most like an ideal gas: its molecules are the smallest and are nonpolar, so its intermolecular forces are the weakest.</div></div></div>
+      <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">At 25 °C and 1 atm, 1 mol of an ideal gas occupies 24.5 L. One mole of carbon dioxide occupies slightly less, about 24.3 L, because its molecules attract one another and pull slightly closer together.</div></div></div>
 
     </div>
   </section>
 
   <section class="lab" id="irsim">
-    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Ideal Gas vs. Real Gas</h3></div>
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Real Gas Lab</h3></div>
     <div id="ir-host"></div>
+  </section>
+
+  <div class="part" id="p3" data-short="Ideal conditions"><div class="pn"><small>Part</small><span>3</span></div><h2>Conditions for Ideal Gases</h2><p>Weather balloons, scuba tanks and the propane tanks on gas grills all hold real gases, but only some of them can be described accurately with the ideal gas model. Helium in a weather balloon at low pressure behaves almost exactly like an ideal gas, while the propane in a grill tank is squeezed so hard that it condenses into a liquid. In this section, we will discuss the conditions under which real gases behave most like ideal gases.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Conditions That Favor Ideal Behavior</h2></div>
+    <div class="body">
+      <p class="intro">Real gases differ from ideal gases in two ways: their particles take up space and they attract one another. Any condition that makes the particles’ own volume and their attractions less important makes a real gas behave more like an ideal gas.</p>
+      <ul>
+        <li>Depending on the conditions of the environment, gas particles can behave more or less like ideal gases.</li>
+        <li>Conditions that favor ideal gas behavior:
+          <ul><li><span class="kr">High temperature</span> – particles with high kinetic energy move fast and have little time to interact with each other.</li>
+          <li><span class="kb">Low pressure</span> – the particles spread far apart, so their size is negligible compared to the volume of their container and the intermolecular forces between them are weaker.</li>
+          <li><span class="kg">Small, nonpolar particles</span> – small atoms and molecules such as helium (He) and hydrogen (H<sub>2</sub>) have the weakest intermolecular forces, so they behave most like ideal gases.</li></ul></li>
+        <li>High temperatures and low pressures favor ideal gas behavior because the effects of intermolecular forces and particle size are minimized.</li>
+        <li><span class="kp">Real gases behave least like ideal gases at low temperature and high pressure</span>, where the particles are slow and crowded together. Under these conditions, a real gas can condense into a liquid.</li>
+      </ul>
+      <div class="t7-fig" id="ic-art"></div>
+      <div class="rw"><figure><img src="photos/liquid-nitrogen-tank.jpg" alt="A large storage tank of liquid nitrogen with frosted pipes outside a university building" loading="lazy"><figcaption><b>Liquid nitrogen</b>Nitrogen gas condenses into a liquid when it is cooled to −196 °C. At very low temperatures, the attractions between real gas particles hold them together. Frost forms on the cold pipes.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Liquid_Nitrogen_Tank.JPG" target="_blank" rel="noopener">Toby Hudson</a>, Wikimedia Commons (CC BY-SA 3.0)</span></figcaption></figure></div>
+      <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Of H<sub>2</sub>, CO<sub>2</sub>, HCl and Xe at STP, H<sub>2</sub> behaves most like an ideal gas. Its molecules are the smallest and are nonpolar, so its intermolecular forces are the weakest.</div></div></div>
+
+    </div>
   </section>
 
   <section class="lab" id="irgame">
@@ -92,20 +106,16 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figIdealReal()}</div>`;
 A.$("#ir-art").innerHTML=G.figIdealReal();
-P.TapSort(A.$("#kt-host"),{prompt:"Is this statement true for an ideal gas, according to the kinetic molecular theory?",how:"Decide whether each statement agrees with the kinetic molecular theory.",choices:[["t","True"],["f","False"]],items:[
- ["Gas particles move in constant, random, straight-line motion.","t","This is one of the postulates."],["Gas particles attract one another strongly.","f","Ideal gas particles have no intermolecular forces."],["Gas particles have no volume.","t","Their volume is negligible compared with the space between them."],
- ["Gas particles lose kinetic energy every time they collide.","f","Collisions are perfectly elastic: no kinetic energy is lost."],["Gas particles are spaced very far apart.","t","This is why gases can be compressed."],["Gas particles move in circles.","f","They move in straight lines until they collide."],
- ["The average kinetic energy of gas particles is proportional to their Kelvin temperature.","t","Doubling the Kelvin temperature doubles the average kinetic energy."],["Gas particles are packed tightly in fixed positions.","f","That describes a solid, not a gas."]]});
-G.IdealReal(A.$("#ir-host"));
-P.TapSort(A.$("#ig-host"),{prompt:"Which gas, or which conditions, behave more like an ideal gas?",how:"Ideal behavior: high temperature, low pressure, and small, nonpolar particles with weak intermolecular forces.",choices:[["a","First"],["b","Second"]],items:[
- ["He or HCl at STP","a","He is small and nonpolar; HCl is polar and attracts its neighbors more strongly."],["N<sub>2</sub> at 500 K or N<sub>2</sub> at 100 K (same pressure)","a","At high temperature the particles move too fast for attractions to matter."],["O<sub>2</sub> at 0.5 atm or O<sub>2</sub> at 50 atm (same temperature)","a","At low pressure the particles are far apart."],
- ["Xe or H<sub>2</sub> at STP","b","H<sub>2</sub> molecules are smaller, with weaker London dispersion forces."],["CO<sub>2</sub> at 200 K and 10 atm, or CO<sub>2</sub> at 600 K and 1 atm","b","High temperature and low pressure favor ideal behavior."],["NH<sub>3</sub> or Ne at STP","b","NH<sub>3</sub> molecules are polar and form hydrogen bonds; Ne atoms are nonpolar."]]});
+G.KMTSpot(A.$("#kt-host"));
+G.RealGasLab(A.$("#ir-host"));
+A.$("#ic-art").innerHTML=G.figIdealConditions();
+G.IdealPick(A.$("#ig-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "A set of rules that describes the behavior of gases is the ___.", "a": "kinetic molecular theory"}, {"s": "A theoretical gas with no particle volume and no intermolecular forces is an ___.", "a": "ideal gas"}, {"s": "Collisions in which no kinetic energy is lost are perfectly ___.", "a": "elastic"}, {"s": "Real gases behave most like ideal gases at high temperature and low ___.", "a": "pressure"}]);
 A.QSet(A.$("#qs"),[
 {type:"mc",stem:"Under which conditions does a real gas behave most like an ideal gas?",choices:["high temperature and high pressure","low temperature and low pressure","high temperature and low pressure","low temperature and high pressure"],ans:3,explain:"High temperature makes attractions unimportant and low pressure keeps the particles far apart."},

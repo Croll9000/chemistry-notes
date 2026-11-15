@@ -7,7 +7,7 @@
 <title>Describing Gases</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -48,17 +48,21 @@
           <li><span class="def">Temperature (T)</span> – a measurement of the average kinetic energy of the particles in a substance.
             <ul><li class="qu"><i>Unit</i> – <span class="kb">gas calculations always use kelvin (K)</span>: K = °C + 273</li><li class="qu"><i>Measuring device</i> – thermometer</li></ul></li>
           <li><span class="def">Amount of Particles (n)</span> – the quantity of gas particles present.
-            <ul><li class="qu"><i>Unit</i> – moles (mol)</li><li class="qu">The amount cannot be read from an instrument directly. Measure the mass, then divide by the molar mass: <span class="mth">n = m ÷ M</span>.</li></ul></li></ul></li>
+            <ul><li class="qu"><i>Unit</i> – moles (mol)</li><li class="qu"><i>Measuring device</i> – no instrument measures moles directly. The mass of the gas is measured with a balance and then converted to moles using its molar mass.</li></ul></li></ul></li>
       </ul>
       <div class="t7-fig" id="vars-art"></div>
-      <ul><li>In every gas law on the following pages, one or more of these variables is held constant so the relationship between the others can be studied.</li></ul>
 
     </div>
   </section>
 
   <section class="lab" id="vsort">
-    <div class="lab-h"><span class="tag game">Game</span><h3>Variable, Unit or Instrument?</h3></div>
+    <div class="lab-h"><span class="tag game">Game</span><h3>Sort the Units and Instruments</h3></div>
     <div id="vs-host"></div>
+  </section>
+
+  <section class="lab" id="sexp">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Gas State Explorer</h3></div>
+    <div id="se-host"></div>
   </section>
 
   <div class="part" id="p2" data-short="STP"><div class="pn"><small>Part</small><span>2</span></div><h2>Standard Temperature and Pressure</h2><p>The volume of a balloon filled with 1.00 mol of helium is about 22.4 L on a 0 °C day at sea level, but about 24.5 L in a 25 °C room. Because the volume of a gas changes with conditions, chemists compare gases at one agreed-upon set of conditions. In this section, we will discuss standard temperature and pressure.</p></div>
@@ -69,10 +73,10 @@
       <p class="intro">A measured volume of gas means little unless the temperature and pressure are given with it. To compare measurements made in different laboratories, chemists report gas volumes at standard temperature and pressure.</p>
       <ul>
         <li><span class="def">STP (Standard Temperature and Pressure)</span> – the standard conditions for comparing gases: <span class="kr">0 °C (273 K) and 1 atm (101.3 kPa)</span>.
-          <ul><li>The Reference Table gives STP as 273.15 K and 1 atm.</li></ul></li>
-        <li>At STP, 1 mole of any ideal gas occupies 22.4 L (the molar volume; see Unit 6, Molar Volume).
-          <ul><li>This is a result of <span class="def">Avogadro’s Law</span> – equal volumes of gases at the same temperature and pressure contain the same number of particles (see <a href="s-molvolume.html">Unit 6: Molar Volume</a>).</li></ul></li>
+</li>
+        <li>At STP, 1 mole of any gas occupies 22.4 L. This volume is called the molar volume of a gas (see <a href="s-molvolume.html">Unit 6: Molar Volume</a>).</li>
       </ul>
+      <div class="t7-fig" id="stp-art"></div>
       <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">A problem states that a gas is “at STP.” This gives two values: T = 273 K and P = 101.3 kPa (1 atm).</div></div></div>
 
     </div>
@@ -89,17 +93,14 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figVars()}</div>`;
-A.$("#vars-art").innerHTML=G.figVars();
-P.TapSort(A.$("#vs-host"),{prompt:"Which gas variable does this describe?",how:"Each card is a unit or an instrument. Sort it to the variable it measures: P (pressure), V (volume), T (temperature) or n (amount).",choices:[["P","Pressure (P)"],["V","Volume (V)"],["T","Temperature (T)"],["n","Amount (n)"]],items:[
- ["kilopascals (kPa)","P","kPa is a unit of pressure."],["atmospheres (atm)","P","atm is a unit of pressure."],["millimeters of mercury (mmHg)","P","mmHg is a unit of pressure, from the height of a mercury column."],["barometer","P","A barometer measures air pressure."],["pressure gauge","P","A pressure gauge measures the pressure of a gas in a container."],
- ["liters (L)","V","Liters measure volume."],["milliliters (mL)","V","Milliliters measure volume."],["graduated syringe","V","A syringe’s scale reads the volume of gas inside it."],
- ["kelvin (K)","T","Kelvin is the temperature scale used in gas calculations."],["thermometer","T","A thermometer measures temperature."],["average kinetic energy of the particles","T","Temperature measures the average kinetic energy."],
- ["moles (mol)","n","Moles measure the amount of gas."],["mass ÷ molar mass","n","n = m ÷ M gives the number of moles."]]});
+A.$("#vars-art").innerHTML=G.figVars(); A.$("#stp-art").innerHTML=G.figSTP();
+G.VarSort(A.$("#vs-host"));
+G.StateExplorer(A.$("#se-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "The force applied by gas particles as they collide with the walls of their container is ___.", "a": "pressure"}, {"s": "The volume of a gas is the volume of its ___.", "a": "container"}, {"s": "Gas calculations always use temperature in ___.", "a": "kelvin"}, {"s": "The amount of a gas is measured in ___.", "a": "moles"}, {"s": "Standard temperature and pressure, 0 °C and 1 atm, is abbreviated ___.", "a": "STP"}]);
 A.QSet(A.$("#qs"),[
 {type:"mc",stem:"Which unit is used for temperature in gas calculations?",choices:["degrees Celsius","degrees Fahrenheit","kelvin","joules"],ans:3,explain:"Gas calculations use the Kelvin scale, because only Kelvin temperatures are proportional to the average kinetic energy of the particles."},

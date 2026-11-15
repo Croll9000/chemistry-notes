@@ -7,7 +7,7 @@
 <title>Gas Pressure</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -59,6 +59,7 @@
           <li>The <span class="kg">higher the altitude, the lower the air pressure</span>, because there is less air above pushing down.</li></ul></li>
         <li><span class="def">Pressure Gauge</span> – an instrument used to measure the pressure of a gas inside a container, such as a tire or a gas cylinder.</li>
       </ul>
+      <div class="rw"><figure><img src="photos/mercury-barometer.jpg" alt="The top of a nineteenth-century mercury barometer with its scale" loading="lazy"><figcaption><b>Mercury barometer</b>The height of the mercury column in the glass tube is read against the scale behind it.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Mercury_barometer_-_Pariser_Maasz_-_Germany_-_19th_century.jpg" target="_blank" rel="noopener">Franz van Duns</a>, Wikimedia Commons (CC BY-SA 4.0)</span></figcaption></figure><figure><img src="photos/tire-pressure-gauge.jpg" alt="A dial pressure gauge pressed onto the valve of a car tire" loading="lazy"><figcaption><b>Tire pressure gauge</b>The gauge reads the pressure of the air inside the tire.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Tire_pressure_gauge.jpg" target="_blank" rel="noopener">U.S. Air Force photo by Airman Frank Snider</a>, Wikimedia Commons (public domain)</span></figcaption></figure><figure><img src="photos/everest-aerial.jpg" alt="Mount Everest seen from an airplane" loading="lazy"><figcaption><b>Mount Everest</b>At the summit, 8,849 m above sea level, the air pressure is only about one third of standard pressure.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg" target="_blank" rel="noopener">shrimpo1967</a>, Wikimedia Commons (CC BY-SA 2.0)</span></figcaption></figure></div>
 
     </div>
   </section>
@@ -76,12 +77,12 @@
       <p class="intro">Pressure units came from the instruments used to measure them. The millimeter of mercury is the height of a mercury column, the atmosphere is the average pressure of the air at sea level, and the pascal is the SI unit, one newton of force on one square meter.</p>
       <ul>
         <li>The two most common units of pressure are kilopascals (kPa) and atmospheres (atm). A less commonly used unit is millimeters of mercury (mmHg).</li>
-        <li>Three units of pressure are used in chemistry:
+        <li>Each unit of pressure is defined by the measurement it came from:
           <ul><li><span class="def">Atmosphere (atm)</span> – the average pressure of the air at sea level.</li>
           <li><span class="def">Kilopascal (kPa)</span> – 1000 pascals; the pascal is the SI unit of pressure.</li>
           <li><span class="def">Millimeter of mercury (mmHg)</span> – the pressure that holds up a column of mercury 1 mm tall. It is also called the torr.</li></ul></li>
-        <li><span class="kr">1 atm = 101.3 kPa = 760 mmHg</span>. The Reference Table gives 1 atm = 101.3 kPa.</li>
-        <li>Convert between the units with dimensional analysis: put the unit you want to cancel on the bottom of the conversion factor.</li>
+        <li><span class="kr">1 atm = 101.3 kPa = 760 mmHg</span></li>
+        <li>Pressure units are converted using dimensional analysis. The given unit is placed in the denominator of the conversion factor so that it cancels.</li>
       </ul>
       <div class="center"><div class="fbox"><span>1 atm</span><span>=</span><span>101.3 kPa</span><span>=</span><span>760 mmHg</span></div></div>
       <div id="ex1" style="margin-top:12px"></div>
@@ -105,7 +106,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
@@ -114,9 +115,24 @@ A.$("#col-art").innerHTML=G.figCollide();
 G.LawSim(A.$("#ps-host"),{law:"pressure"});
 G.Barometer(A.$("#ba-host"));
 S.workedTabs(A.$("#exF"),[{label:"Find P",...S.wk("Ex: A gas pushes on a piston with an area of 0.0050 m<sup>2</sup> with a total force of 500. N. What pressure does the gas exert, in kPa?",[["<b>Step 1:</b> List the given values and the unknown.","F = 500. N, A = 0.0050 m<sup>2</sup>, P = ?"],["<b>Step 2:</b> Write down the formula.","P = F ÷ A"],["<b>Step 3:</b> Substitute and solve.","P = (500. N) ÷ (0.0050 m<sup>2</sup>) = 100,000 Pa"],["<b>Step 4:</b> Write the final answer with units.","P = 100,000 Pa = 100. kPa (1 kPa = 1000 Pa)"]])}]);
+const PCOL={kPa:"#00B050",atm:"#E00000",mmHg:"#2E75D6"}, PU=(u,x)=>`<i class="${x?"xu":""}" style="color:${PCOL[u]}">${u}</i>`, PCF=(tn,tu,bn,bu,xt,xb)=>`<span class="cf"><span class="pr pl">(</span><span class="fr"><span>${tn}&thinsp;${PU(tu,xt)}</span><span>${bn}&thinsp;${PU(bu,xb)}</span></span><span class="pr pR">)</span></span>`;
 S.workedTabs(A.$("#ex1"),[
- {label:"kPa → atm",...S.wk("Ex: Convert 85.0 kPa to atmospheres.",[["<b>Step 1:</b> Write the given quantity.","85.0 kPa"],["<b>Step 2:</b> Multiply by a conversion factor with kPa on the bottom.","85.0 kPa × (1 atm ÷ 101.3 kPa)"],["<b>Step 3:</b> Calculate.","= 0.839 atm"]])},
- {label:"mmHg → kPa",...S.wk("Ex: Convert 650. mmHg to kilopascals.",[["<b>Step 1:</b> Write the given quantity.","650. mmHg"],["<b>Step 2:</b> Convert mmHg to atm, then atm to kPa.","650. mmHg × (1 atm ÷ 760 mmHg) × (101.3 kPa ÷ 1 atm)"],["<b>Step 3:</b> Calculate.","= 86.6 kPa"]])}]);
+ {label:"kPa → atm",...S.wk("Ex: Convert 85.0 kPa to atmospheres.",[
+  ["Write down the given quantity you wish to convert.",`85.0&thinsp;${PU("kPa")}`],
+  ["Write down the desired unit.",`85.0&thinsp;${PU("kPa")} &nbsp;= ___ ${PU("atm")}`],
+  ["Identify relevant equivalences.",`<span style="display:block;text-align:center">1 ${PU("atm")} = 101.3 ${PU("kPa")}</span>`],
+  ["Set up the conversion factor, making sure to place the given unit in the denominator.",`85.0&thinsp;${PU("kPa")}${PCF(1,"atm","101.3","kPa")} = ___ ${PU("atm")}`],
+  ["Cancel units.",`85.0&thinsp;${PU("kPa",1)}${PCF(1,"atm","101.3","kPa",0,1)} = ___ ${PU("atm")}`],
+  ["Multiply by the numbers in the numerator. Divide by the numbers in the denominator.",`85.0 × 1 ÷ 101.3 = 0.839 ${PU("atm")}`],
+  ["Write the final answer with units.",`0.839 ${PU("atm")}`]])},
+ {label:"mmHg → kPa",...S.wk("Ex: Convert 650. mmHg to kilopascals.",[
+  ["Write down the given quantity you wish to convert.",`650.&thinsp;${PU("mmHg")}`],
+  ["Write down the desired unit.",`650.&thinsp;${PU("mmHg")} &nbsp;= ___ ${PU("kPa")}`],
+  ["Identify relevant equivalences.",`<span style="display:block;text-align:center;line-height:1.7">1 ${PU("atm")} = 760 ${PU("mmHg")}<br>1 ${PU("atm")} = 101.3 ${PU("kPa")}</span>`],
+  ["Set up conversion factors, making sure to place the given unit in the denominator.",`650.&thinsp;${PU("mmHg")}${PCF(1,"atm",760,"mmHg")}${PCF("101.3","kPa",1,"atm")} = ___ ${PU("kPa")}`],
+  ["Cancel units.",`650.&thinsp;${PU("mmHg",1)}${PCF(1,"atm",760,"mmHg",1,1)}${PCF("101.3","kPa",1,"atm",0,1)} = ___ ${PU("kPa")}`],
+  ["Multiply by the numbers in the numerator. Divide by the numbers in the denominator.",`650. × 1 × 101.3 ÷ (760 × 1) = 86.6 ${PU("kPa")}`],
+  ["Write the final answer with units.",`86.6 ${PU("kPa")}`]])}]);
 L.DABuilder(A.$("#pc-host"),{eq:{atmkPa:[[1,"atm"],[101.3,"kPa"]],atmmm:[[1,"atm"],[760,"mmHg"]]},probs:[["atm","kPa",["atmkPa"],["atmmm"],[0.25,3.5]],["kPa","atm",["atmkPa"],["atmmm"],[25,350]],["mmHg","atm",["atmmm"],["atmkPa"],[200,1500]],["atm","mmHg",["atmmm"],["atmkPa"],[0.2,2.5]],["kPa","mmHg",["atmkPa","atmmm"],[],[40,250]],["mmHg","kPa",["atmmm","atmkPa"],[],[300,900]]]});
 A.VocabCheck(A.$("#vc-host"),[{"s": "Force applied over an area is ___.", "a": "pressure"}, {"s": "An instrument used to measure air pressure is a ___.", "a": "barometer"}, {"s": "An instrument used to measure the pressure of a gas in a container is a ___.", "a": "pressure gauge"}, {"s": "The average pressure of the air at sea level is one ___.", "a": "atmosphere"}, {"s": "Gas pressure is caused by particles colliding with the ___ of their container.", "a": "walls"}]);
 A.QSet(A.$("#qs"),[

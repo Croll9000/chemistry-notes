@@ -7,7 +7,7 @@
 <title>Atomic Structure Notes</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <style>
@@ -61,7 +61,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS;
@@ -85,7 +85,7 @@ const blurbs={
  avgmass:["The weighted average of an element’s isotopes, calculated two ways, and how a mass spectrometer measures isotopes (enrichment).",["Step-by-step calculator","Fill-in practice","Mass spectrum reader (enrichment)"]],
  practice:["Games from every subtopic in one place.",["Shell notation","Isotope symbols","Element Detective","Free practice"]]
 };
-A.$("#toc-en").innerHTML=A.ENRICH.map((p,i)=>`<a class="tcard enr" href="${hrefOf(p.slug)}"${tgt}><span class="num">${i+1}</span><span class="tc"><h3>${p.title}</h3>${i===5?"<p>Optional</p>":""}</span></a>`).join("");
+A.$("#toc-en").innerHTML=A.ENRICH.map((p,i)=>`<a class="tcard enr" href="${hrefOf(p.slug)}"${tgt}><span class="num">${i+1}</span><span class="tc"><h3>${p.title}</h3>${p.slug==="orb-6-exceptions"?"<p>Optional</p>":""}</span></a>`).join("");
 A.$("#toc").innerHTML=A.SITE.map((p,i)=>{ const b=blurbs[p.slug]; const last=p.slug==="practice"; return `<a class="tcard${last?" arcade":""}" href="${hrefOf(p.slug)}"${tgt}><span class="num">${last?"★":i+1}</span><span class="tc"><h3>${p.title}</h3><p>${b[0]}</p><span class="tools">${b[1].map(t=>`<span>${t}</span>`).join("")}</span></span></a>`; }).join("");
 
 })();</script>

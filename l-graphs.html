@@ -7,7 +7,7 @@
 <title>Graphs & Proportional Relationships</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -86,7 +86,7 @@
     <div class="body">
       <p class="intro">The slope of a graph tells how fast the dependent variable changes when the independent variable changes. A steeper line means a faster change. The slope often has a meaning of its own: on a graph of mass against volume, the slope is the density.</p>
       <ul>
-        <li><span class="def">Slope</span> – the change in y divided by the change in x (rise over run).</li>
+        <li><span class="def">Slope</span> – the change in y divided by the change in x.</li>
         <li>Pick two points <span class="kr">on the line</span> that are far apart. Use data points only if the line passes through them.</li>
         <li>The unit of a slope is the <span class="kb">y-axis unit divided by the x-axis unit</span>, for example g/cm³ or mL/s.</li>
         <li>A line that rises has a positive slope, a line that falls has a negative slope, and a horizontal line has a slope of zero.</li>
@@ -163,7 +163,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
@@ -171,7 +171,7 @@ A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6
 A.$("#co2-parts").innerHTML=L.figCO2({parts:1}); A.$("#co2-read").innerHTML=L.figCO2({read:1});
 A.$("#zn-art").innerHTML=L.figZinc(); A.$("#lin-art").innerHTML=L.figLinearize(); A.$("#shapes-art").innerHTML=L.figShapes();
 L.VarSort(A.$("#vs-host")); L.GraphLab(A.$("#gl-host")); L.SlopeGame(A.$("#sl-host")); L.RelExplorer(A.$("#re-host")); L.ShapeGame(A.$("#sg-host"));
-S.workedTabs(A.$("#ex-sl"),[{label:"Density of zinc",...S.wk("Ex: Use the graph of mass vs. volume for zinc to find the slope of the line. What does the slope represent?",[["<b>Step 1:</b> Choose two points on the line that are far apart.","(1.00 cm³, 7.14 g) and (5.00 cm³, 35.7 g)"],["<b>Step 2:</b> Find the rise (Δy).","Δy = 35.7 g − 7.14 g = 28.6 g"],["<b>Step 3:</b> Find the run (Δx).","Δx = 5.00 cm³ − 1.00 cm³ = 4.00 cm³"],["<b>Step 4:</b> Divide, and include the unit.","slope = 28.6 g ÷ 4.00 cm³ = 7.15 g/cm³ (the density of zinc)"]])},{label:"Negative slope",...S.wk("Ex: A cup of tea cools from 70. °C at 2.0 min to 30. °C at 10.0 min along a straight line. What is the slope?",[["<b>Step 1:</b> Choose two points on the line.","(2.0 min, 70. °C) and (10.0 min, 30. °C)"],["<b>Step 2:</b> Find the rise (Δy).","Δy = 30. °C − 70. °C = −40. °C"],["<b>Step 3:</b> Find the run (Δx).","Δx = 10.0 min − 2.0 min = 8.0 min"],["<b>Step 4:</b> Divide, and include the unit.","slope = −40. °C ÷ 8.0 min = −5.0 °C/min (the tea cools 5.0 °C each minute)"]])}]);
+S.workedTabs(A.$("#ex-sl"),[{label:"Density of zinc",...S.wk("Ex: Use the graph of mass vs. volume for zinc to find the slope of the line. What does the slope represent?",[["<b>Step 1:</b> Choose two points on the line that are far apart.","(1.00 cm³, 7.14 g) and (5.00 cm³, 35.7 g)"],["<b>Step 2:</b> Find the change in y (Δy).","Δy = 35.7 g − 7.14 g = 28.6 g"],["<b>Step 3:</b> Find the change in x (Δx).","Δx = 5.00 cm³ − 1.00 cm³ = 4.00 cm³"],["<b>Step 4:</b> Divide, and include the unit.","slope = 28.6 g ÷ 4.00 cm³ = 7.15 g/cm³ (the density of zinc)"]])},{label:"Negative slope",...S.wk("Ex: A cup of tea cools from 70. °C at 2.0 min to 30. °C at 10.0 min along a straight line. What is the slope?",[["<b>Step 1:</b> Choose two points on the line.","(2.0 min, 70. °C) and (10.0 min, 30. °C)"],["<b>Step 2:</b> Find the change in y (Δy).","Δy = 30. °C − 70. °C = −40. °C"],["<b>Step 3:</b> Find the change in x (Δx).","Δx = 10.0 min − 2.0 min = 8.0 min"],["<b>Step 4:</b> Divide, and include the unit.","slope = −40. °C ÷ 8.0 min = −5.0 °C/min (the tea cools 5.0 °C each minute)"]])}]);
 A.VocabCheck(A.$("#vc-host"),[{"s": "The variable the experimenter changes on purpose is the ___ variable.", "a": "independent"}, {"s": "The variable that is measured is the ___ variable.", "a": "dependent"}, {"s": "A variable kept the same in every trial is a ___ variable.", "a": "controlled"}, {"s": "Reading a value between measured data points is ___.", "a": "interpolation"}, {"s": "The change in y divided by the change in x is the ___.", "a": "slope"}, {"s": "When x × y stays constant, the variables are ___ proportional.", "a": "inversely"}]);
 A.QSet(A.$("#qs"),[
 {type:"mc",stem:"In an experiment, the variable that the experimenter changes on purpose is the",choices:["dependent variable","independent variable","controlled variable","measured variable"],ans:2,explain:"The independent variable is changed on purpose; the dependent variable is measured."},
