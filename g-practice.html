@@ -7,7 +7,7 @@
 <title>Practice Arcade</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=61ad9216fb">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
 </head>
 <body>
 <main class="wrap">
@@ -48,7 +48,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=61ad9216fb"></script>
+<script src="site.js?v=f7f6a6eac6"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, P=A.U3, L=A.U0;
@@ -67,7 +67,7 @@ A.QSet(A.$("#qs"),[
  {type:"mc",stem:"A 220.0 mL sample of helium at 105 kPa and 275 K is compressed to 95.0 mL at 310. K. What is the new pressure?",choices:["51.1 kPa","216 kPa","243 kPa","274 kPa"],ans:4,explain:"(105)(220.0)/275 = P₂(95.0)/310, so P₂ = 274 kPa."},
  {type:"mc",stem:"Which temperature change would cause the volume of a sample of an ideal gas to double when the pressure remains the same?",choices:["from 200 °C to 400 °C","from 400 °C to 200 °C","from 200 K to 400 K","from 400 K to 200 K"],ans:3,explain:"Volume is proportional to the Kelvin temperature."},
  {type:"mc",stem:"Which change is exothermic?",choices:["vaporization of ethanol","condensation of water vapor","melting of ice","sublimation of iodine"],ans:2,explain:"Condensation releases heat as particles move closer together."},
- {type:"mc",stem:"Based on the vapor pressure curves, which substance has the weakest intermolecular forces?",choices:["ethanoic acid","ethanol","propanone","water"],ans:3,explain:"Propanone has the highest vapor pressure at every temperature."},
+ {type:"mc",fig:()=>G.vpFig(),stem:"Based on the vapor pressure curves below, which substance has the weakest intermolecular forces?",choices:["ethanoic acid","ethanol","propanone","water"],ans:3,explain:"Propanone has the highest vapor pressure at every temperature."},
  {type:"text",stem:"A gas occupies 3.0 L at 2.0 atm. At constant temperature, what is its volume at 1.5 atm?",unit:"L",width:100,check:v=>A.lenient(v,4.0,{dp:1}),explain:"(2.0)(3.0) = (1.5)V₂, so V₂ = 4.0 L."},
  {type:"text",stem:"Convert 0.750 atm to mmHg.",unit:"mmHg",width:110,check:v=>A.lenient(v,570,{sf:3}),explain:"0.750 atm × 760 mmHg/atm = 570. mmHg."},
  {type:"cr",stem:"A sealed balloon is taken from a warm car into cold air. Using the kinetic molecular theory, explain what happens to the balloon’s volume.",parts:["Explanation"],model:["The gas particles lose kinetic energy and move more slowly, so they push less on the inside of the balloon. The balloon shrinks until the pressure inside equals the pressure outside: its volume decreases."],noCredit:"An answer that says the particles get smaller."}

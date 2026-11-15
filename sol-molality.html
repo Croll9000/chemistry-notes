@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Molality</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Solutions · 10</span><h1>Molality</h1><p>Enrichment: molality is the moles of solute per kilogram of solvent.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Scale, Proportion &amp; Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Molality"><div class="pn"><small>Part</small><span>1</span></div><h2>Molality</h2><p>When a solution is heated, it expands, so its volume and therefore its molarity change slightly with temperature. Chemists who study freezing and boiling points need a concentration that stays the same at every temperature. Molality uses the mass of the solvent instead of the volume of the solution, and mass does not change when a solution is heated or cooled. In this section we will discuss molality and how it differs from molarity.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Molality (m)</h2></div>
+    <div class="body">
+      <p class="intro">Molality counts the solute in moles but compares it with the mass of the solvent alone.</p>
+      <ul>
+        <li><span class="def">Molality (m)</span> – the number of moles of solute per kilogram of solvent.</li>
+        <li>The unit of molality is mol/kg, written m and read “molal.”</li>
+        <li><span class="kr">Molality uses the mass of the solvent; molarity uses the volume of the whole solution.</span> Molality does not change with temperature.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>molality</span><span>=</span><span><span class="cx-frac"><span>moles of solute</span><span>kilograms of solvent</span></span></span></div><div class="mathbox" style="font-size:16px"><span>molality (m, or mol/kg)</span><span>moles of solute (mol)</span><span>kilograms of solvent (kg)</span></div></div>
+      <ul>
+        <li>Steps to solving molality problems:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>List the variables and the unknown,</b> each with its unit.</li><li><b>Convert units:</b> grams of solute to moles, and grams of solvent to kilograms.</li><li><b>Write down the equation.</b></li><li><b>Substitute and solve.</b></li><li><b>Write the final answer with units.</b></li></ol></li>
+      </ul>
+      <div class="t7-fig" id="mly-art"></div>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="mlg">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Molality Problems</h3></div>
+    <div id="mg-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f7f6a6eac6"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const Z=A.U9;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${Z.figMolality()}</div>`;
+A.$("#mly-art").innerHTML=Z.figMolality();
+S.workedTabs(A.$("#ex1"),[{label:"HCl solution",enr:true,...S.wk("Ex: What is the molality of a 500. g solution containing 45.0 g of HCl?",[["List the variables and the unknown.","mass of HCl = 45.0 g, mass of solution = 500. g, molality = ?"],["Convert units.","moles HCl = <span class='wf'><span>45.0 g</span><span>36.46 g/mol</span></span> = 1.234 mol; solvent = 500. g − 45.0 g = 455 g = 0.455 kg"],["Write down the equation.","molality = <span class='wf'><span>moles of solute</span><span>kilograms of solvent</span></span>"],["Substitute and solve.","molality = <span class='wf'><span>1.234 mol</span><span>0.455 kg</span></span>"],["Write the final answer with units.","2.71 m"]])}]);
+Z.ConcSolve(A.$("#mg-host"),{types:["m"]});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The moles of solute per kilogram of solvent is ___.", "a": "molality"}, {"s": "Molality uses the mass of the ___, not the solution.", "a": "solvent"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"What is the molality of a solution that contains 2.0 mol of solute in 4.0 kg of water?",choices:["0.50 m","2.0 m","4.0 m","8.0 m"],ans:1,explain:"2.0 mol ÷ 4.0 kg = 0.50 m.".replace("÷","/")},
+ {type:"mc",stem:"Molality differs from molarity because molality uses",choices:["the mass of the solvent","the volume of the solution","the mass of the solute","the volume of the solvent"],ans:1,explain:"Molality divides by kilograms of solvent."},
+ {type:"cr",stem:"Calculate the molality of a solution made by dissolving 58.4 g of NaCl (58.44 g/mol) in 2.00 kg of water.",parts:["Work and answer"],model:["1.00 mol ÷ 2.00 kg = 0.500 m"],noCredit:"An answer that divides by the mass of the solution or by liters."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("sol-molality");AS.completion(document.querySelector(".wrap"),"sol-molality");AS.chrome("sol-molality");</script>
+</body>
+</html>

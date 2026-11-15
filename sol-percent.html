@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Percent by Mass and Volume</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Solutions · 9</span><h1>Percent by Mass and Volume</h1><p>Percent by mass and percent by volume compare the amount of solute with the amount of the whole solution.</p>
+    <div class="pe-chips"><span>HS-PS1-7</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Scale, Proportion &amp; Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Percent"><div class="pn"><small>Part</small><span>1</span></div><h2>Percent by Mass and Percent by Volume</h2><p>A bottle of household vinegar is labeled 5% acidity, meaning 5 g of acetic acid in every 100 g of vinegar, while rubbing alcohol is labeled 70% isopropyl alcohol by volume. Percents are the concentration units printed on most products, because they need no moles at all. In this section we will discuss percent by mass and percent by volume.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Percent Concentration</h2></div>
+    <div class="body">
+      <p class="intro">Percent concentrations compare the amount of solute with the amount of the whole solution. Solids dissolved in liquids are usually given by mass; liquids mixed with liquids are usually given by volume.</p>
+      <ul>
+        <li><span class="def">Percent by Mass</span> – the mass of solute in every 100 g of solution.</li>
+        <li><span class="def">Percent by Volume</span> – the volume of solute in every 100 mL of solution.</li>
+        <li><span class="kr">Both use the amount of the whole solution in the denominator</span>, not the amount of solvent.</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>% by mass</span><span>=</span><span><span class="cx-frac"><span>mass of solute</span><span>mass of solution</span></span> × 100</span></div></div>
+      <div class="center"><div class="fbox"><span>% by volume</span><span>=</span><span><span class="cx-frac"><span>volume of solute</span><span>volume of solution</span></span> × 100</span></div><div class="mathbox" style="font-size:16px"><span>mass (g) or volume (mL) of solute</span><span>mass (g) or volume (mL) of solution</span></div></div>
+      <ul>
+        <li>Steps to solving percent concentration problems:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>List the variables and the unknown,</b> each with its unit.</li><li><b>Find the amount of the solution,</b> if needed, by adding the solute and the solvent.</li><li><b>Write down the equation.</b></li><li><b>Substitute and solve.</b></li><li><b>Write the final answer with a percent sign.</b></li></ol></li>
+      </ul>
+      <div class="t7-fig" id="pct-art"></div>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="pcg">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Percent Concentration Problems</h3></div>
+    <div id="pc-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f7f6a6eac6"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const Z=A.U9;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${Z.figPercent()}</div>`;
+A.$("#pct-art").innerHTML=Z.figPercent();
+S.workedTabs(A.$("#ex1"),[{label:"% by mass",...S.wk("Ex: 15.0 g of NaCl is dissolved in 135.0 g of water. What is the percent by mass of NaCl?",[["List the variables and the unknown.","mass of solute = 15.0 g, mass of water = 135.0 g, % by mass = ?"],["Find the mass of the solution.","15.0 g + 135.0 g = 150.0 g"],["Write down the equation.","% by mass = <span class='wf'><span>mass of solute</span><span>mass of solution</span></span> × 100"],["Substitute and solve.","% by mass = <span class='wf'><span>15.0 g</span><span>150.0 g</span></span> × 100"],["Write the final answer with a percent sign.","10.0% NaCl by mass"]])},{label:"% by volume",...S.wk("Ex: An engine coolant contains 40. mL of ethylene glycol in 100. mL of solution. What is its percent by volume?",[["List the variables and the unknown.","volume of solute = 40. mL, volume of solution = 100. mL, % by volume = ?"],["Write down the equation.","% by volume = <span class='wf'><span>volume of solute</span><span>volume of solution</span></span> × 100"],["Substitute and solve.","% by volume = <span class='wf'><span>40. mL</span><span>100. mL</span></span> × 100"],["Write the final answer with a percent sign.","40.% ethylene glycol by volume"]])}]);
+Z.ConcSolve(A.$("#pc-host"),{types:["pm","pv"]});
+A.VocabCheck(A.$("#vc-host"),[{"s": "The mass of solute in every 100 g of solution is percent by ___.", "a": "mass"}, {"s": "The volume of solute in every 100 mL of solution is percent by ___.", "a": "volume"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"What is the percent by mass of NaCl in a solution that contains 10. g of NaCl dissolved in 90. g of water?",choices:["9.0%","10.%","11%","90.%"],ans:2,explain:"10. g ÷ (10. g + 90. g) × 100 = 10.%".replace("÷","/")},
+ {type:"mc",stem:"A 100.-mL coolant solution that is 40.% ethylene glycol by volume contains",choices:["40. mL of ethylene glycol and 100. mL of water","40. mL of ethylene glycol diluted with water to 100. mL","60. mL of ethylene glycol","40. g of ethylene glycol"],ans:2,explain:"40.% by volume means 40. mL of solute in every 100. mL of solution."},
+ {type:"mc",stem:"In a percent by mass calculation, the denominator is the mass of the",choices:["solute","solvent","solution","container"],ans:3,explain:"Percent by mass divides by the mass of the whole solution."},
+ {type:"cr",stem:"Calculate the percent by mass of sugar in a solution made by dissolving 25 g of sugar in 175 g of water.",parts:["Work and answer"],model:["25 g ÷ (25 g + 175 g) × 100 = 12.5% (about 13%)"],noCredit:"14% (dividing by the mass of water instead of the solution)."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("sol-percent");AS.completion(document.querySelector(".wrap"),"sol-percent");AS.chrome("sol-percent");</script>
+</body>
+</html>

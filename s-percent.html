@@ -7,7 +7,7 @@
 <title>Percent Composition & Hydrates</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=61ad9216fb">
+<link rel="stylesheet" href="site.css?v=f7f6a6eac6">
 </head>
 <body>
 <main class="wrap">
@@ -29,7 +29,10 @@
           <ul><li>Mass of part: the mass of one element in one mole of the compound (number of atoms × atomic mass).</li>
           <li>Mass of whole: the molar mass of the compound.</li></ul></li>
         
-      </ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Water, H<sub>2</sub>O (18.02 g/mol): <div class="calc-line"><span class="mth">% H = <span class="wf"><span>2.02 g</span><span>18.02 g</span></span> × 100 = 11.2%</span></div><div class="calc-line"><span class="mth">% O = <span class="wf"><span>16.00 g</span><span>18.02 g</span></span> × 100 = 88.8%</span></div></div></div></div>
+              <li>Steps to calculating percent composition:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>Identify the part and the whole.</b> The part is the element; the whole is the compound.</li><li><b>Calculate the molar mass of the compound</b> (the mass of the whole).</li><li><b>Calculate the mass of the part:</b> number of atoms of the element × its atomic mass.</li><li><b>Divide the part by the whole and multiply by 100.</b></li><li><b>Write the final answer with a percent sign.</b></li></ol></li>
+      </ul>
+      <div id="pc-ex" style="margin:10px 0"></div></div>
       <div class="center" id="bar-art"></div>
     </div>
   </section>
@@ -115,13 +118,14 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=61ad9216fb"></script>
+<script src="site.js?v=f7f6a6eac6"></script>
 <script>(function(){
 
 const A=AS, S=A.U6;
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${S.pctBar("H2O",{w:320})}</div>`;
 A.$("#bar-art").innerHTML=S.pctBar("H2O")+S.pctBar("C6H12O6");
 S.PercentGame(A.$("#pc-host"));
+S.workedTabs(A.$("#pc-ex"),[{label:"% H in H₂O",...S.wk("Ex: What is the percent by mass of hydrogen in water, H<sub>2</sub>O?",[["Identify the part and the whole.","part = H, whole = H<sub>2</sub>O"],["Calculate the molar mass of the compound.","2(1.01 g/mol) + 16.00 g/mol = 18.02 g/mol"],["Calculate the mass of the part.","2 × 1.01 g = 2.02 g"],["Divide the part by the whole and multiply by 100.","<span class='wf'><span>2.02 g</span><span>18.02 g</span></span> × 100"],["Write the final answer with a percent sign.","% H = 11.2%"]])},{label:"% C in C₆H₁₂O₆",...S.wk("Ex: What is the percent by mass of carbon in glucose, C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>?",[["Identify the part and the whole.","part = C, whole = C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>"],["Calculate the molar mass of the compound.","6(12.01 g/mol) + 12(1.01 g/mol) + 6(16.00 g/mol) = 180.18 g/mol"],["Calculate the mass of the part.","6 × 12.01 g = 72.06 g"],["Divide the part by the whole and multiply by 100.","<span class='wf'><span>72.06 g</span><span>180.18 g</span></span> × 100"],["Write the final answer with a percent sign.","% C = 39.99%"]])}]);
 A.$("#hyd-art").innerHTML=S.hydrateArt();
 A.$("#hn-art").innerHTML=S.hydPic("MgSO4",7)+`<p class="muted center" style="margin:2px 0 0;font-size:14px">MgSO<sub>4</sub>•7H<sub>2</sub>O: 7 water molecules for every formula unit of magnesium sulfate</p>`;
 A.$("#hb-art").innerHTML=S.hydBar("CuSO4",5);
