@@ -7,7 +7,7 @@
 <title>Charles’s Law</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -35,6 +35,7 @@
       <div class="center"><div class="fbox"><span><span class="cx-frac"><span>V<sub>1</sub></span><span>T<sub>1</sub></span></span></span><span>=</span><span><span class="cx-frac"><span>V<sub>2</sub></span><span>T<sub>2</sub></span></span></span></div><div class="mathbox" style="font-size:16px"><span>V – volume</span><span>T – temperature (K)</span><span>1 – initial, 2 – final</span></div></div>
       <div class="t7-grid"><div class="t7-fig" id="law-art"></div><div class="t7-fig" id="gr-art"></div></div>
       <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">Consider a balloon on a cold day. The gas particles inside slow down and push on the balloon less, so they move closer together and the volume of the balloon decreases. On the other hand, if the balloon is heated, the particles speed up and push harder, and the balloon grows as the gas particles move farther away from each other.</div></div></div>
+      <div class="rw"><figure><img src="photos/balloon-inflating.jpg" alt="A person standing inside the opening of a hot air balloon as it is filled" loading="lazy"><figcaption><b>Filling a hot air balloon</b>Air heated by the burner expands and fills the balloon. The heated air is less dense than the cooler air outside.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Cappadocia_Balloon_Inflating_Wikimedia_Commons.JPG" target="_blank" rel="noopener">Benh LIEU SONG</a>, Wikimedia Commons (CC BY-SA 3.0)</span></figcaption></figure></div>
 
     </div>
   </section>
@@ -81,14 +82,14 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figLaw("charles")}</div>`;
 A.$("#law-art").innerHTML=G.figLaw("charles"); A.$("#gr-art").innerHTML=G.figGraph("charles",{W:320,H:250});
 G.LawSim(A.$("#sim-host"),{law:"charles"});G.BalloonLab(A.$("#bl-host"),{mode:"charles"});
-S.workedTabs(A.$("#ex1"),[{label:"Find V₂",...S.wk("Ex: A sample of nitrogen gas has a volume of 3.00 L at 25 °C. It is heated to 100. °C at constant pressure. What is the new volume?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 3.00 L, T₁ = 25 °C, T₂ = 100. °C, V₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ = 25 + 273 = 298 K, T₂ = 100. + 273 = 373 K"],["<b>Step 3:</b> Write down the gas law.","V₁/T₁ = V₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(3.00 L)/(298 K) = (V₂)/(373 K) → V₂ = 3.76 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 3.76 L"]])},{label:"Find T₂",...S.wk("Ex: A gas occupies 250. mL at 300. K. At constant pressure, at what temperature will it occupy 500. mL?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 250. mL, T₁ = 300. K, V₂ = 500. mL, T₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ is already in kelvin."],["<b>Step 3:</b> Write down the gas law.","V₁/T₁ = V₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(250. mL)/(300. K) = (500. mL)/(T₂) → T₂ = 600. K"],["<b>Step 5:</b> Write the final answer with units.","T₂ = 600. K (327 °C)"]])}]);
+S.workedTabs(A.$("#ex1"),[{label:"Find V₂",...S.wk("Ex: A sample of nitrogen gas has a volume of 3.00 L at 25 °C. It is heated to 100. °C at constant pressure. What is the new volume?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 3.00 L, T₁ = 25 °C, T₂ = 100. °C, V₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ = 25 + 273 = 298 K, T₂ = 100. + 273 = 373 K"],["<b>Step 3:</b> Write down Charles’s Law.","V₁/T₁ = V₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(3.00 L)/(298 K) = (V₂)/(373 K) → V₂ = (3.00 L)(373 K)/(298 K) → V₂ = 3.76 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 3.76 L"]])},{label:"Find T₂",...S.wk("Ex: A gas occupies 250. mL at 300. K. At constant pressure, at what temperature will it occupy 500. mL?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 250. mL, T₁ = 300. K, V₂ = 500. mL, T₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ is already in kelvin."],["<b>Step 3:</b> Write down Charles’s Law.","V₁/T₁ = V₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(250. mL)/(300. K) = (500. mL)/(T₂) → T₂ = (500. mL)(300. K)/(250. mL) → T₂ = 600. K"],["<b>Step 5:</b> Write the final answer with units.","T₂ = 600. K (327 °C)"]])}]);
 G.GasLawGame(A.$("#gl-host"),{only:"charles"});
 A.VocabCheck(A.$("#vc-host"),[{"s": "As the temperature of a gas increases at constant pressure, its volume ___.", "a": "increases"}, {"s": "Volume and Kelvin temperature are ___ proportional.", "a": "directly"}, {"s": "Gas law calculations always use temperatures in ___.", "a": "kelvin"}]);
 A.QSet(A.$("#qs"),[

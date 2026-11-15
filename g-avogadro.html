@@ -7,7 +7,7 @@
 <title>Avogadro’s Law</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -83,14 +83,14 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:18px 14px;font-size:40px;font-weight:800;color:#1b2328;display:flex;justify-content:center" class="mth"><span class="cx-frac"><span>V<sub>1</sub></span><span>n<sub>1</sub></span></span>&nbsp;=&nbsp;<span class="cx-frac"><span>V<sub>2</sub></span><span>n<sub>2</sub></span></span></div>`;
 A.$("#gr-art").innerHTML=G.plot({W:340,H:250,xmin:0,xmax:2,ymin:0,ymax:50,xt:[0,.5,1,1.5,2],yt:[0,10,20,30,40,50],xl:"Amount of gas (mol)",yl:"Volume (L)",pts:[],curve:[[0,0],[2,48.9]],aria:"Volume against moles: a straight line through the origin"});
 G.LawSim(A.$("#sim-host"),{law:"avogadro"}); G.BalloonLab(A.$("#bl-host"),{mode:"avogadro"});
-S.workedTabs(A.$("#ex1"),[{label:"Find V₂",...S.wk("Ex: A balloon contains 0.250 mol of helium and has a volume of 6.10 L. More helium is added at constant temperature and pressure until the balloon holds 0.400 mol. What is the new volume of the balloon?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 6.10 L, n₁ = 0.250 mol, n₂ = 0.400 mol, V₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down the gas law.","V₁/n₁ = V₂/n₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(6.10 L)/(0.250 mol) = (V₂)/(0.400 mol) → V₂ = 9.76 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 9.76 L"]])},{label:"Find n₂",...S.wk("Ex: A 3.00 L sample of nitrogen gas contains 0.125 mol. Some of the gas leaks out at constant temperature and pressure until the volume is 2.40 L. How many moles of nitrogen gas remain?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 3.00 L, n₁ = 0.125 mol, V₂ = 2.40 L, n₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down the gas law.","V₁/n₁ = V₂/n₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(3.00 L)/(0.125 mol) = (2.40 L)/(n₂) → n₂ = 0.100 mol"],["<b>Step 5:</b> Write the final answer with units.","n₂ = 0.100 mol"]])}]);
+S.workedTabs(A.$("#ex1"),[{label:"Find V₂",...S.wk("Ex: A balloon contains 0.250 mol of helium and has a volume of 6.10 L. More helium is added at constant temperature and pressure until the balloon holds 0.400 mol. What is the new volume of the balloon?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 6.10 L, n₁ = 0.250 mol, n₂ = 0.400 mol, V₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down Avogadro’s law.","V₁/n₁ = V₂/n₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(6.10 L)/(0.250 mol) = (V₂)/(0.400 mol) → V₂ = (6.10 L)(0.400 mol)/(0.250 mol) → V₂ = 9.76 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 9.76 L"]])},{label:"Find n₂",...S.wk("Ex: A 3.00 L sample of nitrogen gas contains 0.125 mol. Some of the gas leaks out at constant temperature and pressure until the volume is 2.40 L. How many moles of nitrogen gas remain?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","V₁ = 3.00 L, n₁ = 0.125 mol, V₂ = 2.40 L, n₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down Avogadro’s law.","V₁/n₁ = V₂/n₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(3.00 L)/(0.125 mol) = (2.40 L)/(n₂) → n₂ = (2.40 L)(0.125 mol)/(3.00 L) → n₂ = 0.100 mol"],["<b>Step 5:</b> Write the final answer with units.","n₂ = 0.100 mol"]])}]);
 G.AvogadroGame(A.$("#av-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "At constant temperature and pressure, the volume of a gas is directly proportional to the number of ___ of gas.", "a": "moles"}, {"s": "Increasing the number of gas particles at constant temperature and pressure will ___ the volume.", "a": "increase"}, {"s": "V₁/n₁ = V₂/n₂ is the equation for ___ law.", "a": "Avogadro’s"}]);
 A.QSet(A.$("#qs"),[

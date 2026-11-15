@@ -7,7 +7,7 @@
 <title>Boyle’s Law</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -33,6 +33,7 @@
       </ul>
       <div class="center"><div class="fbox"><span>P<sub>1</sub>V<sub>1</sub></span><span>=</span><span>P<sub>2</sub>V<sub>2</sub></span></div><div class="mathbox" style="font-size:16px"><span>P – pressure</span><span>V – volume</span><span>1 – initial, 2 – final</span></div></div>
       <div class="t7-grid"><div class="t7-fig" id="law-art"></div><div class="t7-fig" id="gr-art"></div></div>
+      <div class="rw"><figure><img src="photos/diver-bubble.jpg" alt="A flattened bubble of air rising through water from a diver" loading="lazy"><figcaption><b>A rising bubble</b>A bubble of air breathed out by a diver grows as it rises, because the pressure of the water above it decreases.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Bubble_of_exhaled_gas_from_scuba_diver_P8040877.jpg" target="_blank" rel="noopener">Peter Southwood</a>, Wikimedia Commons (CC BY-SA 4.0)</span></figcaption></figure></div>
 
     </div>
   </section>
@@ -79,14 +80,14 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figLaw("boyle")}</div>`;
 A.$("#law-art").innerHTML=G.figLaw("boyle"); A.$("#gr-art").innerHTML=G.figGraph("boyle",{W:320,H:250});
 G.LawSim(A.$("#sim-host"),{law:"boyle"});G.BalloonLab(A.$("#bl-host"),{mode:"boyle"});
-S.workedTabs(A.$("#ex1"),[{label:"Find V₂",...S.wk("Ex: A balloon holds 4.00 L of helium at 100. kPa. At constant temperature, the pressure is increased to 250. kPa. What is the new volume?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 100. kPa, V₁ = 4.00 L, P₂ = 250. kPa, V₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down the gas law.","P₁V₁ = P₂V₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(100. kPa)(4.00 L) = (250. kPa)(V₂) → V₂ = 1.60 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 1.60 L"]])},{label:"Unit conversion",...S.wk("Ex: A 2.75 L sample of H₂(g) at 3.00 atm is decompressed to 55.0 kPa at constant temperature. What is the new volume?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 3.00 atm, V₁ = 2.75 L, P₂ = 55.0 kPa, V₂ = ?   The pressures must match: P₁ = 3.00 atm × (101.3 kPa ÷ 1 atm) = 304 kPa"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down the gas law.","P₁V₁ = P₂V₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(304 kPa)(2.75 L) = (55.0 kPa)(V₂) → V₂ = 15.2 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 15.2 L"]])}]);
+S.workedTabs(A.$("#ex1"),[{label:"Find V₂",...S.wk("Ex: A balloon holds 4.00 L of helium at 100. kPa. At constant temperature, the pressure is increased to 250. kPa. What is the new volume?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 100. kPa, V₁ = 4.00 L, P₂ = 250. kPa, V₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down Boyle’s Law.","P₁V₁ = P₂V₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(100. kPa)(4.00 L) = (250. kPa)(V₂) → V₂ = (100. kPa)(4.00 L)/(250. kPa) → V₂ = 1.60 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 1.60 L"]])},{label:"Unit conversion",...S.wk("Ex: A 2.75 L sample of H₂(g) at 3.00 atm is decompressed to 55.0 kPa at constant temperature. What is the new volume?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 3.00 atm, V₁ = 2.75 L, P₂ = 55.0 kPa, V₂ = ?   The pressures must match: P₁ = 3.00 atm × (101.3 kPa ÷ 1 atm) = 304 kPa"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","No temperatures are needed: the temperature is constant."],["<b>Step 3:</b> Write down Boyle’s Law.","P₁V₁ = P₂V₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(304 kPa)(2.75 L) = (55.0 kPa)(V₂) → V₂ = (304 kPa)(2.75 L)/(55.0 kPa) → V₂ = 15.2 L"],["<b>Step 5:</b> Write the final answer with units.","V₂ = 15.2 L"]])}]);
 G.GasLawGame(A.$("#gl-host"),{only:"boyle"});
 A.VocabCheck(A.$("#vc-host"),[{"s": "As the pressure on a gas increases at constant temperature, its volume ___.", "a": "decreases"}, {"s": "Pressure and volume are ___ proportional.", "a": "inversely"}, {"s": "At constant temperature, doubling the pressure on a gas cuts its volume in ___.", "a": "half"}]);
 A.QSet(A.$("#qs"),[

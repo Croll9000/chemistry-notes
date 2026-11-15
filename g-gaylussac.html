@@ -7,7 +7,7 @@
 <title>Gay-Lussac’s Law</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=78e509c3e2">
 </head>
 <body>
 <main class="wrap">
@@ -34,6 +34,7 @@
       <div class="center"><div class="fbox"><span><span class="cx-frac"><span>P<sub>1</sub></span><span>T<sub>1</sub></span></span></span><span>=</span><span><span class="cx-frac"><span>P<sub>2</sub></span><span>T<sub>2</sub></span></span></span></div><div class="mathbox" style="font-size:16px"><span>P – pressure</span><span>T – temperature (K)</span><span>1 – initial, 2 – final</span></div></div>
       <div class="t7-grid"><div class="t7-fig" id="law-art"></div><div class="t7-fig" id="gr-art"></div></div>
       <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">During summer months, a car tire’s pressure can increase as the temperature outside increases. During winter months, the tire pressure can decrease when the temperature outside drops.</div></div></div>
+      <div class="rw"><figure><img src="photos/canned-air.jpg" alt="A can of compressed gas duster with a nozzle" loading="lazy"><figcaption><b>A pressurized can</b>The volume of a can cannot change, so heating it raises the pressure of the gas inside. Pressurized cans are labeled to keep them away from heat.<span class="pcred">Photo: <a href="https://commons.wikimedia.org/wiki/File:Canned-air.jpg" target="_blank" rel="noopener">Although</a>, Wikimedia Commons (public domain)</span></figcaption></figure></div>
 
     </div>
   </section>
@@ -75,14 +76,14 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js"></script>
+<script src="site.js?v=78e509c3e2"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${G.figLaw("gay")}</div>`;
 A.$("#law-art").innerHTML=G.figLaw("gay"); A.$("#gr-art").innerHTML=G.figGraph("gay",{W:320,H:250});
 G.LawSim(A.$("#sim-host"),{law:"gay"});
-S.workedTabs(A.$("#ex1"),[{label:"Find P₂",...S.wk("Ex: A rigid tank holds gas at 200. kPa and 27 °C. The tank is heated to 127 °C. What is the new pressure?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 200. kPa, T₁ = 27 °C, T₂ = 127 °C, P₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ = 27 + 273 = 300. K, T₂ = 127 + 273 = 400. K"],["<b>Step 3:</b> Write down the gas law.","P₁/T₁ = P₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(200. kPa)/(300. K) = (P₂)/(400. K) → P₂ = 267 kPa"],["<b>Step 5:</b> Write the final answer with units.","P₂ = 267 kPa"]])},{label:"Cooling",...S.wk("Ex: A sample of H₂ gas at 230. kPa and 310. K in a sealed container is cooled to 7 °C. What is its new pressure?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 230. kPa, T₁ = 310. K, T₂ = 7 °C, P₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₂ = 7 + 273 = 280. K"],["<b>Step 3:</b> Write down the gas law.","P₁/T₁ = P₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(230. kPa)/(310. K) = (P₂)/(280. K) → P₂ = 208 kPa"],["<b>Step 5:</b> Write the final answer with units.","P₂ = 208 kPa"]])}]);
+S.workedTabs(A.$("#ex1"),[{label:"Find P₂",...S.wk("Ex: A rigid tank holds gas at 200. kPa and 27 °C. The tank is heated to 127 °C. What is the new pressure?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 200. kPa, T₁ = 27 °C, T₂ = 127 °C, P₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₁ = 27 + 273 = 300. K, T₂ = 127 + 273 = 400. K"],["<b>Step 3:</b> Write down Gay-Lussac’s Law.","P₁/T₁ = P₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(200. kPa)/(300. K) = (P₂)/(400. K) → P₂ = (200. kPa)(400. K)/(300. K) → P₂ = 267 kPa"],["<b>Step 5:</b> Write the final answer with units.","P₂ = 267 kPa"]])},{label:"Cooling",...S.wk("Ex: A sample of H₂ gas at 230. kPa and 310. K in a sealed container is cooled to 7 °C. What is its new pressure?",[["<b>Step 1:</b> Read the question and list all given variables and the unknown.","P₁ = 230. kPa, T₁ = 310. K, T₂ = 7 °C, P₂ = ?"],["<b>Step 2:</b> If necessary, convert all temperatures to kelvin.","T₂ = 7 + 273 = 280. K"],["<b>Step 3:</b> Write down Gay-Lussac’s Law.","P₁/T₁ = P₂/T₂"],["<b>Step 4:</b> Substitute the variables into the equation and solve for the unknown algebraically.","(230. kPa)/(310. K) = (P₂)/(280. K) → P₂ = (230. kPa)(280. K)/(310. K) → P₂ = 208 kPa"],["<b>Step 5:</b> Write the final answer with units.","P₂ = 208 kPa"]])}]);
 G.GasLawGame(A.$("#gl-host"),{only:"gay"});
 A.VocabCheck(A.$("#vc-host"),[{"s": "As the temperature of a gas increases at constant volume, its pressure ___.", "a": "increases"}, {"s": "Pressure and Kelvin temperature are ___ proportional.", "a": "directly"}, {"s": "Gay-Lussac’s law holds the ___ of the gas constant.", "a": "volume"}]);
 A.QSet(A.$("#qs"),[
