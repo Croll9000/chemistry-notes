@@ -6,8 +6,8 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Calorimetry</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=da3bcc4746">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=61ad9216fb">
 </head>
 <body>
 <main class="wrap">
@@ -47,7 +47,7 @@
         <li>A <b>bomb calorimeter</b> is a sealed, heavy steel container (the “bomb”) that sits in a measured amount of water inside an insulated jacket.
           <ul><li>The food is ignited with an electric spark, and the heat released by combustion flows into the water.</li>
           <li>The temperature rise of the water is used to calculate the heat released, just like in a foam-cup calorimeter.</li></ul></li>
-        <li>The result is reported in food Calories: 1 Calorie = 1 kcal = 4184 J (see the Energy page).</li>
+        <li>The result is reported in food Calories: 1 Calorie = 1 kcal = 4184 J (see the <a class="xref" href="t-energy.html">Energy</a> page).</li>
       </ul>
       <div class="t7-fig" id="bomb-art"></div>
     </div>
@@ -87,7 +87,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=da3bcc4746"></script>
+<script src="site.js?v=61ad9216fb"></script>
 <script>(function(){
 
 const A=AS, T=A.U7, S=A.U6;
@@ -96,20 +96,22 @@ A.$("#cal-art").innerHTML=T.figCalorimeter();
 A.$("#bomb-art").innerHTML=T.figBomb();
 A.$("#melt-cal").innerHTML=T.figChange("s","l",true,"Ice melts","heat lost by the water = heat absorbed by the ice");
 const W1=S.wk("Ex: 2.00 g of NaOH dissolves in 100.0 g of water in a calorimeter. The water’s temperature rises from 21.0 °C to 26.3 °C. Calculate the heat of the reaction. (c = 4.18 J/g·K)",[
- ["<b>Step 1:</b> Find ΔT of the water.","ΔT = 26.3 °C − 21.0 °C = 5.3 °C"],
- ["<b>Step 2:</b> Calculate the heat gained by the water.","q<sub>water</sub> = (100.0 g)(4.18 J/g·K)(5.3 K) = 2,215 J"],
- ["<b>Step 3:</b> The reaction’s heat is the opposite.","q<sub>reaction</sub> = −2,215 J (about −2.2 × 10<sup>3</sup> J)"],
- ["<b>Step 4:</b> Classify. The water warmed up, so the reaction released heat.","Exothermic"]]);
+ ["<b>Step 1:</b> Identify which equation to use.","Calorimetry → q<sub>reaction</sub> = −q<sub>water</sub> = −m<sub>water</sub>c<sub>water</sub>ΔT<sub>water</sub>"],
+ ["<b>Step 2:</b> List the variables and the unknown.","m<sub>water</sub> = 100.0 g, c<sub>water</sub> = 4.18 J/g·K, T<sub>i</sub> = 21.0 °C, T<sub>f</sub> = 26.3 °C, q<sub>reaction</sub> = ?"],
+ ["<b>Step 3:</b> Substitute the variables and their units into the equation.","q<sub>reaction</sub> = −(100.0 g)(4.18 J/g·K)(26.3 °C − 21.0 °C)"],
+ ["<b>Step 4:</b> Solve algebraically.","q<sub>reaction</sub> = −(100.0 g)(4.18 J/g·K)(5.3 °C) = −2,215 J"],
+ ["<b>Step 5:</b> Write the final answer with units. The water warmed up, so the reaction released heat.","q<sub>reaction</sub> = −2,215 J (about −2.2 × 10<sup>3</sup> J), exothermic"]]);
 const W2=S.wk("Ex (enrichment): Convert the result above to kJ per mole of NaOH (molar mass 40.00 g/mol).",[
  ["<b>Step 1:</b> Moles of NaOH.","2.00 g ÷ 40.00 g/mol = 0.0500 mol"],
  ["<b>Step 2:</b> Divide the heat by the moles and convert J to kJ.","ΔH = −2,215 J ÷ 0.0500 mol = −44,300 J/mol = −44.3 kJ/mol"],
  ["<b>Step 3:</b> Compare with the accepted value.","Accepted: −44.51 kJ/mol"]]);
-S.workedTabs(A.$("#ex1"),[{label:"Heat of a reaction",...W1},{label:"Per mole",...W2}]);
+S.workedTabs(A.$("#ex1"),[{label:"Heat of a reaction",...W1},{label:"Per mole",enr:true,...W2}]);
 const W3=S.wk("Ex: Ice is added to 120.0 g of water at 32.0 °C. When the water reaches 0.0 °C, the leftover ice is removed. The water now has a mass of 168.1 g. Calculate the heat of fusion of ice.",[
- ["<b>Step 1:</b> Heat lost by the warm water.","q<sub>water</sub> = (120.0 g)(4.18 J/g·K)(0.0 °C − 32.0 °C) = −16,051 J"],
- ["<b>Step 2:</b> Heat absorbed by the melting ice.","q<sub>ice</sub> = −q<sub>water</sub> = +16,051 J"],
- ["<b>Step 3:</b> Mass of ice that melted.","168.1 g − 120.0 g = 48.1 g"],
- ["<b>Step 4:</b> Heat of fusion: substitute into q = mH<sub>f</sub> and solve for H<sub>f</sub>.","16,051 J = (48.1 g)H<sub>f</sub>, so H<sub>f</sub> = 334 J/g"]]);
+ ["<b>Step 1:</b> Identify which equation to use.","Ice melting in a calorimeter → m<sub>ice</sub>H<sub>f</sub> = −m<sub>water</sub>c<sub>water</sub>ΔT<sub>water</sub>"],
+ ["<b>Step 2:</b> List the variables and the unknown. The mass of ice that melted is the increase in the mass of the water.","m<sub>water</sub> = 120.0 g, c<sub>water</sub> = 4.18 J/g·K, T<sub>i</sub> = 32.0 °C, T<sub>f</sub> = 0.0 °C, m<sub>ice</sub> = 168.1 g − 120.0 g = 48.1 g, H<sub>f</sub> = ?"],
+ ["<b>Step 3:</b> Substitute the variables and their units into the equation.","(48.1 g)H<sub>f</sub> = −(120.0 g)(4.18 J/g·K)(0.0 °C − 32.0 °C)"],
+ ["<b>Step 4:</b> Solve algebraically.","(48.1 g)H<sub>f</sub> = 16,051 J → H<sub>f</sub> = 16,051 J ÷ 48.1 g = 334 J/g"],
+ ["<b>Step 5:</b> Write the final answer with units.","H<sub>f</sub> = 334 J/g"]]);
 S.workedTabs(A.$("#ex2"),[{label:"Heat of fusion of ice",...W3}]);
 T.CalLab(A.$("#lab-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "Measuring the heat absorbed or released in a change is ___.", "a": "calorimetry"}, {"s": "An insulated device used to measure heat is a ___.", "a": "calorimeter"}, {"s": "If the water in a calorimeter gets warmer, the reaction is ___.", "a": "exothermic"}]);
@@ -118,6 +120,7 @@ A.QSet(A.$("#qs"),[
  {type:"mc",stem:"A solid dissolves in water in a calorimeter and the temperature of the water decreases. The dissolving is",choices:["exothermic, because the water lost heat","endothermic, because the water lost heat","exothermic, because the water gained heat","endothermic, because the water gained heat"],ans:2,explain:"The water lost heat to the dissolving solid, so the process absorbed heat: endothermic."},
  {type:"text",stem:"In a calorimeter, 150.0 g of water warms from 22.0 °C to 28.0 °C during a reaction. How much heat did the water gain? (c = 4.18 J/g·K)",unit:"J",width:120,check:v=>S.chk(v,3762,{minSf:2}),explain:"q = (150.0 g)(4.18 J/g·K)(6.0 K) = 3,762 J (3.8 × 10<sup>3</sup> J)."},
  {type:"mc",stem:"For the reaction in the previous question, the heat of the reaction is",choices:["+3,762 J, endothermic","−3,762 J, exothermic","+3,762 J, exothermic","−3,762 J, endothermic"],ans:2,explain:"q<sub>reaction</sub> = −q<sub>water</sub>. The water gained heat, so the reaction released it."},
+ {type:"text",stem:`Base your answer to this question on the information below.<div class="cal-q"><div class="cal-q-fig">${T.figCalorimeter()}</div><div><p style="margin:0 0 6px">A student dissolves calcium chloride, CaCl<sub>2</sub>, in water in a coffee-cup calorimeter like the one shown. The data are recorded in the table. (Specific heat capacity of water = 4.18 J/g·K)</p><table class="nt" style="font-size:15px;margin:0"><tr><th>Measurement</th><th>Value</th></tr><tr><td>Mass of calcium chloride</td><td>5.00 g</td></tr><tr><td>Mass of water</td><td>100.0 g</td></tr><tr><td>Initial temperature of water</td><td>22.0 °C</td></tr><tr><td>Final temperature of water</td><td>30.7 °C</td></tr></table></div></div>Determine the amount of heat, in joules, released by the dissolving calcium chloride.`,unit:"J",width:120,check:v=>S.chk(v,3637,{minSf:2}),explain:"ΔT = 30.7 °C − 22.0 °C = 8.7 °C. q<sub>water</sub> = (100.0 g)(4.18 J/g·K)(8.7 K) = 3,637 J (about 3.6 × 10<sup>3</sup> J). The water gained 3,637 J, so the dissolving released 3,637 J: q<sub>reaction</sub> = −3,637 J (exothermic)."},
  {type:"cr",stem:"A student measures the heat of fusion of ice as 301 J/g. The accepted value is 334 J/g. State one error in the procedure that could explain the low result.",parts:["Possible error"],model:["Heat from the room leaked into the calorimeter (the lid was off or the cup was not insulated), so some of the ice was melted by the surroundings instead of the water. Or: the ice had liquid water on its surface, which was added to the cup and counted as melted ice."],noCredit:"“Human error” or “measured wrong” with no specific error."}]);
 
 })();</script>

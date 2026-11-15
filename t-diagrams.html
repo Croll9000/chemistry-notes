@@ -6,8 +6,8 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
 <title>Phase Diagrams</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=da3bcc4746">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=61ad9216fb">
 </head>
 <body>
 <main class="wrap">
@@ -40,6 +40,16 @@
     </div>
   </section>
 
+  <section class="lab" id="pdclick">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Click the Phase Diagram</h3></div>
+    <div id="pdc-host"></div>
+  </section>
+
+  <section class="lab" id="pd">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Explore a Phase Diagram</h3></div>
+    <div id="pd-host"></div>
+  </section>
+
   <div class="part" id="p2" data-short="Water"><div class="pn"><small>Part</small><span>2</span></div><h2>Phase Changes of Water and Pressure</h2><p>At the base of a glacier 1 km thick, the weight of the ice lowers the melting point of ice by about 0.7 °C. Because ice is less dense than liquid water, increasing the pressure on ice favors the denser liquid phase, so the solid–liquid line on water’s phase diagram tilts to the left. In this section, we will discuss why water is an exception to the pattern followed by most substances.</p></div>
 
   <section class="note">
@@ -59,11 +69,6 @@
     </div>
   </section>
 
-  <section class="lab" id="pd">
-    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Explore a Phase Diagram</h3></div>
-    <div id="pd-host"></div>
-  </section>
-
   <section class="lab" id="read">
     <div class="lab-h"><span class="tag game">Game</span><h3>Read the Phase Diagram</h3></div>
     <div id="read-host"></div>
@@ -80,7 +85,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=da3bcc4746"></script>
+<script src="site.js?v=61ad9216fb"></script>
 <script>(function(){
 
 const A=AS, T=A.U7, P=A.U3, INK="#1b2328";
@@ -90,10 +95,10 @@ function pd(o={}){ const W=600,H=400, x0=70,y0=340,w=500,h=300, X=t=>x0+t*w, Y=p
   let s=`<path d="M${X(0)} ${Y(1)}V${Y(0)}H${X(1)}" fill="none" stroke="${INK}" stroke-width="2.5"/>`;
   s+=`<path d="M${X(0)} ${Y(.02)}Q${X(.2)} ${Y(.08)} ${X(tp[0])} ${Y(tp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="M${X(tp[0])} ${Y(tp[1])}Q${X(.58)} ${Y(.38)} ${X(cp[0])} ${Y(cp[1])}" fill="none" stroke="${INK}" stroke-width="3"/><path d="${sl}" stroke="${INK}" stroke-width="3"/>`;
   s+=`<circle cx="${X(tp[0])}" cy="${Y(tp[1])}" r="7" fill="#F2B705" stroke="${INK}" stroke-width="2"/><circle cx="${X(cp[0])}" cy="${Y(cp[1])}" r="7" fill="#6a2c9a" stroke="${INK}" stroke-width="2"/>`;
-  s+=T.t(X(.14),Y(.6),"Solid",{fs:20,c:T.PH.s})+T.t(X(.46),Y(.68),"Liquid",{fs:20,c:T.PH.l})+T.t(X(.7),Y(.2),"Gas",{fs:20,c:T.PH.g});
+  s+=T.t(X(.14),Y(.6),"Solid",{fs:20,c:T.PH.s})+T.t(X(.52),Y(.68),"Liquid",{fs:20,c:T.PH.l})+T.t(X(.7),Y(.2),"Gas",{fs:20,c:T.PH.g});
   if(!o.letters){ s+=T.t(X(tp[0])+14,Y(tp[1])+22,"Triple point",{fs:13,a:"start"})+T.t(X(cp[0])-12,Y(cp[1])+4,"Critical point",{fs:13,a:"end"});
     s+=`<line x1="${X(0)}" y1="${Y(.5)}" x2="${X(1)}" y2="${Y(.5)}" stroke="#9aa7ad" stroke-dasharray="5 5"/>`+T.t(X(1)-2,Y(.5)-6,"1 atm",{fs:12,a:"end",c:"#5f6b72"});
-    s+=T.t(X(.04),Y(.12),"Sublimation ↗",{fs:12,a:"start",c:"#5f6b72"});
+    s+=T.t(X(.24),Y(.05),"↖ Sublimation",{fs:12,a:"start",c:"#5f6b72"});
     s+=`<rect x="${X(cp[0])}" y="${Y(1)}" width="${X(1)-X(cp[0])}" height="${Y(cp[1])-Y(1)}" fill="#8f63c9" fill-opacity=".14"/><path d="M${X(cp[0])} ${Y(1)}V${Y(cp[1])}H${X(1)}" fill="none" stroke="#6a2c9a" stroke-width="1.5" stroke-dasharray="5 4"/>`+T.t((X(cp[0])+X(1))/2,Y(.93),"Supercritical",{fs:12.5,c:"#6a2c9a"})+T.t((X(cp[0])+X(1))/2,Y(.88),"fluid",{fs:12.5,c:"#6a2c9a"}); }
   else o.letters.forEach(([l,x,y])=>{ s+=`<circle cx="${X(x)}" cy="${Y(y)}" r="13" fill="#fff" stroke="${INK}" stroke-width="2"/>`+T.t(X(x),Y(y)+5,l,{fs:14}); });
   s+=T.t(x0+w/2,y0+34,"Temperature →",{fs:15})+`<text transform="translate(26 ${y0-h/2}) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="15" font-weight="700">Pressure →</text>`;
@@ -102,13 +107,11 @@ function pd(o={}){ const W=600,H=400, x0=70,y0=340,w=500,h=300, X=t=>x0+t*w, Y=p
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${pd()}</div>`;
 A.$("#pd-art").innerHTML=T.figPD();
 A.$("#water-art").innerHTML=T.figPD({water:true});
+T.PDClick(A.$("#pdc-host"));
 T.PhaseDiagram(A.$("#pd-host"));
 /* where is each letter? */
 const L=[["A",.12,.4,"s"],["B",.6,.6,"l"],["C",.75,.15,"g"],["D",.32,.24,"t"],["E",.82,.78,"c"],["F",.38,.6,"sl"],["G",.55,.4,"lg"]];
-P.TapSort(A.$("#read-host"),{prompt:"What is true of the substance at this point?",how:"Each letter marks a temperature and pressure on the phase diagram. Choose what is true there.",
-  pic:cur=>pd({letters:[L.find(x=>x[0]===cur[0].replace(/<[^>]+>/g,"").slice(-1))].map(x=>[x[0],x[1],x[2]])}),
-  choices:[["s","Solid"],["l","Liquid"],["g","Gas"],["sl","Solid + liquid in equilibrium"],["lg","Liquid + gas in equilibrium"],["t","All three phases"],["c","Critical point"]],
-  items:L.map(x=>[`Point ${x[0]}`,x[3],{s:"Low temperature, high pressure: solid.",l:"Between the lines at moderate temperature and pressure: liquid.",g:"High temperature, low pressure: gas.",t:"The triple point: solid, liquid and gas together.",c:"The critical point: above it, liquid and gas cannot be told apart.",sl:"On the solid–liquid line: melting and freezing are in equilibrium.",lg:"On the liquid–gas line: vaporization and condensation are in equilibrium."}[x[3]]])});
+T.PDGame(A.$("#read-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "The temperature and pressure at which all three phases exist at the same time is the ___.", "a": "triple point"}, {"s": "Above the ___, the liquid and gas phases can no longer be told apart.", "a": "critical point"}, {"s": "A substance above its critical temperature and pressure is a ___.", "a": "supercritical fluid"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"On a phase diagram, a point that lies on the line between the liquid and gas regions represents",choices:["a solid","a gas only","liquid and gas in phase equilibrium","the triple point"],ans:3,explain:"Points on a line are phase equilibrium between the two phases on either side."},

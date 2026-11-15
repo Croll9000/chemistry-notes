@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Solving Heat Problems</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=61ad9216fb">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermochemistry · 9</span><h1>Solving Heat Problems</h1><p>Every heat problem is solved with the same five steps. The first step is choosing the right equation; harder problems add up the heat for several segments of a heating curve.</p>
+    <div class="pe-chips"><span>HS-PS3-1</span><span>HS-PS3-4</span><span>SEP: Using Mathematics &amp; Computational Thinking</span><span>CCC: Energy &amp; Matter</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Five steps"><div class="pn"><small>Part</small><span>1</span></div><h2>Steps to Solving Heat Problems</h2><p>A Regents heat question can involve any of the three heat equations. Choosing the wrong one is the most common mistake, so the first step is always to decide what is happening to the substance. In this section, we will practice the five steps with all three equations.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Steps to Solving Heat Problems</h2></div>
+    <div class="body">
+      <p class="intro">The same five steps work for every heat problem. Once the equation is chosen, listing the variables with their units makes it clear which value goes where.</p>
+      <ul>
+        <li>Steps to solving heat problems:
+          <ol style="margin:4px 0;padding-left:22px">
+          <li><b>Identify which equation to use.</b> If the temperature changes, use q = mcΔT. If there is a solid ↔ liquid change, use q = mH<sub>f</sub>. If there is a liquid ↔ gas change, use q = mH<sub>v</sub>.</li>
+          <li><b>List the variables and the unknown</b>, each with its unit.</li>
+          <li><b>Substitute</b> the variables and their units into the equation.</li>
+          <li><b>Solve</b> for the unknown algebraically.</li>
+          <li><b>Write the final answer with units.</b></li></ol></li>
+        <li>Read the problem for clues to the equation:
+          <ul><li><span class="kr">A starting and an ending temperature</span> → a temperature change → <span class="mth">q = mcΔT</span></li>
+          <li><span class="kb">Melts, freezes or fusion</span>, at the melting point → <span class="mth">q = mH<sub>f</sub></span></li>
+          <li><span class="kg">Boils, vaporizes, evaporates or condenses</span>, at the boiling point → <span class="mth">q = mH<sub>v</sub></span></li></ul></li>
+      </ul>
+      <div class="t7-fig" id="map-art"></div>
+      <div id="ex1" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="which">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Which Equation?</h3></div>
+    <div id="which-host"></div>
+  </section>
+
+  <div class="part" id="p2" data-short="Combining equations"><div class="pn"><small>Part</small><span>2</span></div><h2>Combining the Heat Equations</h2><p>Turning an ice cube from the freezer into a glass of cool water takes three steps: warming the ice to 0 °C, melting it, and warming the liquid water. Each step is one segment of the heating curve and needs its own equation. In this section, we will add up the heat for several segments.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Heat for Several Segments</h2></div>
+    <div class="body">
+      <p class="intro">A heating curve shows every segment a sample passes through. To find the total heat, find the heat for each segment separately, then add them together.</p>
+      <ul>
+        <li>Each sloped segment uses <span class="mth">q = mcΔT</span> with the specific heat capacity of that phase (ice, liquid water and steam each have their own value). Each flat segment uses <span class="mth">q = mH<sub>f</sub></span> or <span class="mth">q = mH<sub>v</sub></span>.</li>
+        <li>The total heat is the sum of the heat for every segment: <span class="mth">q<sub>total</sub> = q<sub>1</sub> + q<sub>2</sub> + q<sub>3</sub> + …</span></li>
+      </ul>
+      <table class="nt t7-tbl" style="margin:10px auto"><tr><th>Constant for water</th><th>Value</th></tr><tr><td>Specific heat capacity of ice</td><td>2.09 J/g·K</td></tr><tr><td>Specific heat capacity of liquid water</td><td>4.18 J/g·K</td></tr><tr><td>Specific heat capacity of steam</td><td>2.01 J/g·K</td></tr><tr><td>Heat of fusion (H<sub>f</sub>)</td><td>334 J/g</td></tr><tr><td>Heat of vaporization (H<sub>v</sub>)</td><td>2260 J/g</td></tr></table>
+      <div id="ex2" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="curvecalc">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Heating Curve Calculator</h3></div>
+    <div id="cc-host"></div>
+  </section>
+
+  <section class="lab" id="game">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Heat Equation Workout</h3></div>
+    <div id="hg-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=61ad9216fb"></script>
+<script>(function(){
+
+const A=AS, T=A.U7, S=A.U6, P=A.U3;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${T.figHeatMap()}</div>`;
+A.$("#map-art").innerHTML=T.figHeatMap();
+S.workedTabs(A.$("#ex1"),[{label:"q = mcΔT",...S.wk("Ex: 40.0 g of water at 25.0 °C is cooled to 10.0 °C. How much heat is released? (c = 4.18 J/g·K)",[["<b>Step 1:</b> Identify which equation to use.","The temperature changes → q = mcΔT"],["<b>Step 2:</b> List the variables and the unknown.","m = 40.0 g, c = 4.18 J/g·K, T<sub>i</sub> = 25.0 °C, T<sub>f</sub> = 10.0 °C, q = ?"],["<b>Step 3:</b> Substitute the variables and their units into the equation.","q = (40.0 g)(4.18 J/g·K)(10.0 °C − 25.0 °C)"],["<b>Step 4:</b> Solve algebraically.","q = (40.0 g)(4.18 J/g·K)(−15.0 °C) = −2,508 J"],["<b>Step 5:</b> Write the final answer with units.","q = −2,508 J (2,508 J released)"]])},{label:"q = mH<sub>f</sub>",...S.wk("Ex: How much heat is absorbed when 12.0 g of ice melts at 0 °C? (H<sub>f</sub> = 334 J/g)",[["<b>Step 1:</b> Identify which equation to use.","Melting (solid → liquid) → q = mH<sub>f</sub>"],["<b>Step 2:</b> List the variables and the unknown.","m = 12.0 g, H<sub>f</sub> = 334 J/g, q = ?"],["<b>Step 3:</b> Substitute the variables and their units into the equation.","q = (12.0 g)(334 J/g)"],["<b>Step 4:</b> Solve algebraically.","q = 4,008 J"],["<b>Step 5:</b> Write the final answer with units.","q = 4,008 J absorbed"]])}]);
+S.workedTabs(A.$("#ex2"),[{label:"Ice to water",...S.wk("Ex: How much heat is needed to change 50.0 g of ice at −10.0 °C into liquid water at 25.0 °C?",[["Identify the segments of the heating curve.","Warm the ice → melt the ice → warm the water"],["Segment 1: warm the ice from −10.0 °C to 0.0 °C (c<sub>ice</sub> = 2.09 J/g·K).","q<sub>1</sub> = (50.0 g)(2.09 J/g·K)(0.0 °C − (−10.0 °C)) = 1,045 J"],["Segment 2: melt the ice at 0 °C.","q<sub>2</sub> = (50.0 g)(334 J/g) = 16,700 J"],["Segment 3: warm the water from 0.0 °C to 25.0 °C.","q<sub>3</sub> = (50.0 g)(4.18 J/g·K)(25.0 °C − 0.0 °C) = 5,225 J"],["Add the heat for every segment and write the final answer with units.","q<sub>total</sub> = 1,045 J + 16,700 J + 5,225 J = 22,970 J (2.30 × 10<sup>4</sup> J)"]])}]);
+P.TapSort(A.$("#which-host"),{prompt:"Which equation would you use?",how:"Temperature changes use q = mcΔT. Melting and freezing use q = mH<sub>f</sub>. Vaporizing and condensing use q = mH<sub>v</sub>.",choices:[["c","q = mcΔT"],["f","q = mH<sub>f</sub>"],["v","q = mH<sub>v</sub>"]],items:[
+ ["Heating water from 25 °C to 60 °C","c","The temperature changes."],["Melting an ice cube at 0 °C","f","Melting at the melting point."],["Boiling water at 100 °C","v","Vaporizing at the boiling point."],
+ ["Cooling a copper pipe from 90 °C to 30 °C","c","The temperature changes."],["Freezing water at 0 °C","f","Freezing uses the heat of fusion."],["Steam condensing on a cold window","v","Condensing uses the heat of vaporization."],
+ ["Warming ice from −20 °C to −5 °C","c","The ice’s temperature changes; no phase change."],["Warming steam from 110 °C to 130 °C","c","The temperature of the gas changes."]]});
+T.CurveCalc(A.$("#cc-host"));
+T.HeatSolve(A.$("#hg-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s":"A temperature change uses the equation q = m___ΔT.","a":"c"},{"s":"Melting and freezing use the heat of ___.","a":"fusion"},{"s":"Boiling and condensing use the heat of ___.","a":"vaporization"}]);
+A.QSet(A.$("#qs"),[
+ {type:"mc",stem:"Which equation should be used to calculate the heat needed to boil 30.0 g of water at 100 °C?",choices:["q = mcΔT","q = mH<sub>f</sub>","q = mH<sub>v</sub>","q = mc"],ans:3,explain:"Boiling is vaporizing at the boiling point, so it uses the heat of vaporization."},
+ {type:"text",stem:"How much heat is released when 15.0 g of water freezes at 0 °C? (H<sub>f</sub> = 334 J/g)",unit:"J",width:120,check:v=>S.chk(v,5010,{minSf:2}),explain:"q = (15.0 g)(334 J/g) = 5,010 J released."},
+ {type:"text",stem:"How much heat is absorbed when 60.0 g of water warms from 20.0 °C to 45.0 °C? (c = 4.18 J/g·K)",unit:"J",width:120,check:v=>S.chk(v,6270,{minSf:2}),explain:"q = (60.0 g)(4.18 J/g·K)(45.0 °C − 20.0 °C) = 6,270 J."},
+ {type:"text",stem:"How much heat is needed to melt 10.0 g of ice at 0 °C and then warm the water to 20.0 °C? (H<sub>f</sub> = 334 J/g, c = 4.18 J/g·K)",unit:"J",width:120,check:v=>S.chk(v,4176,{minSf:2}),explain:"q<sub>1</sub> = (10.0 g)(334 J/g) = 3,340 J; q<sub>2</sub> = (10.0 g)(4.18 J/g·K)(20.0 °C) = 836 J; total = 4,176 J."},
+ {type:"cr",stem:"A student calculates the heat needed to melt 20.0 g of ice at 0 °C using q = mcΔT and gets 0 J. Explain the student’s error.",parts:["Explanation"],model:["During melting the temperature does not change, so ΔT = 0 and q = mcΔT gives zero. Melting is a phase change, so the student should use q = mH<sub>f</sub> = (20.0 g)(334 J/g) = 6,680 J."],noCredit:"An answer that does not identify that a phase change needs q = mH<sub>f</sub>."}]);
+
+})();</script>
+<script>AS.U3.addSources("t-calcsolve");AS.completion(document.querySelector(".wrap"),"t-calcsolve");AS.chrome("t-calcsolve");</script>
+</body>
+</html>
