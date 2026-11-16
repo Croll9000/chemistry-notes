@@ -6358,7 +6358,7 @@ B.DissolveLab=function(host){
    Applies to plain choice buttons inside labs/games (not action buttons .btn, not segmented controls, not drag tokens).
    If the game redraws its buttons after the click, the new copy of the same button is re-selected. */
 (function(){ const A=window.AS;
-  const skip=b=>b.classList.contains("btn")||b.classList.contains("slot")||b.hasAttribute("aria-pressed")||b.closest(".seg,.g-btns,.topbar,nav,header,.pt-pop,.rk-pool,.lp-tray,.u4pad,.pt,.r5-cell,.mist-o,.lp-modes")||b.hasAttribute("data-tok")||b.disabled;
+  const skip=b=>b.classList.contains("btn")||b.classList.contains("slot")||b.hasAttribute("aria-pressed")||b.closest(".seg,.g-btns,.topbar,nav,header,.pt-pop,.rk-pool,.lp-tray,.u4pad,.pt,.r5-cell,.mist-o,.lp-modes,.kp-opts")||b.hasAttribute("data-tok")||b.disabled;
   const sig=b=>[b.tagName,b.className.replace(/\b(sel|right|wrong|x|on)\b/g,"").trim(),...[...b.attributes].filter(a=>a.name.startsWith("data-")).map(a=>a.name+"="+a.value),b.textContent.trim()].join("|");
   const mark=(b)=>{ const par=b.parentElement; if(!par) return; [...par.children].forEach(x=>{ if(x!==b&&x.tagName==="BUTTON"&&!x.classList.contains("btn")) x.classList.remove("sel"); }); b.classList.add("sel"); };
   document.addEventListener("click",ev=>{ const b=ev.target.closest&&ev.target.closest("main button"); if(!b||skip(b)) return; const root=b.closest(".lab,.note,section")||document.body, s=sig(b);
@@ -11747,15 +11747,15 @@ G.LawSim=function(host,o={}){ const law=o.law||"boyle", CW=420, CH=420, cx=120, 
   const how={boyle:"Drag the slider (or the piston handle) to change the volume. The temperature and the amount of gas stay the same. Press <b>Record</b> to plot a point.",
     charles:"Change the temperature of the water bath. The weight on the piston keeps the pressure constant, so the piston is free to move. Press <b>Record</b> to plot a point.",
     gay:"Change the temperature of the water bath. The pins hold the piston in place, so the volume stays the same. Press <b>Record</b> to plot a point.",
-    combined:"Change both the volume and the temperature. Press <b>Set as state 1</b>, change the conditions, then compare the two states.",
+    combined:"Change both the volume and the temperature. Press <b>Set as state 1</b>. Change the conditions, then press <b>Record as state 2</b>. Record as many state 2 rows as you like and compare each one with state 1.",
     avogadro:"Change the amount of gas. The weight on the piston keeps the pressure constant and the temperature stays the same, so the piston is free to move. Press <b>Record</b> to plot a point.",
     pressure:"Change the number of particles and the temperature. Each yellow flash is a particle hitting a wall. The volume stays the same.",
-    ideal:"Change the amount of gas, the volume and the temperature. The pressure follows PV = nRT, and PV ÷ nT always comes out to the same number: the ideal gas constant, R."}[law];
+    ideal:"Change the amount of gas, the volume and the temperature. The pressure follows PV = nRT. Watch the value of PV divided by nT as you change the conditions."}[law];
   const ctl=L.ctl.map(k=>k==="V"? sl("V","Volume",.5,2.4,.05,V) : k==="T"? sl("T","Temperature",150,600,5,Tk) : k==="M"? sl("M","Moles of gas",.01,.08,.005,nMol) : sl("N","Particles",4,48,1,nPart)).join("");
-  const tblHead={boyle:["P (kPa)","V (L)","P × V"],charles:["V (L)","T (K)","V ÷ T"],gay:["P (kPa)","T (K)","P ÷ T"],combined:["P (kPa)","V (L)","T (K)","PV ÷ T"],avogadro:["V (L)","n (mol)","V ÷ n"],pressure:null,ideal:null}[law];
+  const tblHead={boyle:["P (kPa)","V (L)","P × V"],charles:["V (L)","T (K)","V ÷ T"],gay:["P (kPa)","T (K)","P ÷ T"],combined:["State","P (kPa)","V (L)","T (K)","PV ÷ T"],avogadro:["V (L)","n (mol)","V ÷ n"],pressure:null,ideal:null}[law];
   const INV=["boyle","charles","gay","avogadro"].includes(law)&&!o.noInv, inv={stage:INV?0:9};
   host.innerHTML=`<div class="lab-b"><p class="how">${how}</p><div class="controls g8-ctl">${ctl}</div>
-    <div class="controls">${law==="ideal"?"":law==="combined"?`<button class="btn sm" type="button" data-r="s1">Set as state 1</button>`:law!=="pressure"?`<button class="btn sm" type="button" data-r="rec">● Record</button><button class="btn ghost sm" type="button" data-r="clr">Clear</button><label class="chk"><input type="checkbox" data-r="law"> Show the law</label>${law!=="boyle"&&law!=="avogadro"?`<div class="seg" role="group" aria-label="Temperature axis"><button type="button" data-ax="K" aria-pressed="true">Kelvin</button><button type="button" data-ax="C" aria-pressed="false">Celsius</button></div>`:""}`:""}</div>
+    <div class="controls">${law==="ideal"?"":law==="combined"?`<button class="btn sm" type="button" data-r="s1">Set as state 1</button><button class="btn sm" type="button" data-r="rec">● Record as state 2</button><button class="btn ghost sm" type="button" data-r="clr">Clear</button>`:law!=="pressure"?`<button class="btn sm" type="button" data-r="rec">● Record</button><button class="btn ghost sm" type="button" data-r="clr">Clear</button><label class="chk"><input type="checkbox" data-r="law"> Show the law</label>${law!=="boyle"&&law!=="avogadro"?`<div class="seg" role="group" aria-label="Temperature axis"><button type="button" data-ax="K" aria-pressed="true">Kelvin</button><button type="button" data-ax="C" aria-pressed="false">Celsius</button></div>`:""}`:""}</div>
     <div class="t7-row t7-wr g8-row"><div class="t7-cv-wrap g8-cv"></div><div class="g8-side"><div class="g8-read" data-r="read"></div>${law==="pressure"?`<div class="g8-hits" data-r="hits"></div>`:`<div class="t7-svg" data-r="gr"></div>`}${tblHead?`<table class="nt g8-tbl" data-r="tbl"></table>`:""}${INV?`<div class="g8-inv" data-r="inv"></div>`:""}</div></div>
     <div class="status" data-r="msg" aria-live="polite"></div></div>`;
   const cv=T.canvas(CW,CH,"A cylinder of gas with a piston"), c=cv.getContext("2d"); host.querySelector(".g8-cv").appendChild(cv);
@@ -11771,8 +11771,11 @@ G.LawSim=function(host,o={}){ const law=o.law||"boyle", CW=420, CH=420, cx=120, 
       curve:showLaw?[[conv(150),nMol*R_KPA*150/100],[conv(600),nMol*R_KPA*600/100]]:null, extra:showLaw?[{pts:[[conv(0),0],[conv(150),nMol*R_KPA*150/100]],col:BLUE,dash:true}]:[], notes:showLaw?[[conv(0),0,xC?"−273 °C":"0 K",26,-16,PURPLE]]:[]}; }
     else if(law==="gay"){ const xm=xC?-300:0, xM=xC?350:650, conv=t=>xC?t-273:t, k=nMol*R_KPA/V; o2={xmin:xm,xmax:xM,ymin:0,ymax:300,xt:xC?[-300,-200,-100,0,100,200,300]:[0,100,200,300,400,500,600],yt:[0,50,100,150,200,250,300],xl:xC?"Temperature (°C)":"Temperature (K)",yl:"Pressure (kPa)",pts:rec.map(r=>[conv(r.T),r.P]),cur:[conv(Tk),P()],
       curve:showLaw?[[conv(150),k*150],[conv(600),k*600]]:null, extra:showLaw?[{pts:[[conv(0),0],[conv(150),k*150]],col:BLUE,dash:true}]:[], notes:showLaw?[[conv(0),0,xC?"−273 °C":"0 K",26,-16,PURPLE]]:[]}; }
-    else if(law==="ideal"){ const p=P(); gr.innerHTML=`<div class="g8-cmp"><small>PV ÷ nT</small><span class="mth">(${fx(p,1)} kPa)(${fx(V,2)} L) ÷ [(${nMol.toFixed(3)} mol)(${Math.round(Tk)} K)] = <b>${(p*V/(nMol*Tk)).toFixed(2)}</b> L·kPa/(mol·K)</span><span class="mth">In atmospheres: (${fx(p/101.3,3)} atm)(${fx(V,2)} L) ÷ [(${nMol.toFixed(3)} mol)(${Math.round(Tk)} K)] = <b>${(p/101.3*V/(nMol*Tk)).toFixed(4)}</b> L·atm/(mol·K)</span><p>Whatever the conditions, PV ÷ nT stays the same. This constant is the ideal gas constant, R.</p></div>`; return; }
-    else { const cmp=s1?`<div class="g8-cmp"><div><small>State 1</small><span class="mth">P<sub>1</sub>V<sub>1</sub> ÷ T<sub>1</sub> = (${fx(s1.P,1)})(${fx(s1.V,2)}) ÷ ${Math.round(s1.T)} = <b>${fx(s1.P*s1.V/s1.T,3)}</b></span></div><div><small>Now (state 2)</small><span class="mth">P<sub>2</sub>V<sub>2</sub> ÷ T<sub>2</sub> = (${fx(P(),1)})(${fx(V,2)}) ÷ ${Math.round(Tk)} = <b>${fx(P()*V/Tk,3)}</b></span></div><p>The two values are equal: for a fixed amount of gas, <span class="mth">P<sub>1</sub>V<sub>1</sub>/T<sub>1</sub> = P<sub>2</sub>V<sub>2</sub>/T<sub>2</sub></span>.</p></div>` : `<div class="g8-cmp"><p>Press <b>Set as state 1</b> to save the current conditions.</p></div>`;
+    else if(law==="ideal"){ const p=P(), Fq=(a,b)=>`<span class="cx-frac"><span>${a}</span><span>${b}</span></span>`; gr.innerHTML=`<div class="g8-cmp"><small>PV divided by nT</small><span class="mth">${Fq("PV","nT")} = ${Fq(`(${fx(p,1)} kPa)(${fx(V,2)} L)`,`(${nMol.toFixed(3)} mol)(${Math.round(Tk)} K)`)} = <b>${(p*V/(nMol*Tk)).toFixed(2)}</b> ${Fq("L·kPa","mol·K")}</span><span class="mth">In atmospheres: ${Fq(`(${fx(p/101.3,3)} atm)(${fx(V,2)} L)`,`(${nMol.toFixed(3)} mol)(${Math.round(Tk)} K)`)} = <b>${(p/101.3*V/(nMol*Tk)).toFixed(4)}</b> ${Fq("L·atm","mol·K")}</span><p>Change the conditions and watch this value. What do you notice? This value is the ideal gas constant, R.</p></div>`; return; }
+    else { const F=(a,b)=>`<span class="cx-frac"><span>${a}</span><span>${b}</span></span>`, last=rec.filter(r=>r.lab!=="State 1").slice(-1)[0];
+      const side=(i,p,v,t)=>`<span class="mth">${F(`P<sub>${i}</sub>V<sub>${i}</sub>`,`T<sub>${i}</sub>`)} = ${F(`(${fx(p,1)} kPa)(${fx(v,2)} L)`,`${Math.round(t)} K`)} = <b>${fx(p*v/t,3)}</b></span>`;
+      const cmp=!s1? `<div class="g8-cmp"><p>Press <b>Set as state 1</b> to save the current conditions.</p></div>`
+        : `<div class="g8-cmp"><div><small>State 1</small>${side(1,s1.P,s1.V,s1.T)}</div><div><small>${last?"State 2 (last recorded)":"State 2"}</small>${last?side(2,last.P,last.V,last.T):`<span class="muted">Change the volume or temperature, then press <b>Record as state 2</b>.</span>`}</div>${last?`<p>Compare the two values. What stays the same when P, V and T all change?</p>`:""}</div>`;
       gr.innerHTML=cmp; return; }
     if(INV&&inv.path&&inv.path.length>1) o2.extra=(o2.extra||[]).concat([{pts:inv.path,col:"#F28C28",w:3}]);
     o2.W=420; o2.H=300; o2.aria="Graph of the recorded data"; lastO=o2; gr.innerHTML=G.plot(o2); gr.style.touchAction=INV&&inv.drawing?"none":""; gr.style.cursor=INV&&inv.drawing?"crosshair":""; }
@@ -11790,12 +11793,12 @@ G.LawSim=function(host,o={}){ const law=o.law||"boyle", CW=420, CH=420, cx=120, 
     const px=path.map(p=>p[0]), cover=(Math.min(hi,Math.max(...px))-Math.max(lo,Math.min(...px)))/Math.max(1e-9,hi-lo);
     const inR=path.filter(p=>p[0]>=lo-(hi-lo)*.05&&p[0]<=hi+(hi-lo)*.05); if(inR.length<3) return {cover,err:1};
     const err=Math.sqrt(inR.reduce((a,p)=>a+Math.pow((p[1]-model(p[0]))/(o.ymax-o.ymin),2),0)/inR.length); return {cover,err}; }
-  function table(){ const tb=host.querySelector('[data-r="tbl"]'); if(!tb) return; const rows=rec.slice(-6);
-    const hideK=INV&&inv.stage<3; tb.innerHTML=`<tr>${tblHead.map(h=>`<th>${A.U8.kHead?A.U8.kHead(h):h}</th>`).join("")}</tr>`+(rows.length?rows.map(r=> law==="boyle"? `<tr><td>${fx(r.P,1)}</td><td>${fx(r.V,2)}</td><td><b>${hideK?"?":fx(r.P*r.V,1)}</b></td></tr>` : law==="charles"? `<tr><td>${fx(r.V,3)}</td><td>${Math.round(r.T)}</td><td><b>${hideK?"?":(r.V/r.T).toFixed(5)}</b></td></tr>` : law==="avogadro"? `<tr><td>${fx(r.V,3)}</td><td>${r.n.toFixed(3)}</td><td><b>${hideK?"?":(r.V/r.n).toFixed(1)}</b></td></tr>` : `<tr><td>${fx(r.P,1)}</td><td>${Math.round(r.T)}</td><td><b>${hideK?"?":(r.P/r.T).toFixed(3)}</b></td></tr>`).join("") : `<tr><td colspan="${tblHead.length}" class="muted">Recorded data appears here.</td></tr>`); }
+  function table(){ const tb=host.querySelector('[data-r="tbl"]'); if(!tb) return; const rows=law==="combined"&&rec.length>6? [rec[0]].concat(rec.slice(-5)) : rec.slice(-6);
+    const hideK=INV&&inv.stage<3; tb.innerHTML=`<tr>${tblHead.map(h=>`<th>${A.U8.kHead?A.U8.kHead(h):h}</th>`).join("")}</tr>`+(rows.length?rows.map(r=> law==="combined"? `<tr><td>${r.lab}</td><td>${fx(r.P,1)}</td><td>${fx(r.V,2)}</td><td>${Math.round(r.T)}</td><td><b>${fx(r.P*r.V/r.T,3)}</b></td></tr>` : law==="boyle"? `<tr><td>${fx(r.P,1)}</td><td>${fx(r.V,2)}</td><td><b>${hideK?"?":fx(r.P*r.V,1)}</b></td></tr>` : law==="charles"? `<tr><td>${fx(r.V,3)}</td><td>${Math.round(r.T)}</td><td><b>${hideK?"?":(r.V/r.T).toFixed(5)}</b></td></tr>` : law==="avogadro"? `<tr><td>${fx(r.V,3)}</td><td>${r.n.toFixed(3)}</td><td><b>${hideK?"?":(r.V/r.n).toFixed(1)}</b></td></tr>` : `<tr><td>${fx(r.P,1)}</td><td>${Math.round(r.T)}</td><td><b>${hideK?"?":(r.P/r.T).toFixed(3)}</b></td></tr>`).join("") : `<tr><td colspan="${tblHead.length}" class="muted">Recorded data appears here.</td></tr>`); }
   function note(){ const t={boyle:V<1?"Smaller volume: the particles hit the walls more often, so the pressure is higher.":V>1.8?"Larger volume: the particles travel farther between collisions, so they hit the walls less often and the pressure is lower.":"As the volume decreases, the pressure increases (temperature constant).",
       charles:Tk>380?"Higher temperature: the particles move faster and push the piston up until the pressure inside again balances the weight.":Tk<250?"Lower temperature: the particles slow down, so the piston sinks until the pressure inside balances the weight again.":"As the temperature increases, the volume increases (pressure constant).",
       gay:Tk>380?"Higher temperature: the particles move faster, so they hit the walls more often and harder. The pressure rises.":Tk<250?"Lower temperature: the particles move more slowly and hit the walls less often and less hard.":"As the temperature increases, the pressure increases (volume constant).",
-      combined:"Pressure, volume and temperature change together. For a fixed amount of gas, PV ÷ T stays the same.",
+      combined:s1&&rec.length>1? "Pressure, volume and temperature changed together. Look at the last column of the table: what do you notice about the value for every state?" : "Pressure, volume and temperature change together.",
       avogadro:nMol>.06?"More gas particles hit the piston more often, so it rises until the pressure inside again balances the weight.":nMol<.025?"Fewer gas particles: fewer collisions push up on the piston, so it sinks until the pressure balances the weight again.":"As the amount of gas increases, the volume increases (temperature and pressure constant).",
       pressure:"More particles or a higher temperature means more collisions with the walls each second, so the pressure is higher.",
       ideal:"More moles of gas, a smaller volume or a higher temperature each raise the pressure, exactly as PV = nRT predicts."}[law]; msg.innerHTML=t; }
@@ -11803,10 +11806,10 @@ G.LawSim=function(host,o={}){ const law=o.law||"boyle", CW=420, CH=420, cx=120, 
   host.addEventListener("input",e=>{ const k=e.target.dataset&&e.target.dataset.k; if(!k) return; const v=+e.target.value;
     if(k==="V") V=v; if(k==="T"){ gas.setT(v); Tk=v; if(law==="charles") V=nMol*R_KPA*Tk/100; } if(k==="N"){ nPart=v; gas.setN(v); nMol=N0*v/24; } if(k==="M"){ nMol=v; nPart=Math.max(2,Math.round(v/N0*24)); gas.setN(nPart); if(law==="avogadro") V=nMol*R_KPA*Tk/100; } upd(); });
   const q=s=>host.querySelector(s);
-  q('[data-r="rec"]')&&q('[data-r="rec"]').addEventListener("click",()=>{ rec.push({P:P(),V,T:Tk,n:nMol}); upd(); });
-  q('[data-r="clr"]')&&q('[data-r="clr"]').addEventListener("click",()=>{ rec=[]; if(INV){ inv.stage=0; inv.target=null; inv.pred=null; inv.path=[]; inv.drawing=false; inv.drawOK=false; inv.row=null; showLaw=false; const cb=q('[data-r="law"]'); if(cb) cb.checked=false; } upd(); });
+  q('[data-r="rec"]')&&q('[data-r="rec"]').addEventListener("click",()=>{ if(law==="combined"){ if(!s1){ s1={P:P(),V,T:Tk}; rec=[{...s1,lab:"State 1"}]; } else rec.push({P:P(),V,T:Tk,n:nMol,lab:"State 2"}); upd(); return; } rec.push({P:P(),V,T:Tk,n:nMol}); upd(); });
+  q('[data-r="clr"]')&&q('[data-r="clr"]').addEventListener("click",()=>{ rec=[]; s1=null; if(INV){ inv.stage=0; inv.target=null; inv.pred=null; inv.path=[]; inv.drawing=false; inv.drawOK=false; inv.row=null; showLaw=false; const cb=q('[data-r="law"]'); if(cb) cb.checked=false; } upd(); });
   q('[data-r="law"]')&&q('[data-r="law"]').addEventListener("change",e=>{ showLaw=e.target.checked; graph(); });
-  q('[data-r="s1"]')&&q('[data-r="s1"]').addEventListener("click",()=>{ s1={P:P(),V,T:Tk}; graph(); });
+  q('[data-r="s1"]')&&q('[data-r="s1"]').addEventListener("click",()=>{ s1={P:P(),V,T:Tk}; rec=[{...s1,lab:"State 1"}]; upd(); });
   A.$$('[data-ax]',host).forEach(b=>b.addEventListener("click",()=>{ xC=b.dataset.ax==="C"; A.$$('[data-ax]',host).forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); graph();
     if(xC) msg.innerHTML="On the Celsius axis the line does not pass through the origin, so volume is <b>not</b> directly proportional to the Celsius temperature. Extending the line reaches zero at −273 °C (0 K)."; }));
   /* drag the piston handle (Boyle and combined) */
@@ -11895,7 +11898,7 @@ G.IdealReal=function(host){ let Tk=300, Vm=24; const W=300, H=260, N=26;
   const Pbar=()=>0.08314*Tk/Vm; /* ideal pressure in bar for 1 mol in Vm liters */
   function ui(){ const z=G.zN2(Vm,Tk), dev=Math.abs(1-z)*100;
     host.querySelector('[data-v="T"]').textContent=Tk+" K"; host.querySelector('[data-v="P"]').textContent=fx(Pbar()*0.9869,1)+" atm";
-    host.querySelector('[data-r="m"]').innerHTML=`<div><small>Real pressure ÷ ideal pressure</small><b>${z.toFixed(3)}</b></div><div class="g8-zbar"><i style="left:${Math.max(0,Math.min(100,50+(z-1)*120))}%"></i><span style="left:50%">1.000 = ideal</span></div><div><small>Difference from ideal</small><b style="color:${dev<2?GREEN:dev<10?ORANGE:RED}">${dev.toFixed(1)}%</b></div>`;
+    host.querySelector('[data-r="m"]').innerHTML=`<div><small>Real pressure divided by ideal pressure</small><b>${z.toFixed(3)}</b></div><div class="g8-zbar"><i style="left:${Math.max(0,Math.min(100,50+(z-1)*120))}%"></i><span style="left:50%">1.000 = ideal</span></div><div><small>Difference from ideal</small><b style="color:${dev<2?GREEN:dev<10?ORANGE:RED}">${dev.toFixed(1)}%</b></div>`;
     host.querySelector('[data-r="msg"]').innerHTML= dev<2? "<b>Behaves almost ideally.</b> The particles are far apart, so their own volume and their attractions hardly matter." : (Tk<200&&Vm<3)? "<b>Far from ideal.</b> The particles are slow and crowded, so attractions pull them together and the gas presses less than the ideal model predicts." : Vm<1.5? "<b>Crowded.</b> At high pressure the particles take up a noticeable part of the container, so the real gas does not follow the ideal model." : "<b>Some deviation.</b> Lower temperatures and higher pressures make real gases behave less like the ideal model."; }
   host.addEventListener("input",e=>{ const k=e.target.dataset.k; if(!k) return; if(k==="T") Tk=+e.target.value; else { const f=+e.target.value/100; Vm=24*Math.pow(.15/24,f); } ui(); });
   T.loop(B1.cv,dt=>{ step(P1,dt,false); step(P2,dt,true); draw(B1,P1,false); draw(B2,P2,true); });
@@ -12014,10 +12017,10 @@ G.DaltonSim=function(host){ const gases=[{k:"N2",name:"Nitrogen, N₂",col:BLUE,
   const cv=T.canvas(W,H,"A container holding a mixture of gases"), c=cv.getContext("2d"); host.querySelector(".g8-cvw").appendChild(cv);
   const gas=G.Gas({x0:20,y0:H-20,w:W-40,h0:H-40,n:0,r:7,T:300});
   const sync=()=>{ const want=[]; gases.forEach(g=>{ for(let i=0;i<g.n;i++) want.push(g.col); }); gas.setN(want.length); gas.P.forEach((p,i)=>p.c=want[i]); };
-  function ui(){ const tot=gases.reduce((a,g)=>a+g.n,0)*perP; let s="", x=40;
-    gases.forEach(g=>{ const v=g.n*perP, hh=v*1.6; s+=`<rect x="${x}" y="${250-hh}" width="56" height="${hh}" fill="${g.col}" stroke="${INK}" stroke-width="1.5"/>`+T.t(x+28,268,g.k.replace("2","₂"),{fs:13})+T.t(x+28,244-hh,v+" kPa",{fs:12.5,c:g.col}); x+=72; });
-    s+=T.t(x+6,256-tot*1.6/2,"=",{fs:22}); let yy=250; gases.forEach(g=>{ const hh=g.n*perP*1.6; s+=`<rect x="${x+26}" y="${yy-hh}" width="62" height="${hh}" fill="${g.col}" stroke="${INK}" stroke-width="1.5"/>`; yy-=hh; });
-    s+=T.t(x+57,268,"Total",{fs:13})+T.t(x+57,244-tot*1.6,tot+" kPa",{fs:13.5})+`<line x1="30" y1="250" x2="${x+100}" y2="250" stroke="${INK}" stroke-width="2"/>`;
+  function ui(){ const SC=.7; /* fixed scale: 300 kPa (all sliders at maximum) fits in the box */ const tot=gases.reduce((a,g)=>a+g.n,0)*perP; let s="", x=40;
+    gases.forEach(g=>{ const v=g.n*perP, hh=v*SC; s+=`<rect x="${x}" y="${250-hh}" width="56" height="${hh}" fill="${g.col}" stroke="${INK}" stroke-width="1.5"/>`+T.t(x+28,268,g.k.replace("2","₂"),{fs:13})+T.t(x+28,244-hh,v+" kPa",{fs:12.5,c:g.col}); x+=72; });
+    s+=T.t(x+6,256-tot*SC/2,"=",{fs:22}); let yy=250; gases.forEach(g=>{ const hh=g.n*perP*SC; s+=`<rect x="${x+26}" y="${yy-hh}" width="62" height="${hh}" fill="${g.col}" stroke="${INK}" stroke-width="1.5"/>`; yy-=hh; });
+    s+=T.t(x+57,268,"Total",{fs:13})+T.t(x+57,244-tot*SC,tot+" kPa",{fs:13.5})+`<line x1="30" y1="250" x2="${x+100}" y2="250" stroke="${INK}" stroke-width="2"/>`;
     host.querySelector('[data-r="bars"]').innerHTML=T.svg(x+110,280,s,"Partial pressure bars and the total pressure");
     gases.forEach(g=>host.querySelector(`[data-v="${g.k}"]`).textContent=g.n);
     host.querySelector('[data-r="info"]').innerHTML=`<span class="mth">P<sub>total</sub> = ${gases.map(g=>`P<sub>${g.k.replace("2","₂")}</sub>`).join(" + ")} = ${gases.map(g=>g.n*perP).join(" + ")} = ${tot} kPa</span><span>Each gas’s share of the pressure equals its share of the particles: oxygen makes up ${tot?Math.round(gases[1].n*perP/tot*100):0}% of the particles and ${tot?Math.round(gases[1].n*perP/tot*100):0}% of the pressure.</span>`; }
@@ -12030,13 +12033,14 @@ G.GASES={H2:{n:"Hydrogen",f:"H₂",M:2.02,col:"#7aa7d9"},He:{n:"Helium",f:"He",M
 G.GrahamSim=function(host){ let a="He", b="O2"; const W=600,H=300, rnd=T.rng(13);
   host.innerHTML=`<div class="lab-b"><p class="how">Choose two gases at the same temperature. Both start on the left; molecules escape through the pinhole into the empty chamber on the right. Press <b>Start</b> and compare how fast each gas effuses.</p>
     <div class="controls g8-ctl"><label class="g8-sl"><span>Gas 1</span><select data-g="a">${Object.entries(G.GASES).map(([k,g])=>`<option value="${k}"${k===a?" selected":""}>${g.n} (${g.f}, ${g.M} g/mol)</option>`).join("")}</select></label><label class="g8-sl"><span>Gas 2</span><select data-g="b">${Object.entries(G.GASES).map(([k,g])=>`<option value="${k}"${k===b?" selected":""}>${g.n} (${g.f}, ${g.M} g/mol)</option>`).join("")}</select></label><button class="btn sm" type="button" data-r="go">▶ Start</button></div>
-    <div class="g8-row"><div class="t7-cv-wrap g8-cvw g8-wide"></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
+    <div class="g8-row"><div class="g8-cvcol"><div class="g8-key" data-r="key"></div><div class="t7-cv-wrap g8-cvw g8-wide"></div></div><div class="g8-side"><div class="g8-read g8-read3" data-r="read"></div><div class="t7-card" data-r="info"></div></div></div></div>`;
   const cv=T.canvas(W,H,"Two gases effusing through a pinhole"), c=cv.getContext("2d"); host.querySelector(".g8-cvw").appendChild(cv);
   let P=[], run=false, t0=0, esc={a:0,b:0}, time=0;
   const reset=()=>{ P=[]; esc={a:0,b:0}; time=0; ["a","b"].forEach(w=>{ const g=G.GASES[w==="a"?a:b], v=55*Math.sqrt(32/g.M); for(let i=0;i<22;i++){ const an=rnd()*6.283; let x,y,k=0; do{ x=30+rnd()*250; y=30+rnd()*240; k++; } while(k<60&&P.some(q=>Math.hypot(q.x-x,q.y-y)<16)); P.push({w,x,y,vx:Math.cos(an)*v,vy:Math.sin(an)*v,c:g.col,side:0,m:g.M}); } }); };
-  function ui(){ const ga=G.GASES[a], gb=G.GASES[b], ratio=Math.sqrt(gb.M/ga.M);
+  function ui(){ const ga=G.GASES[a], gb=G.GASES[b], ratio=Math.sqrt(gb.M/ga.M), F=(x,y)=>`<span class="cx-frac"><span>${x}</span><span>${y}</span></span>`;
+    host.querySelector('[data-r="key"]').innerHTML=`<b>Key</b>`+[ga,gb].map((g,i)=>`<span><i style="background:${g.col}"></i><em>Gas ${i+1}: ${g.n} (${g.f}, ${g.M} g/mol)</em></span>`).join("")+(a===b?`<span class="muted">Both gases are the same, so both use one color.</span>`:"");
     host.querySelector('[data-r="read"]').innerHTML=`<div><small>${ga.f} escaped</small><b style="color:${ga.col}">${esc.a}</b></div><div><small>${gb.f} escaped</small><b style="color:${gb.col}">${esc.b}</b></div><div><small>Time</small><b>${time.toFixed(1)} s</b></div>`;
-    host.querySelector('[data-r="info"]').innerHTML=`<b>Graham’s law predicts</b><span class="mth">rate<sub>${ga.f}</sub> ÷ rate<sub>${gb.f}</sub> = √(${gb.M} ÷ ${ga.M}) = ${ratio.toFixed(2)}</span><span>${ratio>1.01?`${ga.f} should effuse ${ratio.toFixed(2)} times as fast as ${gb.f}.`:ratio<.99?`${gb.f} should effuse ${(1/ratio).toFixed(2)} times as fast as ${ga.f}.`:"The two gases have nearly the same molar mass, so they effuse at nearly the same rate."}${esc.b>4&&esc.a>4?` In this run: ${esc.a} ÷ ${esc.b} = ${(esc.a/esc.b).toFixed(2)}.`:""}</span>`; }
+    host.querySelector('[data-r="info"]').innerHTML=`<b>Graham’s law predicts</b><span class="mth">${F(`rate<sub>${ga.f}</sub>`,`rate<sub>${gb.f}</sub>`)} = <span class="wrt">√<span>${F(gb.M+" g/mol",ga.M+" g/mol")}</span></span> = ${ratio.toFixed(2)}</span><span>${ratio>1.01?`${ga.f} should effuse ${ratio.toFixed(2)} times as fast as ${gb.f}.`:ratio<.99?`${gb.f} should effuse ${(1/ratio).toFixed(2)} times as fast as ${ga.f}.`:"The two gases have nearly the same molar mass, so they effuse at nearly the same rate."}${esc.b>4&&esc.a>4?` In this run: <span class="mth">${F(esc.a,esc.b)} = ${(esc.a/esc.b).toFixed(2)}</span>.`:""}</span>`; }
   A.$$("select",host).forEach(s=>s.addEventListener("change",()=>{ if(s.dataset.g==="a") a=s.value; else b=s.value; run=false; reset(); ui(); }));
   host.querySelector('[data-r="go"]').addEventListener("click",()=>{ reset(); run=true; ui(); });
   T.loop(cv,(dt)=>{ if(run){ time+=dt; if(time>40) run=false; }
@@ -12126,7 +12130,7 @@ const RED="#E00000", BLUE="#2E75D6";
 const sub=n=>`<sub>${n}</sub>`, VN={P:"P",V:"V",T:"T"}, NAME={P:"pressure",V:"volume",T:"temperature"};
 const nice=v=>{ const a=Math.abs(v); return a>=1000? String(+v.toPrecision(4)) : a>=100? String(+v.toFixed(1)) : a>=10? String(+v.toFixed(2)) : String(+v.toPrecision(3)); };
 const rnd=(lo,hi,dp)=>+(lo+Math.random()*(hi-lo)).toFixed(dp);
-const UNITS_OK={kPa:["kpa","kilopascal","kilopascals"],atm:["atm","atmosphere","atmospheres"],mmHg:["mmhg","mm hg","torr"],L:["l","liter","liters","litre"],mL:["ml","milliliter","milliliters"],K:["k","kelvin","kelvins"],"°C":["°c","c","degc","oc","celsius"],mol:["mol","mole","moles"],g:["g","gram","grams"]};
+const UNITS_OK={kPa:["kpa","kilopascal","kilopascals"],atm:["atm","atmosphere","atmospheres"],mmHg:["mmhg","mm hg","torr"],L:["l","liter","liters","litre"],mL:["ml","milliliter","milliliters"],K:["k","kelvin","kelvins"],"°C":["°c","c","degc","oc","celsius"],mol:["mol","mole","moles"],g:["g","gram","grams"],"g/mol":["g/mol","gmol","g mol-1","grams per mole"],"mol/s":["mol/s","mol s-1","moles per second"]};
 const normU=u=>{ const s=String(u||"").trim().toLowerCase().replace(/\s+/g," "); for(const [k,a] of Object.entries(UNITS_OK)) if(a.includes(s)||k.toLowerCase()===s) return k; return s; };
 G.normU=normU;
 
@@ -12329,11 +12333,11 @@ G.IdealGame=function(host){ let mode="easy", Pb=null, dd=null;
     Rpick=v; A.$$("[data-rv]",g.stage).forEach(x=>x.disabled=true); g.msg("✔ R matches the pressure unit.","good"); units(); }
   function units(){ const el=g.stage.querySelector('[data-r="units"]'); g.stage.querySelector('[data-r="s3"]').classList.remove("locked"); conv=[];
     if(Pb.g.T&&Pb.g.T[1]==="°C") conv.push({k:"T",eq:`T = ${Pb.g.T[0]} °C + 273 =`,ans:[Pb.g.T[0]+273,Pb.g.T[0]+273.15],to:"K"});
-    if(Pb.g.n&&Pb.g.n[1]==="g") conv.push({k:"n",eq:`n = ${fmtQ(Pb.g.n)} × (1 mol ÷ ${Pb.gas[1]} g) =`,ans:[Pb.g.n[0]/Pb.gas[1]],to:"mol"});
+    if(Pb.g.n&&Pb.g.n[1]==="g") conv.push({k:"n",eq:`n = ${fmtQ(Pb.g.n)} × <span class="cx-frac"><span>1 mol</span><span>${Pb.gas[1]} g</span></span> =`,ans:[Pb.g.n[0]/Pb.gas[1]],to:"mol"});
     if(!conv.length){ el.innerHTML=`<p class="g8-ok">✔ The units already match R: volume in liters, amount in moles, temperature in kelvin.</p>`; subst(); return; }
     el.innerHTML=conv.map((c,i)=>`<div class="g8-conv"><span class="mth">${c.eq}</span><input class="inp" data-u="${i}" data-sup="1" inputmode="decimal" style="width:120px" aria-label="converted value"><b>${c.to}</b></div>`).join("")+`<div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c3">Check Step 3</button></div>`;
     el.querySelector('[data-r="c3"]').addEventListener("click",()=>{ let ok=true; conv.forEach((c,i)=>{ const inp=el.querySelector(`[data-u="${i}"]`), p=A.parseTyped(inp.value), good=p&&c.ans.some(a=>Math.abs(p.v-a)<=Math.max(.6*(c.to==="K"),Math.abs(a)*.01)); A.markBox(inp,good); if(good) c.val=p.v; else ok=false; });
-      if(!ok){ g.lose(); g.msg("Kelvin = °C + 273. Moles = grams ÷ molar mass.","bad"); return; } A.$$("input,button",el).forEach(i=>i.disabled=true); g.msg("✔ The units match R. Substitute and solve (Step 4).","good"); subst(); }); }
+      if(!ok){ g.lose(); g.msg("Kelvin = °C + 273. To find moles, divide the grams by the molar mass.","bad"); return; } A.$$("input,button",el).forEach(i=>i.disabled=true); g.msg("✔ The units match R. Substitute and solve (Step 4).","good"); subst(); }); }
   function subst(){ const qOf=k=>{ const c=conv.find(x=>x.k===k); return c?[c.val??c.ans[0],c.to]:Pb.g[k]; };
     const v=k=>{ if(k===Pb.unk) return k; const q=qOf(k); return mode==="hard"? `(<input class="inp g8-sb" data-k="${k}" inputmode="decimal" aria-label="${k} value" placeholder="${k}"> ${q[1]})` : `(${nice(q[0])} ${q[1]})`; };
     g.stage._qOf=qOf;
@@ -12370,53 +12374,130 @@ G.VPQuiz=function(host){ const g=A.Game(host,{how:"Read the vapor pressure curve
     A.$$("[data-c]",g.stage).forEach(b=>b.addEventListener("click",()=>{ if(g.stage.dataset.done) return; const ok=b.dataset.c===cur.c0; A.markBox(b,ok); if(ok){ g.win(); g.stage.dataset.done=1; g.msg(`✔ ${cur.ex}`,"good"); } else { g.lose(); g.msg(cur.ex,"bad"); } })); delete g.stage.dataset.done; }
   next(); };
 
-/* ---------- Dalton's law calculations ---------- */
-G.DaltonGame=function(host){ const g=A.Game(host,{how:"Find the partial pressure in two steps: first the fraction of the moles that belong to that gas, then that fraction of the total pressure."}); g.button("New problem",()=>next(),"ghost");
+/* ---------- shared pieces for the Dalton and Graham games (Easy: drag values; Hard: type value and unit) ---------- */
+const FR=(a,b)=>`<span class="cx-frac"><span>${a}</span><span>${b}</span></span>`, ROOT=x=>`<span class="wrt">√<span>${x}</span></span>`;
+const tySlot=(k,lab)=>`<span class="g8-ty" data-s="${k}"><input class="ty-n" data-sup="1" placeholder="number" autocomplete="off" aria-label="${lab} number"><input class="ty-u" data-unit="1" placeholder="unit" autocomplete="off" aria-label="${lab} unit"></span>`;
+const ddSlot=k=>`<span class="da-slot g8-slot" data-s="${k}"></span>`;
+const readTy=(stage,k)=>{ const sl=stage.querySelector(`.g8-ty[data-s="${k}"]`); if(!sl) return null; const n=sl.querySelector(".ty-n").value.trim(), u=sl.querySelector(".ty-u").value.trim(); if(n==="?") return "?"; if(!n) return null; const p=A.parseTyped(n); return {v:p?p.v:NaN,u:normU(u)}; };
+const readDD=(dd,k)=>{ const pl=dd.placement(), id=Object.keys(pl).find(i=>pl[i]===k); return id||null; };
+const markSlot=(stage,k,ok)=>{ const el=stage.querySelector(`[data-s="${k}"]`); if(el){ el.classList.toggle("good",ok); el.classList.toggle("bad",!ok); } };
+/* a value typed in Hard mode matches [value, unit] (or "?") */
+const tyOK=(r,want)=> want==="?"? r==="?" : !!(r&&r!=="?"&&Math.abs(r.v-want[0])<=Math.max(1e-9,Math.abs(want[0])*2e-3)&&r.u===normU(want[1]));
+/* choose the correct form of the law; wrong choices explain the mistake */
+function lawPick(g,box,opts,onOK){ box.innerHTML=`<div class="g8-lawch">${A.shuffle(opts.map((o,i)=>({...o,i}))).map(o=>`<button type="button" class="btn ghost g8-lawb" data-i="${o.i}"><span class="g8-eq mth">${(k=>`<span>${o.html.slice(0,k)}</span><span>=</span><span>${o.html.slice(k+3)}</span>`)(o.html.indexOf(" = "))}</span></button>`).join("")}</div>`;
+  A.$$("[data-i]",box).forEach(b=>b.addEventListener("click",()=>{ if(box.dataset.done) return; const o=opts[+b.dataset.i]; A.markBox(b,!!o.ok); if(!o.ok){ g.lose(); g.msg(o.why,"bad"); return; } box.dataset.done=1; A.$$("[data-i]",box).forEach(x=>{ x.disabled=true; if(x!==b) x.classList.add("dim"); }); onOK(); })); }
+
+/* ---------- Dalton's law: partial pressure from the mole fraction ---------- */
+G.DaltonGame=function(host){ let mode="easy", dd=null, dd2=null, P0=null;
+  const g=A.Game(host,{how:"Find the partial pressure of one gas with the steps from the notes. Easy: drag the values from the problem into the boxes. Hard: type each value and its unit into the correct box."});
+  g.seg("Level",[["easy","Easy"],["hard","Hard"]],mode,v=>{ mode=v; next(); }); g.button("New problem",()=>next(),"ghost");
   const GS=[["O<sub>2</sub>","oxygen"],["N<sub>2</sub>","nitrogen"],["H<sub>2</sub>","hydrogen"],["He","helium"],["Ar","argon"],["CO<sub>2</sub>","carbon dioxide"]];
-  let P0=null;
-  function next(){ g.fresh(); g.msg(""); const pick=A.shuffle(GS).slice(0,A.pick([2,3])), mol=pick.map(()=>A.pick([.5,1,1.5,2,2.5,3,4])), Pt=A.pick([[101.3,"kPa"],[1.00,"atm"],[2.50,"atm"],[150.,"kPa"],[760,"mmHg"]]), i=A.rand(0,pick.length-1), tot=mol.reduce((a,b)=>a+b,0);
-    P0={pick,mol,Pt,i,tot,frac:mol[i]/tot,ans:mol[i]/tot*Pt[0]};
-    g.stage.innerHTML=`<div class="t7-prob">A container holds ${pick.map((x,k)=>`<span class="t7-val">${mol[k]} mol</span> of ${x[1]} (${x[0]})`).join(", ")} at a total pressure of <span class="t7-val">${Pt[0]} ${Pt[1]}</span>. What is the partial pressure of the ${pick[i][1]}?</div>
-     <div class="da-step"><h4>Step 1: Fraction of the moles that are ${pick[i][1]}</h4><div class="g8-conv"><span class="mth">mol ${pick[i][0]} ÷ total mol = ${mol[i]} ÷ (${mol.join(" + ")}) =</span><input class="inp" data-r="f" inputmode="decimal" style="width:110px" aria-label="mole fraction"><button class="btn sm" type="button" data-r="c1">Check Step 1</button></div></div>
-     <div class="da-step locked" data-r="s2"><h4>Step 2: Partial pressure</h4><div class="g8-conv"><span class="mth" data-r="m2"></span><input class="inp" data-r="a" inputmode="decimal" style="width:120px" aria-label="partial pressure"><b>${Pt[1]}</b><button class="btn sm" type="button" data-r="c2">Check answer</button></div></div>`;
-    g.stage.querySelector('[data-r="c1"]').addEventListener("click",()=>{ const inp=g.stage.querySelector('[data-r="f"]'), p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-P0.frac)<=.006; A.markBox(inp,ok); if(!ok){ g.lose(); g.msg("Divide the moles of this gas by the total moles of all the gases.","bad"); return; }
-      g.msg("✔ That fraction of the particles is this gas, so it supplies that fraction of the pressure.","good"); g.stage.querySelector('[data-r="s2"]').classList.remove("locked"); g.stage.querySelector('[data-r="m2"]').innerHTML=`P<sub>${P0.pick[P0.i][0]}</sub> = (${(+P0.frac.toFixed(3))})(${P0.Pt[0]} ${P0.Pt[1]}) =`; });
-    g.stage.querySelector('[data-r="c2"]').addEventListener("click",()=>{ const inp=g.stage.querySelector('[data-r="a"]'), p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-P0.ans)<=Math.abs(P0.ans)*.012; A.markBox(inp,ok); if(!ok){ g.lose(); g.msg("Multiply the fraction by the total pressure.","bad"); return; } g.win(); g.msg(`✔ The partial pressure is ${+P0.ans.toPrecision(3)} ${P0.Pt[1]}.`,"good"); }); }
+  const step=(r,n,title,body,locked=true)=>`<div class="da-step${locked?" locked":""}" data-r="${r}"><h4>Step ${n}: ${title}</h4>${body}</div>`;
+  const q=s=>g.stage.querySelector(s), open=r=>q(`[data-r="${r}"]`).classList.remove("locked");
+  function next(){ g.fresh(); g.msg(""); dd=dd2=null;
+    const pick=A.shuffle(GS).slice(0,A.pick([2,3])), mol=pick.map(()=>A.pick([.5,1,1.5,2,2.5,3,4])), Pt=A.pick([[101.3,"kPa"],[1.00,"atm"],[2.50,"atm"],[150.,"kPa"],[760,"mmHg"]]), i=A.rand(0,pick.length-1), tot=mol.reduce((a,b)=>a+b,0);
+    P0={pick,mol,Pt,i,tot,frac:mol[i]/tot,ans:mol[i]/tot*Pt[0]}; const A_=pick[i][0].replace(/<sub>(\d)<\/sub>/g,(_,d)=>"₀₁₂₃₄₅₆₇₈₉"[d]), ptS=Pt[0]===1?"1.00":String(Pt[0]);
+    const sym=x=>`<span class="mth">${x}</span>`, slot=(k,l)=>mode==="hard"? tySlot(k,l) : ddSlot(k);
+    g.stage.innerHTML=`<div class="t7-prob">A container holds ${pick.map((x,k)=>`<span class="t7-val" data-k="n${k}">${mol[k]} mol</span> of ${x[1]} (${x[0]})`).join(", ")} at a total pressure of <span class="t7-val" data-k="Pt">${ptS} ${Pt[1]}</span>. What is the <span class="t7-val" data-k="unk">partial pressure of the ${pick[i][1]}</span>?</div>`+
+      step("s1",1,"List the variables and the unknown",`<p class="muted g8-tip">${mode==="hard"?"Type each value and its unit. Type ? for the unknown.":"Drag each highlighted value from the problem into its box. Drag the highlighted unknown into its box."} Then find n<sub>T</sub> by adding the moles of every gas.</p>
+        <table class="g8-giv"><tr><th>Moles of ${A_}</th><td>${sym(`n<sub>${A_}</sub>`)} = ${slot("nA","moles of "+pick[i][1])}</td></tr><tr><th>Total pressure</th><td>${sym("P<sub>T</sub>")} = ${slot("PT","total pressure")}</td></tr><tr><th>Partial pressure of ${A_}</th><td>${sym(`P<sub>${A_}</sub>`)} = ${slot("PA","partial pressure")}</td></tr>
+        <tr><th>Total moles</th><td>${sym("n<sub>T</sub>")} = <input class="inp" data-r="nT" inputmode="decimal" style="width:90px" aria-label="total moles"> mol</td></tr></table>${mode!=="hard"?`<div class="dd-pool" data-r="pool"></div>`:""}
+        <div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c1">Check Step 1</button></div>`,false)+
+      step("s2",2,"Write down the equation",`<p class="muted g8-tip">Which equation gives the partial pressure of one gas in a mixture?</p><div data-r="law"></div>`)+
+      step("s3",3,"Substitute and solve",`<p class="muted g8-tip">${mode==="hard"?"Type each value and its unit into the correct box.":"Drag each value from your list into the correct box."}</p><div class="g8-conv mth g8-subst">P<sub>${A_}</sub> = ${FR(slot("fA","moles of "+pick[i][1]),slot("fT","total moles"))}<span style="white-space:nowrap">(${slot("fP","total pressure")})</span></div>${mode!=="hard"?`<div class="dd-pool" data-r="pool2"></div>`:""}
+        <div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c3">Check my setup</button></div>
+        <div class="controls locked" data-r="solve"><b class="t7-line mth">P<sub>${A_}</sub> =</b><input class="inp" data-r="a" inputmode="decimal" style="width:120px" aria-label="partial pressure"><button class="btn sm" type="button" data-r="c3b">Check answer</button></div>`)+
+      step("s4",4,"Write the final answer with units",`<div class="controls"><b class="t7-line mth" data-r="fin">P<sub>${A_}</sub> = ?</b>${mode==="hard"?`<input class="inp" data-r="uin" data-unit="1" placeholder="unit" style="width:90px" aria-label="unit"><button class="btn sm" type="button" data-r="c4">Check Step 4</button>`:["kPa","atm","mmHg","mol"].map(u=>`<button type="button" class="btn ghost sm g8-ub" data-ub="${u}">${u}</button>`).join("")}</div>`);
+    if(mode!=="hard"){ const srcs=A.$$(".t7-prob .t7-val",g.stage).map(el=>({id:el.dataset.k,el,html:el.dataset.k==="unk"?"?":el.innerHTML}));
+      dd=A.TextDrag({root:g.root,pool:q('[data-r="pool"]'),targets:A.$$('[data-r="s1"] .g8-slot',g.stage).map(el=>({el,id:el.dataset.s})),sources:srcs,extras:[],onChange:()=>{}}); }
+    lawPick(g,q('[data-r="law"]'),[
+      {ok:1,html:`P<sub>${A_}</sub> = ${FR(`n<sub>${A_}</sub>`,"n<sub>T</sub>")}(P<sub>T</sub>)`},
+      {html:`P<sub>${A_}</sub> = ${FR("n<sub>T</sub>",`n<sub>${A_}</sub>`)}(P<sub>T</sub>)`,why:`The fraction of the particles that are ${A_} is the moles of ${A_} divided by the total moles, so n<sub>T</sub> goes on the bottom.`},
+      {html:`P<sub>${A_}</sub> = (n<sub>${A_}</sub>)(n<sub>T</sub>)(P<sub>T</sub>)`,why:"The mole fraction is a fraction: divide the moles of this gas by the total moles. Do not multiply them."}],()=>{ g.msg("✔ The mole fraction of a gas times the total pressure gives its partial pressure.","good"); open("s3"); setup3(); });
+    q('[data-r="c1"]').addEventListener("click",check1); }
+  function check1(){ const {mol,i,Pt,tot}=P0; let bad=null;
+    const want={nA:mode==="hard"?[mol[i],"mol"]:"n"+i, PT:mode==="hard"?Pt:"Pt", PA:mode==="hard"?"?":"unk"};
+    Object.keys(want).forEach(k=>{ const ok= mode==="hard"? tyOK(readTy(g.stage,k),want[k]) : readDD(dd,k)===want[k]; markSlot(g.stage,k,ok);
+      if(!ok&&!bad) bad= k==="nA"? `Find the moles of ${P0.pick[i][1]} in the problem.` : k==="PT"? "Find the total pressure in the problem." : "The partial pressure is the unknown. It goes in as ?."; });
+    const nI=q('[data-r="nT"]'), p=A.parseTyped(nI.value), okT=p&&Math.abs(p.v-tot)<1e-6; A.markBox(nI,!!okT); if(!okT&&!bad) bad="Add the moles of every gas in the container to find n<sub>T</sub>.";
+    if(bad){ g.lose(); g.msg(bad+(mode==="hard"?" Check that each value has its unit.":""),"bad"); return; }
+    dd&&dd.lock(); A.$$('[data-r="s1"] input',g.stage).forEach(x=>x.disabled=true); q('[data-r="c1"]').disabled=true; g.msg("✔ Your list is complete. Now write the equation (Step 2).","good"); open("s2"); }
+  function setup3(){ const {mol,i,Pt,tot}=P0, ptS=Pt[0]===1?"1.00":String(Pt[0]);
+    if(mode!=="hard"){ const other=mol.filter((_,k)=>k!==i)[0];
+      const ex=A.shuffle([{id:"xA",html:`${mol[i]} mol`},{id:"xT",html:`${tot} mol`},{id:"xP",html:`${ptS} ${Pt[1]}`}].concat(other!==undefined&&other!==mol[i]&&other!==tot?[{id:"xO",html:`${other} mol`}]:[]));
+      dd2=A.TextDrag({root:g.root,pool:q('[data-r="pool2"]'),poolLabel:"Values:",targets:A.$$('[data-r="s3"] .g8-slot',g.stage).map(el=>({el,id:el.dataset.s})),sources:[],extras:ex,onChange:()=>{}}); }
+    q('[data-r="c3"]').addEventListener("click",()=>{ let bad=null; const want={fA:mode==="hard"?[mol[i],"mol"]:"xA", fT:mode==="hard"?[tot,"mol"]:"xT", fP:mode==="hard"?Pt:"xP"};
+      Object.keys(want).forEach(k=>{ const ok= mode==="hard"? tyOK(readTy(g.stage,k),want[k]) : readDD(dd2,k)===want[k]; markSlot(g.stage,k,ok);
+        if(!ok&&!bad) bad= k==="fA"? `The top of the fraction is the moles of ${P0.pick[i][1]}.` : k==="fT"? "The bottom of the fraction is the total moles, n<sub>T</sub>." : "Multiply by the total pressure, P<sub>T</sub>."; });
+      if(bad){ g.lose(); g.msg(bad,"bad"); return; } dd2&&dd2.lock(); A.$$('[data-r="s3"] .g8-ty input',g.stage).forEach(x=>x.disabled=true); q('[data-r="c3"]').disabled=true;
+      g.msg("✔ The setup is correct. Now solve.","good"); q('[data-r="solve"]').classList.remove("locked"); q('[data-r="a"]').focus(); });
+    const go=()=>{ const inp=q('[data-r="a"]'); if(inp.disabled) return; const p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-P0.ans)<=Math.abs(P0.ans)*.012; A.markBox(inp,!!ok);
+      if(!ok){ g.lose(); g.msg(`Divide ${mol[i]} by ${tot}, then multiply by ${ptS}.`,"bad"); return; } inp.disabled=true; q('[data-r="c3b"]').disabled=true; g.msg("✔ Correct. Now write the final answer with units (Step 4).","good"); open("s4"); q('[data-r="fin"]').innerHTML=`P<sub>${P0.pick[i][0]}</sub> = ${P0.ans.toPrecision(3)}`; step4(); };
+    q('[data-r="c3b"]').addEventListener("click",go); q('[data-r="a"]').addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); }
+  function step4(){ const u=P0.Pt[1], fin=(val,el)=>{ const ok=normU(val)===u; A.markBox(el,ok); if(!ok){ g.lose(); g.msg("A partial pressure has the same unit as the total pressure.","bad"); return; }
+      A.$$('[data-r="s4"] button,[data-r="s4"] input',g.stage).forEach(x=>x.disabled=true); g.win(); g.msg(`✔ The partial pressure of the ${P0.pick[P0.i][1]} is ${P0.ans.toPrecision(3)} ${u}. It is ${P0.mol[P0.i]} out of every ${P0.tot} mol of gas, so it supplies that fraction of the total pressure.`,"good"); };
+    if(mode==="hard"){ const ui=q('[data-r="uin"]'); q('[data-r="c4"]').addEventListener("click",()=>fin(ui.value,ui)); ui.addEventListener("keydown",e=>{ if(e.key==="Enter") fin(ui.value,ui); }); }
+    else A.$$(".g8-ub",g.stage).forEach(b=>b.addEventListener("click",()=>fin(b.dataset.ub,b))); }
+  host._dg={P:()=>P0,mode:()=>mode};
   next(); };
 
 /* ---------- Graham's law calculations ---------- */
-G.GrahamGame=function(host){ const g=A.Game(host,{how:"Solve each problem with the steps from the notes: assign gas 1 and gas 2, substitute into Graham’s law and solve, then write the final answer. Either gas can be gas 1, as long as you keep the same choice through the whole problem."}); g.button("New problem",()=>next(),"ghost");
-  const K=Object.keys(G.GASES); let P0=null; const f3=v=>v.toPrecision(3), m2=v=>v.toFixed(2);
-  const frac=(a,b)=>`<span class="cx-frac"><span>${a}</span><span>${b}</span></span>`, root=x=>`<span class="wrt">√<span>${x}</span></span>`;
-  function next(){ g.fresh(); g.msg(""); let a,b; do{ a=A.pick(K); b=A.pick(K); } while(a===b||Math.abs(G.GASES[a].M-G.GASES[b].M)<3);
+G.GrahamGame=function(host){ let mode="easy", dd=null, P0=null;
+  const g=A.Game(host,{how:"Solve each problem with the steps from the notes. Easy: drag the values from the problem into Graham’s law. Hard: type each value and its unit into the correct box. Either gas can be gas 1, as long as you keep the same choice through the whole problem."});
+  g.seg("Level",[["easy","Easy"],["hard","Hard"]],mode,v=>{ mode=v; next(); }); g.button("New problem",()=>next(),"ghost");
+  const K=Object.keys(G.GASES); const f3=v=>v.toPrecision(3), m2=v=>v.toFixed(2);
+  const step=(r,n,title,body,locked=true)=>`<div class="da-step${locked?" locked":""}" data-r="${r}"><h4>Step ${n}: ${title}</h4>${body}</div>`;
+  const q=s=>g.stage.querySelector(s), open=r=>q(`[data-r="${r}"]`).classList.remove("locked");
+  function next(){ g.fresh(); g.msg(""); dd=null; let a,b; do{ a=A.pick(K); b=A.pick(K); } while(a===b||Math.abs(G.GASES[a].M-G.GASES[b].M)<3);
     const ga=G.GASES[a], gb=G.GASES[b], type=Math.random()<.5?"ratio":"rate", Ra=+(0.0100+Math.random()*0.0400).toFixed(4); P0={a,b,type,Ra,g1:null};
-    const q= type==="ratio"? `At the same temperature, how many times as fast as ${gb.n.toLowerCase()} (${gb.f}, <span class="t7-val">${m2(gb.M)} g/mol</span>) does ${ga.n.toLowerCase()} (${ga.f}, <span class="t7-val">${m2(ga.M)} g/mol</span>) effuse?`
-      : `A sample of ${ga.n.toLowerCase()} (${ga.f}, <span class="t7-val">${m2(ga.M)} g/mol</span>) effuses at <span class="t7-val">${Ra} mol/s</span>. At the same temperature, what is the rate of effusion of ${gb.n.toLowerCase()} (${gb.f}, <span class="t7-val">${m2(gb.M)} g/mol</span>)?`;
-    g.stage.innerHTML=`<div class="t7-prob">${q}</div>
-     <div class="da-step"><h4>Step 1: Assign gas 1 and gas 2</h4><p class="muted" style="margin:0 0 6px">Choose either gas to be gas 1. The other gas is gas 2.</p><div class="g8-rch">${[a,b].map(k=>`<button type="button" class="btn ghost" data-f="${k}">Gas 1 = ${G.GASES[k].f}</button>`).join("")}</div></div>
-     <div class="da-step locked" data-r="s2"><h4>Step 2: Substitute into Graham’s law and solve</h4><div data-r="sub"></div></div>
-     <div class="da-step locked" data-r="s3"><h4>Step 3: Write the final answer${type==="rate"?" with units":""}</h4><div data-r="fin"></div></div>`;
-    A.$$("[data-f]",g.stage).forEach(bt=>bt.addEventListener("click",()=>{ if(P0.g1) return; P0.g1=bt.dataset.f; A.$$("[data-f]",g.stage).forEach(x=>{ x.disabled=true; x.classList.toggle("on",x===bt); }); g.msg(`✔ Gas 1 is ${G.GASES[P0.g1].f} and gas 2 is ${G.GASES[P0.g1===a?b:a].f}.`,"good"); step2(); })); }
-  function step2(){ const {a,b,type,Ra,g1}=P0, g2=g1===a?b:a, G1=G.GASES[g1], G2=G.GASES[g2]; g.stage.querySelector('[data-r="s2"]').classList.remove("locked");
-    const law=`${frac("rate<sub>"+G1.f+"</sub>","rate<sub>"+G2.f+"</sub>")} = ${root(frac("M<sub>"+G2.f+"</sub>","M<sub>"+G1.f+"</sub>"))}`;
-    let sub, want;
-    if(type==="ratio"){ want=Math.sqrt(G2.M/G1.M); sub=`<div class="g8-conv mth">${law} = ${root(frac(m2(G2.M)+" g/mol",m2(G1.M)+" g/mol"))} = <input class="inp" data-r="v" inputmode="decimal" style="width:110px" aria-label="rate of gas 1 divided by rate of gas 2"></div>`; }
-    else { const unk=b; want=Ra*Math.sqrt(G.GASES[a].M/G.GASES[b].M);
-      const r1=g1===unk?"rate<sub>"+G1.f+"</sub>":Ra+" mol/s", r2=g2===unk?"rate<sub>"+G2.f+"</sub>":Ra+" mol/s";
-      sub=`<div class="g8-conv mth">${law}</div><div class="g8-conv mth">${frac(r1,r2)} = ${root(frac(m2(G2.M)+" g/mol",m2(G1.M)+" g/mol"))}</div><div class="g8-conv mth">rate<sub>${G.GASES[unk].f}</sub> = <input class="inp" data-r="v" inputmode="decimal" style="width:120px" aria-label="rate of effusion of ${G.GASES[unk].n}"></div>`; }
-    P0.want=want; const box=g.stage.querySelector('[data-r="sub"]'); box.innerHTML=sub+`<div class="controls"><button class="btn sm" type="button" data-r="c2">Check answer</button></div>`;
-    const inp=box.querySelector('[data-r="v"]'), go=()=>{ if(inp.disabled) return; const p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-want)<=want*.012; A.markBox(inp,ok);
-      if(!ok){ g.lose(); g.msg(type==="ratio"? "Divide M of gas 2 by M of gas 1, then take the square root." : "Multiply both sides by the rate in the denominator, or divide, to get the unknown rate by itself. Then take the square root of the molar-mass ratio.","bad"); return; }
-      inp.disabled=true; box.querySelector('[data-r="c2"]').disabled=true; g.msg("✔ Correct.","good"); step3(); };
-    box.querySelector('[data-r="c2"]').addEventListener("click",go); inp.addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); }
-  function step3(){ const {a,b,type,Ra}=P0, ga=G.GASES[a], gb=G.GASES[b]; g.stage.querySelector('[data-r="s3"]').classList.remove("locked"); const box=g.stage.querySelector('[data-r="fin"]');
-    if(type==="ratio"){ const want=Math.sqrt(gb.M/ga.M); box.innerHTML=`<div class="g8-conv">${ga.f} effuses <input class="inp" data-r="v" inputmode="decimal" style="width:100px" aria-label="answer"> times as fast as ${gb.f}. <button class="btn sm" type="button" data-r="c3">Check answer</button></div>`;
-      const inp=box.querySelector("input"), go=()=>{ if(inp.disabled) return; const p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-want)<=want*.012; A.markBox(inp,ok); if(!ok){ g.lose(); g.msg(P0.g1===a? "Use your answer from Step 2." : "Your Step 2 ratio is rate of "+gb.f+" ÷ rate of "+ga.f+". The question asks for the reverse, so divide 1 by your Step 2 answer.","bad"); return; }
-        inp.disabled=true; g.win(); g.msg(`✔ ${ga.f} effuses ${f3(want)} times as fast as ${gb.f}. ${want>1?`It is faster because its molar mass is smaller.`:`It is slower because its molar mass is larger.`}`,"good"); };
-      box.querySelector("button").addEventListener("click",go); inp.addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); }
-    else { box.innerHTML=`<div class="g8-conv">rate<sub>${gb.f}</sub> = <b class="mth">${f3(P0.want)}</b> <span class="g8-rch">${["mol/s","g/mol","s/mol"].map(u=>`<button type="button" class="btn ghost sm" data-u="${u}">${u}</button>`).join("")}</span></div>`;
-      A.$$("[data-u]",box).forEach(bt=>bt.addEventListener("click",()=>{ const ok=bt.dataset.u==="mol/s"; A.markBox(bt,ok); if(!ok){ g.lose(); g.msg("A rate of effusion is an amount of gas per unit of time.","bad"); return; } A.$$("[data-u]",box).forEach(x=>x.disabled=true); g.win(); g.msg(`✔ The rate of effusion of ${gb.f} is ${f3(P0.want)} mol/s. ${gb.M<ga.M?`It is faster than ${ga.f} because its molar mass is smaller.`:`It is slower than ${ga.f} because its molar mass is larger.`}`,"good"); })); } }
-  host._gg={P:()=>P0};
+    const qt= type==="ratio"? `At the same temperature, how many times as fast as ${gb.n.toLowerCase()} (${gb.f}, <span class="t7-val" data-k="Mb">${m2(gb.M)} g/mol</span>) does ${ga.n.toLowerCase()} (${ga.f}, <span class="t7-val" data-k="Ma">${m2(ga.M)} g/mol</span>) effuse?`
+      : `A sample of ${ga.n.toLowerCase()} (${ga.f}, <span class="t7-val" data-k="Ma">${m2(ga.M)} g/mol</span>) effuses at <span class="t7-val" data-k="Ra">${Ra} mol/s</span>. At the same temperature, what is the <span class="t7-val" data-k="unk">rate of effusion of ${gb.n.toLowerCase()}</span> (${gb.f}, <span class="t7-val" data-k="Mb">${m2(gb.M)} g/mol</span>)?`;
+    g.stage.innerHTML=`<div class="t7-prob">${qt}</div>`+
+      step("s1",1,"Assign gas 1 and gas 2",`<p class="muted" style="margin:0 0 6px">Choose either gas to be gas 1. The other gas is gas 2.</p><div class="g8-rch">${[a,b].map(k=>`<button type="button" class="btn ghost" data-f="${k}">Gas 1 = ${G.GASES[k].f}</button>`).join("")}</div>`,false)+
+      step("s2",2,"Write down Graham’s law",`<p class="muted g8-tip">Which equation is Graham’s law?</p><div data-r="law"></div>`)+
+      step("s3",3,"Substitute and solve",`<div data-r="sub"></div>`)+
+      step("s4",4,`Write the final answer${type==="rate"?" with units":""}`,`<div data-r="fin"></div>`);
+    A.$$("[data-f]",g.stage).forEach(bt=>bt.addEventListener("click",()=>{ if(P0.g1) return; P0.g1=bt.dataset.f; A.$$("[data-f]",g.stage).forEach(x=>{ x.disabled=true; x.classList.toggle("on",x===bt); });
+      g.msg(`✔ Gas 1 is ${G.GASES[P0.g1].f} and gas 2 is ${G.GASES[P0.g1===a?b:a].f}. Keep this choice for the rest of the problem.`,"good"); open("s2");
+      lawPick(g,q('[data-r="law"]'),[
+        {ok:1,html:`${FR("rate<sub>1</sub>","rate<sub>2</sub>")} = ${ROOT(FR("M<sub>2</sub>","M<sub>1</sub>"))}`},
+        {html:`${FR("rate<sub>1</sub>","rate<sub>2</sub>")} = ${ROOT(FR("M<sub>1</sub>","M<sub>2</sub>"))}`,why:"Graham’s law is an inverse relationship: the gas with the smaller molar mass effuses faster. So the molar mass of gas 2 goes on top."},
+        {html:`${FR("rate<sub>1</sub>","rate<sub>2</sub>")} = ${FR("M<sub>2</sub>","M<sub>1</sub>")}`,why:"The rate is inversely proportional to the square root of the molar mass, not to the molar mass itself."}],()=>{ g.msg("✔ That is Graham’s law.","good"); open("s3"); step3(); }); })); }
+  function step3(){ const {a,b,type,Ra,g1}=P0, g2=g1===a?b:a, G1=G.GASES[g1], G2=G.GASES[g2], id=k=>k===a?"a":"b";
+    const slot=(k,l)=>mode==="hard"? tySlot(k,l) : ddSlot(k);
+    const left= type==="ratio"? FR(`rate<sub>${G1.f}</sub>`,`rate<sub>${G2.f}</sub>`) : FR(slot("r1","rate of gas 1"),slot("r2","rate of gas 2"));
+    const unkK= type==="rate"? (g1===b?"r1":"r2") : null;
+    P0.want= type==="ratio"? Math.sqrt(G2.M/G1.M) : Ra*Math.sqrt(G.GASES[a].M/G.GASES[b].M);
+    const box=q('[data-r="sub"]');
+    box.innerHTML=`<p class="muted g8-tip">Gas 1 is ${G1.f} and gas 2 is ${G2.f}. ${mode==="hard"?"Type each value and its unit into the correct box"+(type==="rate"?". Type ? for the unknown rate.":"."):"Drag each highlighted value from the problem into the correct box"+(type==="rate"?". Drag the highlighted unknown in as ?.":".")}</p>
+      <div class="g8-conv mth g8-subst">${left} = ${ROOT(FR(slot("M2","molar mass of gas 2"),slot("M1","molar mass of gas 1")))}</div>
+      <div class="controls" style="justify-content:flex-end"><button class="btn sm" type="button" data-r="c3">Check my setup</button></div>
+      <div class="controls locked" data-r="solve"><b class="t7-line mth">${type==="ratio"?FR(`rate<sub>${G1.f}</sub>`,`rate<sub>${G2.f}</sub>`):`rate<sub>${G.GASES[b].f}</sub>`} =</b><input class="inp" data-r="v" inputmode="decimal" style="width:120px" aria-label="answer"><button class="btn sm" type="button" data-r="c3b">Check answer</button></div>`;
+    if(mode!=="hard"){ const srcs=A.$$(".t7-prob .t7-val",g.stage).map(el=>({id:el.dataset.k,el,html:el.dataset.k==="unk"?"?":el.innerHTML}));
+      dd=A.TextDrag({root:g.root,targets:A.$$('[data-r="sub"] .g8-slot',g.stage).map(el=>({el,id:el.dataset.s})),sources:srcs,extras:[],onChange:()=>{}}); }
+    const want={M1:"M"+id(g1),M2:"M"+id(g2)}; if(type==="rate"){ want.r1=g1===a?"Ra":"unk"; want.r2=g2===a?"Ra":"unk"; }
+    const tyWant=k=>{ const v=want[k]; return v==="unk"? "?" : v==="Ra"? [Ra,"mol/s"] : [G.GASES[v==="Ma"?a:b].M,"g/mol"]; };
+    q('[data-r="c3"]').addEventListener("click",()=>{ let bad=null;
+      Object.keys(want).forEach(k=>{ let ok; if(mode==="hard"){ const r=readTy(g.stage,k), w=tyWant(k); ok=tyOK(r,w); } else ok=readDD(dd,k)===want[k];
+        markSlot(g.stage,k,ok); if(!ok&&!bad) bad= k==="M1"? `The bottom of the square root is the molar mass of gas 1 (${G1.f}).` : k==="M2"? `The top of the square root is the molar mass of gas 2 (${G2.f}).` : want[k]==="unk"? `The rate of ${G.GASES[b].f} is the unknown, so it goes in as ?.` : `Put the given rate (of ${ga_f()}) with the gas it belongs to.`; });
+      if(bad){ g.lose(); g.msg(bad+(mode==="hard"?" Check each unit, too.":""),"bad"); return; }
+      dd&&dd.lock(); A.$$('[data-r="sub"] .g8-ty input',g.stage).forEach(x=>x.disabled=true); q('[data-r="c3"]').disabled=true; g.msg("✔ The setup is correct. Now solve for the unknown.","good"); q('[data-r="solve"]').classList.remove("locked"); q('[data-r="v"]').focus(); });
+    const ga_f=()=>G.GASES[a].f;
+    const inp=q('[data-r="v"]'), go=()=>{ if(inp.disabled) return; const p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-P0.want)<=P0.want*.012; A.markBox(inp,!!ok);
+      if(!ok){ g.lose(); g.msg(type==="ratio"? `Divide ${m2(G2.M)} by ${m2(G1.M)}, then take the square root.` : `First take the square root of the molar-mass fraction. Then multiply or divide to get the rate of ${G.GASES[b].f} by itself.`,"bad"); return; }
+      inp.disabled=true; q('[data-r="c3b"]').disabled=true; g.msg("✔ Correct.","good"); step4(); };
+    q('[data-r="c3b"]').addEventListener("click",go); inp.addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); }
+  function step4(){ const {a,b,type}=P0, ga=G.GASES[a], gb=G.GASES[b]; open("s4"); const box=q('[data-r="fin"]');
+    if(type==="ratio"){ const want=Math.sqrt(gb.M/ga.M); box.innerHTML=`<div class="g8-conv">${ga.f} effuses <input class="inp" data-r="v" inputmode="decimal" style="width:100px" aria-label="answer"> times as fast as ${gb.f}. <button class="btn sm" type="button" data-r="c4">Check answer</button></div>`;
+      const inp=box.querySelector("input"), go=()=>{ if(inp.disabled) return; const p=A.parseTyped(inp.value), ok=p&&Math.abs(p.v-want)<=want*.012; A.markBox(inp,!!ok); if(!ok){ g.lose(); g.msg(P0.g1===a? "Use your answer from Step 3." : "Your Step 3 answer is the rate of "+gb.f+" divided by the rate of "+ga.f+". The question asks for the reverse, so divide 1 by your Step 3 answer.","bad"); return; }
+        inp.disabled=true; box.querySelector("button").disabled=true; g.win(); g.msg(`✔ ${ga.f} effuses ${f3(want)} times as fast as ${gb.f}. ${want>1?`It is faster because its molar mass is smaller.`:`It is slower because its molar mass is larger.`}`,"good"); };
+      box.querySelector("button").addEventListener("click",go); inp.addEventListener("keydown",e=>{ if(e.key==="Enter") go(); }); return; }
+    const fin=(val,el)=>{ const ok=normU(val)==="mol/s"; A.markBox(el,ok); if(!ok){ g.lose(); g.msg("A rate of effusion is an amount of gas per unit of time. Use the same unit as the given rate.","bad"); return; }
+      A.$$('[data-r="fin"] button,[data-r="fin"] input',g.stage).forEach(x=>x.disabled=true); g.win(); g.msg(`✔ The rate of effusion of ${gb.f} is ${f3(P0.want)} mol/s. ${gb.M<ga.M?`It is faster than ${ga.f} because its molar mass is smaller.`:`It is slower than ${ga.f} because its molar mass is larger.`}`,"good"); };
+    box.innerHTML=`<div class="g8-conv">rate<sub>${gb.f}</sub> = <b class="mth">${f3(P0.want)}</b> ${mode==="hard"?`<input class="inp" data-r="uin" data-unit="1" placeholder="unit" style="width:90px" aria-label="unit"><button class="btn sm" type="button" data-r="c4">Check answer</button>`:`<span class="g8-rch">${["mol/s","g/mol","s/mol"].map(u=>`<button type="button" class="btn ghost sm" data-u="${u}">${u}</button>`).join("")}</span>`}</div>`;
+    if(mode==="hard"){ const ui=box.querySelector("input"); box.querySelector("button").addEventListener("click",()=>fin(ui.value,ui)); ui.addEventListener("keydown",e=>{ if(e.key==="Enter") fin(ui.value,ui); }); }
+    else A.$$("[data-u]",box).forEach(bt=>bt.addEventListener("click",()=>fin(bt.dataset.u,bt))); }
+  host._gg={P:()=>P0,mode:()=>mode};
   next(); };
 
 /* ---------- the four variables that describe a gas ---------- */
@@ -14869,18 +14950,29 @@ G.KMTSpot=function(host){
   host.innerHTML=`<div class="lab-b game"><p class="how">Each box shows a gas that may <b>not</b> be following one of the postulates of the kinetic molecular theory. Watch the particles, then <b>click the postulate that the animation is breaking</b>. If the gas follows every postulate, click the last choice.</p>
     <div class="controls" style="justify-content:space-between"><span class="vs-score" data-r="sc"></span><span><button class="btn ghost" type="button" data-r="new">Start over</button> <button class="btn" type="button" data-r="nx" disabled>Next box</button></span></div>
     <div class="msg" data-r="msg" aria-live="polite">Feedback appears here.</div>
-    <div class="t7-svg kp-pic" data-r="pic"></div>
-    <p class="kp-ask"><b>Which postulate is NOT being followed in the animation?</b></p><div class="kp-opts" data-r="opts">${POST.map(([k,t],j)=>`<button type="button" class="kp-o" data-k="${k}"><b>${j+1}</b><span>${t}</span></button>`).join("")}<button type="button" class="kp-o kp-none" data-k="none"><b>✔</b><span>This gas follows every postulate.</span></button></div></div>`;
+    <div class="kp-stage"><div class="t7-svg kp-pic" data-r="pic"></div><div class="kp-badge" data-r="badge" aria-hidden="true"></div></div>
+    <p class="kp-ask"><b>Which postulate is NOT being followed in the animation?</b></p><div class="kp-opts" data-r="opts">${POST.map(([k,t],j)=>`<button type="button" class="kp-o" data-k="${k}"><b>${j+1}</b><span>${t}</span></button>`).join("")}<button type="button" class="kp-o kp-none" data-k="none"><b>✔</b><span>This gas follows every postulate.</span></button></div><div class="kp-exp" data-r="exp" hidden></div></div>`;
   const $=k=>host.querySelector(`[data-r="${k}"]`);
   const msg=(t,c)=>{ const m=$("msg"); m.className="msg"+(c?" "+c:""); m.innerHTML=t; };
-  function load(){ const sc=order[i]; picked=null; tries=0; done=false; $("nx").disabled=true; A.$$(".kp-o",host).forEach(b=>{ b.classList.remove("good","bad"); b.disabled=false; });
+  function badge(ok){ const bd=$("badge"); bd.className="kp-badge"; void bd.offsetWidth; bd.textContent=ok?"✔ Correct!":"✘ Not this one"; bd.classList.add(ok?"on-good":"on-bad"); const st=host.querySelector(".kp-stage"); st.classList.remove("flash-good","flash-bad"); void st.offsetWidth; st.classList.add(ok?"flash-good":"flash-bad"); }
+  function load(){ const sc=order[i]; picked=null; tries=0; done=false; $("nx").disabled=true;
+    /* a fresh round: clear every highlight, the focus ring, the badge and the explanation */
+    if(document.activeElement&&host.contains(document.activeElement)) document.activeElement.blur();
+    A.$$(".kp-o",host).forEach(b=>{ b.classList.remove("good","bad","shake","dim","sel"); b.disabled=false; }); $("badge").className="kp-badge"; host.querySelector(".kp-stage").classList.remove("flash-good","flash-bad"); $("exp").hidden=true; $("exp").innerHTML="";
     boxes= sc.one? [Box({...sc.one,W:300,H:190,seed:7+i})] : sc.two.map((o,j)=>Box({mode:"ideal",W:220,H:170,N:11,speed:o.speed,seed:11+j+i,T:o.T}));
     msg(`Box ${i+1} of ${order.length}. Watch the particles. Which postulate is this gas <b>not</b> following?`); $("sc").innerHTML=`Score <b>${score}</b> of ${order.length}`; }
   function start(){ order=A.shuffle(SC.slice()); i=0; score=0; load(); }
   A.$$(".kp-o",host).forEach(b=>b.addEventListener("click",()=>{ if(done) return; const sc=order[i];
-    if(b.dataset.k===sc.ans){ b.classList.add("good"); done=true; if(!tries) score++; msg(`✔ ${sc.tell}`,"good"); $("sc").innerHTML=`Score <b>${score}</b> of ${order.length}`; $("nx").disabled=i>=order.length-1;
-      A.$$(".kp-o",host).forEach(x=>x.disabled=true); if(i>=order.length-1) msg(`✔ ${sc.tell}<br><b>Finished: ${score} of ${order.length} on the first try.</b>`,"good"); }
-    else { tries++; b.classList.add("bad"); b.disabled=true; msg(b.dataset.k==="none"?"Look again: something in this box does not match the kinetic molecular theory.":"That postulate is followed here. Look at the size of the particles, their paths, their speeds after collisions and whether they pull on one another.","bad"); } }));
+    if(b.dataset.k===sc.ans){ b.classList.add("good"); done=true; if(!tries) score++; badge(true); $("sc").innerHTML=`Score <b>${score}</b> of ${order.length}`; $("nx").disabled=i>=order.length-1;
+      A.$$(".kp-o",host).forEach(x=>{ x.disabled=true; if(x!==b&&!x.classList.contains("bad")) x.classList.add("dim"); });
+      const post=POST.find(p=>p[0]===sc.ans);
+      $("exp").innerHTML=`<h4>${post?`Broken postulate: ${post[1]}`:"Every postulate is followed"}</h4><p><b>What the animation showed:</b> ${sc.tell}</p>${tries?`<p class="muted">You found it after ${tries} wrong ${tries===1?"try":"tries"}, so this box does not add to your score.</p>`:`<p class="muted">First try: +1 point.</p>`}`; $("exp").hidden=false;
+      msg(i>=order.length-1? `✔ Correct. <b>Finished: ${score} of ${order.length} on the first try.</b> Press <b>Start over</b> to play again.` : `✔ Correct. Read the explanation below, then press <b>Next box</b>.`,"good"); }
+    else { tries++; b.classList.add("bad"); b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake"); b.disabled=true; badge(false);
+      const post=POST.find(p=>p[0]===b.dataset.k);
+      msg(b.dataset.k==="none"? "✘ Not quite. Something in this box does <b>not</b> match the kinetic molecular theory. Look at the size of the particles, their paths, their speeds after collisions and whether they pull on one another."
+        : sc.ans==="none"? `✘ This gas does follow “${post[1]}” Watch again: is any postulate actually broken?`
+        : `✘ This gas does follow “${post[1]}” Look for a different postulate that the particles break.`,"bad"); } }));
   $("nx").addEventListener("click",()=>{ if(i<order.length-1){ i++; load(); } }); $("new").addEventListener("click",start);
   function draw(){ const W=640, H=230; let s="";
     if(boxes.length===1) s+=drawBox(boxes[0],(W-300)/2,24,BLUE);
@@ -14896,7 +14988,7 @@ const Rb=0.08314; /* L·bar/(mol·K) */
 function molarV(g,P,Tk){ const {a,b}=VDW[g]; const f=V=>(P+a/(V*V))*(V-b)-Rb*Tk; let lo=b*1.0001, hi=Rb*Tk/P*1.5+b+1;
   /* scan from the top for the gas root */ let prev=f(hi), x=hi; for(let k=0;k<400;k++){ const nx=x*0.985; const v=f(nx); if(Math.sign(v)!==Math.sign(prev)){ lo=nx; hi=x; break; } prev=v; x=nx; if(x<=b*1.0001){ break; } }
   for(let k=0;k<60;k++){ const m=(lo+hi)/2; if(Math.sign(f(m))===Math.sign(f(hi))) hi=m; else lo=m; } return (lo+hi)/2; }
-G.RealGasLab=function(host){ let gas="N2", Tk=500, Patm=1, parts=[], last=0, rnd=T.rng(23), seen={hiP:false,loT:false}, step=0;
+G.RealGasLab=function(host){ let gas="N2", Tk=500, Patm=1, hD=0, attD=0, parts=[], last=0, rnd=T.rng(23), seen={hiP:false,loT:false}, step=0;
   const W=330, H=320, BW=230, N=14;
   host.innerHTML=`<div class="lab-b"><p class="how">The container holds a real gas. The piston moves as you change the conditions, so the container gets smaller when the pressure rises or the temperature falls. Follow the steps in the box on the right.</p>
    <div class="controls"><span class="ctl-label">Gas</span><div class="seg" data-r="gas">${Object.keys(VDW).map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===gas}">${VDW[k].nm}</button>`).join("")}</div></div>
@@ -14911,9 +15003,13 @@ G.RealGasLab=function(host){ let gas="N2", Tk=500, Patm=1, parts=[], last=0, rnd
   const level=(v,lo,hi)=>v<lo?0:v<hi?1:2;
   function read(){ $("tv").textContent=`${Tk} K`; $("pv").textContent=`${Patm} atm`; const st=state(), g=VDW[gas], h=boxH(st.Vm);
     const share=Math.min(100,st.vol*100), attL=level(st.att,.01,.06), dev=Math.abs(st.Z-1), idL=dev<.03?0:dev<.12?1:2;
-    const bar=(lab,pct,txt,col)=>`<div class="rg-bar"><div class="rg-bl"><span>${lab}</span><b>${txt}</b></div><div class="rg-bt"><i style="width:${Math.max(3,pct)}%;background:${col}"></i></div></div>`;
-    $("bars").innerHTML=bar("Space taken up by the particles",share*2.5,share<1?"less than 1% of the container":`${Math.round(share)}% of the container`,"#E8590C")+bar("Attractions between particles",[12,50,92][attL],["weak","noticeable","strong"][attL],"#2E75D6")
-      +`<div class="rg-ideal rg-i${idL}">${["✔ Behaves like an ideal gas","Behaves somewhat like an ideal gas","✘ Does not behave like an ideal gas"][idL]}</div>`;
+    /* the bars are built once and then only their widths and labels change, so they slide smoothly (CSS transition) */
+    if(!$("bars").querySelector(".rg-bar")){ const bar=(k,lab,col)=>`<div class="rg-bar"><div class="rg-bl"><span>${lab}</span><b data-b="${k}t"></b></div><div class="rg-bt"><i data-b="${k}" style="width:3%;background:${col}"></i></div></div>`;
+      $("bars").innerHTML=bar("v","Space taken up by the particles","#E8590C")+bar("a","Attractions between particles","#2E75D6")+`<div class="rg-ideal" data-b="id"></div>`; }
+    const B=k=>$("bars").querySelector(`[data-b="${k}"]`), attPct=Math.max(4,Math.min(95,4+91*Math.log10(1+st.att*400)/Math.log10(1+0.12*400)));
+    B("v").style.width=Math.max(3,Math.min(100,share*2.5))+"%"; B("vt").textContent=share<1?"less than 1% of the container":`${Math.round(share)}% of the container`;
+    B("a").style.width=attPct+"%"; B("at").textContent=["weak","noticeable","strong"][attL];
+    const idb=B("id"); idb.className="rg-ideal rg-i"+idL; idb.textContent=["✔ Behaves like an ideal gas","Behaves somewhat like an ideal gas","✘ Does not behave like an ideal gas"][idL];
     if(Patm>=100) seen.hiP=true; if(Patm>=30&&Patm<=120&&Tk<=200) seen.loT=true; if(Patm>=30&&Patm<=120&&Tk>=650) seen.hiT=true;
     if(step===0&&seen.hiP) step=1; if(step===1&&seen.loT&&seen.hiT) step=2;
     const STEPS=[`<b>Step 1: Squeeze the gas</b><span>Slide the pressure all the way up. Watch the container and the particles. What happens to the empty space between the particles?</span>`,
@@ -14924,16 +15020,17 @@ G.RealGasLab=function(host){ let gas="N2", Tk=500, Patm=1, parts=[], last=0, rnd
       A.$$("[data-q]",$("info")).forEach(b=>b.addEventListener("click",()=>{ const ok=b.dataset.q==="hl", fb=$("info").querySelector(".rg-fb"); A.markBox(b,ok);
         fb.innerHTML=ok? "✔ At high temperature the particles move too fast for their attractions to matter, and at low pressure they are so far apart that their own volume is a tiny part of the container. Try it: set those conditions and compare the three gases. The smallest particles with the weakest attractions, helium, behave most like an ideal gas."
           : "Not quite. Look back at Steps 1 and 2: which pressure made the particles’ volume matter, and which temperature made the attractions matter? Choose the opposite of both."; })); } }
-  function draw(){ const st=state(), g=VDW[gas], h=boxH(st.Vm), x0=(W-BW)/2, yb=H-14, yt=yb-h; let s=`<rect width="${W}" height="${H}" fill="#fafcfd"/>`;
+  function draw(){ const st=state(), g=VDW[gas], h=hD, attS=attD, x0=(W-BW)/2, yb=H-14, yt=yb-h; let s=`<rect width="${W}" height="${H}" fill="#fafcfd"/>`;
     /* cylinder walls, piston and rod */
     s+=`<rect x="${x0}" y="${yt}" width="${BW}" height="${h}" fill="#eef6fb"/>`;
     const rr=g.r, pos=parts.map(p=>[x0+rr+2+p.x*(BW-2*rr-4), yt+rr+2+p.y*(h-2*rr-4)]);
-    if(st.att>0.01) pos.forEach((a,i)=>pos.forEach((b,j)=>{ if(j<=i) return; const d=Math.hypot(a[0]-b[0],a[1]-b[1]); if(d<rr*4.2&&d>2*rr){ const ux=(b[0]-a[0])/d, uy=(b[1]-a[1])/d; s+=`<line x1="${(a[0]+ux*rr).toFixed(1)}" y1="${(a[1]+uy*rr).toFixed(1)}" x2="${(b[0]-ux*rr).toFixed(1)}" y2="${(b[1]-uy*rr).toFixed(1)}" stroke="#2E75D6" stroke-width="${st.att>.06?2.6:1.6}" stroke-dasharray="2 3"/>`; } }));
+    if(attS>0.004) pos.forEach((a,i)=>pos.forEach((b,j)=>{ if(j<=i) return; const d=Math.hypot(a[0]-b[0],a[1]-b[1]); if(d<rr*4.2&&d>2*rr){ const ux=(b[0]-a[0])/d, uy=(b[1]-a[1])/d; s+=`<line x1="${(a[0]+ux*rr).toFixed(1)}" y1="${(a[1]+uy*rr).toFixed(1)}" x2="${(b[0]-ux*rr).toFixed(1)}" y2="${(b[1]-uy*rr).toFixed(1)}" stroke="#2E75D6" stroke-width="${(1.2+Math.min(1.6,attS*25)).toFixed(2)}" stroke-opacity="${Math.min(1,attS*60).toFixed(2)}" stroke-dasharray="2 3"/>`; } }));
     pos.forEach(p=>s+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${rr.toFixed(1)}" fill="${g.col}" stroke="${INK}" stroke-width="1.2"/>`);
     s+=`<path d="M${x0} 8V${yb}H${x0+BW}V8" fill="none" stroke="${INK}" stroke-width="3"/><rect x="${x0+2}" y="${yt-12}" width="${BW-4}" height="12" fill="#9aa7ad" stroke="${INK}" stroke-width="2"/><rect x="${W/2-5}" y="2" width="10" height="${Math.max(0,yt-14)}" fill="#9aa7ad" stroke="${INK}" stroke-width="1.5"/>`;
     $("pic").innerHTML=T.svg(W,H,s,`${g.nm} at ${Tk} kelvin and ${Patm} atmospheres in a cylinder with a piston`); }
-  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.05,last?(now-last)/1000:0); last=now; const st=state(), g=VDW[gas], h=boxH(st.Vm);
-    const v=0.22*Math.sqrt(Tk/300)*(160/h), pull=Math.min(0.8,st.att*8);
+  function loop(now){ if(!host.isConnected) return; const dt=Math.min(.05,last?(now-last)/1000:0); last=now; const st=state(), g=VDW[gas];
+    /* ease the piston and the attractions toward their new values instead of jumping */ const tgtH=boxH(st.Vm); hD+=(tgtH-hD)*Math.min(1,dt*3.5); attD+=(st.att-attD)*Math.min(1,dt*3); const h=hD;
+    const v=0.22*Math.sqrt(Tk/300)*(160/h), pull=Math.min(0.8,attD*8);
     parts.forEach(p=>{ p.x+=Math.cos(p.a)*v*dt*(160/BW); p.y+=Math.sin(p.a)*v*dt; if(p.x<0){ p.x=0; p.a=Math.PI-p.a; } if(p.x>1){ p.x=1; p.a=Math.PI-p.a; } if(p.y<0){ p.y=0; p.a=-p.a; } if(p.y>1){ p.y=1; p.a=-p.a; } });
     if(pull>0.01) parts.forEach(p=>{ let best=null, bd=9; parts.forEach(q=>{ if(q===p) return; const d=Math.hypot(q.x-p.x,q.y-p.y); if(d<bd){ bd=d; best=q; } }); if(best&&bd<.35){ const ang=Math.atan2(best.y-p.y,best.x-p.x); let da=ang-p.a; while(da>Math.PI) da-=2*Math.PI; while(da<-Math.PI) da+=2*Math.PI; p.a+=da*pull*dt*3; } });
     const mdx=(2*g.r+2)/(BW-2*g.r-4), mdy=(2*g.r+2)/Math.max(10,h-2*g.r-4);
@@ -14943,7 +15040,7 @@ G.RealGasLab=function(host){ let gas="N2", Tk=500, Patm=1, parts=[], last=0, rnd
   A.$$('[data-r="gas"] button',host).forEach(b=>b.addEventListener("click",()=>{ gas=b.dataset.k; A.$$('[data-r="gas"] button',host).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); read(); }));
   $("t").addEventListener("input",e=>{ Tk=+e.target.value; read(); });
   $("p").addEventListener("input",e=>{ Patm=Pof(+e.target.value); read(); });
-  read(); draw(); requestAnimationFrame(loop);
+  { const st0=state(); hD=boxH(st0.Vm); attD=st0.att; } read(); draw(); requestAnimationFrame(loop);
   host._rg={set:(g,t,p)=>{ gas=g; Tk=t; Patm=p; read(); },Z:()=>state().Z,step:()=>step}; };
 
 /* ---------- G.IdealPick ---------- */
@@ -15190,41 +15287,39 @@ G.lawInv=function(host,law,inv,rec,api){ const C=CFG[law], box=host.querySelecto
   if(inv.stage===0&&xsAll.length>=5&&spread>=C.span){ inv.stage=1; inv.drawn=false; }
   if(inv.stage===4&&inv.target!=null){ const hit=rec.find(r=>Math.abs(C.xv(r)-inv.target)<1e-6); if(hit){ inv.stage=5; inv.meas=api.get()[C.y]; } }
   const key=inv.stage+"|"+rec.length; if(box.dataset.k===key) return; box.dataset.k=key;
-  const head=(n,t)=>`<div class="g8-inv-h"><span class="g8-inv-n">Investigation · step ${n} of 5</span><b>${t}</b></div>`;
+  const head=(n,t)=>`<div class="g8-inv-h"><span class="g8-inv-n">Investigation · step ${n} of 4</span><b>${t}</b></div>`;
   const dots=n=>`<div class="g8-inv-dots">${[0,1,2,3,4].map(i=>`<i class="${i<n?"on":""}"></i>`).join("")}<small>${Math.min(n,5)} of 5 different ${C.xn} values</small></div>`;
   if(inv.stage===0){ box.innerHTML=head(1,`Collect data: record at least 5 points with different ${C.xn} values, spread across the whole slider.`)+dots(xsAll.length)+(xsAll.length>=5&&spread<C.span?`<p class="g8-inv-tip">Spread your points out more: use values near both ends of the slider.</p>`:""); return; }
-  if(inv.stage===1){ box.innerHTML=head(2,"Look at your graph. What shape does your data make?")+`<div class="g8-inv-ch">${SHAPES.map((t,i)=>`<button type="button" class="btn ghost sm" data-sh="${i}">${t}</button>`).join("")}</div><p class="g8-inv-fb" aria-live="polite"></p>`;
-    A.$$("[data-sh]",box).forEach(b=>b.addEventListener("click",()=>{ const ok=+b.dataset.sh===C.shape, fb=box.querySelector(".g8-inv-fb");
-      if(!ok){ b.classList.add("wrong"); fb.innerHTML=`Not quite. Look at where your points would be if you kept going toward a ${C.xn} of zero.`; return; }
-      inv.stage=2; inv.drawOK=false; api.draw.on(); api.msg.innerHTML=`✔ ${C.shape?`The points fall steeply and then level off: ${C.yn} and ${C.xn} are <b>${C.rel}</b>.`:`The points fall on a straight line through the origin: ${C.yn} and ${C.xn} are <b>${C.rel}</b>.`}`; G.lawInv(host,law,inv,rec,api); })); return; }
-  if(inv.stage===2&&!inv.drawOK){ box.innerHTML=head(3,`Draw the ${C.shape?"curve":"line"} of best fit: drag across the graph so your ${C.shape?"curve":"line"} passes as close as possible to all of your points.`)+`<p class="g8-inv-tip">${C.shape?"A curve of best fit is a smooth curve. It does not have to touch every point, and it does not connect the dots.":"A line of best fit is one straight line. It does not have to touch every point; it passes through the middle of them."}${C.shape?"":" Extend it toward the origin."}</p><div class="controls"><button type="button" class="btn sm" data-r="dchk">Check my ${C.shape?"curve":"line"}</button><button type="button" class="btn ghost sm" data-r="dclr">Erase</button></div><p class="g8-inv-fb" aria-live="polite"></p>`;
+  if(inv.stage===1){ if(!inv.drawing) api.draw.on();
+    box.innerHTML=head(2,`Draw the line or curve of best fit: drag across the graph so it passes as close as possible to all of your points.`)+`<p class="g8-inv-tip">A best-fit line or curve is one smooth stroke. It does not have to touch every point, and it does not connect the dots. Think about where the points would go if you kept going.</p><div class="controls"><button type="button" class="btn sm" data-r="dchk">Check my drawing</button><button type="button" class="btn ghost sm" data-r="dclr">Erase</button></div><p class="g8-inv-fb" aria-live="polite"></p>`;
     const fb=box.querySelector(".g8-inv-fb");
-    box.querySelector('[data-r="dclr"]').addEventListener("click",()=>{ api.draw.clear(); fb.textContent=""; });
+    box.querySelector('[data-r="dclr"]').addEventListener("click",()=>{ api.draw.clear(); fb.textContent=""; fb.className="g8-inv-fb"; });
     box.querySelector('[data-r="dchk"]').addEventListener("click",()=>{ const r=api.draw.check();
-      if(r.cover<.7){ fb.innerHTML=`Draw across the whole range of your data, from your smallest ${C.xn} to your largest, in one stroke.`; return; }
-      if(r.err>.07){ fb.innerHTML=`Your ${C.shape?"curve":"line"} is too far from some of your points. Press Erase and try again: keep it close to the middle of the points.`; return; }
-      inv.drawOK=true; api.draw.off(); api.setLaw(true); api.msg.innerHTML=`✔ Your ${C.shape?"curve":"line"} (orange) is close to the best fit for the data. The law’s ${C.shape?"curve":"line"} (blue) is now drawn on the graph for comparison.`; box.dataset.k=""; G.lawInv(host,law,inv,rec,api); });
+      if(r.cover<.7){ fb.className="g8-inv-fb bad"; fb.innerHTML=`✘ Draw across the whole range of your data, from your smallest ${C.xn} to your largest, in one stroke.`; return; }
+      if(r.err>.07){ fb.className="g8-inv-fb bad"; fb.innerHTML=`✘ Too far from the data. Some of your points are well off your drawing. Press Erase and try again${C.shape?": the points fall steeply at first and then level off.":"."}`; return; }
+      inv.stage=2; api.draw.clear(); api.draw.off(); api.setLaw(true);
+      api.msg.innerHTML=`✔ Close enough! Your drawing has been replaced by the exact ${C.shape?"curve":"line"} for the data. ${C.shape?`The points fall steeply and then level off: as the ${C.xn} increases, the ${C.yn} decreases. ${C.yn[0].toUpperCase()+C.yn.slice(1)} and ${C.xn} are <b>${C.rel}</b>.`:`The points fall on a straight line through the origin: ${C.yn} and ${C.xn} are <b>${C.rel}</b>.`}`; G.lawInv(host,law,inv,rec,api); });
     return; }
-  if(inv.stage===2){ const rows=api.rows(); const fmt={P:v=>v.toFixed(1)+" kPa",V:v=>v.toFixed(law==="boyle"?2:3)+" L",T:v=>Math.round(v)+" K",n:v=>v.toFixed(3)+" mol"};
-    box.innerHTML=head(4,`Calculate the constant, <span class="mth">${C.kh}</span>, from one row of your data.`)+`<p class="g8-inv-tip">(1) <b>Choose a row</b> of the data table. (2) <b>Substitute</b> its ${C.yn} and ${C.xn}, with units. (3) <b>Calculate</b> and write the answer with units.</p><div class="g8-inv-ch" data-r="rows">${rows.map((r,i)=>`<button type="button" class="btn ghost sm" data-row="${i}">${C.y} = ${fmt[C.y](r[C.y])}, ${C.x} = ${fmt[C.x](r[C.x])}</button>`).join("")}</div><div data-r="sub"></div><p class="g8-inv-fb" aria-live="polite"></p>`;
-    const fb=box.querySelector(".g8-inv-fb"), sub=box.querySelector('[data-r="sub"]');
-    A.$$("[data-row]",box).forEach(bt=>bt.addEventListener("click",()=>{ A.$$("[data-row]",box).forEach(x=>x.classList.toggle("on",x===bt)); const r=rows[+bt.dataset.row], yv=fmt[C.y](r[C.y]), xv=fmt[C.x](r[C.x]);
-      sub.innerHTML=`<div class="g8-inv-in"><span class="mth">${C.kh} = ${law==="boyle"?`(${yv})(${xv})`:wf(yv,xv)} =</span><input class="inp" type="text" inputmode="decimal" aria-label="${C.kt}" style="width:120px"><span class="mth">${C.ku}</span><button type="button" class="btn sm">Check answer</button></div>`;
-      const inp=sub.querySelector("input"); inp.focus();
-      const chk=()=>{ const v=parseFloat(inp.value); if(!isFinite(v)){ fb.textContent="Type a number."; return; }
-        const want=C.k(r); if(Math.abs(v-want)>Math.abs(want)*.02){ fb.innerHTML=law==="boyle"?"Multiply the pressure by the volume.":`Divide the ${C.yn} by the ${C.xn}.`; return; }
-        inv.stage=3; inv.k=rec.reduce((a,rr)=>a+C.k(rr),0)/rec.length; api.table(); api.msg.innerHTML=`✔ The last column of the table is now filled in. Every row gives about the same value, so <span class="mth">${C.kh}</span> is a constant: about <b>${law==="boyle"?inv.k.toFixed(1):inv.k.toPrecision(3)} ${C.ku}</b>.`; G.lawInv(host,law,inv,rec,api); };
-      sub.querySelector("button").addEventListener("click",chk); inp.addEventListener("keydown",e=>{ if(e.key==="Enter") chk(); }); }));
-    return; }
+  if(inv.stage===2){ const U={P:"kPa",V:"L",T:"K",n:"mol"};
+    box.innerHTML=head(3,`Calculate the constant, <span class="mth">${C.kh}</span>: substitute the ${C.yn} and ${C.xn} from any row of your data table.`)+`<div class="g8-inv-in"><span class="mth">${C.kh} =</span>${law==="boyle"?`<span class="mth">(</span><input class="inp" data-v="y" inputmode="decimal" style="width:84px" aria-label="${C.yn}"><span class="mth">${U[C.y]})(</span><input class="inp" data-v="x" inputmode="decimal" style="width:84px" aria-label="${C.xn}"><span class="mth">${U[C.x]})</span>`:`<span class="cx-frac"><span><input class="inp" data-v="y" inputmode="decimal" style="width:84px" aria-label="${C.yn}"> <span class="mth">${U[C.y]}</span></span><span><input class="inp" data-v="x" inputmode="decimal" style="width:84px" aria-label="${C.xn}"> <span class="mth">${U[C.x]}</span></span></span>`}<span class="mth">=</span><input class="inp" data-v="k" inputmode="decimal" style="width:110px" aria-label="${C.kt}"><span class="mth">${C.ku}</span><button type="button" class="btn sm">Check answer</button></div><p class="g8-inv-fb" aria-live="polite"></p>`;
+    const fb=box.querySelector(".g8-inv-fb"), iy=box.querySelector('[data-v="y"]'), ix=box.querySelector('[data-v="x"]'), ik=box.querySelector('[data-v="k"]');
+    const chk=()=>{ const y=parseFloat(iy.value), x=parseFloat(ix.value), k=parseFloat(ik.value); if(![y,x,k].every(isFinite)){ fb.className="g8-inv-fb bad"; fb.textContent="Fill in all three boxes with numbers."; return; }
+      const row=rec.find(r=>Math.abs(r[C.y]-y)<=Math.abs(r[C.y])*.015+1e-9&&Math.abs(r[C.x]-x)<=Math.abs(r[C.x])*.015+1e-9);
+      A.markBox(iy,!!row); A.markBox(ix,!!row);
+      if(!row){ fb.className="g8-inv-fb bad"; fb.innerHTML=`✘ Those two values are not from the same row of your data table. Copy the ${C.yn} and the ${C.xn} from one row.`; return; }
+      const want=law==="boyle"?y*x:y/x, ok=Math.abs(k-want)<=Math.abs(want)*.02; A.markBox(ik,ok);
+      if(!ok){ fb.className="g8-inv-fb bad"; fb.innerHTML=law==="boyle"?"✘ Multiply the pressure by the volume.":`✘ Divide the ${C.yn} by the ${C.xn}.`; return; }
+      inv.stage=3; inv.k=rec.reduce((a,rr)=>a+C.k(rr),0)/rec.length; api.table(); api.msg.innerHTML=`✔ The last column of the table is now filled in. Every row gives about the same value, so <span class="mth">${C.kh}</span> is a constant: about <b>${law==="boyle"?inv.k.toFixed(1):inv.k.toPrecision(3)} ${C.ku}</b>.`; G.lawInv(host,law,inv,rec,api); };
+    box.querySelector("button").addEventListener("click",chk); ik.addEventListener("keydown",e=>{ if(e.key==="Enter") chk(); }); return; }
   if(inv.stage===3){ const used=new Set(xsAll); if(inv.target==null) inv.target=C.targets.find(t=>!used.has(+t.toFixed(4)))??C.targets[0];
-    const kS=(law==="boyle"?inv.k.toFixed(1):inv.k.toPrecision(3))+" "+C.ku, rearr=law==="boyle"?`P × V = constant, so ${C.y} = ${wf("constant",C.x)}`:`${C.y} ÷ ${C.x} = constant, so ${C.y} = (constant)(${C.x})`, subst=law==="boyle"?`${C.y} = ${wf(kS,C.xs(inv.target))}`:`${C.y} = (${kS})(${C.xs(inv.target)})`;
-    box.innerHTML=head(5,`Predict: use your constant to calculate the ${C.yn} ${law==="avogadro"?`for ${C.xs(inv.target)} of gas`:`at a ${C.xn} of ${C.xs(inv.target)}`}.`)+`<p class="g8-inv-tip">(1) <b>Rearrange</b>: <span class="mth">${rearr}</span>. (2) <b>Substitute</b> the constant and the new ${C.xn}. (3) <b>Calculate</b> the ${C.yn} with units.</p><div class="g8-inv-in"><span class="mth">${subst} =</span><input class="inp" type="text" inputmode="decimal" aria-label="predicted ${C.yn}" style="width:120px"><span class="mth">${C.yu}</span><button type="button" class="btn sm">Check answer</button></div><p class="g8-inv-fb" aria-live="polite"></p>`;
+    const kS=(law==="boyle"?inv.k.toFixed(1):inv.k.toPrecision(3))+" "+C.ku, rearr=law==="boyle"?`P × V = constant, so ${C.y} = ${wf("constant",C.x)}`:`${wf(C.y,C.x)} = constant, so ${C.y} = (constant)(${C.x})`, subst=law==="boyle"?`${C.y} = ${wf(kS,C.xs(inv.target))}`:`${C.y} = (${kS})(${C.xs(inv.target)})`;
+    box.innerHTML=head(4,`Predict: use your constant to calculate the ${C.yn} ${law==="avogadro"?`for ${C.xs(inv.target)} of gas`:`at a ${C.xn} of ${C.xs(inv.target)}`}.`)+`<p class="g8-inv-tip">(1) <b>Rearrange</b>: <span class="mth">${rearr}</span>. (2) <b>Substitute</b> the constant and the new ${C.xn}. (3) <b>Calculate</b> the ${C.yn} with units.</p><div class="g8-inv-in"><span class="mth">${subst} =</span><input class="inp" type="text" inputmode="decimal" aria-label="predicted ${C.yn}" style="width:120px"><span class="mth">${C.yu}</span><button type="button" class="btn sm">Check answer</button></div><p class="g8-inv-fb" aria-live="polite"></p>`;
     const inp=box.querySelector("input"), fb=box.querySelector(".g8-inv-fb");
     const chk=()=>{ const v=parseFloat(inp.value); if(!isFinite(v)){ fb.textContent="Type a number."; return; } const want=C.yv(inv.k,inv.target);
-      if(Math.abs(v-want)>Math.abs(want)*.03){ fb.innerHTML=law==="boyle"?`Hint: P × V stays the same, so P = constant ÷ V.`:`Hint: ${C.y} ÷ ${C.x} stays the same, so ${C.y} = constant × ${C.x}.`; return; }
+      if(Math.abs(v-want)>Math.abs(want)*.03){ fb.innerHTML=law==="boyle"?`Hint: P × V stays the same, so <span class="mth">P = ${wf("constant","V")}</span>.`:`Hint: <span class="mth">${wf(C.y,C.x)}</span> stays the same, so <span class="mth">${C.y} = (constant)(${C.x})</span>.`; return; }
       inv.pred=v; inv.stage=4; G.lawInv(host,law,inv,rec,api); };
     box.querySelector("button").addEventListener("click",chk); inp.addEventListener("keydown",e=>{ if(e.key==="Enter") chk(); }); return; }
-  if(inv.stage===4){ box.innerHTML=head(5,`Your prediction: ${C.ys(inv.pred)}. Now test it: set the ${C.xn} to ${C.xs(inv.target)} and press Record.`); return; }
+  if(inv.stage===4){ box.innerHTML=head(4,`Your prediction: ${C.ys(inv.pred)}. Now test it: set the ${C.xn} to ${C.xs(inv.target)} and press Record.`); return; }
   if(inv.stage===5){ const m=inv.meas, err=Math.abs(m-inv.pred)/m*100;
     box.innerHTML=`<div class="g8-inv-h done"><span class="g8-inv-n">Investigation complete</span><b>Predicted ${C.ys(inv.pred)} · measured ${C.ys(m)} (${C.ys(m)===C.ys(inv.pred)?"a match":err.toFixed(1)+"% apart"})</b></div><p class="g8-inv-tip">A law is useful because it lets you predict a measurement before you make it. Keep exploring, or press Clear to start a new investigation.</p>`;
     inv.stage=6; return; }
