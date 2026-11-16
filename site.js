@@ -603,7 +603,8 @@ A.QSet = function(host, items, opts={}){
   const chip=head.querySelector(".score-chip");
   const state=items.map(()=>({first:null,tries:0,done:false}));
   const scorable=items.filter(it=>it.type!=="cr").length;
-  function upd(){ const c=state.filter((s,i)=>items[i].type!=="cr"&&s.first===true).length; const a=state.filter((s,i)=>items[i].type!=="cr"&&s.first!==null).length; chip.textContent=`First-try score: ${c} / ${scorable}` + (a<scorable?`  ·  ${scorable-a} left`:"  ·  done!"); }
+  const qsetId=(A._qsN=(A._qsN||0)+1)-1;
+  function upd(){ const c=state.filter((s,i)=>items[i].type!=="cr"&&s.first===true).length; const a=state.filter((s,i)=>items[i].type!=="cr"&&s.first!==null).length; if(A.progress&&a>0) A.progress.check(qsetId,c,a,scorable); chip.textContent=`First-try score: ${c} / ${scorable}` + (a<scorable?`  ·  ${scorable-a} left`:"  ·  done!"); }
   items.forEach((it,i)=>{
     const q=A.h("div",{class:"q"});
     const n=(opts.start||1)+i;
@@ -836,7 +837,7 @@ A.chrome = function(slug){
   const wrap=wrapEl;
   if(wrap){
     const f=A.h("footer",{class:"foot"});
-    f.innerHTML=`<span>Regents Chemistry · ${UI.foot} · aligned to the NYSSLS Physical Science: Chemistry standards and the Reference Tables</span>${T?`<label class="switch"><input type="checkbox" id="teacher-toggle"> Teacher view (show corrections &amp; additions)</label>`:""}`;
+    f.innerHTML=`<span>Regents Chemistry · ${slug==="index"?"":UI.foot+" · "}aligned to the NYSSLS Physical Science: Chemistry standards and the Reference Tables</span>${T?`<label class="switch"><input type="checkbox" id="teacher-toggle"> Teacher view (show corrections &amp; additions)</label>`:""}`;
     const key=A.h("div",{class:"teacher-key"},`<span><i style="background:var(--add);outline:2px solid var(--add-line)"></i>Added content</span><span><i style="background:var(--fix);outline:2px solid var(--fix-line)"></i>Corrected from the slides (hover or tap to see the original)</span>`);
     wrap.append(...(T?[key]:[]),f);
     const t=f.querySelector("input");
@@ -16202,6 +16203,242 @@ Z.FPCompare=function(host){ let cur=null, done=false;
       const why=opts.map((x,i)=>`${x[0]}: ${x[1]} × ${C[i].toFixed(1)} = ${parts[i].toFixed(1)}`).join(" · ");
       if(!ok){ g.lose(); g.msg(`Not quite. Moles of dissolved particles per liter: ${why}.`,"bad"); return; } done=true; g.win(); g.msg(`✔ ${opts[best][0]} gives the most dissolved particles (${why}), so it has the ${low?"lowest freezing point":"highest boiling point"}.`,"good"); })); }
   next(); };
+})();
+
+/* =====================================================================
+   common57.js — student progress (saved in this browser only) and the
+   course home page: Continue card, unit map, tools shelf, chem fact of the day.
+   ===================================================================== */
+(function(){
+const A=AS;
+const LISTS=[["UNIT0",0],["UNIT1",1],["SITE",2],["UNIT3",3],["UNIT4",4],["UNIT5",5],["UNIT6",6],["UNIT7",7],["UNIT8",8],["UNIT9",9]];
+A.pageInfo=function(slug){
+  for(const [k,u] of LISTS){ const L=A[k]||[], i=L.findIndex(p=>p.slug===slug); if(i>=0) return {...L[i],unit:u,i,list:L}; }
+  const E=A.ENRICH||[], j=E.findIndex(p=>p.slug===slug); return j>=0? {...E[j],unit:2,i:j,list:E,enr:true,orb:true} : null;
+};
+
+/* ---------------- progress ----------------
+   {v:{slug:first-opened time}, last:{slug,t}, q:{slug:{setIndex:{c,a,n}}}}
+   Kept in localStorage for this site in this browser. Nothing leaves the device. */
+const KEY="prog";
+const P=A.progress={
+  here:null,
+  get(){ const d=A.store.get(KEY,null); return d&&typeof d==="object"? {v:d.v||{},q:d.q||{},last:d.last||null} : {v:{},q:{},last:null}; },
+  save(d){ A.store.set(KEY,d); },
+  slug(){ const f=(location.pathname.split("/").pop()||"").replace(/\.html$/,""); return A.pageInfo(f)? f : P.here; },
+  visit(slug){ if(!slug||!A.pageInfo(slug)) return; const d=P.get(), now=Date.now(); if(!d.v[slug]) d.v[slug]=now; d.last={slug,t:now}; P.save(d); },
+  /* called by every learning-check set (A.QSet) when an answer is recorded */
+  check(set,c,a,n){ setTimeout(()=>{ const slug=P.slug(); if(!slug||!n) return; const d=P.get(); const q=d.q[slug]||(d.q[slug]={}), o=q[set];
+      if(!o||a>o.a||(a===o.a&&c>o.c)||o.n!==n){ q[set]={c,a,n}; P.save(d); } },0); },
+  /* 0 = not opened, 1 = opened, 2 = every learning check on the page finished */
+  status(slug,d){ d=d||P.get(); if(!d.v[slug]) return 0; const q=d.q[slug]; if(!q) return 1; const s=Object.values(q); return s.length&&s.every(x=>x.a>=x.n)? 2 : 1; },
+  score(slug,d){ d=d||P.get(); const q=d.q[slug]; if(!q) return null; const s=Object.values(q); if(!s.length||!s.every(x=>x.a>=x.n)) return null; return {c:s.reduce((t,x)=>t+x.c,0), n:s.reduce((t,x)=>t+x.n,0)}; },
+  reset(){ A.store.set(KEY,{v:{},q:{},last:null}); }
+};
+/* record each visit; the page's own slug is known once the page chrome is drawn */
+const oldChrome=A.chrome;
+A.chrome=function(slug){ P.here=slug; try{ P.visit(slug); }catch(e){} return oldChrome.apply(this,arguments); };
+
+/* ---------------- small helpers ---------------- */
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ago=t=>{ const m=Math.round((Date.now()-t)/60000); if(m<2) return "just now"; if(m<60) return `${m} minutes ago`; const h=Math.round(m/60); if(h<24) return `${h} hour${h>1?"s":""} ago`; const dd=Math.round(h/24); return dd===1?"yesterday":`${dd} days ago`; };
+const F=(a,b)=>`<span class="cx-frac"><span>${a}</span><span>${b}</span></span>`;
+const INK="#1f2a30", TEAL="#40BAD2", RED="#E00000", BLUE="#2E75D6", GREEN="#00B050", PURPLE="#8a4fc4", ORANGE="#E8590C", GRAY="#6b7780";
+const svg=(w,h,body,lab)=>`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(lab)}" style="width:100%;height:auto;display:block;font-family:Inter,system-ui,sans-serif">${body}</svg>`;
+const tx=(x,y,t,o={})=>`<text x="${x}" y="${y}" font-size="${o.fs||13}"${o.a?` text-anchor="${o.a}"`:""}${o.b?' font-weight="700"':""} fill="${o.c||INK}">${t}</text>`;
+const arrow=(x1,y1,x2,y2,c=INK,w=2.5)=>{ const ang=Math.atan2(y2-y1,x2-x1), L=10, a1=ang+2.7, a2=ang-2.7; return `<line x1="${x1}" y1="${y1}" x2="${x2-Math.cos(ang)*6}" y2="${y2-Math.sin(ang)*6}" stroke="${c}" stroke-width="${w}"/><path d="M${x2} ${y2}L${x2+L*Math.cos(a1)} ${y2+L*Math.sin(a1)}L${x2+L*Math.cos(a2)} ${y2+L*Math.sin(a2)}Z" fill="${c}"/>`; };
+
+/* ---------------- unit art for the unit map (120 × 80) ---------------- */
+const UART={
+ 0:()=>svg(120,80,`<path d="M30 12h22v6h-3v50a8 8 0 0 1-8 8h0a8 8 0 0 1-8-8V18h-3z" fill="#fff" stroke="${INK}" stroke-width="2"/><path d="M33 44h16v24a8 8 0 0 1-16 0z" fill="#cfe8fb"/>${[24,32,40,48,56].map(y=>`<line x1="33" y1="${y}" x2="40" y2="${y}" stroke="${INK}" stroke-width="1.3"/>`).join("")}<rect x="62" y="48" width="48" height="16" rx="2" fill="#f6d58a" stroke="${INK}" stroke-width="1.6"/>${[0,1,2,3,4,5,6,7,8].map(i=>`<line x1="${66+i*5}" y1="48" x2="${66+i*5}" y2="${i%2?54:57}" stroke="${INK}" stroke-width="1.2"/>`).join("")}`,"graduated cylinder and ruler"),
+ 1:()=>svg(120,80,`<rect x="8" y="10" width="46" height="60" rx="3" fill="#fff" stroke="${INK}" stroke-width="1.6"/>${[[18,22],[32,20],[44,24],[20,38],[36,40],[46,56],[16,58],[30,56]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="${RED}"/>`).join("")}<rect x="66" y="10" width="46" height="60" rx="3" fill="#fff" stroke="${INK}" stroke-width="1.6"/>${[[76,22],[100,24],[82,46],[104,56],[88,30]].map(([x,y],i)=>`<g><circle cx="${x}" cy="${y}" r="5" fill="${i%2?BLUE:RED}"/><circle cx="${x+9}" cy="${y}" r="5" fill="${i%2?RED:BLUE}"/></g>`).join("")}`,"particle diagrams of an element and a compound"),
+ 2:()=>svg(120,80,`<circle cx="60" cy="40" r="34" fill="none" stroke="${INK}" stroke-width="1.4"/><circle cx="60" cy="40" r="20" fill="none" stroke="${INK}" stroke-width="1.4"/><circle cx="60" cy="40" r="8" fill="${RED}"/>${[[60,20],[60,60]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.6" fill="${BLUE}"/>`).join("")}${[0,90,180,270].map(a=>{const r=a*Math.PI/180; return `<circle cx="${(60+34*Math.cos(r+0.5)).toFixed(1)}" cy="${(40+34*Math.sin(r+0.5)).toFixed(1)}" r="3.6" fill="${BLUE}"/>`;}).join("")}`,"Bohr model of an atom"),
+ 3:()=>svg(120,80,(()=>{ let s=""; const cols=[[0,1],[17,1],[1,2],[2,2],[12,2],[13,2],[14,2],[15,2],[16,2],[17,2]]; for(let r=0;r<5;r++) for(let c=0;c<18;c++){ const show = r===0? (c===0||c===17) : r<3? (c<2||c>11) : true; if(!show) continue; const col=c<2?"#cfe0f3":c>11?(c===17?"#f9e3d3":"#fbe7c6"):"#dfeadf"; s+=`<rect x="${5+c*6.1}" y="${12+r*12}" width="5.4" height="10.6" fill="${col}" stroke="${INK}" stroke-width=".5"/>`; } return s; })(),"periodic table"),
+ 4:()=>svg(120,80,`<circle cx="60" cy="34" r="15" fill="${RED}"/><circle cx="34" cy="56" r="10" fill="#fff" stroke="${INK}" stroke-width="1.6"/><circle cx="86" cy="56" r="10" fill="#fff" stroke="${INK}" stroke-width="1.6"/><line x1="49" y1="43" x2="41" y2="50" stroke="${INK}" stroke-width="3"/><line x1="71" y1="43" x2="79" y2="50" stroke="${INK}" stroke-width="3"/>${tx(60,39,"O",{a:"middle",b:1,c:"#fff",fs:13})}${tx(34,60,"H",{a:"middle",b:1,fs:11})}${tx(86,60,"H",{a:"middle",b:1,fs:11})}`,"water molecule"),
+ 5:()=>svg(120,80,`<circle cx="16" cy="40" r="7" fill="${BLUE}"/><circle cx="29" cy="40" r="7" fill="${BLUE}"/><circle cx="16" cy="58" r="7" fill="${BLUE}"/><circle cx="29" cy="58" r="7" fill="${BLUE}"/><circle cx="22" cy="20" r="7" fill="${RED}"/><circle cx="35" cy="20" r="7" fill="${RED}"/>${arrow(46,40,72,40,INK,2.2)}<circle cx="86" cy="26" r="7" fill="${RED}"/><circle cx="76" cy="34" r="6" fill="${BLUE}"/><circle cx="96" cy="34" r="6" fill="${BLUE}"/><circle cx="96" cy="56" r="7" fill="${RED}"/><circle cx="86" cy="64" r="6" fill="${BLUE}"/><circle cx="106" cy="64" r="6" fill="${BLUE}"/>`,"particles rearranging in a reaction"),
+ 6:()=>svg(120,80,`<rect x="20" y="58" width="80" height="10" rx="2" fill="${GRAY}"/><rect x="30" y="50" width="60" height="8" rx="2" fill="#b9c2c9"/><path d="M42 50c0-14 8-20 18-20s18 6 18 20z" fill="#d7dde2" stroke="${INK}" stroke-width="1.2"/>${tx(60,46,"1 mol",{a:"middle",b:1,fs:12})}${tx(60,22,"6.02 × 10²³",{a:"middle",fs:12,c:TEAL,b:1})}`,"one mole on a balance"),
+ 7:()=>svg(120,80,`<path d="M44 66c-14-10-10-28 2-38 0 10 6 12 8 6 2-8-2-14 2-22 14 10 22 24 18 40-2 10-10 16-18 16-4 0-8-1-12-2z" fill="${ORANGE}"/><path d="M52 66c-6-6-4-14 2-18 0 5 4 6 5 2 1-4 0-6 2-10 8 6 10 14 6 20-2 4-6 6-9 6z" fill="#f6c343"/><rect x="88" y="10" width="10" height="50" rx="5" fill="#fff" stroke="${INK}" stroke-width="1.6"/><rect x="91" y="26" width="4" height="36" fill="${RED}"/><circle cx="93" cy="64" r="8" fill="${RED}" stroke="${INK}" stroke-width="1.6"/>`,"flame and thermometer"),
+ 8:()=>svg(120,80,`<path d="M30 8v64h60V8" fill="none" stroke="${INK}" stroke-width="2"/><rect x="31" y="28" width="58" height="8" fill="${GRAY}"/><rect x="57" y="6" width="6" height="22" fill="${GRAY}"/>${[[40,46],[56,58],[74,48],[48,64],[80,64],[64,42]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4" fill="${RED}"/>`).join("")}`,"gas in a cylinder with a piston"),
+ 9:()=>svg(120,80,`<path d="M30 10v56a6 6 0 0 0 6 6h48a6 6 0 0 0 6-6V10" fill="none" stroke="${INK}" stroke-width="2"/><path d="M31 32h58v34a5 5 0 0 1-5 5H36a5 5 0 0 1-5-5z" fill="#cfe8fb"/>${[[40,44,1],[56,56,0],[72,42,1],[48,62,0],[80,60,1],[64,50,0]].map(([x,y,k])=>`<circle cx="${x}" cy="${y}" r="${k?4:3}" fill="${k?PURPLE:GREEN}"/>`).join("")}`,"solution in a beaker")
+};
+
+/* ---------------- chem facts (one a day) ---------------- */
+const FACTS=[
+ {u:0, link:"l-metric", title:"Lost in conversion",
+  fact:"In 1999, NASA lost the Mars Climate Orbiter just as it reached Mars. One team’s software reported thruster data in pound-force seconds (English units), while the navigation software expected newton-seconds (metric units).",
+  q:"Why does a number mean nothing without its unit?",
+  a:"The same number stands for very different amounts in different units: 1 pound-force is about 4.45 newtons. The navigators used the numbers as if they were newton-seconds, so the spacecraft flew far lower than planned and was lost in Mars’s atmosphere.",
+  src:[["NASA Office of Safety and Mission Assurance, “The Mars Climate Orbiter Mishap” (2009)","https://sma.nasa.gov/docs/default-source/safety-messages/safetymessage-2009-08-01-themarsclimateorbitermishap.pdf"]],
+  art:()=>svg(320,170,`<ellipse cx="160" cy="95" rx="82" ry="58" fill="none" stroke="${BLUE}" stroke-width="2" stroke-dasharray="7 6"/><circle cx="160" cy="95" r="32" fill="#C1502E"/>${tx(160,100,"Mars",{a:"middle",b:1,c:"#fff"})}<path d="M304 14C244 28 206 54 186 80" fill="none" stroke="${RED}" stroke-width="2.5"/><rect x="296" y="8" width="12" height="9" rx="2" fill="${INK}"/>${tx(316,56,"actual path",{a:"end",c:RED,b:1})}${tx(8,160,"planned orbit",{c:BLUE,b:1})}${tx(316,160,"pound-force·s ≠ newton·s",{a:"end",fs:12})}`,"Mars with the planned orbit and the much lower actual path of the spacecraft")},
+ {u:0, link:"l-metric", title:"The kilogram in a vault",
+  fact:"For 130 years, from 1889 to 2019, the kilogram was defined by a single metal cylinder kept in a vault near Paris. Since 2019, it has been defined by a constant of nature, the Planck constant.",
+  q:"Why might one object be a risky way to define a unit?",
+  a:"An object can gain or lose a tiny amount of mass through cleaning, wear or contamination, and the official copies slowly drifted apart by tiny amounts. A constant of nature is the same everywhere and never changes, so any well-equipped lab can reproduce the kilogram.",
+  src:[["NIST, “Introduction: Redefining the World’s Measurement System”","https://www.nist.gov/si-redefinition/introduction-redefining-worlds-measurement-system"]],
+  art:()=>svg(320,170,`<rect x="40" y="148" width="140" height="10" rx="2" fill="${GRAY}"/><path d="M56 148V72c0-26 22-42 54-42s54 16 54 42v76" fill="#eef7fb" fill-opacity=".5" stroke="#8fb4c4" stroke-width="2"/><rect x="84" y="104" width="52" height="44" fill="#c8ccd0"/><ellipse cx="110" cy="148" rx="26" ry="6" fill="#b6bbc0"/><ellipse cx="110" cy="104" rx="26" ry="7" fill="#e3e6e9" stroke="#9aa1a8" stroke-width="1"/>${tx(110,132,"1 kg",{a:"middle",b:1})}${tx(198,58,"1889 to 2019:",{b:1})}${tx(198,76,"one metal cylinder")}${tx(198,110,"Since 2019:",{b:1,c:TEAL})}${tx(198,128,"a constant of nature")}`,"the metal cylinder that defined the kilogram, under a glass dome")},
+ {u:1, link:"m-density", title:"Why ice floats",
+  fact:"Ice floats because it is less dense than liquid water: about 0.917 g/cm³ for ice compared with about 1.00 g/cm³ for liquid water. For most substances, the solid is denser than the liquid.",
+  q:"What would happen to lakes in winter if ice sank?",
+  a:"Ice would sink as it formed, so lakes could freeze from the bottom up. Because ice floats, it forms a layer on top that insulates the water below, and fish survive the winter.",
+  src:[["USGS Water Science School, “Water Density”","https://www.usgs.gov/special-topics/water-science-school/science/water-density"]],
+  art:()=>svg(320,170,`<path d="M44 80L52 160H148L156 80Z" fill="#cfe8fb"/><rect x="80" y="76" width="40" height="36" rx="3" fill="#f3fbff" stroke="#7fb3d5" stroke-width="2"/><path d="M40 40L52 160H148L160 40" fill="none" stroke="${INK}" stroke-width="2"/>${tx(176,62,"ice:",{b:1,c:"#3a7fae"})}${tx(176,80,"0.917 g/cm³",{c:"#3a7fae"})}${tx(176,122,"liquid water:",{b:1,c:BLUE})}${tx(176,140,"1.00 g/cm³",{c:BLUE})}`,"an ice cube floating in a glass of water, almost all of it below the surface")},
+ {u:2, link:"history", title:"An atom is mostly empty",
+  fact:"If the nucleus of a hydrogen atom were the size of a pea, the whole atom would be about 300 meters across, about three football fields.",
+  q:"Most alpha particles in Rutherford’s gold foil experiment passed straight through the foil. How does this fact explain that?",
+  a:"Almost all of an atom’s volume is empty space around a tiny nucleus, so most alpha particles never came close to a nucleus. Only the few that passed very near a nucleus were deflected.",
+  src:[["NIST CODATA values: proton radius and Bohr radius","https://physics.nist.gov/cuu/Constants/"]],
+  art:()=>svg(320,170,`<circle cx="110" cy="85" r="72" fill="#E7F6F9" stroke="${TEAL}" stroke-width="2" stroke-dasharray="6 5"/><circle cx="110" cy="85" r="2.5" fill="${RED}"/><line x1="110" y1="92" x2="110" y2="114" stroke="${INK}" stroke-width="1.3"/>${tx(110,128,"nucleus",{a:"middle",b:1,c:RED})}${tx(198,64,"nucleus: a pea",{b:1,c:RED})}${tx(198,84,"atom: about 300 m",{b:1,c:TEAL})}${tx(198,112,"(The dot is still",{fs:12,c:GRAY})}${tx(198,128,"far too big!)",{fs:12,c:GRAY})}`,"a tiny nucleus at the center of a huge, mostly empty atom")},
+ {u:2, link:"spectra", title:"Colors in the sky",
+  fact:"The colors of fireworks come from metal compounds: strontium gives red, barium gives green, copper gives blue and sodium gives yellow.",
+  q:"Why does each metal give off its own color?",
+  a:"Heat excites the electrons, which jump to higher energy levels. As they fall back to lower levels, they release energy as light. Each element has its own energy levels, so it gives off its own colors.",
+  src:[["USGS, “What minerals produce the colors in fireworks?”","https://www.usgs.gov/faqs/what-minerals-produce-colors-fireworks"]],
+  art:()=>svg(320,170,[[50,RED,"strontium","red"],[125,GREEN,"barium","green"],[200,BLUE,"copper","blue"],[275,"#E0A800","sodium","yellow"]].map(([x,c,n,col])=>`${Array.from({length:12},(_,i)=>{const a=i*Math.PI/6; return `<line x1="${(x+8*Math.cos(a)).toFixed(1)}" y1="${(60+8*Math.sin(a)).toFixed(1)}" x2="${(x+30*Math.cos(a)).toFixed(1)}" y2="${(60+30*Math.sin(a)).toFixed(1)}" stroke="${c}" stroke-width="3" stroke-linecap="round"/><circle cx="${(x+34*Math.cos(a)).toFixed(1)}" cy="${(60+34*Math.sin(a)).toFixed(1)}" r="2.4" fill="${c}"/>`;}).join("")}${tx(x,124,n,{a:"middle",b:1})}${tx(x,142,col,{a:"middle",c:c})}`).join(""),"four firework bursts: red, green, blue and yellow")},
+ {u:2, link:"spectra", title:"Found on the Sun first",
+  fact:"Helium was discovered on the Sun before it was found on Earth. In 1868, astronomers saw a yellow line in light from the Sun that matched no known element. Helium was not found on Earth until 1895.",
+  q:"How could scientists identify a new element about 150 million kilometers away?",
+  a:"Each element gives off its own pattern of bright lines, like a fingerprint. The yellow line at 587.6 nm did not match the spectrum of any known element, so it had to come from a new one.",
+  src:[["Linda Hall Library, “Scientist of the Day: Norman Lockyer”","https://www.lindahall.org/about/news/scientist-of-the-day/norman-lockyer"]],
+  art:()=>svg(320,170,`<circle cx="56" cy="88" r="40" fill="#FFC83D"/><circle cx="56" cy="88" r="46" fill="none" stroke="#FFC83D" stroke-width="3" stroke-dasharray="3 6"/><rect x="120" y="62" width="190" height="44" rx="3" fill="#14181b"/>${[[141,"#7a3cff"],[174,"#00c8e6"],[282,"#ff2a2a"]].map(([x,c])=>`<rect x="${x-1.5}" y="62" width="3" height="44" fill="${c}"/>`).join("")}<rect x="236.5" y="62" width="4" height="44" fill="#ffe14a"/>${tx(215,50,"light from the Sun",{a:"middle",b:1})}<line x1="238.5" y1="110" x2="238.5" y2="122" stroke="${INK}" stroke-width="1.3"/>${tx(238,138,"587.6 nm: helium",{a:"middle",b:1,c:"#9a7a00"})}`,"the Sun and a dark spectrum with colored lines, including a yellow helium line")},
+ {u:3, link:"p-metals", title:"A metal that melts in your hand",
+  fact:"Gallium is a metal that melts at 29.8 °C. Your body temperature is about 37 °C, so a piece of gallium melts in your hand.",
+  q:"Is gallium melting in your hand a physical change or a chemical change? How do you know?",
+  a:"A physical change: the gallium is still gallium. Only its phase changes, from solid to liquid, and it becomes solid again when it cools.",
+  src:[["Live Science, “Facts About Gallium”","https://www.livescience.com/29476-gallium.html"]],
+  art:()=>svg(320,170,`<rect x="40" y="58" width="50" height="50" rx="3" fill="#c3cad2" stroke="#7d8790" stroke-width="2"/><path d="M48 66h20" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>${arrow(116,84,196,84,INK,2.5)}${tx(156,108,"hand ≈ 37 °C",{a:"middle",fs:12})}<ellipse cx="258" cy="96" rx="48" ry="13" fill="#c3cad2" stroke="#7d8790" stroke-width="2"/><path d="M232 92q14-6 30-2" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>${tx(65,134,"solid",{a:"middle",b:1})}${tx(65,152,"below 29.8 °C",{a:"middle",fs:12})}${tx(258,134,"liquid",{a:"middle",b:1})}${tx(258,152,"above 29.8 °C",{a:"middle",fs:12})}`,"a solid cube of gallium turns into a liquid puddle")},
+ {u:4, link:"b-network", title:"Same atoms, different bonds",
+  fact:"Diamond and the graphite in a pencil are both made of nothing but carbon atoms. Diamond is the hardest natural material, while graphite is soft enough to rub off onto paper.",
+  q:"If both are pure carbon, why are their properties so different?",
+  a:"Their atoms are bonded differently. In diamond, every carbon atom is covalently bonded to four others in a rigid 3-D network. In graphite, the atoms are bonded in flat layers, and the layers are held together only weakly, so they slide off onto the paper.",
+  src:[["Royal Society of Chemistry Periodic Table: Carbon","https://www.rsc.org/periodic-table/element/6/carbon"]],
+  art:()=>{ let d="",at=[]; const xs=[24,50,76,102,128], ys=[30,58,86,114]; ys.forEach((y,r)=>xs.forEach((x,c)=>{ const X=x+(r%2?13:0); if(X<=134) at.push([X,y]); }));
+    at.forEach(([x,y])=>at.forEach(([X,Y])=>{ if(Y===y+28&&Math.abs(X-x)===13) d+=`<line x1="${x}" y1="${y}" x2="${X}" y2="${Y}" stroke="${INK}" stroke-width="2"/>`; }));
+    at.forEach(([x,y])=>d+=`<circle cx="${x}" cy="${y}" r="6" fill="#4a5258"/>`);
+    let g=""; [34,74,114].forEach((y,k)=>{ const pts=[]; for(let i=0;i<=8;i++) pts.push([182+i*15.5,y+(i%2?8:0)]); for(let i=0;i<8;i++) g+=`<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${pts[i+1][0]}" y2="${pts[i+1][1]}" stroke="${INK}" stroke-width="2"/>`; if(k<2) [0,4,8].forEach(i=>g+=`<line x1="${pts[i][0]}" y1="${pts[i][1]+7}" x2="${pts[i][0]}" y2="${pts[i][1]+33}" stroke="${GRAY}" stroke-width="1.4" stroke-dasharray="3 4"/>`); pts.forEach(([x,yy])=>g+=`<circle cx="${x}" cy="${yy}" r="5" fill="#4a5258"/>`); });
+    return svg(320,170,d+g+tx(80,152,"diamond",{a:"middle",b:1})+tx(244,152,"graphite",{a:"middle",b:1}),"diamond as a network of carbon atoms; graphite as stacked layers of carbon atoms"); }},
+ {u:5, link:"r-reactions", title:"Lady Liberty was not always green",
+  fact:"The Statue of Liberty was the reddish-brown color of a new penny when it was finished in 1886. Its copper skin took about 30 years to turn green.",
+  q:"Is the green layer the result of a physical change or a chemical change?",
+  a:"A chemical change: the copper reacted with oxygen, water and other substances in the air to form new compounds, called a patina. The green patina also protects the copper underneath.",
+  src:[["National Park Service, Statue of Liberty FAQ","https://www.nps.gov/stli/faqs.htm"]],
+  art:()=>svg(320,170,[[40,"#B87333","1886"],[135,"#7a5a3a","after a few years"],[230,"#6FAE9C","about 30 years"]].map(([x,c,l],i)=>`<rect x="${x}" y="40" width="54" height="54" rx="6" fill="${c}"/>${tx(x+27,118,l,{a:"middle",fs:12,b:!i})}${i<2?arrow(x+62,67,x+90,67,INK,2.2):""}`).join("")+tx(160,150,"copper → patina",{a:"middle",b:1,c:"#3f7f6e"}),"color swatches: copper brown, darker brown, then green")},
+ {u:6, link:"s-moles", title:"Counting to a mole",
+  fact:"If you counted one particle every second, counting one mole of particles (6.02 × 10²³) would take about 19 quadrillion years: 19,000,000,000,000,000 years.",
+  q:"If no one can count that high, how do chemists measure out a mole?",
+  a:"They count by weighing. One mole of an element has a mass in grams equal to its atomic mass, so 12.0 g of carbon contains 6.02 × 10²³ carbon atoms.",
+  src:[["NIST, Avogadro constant","https://physics.nist.gov/cgi-bin/cuu/Value?na"]],
+  art:()=>svg(320,170,`<circle cx="74" cy="86" r="50" fill="#fff" stroke="${INK}" stroke-width="2.5"/>${Array.from({length:12},(_,i)=>{const a=i*Math.PI/6; return `<line x1="${(74+42*Math.cos(a)).toFixed(1)}" y1="${(86+42*Math.sin(a)).toFixed(1)}" x2="${(74+47*Math.cos(a)).toFixed(1)}" y2="${(86+47*Math.sin(a)).toFixed(1)}" stroke="${INK}" stroke-width="2"/>`;}).join("")}<line x1="74" y1="86" x2="74" y2="52" stroke="${INK}" stroke-width="3"/><line x1="74" y1="86" x2="98" y2="98" stroke="${RED}" stroke-width="2"/><circle cx="74" cy="86" r="3" fill="${INK}"/>${tx(146,58,"1 count per second",{b:1})}${tx(146,92,"6.02 × 10²³ counts",{b:1,c:TEAL})}${tx(146,126,"≈ 1.9 × 10¹⁶ years",{b:1,c:RED})}`,"a clock next to the time it would take to count to one mole")},
+ {u:7, link:"t-calcpc", title:"Boiling takes a lot of energy",
+  fact:"Boiling 1 g of water at 100 °C takes 2260 J. That is more than 5 times the 418 J it takes to warm the same gram of water all the way from 0 °C to 100 °C.",
+  q:"Where does all that energy go if the temperature stays at 100 °C while the water boils?",
+  a:"It goes into potential energy. It separates the water molecules from one another by overcoming the attractions between them. The average kinetic energy of the molecules does not change, so the temperature stays the same.",
+  src:[["Values used in this course: specific heat of water 4.18 J/g·°C, heat of vaporization 2260 J/g",""]],
+  art:()=>svg(320,170,`${tx(16,44,"Warm 1 g of water from 0 °C to 100 °C",{fs:12,b:1})}<rect x="16" y="52" width="50" height="26" rx="3" fill="${ORANGE}"/>${tx(74,70,"418 J",{b:1})}${tx(16,108,"Boil 1 g of water at 100 °C",{fs:12,b:1})}<rect x="16" y="116" width="271" height="26" rx="3" fill="${RED}"/>${tx(280,134,"2260 J",{a:"end",b:1,c:"#fff"})}`,"bar graph: 418 joules to warm water compared with 2260 joules to boil it")},
+ {u:8, link:"g-vapor", title:"Boiling on Mount Everest",
+  fact:"At the top of Mount Everest, air pressure averages about 33 kPa, about one-third of the pressure at sea level. Up there, water boils at only about 71 °C.",
+  q:"Why does water boil at a lower temperature where the air pressure is lower?",
+  a:"Water boils when its vapor pressure equals the pressure of the air above it. With less air pressure pushing down, the water’s vapor pressure reaches that pressure at a lower temperature.",
+  src:[["Matthews et al., “Into Thick(er) Air? Oxygen Availability at Humans’ Physiological Frontier on Mount Everest,” iScience (2020), doi:10.1016/j.isci.2020.101718","https://doi.org/10.1016/j.isci.2020.101718"]],
+  art:()=>svg(320,170,`<path d="M12 150L92 34L172 150Z" fill="#8a9aa6"/><path d="M92 34L76 57L86 52L94 60L104 51L108 57Z" fill="#fff"/><line x1="92" y1="34" x2="92" y2="16" stroke="${INK}" stroke-width="1.6"/><path d="M92 16h14l-4 4l4 4H92" fill="${RED}"/><line x1="8" y1="150" x2="176" y2="150" stroke="${INK}" stroke-width="2"/>${tx(124,30,"summit: ≈ 33 kPa",{fs:12,b:1})}${tx(134,48,"water boils ≈ 71 °C",{fs:12,c:RED})}${tx(184,132,"sea level: 101.3 kPa",{fs:12,b:1})}${tx(184,150,"water boils at 100 °C",{fs:12,c:RED})}`,"Mount Everest with the air pressure and boiling point at the summit and at sea level")},
+ {u:8, link:"g-charles", title:"Floating on hot air",
+  fact:"A hot air balloon has no special gas inside it. It rises just by heating ordinary air with a burner.",
+  q:"Use Charles’s law to explain why heating the air makes the balloon rise.",
+  a:"Heating the air makes its particles move faster, so at the same pressure the air expands (volume and Kelvin temperature are directly proportional) and some of it leaves through the opening at the bottom. The air left inside is less dense than the cooler air outside, so the balloon floats up.",
+  src:[],
+  art:()=>{ const inside=[[96,46],[122,70],[90,88],[118,40],[108,104]], out=[[20,30],[34,58],[18,96],[40,128],[24,148],[178,34],[164,62],[184,92],[168,124],[186,150],[60,150],[150,150]];
+    return svg(320,170,`<path d="M106 128C70 112 58 82 58 62C58 34 80 18 106 18S154 34 154 62C154 82 142 112 106 128Z" fill="#fde3d3" stroke="${ORANGE}" stroke-width="2"/><line x1="96" y1="128" x2="98" y2="140" stroke="${INK}" stroke-width="1.4"/><line x1="116" y1="128" x2="114" y2="140" stroke="${INK}" stroke-width="1.4"/><rect x="94" y="140" width="24" height="14" rx="2" fill="#a0723f"/>${inside.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4.5" fill="${RED}"/>`).join("")}${out.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4.5" fill="${BLUE}"/>`).join("")}${tx(204,62,"inside: hot air",{b:1,c:RED})}${tx(204,80,"particles far apart",{fs:12})}${tx(204,112,"outside: cool air",{b:1,c:BLUE})}${tx(204,130,"particles closer",{fs:12})}`,"a hot air balloon with few, spread-out particles inside and more particles outside"); }},
+ {u:9, link:"sol-colligative", title:"Why roads get salted",
+  fact:"Road crews spread salt because salt water freezes at a lower temperature than pure water. Salt works best above about −9 °C (15 °F). In colder weather, crews often mix in other chemicals.",
+  q:"Why does dissolving salt in water lower its freezing point?",
+  a:"Freezing point depression is a colligative property: it depends on the number of dissolved particles, not on what they are. The dissolved ions get in the way of water molecules locking into ice, so the water must be colder to freeze.",
+  src:[["Minnesota LTAP, “Salt Chemistry” (2022)","https://mnltap.umn.edu/ltapnews/2022/december/salt-chemistry"]],
+  art:()=>svg(320,170,`<rect x="10" y="120" width="210" height="34" fill="#5f666c"/><rect x="10" y="106" width="96" height="14" fill="#dff1fb" stroke="#9cc9e2" stroke-width="1.4"/><path d="M106 113q20-6 40 0t40 0t34 0v7H106z" fill="#9fd0ee"/>${[[126,100],[150,96],[172,102],[196,97]].map(([x,y])=>`<rect x="${x}" y="${y}" width="8" height="8" fill="#fff" stroke="${GRAY}" stroke-width="1.2"/>`).join("")}${tx(58,94,"ice",{a:"middle",b:1,c:"#3a7fae"})}${tx(162,80,"salt water",{a:"middle",b:1,c:BLUE})}<rect x="262" y="24" width="12" height="100" rx="6" fill="#fff" stroke="${INK}" stroke-width="1.6"/><rect x="265.5" y="74" width="5" height="52" fill="${BLUE}"/><circle cx="268" cy="130" r="10" fill="${BLUE}" stroke="${INK}" stroke-width="1.6"/><line x1="276" y1="56" x2="284" y2="56" stroke="${INK}" stroke-width="1.6"/>${tx(288,60,"0 °C",{fs:12})}<line x1="276" y1="82" x2="284" y2="82" stroke="${INK}" stroke-width="1.6"/>${tx(288,86,"−9 °C",{fs:12,b:1})}`,"a road with ice on one side and melted salt water where salt was spread, next to a thermometer")},
+ {u:9, link:"sol-percent", title:"How salty is the ocean?",
+  fact:"Seawater is about 3.5% dissolved salts by mass: every 1000 g of seawater holds about 35 g of salts.",
+  q:"How could you check this with a balance and a hot plate?",
+  a:`Find the mass of a sample of seawater, boil all the water away, and find the mass of the salts left behind. Then percent by mass = ${F("mass of salts","mass of seawater")} × 100.`,
+  src:[["Webb, Introduction to Oceanography, “Salinity Patterns” (LibreTexts)","https://geo.libretexts.org/Bookshelves/Oceanography/Introduction_to_Oceanography_(Webb)/05:_Chemical_Oceanography/5.03:_Salinity_Patterns"]],
+  art:()=>svg(320,170,`<path d="M30 30v104a8 8 0 0 0 8 8h72a8 8 0 0 0 8-8V30" fill="none" stroke="${INK}" stroke-width="2"/><path d="M31 52h86v82a7 7 0 0 1-7 7H38a7 7 0 0 1-7-7z" fill="#bfe1f6"/>${tx(74,162,"1000 g of seawater",{a:"middle",fs:12,b:1})}${arrow(132,96,184,96,INK,2.4)}${tx(158,84,"boil",{a:"middle",fs:12})}<path d="M200 120h96l-8 16h-80z" fill="#d9dee2" stroke="${INK}" stroke-width="1.6"/><path d="M226 120c4-14 14-22 22-22s18 8 22 22z" fill="#fff" stroke="${GRAY}" stroke-width="1.4"/>${tx(248,162,"35 g of salts",{a:"middle",fs:12,b:1})}`,"a beaker of 1000 grams of seawater and the 35 grams of salts left after boiling it dry")},
+ {u:9, link:"sol-factors", title:"The fizz in soda",
+  fact:"A sealed bottle of soda holds carbon dioxide gas pressed in above the liquid at high pressure. The moment you open it, bubbles appear.",
+  q:"Why does opening the bottle make CO₂ come out of the solution?",
+  a:"The solubility of a gas increases with the pressure of that gas above the liquid. Opening the bottle lets the CO₂ above the liquid escape, so the pressure drops. Less CO₂ can stay dissolved, and the extra comes out as bubbles.",
+  src:[],
+  art:()=>{ const bottle=(x,open)=>`<path d="M${x-8} 22h16v14c0 6 12 10 12 22v86a6 6 0 0 1-6 6H${x-18}a6 6 0 0 1-6-6V58c0-12 12-16 12-22z" fill="#eef7ee" stroke="${INK}" stroke-width="2"/><path d="M${x-23} 70h46v74a5 5 0 0 1-5 5H${x-18}a5 5 0 0 1-5-5z" fill="#c9a66b" opacity=".75"/>${open?"":`<rect x="${x-10}" y="14" width="20" height="10" rx="2" fill="${RED}"/>`}`;
+    const bubbles=(x,ys)=>ys.map(([dx,y,r])=>`<circle cx="${x+dx}" cy="${y}" r="${r}" fill="#fff" stroke="#8a6d3b" stroke-width="1"/>`).join("");
+    return svg(320,170,bottle(84,0)+bubbles(84,[[-8,120,2.5],[6,100,2]])+bottle(236,1)+bubbles(236,[[-12,136,3],[-2,122,2.5],[10,110,3],[-8,96,2.5],[4,84,3],[12,132,2],[0,74,2.2]])+arrow(136,96,184,96,INK,2.4)+tx(160,84,"open",{a:"middle",fs:12})+tx(84,166,"sealed",{a:"middle",b:1,fs:12})+tx(236,166,"opened",{a:"middle",b:1,fs:12}),"a sealed soda bottle with few bubbles and an opened bottle full of rising bubbles"); }}
+];
+A.FACTS=FACTS;
+
+/* ---------------- home page ---------------- */
+const UNIT_INFO=[
+ [0,"Lab Skills & Measurement"],[1,"Matter"],[2,"Atomic Structure"],[3,"The Periodic Table"],[4,"Chemical Bonding"],
+ [5,"Chemical Reactions"],[6,"Stoichiometry"],[7,"Thermochemistry"],[8,"Gas Laws"],[9,"Solutions"]];
+const unitPages=u=>(A[A.UNITS[u].list]||[]);
+const pageTitle=p=>p.title||p.short;
+
+A.Home=function(){
+  const d=P.get();
+  /* --- continue card --- */
+  const cont=A.$("#home-continue");
+  if(cont){
+    const last=d.last&&A.pageInfo(d.last.slug);
+    if(last){
+      const L=last.list, nxt=L[last.i+1], done=P.status(last.slug,d)===2, U=A.UNITS[last.unit];
+      cont.innerHTML=`<span class="hc-eyebrow">Pick up where you left off</span>
+        <a class="hc-main" href="${last.slug}.html"><small>${esc(last.orb?"Unit 2 · Orbitals enrichment":U.name)}</small><b>${esc(pageTitle(last))}</b><span class="hc-go">Continue →</span></a>
+        <p class="hc-meta">Opened ${ago(d.last.t)}${done?" · learning check finished ✓":""}</p>
+        ${nxt&&done?`<a class="hc-next" href="${nxt.slug}.html">Next page: <b>${esc(pageTitle(nxt))}</b> →</a>`:""}`;
+    } else {
+      cont.innerHTML=`<span class="hc-eyebrow">Getting started</span>
+        <a class="hc-main" href="u0home.html"><small>Unit 0</small><b>Lab Skills &amp; Measurement</b><span class="hc-go">Start here →</span></a>
+        <p class="hc-meta">As you open notes pages and finish learning checks, your progress shows up here and on the unit map. It is saved in this browser on this device.</p>`;
+    }
+  }
+  /* --- unit map --- */
+  const map=A.$("#home-map");
+  if(map){
+    const curU=d.last&&A.pageInfo(d.last.slug)? A.pageInfo(d.last.slug).unit : null;
+    map.innerHTML=UNIT_INFO.map(([u,name])=>{
+      const L=unitPages(u), core=L.filter(p=>!p.enr&&!/practice$/.test(p.slug)), opened=L.filter(p=>d.v[p.slug]).length, checks=core.filter(p=>P.status(p.slug,d)===2).length;
+      const allDone=core.length&&core.every(p=>P.status(p.slug,d)===2);
+      const dots=L.map((p,i)=>{ const s=P.status(p.slug,d), sc=P.score(p.slug,d); const cls=["um-dot",s===2?"done":s===1?"open":"",p.enr?"enr":"",p.slug.endsWith("practice")?"arc":""].join(" ");
+        return `<a class="${cls}" href="${p.slug}.html" title="${esc(pageTitle(p))}${s===2?` · learning check ${sc?sc.c+"/"+sc.n:"finished"}`:s===1?" · opened":" · not opened yet"}" aria-label="${esc(pageTitle(p))}${s===2?", learning check finished":s===1?", opened":", not opened yet"}">${s===2?"✓":""}</a>`; }).join("");
+      return `<div class="um-tile${u===curU?" cur":""}${allDone?" complete":""}">
+        <a class="um-head" href="${A.UNITS[u].home}.html"><span class="um-art" aria-hidden="true">${UART[u]()}</span><span class="um-t"><small>Unit ${u}${u===curU?' <em class="um-badge">Current unit</em>':""}${allDone?' <em class="um-badge done">Complete ✓</em>':""}</small><b>${esc(name)}</b><span class="um-count">${opened} of ${L.length} pages opened · ${checks} of ${core.length} learning checks done</span></span></a>
+        <div class="um-dots" role="list">${dots}</div></div>`; }).join("");
+  }
+  /* --- tools shelf --- */
+  const tools=A.$("#home-tools");
+  if(tools){
+    const T=[["tb-nb","Notebook","Take notes that follow you to every page and export them.","nb"],["tb-nb","Equation Tool","Plug values into an equation step by step, with units.","eq"],["tb-rt","Reference Tables","The NYSED Reference Tables in a window you can move.","rt"],["tb-pt","Periodic Table","A clickable periodic table you can keep open.","pt"],["tb-calc","Calculator","A calculator with scientific notation.","calc"],["tb-gl","Glossary","Every definition from the notes, searchable.","gl"]];
+    const ICON={nb:`<path d="M6 3h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6zM9 3v18M12 8h4M12 12h4"/>`,eq:`<path d="M4 9h7M4 15h7M15 6l5 12M20 6l-5 12"/>`,rt:`<path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/>`,pt:`<path d="M3 5h4v4H3zM17 5h4v4h-4zM3 11h18v8H3zM9 11v8M15 11v8"/>`,calc:`<path d="M6 3h12v18H6zM9 7h6M9 12h1M12 12h1M15 12h1M9 16h1M12 16h1M15 16h1"/>`,gl:`<path d="M4 5c3-1 6-1 8 1v14c-2-2-5-2-8-1zM20 5c-3-1-6-1-8 1v14c2-2 5-2 8-1z"/>`};
+    tools.innerHTML=T.map(([id,t,s,k])=>`<button type="button" class="ht-btn" data-tb="${id}" data-k="${k}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg><span><b>${t}</b><small>${s}</small></span></button>`).join("");
+    A.$$(".ht-btn",tools).forEach(b=>b.addEventListener("click",()=>{ const tb=A.$("#"+b.dataset.tb); if(!tb) return; if(tb.getAttribute("aria-pressed")!=="true") tb.click();
+      if(b.dataset.k==="eq") setTimeout(()=>{ const t=A.$('.snb-tab[data-t="eq"]'); t&&t.click(); },60); }));
+  }
+  /* --- reset --- */
+  const rs=A.$("#home-reset");
+  if(rs){ let armed=false; rs.addEventListener("click",()=>{ if(!armed){ armed=true; rs.textContent="Tap again to erase your progress on this device"; rs.classList.add("armed"); setTimeout(()=>{ armed=false; rs.textContent="Reset my progress"; rs.classList.remove("armed"); },4000); return; } P.reset(); A.Home(); rs.textContent="Progress reset"; armed=false; rs.classList.remove("armed"); }); }
+  /* --- chem fact of the day --- */
+  A.FactCard(A.$("#home-fact"));
+};
+
+A.FactCard=function(host){
+  if(!host) return;
+  const today=Math.floor((Date.now()-new Date().getTimezoneOffset()*60000)/86400000), base=((today%FACTS.length)+FACTS.length)%FACTS.length;
+  let k=base;
+  function draw(){ const f=FACTS[k], pg=A.pageInfo(f.link), U=A.UNITS[f.u];
+    host.innerHTML=`<div class="cf-head"><span class="cf-eyebrow">${k===base?"Chem fact of the day":"Chem fact"}</span><span class="cf-nav"><button type="button" class="cf-b" data-d="-1" aria-label="Previous fact">‹</button><span class="cf-n">${k+1} / ${FACTS.length}</span><button type="button" class="cf-b" data-d="1" aria-label="Next fact">›</button></span></div>
+      <div class="cf-body"><div class="cf-art">${f.art()}</div><div class="cf-text"><h3>${esc(f.title)}</h3><p>${f.fact}</p>
+      <div class="cf-q"><b>Think about it:</b> ${f.q}</div>
+      <details class="cf-a"><summary>Show the chemistry</summary><p>${f.a}</p></details>
+      <p class="cf-foot">${pg?`<a href="${pg.slug}.html">Learn more: ${esc(U.short)} · ${esc(pageTitle(pg))} →</a>`:""}</p></div></div>
+      ${f.src.length?`<p class="cf-src">Source: ${f.src.map(([l,u])=>u?`<a href="${u}" target="_blank" rel="noopener">${esc(l)}</a>`:esc(l)).join("; ")}</p>`:""}`;
+    A.$$(".cf-b",host).forEach(b=>b.addEventListener("click",()=>{ k=(k+ +b.dataset.d+FACTS.length)%FACTS.length; draw(); })); }
+  if(/allfacts/.test(location.hash)){ host.innerHTML=FACTS.map(f=>`<div class="cf-art" style="max-width:420px;margin:10px 0">${f.art()}</div>`).join(""); return; }
+  draw();
+};
 })();
 
 /* ================= SECTION PICTURES, UNITS 0–5 =================
