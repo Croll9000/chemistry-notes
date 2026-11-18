@@ -7,7 +7,7 @@
 <title>Factors Affecting Solubility</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=0cb1319278">
+<link rel="stylesheet" href="site.css?v=fcc8fc074c">
 </head>
 <body>
 <main class="wrap">
@@ -60,6 +60,11 @@
     </div>
   </section>
 
+  <section class="lab" id="ts">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Temperature and Solubility Lab</h3></div>
+    <div id="ts-host"></div>
+  </section>
+
   <div class="part" id="p3" data-short="Pressure"><div class="pn"><small>Part</small><span>3</span></div><h2>Pressure and Solubility</h2><p>Soda is bottled under carbon dioxide at a pressure several times greater than the air around us, which forces extra carbon dioxide into the liquid. When the cap is twisted off, the pressure above the liquid drops and the extra gas comes out of solution as a stream of bubbles. In this section we will discuss how pressure affects the solubility of gases.</p></div>
 
   <section class="note">
@@ -92,14 +97,14 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=0cb1319278"></script>
+<script src="site.js?v=fcc8fc074c"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 const Z=A.U9;
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${Z.figLike()}</div>`;
 A.$("#like-art").innerHTML=Z.figLike(); A.$("#temp-art").innerHTML=Z.figTempTrend(); A.$("#pres-art").innerHTML=Z.figPressure();
-A.U4.DissolveLab(A.$("#lk-host")); Z.GasSolLab(A.$("#gs-host"));
+A.U4.DissolveLab(A.$("#lk-host")); Z.TempSolLab(A.$("#ts-host")); Z.GasSolLab(A.$("#gs-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "The maximum amount of solute that can dissolve in a given amount of solvent is its ___.", "a": "solubility"}, {"s": "Polar solutes dissolve in ___ solvents.", "a": "polar"}, {"s": "As temperature increases, the solubility of most solids ___.", "a": "increases"}, {"s": "As temperature increases, the solubility of gases ___.", "a": "decreases"}, {"s": "As pressure increases, the solubility of a gas ___.", "a": "increases"}]);
 A.QSet(A.$("#qs"),[
 {type:"mc",stem:"Under which conditions of temperature and pressure is a gas most soluble in water?",choices:["high temperature and low pressure","high temperature and high pressure","low temperature and low pressure","low temperature and high pressure"],ans:4,explain:"Gases dissolve best when the water is cold and the pressure of the gas is high."},

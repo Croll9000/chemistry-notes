@@ -7,7 +7,7 @@
 <title>Light Waves</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=0cb1319278">
+<link rel="stylesheet" href="site.css?v=fcc8fc074c">
 </head>
 <body>
 <style>
@@ -16,6 +16,7 @@
 .rank-list li span{flex:1}
 .rank-list li.ok{border-color:var(--good);background:var(--good-bg)}
 .rank-list li.no{border-color:var(--bad);background:var(--bad-bg)}
+.wv-in{width:150px}.wv-msg{min-height:1.2em;margin:4px 0 0}
 </style>
 <main class="wrap">
   <section class="hero">
@@ -85,8 +86,10 @@
   <section class="lab" id="wave">
     <div class="lab-h"><span class="tag">Lab</span><h3>Wave Explorer</h3></div>
     <div class="lab-b">
-      <p class="how">Slide through the electromagnetic spectrum. Watch the wavelength, frequency and energy change together.</p>
-      <div class="controls"><span class="ctl-label">Wavelength</span><span class="muted">long</span><input type="range" id="wv-r" min="-12" max="1" step="0.02" value="-6.3" style="flex:1;min-width:200px;accent-color:var(--teal);direction:rtl" aria-label="Wavelength (log scale), long wavelengths on the left"><span class="muted">short</span></div>
+      <p class="how">Change the wavelength <b>or</b> the frequency: drag either slider, or type a value and press Enter. Watch the wavelength, frequency and energy change together.</p>
+      <div class="controls"><span class="ctl-label">Wavelength</span><span class="muted">long</span><input type="range" id="wv-r" min="-12" max="1" step="0.02" value="-6.3" style="flex:1;min-width:200px;accent-color:var(--teal);direction:rtl" aria-label="Wavelength (log scale), long wavelengths on the left"><span class="muted">short</span><input class="inp wv-in" id="wv-lt" inputmode="decimal" aria-label="Type a wavelength in meters" placeholder="e.g. 5.0 x 10^-7"><span>m</span></div>
+      <div class="controls"><span class="ctl-label">Frequency</span><span class="muted">low</span><input type="range" id="wv-f" min="7.48" max="20.48" step="0.02" value="14.78" style="flex:1;min-width:200px;accent-color:#E8590C" aria-label="Frequency (log scale), low frequencies on the left"><span class="muted">high</span><input class="inp wv-in" id="wv-ft" inputmode="decimal" aria-label="Type a frequency in hertz" placeholder="e.g. 6.0 x 10^14"><span>Hz</span></div>
+      <p class="muted wv-msg" id="wv-msg" aria-live="polite"></p>
       <div class="controls"><span class="ctl-label">Jump to</span><div class="seg" id="wv-jump"></div></div>
       <div class="stage"><canvas id="wv-cv" width="960" height="220" aria-label="Wave at the chosen wavelength"></canvas></div>
       <div class="readout" id="wv-read"></div>
@@ -117,7 +120,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=0cb1319278"></script>
+<script src="site.js?v=fcc8fc074c"></script>
 <script>(function(){
 
 const A=AS;
@@ -183,7 +186,18 @@ A.EMClickGame(A.$("#emg-host"));
   const cv=A.$("#wv-cv"), c=cv.getContext("2d"), r=A.$("#wv-r");
   const presets=[["Radio",0.5],["Microwave",-2],["Infrared",-5],["Red",Math.log10(660e-9)],["Green",Math.log10(530e-9)],["Violet",Math.log10(410e-9)],["UV",-7.6],["X-ray",-9.3],["Gamma",-12]];
   A.$("#wv-jump").innerHTML=presets.map(([n,v])=>`<button type="button" data-v="${v}">${n}</button>`).join("");
-  A.$$("#wv-jump button").forEach(b=>b.addEventListener("click",()=>{ r.value=b.dataset.v; t=0; }));
+  const fr=A.$("#wv-f"), lt=A.$("#wv-lt"), ft=A.$("#wv-ft"), msg=A.$("#wv-msg"), LC=Math.log10(3e8);
+  /* the two sliders are tied together by c = λf: log f = log c − log λ */
+  const syncF=()=>{ fr.value=(LC- +r.value).toFixed(2); }, syncL=()=>{ r.value=(LC- +fr.value).toFixed(2); };
+  const sciTxt=v=>{ const e=Math.floor(Math.log10(v)+1e-9); return (v/Math.pow(10,e)).toFixed(1)+" x 10^"+e; };
+  const fill=()=>{ lt.value=sciTxt(Math.pow(10,+r.value)); ft.value=sciTxt(3e8/Math.pow(10,+r.value)); };
+  A.$$("#wv-jump button").forEach(b=>b.addEventListener("click",()=>{ r.value=b.dataset.v; syncF(); fill(); msg.textContent=""; t=0; }));
+  r.addEventListener("input",()=>{ syncF(); fill(); msg.textContent=""; }); fr.addEventListener("input",()=>{ syncL(); fill(); msg.textContent=""; });
+  const typed=(inp,isF)=>{ const p=A.parseTyped(inp.value); if(!p||!(p.v>0)){ msg.textContent="Type a number like 5.0 x 10^-7 (or 5.0e-7)."; return; }
+    let lg=isF? LC-Math.log10(p.v) : Math.log10(p.v), clip=false; if(lg< -12){ lg=-12; clip=true; } if(lg>1){ lg=1; clip=true; }
+    r.value=lg.toFixed(2); syncF(); fill(); msg.textContent=clip?"That value is off the end of this slider, so it was set to the nearest end.":""; t=0; };
+  [[lt,false],[ft,true]].forEach(([inp,isF])=>{ inp.addEventListener("keydown",e=>{ if(e.key==="Enter") typed(inp,isF); }); inp.addEventListener("change",()=>typed(inp,isF)); });
+  syncF(); fill();
   let t=0; const V=1.6; /* every wave moves at the same speed across the screen (all light travels at c), so shorter waves pass by more often */
   function frame(){
     const lg=+r.value, lam=Math.pow(10,lg), f=3e8/lam, reg=regionOf(lg);
