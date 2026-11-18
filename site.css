@@ -2161,3 +2161,9 @@ li>.wf,.xl>.wf,li>span>.wf{margin:0 3px}
 .rg-ideal{transition:background-color .5s,color .5s}
 .g8-lawb.ok{border-color:#00B050;background:#eefaf2;box-shadow:0 0 0 3px rgba(0,176,80,.2)}.g8-lawb.no{border-color:#E00000;background:#fdeeee}.g8-lawb.dim{opacity:.5}
 .g8-key em{font-style:normal}.kp-o.good,.kp-o.good:focus,.kp-o.good:disabled{border-color:#00B050!important;background:#eefaf2!important;color:var(--ink)!important;opacity:1}.kp-o.bad:disabled{opacity:1}
+/* Temperature and Solubility Lab (Unit 9) */
+.ts-row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:center}
+.ts-bk{flex:0 1 300px}.ts-gr{flex:0 1 360px}
+.ts-key{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;justify-content:center;margin-top:4px}
+.ts-key span{display:inline-flex;align-items:center;gap:6px}.ts-key i{width:11px;height:11px;display:inline-block}
+.ts-key em{font-style:normal}
