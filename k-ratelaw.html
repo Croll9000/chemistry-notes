@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Rate Laws</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Kinetics · 5</span><h1>Rate Laws</h1><p>Enrichment: rate laws, reaction orders and the rate constant, found from experimental data.</p>
+    <div class="pe-chips"><span>HS-PS1-5</span><span>SEP: Analyzing and Interpreting Data</span><span>CCC: Scale, Proportion and Quantity</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Rate Laws"><div class="pn"><small>Part</small><span>1</span></div><h2>Rate Laws</h2><p>Doubling the amount of one reactant does not always double the rate of a reaction. For some reactions the rate quadruples, and for others it does not change at all. The only way to know is to run experiments. In this section, we will discuss the rate law and how to find it from experimental data.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Rate Laws</h2></div>
+    <div class="body">
+      <p class="intro">A rate law connects the rate of a reaction to the concentrations of the reactants.</p>
+      <ul>
+        <li><span class="def">Rate law</span> – an equation that gives the rate of a reaction from the concentrations of the reactants. For the reaction A + B → AB:</li>
+      <div class="center"><div class="fbox"><span>rate</span><span>=</span><span><i>k</i>[A]<sup>m</sup>[B]<sup>n</sup></span></div><div class="mathbox" style="font-size:16px"><span>rate – instantaneous rate (M/s)</span><span><i>k</i> – rate constant</span><span>[A], [B] – concentrations (M)</span><span><i>m</i>, <i>n</i> – orders</span></div></div>
+        <li><span class="def">Order</span> – the exponent on a reactant’s concentration in the rate law. <span class="kr">The orders are found by experiment, not from the coefficients in the equation.</span></li>
+        <li><span class="kb">The overall order of the reaction is the sum of the exponents.</span></li>
+        <li><span class="def">Rate constant (<i>k</i>)</span> – the number that connects the concentrations to the rate. <span class="kg">The rate constant changes with temperature.</span></li>
+      </ul>
+<div class="tbl-wrap"><table class="nt" style="max-width:640px;margin:8px auto"><tr><th>Order in a reactant</th><th>When its concentration doubles, the rate…</th><th>When it triples, the rate…</th></tr><tr><td>zero (0)</td><td>does not change (×1)</td><td>does not change (×1)</td></tr><tr><td>first (1)</td><td>doubles (×2)</td><td>triples (×3)</td></tr><tr><td>second (2)</td><td>quadruples (×4)</td><td>increases nine times (×9)</td></tr></table></div>
+      <ul>
+        <li>Steps to solving rate law problems:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>Write the general form of the rate law</b> for the reactants.</li><li><b>Find two trials in which the concentration of only one reactant changes.</b></li><li><b>Compare the change in concentration to the change in rate</b> to find the exponent for that reactant. Repeat for each reactant.</li><li><b>Substitute the data from one trial into the rate law</b> to solve for <i>k</i>.</li></ol></li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="rll">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Mystery Rate Law Lab</h3></div>
+    <div id="rll-host"></div>
+  </section>
+
+  <section class="lab enr" id="og">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Find the Order</h3></div>
+    <div id="og-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const K=A.U10;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:10px;font-size:15px;color:#1b2328"><table class="k10-tab"><tr><th>[A] (M)</th><th>[B] (M)</th><th>Rate (M/s)</th></tr><tr><td>0.10</td><td>0.10</td><td>0.020</td></tr><tr><td>0.20</td><td>0.10</td><td>0.040</td></tr><tr><td>0.10</td><td>0.20</td><td>0.080</td></tr></table></div>`;
+S.workedTabs(A.$("#ex1"),[{label:"PO₃ + H₂",enr:true,...S.wk("Ex: Given the data for PO<sub>3</sub> + H<sub>2</sub> → H<sub>2</sub>PO<sub>3</sub>, find the order with respect to each reactant, the overall order, and the rate constant.<table class='k10-tab' style='max-width:420px;margin:6px 0'><tr><th>Trial</th><th>[PO<sub>3</sub>] (M)</th><th>[H<sub>2</sub>] (M)</th><th>Rate (M/s)</th></tr><tr><td>1</td><td>0.100</td><td>0.100</td><td>1.50</td></tr><tr><td>2</td><td>0.200</td><td>0.100</td><td>3.00</td></tr><tr><td>3</td><td>0.100</td><td>0.200</td><td>6.00</td></tr></table>",[["Write the general form of the rate law.","rate = <i>k</i>[PO<sub>3</sub>]<sup><i>m</i></sup>[H<sub>2</sub>]<sup><i>n</i></sup>"],["Find two trials in which only one concentration changes.","Trials 1 and 2: only [PO<sub>3</sub>] changes.<br>Trials 1 and 3: only [H<sub>2</sub>] changes."],["Compare the changes to find each exponent.","[PO<sub>3</sub>] doubles and the rate doubles: 2 = 2<sup><i>m</i></sup>, so <i>m</i> = 1.<br>[H<sub>2</sub>] doubles and the rate quadruples: 4 = 2<sup><i>n</i></sup>, so <i>n</i> = 2.<br>Overall order = 1 + 2 = 3."],["Substitute one trial to solve for k.","1.50 M/s = <i>k</i>(0.100 M)(0.100 M)<sup>2</sup>; <i>k</i> = 1500 M<sup>−2</sup>s<sup>−1</sup>"]])}]);
+K.RateLawLab(A.$("#rll-host")); K.OrderGame(A.$("#og-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "The exponent on a concentration in a rate law is the ___ of that reactant.", "a": "order"}, {"s": "The number k in a rate law is the rate ___.", "a": "constant"}, {"s": "The overall order is the ___ of the exponents.", "a": "sum"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"For the rate law rate = k[A]<sup>2</sup>[B], what happens to the rate when [A] is doubled and [B] stays the same?",choices:["It does not change.", "It doubles.", "It increases by a factor of 4.", "It increases by a factor of 8."],ans:3,explain:"Second order in A: 2² = 4."},
+ {type:"mc",stem:"What is the overall order of a reaction with the rate law rate = k[X][Y]<sup>2</sup>?",choices:["first order", "second order", "zero order", "third order"],ans:4,explain:"1 + 2 = 3."},
+ {type:"mc",stem:"When the concentration of reactant Q is tripled, the rate does not change. The reaction is",choices:["zero order in Q", "first order in Q", "second order in Q", "third order in Q"],ans:1,explain:"3⁰ = 1, so the rate stays the same."},
+ {type:"cr",stem:"For PO<sub>3</sub> + H<sub>2</sub> → H<sub>2</sub>PO<sub>3</sub>, rate = 1500 M<sup>−2</sup>s<sup>−1</sup> [PO<sub>3</sub>][H<sub>2</sub>]<sup>2</sup>. Calculate the rate when [PO<sub>3</sub>] = 1.5 M and [H<sub>2</sub>] = 2.0 M.",parts:["Work and answer"],model:["rate = 1500(1.5)(2.0)<sup>2</sup> = 9000 M/s"],noCredit:"An answer that does not square [H₂]."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("k-ratelaw");AS.completion(document.querySelector(".wrap"),"k-ratelaw");AS.chrome("k-ratelaw");</script>
+</body>
+</html>

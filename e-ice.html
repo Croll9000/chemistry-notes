@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>ICE Tables</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Equilibrium · 5</span><h1>ICE Tables</h1><p>Enrichment: using Initial, Change and Equilibrium rows to find equilibrium concentrations and K.</p>
+    <div class="pe-chips"><span>HS-PS1-6</span><span>SEP: Using Mathematics</span><span>CCC: Stability and Change</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="ICE Tables"><div class="pn"><small>Part</small><span>1</span></div><h2>ICE Tables</h2><p>Chemists rarely measure every concentration in an equilibrium mixture. Usually they know the starting amounts and measure just one substance at equilibrium. An ICE table uses the balanced equation to work out all the rest. In this section, we will discuss how to build and use an ICE table.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>ICE Tables</h2></div>
+    <div class="body">
+      <p class="intro">ICE stands for Initial, Change and Equilibrium.</p>
+      <ul>
+        <li><span class="def">ICE table</span> – a table that organizes the initial concentrations, the changes in concentration, and the equilibrium concentrations of each substance in a reaction.</li>
+        <li><span class="kr">The changes follow the coefficients of the balanced equation.</span> If x mol/L of a reactant with coefficient 1 is used up, a product with coefficient 2 increases by 2x.</li>
+        <li><span class="kb">Reactants decrease (−), and products increase (+), when the reaction moves forward.</span></li>
+        <li><span class="kg">Equilibrium = Initial + Change.</span></li>
+      </ul>
+      <ul>
+        <li>Steps to solving ICE table problems:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>Write the balanced equation and the K expression.</b></li><li><b>Fill in the Initial row</b> with the starting concentrations.</li><li><b>Fill in the Change row</b> using x and the coefficients: − for reactants, + for products.</li><li><b>Fill in the Equilibrium row:</b> Initial + Change.</li><li><b>Use the known equilibrium concentration to solve for x.</b></li><li><b>Substitute the equilibrium concentrations into the K expression and solve.</b></li></ol></li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="ice">
+    <div class="lab-h"><span class="tag game">Game</span><h3>ICE Table Builder</h3></div>
+    <div id="ice-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const K=A.U10, E=A.EQ;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:10px;color:#1b2328">${`<table class='k10-tab' style='max-width:440px;margin:6px 0'><tr><th></th><th>[SO<sub>2</sub>]</th><th>[O<sub>2</sub>]</th><th>[SO<sub>3</sub>]</th></tr><tr><th>I</th><td>0.600</td><td>0.400</td><td>0</td></tr><tr><th>C</th><td>−2x</td><td>−x</td><td>+2x</td></tr><tr><th>E</th><td>0.600 − 2x</td><td>0.400 − x</td><td>2x</td></tr></table>`}</div>`;
+S.workedTabs(A.$("#ex1"),[{label:"2SO₂ + O₂",enr:true,...S.wk("Ex: 0.600 M SO<sub>2</sub> and 0.400 M O<sub>2</sub> are sealed in a container: 2SO<sub>2</sub>(g) + O<sub>2</sub>(g) ⇌ 2SO<sub>3</sub>(g). At equilibrium, [SO<sub>3</sub>] = 0.400 M. Calculate K.",[["Write the balanced equation and the K expression.","<i>K</i> = <span class='wf'><span>[SO<sub>3</sub>]<sup>2</sup></span><span>[SO<sub>2</sub>]<sup>2</sup>[O<sub>2</sub>]</span></span>"],["Fill in the Initial row.","[SO<sub>2</sub>] = 0.600 M, [O<sub>2</sub>] = 0.400 M, [SO<sub>3</sub>] = 0 M"],["Fill in the Change row.","SO<sub>2</sub>: −2x; O<sub>2</sub>: −x; SO<sub>3</sub>: +2x"],["Fill in the Equilibrium row.","0.600 − 2x; 0.400 − x; 2x"],["Use the known value to solve for x.","2x = 0.400 M, so x = 0.200 M. [SO<sub>2</sub>] = 0.200 M, [O<sub>2</sub>] = 0.200 M"],["Substitute and solve.","<i>K</i> = <span class='wf'><span>(0.400)<sup>2</sup></span><span>(0.200)<sup>2</sup>(0.200)</span></span> = 20"]])}]);
+E.ICE(A.$("#ice-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "ICE stands for Initial, Change and ___.", "a": "Equilibrium"}, {"s": "In the Change row, reactants get a ___ sign when the reaction moves forward.", "a": "negative"}, {"s": "The changes follow the ___ of the balanced equation.", "a": "coefficients"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"For N<sub>2</sub>(g) + 3H<sub>2</sub>(g) ⇌ 2NH<sub>3</sub>(g), if the change in [N<sub>2</sub>] is −x, what is the change in [H<sub>2</sub>]?",choices:["−x", "+3x", "−3x", "+2x"],ans:3,explain:"Three H₂ are used for each N₂."},
+ {type:"mc",stem:"For N<sub>2</sub>O<sub>4</sub>(g) ⇌ 2NO<sub>2</sub>(g), 0.100 M N<sub>2</sub>O<sub>4</sub> is sealed in a flask. At equilibrium [NO<sub>2</sub>] = 0.040 M. What is [N<sub>2</sub>O<sub>4</sub>] at equilibrium?",choices:["0.060 M", "0.040 M", "0.020 M", "0.080 M"],ans:4,explain:"2x = 0.040, x = 0.020; 0.100 − 0.020 = 0.080 M."},
+ {type:"cr",stem:"For CO(g) + H<sub>2</sub>O(g) ⇌ CO<sub>2</sub>(g) + H<sub>2</sub>(g), 0.500 M CO and 0.500 M H<sub>2</sub>O are mixed. At equilibrium [CO<sub>2</sub>] = 0.300 M. Calculate K.",parts:["Work and answer"],model:["x = 0.300; [CO] = [H₂O] = 0.200 M; K = (0.300)(0.300)/(0.200)(0.200) = 2.25"],noCredit:"An answer that uses the initial concentrations in the K expression."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("e-ice");AS.completion(document.querySelector(".wrap"),"e-ice");AS.chrome("e-ice");</script>
+</body>
+</html>

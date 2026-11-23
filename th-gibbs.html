@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Gibbs Free Energy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermodynamics · 5</span><h1>Gibbs Free Energy</h1><p>Combining enthalpy, entropy and temperature to decide whether a reaction is spontaneous.</p>
+    <div class="pe-chips"><span>HS-PS1-4</span><span>SEP: Using Mathematics</span><span>CCC: Cause and Effect</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part" id="p1" data-short="Gibbs Free Energy"><div class="pn"><small>Part</small><span>1</span></div><h2>Gibbs Free Energy</h2><p>Energy and entropy sometimes pull in opposite directions. Water freezing gives off heat (favorable) but becomes more ordered (unfavorable). The chemist J. Willard Gibbs combined the two into a single quantity that decides the question. In this section, we will discuss Gibbs free energy.</p></div>
+
+  <section class="note">
+    <div class="tile"><h2>Gibbs Free Energy (G)</h2></div>
+    <div class="body">
+      <p class="intro">Free energy combines the enthalpy change, the entropy change and the temperature.</p>
+      <ul>
+        <li><span class="def">Gibbs free energy (G)</span> – the energy of a system that is available to do work.</li>
+        <li><span class="def">Change in free energy (ΔG)</span> – tells whether a reaction is spontaneous at a given temperature:</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>Δ<i>G</i></span><span>=</span><span>Δ<i>H</i></span><span>−</span><span><i>T</i>Δ<i>S</i></span></div><div class="mathbox" style="font-size:16px"><span>Δ<i>G</i> – change in free energy (kJ)</span><span>Δ<i>H</i> – change in enthalpy (kJ)</span><span><i>T</i> – temperature (K)</span><span>Δ<i>S</i> – change in entropy (kJ/K)</span></div></div>
+      <ul>
+        <li><span class="kr">ΔG &lt; 0: spontaneous.</span> <span class="kb">ΔG &gt; 0: nonspontaneous.</span> <span class="kg">ΔG = 0: the system is at equilibrium.</span></li>
+        <li>ΔS is usually given in J/K; divide by 1000 to change it to kJ/K before using the equation.</li>
+      </ul>
+<div class="tbl-wrap"><table class="nt" style="max-width:640px;margin:8px auto"><tr><th>ΔH</th><th>ΔS</th><th>−TΔS</th><th>ΔG</th><th>Spontaneous?</th></tr><tr><td>−</td><td>+</td><td>−</td><td>always −</td><td>at all temperatures</td></tr><tr><td>+</td><td>−</td><td>+</td><td>always +</td><td>at no temperature</td></tr><tr><td>−</td><td>−</td><td>+</td><td>− at low T</td><td>only at low temperatures</td></tr><tr><td>+</td><td>+</td><td>−</td><td>− at high T</td><td>only at high temperatures</td></tr></table></div>
+      <ul>
+        <li>Steps to solving ΔG problems:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>List the variables and the unknown,</b> with units.</li><li><b>Convert units:</b> °C to K (add 273) and J/K to kJ/K (divide by 1000).</li><li><b>Write down the equation.</b></li><li><b>Substitute and solve.</b></li><li><b>Write the final answer with units, and decide whether the reaction is spontaneous.</b></li></ol></li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab" id="gl">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Free Energy Lab</h3></div>
+    <div id="gl-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const K=A.U10, E=A.EQ, TH=A.TH;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${TH.figLaws()}</div>`;
+S.workedTabs(A.$("#ex1"),[{label:"Ammonia",...S.wk("Ex: For N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g), ΔH = −92 kJ and ΔS = −199 J/K. Is the reaction spontaneous at 25 °C?",[["List the variables and the unknown.","ΔH = −92 kJ, ΔS = −199 J/K, T = 25 °C, ΔG = ?"],["Convert units.","T = 25 + 273 = 298 K; ΔS = <span class='wf'><span>−199 J/K</span><span>1000</span></span> = −0.199 kJ/K"],["Write down the equation.","Δ<i>G</i> = Δ<i>H</i> − <i>T</i>Δ<i>S</i>"],["Substitute and solve.","Δ<i>G</i> = −92 kJ − (298 K)(−0.199 kJ/K) = −92 kJ + 59 kJ"],["Write the final answer.","ΔG = −33 kJ; spontaneous at 25 °C"]])},{label:"Limestone",...S.wk("Ex: For CaCO<sub>3</sub>(s) → CaO(s) + CO<sub>2</sub>(g), ΔH = +178 kJ and ΔS = +161 J/K. Above what temperature is the reaction spontaneous?",[["List the variables and the unknown.","ΔH = +178 kJ, ΔS = +161 J/K, T = ? when ΔG = 0"],["Convert units.","ΔS = <span class='wf'><span>161 J/K</span><span>1000</span></span> = 0.161 kJ/K"],["Write down the equation.","0 = Δ<i>H</i> − <i>T</i>Δ<i>S</i>, so <i>T</i> = <span class='wf'><span>Δ<i>H</i></span><span>Δ<i>S</i></span></span>"],["Substitute and solve.","<i>T</i> = <span class='wf'><span>178 kJ</span><span>0.161 kJ/K</span></span>"],["Write the final answer.","T = 1106 K; the reaction is spontaneous above about 1106 K"]])}]);
+TH.Gibbs(A.$("#gl-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "ΔG = ΔH − ___.", "a": "TΔS"}, {"s": "A negative ΔG means the reaction is ___.", "a": "spontaneous"}, {"s": "ΔG equals zero at ___.", "a": "equilibrium"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"A reaction has ΔH = −50 kJ and ΔS = +120 J/K. The reaction is spontaneous",choices:["at no temperature", "only at low temperatures", "only at high temperatures", "at all temperatures"],ans:4,explain:"Both terms make ΔG negative."},
+ {type:"mc",stem:"A reaction has ΔH = +60 kJ and ΔS = +150 J/K. What is ΔG at 300 K?",choices:["−15 kJ", "+15 kJ", "+105 kJ", "−45 kJ"],ans:2,explain:"60 − 300(0.150) = 60 − 45 = +15 kJ."},
+ {type:"mc",stem:"For a reaction with ΔH &lt; 0 and ΔS &lt; 0, raising the temperature makes ΔG",choices:["more positive, so the reaction becomes less spontaneous", "more negative, so the reaction becomes more spontaneous", "zero at every temperature", "unchanged"],ans:1,explain:"−TΔS is positive and grows with T."},
+ {type:"cr",stem:"For a reaction, ΔH = +44 kJ and ΔS = +118 J/K. Calculate the temperature above which the reaction becomes spontaneous.",parts:["Work and answer"],model:["T = ΔH/ΔS = 44 kJ / 0.118 kJ/K = 373 K"],noCredit:"An answer that does not convert J/K to kJ/K."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("th-gibbs");AS.completion(document.querySelector(".wrap"),"th-gibbs");AS.chrome("th-gibbs");</script>
+</body>
+</html>

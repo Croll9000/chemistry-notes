@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Equilibrium Constants and Q</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Equilibrium · 4</span><h1>Equilibrium Constants and Q</h1><p>Enrichment: writing and calculating the equilibrium constant, and using the reaction quotient to predict the direction of a reaction.</p>
+    <div class="pe-chips"><span>HS-PS1-6</span><span>SEP: Using Mathematics</span><span>CCC: Stability and Change</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Equilibrium Constant"><div class="pn"><small>Part</small><span>1</span></div><h2>The Equilibrium Constant</h2><p>Two flasks of the same reaction at the same temperature can start with very different amounts of reactants, yet when they reach equilibrium, one ratio of their concentrations comes out the same. That ratio is the equilibrium constant. In this section, we will discuss how to write and use the equilibrium constant.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>The Equilibrium Constant (K<sub>eq</sub>)</h2></div>
+    <div class="body">
+      <p class="intro">For a general reaction aA + bB ⇌ cC + dD:</p>
+      <div class="center"><div class="fbox"><span><i>K</i><sub>eq</sub></span><span>=</span><span><span class="cx-frac"><span>[C]<sup>c</sup>[D]<sup>d</sup></span><span>[A]<sup>a</sup>[B]<sup>b</sup></span></span></span></div><div class="mathbox" style="font-size:16px"><span>[ ] – equilibrium concentration (M)</span><span><i>a, b, c, d</i> – coefficients</span></div></div>
+      <ul>
+        <li><span class="def">Equilibrium constant (K<sub>eq</sub>)</span> – the ratio of the concentrations of the products to the reactants at equilibrium, each raised to the power of its coefficient in the balanced equation.</li>
+        <li><span class="kr">Products go in the numerator and reactants in the denominator.</span></li>
+        <li><span class="kb">Solids and pure liquids are left out of the expression,</span> because their concentrations do not change.</li>
+        <li><span class="kg">K<sub>eq</sub> has one value for a reaction at a given temperature;</span> it changes only when the temperature changes.</li>
+        <li>The size of K<sub>eq</sub> tells which side the equilibrium favors:
+          <ul><li>K<sub>eq</sub> &gt; 1: more products than reactants at equilibrium (product-favored).</li><li>K<sub>eq</sub> &lt; 1: more reactants than products at equilibrium (reactant-favored).</li></ul></li>
+      </ul>
+      <div class="t7-fig" id="k-art"></div>
+      <ul>
+        <li>Steps to calculating K<sub>eq</sub>:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>Write the balanced equation.</b></li><li><b>Write the K<sub>eq</sub> expression,</b> leaving out solids and pure liquids.</li><li><b>Substitute the equilibrium concentrations.</b></li><li><b>Solve.</b></li></ol></li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="kx">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Build the Expression</h3></div>
+    <div id="kx-host"></div>
+  </section>
+
+  <div class="part enr" id="p2" data-short="Reaction Quotient"><div class="pn"><small>Part</small><span>2</span></div><h2>The Reaction Quotient (Q)</h2><p>A mixture that has just been made is usually not at equilibrium yet. By calculating the same ratio with the concentrations at that moment, a chemist can predict which way the reaction will go before it happens. In this section, we will discuss the reaction quotient.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>The Reaction Quotient (Q)</h2></div>
+    <div class="body">
+      <p class="intro">Q is written exactly like K<sub>eq</sub>, but uses the concentrations at any moment, not only at equilibrium.</p>
+      <ul>
+        <li><span class="def">Reaction quotient (Q)</span> – the ratio of products to reactants, each raised to the power of its coefficient, using the concentrations at any moment.</li>
+        <li><span class="kr">Q &lt; K: there are too few products, so the forward reaction is faster and the reaction shifts right.</span></li>
+        <li><span class="kb">Q &gt; K: there are too many products, so the reverse reaction is faster and the reaction shifts left.</span></li>
+        <li><span class="kg">Q = K: the system is at equilibrium.</span></li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="qk">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Q Meets K</h3></div>
+    <div id="qk-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const K=A.U10, E=A.EQ;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${E.figKmag()}</div>`;
+A.$("#k-art").innerHTML=E.figKmag();
+S.workedTabs(A.$("#ex1"),[{label:"N₂O₄ ⇌ 2NO₂",enr:true,...S.wk("Ex: At equilibrium at 25 °C, [N<sub>2</sub>O<sub>4</sub>] = 0.080 M and [NO<sub>2</sub>] = 0.040 M. Calculate K<sub>eq</sub>.",[["Write the balanced equation.","N<sub>2</sub>O<sub>4</sub>(g) ⇌ 2NO<sub>2</sub>(g)"],["Write the Keq expression.","<i>K</i><sub>eq</sub> = <span class='wf'><span>[NO<sub>2</sub>]<sup>2</sup></span><span>[N<sub>2</sub>O<sub>4</sub>]</span></span>"],["Substitute the equilibrium concentrations.","<i>K</i><sub>eq</sub> = <span class='wf'><span>(0.040)<sup>2</sup></span><span>0.080</span></span>"],["Solve.","<i>K</i><sub>eq</sub> = 0.020"]])},{label:"CaCO₃",enr:true,...S.wk("Ex: Write the equilibrium expression for CaCO<sub>3</sub>(s) ⇌ CaO(s) + CO<sub>2</sub>(g).",[["Write the balanced equation.","CaCO<sub>3</sub>(s) ⇌ CaO(s) + CO<sub>2</sub>(g)"],["Write the Keq expression, leaving out solids.","<i>K</i><sub>eq</sub> = [CO<sub>2</sub>]"]])}]);
+E.KExpr(A.$("#kx-host")); E.QK(A.$("#qk-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "Solids and pure liquids are ___ of the equilibrium expression.", "a": "left out"}, {"s": "A large K means the equilibrium favors the ___.", "a": "products"}, {"s": "The ratio calculated with concentrations at any moment is the reaction ___.", "a": "quotient"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"What is the equilibrium expression for 2SO<sub>2</sub>(g) + O<sub>2</sub>(g) ⇌ 2SO<sub>3</sub>(g)?",choices:["<span class=\"cx-frac\"><span>[SO<sub>2</sub>]<sup>2</sup>[O<sub>2</sub>]</span><span>[SO<sub>3</sub>]<sup>2</sup></span></span>", "<span class=\"cx-frac\"><span>2[SO<sub>3</sub>]</span><span>2[SO<sub>2</sub>][O<sub>2</sub>]</span></span>", "<span class=\"cx-frac\"><span>[SO<sub>3</sub>]<sup>2</sup></span><span>[SO<sub>2</sub>]<sup>2</sup>[O<sub>2</sub>]</span></span>", "<span class=\"cx-frac\"><span>[SO<sub>3</sub>]</span><span>[SO<sub>2</sub>][O<sub>2</sub>]</span></span>"],ans:3,explain:"Products over reactants, each raised to its coefficient."},
+ {type:"mc",stem:"A reaction has K<sub>eq</sub> = 2.5 × 10<sup>−6</sup> at 25 °C. At equilibrium the mixture contains",choices:["mostly reactants", "mostly products", "equal amounts of reactants and products", "no reactants"],ans:1,explain:"A very small K means the equilibrium favors the reactants."},
+ {type:"mc",stem:"For a reaction with K = 50, a mixture has Q = 12. Which statement is true?",choices:["The reaction will shift to the left.", "The reaction will shift to the right.", "The reaction is at equilibrium.", "The value of K will decrease to 12."],ans:2,explain:"Q < K, so the forward reaction runs until Q = K."},
+ {type:"cr",stem:"For H<sub>2</sub>(g) + I<sub>2</sub>(g) ⇌ 2HI(g), the equilibrium concentrations are [H<sub>2</sub>] = 0.20 M, [I<sub>2</sub>] = 0.20 M and [HI] = 1.4 M. Calculate K<sub>eq</sub>.",parts:["Work and answer"],model:["K = (1.4)² / (0.20)(0.20) = 49"],noCredit:"An answer that does not square [HI]."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("e-keq");AS.completion(document.querySelector(".wrap"),"e-keq");AS.chrome("e-keq");</script>
+</body>
+</html>

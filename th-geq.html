@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Gibbs Free Energy and Equilibrium</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermodynamics · 6</span><h1>Gibbs Free Energy and Equilibrium</h1><p>Enrichment: how free energy decides the equilibrium mixture, and ΔG° = −RT ln K.</p>
+    <div class="pe-chips"><span>HS-PS1-6</span><span>CCC: Stability and Change</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Free Energy and Equilibrium"><div class="pn"><small>Part</small><span>1</span></div><h2>Free Energy and Equilibrium</h2><p>A ball rolls downhill and comes to rest at the bottom of a valley. A reaction mixture behaves the same way: it reacts in whichever direction lowers its free energy, and stops changing at the lowest point. In this section, we will discuss how free energy connects to equilibrium.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Free Energy and Equilibrium</h2></div>
+    <div class="body">
+      <p class="intro">The equilibrium mixture is the mixture with the lowest free energy.</p>
+      <ul>
+        <li><span class="kr">A reaction mixture always changes in the direction that lowers its free energy.</span></li>
+        <li><span class="kb">At equilibrium, ΔG = 0: neither direction lowers the free energy, so there is no net change.</span></li>
+        <li>The standard free energy change, ΔG°, is related to the equilibrium constant:</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>Δ<i>G</i>°</span><span>=</span><span>−<i>RT</i> ln <i>K</i></span></div><div class="mathbox" style="font-size:16px"><span><i>R</i> = 8.314 J/(mol·K)</span><span><i>T</i> – temperature (K)</span><span><i>K</i> – equilibrium constant</span></div></div>
+      <ul>
+        <li><span class="kg">ΔG° &lt; 0 means K &gt; 1 (products favored); ΔG° &gt; 0 means K &lt; 1 (reactants favored).</span></li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="gc">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Roll to Equilibrium</h3></div>
+    <div id="gc-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const K=A.U10, E=A.EQ, TH=A.TH;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${TH.figLaws()}</div>`;
+TH.GCurve(A.$("#gc-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "At equilibrium, ΔG equals ___.", "a": "zero"}, {"s": "A negative ΔG° means K is ___ than 1.", "a": "greater"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"At equilibrium, the value of ΔG for a reaction is",choices:["negative", "positive", "0", "equal to ΔH"],ans:3,explain:"No direction lowers G at equilibrium."},
+ {type:"mc",stem:"A reaction has ΔG° = +25 kJ at 298 K. Its equilibrium constant is",choices:["greater than 1", "less than 1", "equal to 1", "zero"],ans:2,explain:"Positive ΔG° means reactants are favored."},
+ {type:"cr",stem:"Explain why a reaction mixture that starts with only reactants and has ΔG° &lt; 0 does not react completely to products.",parts:["Explanation"],model:["The free energy is lowest at the equilibrium mixture, not at pure products, so the reaction stops changing when it reaches equilibrium (a mixture of reactants and products)."],noCredit:"An answer that says the reaction stops because it runs out of energy."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("th-geq");AS.completion(document.querySelector(".wrap"),"th-geq");AS.chrome("th-geq");</script>
+</body>
+</html>
