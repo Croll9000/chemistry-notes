@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Practice Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Kinetics · Practice</span><h1>Practice Arcade</h1><p>Games from the whole unit in one place, plus Regents-style questions. These games are for practice and do not give a completion code.</p></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+  <nav class="jump" aria-label="Jump to"><b>Jump to:</b> <a href="#a0">Crosscutting Challenge</a> <a href="#a1">Faster, Slower or No Change?</a> <a href="#a2">Reaction Races</a> <a href="#a3">PE Diagram Challenge</a> <a href="#a4">Aim the Collision</a> <a href="#lc">Regents Practice</a></nav>
+
+  <section class="lab" id="a0">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Crosscutting Challenge</h3></div>
+    <div id="ccc-host"></div>
+  </section>
+
+  <section class="lab" id="a1">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Faster, Slower or No Change?</h3></div>
+    <div id="rs-host"></div>
+  </section>
+
+  <section class="lab" id="a2">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Reaction Races</h3></div>
+    <div id="race-host"></div>
+  </section>
+
+  <section class="lab" id="a3">
+    <div class="lab-h"><span class="tag game">Game</span><h3>PE Diagram Challenge</h3></div>
+    <div id="pe-host"></div>
+  </section>
+
+  <section class="lab" id="a4">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Aim the Collision</h3></div>
+    <div id="or-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Regents Practice"><div class="pn"><small>Check</small><span>✓</span></div><h2>Regents Practice</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, K=A.U10;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${K.peSVG({R:100,P:300,Pr:200,C:200},{cat:true,marks:false,nums:false}).svg}</div>`;
+K.RateSort(A.$("#rs-host")); K.FactorRace(A.$("#race-host")); K.PEClick(A.$("#pe-host")); A.$("#pe-host")._pe.setMode("read"); K.Orientation(A.$("#or-host"));
+A.CCCChallenge(A.$("#ccc-host"),A.CCC.u10);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"Which change would increase the rate of the reaction Zn(s) + 2HCl(aq) → ZnCl<sub>2</sub>(aq) + H<sub>2</sub>(g)?",choices:["lowering the temperature", "using powdered zinc", "using a more dilute acid", "increasing the pressure on the beaker"],ans:2,explain:"Powder has more surface area; pressure does not affect a solid and a solution."},
+ {type:"mc",stem:"A catalyst increases the rate of a reaction by",choices:["lowering the activation energy", "raising the activation energy", "raising the heat of reaction", "increasing the potential energy of the products"],ans:1,explain:"A catalyst provides a pathway with a lower activation energy."},
+ {type:"mc",stem:"Which statement best describes an exothermic reaction?",choices:["The products have more potential energy than the reactants, and ΔH is negative.", "The products have less potential energy than the reactants, and ΔH is positive.", "The products have less potential energy than the reactants, and ΔH is negative.", "The products have more potential energy than the reactants, and ΔH is positive."],ans:3,explain:"Exothermic: energy is released, so the products are lower and ΔH is negative."},
+ {type:"mc",stem:"Increasing the temperature of a reaction increases the rate because the particles",choices:["collide less often but with more energy", "have a lower activation energy", "are packed closer together", "collide more often and with more energy"],ans:4,explain:"Temperature raises the kinetic energy of the particles."},
+ {type:"mc",stem:"On a potential energy diagram, the reactants are at 40 kJ, the activated complex is at 100 kJ, and the products are at 70 kJ. What is the activation energy of the reverse reaction?",choices:["30 kJ", "60 kJ", "70 kJ", "100 kJ"],ans:1,explain:"100 kJ − 70 kJ = 30 kJ."},
+ {type:"cr",stem:"A student finds that a reaction between a solid and a liquid goes faster in a hot water bath than at room temperature. Explain this result in terms of collisions.",parts:["Explanation"],model:["At the higher temperature the particles move faster, so they collide more often and more of the collisions have enough energy (the activation energy) to react."],noCredit:"An answer that mentions only one of the two reasons, or says the activation energy is lowered."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("k-practice");AS.completion(document.querySelector(".wrap"),"k-practice");AS.chrome("k-practice");</script>
+</body>
+</html>

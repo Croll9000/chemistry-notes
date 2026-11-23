@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Practice Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Thermodynamics · Practice</span><h1>Practice Arcade</h1><p>Games from the whole unit in one place, plus Regents-style questions. These games are for practice and do not give a completion code.</p></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+  <nav class="jump" aria-label="Jump to"><b>Jump to:</b> <a href="#a0">Crosscutting Challenge</a> <a href="#a1">Entropy Challenge</a> <a href="#a2">Will It Happen?</a> <a href="#a3">Free Energy Lab</a> <a href="#a4">Hot Pack or Cold Pack?</a> <a href="#lc">Regents Practice</a></nav>
+
+  <section class="lab" id="a0">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Crosscutting Challenge</h3></div>
+    <div id="ccc-host"></div>
+  </section>
+
+  <section class="lab" id="a1">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Entropy Challenge</h3></div>
+    <div id="eg-host"></div>
+  </section>
+
+  <section class="lab" id="a2">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Will It Happen?</h3></div>
+    <div id="sg-host"></div>
+  </section>
+
+  <section class="lab" id="a3">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Free Energy Lab</h3></div>
+    <div id="gl-host"></div>
+  </section>
+
+  <section class="lab" id="a4">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Hot Pack or Cold Pack?</h3></div>
+    <div id="ss-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Regents Practice"><div class="pn"><small>Check</small><span>✓</span></div><h2>Regents Practice</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, TH=A.TH;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${TH.figLaws()}</div>`;
+TH.EntropyGame(A.$("#eg-host")); TH.SpontGame(A.$("#sg-host")); TH.Gibbs(A.$("#gl-host"),{tasks:false}); TH.SysSurr(A.$("#ss-host"));
+A.CCCChallenge(A.$("#ccc-host"),A.CCC.u12);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"Which law of thermodynamics states that energy cannot be created or destroyed?",choices:["the zeroth law", "the first law", "the second law", "the third law"],ans:2,explain:"Conservation of energy."},
+ {type:"mc",stem:"Which process has a positive ΔS?",choices:["H<sub>2</sub>O(g) → H<sub>2</sub>O(l)", "2H<sub>2</sub>(g) + O<sub>2</sub>(g) → 2H<sub>2</sub>O(l)", "NaCl(s) → Na<sup>+</sup>(aq) + Cl<sup>−</sup>(aq)", "N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g)"],ans:3,explain:"Dissolving spreads the ions out."},
+ {type:"mc",stem:"A reaction with ΔH &gt; 0 and ΔS &gt; 0 is spontaneous",choices:["at all temperatures", "at no temperature", "only at low temperatures", "only at high temperatures"],ans:4,explain:"−TΔS must outweigh ΔH."},
+ {type:"mc",stem:"In an endothermic process, the entropy of the surroundings",choices:["decreases", "increases", "stays the same", "becomes zero"],ans:1,explain:"Heat leaves the surroundings."},
+ {type:"cr",stem:"For a reaction, ΔH = −120 kJ and ΔS = −250 J/K. Calculate ΔG at 300 K and state whether the reaction is spontaneous.",parts:["Work and answer"],model:["ΔG = −120 kJ − (300 K)(−0.250 kJ/K) = −45 kJ; spontaneous"],noCredit:"An answer that does not convert J/K to kJ/K."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("th-practice");AS.completion(document.querySelector(".wrap"),"th-practice");AS.chrome("th-practice");</script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 <title>Dalton’s Law of Partial Pressures</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=fcc8fc074c">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
 </head>
 <body>
 <main class="wrap">
@@ -41,6 +41,11 @@
   <section class="lab enr" id="dsim">
     <div class="lab-h"><span class="tag sim">Simulation</span><h3>Mixing Gases</h3></div>
     <div id="ds-host"></div>
+  </section>
+
+  <section class="lab enr" id="gcol">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Collecting a Gas over Water</h3></div>
+    <div id="gc-host"></div>
   </section>
 
   <div class="part enr" id="p2" data-short="Mole fractions"><div class="pn"><small>Part</small><span>2</span></div><h2>Mole Fractions</h2><p>A scuba tank of nitrox holds 32 moles of oxygen for every 68 moles of nitrogen. If the tank is at 200 atm, the oxygen supplies 32% of that pressure, about 64 atm, because the oxygen makes up 32% of the particles. In this section, we will use mole fractions to find the partial pressure of each gas in a mixture.</p></div>
@@ -78,13 +83,13 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=fcc8fc074c"></script>
+<script src="site.js?v=d21e4c0fdc"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:14px;font-size:28px;font-weight:800;color:#1b2328;text-align:center" class="mth">P<sub>total</sub> = P<sub>1</sub> + P<sub>2</sub> + P<sub>3</sub> + …</div>`;
 S.workedTabs(A.$("#ex1"),[{label:"Sum of pressures",...S.wk("Ex: A sealed flask contains N₂ at a partial pressure of 45.2 kPa, O₂ at 30.5 kPa and CO₂ at 2.3 kPa. What is the total pressure in the flask?",[["<b>Step 1:</b> List the partial pressures.","P<sub>N₂</sub> = 45.2 kPa, P<sub>O₂</sub> = 30.5 kPa, P<sub>CO₂</sub> = 2.3 kPa, P<sub>total</sub> = ?"],["<b>Step 2:</b> Write Dalton’s law.","P<sub>total</sub> = P₁ + P₂ + P₃"],["<b>Step 3:</b> Substitute and add.","P<sub>total</sub> = 45.2 kPa + 30.5 kPa + 2.3 kPa = 78.0 kPa"],["<b>Step 4:</b> Write the final answer with units.","P<sub>total</sub> = 78.0 kPa"]])},{label:"Sum",...S.wk("Ex: A container holds nitrogen at 45.0 kPa, oxygen at 12.0 kPa and carbon dioxide at 3.0 kPa. What is the total pressure?",[["<b>Step 1:</b> Write Dalton’s law.","P<sub>total</sub> = P<sub>N₂</sub> + P<sub>O₂</sub> + P<sub>CO₂</sub>"],["<b>Step 2:</b> Substitute and add.","P<sub>total</sub> = 45.0 kPa + 12.0 kPa + 3.0 kPa = 60.0 kPa"]])}]); S.workedTabs(A.$("#ex2"),[{label:"Mole fraction",...S.wk("Ex: 4.00 mol of oxygen gas, 3.00 mol of hydrogen gas and 1.00 mol of nitrogen gas are combined in a closed container at standard pressure. What is the partial pressure of the hydrogen gas?",[["<b>Step 1:</b> List the variables and the unknown. Standard pressure is 1.00 atm.","n<sub>H₂</sub> = 3.00 mol, n<sub>T</sub> = 4.00 mol + 3.00 mol + 1.00 mol = 8.00 mol, P<sub>T</sub> = 1.00 atm, P<sub>H₂</sub> = ?"],["<b>Step 2:</b> Write down the equation.","P<sub>H₂</sub> = <span class='wf'><span>n<sub>H₂</sub></span><span>n<sub>T</sub></span></span>(P<sub>T</sub>)"],["<b>Step 3:</b> Substitute and solve.","P<sub>H₂</sub> = <span class='wf'><span>3.00 mol</span><span>8.00 mol</span></span>(1.00 atm) = 0.375 atm"],["<b>Step 4:</b> Write the final answer with units.","P<sub>H₂</sub> = 0.375 atm"]])}]); G.figDalton3(A.$("#fig-dal3")); G.figMoleFrac(A.$("#fig-molefrac"));
-G.DaltonSim(A.$("#ds-host")); G.DaltonGame(A.$("#dg-host"));
+G.DaltonSim(A.$("#ds-host")); G.GasCollect(A.$("#gc-host")); G.DaltonGame(A.$("#dg-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "The pressure one gas in a mixture would exert if it were alone is its ___.", "a": "partial pressure"}, {"s": "The total pressure of a gas mixture is the ___ of the partial pressures.", "a": "sum"}, {"s": "A gas’s share of the total moles is its mole ___.", "a": "fraction"}]);
 A.QSet(A.$("#qs"),[
 {type:"mc",stem:"4.00 mol of O<sub>2</sub>, 3.00 mol of H<sub>2</sub> and 1.00 mol of N<sub>2</sub> are combined at standard pressure. What is the partial pressure of the H<sub>2</sub>?",choices:["1.00 atm","0.125 atm","3.00 atm","0.375 atm"],ans:4,explain:"(3.00 ÷ 8.00)(1.00 atm) = 0.375 atm."},

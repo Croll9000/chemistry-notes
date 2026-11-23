@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Equilibrium Notes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<style>
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.tcard{display:grid;grid-template-columns:64px minmax(0,1fr);text-decoration:none;color:var(--body);background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow);transition:transform .12s, border-color .12s}
+.tcard:hover{transform:translateY(-2px);border-color:var(--teal)}
+.tcard .num{background:var(--teal);color:#fff;font-size:26px;font-weight:500;display:flex;align-items:flex-start;justify-content:center;padding-top:14px}
+.tcard .tc{padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.tcard h3{font-size:18.5px}
+.tcard p{font-size:14.5px}
+.tcard .tools{display:flex;flex-wrap:wrap;gap:5px}
+.tcard .tools span{font-size:12px;font-weight:600;color:var(--teal-ink);background:var(--row);border:1px solid var(--row2);padding:1px 7px;border-radius:99px}
+.tcard.arcade .num{background:var(--orange)}
+.tcard.enr .num{background:var(--purple)}
+.enrich{border:2px dashed var(--purple);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;background:var(--panel)}
+.enrich h2{font-size:22px;color:var(--purple)}
+.enrich ol{margin:0;padding-left:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:4px 20px;font-size:15px}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.howto div{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:15px}
+.howto b{display:block;color:var(--ink);margin-bottom:3px}
+</style>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t">
+      <span class="eyebrow">Regents Chemistry · Unit 11</span>
+      <h1>Equilibrium</h1>
+      <p>Reversible reactions and dynamic equilibrium, phase and solution equilibrium, Le Châtelier’s principle and the common ion effect, and (enrichment) equilibrium constants, the reaction quotient and ICE tables.</p>
+      <div class="pe-chips"><span>HS-PS1-6</span><span>CCC: Stability and Change</span><span>SEP: Constructing Explanations and Designing Solutions</span></div>
+    </div>
+    <div class="hero-art" id="hero-art"></div>
+  </section>
+
+  <section class="howto" aria-label="How to use these pages">
+    <div><b>Read the notes</b>Work through each page from top to bottom. The pages build on each other: what equilibrium is first, then the kinds of equilibrium, then how an equilibrium responds to a stress.</div>
+    <div><b>Run the labs</b>Watch equilibrium form, saturate a solution, stress a cylinder of NO<sub>2</sub> and watch the see-saw rebalance, add a common ion, and run a Haber process plant.</div>
+    <div><b>Check yourself</b>Every page ends with a Learning Check of Regents-style questions. Your first answer is the one that counts.</div><div><b>Enrichment</b>Purple sections and pages are enrichment.</div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="font-size:26px">Subtopics</h2>
+    <div class="toc" id="toc"></div>
+  </section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, K=A.U10, E=A.EQ;
+A.$("#hero-art").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px;max-width:440px">${E.seesaw(-8,{left:"reactants",right:"products",shift:"right"})}</div>`;
+const blurbs={
+ "e-dynamic":["Reversible reactions, and how the forward and reverse rates become equal at dynamic equilibrium.",["Watch equilibrium form","At equilibrium yet?"]],
+ "e-types":["Phase equilibrium and the equilibrium in a saturated solution.",["Phase equilibrium","Saturating a solution"]],
+ "e-lechat":["How an equilibrium shifts when concentration, temperature or pressure changes, and the common ion effect.",["Shift labs","Common ion lab","Design an ammonia plant","Predict the shift"]],
+ "e-keq":["Enrichment: writing and calculating K, and comparing Q with K.",["Build the expression","Q meets K"]],
+ "e-ice":["Enrichment: Initial, Change and Equilibrium tables.",["ICE table builder"]],
+ "e-practice":["Games from every subtopic plus Regents-style questions.",["Predict the shift","Regents practice"]]};
+A.$("#toc").innerHTML=A.UNIT11.map((p,i)=>{ const b=blurbs[p.slug]||["",[]]; const last=p.slug==="e-practice"; return `<a class="tcard${last?" arcade":p.enr?" enr":""}" href="${p.slug}.html"><span class="num">${last?"★":i+1}</span><span class="tc"><h3>${p.title}${p.enr?' <span style="color:var(--purple);font-size:12px;font-weight:800;letter-spacing:.05em">ENRICHMENT</span>':""}</h3><p>${b[0]}</p><span class="tools">${b[1].map(t=>`<span>${t}</span>`).join("")}</span></span></a>`; }).join("");
+
+})();</script>
+<script>AS.U3.addSources("u11home");AS.completion(document.querySelector(".wrap"),"u11home");AS.chrome("u11home");</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Average and Instantaneous Rates</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Kinetics · 4</span><h1>Average and Instantaneous Rates</h1><p>Enrichment: measuring a rate as a change in concentration over time, and reading average and instantaneous rates from a graph.</p>
+    <div class="pe-chips"><span>HS-PS1-5</span><span>SEP: Using Mathematics</span><span>CCC: Patterns</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Average Rate"><div class="pn"><small>Part</small><span>1</span></div><h2>Average Rate</h2><p>A car that travels 120 miles in 2 hours has an average speed of 60 miles per hour, even though its speedometer showed different speeds along the way. A reaction rate works the same way: chemists can find the average rate over a stretch of time or the rate at a single moment. In this section, we will discuss the average rate of a reaction.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Average Rate</h2></div>
+    <div class="body">
+      <p class="intro">Rates are measured as a change in concentration (molarity) divided by the change in time.</p>
+      <ul>
+        <li><span class="def">Average rate</span> – the change in the concentration of a reactant or product over a period of time.</li>
+      <div class="center"><div class="fbox"><span>rate</span><span>=</span><span>−</span><span><span class="cx-frac"><span>Δ[reactant]</span><span>Δt</span></span></span><span>=</span><span><span class="cx-frac"><span>Δ[product]</span><span>Δt</span></span></span></div><div class="mathbox" style="font-size:16px"><span>[ ] – concentration (M)</span><span>Δt – change in time (s)</span></div></div>
+        <li><span class="kr">Reactants are used up, so their concentration decreases; the minus sign keeps the rate positive.</span></li>
+        <li><span class="kb">Each change is divided by the coefficient of that substance in the balanced equation,</span> so that the rate is the same no matter which substance is measured. For aA + bB → cC + dD:</li>
+      </ul>
+      <div class="center"><div class="fbox"><span>rate</span><span>=</span><span>−</span><span><span class="cx-frac"><span>1</span><span>a</span></span></span><span><span class="cx-frac"><span>Δ[A]</span><span>Δt</span></span></span><span>=</span><span>−</span><span><span class="cx-frac"><span>1</span><span>b</span></span></span><span><span class="cx-frac"><span>Δ[B]</span><span>Δt</span></span></span><span>=</span><span><span class="cx-frac"><span>1</span><span>c</span></span></span><span><span class="cx-frac"><span>Δ[C]</span><span>Δt</span></span></span><span>=</span><span><span class="cx-frac"><span>1</span><span>d</span></span></span><span><span class="cx-frac"><span>Δ[D]</span><span>Δt</span></span></span></div></div>
+      <ul>
+        <li>Steps to solving average rate problems:
+          <ol style="margin:4px 0;padding-left:22px"><li><b>Write the balanced equation.</b></li><li><b>Write the rate expression for each substance,</b> dividing by its coefficient.</li><li><b>Substitute the change you know and solve for the unknown change.</b></li><li><b>Write the final answer with units.</b></li></ol></li>
+      </ul>
+      <div id="ex1" style="margin-top:12px"></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="rr">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Rate Relationships</h3></div>
+    <div id="rr-host"></div>
+  </section>
+
+  <div class="part enr" id="p2" data-short="Instantaneous Rate"><div class="pn"><small>Part</small><span>2</span></div><h2>Instantaneous Rate</h2><p>A speedometer shows how fast a car is going at one moment, not its average for the trip. Reactions usually start fast and slow down as the reactants are used up, so the rate at one moment can be very different from the average rate. In this section, we will discuss the instantaneous rate of a reaction.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Instantaneous Rate</h2></div>
+    <div class="body">
+      <p class="intro">On a graph of concentration against time, the steepness of the curve shows the rate.</p>
+      <ul>
+        <li><span class="def">Instantaneous rate</span> – the change in the concentration of a reactant or product at a single moment in time.</li>
+        <li><span class="kr">The average rate is the slope of a secant line drawn between two points on the curve.</span></li>
+        <li><span class="kb">The instantaneous rate is the slope of a tangent line drawn at one point on the curve.</span></li>
+        <li><span class="kg">Most reactions are fastest at the start, when the reactant concentration is highest, and slow down as the reactants are used up.</span></li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="rg">
+    <div class="lab-h"><span class="tag sim">Simulation</span><h3>Secant and Tangent Explorer</h3></div>
+    <div id="rg-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+const K=A.U10;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${K.figRateHero()}</div>`;
+S.workedTabs(A.$("#ex1"),[{label:"H₂ + I₂",enr:true,...S.wk("Ex: Given the reaction H<sub>2</sub>(g) + I<sub>2</sub>(g) → 2HI(g), how many moles of HI are produced in a 1.0 L container in 2.0 s if 4.5 moles of I<sub>2</sub> are used up in the same time?",[["Write the balanced equation.","H<sub>2</sub>(g) + I<sub>2</sub>(g) → 2HI(g)"],["Write the rate expression for each substance.","rate = −<span class='wf'><span>Δ[H<sub>2</sub>]</span><span>Δt</span></span> = −<span class='wf'><span>Δ[I<sub>2</sub>]</span><span>Δt</span></span> = <span class='wf'><span>1</span><span>2</span></span><span class='wf'><span>Δ[HI]</span><span>Δt</span></span>"],["Substitute and solve.","−<span class='wf'><span>0 M − 4.5 M</span><span>2.0 s</span></span> = <span class='wf'><span>1</span><span>2</span></span><span class='wf'><span>Δ[HI]</span><span>2.0 s</span></span>; Δ[HI] = 9.0 M"],["Write the final answer with units.","9.0 mol of HI"]])},{label:"N₂ + 3H₂",enr:true,...S.wk("Ex: In the reaction N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g), H<sub>2</sub> is used up at 0.060 M/s. How fast is NH<sub>3</sub> made?",[["Write the balanced equation.","N<sub>2</sub>(g) + 3H<sub>2</sub>(g) → 2NH<sub>3</sub>(g)"],["Write the rate expression for each substance.","rate = −<span class='wf'><span>1</span><span>3</span></span><span class='wf'><span>Δ[H<sub>2</sub>]</span><span>Δt</span></span> = <span class='wf'><span>1</span><span>2</span></span><span class='wf'><span>Δ[NH<sub>3</sub>]</span><span>Δt</span></span>"],["Substitute and solve.","<span class='wf'><span>1</span><span>3</span></span>(0.060 M/s) = <span class='wf'><span>1</span><span>2</span></span><span class='wf'><span>Δ[NH<sub>3</sub>]</span><span>Δt</span></span>; <span class='wf'><span>Δ[NH<sub>3</sub>]</span><span>Δt</span></span> = 0.040 M/s"],["Write the final answer with units.","0.040 M/s"]])}]);
+K.RateRatio(A.$("#rr-host")); K.RateGraph(A.$("#rg-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "The change in concentration over a period of time is the ___ rate.", "a": "average"}, {"s": "The rate at a single moment is the ___ rate.", "a": "instantaneous"}, {"s": "The instantaneous rate is the slope of a ___ line.", "a": "tangent"}]);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"In the reaction 2H<sub>2</sub>(g) + O<sub>2</sub>(g) → 2H<sub>2</sub>O(g), O<sub>2</sub> is used up at 0.030 M/s. At what rate is H<sub>2</sub>O produced?",choices:["0.015 M/s", "0.030 M/s", "0.060 M/s", "0.090 M/s"],ans:3,explain:"Two H₂O form for each O₂ used: 2 × 0.030 M/s."},
+ {type:"mc",stem:"The concentration of a reactant falls from 0.80 M to 0.50 M in 15 s. What is the average rate over this time?",choices:["0.020 M/s", "0.030 M/s", "0.053 M/s", "0.30 M/s"],ans:1,explain:"(0.80 M − 0.50 M) / 15 s = 0.020 M/s."},
+ {type:"mc",stem:"On a graph of reactant concentration against time, the instantaneous rate at 10 s is found from the",choices:["height of the curve at 10 s", "slope of the tangent line at 10 s", "slope of a line from 0 s to 10 s", "area under the curve up to 10 s"],ans:2,explain:"A tangent line touches the curve at one point."},
+ {type:"cr",stem:"Explain why the rate of most reactions decreases as the reaction goes on.",parts:["Explanation"],model:["The reactants are used up, so their concentration decreases and there are fewer collisions per second."],noCredit:"An answer that does not mention concentration or collisions."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("k-rates");AS.completion(document.querySelector(".wrap"),"k-rates");AS.chrome("k-rates");</script>
+</body>
+</html>

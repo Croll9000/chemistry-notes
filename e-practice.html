@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Practice Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Equilibrium · Practice</span><h1>Practice Arcade</h1><p>Games from the whole unit in one place, plus Regents-style questions. These games are for practice and do not give a completion code.</p></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+  <nav class="jump" aria-label="Jump to"><b>Jump to:</b> <a href="#a0">Crosscutting Challenge</a> <a href="#a1">At Equilibrium Yet?</a> <a href="#a2">Predict the Shift</a> <a href="#a3">Shift Lab</a> <a href="#a4">Common Ion Lab</a> <a href="#a5">Design an Ammonia Plant</a> <a href="#lc">Regents Practice</a></nav>
+
+  <section class="lab" id="a0">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Crosscutting Challenge</h3></div>
+    <div id="ccc-host"></div>
+  </section>
+
+  <section class="lab" id="a1">
+    <div class="lab-h"><span class="tag game">Game</span><h3>At Equilibrium Yet?</h3></div>
+    <div id="ec-host"></div>
+  </section>
+
+  <section class="lab" id="a2">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Predict the Shift</h3></div>
+    <div id="sg-host"></div>
+  </section>
+
+  <section class="lab" id="a3">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Shift Lab</h3></div>
+    <div id="sl-host"></div>
+  </section>
+
+  <section class="lab" id="a4">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Common Ion Lab</h3></div>
+    <div id="ci-host"></div>
+  </section>
+
+  <section class="lab" id="a5">
+    <div class="lab-h"><span class="tag game">Lab</span><h3>Design an Ammonia Plant</h3></div>
+    <div id="hp-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Regents Practice"><div class="pn"><small>Check</small><span>✓</span></div><h2>Regents Practice</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=d21e4c0fdc"></script>
+<script>(function(){
+
+const A=AS, K=A.U10, E=A.EQ;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${E.seesaw(-8,{left:"reactants",right:"products",shift:"right"})}</div>`;
+E.EqCheck(A.$("#ec-host")); E.ShiftGame(A.$("#sg-host")); E.ShiftLab(A.$("#sl-host")); E.IonEq(A.$("#ci-host"),{mode:"common"}); E.HaberPlant(A.$("#hp-host"));
+A.CCCChallenge(A.$("#ccc-host"),A.CCC.u11);
+A.QSet(A.$("#qs"),[
+{type:"mc",stem:"A system is at equilibrium when",choices:["the reactants are used up", "the concentrations of reactants and products are equal", "the reaction stops", "the forward and reverse rates are equal"],ans:4,explain:"Equal rates, constant (not equal) amounts."},
+ {type:"mc",stem:"Given: CH<sub>4</sub>(g) + H<sub>2</sub>O(g) + 206 kJ ⇌ 3H<sub>2</sub>(g) + CO(g). Which change shifts the equilibrium to the right?",choices:["adding a catalyst", "raising the temperature", "increasing the pressure", "removing H<sub>2</sub>O(g)"],ans:2,explain:"Heat is a reactant here, so adding heat shifts right."},
+ {type:"mc",stem:"Given: H<sub>2</sub>(g) + I<sub>2</sub>(g) ⇌ 2HI(g). An increase in pressure will",choices:["shift the equilibrium to the right", "shift the equilibrium to the left", "cause no shift", "increase the value of K"],ans:3,explain:"Two moles of gas on each side."},
+ {type:"mc",stem:"Given: KNO<sub>3</sub>(s) ⇌ K<sup>+</sup>(aq) + NO<sub>3</sub><sup>−</sup>(aq) at equilibrium. NaNO<sub>3</sub> is added. The equilibrium",choices:["shifts to the left", "shifts to the right", "does not shift", "stops"],ans:1,explain:"NO₃⁻ is a common ion."},
+ {type:"mc",stem:"Which change will shift the equilibrium N<sub>2</sub>(g) + 3H<sub>2</sub>(g) ⇌ 2NH<sub>3</sub>(g) + heat to the left?",choices:["adding N<sub>2</sub>(g)", "removing NH<sub>3</sub>(g)", "increasing the pressure", "increasing the temperature"],ans:4,explain:"Heat is a product, so adding heat shifts left."},
+ {type:"cr",stem:"A saturated solution of NaCl is at equilibrium with undissolved NaCl. Explain what happens to the amount of undissolved NaCl when concentrated HCl, which contains Cl<sup>−</sup> ions, is added.",parts:["Explanation"],model:["The amount of solid NaCl increases. Cl⁻ is a common ion, so the equilibrium NaCl(s) ⇌ Na⁺ + Cl⁻ shifts to the left."],noCredit:"An answer that says more NaCl dissolves."}
+]);
+
+})();</script>
+<script>AS.U3.addSources("e-practice");AS.completion(document.querySelector(".wrap"),"e-practice");AS.chrome("e-practice");</script>
+</body>
+</html>
