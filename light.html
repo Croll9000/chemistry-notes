@@ -7,7 +7,7 @@
 <title>Light Waves</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08427de77e">
+<link rel="stylesheet" href="site.css?v=08eb5c2d95">
 </head>
 <body>
 <style>
@@ -17,6 +17,8 @@
 .rank-list li.ok{border-color:var(--good);background:var(--good-bg)}
 .rank-list li.no{border-color:var(--bad);background:var(--bad-bg)}
 .wv-in{width:150px}.wv-msg{min-height:1.2em;margin:4px 0 0}
+.wv-grid{display:grid;grid-template-columns:auto auto minmax(160px,1fr) auto auto auto;gap:10px 10px;align-items:center;margin:8px 0}.wv-r{display:contents}.wv-grid input[type=range]{width:100%}.wv-grid .wv-in{width:150px;font-size:16px}
+@media(max-width:700px){.wv-grid{grid-template-columns:auto 1fr auto}.wv-grid .muted{display:none}}
 </style>
 <main class="wrap">
   <section class="hero">
@@ -30,7 +32,9 @@
   <section class="note">
     <div class="tile"><h2>Light</h2></div>
     <div class="body">
-      <div class="prose"><p>Sunlight travels about 150 million kilometers to reach Earth in just over 8 minutes. Light is a form of energy, but it can interact with matter: it is often produced in chemical reactions, it can trigger chemical changes, and the light given off by atoms can be used to identify them. <span class="kr">Light is a type of wave</span>, sometimes called an electromagnetic wave, made of ripples in electric and magnetic fields. Light waves carry <span class="kb">energy</span>, and that energy comes in packets. A <b>photon</b> is a single packet, or quantum, of light energy, and light of specific energies can interact with the electrons in an atom.</p></div><!--/prose-->
+      <div class="prose"><p>The light that reaches your eyes from the sun left its surface about 8 minutes and 20 seconds ago, after crossing 150 million kilometers of empty space. A sound wave could never make that trip, because sound needs matter, such as air or water, to travel through. Light needs nothing at all. It is a ripple in electric and magnetic fields, and it carries energy across the vacuum of space to warm the Earth.</p>
+<p><span class="kr">Light is a type of wave</span>, and it is sometimes referred to as an electromagnetic wave, since light waves are ripples in electric and magnetic fields. <span class="kb">Light waves carry energy.</span> Light can also be described as a stream of tiny packets of energy. A <span class="def">photon</span> is a single packet, or quantum, of light energy.</p>
+<div class="pr-slot" data-fig="0"></div><p>Light matters in chemistry because light of specific energies can interact with the electrons in an atom. When an atom absorbs a photon, one of its electrons gains energy, and when an electron loses energy, the atom can give off a photon. Studying the light that atoms absorb and release is how scientists first learned how electrons are arranged.</p></div><!--/prose-->
 <ul>
         <li><span class="kr">Light</span> is a <span class="kr">type of wave</span>.
           <ul><li>It is sometimes referred to as an Electromagnetic Wave.</li><li>Light waves are ripples in electric and magnetic fields.</li><li>Light Waves carry <span class="kr">energy</span>.</li><li><span class="fixed" data-orig="A single light wave is known as a photon or quantum of light." data-why="A photon is a single packet (particle) of light energy, not a whole wave.">A <span class="kr">photon</span> is a single packet, or quantum, of light energy.</span></li><li class="added">Light of specific energies can interact with the electrons in an atom.</li></ul></li>
@@ -45,7 +49,9 @@
   <section class="note">
     <div class="tile"><h2>Wavelength</h2></div>
     <div class="body">
-      <div class="prose"><p>Light can be described in the same way as the ripples that spread across a pond when a stone is dropped into it. The highest point of a wave is its <b>crest</b> and the lowest point is its <b>trough</b>. <b>Wavelength</b> is the length of a single wave cycle, measured from crest to crest or from trough to trough, in meters (m) or nanometers (nm). Red light has a wavelength of about 700 nm, while violet light has a wavelength of about 400 nm.</p></div><!--/prose-->
+      <div class="prose"><p>The radio waves from an FM station are about 3 meters long, roughly the height of a room, while the waves of green light are only about 500 nanometers long, so small that two hundred of them would fit across the width of a human hair. Both are forms of light. The most obvious difference between them is the length of each wave.</p>
+<p><span class="def">Wavelength</span> is the length of a single wave cycle, measured from crest to crest or trough to trough. A <span class="def">crest</span> is the peak of a wave, while a <span class="def">trough</span> is its lowest point. Wavelength is measured in meters (m), or, for visible light, in nanometers (nm), where 1 nm is one-billionth of a meter.</p>
+<div class="pr-slot" data-fig="0"></div><p>The wavelength of visible light determines its color. Red light has the longest wavelengths we can see, about 700 nm, while violet light has the shortest, about 400 nm, and every other color falls in between.</p></div><!--/prose-->
 <p>All light waves can be described using 2 properties, wavelength and frequency</p>
       <ul><li><span class="def">Wavelength</span> – the length of a single wave cycle, measured from crest to crest or trough to trough.<ul><li class="qu"><i>Unit</i> – meters (m), nanometers (nm)</li><li class="added"><b>Crest</b> – peak of a wave</li><li class="added"><b>Trough</b> – lowest point on a wave</li></ul></li></ul>
       <div class="center" id="wl-art"></div>
@@ -55,7 +61,9 @@
   <section class="note">
     <div class="tile"><h2>Frequency</h2></div>
     <div class="body">
-      <div class="prose"><p>Every radio station is identified by a number, such as 101.1 FM, which is the frequency at which it broadcasts, in millions of cycles per second. <b>Frequency</b> is the number of wave cycles completed in 1 second. If you picture standing still while waves pass by, the frequency is how many crests go by each second. Frequency is measured in hertz (Hz), which is the same as cycles per second, or s<sup>−1</sup>.</p></div><!--/prose-->
+      <div class="prose"><p>Tune a car radio to 101.1 FM, and the number on the dial is a frequency: the station’s radio waves pass your antenna 101.1 million times every second. Each station sends out waves at its own frequency, and the radio picks out one station from all the others by tuning to that frequency alone.</p>
+<p><span class="def">Frequency</span> is the number of wave cycles that are completed in 1 second. Picture standing still while waves pass you: frequency is how many crests go by each second. It is measured in hertz (Hz), which means cycles per second and can also be written s<sup>−1</sup>.</p>
+<div class="pr-slot" data-fig="0"></div><p>All light travels at the same speed, so frequency and wavelength are linked. If every wave moves at the same speed, then waves that are shorter must pass by more often. Thus, <span class="kr">as the wavelength of light decreases, its frequency increases</span>: the two are inversely related.</p></div><!--/prose-->
 <ul><li><span class="def">Frequency</span> – the number of wave cycles that are completed in 1 second.<ul><li class="added">Picture standing still while waves pass you: frequency is how many crests go by each second.</li><li class="qu"><i>Units: hertz (Hz), cycles/second, s<sup>−1</sup></i></li></ul></li></ul>
       <div class="two"><div class="stage center"><canvas id="fq-cv" width="600" height="200" style="max-width:100%" aria-label="Two waves moving at the same speed pass a marker; a stopwatch counts one second and counters show 2 and 6 crests passing"></canvas></div><div class="callout" style="align-self:center">Both waves move at the same speed. Watch the stopwatch: in the same 1 second, <b>2</b> crests of the top wave pass the marker, but <b>6</b> crests of the bottom wave pass it. The bottom wave has the higher frequency, and its wavelength is shorter. <span class="added">All light travels at the same speed (3.00 × 10<sup>8</sup> m/s), so a shorter wavelength always means a higher frequency.</span></div></div>
     </div>
@@ -64,7 +72,9 @@
   <section class="note">
     <div class="tile"><h2>Energy of Light Waves</h2></div>
     <div class="body">
-      <div class="prose"><p>Sunburns are caused by ultraviolet light, not visible light, even though both come from the Sun. The frequency and wavelength of a light wave determine its energy. Waves with a <span class="kr">short wavelength</span> and a <span class="kr">high frequency</span> have <span class="kr">high energy</span>, while waves with a <span class="kb">long wavelength</span> and a <span class="kb">low frequency</span> have <span class="kb">low energy</span>. Ultraviolet light has a shorter wavelength than visible light, so each of its photons carries enough energy to damage skin.</p></div><!--/prose-->
+      <div class="prose"><p>You can sit under a bright desk lamp for hours without any harm, but an afternoon at the beach without sunscreen can leave you badly sunburned. The difference is not how bright the light is, but what kind of light it is. Sunlight contains ultraviolet light, whose waves have a shorter wavelength and higher frequency than visible light. Each ultraviolet photon carries enough energy to damage the molecules in skin cells, while each photon of visible light does not.</p>
+<p><span class="kr">The frequency and wavelength of a light wave determine its energy.</span> <span class="kb">Waves with a short wavelength and high frequency have a high energy</span>, while <span class="kg">waves with a long wavelength and low frequency have a low energy</span>. Thus, energy and frequency are directly related, while energy and wavelength are inversely related.</p>
+<div class="pr-slot" data-fig="0"></div><p>This is why higher-energy radiation, such as ultraviolet light, X-rays and gamma rays, can damage living cells and DNA, and why X-ray technicians stand behind a shield. Lower-energy radiation, such as radio waves, passes harmlessly through our bodies every day.</p></div><!--/prose-->
 <ul><li>The frequency and wavelength of a light wave determine its energy<ul><li>Waves with a <span class="kr">short wavelength</span> and <span class="kr">high frequency</span> have a <span class="kr">high energy</span></li><li>Waves with a <span class="kb">long wavelength</span> and <span class="kb">low frequency</span> have a <span class="kb">low energy</span></li></ul></li></ul>
       <div class="center" id="en-art"></div>
       <p class="added muted" style="padding:4px 6px">Higher-energy radiation (ultraviolet, X-rays, gamma rays) can damage living cells and DNA. Lower-energy radiation (visible light, infrared, microwaves) is mostly absorbed as heat.</p>
@@ -77,7 +87,9 @@
   <section class="note">
     <div class="tile"><h2>Electromagnetic Spectrum</h2></div>
     <div class="body">
-      <div class="prose"><p>A car radio, a microwave oven and a dentist’s X-ray machine all use forms of light. Visible light is only a small part of a much larger family of light waves, and the <b>electromagnetic spectrum</b> arranges all of them, from radio waves to gamma rays, by wavelength, frequency and energy. Engineers choose the type of light for each technology by its position on the spectrum.</p></div><!--/prose-->
+      <div class="prose"><p>A microwave oven heats food with waves about 12 cm long, a car radio picks up waves several meters long, and a dentist’s X-ray machine uses waves only about as long as an atom is wide. All three are the same kind of wave as visible light, just with different wavelengths. Visible light, every color we can see, is only a narrow slice of a much larger family.</p>
+<p>The <span class="def">electromagnetic spectrum</span> arranges all of these waves in order, from long-wavelength, low-energy radio waves, through microwaves, infrared, visible light and ultraviolet, to short-wavelength, high-energy X-rays and gamma rays. Since all of them travel at the same speed, moving across the spectrum toward shorter wavelengths always means higher frequency and higher energy.</p>
+<div class="pr-slot" data-fig="0"></div><p>Engineers choose a type of light for each technology by its position on the spectrum. Radio waves are long enough to pass around buildings, microwaves are absorbed by the water in food, and X-rays have enough energy to pass through soft tissue but not through bone.</p></div><!--/prose-->
 <p><span class="kr">Light waves (photons) come in different</span> types based on their wavelengths, frequencies and energies. These different types of photons are often organized into an <span class="kr">Electromagnetic Spectrum</span>.</p>
       <div class="tbl-wrap" id="em-chart"></div>
       <p class="muted">Your Reference Table has an electromagnetic spectrum chart with these regions. Spectral boundaries are not exact; neighboring regions overlap.</p>
@@ -90,8 +102,9 @@
     <div class="lab-h"><span class="tag">Lab</span><h3>Wave Explorer</h3></div>
     <div class="lab-b">
       <p class="how">Change the wavelength <b>or</b> the frequency: drag either slider, or type a value and press Enter. Watch the wavelength, frequency and energy change together.</p>
-      <div class="controls"><span class="ctl-label">Wavelength</span><span class="muted">long</span><input type="range" id="wv-r" min="-12" max="1" step="0.02" value="-6.3" style="flex:1;min-width:200px;accent-color:var(--teal);direction:rtl" aria-label="Wavelength (log scale), long wavelengths on the left"><span class="muted">short</span><input class="inp wv-in" id="wv-lt" inputmode="decimal" aria-label="Type a wavelength in meters" placeholder="e.g. 5.0 x 10^-7"><span>m</span></div>
-      <div class="controls"><span class="ctl-label">Frequency</span><span class="muted">low</span><input type="range" id="wv-f" min="7.48" max="20.48" step="0.02" value="14.78" style="flex:1;min-width:200px;accent-color:#E8590C" aria-label="Frequency (log scale), low frequencies on the left"><span class="muted">high</span><input class="inp wv-in" id="wv-ft" inputmode="decimal" aria-label="Type a frequency in hertz" placeholder="e.g. 6.0 x 10^14"><span>Hz</span></div>
+<div class="wv-grid">      <div class="wv-r"><span class="ctl-label">Wavelength</span><span class="muted">long</span><input type="range" id="wv-r" min="-12" max="1" step="0.02" value="-6.3" style="accent-color:var(--teal);direction:rtl" aria-label="Wavelength (log scale), long wavelengths on the left"><span class="muted">short</span><input class="inp wv-in" id="wv-lt" inputmode="decimal" aria-label="Type a wavelength in meters" placeholder="e.g. 5.0 × 10⁻⁷"><span>m</span></div>
+      <div class="wv-r"><span class="ctl-label">Frequency</span><span class="muted">low</span><input type="range" id="wv-f" min="7.48" max="20.48" step="0.02" value="14.78" style="accent-color:#E8590C" aria-label="Frequency (log scale), low frequencies on the left"><span class="muted">high</span><input class="inp wv-in" id="wv-ft" inputmode="decimal" aria-label="Type a frequency in hertz" placeholder="e.g. 6.0 × 10¹⁴"><span>Hz</span></div>
+</div>
       <p class="muted wv-msg" id="wv-msg" aria-live="polite"></p>
       <div class="controls"><span class="ctl-label">Jump to</span><div class="seg" id="wv-jump"></div></div>
       <div class="stage"><canvas id="wv-cv" width="960" height="220" aria-label="Wave at the chosen wavelength"></canvas></div>
@@ -123,7 +136,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08427de77e"></script>
+<script src="site.js?v=08eb5c2d95"></script>
 <script>(function(){
 
 const A=AS;
@@ -192,11 +205,12 @@ A.EMClickGame(A.$("#emg-host"));
   const fr=A.$("#wv-f"), lt=A.$("#wv-lt"), ft=A.$("#wv-ft"), msg=A.$("#wv-msg"), LC=Math.log10(3e8);
   /* the two sliders are tied together by c = λf: log f = log c − log λ */
   const syncF=()=>{ fr.value=(LC- +r.value).toFixed(2); }, syncL=()=>{ r.value=(LC- +fr.value).toFixed(2); };
-  const sciTxt=v=>{ const e=Math.floor(Math.log10(v)+1e-9); return (v/Math.pow(10,e)).toFixed(1)+" x 10^"+e; };
+  const SUPD="⁰¹²³⁴⁵⁶⁷⁸⁹", sup=n=>String(n).replace("-","⁻").replace(/\d/g,d=>SUPD[d]);
+  const sciTxt=v=>{ const e=Math.floor(Math.log10(v)+1e-9); return (v/Math.pow(10,e)).toFixed(1)+" × 10"+sup(e); };
   const fill=()=>{ lt.value=sciTxt(Math.pow(10,+r.value)); ft.value=sciTxt(3e8/Math.pow(10,+r.value)); };
   A.$$("#wv-jump button").forEach(b=>b.addEventListener("click",()=>{ r.value=b.dataset.v; syncF(); fill(); msg.textContent=""; t=0; }));
   r.addEventListener("input",()=>{ syncF(); fill(); msg.textContent=""; }); fr.addEventListener("input",()=>{ syncL(); fill(); msg.textContent=""; });
-  const typed=(inp,isF)=>{ const p=A.parseTyped(inp.value); if(!p||!(p.v>0)){ msg.textContent="Type a number like 5.0 x 10^-7 (or 5.0e-7)."; return; }
+  const typed=(inp,isF)=>{ const p=A.parseTyped(inp.value); if(!p||!(p.v>0)){ msg.innerHTML="Type a number like 5.0 × 10<sup>−7</sup> (you can type it as 5.0e-7)."; return; }
     let lg=isF? LC-Math.log10(p.v) : Math.log10(p.v), clip=false; if(lg< -12){ lg=-12; clip=true; } if(lg>1){ lg=1; clip=true; }
     r.value=lg.toFixed(2); syncF(); fill(); msg.textContent=clip?"That value is off the end of this slider, so it was set to the nearest end.":""; t=0; };
   [[lt,false],[ft,true]].forEach(([inp,isF])=>{ inp.addEventListener("keydown",e=>{ if(e.key==="Enter") typed(inp,isF); }); inp.addEventListener("change",()=>typed(inp,isF)); });
@@ -212,7 +226,7 @@ A.EMClickGame(A.$("#emg-host"));
     c.strokeStyle="#cfdde1"; c.beginPath(); c.moveTo(0,110); c.lineTo(960,110); c.stroke();
     c.strokeStyle=col; c.lineWidth=3; c.beginPath(); for(let x=0;x<=960;x+=1.5){ const y=110-70*Math.sin(((x-V*t)/px)*2*Math.PI); x===0?c.moveTo(x,y):c.lineTo(x,y); } c.stroke();
     if(px<600){ const x0=(((px*0.25+V*t)%px)+px)%px; let xs=x0; while(xs<60) xs+=px; c.strokeStyle="#0070C0"; c.lineWidth=2; c.beginPath(); c.moveTo(xs,26); c.lineTo(xs+px,26); c.stroke(); c.fillStyle="#0070C0"; c.font="italic 15px Inter,Arial"; c.fillText("one wavelength",xs+Math.min(px/2-50,10),20); }
-    c.fillStyle="#1b2328"; c.font="12px Inter"; c.fillText("Every wave moves at the same speed (light speed). Shorter wavelength → more waves pass each second → higher frequency. (Stretched scale so every wavelength fits.)",10,212);
+    c.fillStyle="#1b2328"; c.font="14px Inter"; c.fillText("Every wave moves at light speed: shorter wavelength → more waves pass each second → higher frequency. (Scale stretched to fit.)",10,210);
     A.$("#wv-read").innerHTML=`<div><b>Region</b><span style="font-size:18px">${reg[0]}${vis?` · ${A.colorName(nm)}`:""}</span></div><div><b>Wavelength</b><span style="font-size:18px">${A.fmtSci(lam)} m${vis?` (${nm.toFixed(0)} nm)`:""}</span></div><div><b>Frequency</b><span style="font-size:18px">${A.fmtSci(f)} Hz</span></div><div><b>Energy</b><span><span style="display:block;height:14px;border-radius:3px;background:#f2b705;border:1px solid #1b2328;width:${Math.max(4,(-(lg)+1)/13*100)}%"></span></span></div>`;
     t++; requestAnimationFrame(frame);
   }

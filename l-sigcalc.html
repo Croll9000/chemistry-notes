@@ -7,7 +7,7 @@
 <title>Calculations with Significant Figures</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08427de77e">
+<link rel="stylesheet" href="site.css?v=08eb5c2d95">
 </head>
 <body>
 <style>
@@ -35,7 +35,8 @@
   <section class="note">
     <div class="tile"><h2>Why Round?</h2></div>
     <div class="body">
-      <div class="prose"><p>Multiplying 2.31 cm by 1.4 cm gives 3.234 cm² on a calculator, but the area should be reported as 3.2 cm². A calculator will report as many digits as it can, but the measurements behind a calculation were never that precise, and reporting every digit would claim a precision the data cannot support. <span class="kr">A calculated answer cannot be more precise than the least precise measurement used to calculate it.</span> We always write down the calculator’s answer first, then the final rounded answer.</p></div><!--/prose-->
+      <div class="prose"><p>A student measures a sample of aluminum with a mass of 12.50 g and a volume of 4.6 mL, then divides to find its density. The calculator shows 2.7173913… g/mL. The volume, however, was only measured to the tenths place, so the student does not truly know the density to the ten-millionths place. All of those extra digits are created by the calculator, not by the measurements.</p>
+<div class="pr-slot" data-fig="0"></div><p>Thus, <span class="kr">a calculated answer cannot be more precise than the least precise measurement used to calculate it</span>. A chain is only as strong as its weakest link, and a calculation is only as precise as its least precise measurement. The calculator’s answer is always written down first, and then the final rounded answer, 2.7 g/mL, which shows honestly how well the density is known.</p></div><!--/prose-->
 <ul>
         <li>A calculated answer <span class="kr">cannot be more precise than the least precise measurement</span> used to calculate it.</li>
         <li>Your calculator will often show many more digits than you actually know.
@@ -49,7 +50,8 @@
   <section class="note">
     <div class="tile"><h2>Rounding Rules</h2></div>
     <div class="body">
-      <div class="prose"><p>Once we know how many digits to keep, the answer is rounded. We look at the digit just to the right of the last digit being kept: if it is <span class="kr">5 or more, we round up</span>, and if it is <span class="kb">4 or less, we keep</span> the digit the same. In a problem with several steps, we keep all of the digits in the calculator and round only the final answer. The steps for rounding are:</p></div><!--/prose-->
+      <div class="prose"><p>Rounding 49.69 to three significant figures means keeping three digits and deciding what to do with the rest. The last digit kept is the 6, and the next digit to its right, 9, is 5 or more, so the 6 rounds up to 7, giving 49.7. Had the next digit been 4 or less, the 6 would have stayed the same. The digits after the last one kept are then dropped.</p>
+<div class="pr-slot" data-fig="0"></div><p>When the dropped digits are to the left of the decimal point, they are replaced with zeros so the number stays the same size: 1,496 to three significant figures is 1,500, not 150. If the zeros make the number of sig figs unclear, as 1,500 might seem to have only two, scientific notation is used instead: 1.50 × 10<sup>3</sup>. In a problem with several steps, all the digits are kept in the calculator, and only the final answer is rounded, since rounding at every step lets small errors pile up.</p></div><!--/prose-->
 <ol>
         <li>Find the last digit you are keeping.</li>
         <li>Look at the next digit to its right.
@@ -76,7 +78,8 @@
   <section class="note">
     <div class="tile"><h2>Adding and Subtracting</h2></div>
     <div class="body">
-      <div class="prose"><p>When measurements are added or subtracted, what matters is the place value of the least precise measurement. The answer can have <span class="kr">no more decimal places</span> than the measurement with the <span class="kr">fewest decimal places</span>, so for addition and subtraction we count decimal places, not significant figures.</p></div><!--/prose-->
+      <div class="prose"><p>Adding a mass measured to the hundredths place, 0.56 g, to one measured to the thousandths place, 0.153 g, gives 0.713 g on a calculator. But the first mass was only known to the hundredths place, so the thousandths place of the total is unknown: the first mass could have been 0.564 or 0.557. Thus, <span class="kr">when adding or subtracting, the answer can have no more decimal places than the measurement with the fewest decimal places</span>, and the sum is written as 0.71 g. When adding and subtracting, decimal places are counted, not significant figures.</p>
+<div class="pr-slot" data-fig="0"></div><div class="pr-slot" data-fig="1"></div></div><!--/prose-->
 <ul><li>When adding or subtracting, the answer can have <span class="kr">no more decimal places</span> than the measurement with the <span class="kr">fewest decimal places</span>.</li>
         <li>Count decimal places, not significant figures.</li></ul>
       <div class="two"><div class="col" id="add1"></div><div class="col" id="add2"></div></div>
@@ -87,7 +90,8 @@
   <section class="note">
     <div class="tile"><h2>Multiplying and Dividing</h2></div>
     <div class="body">
-      <div class="prose"><p>When measurements are multiplied or divided, the answer can have <span class="kr">no more significant figures</span> than the measurement with the <span class="kr">fewest significant figures</span>. For multiplication and division we count significant figures, not decimal places.</p></div><!--/prose-->
+      <div class="prose"><p>Multiplying and dividing work differently from adding, because they scale the uncertainty instead of lining it up by place value. A density calculated from a mass with 3 significant figures and a volume with 2 significant figures can only be trusted to 2. Thus, <span class="kr">when multiplying or dividing, the answer can have no more significant figures than the measurement with the fewest significant figures</span>. When multiplying and dividing, significant figures are counted, not decimal places.</p>
+<div class="pr-slot" data-fig="0"></div><div class="pr-slot" data-fig="1"></div></div><!--/prose-->
 <ul><li>When multiplying or dividing, the answer can have <span class="kr">no more significant figures</span> than the measurement with the <span class="kr">fewest significant figures</span>.</li>
         <li>Count significant figures, not decimal places.</li></ul>
       <div class="tbl-wrap"><table class="nt"><tr><th>Calculation</th><th>Sig figs in each</th><th>Calculator’s Answer</th><th>Final Rounded Answer</th></tr>
@@ -102,7 +106,8 @@
   <section class="note">
     <div class="tile"><h2>Exact Numbers</h2></div>
     <div class="body">
-      <div class="prose"><p>Some numbers in a calculation are not measurements at all. There are exactly 24 students in a class and exactly 100 centimeters in a meter. A <b>counted number</b> comes from counting whole objects rather than reading a measuring tool, so it has no estimated digit: you can’t have 2.7 beakers. A <b>defined equivalence</b> is a relationship that is true by definition, such as 1 m = 100 cm or 1 kJ = 1000 J. Counted numbers and defined equivalences are <span class="kr">exact</span>. They have unlimited significant figures and never limit the answer; only measured numbers do.</p></div><!--/prose-->
+      <div class="prose"><p>A teacher counting 24 students in a classroom does not have any uncertainty in that number. There cannot be 23.8 or 24.1 students. Numbers like this are different from measurements, because they are not read from an instrument with limited markings, and so they never limit the precision of an answer.</p>
+<div class="pr-slot" data-fig="0"></div><p>A <span class="def">counted number</span> is a number that comes from counting whole objects, not from reading a measuring tool, such as 3 trials or 2 beakers. A <span class="def">defined equivalence</span> is a relationship that is true by definition, such as 1 m = 100 cm or 1 kJ = 1000 J. <span class="kr">Counted numbers and defined equivalences are exact</span>, which means they have unlimited significant figures and never limit the answer; only measured numbers do. When three masses are averaged by dividing their sum by 3, the 3 is counted, so the answer keeps the precision of the masses.</p></div><!--/prose-->
 <ul><li><b>Counted Number</b> – a number that comes from counting whole objects, not from reading a measuring tool.
           <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">3 trials, 24 students, 2 beakers</div><div class="xl">You can’t have 2.7 beakers, so there is no estimated digit and no uncertainty.</div></div></div></li>
         <li><b>Defined Equivalence</b> – a relationship that is true by definition.
@@ -135,7 +140,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08427de77e"></script>
+<script src="site.js?v=08eb5c2d95"></script>
 <script>(function(){
 
 const A=AS, L=A.U0, T=L.T;
