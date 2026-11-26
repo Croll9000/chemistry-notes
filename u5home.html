@@ -7,7 +7,7 @@
 <title>Chemical Reactions Notes</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
 </head>
 <body>
 <style>
@@ -54,7 +54,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=d21e4c0fdc"></script>
+<script src="site.js?v=f0daaf38ad"></script>
 <script>(function(){
 
 const A=AS, R=A.U5;
@@ -65,8 +65,10 @@ const blurbs={
  "r-balancing":["Balancing equations with coefficients, step by step, with tables that count the atoms on each side.",["Worked examples","Balance it"]],
  "r-systems":["Systems and surroundings; open, closed and isolated systems; heat; endothermic and exothermic reactions.",["Open, closed or isolated?","Heat flow","Endothermic or exothermic?"]],
  "r-types":["Synthesis, decomposition, single replacement, double replacement and combustion, with animations of the atoms rearranging.",["Reaction animations","Name that reaction"]],
- "r-predict-sd":["Predicting the products of synthesis and decomposition reactions; oxides in water and acid rain. Enrichment: compounds with polyatomic ions.",["Predict the products"]],
- "r-predict-rep":["The activity series and predicting single and double replacement reactions. Enrichment: the solubility table.",["Single replacement predictor","Double replacement predictor"]],
+ "r-predict-sd":["Predicting the products of synthesis and decomposition reactions; oxides in water and acid rain.",["Predict the products"]],
+ "r-predict-sd2":["Enrichment: synthesis and decomposition of oxides, chlorates and carbonates.",["Predict the products"]],
+ "r-predict-rep":["The activity series and predicting single and double replacement reactions.",["Single replacement predictor","Double replacement predictor"]],
+ "r-soltable":["Enrichment: using a solubility table to predict precipitates in double replacement reactions.",["Double replacement with the solubility table"]],
  "r-predict-comb":["Predicting and balancing combustion reactions.",["Burn it and balance it"]],
  "r-practice":["Games from every subtopic plus Regents-style questions.",["Balance it","Count the atoms","Regents practice"]]};
 A.$("#toc").innerHTML=A.UNIT5.map((p,i)=>{ const b=blurbs[p.slug]; const last=p.slug==="r-practice"; return `<a class="tcard${last?" arcade":p.enr?" enr":""}" href="${p.slug}.html"><span class="num">${last?"★":i+1}</span><span class="tc"><h3>${p.title}${p.enr?' <span style="color:var(--purple);font-size:13px;font-weight:800">ENRICHMENT</span>':""}</h3><p>${b[0]}</p><span class="tools">${b[1].map(t=>`<span>${t}</span>`).join("")}</span></span></a>`; }).join("");

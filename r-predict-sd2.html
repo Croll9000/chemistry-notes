@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>More Synthesis & Decomposition Patterns</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Chemical Reactions · 7 · Enrichment</span><h1>More Synthesis &amp; Decomposition Patterns</h1><p>Limestone heated in a kiln turns into lime, the main ingredient of cement, and the gas given off is carbon dioxide. Lime mixed with water turns into slaked lime, used to treat soil and water. Reactions like these involve compounds rather than elements, yet their products follow patterns just as predictable as the ones for binary compounds.</p><div class="pe-chips"><span>HS-PS1-2</span><span>SEP: Constructing Explanations</span><span>CCC: Patterns</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Compound patterns"><div class="pn"><small>Part</small><span>1</span></div><h2>More Synthesis and Decomposition Patterns</h2><p>The emergency oxygen masks above airplane seats are supplied by heating sodium chlorate, NaClO₃, which decomposes into sodium chloride and oxygen gas. Compounds that contain the same polyatomic ion break down in the same pattern: every metal chlorate releases oxygen and leaves a metal chloride. In this section, we will predict the products of synthesis and decomposition reactions that involve compounds.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Synthesis with Compounds</h2></div>
+    <div class="body">
+      <p class="intro">Synthesis reactions are not limited to elements. Lime (calcium oxide) combines with water to form calcium hydroxide, a reaction used to make mortar and plaster. Compounds such as metal oxides and nonmetal oxides combine with water in predictable patterns.</p>
+      <ul>
+        <li>Synthesis reactions that involve compounds depend on the specific types of substances combining.</li>
+        <li>Steps to Predicting Synthesis Reactions (Compounds):
+          <ol><li>Identify the types of substances combining.</li>
+          <li>Use the table to find the product. If the product is ionic, criss-cross the charges of the ions to determine its formula and simplify if necessary.</li>
+          <li>Balance the equation.</li></ol></li>
+      </ul>
+      <div id="syn2-t"></div>
+    </div>
+  </section>
+
+  <section class="note enr">
+    <div class="tile"><h2>Decomposition of Compounds with Polyatomic Ions</h2></div>
+    <div class="body">
+      <p class="intro">Heating limestone (calcium carbonate) produces lime and carbon dioxide, a reaction used on a huge scale to make cement. Compounds that contain polyatomic ions break down in patterns that depend on the polyatomic ion, so the products can be predicted from the type of compound.</p>
+      <ul>
+        <li>Decomposition reactions of compounds that are not binary depend on the specific class of compound breaking down.</li>
+        <li>Steps to Predicting Decomposition Reactions (Compounds):
+          <ol><li>Identify the type of compound breaking down.</li>
+          <li>Use the table to find the products. If a product is ionic, criss-cross the charges of the ions to determine its formula and simplify if necessary.</li>
+          <li>Balance the equation.</li></ol></li>
+      </ul>
+      <div id="dec2-t"></div>
+    </div>
+  </section>
+
+  <p class="bridge enr">Predict the products for every type, then balance.</p>
+
+  <section class="lab enr" id="predict2">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Predict the Products (All Types)</h3></div>
+    <div id="pr2-host"></div>
+  </section>
+
+      <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f0daaf38ad"></script>
+<script>(function(){
+
+const A=AS, R=A.U5, sub=R.sub;
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px" id="hero-a"></div>`;
+R.RxnPlayer(A.$("#hero-a"),{r:["Mg","Cl2"],p:["MgCl2"],c:[1,1,1]},{w:320,h:170});
+const E=(r,p,c,x={})=>Object.assign({r,p,c},x);
+R.rxnTable(A.$("#syn2-t"),["Reactants","Product","How to write the formula","Example"],[
+ [["Nonmetal + oxygen","Molecular compound","The formula must be given (ex: from the name)","S + O<sub>2</sub> → SO<sub>2</sub> (sulfur dioxide)"],E(["S","O2"],["SO2"],[1,1,1])],
+ [["Metal oxide + water","Metal hydroxide (a base)","Criss-cross the metal ion with OH<sup>−</sup>","CaO + H<sub>2</sub>O → Ca(OH)<sub>2</sub>"],E(["CaO","H2O"],["Ca(OH)2"],[1,1,1])],
+ [["Nonmetal oxide + water","Acid","Combine all of the atoms; write H first","SO<sub>3</sub> + H<sub>2</sub>O → H<sub>2</sub>SO<sub>4</sub>"],E(["SO3","H2O"],["H2SO4"],[1,1,1])]]);
+R.rxnTable(A.$("#dec2-t"),["Starting compound","1st product","2nd product","Example"],[
+ [["Metal carbonate (CO<sub>3</sub><sup>2−</sup>)","CO<sub>2</sub>(g)","Metal oxide","CaCO<sub>3</sub> → CaO + CO<sub>2</sub>"],E(["CaCO3"],["CaO","CO2"],[1,1,1])],
+ [["Metal hydroxide (OH<sup>−</sup>)","H<sub>2</sub>O(g)","Metal oxide","Ca(OH)<sub>2</sub> → CaO + H<sub>2</sub>O"],E(["Ca(OH)2"],["CaO","H2O"],[1,1,1])],
+ [["Carbonic acid (H<sub>2</sub>CO<sub>3</sub>)","CO<sub>2</sub>(g)","Water","H<sub>2</sub>CO<sub>3</sub> → H<sub>2</sub>O + CO<sub>2</sub>"],E(["H2CO3"],["H2O","CO2"],[1,1,1])],
+ [["Metal chlorate (ClO<sub>3</sub><sup>−</sup>)","O<sub>2</sub>(g)","Metal chloride","2KClO<sub>3</sub> → 2KCl + 3O<sub>2</sub>"],E(["KClO3"],["KCl","O2"],[2,2,3])],
+ [["Hydrogen peroxide (H<sub>2</sub>O<sub>2</sub>)","O<sub>2</sub>(g)","Water","2H<sub>2</sub>O<sub>2</sub> → 2H<sub>2</sub>O + O<sub>2</sub>"],E(["H2O2"],["H2O","O2"],[2,2,1])]]);
+const CAT1=[["mn","Metal + nonmetal → ionic compound","syn"],["hn","Hydrogen + nonmetal → molecular compound","syn"],["dbin","A binary compound → its two elements","dec"],["dcmp","A compound → two new compounds","dec"]];
+const L1=[
+ E(["Na","Cl2"],["NaCl"],[2,1,2],{cat:"mn",ions:[["Na⁺","1+"],["Cl⁻","1−"]]}),E(["Al","O2"],["Al2O3"],[4,3,2],{cat:"mn",ions:[["Al³⁺","3+"],["O²⁻","2−"]]}),E(["Mg","Cl2"],["MgCl2"],[1,1,1],{cat:"mn",ions:[["Mg²⁺","2+"],["Cl⁻","1−"]]}),E(["K","Br2"],["KBr"],[2,1,2],{cat:"mn",ions:[["K⁺","1+"],["Br⁻","1−"]]}),E(["Ca","O2"],["CaO"],[2,1,2],{cat:"mn",ions:[["Ca²⁺","2+"],["O²⁻","2−"]]}),E(["Li","N2"],["Li3N"],[6,1,2],{cat:"mn",ions:[["Li⁺","1+"],["N³⁻","3−"]]}),
+ E(["H2","Cl2"],["HCl"],[1,1,2],{cat:"hn",hint:"H forms 1 bond; Cl needs 1 more electron, so it forms 1 bond."}),E(["H2","N2"],["NH3"],[3,1,2],{cat:"hn",hint:"N needs 3 more electrons (3 bonds); each H forms 1 bond."}),E(["H2","O2"],["H2O"],[2,1,2],{cat:"hn",hint:"O needs 2 more electrons (2 bonds); each H forms 1 bond."}),
+ E(["HgO"],["Hg","O2"],[2,2,1],{cat:"dbin",hint:"Each element in its standard form. Oxygen is diatomic."}),E(["NaCl"],["Na","Cl2"],[2,2,1],{cat:"dbin",hint:"Each element in its standard form. Chlorine is diatomic."}),E(["H2O"],["H2","O2"],[2,2,1],{cat:"dbin",hint:"Hydrogen and oxygen are both diatomic."}),E(["KBr"],["K","Br2"],[2,2,1],{cat:"dbin",hint:"Bromine is diatomic."}),E(["Al2O3"],["Al","O2"],[2,4,3],{cat:"dbin",hint:"Aluminum is a metal (Al); oxygen is diatomic."})];
+const CAT2=[["mn","Metal + nonmetal → ionic compound","syn"],["hn","Hydrogen + nonmetal → molecular compound","syn"],["no","Nonmetal + oxygen → molecular compound (formula given)","syn"],["mow","Metal oxide + water → metal hydroxide","syn"],["now","Nonmetal oxide + water → acid","syn"],["dcarb","Metal carbonate → metal oxide + CO₂","dec"],["dhyd","Metal hydroxide → metal oxide + H₂O","dec"],["dchl","Metal chlorate → metal chloride + O₂","dec"],["dperox","Hydrogen peroxide → water + O₂","dec"],["dcarbac","Carbonic acid → water + CO₂","dec"],["dbin","Binary compound → its two elements","dec"]];
+const L2=[
+ E(["C","O2"],["CO2"],[1,1,1],{cat:"no",hint:"The product is carbon dioxide."}),E(["S","O2"],["SO2"],[1,1,1],{cat:"no",hint:"The product is sulfur dioxide."}),
+ E(["CaO","H2O"],["Ca(OH)2"],[1,1,1],{cat:"mow",ions:[["Ca²⁺","2+"],["OH⁻","1−"]]}),E(["Na2O","H2O"],["NaOH"],[1,1,2],{cat:"mow",ions:[["Na⁺","1+"],["OH⁻","1−"]]}),
+ E(["SO3","H2O"],["H2SO4"],[1,1,1],{cat:"now",hint:"Combine all of the atoms; write H first."}),E(["CO2","H2O"],["H2CO3"],[1,1,1],{cat:"now",hint:"Combine all of the atoms; write H first."}),
+ E(["CaCO3"],["CaO","CO2"],[1,1,1],{cat:"dcarb",ions:[["Ca²⁺","2+"],["O²⁻","2−"]]}),E(["MgCO3"],["MgO","CO2"],[1,1,1],{cat:"dcarb",ions:[["Mg²⁺","2+"],["O²⁻","2−"]]}),
+ E(["Ca(OH)2"],["CaO","H2O"],[1,1,1],{cat:"dhyd",ions:[["Ca²⁺","2+"],["O²⁻","2−"]]}),E(["Al(OH)3"],["Al2O3","H2O"],[2,1,3],{cat:"dhyd",ions:[["Al³⁺","3+"],["O²⁻","2−"]]}),
+ E(["KClO3"],["KCl","O2"],[2,2,3],{cat:"dchl",ions:[["K⁺","1+"],["Cl⁻","1−"]]}),E(["H2O2"],["H2O","O2"],[2,2,1],{cat:"dperox"}),E(["H2CO3"],["H2O","CO2"],[1,1,1],{cat:"dcarbac"})];
+R.Predict(A.$("#pr2-host"),{list:L2,cats:CAT2,steps:["type","cat","write","bal"],how:"Step 1: synthesis or decomposition? Step 2: which row of the table fits? Step 3: write the products. Step 4: balance.",catTitle:"Which row of the table fits?",catPrompt:"Look at the reactants: oxides, water, or a compound with a polyatomic ion breaking down?",catHint:()=>"Look again at the kinds of substances in the reactants.",writeMiss:"the charges (criss-cross and simplify) and the diatomic elements",
+  onDone:(it,holder)=>{ const d=A.h("div",{class:"center",style:"margin-top:8px"}); holder.appendChild(d); R.RxnPlayer(d,{r:it.r,p:it.p,c:it.c},{w:520,h:200}); }});
+A.VocabCheck(A.$("#vc-host"),[{"s": "A metal oxide combines with water to form a metal ___.", "a": "hydroxide"}, {"s": "When a metal chlorate is heated, it breaks down into a metal chloride and ___ gas.", "a": "oxygen"}]);
+A.QSet(A.$("#qs"),[{"type": "mc", "stem": "Heating sodium chlorate, NaClO<sub>3</sub>, produces", "choices": ["NaCl and O<sub>2</sub>", "Na and Cl<sub>2</sub>", "Na<sub>2</sub>O and Cl<sub>2</sub>", "NaCl and O<sub>3</sub>"], "ans": 1, "explain": "A metal chlorate decomposes into a metal chloride and oxygen gas."}, {"type": "mc", "stem": "What is the product when calcium oxide combines with water?", "choices": ["Ca(OH)<sub>2</sub>", "CaO<sub>2</sub>", "CaH<sub>2</sub>", "CaCO<sub>3</sub>"], "ans": 1, "explain": "A metal oxide plus water forms a metal hydroxide: CaO + H₂O → Ca(OH)₂."}, {"type": "mc", "stem": "Heating calcium carbonate, CaCO<sub>3</sub>, produces", "choices": ["CaO and CO<sub>2</sub>", "Ca and CO<sub>3</sub>", "CaO and CO", "Ca and C and O<sub>2</sub>"], "ans": 1, "explain": "A metal carbonate decomposes into a metal oxide and carbon dioxide."}, {"type": "mc", "stem": "Sulfur trioxide, SO<sub>3</sub>, combines with water to form", "choices": ["H<sub>2</sub>SO<sub>4</sub>", "H<sub>2</sub>S", "SO<sub>2</sub>", "S(OH)<sub>3</sub>"], "ans": 1, "explain": "A nonmetal oxide plus water forms an acid: SO₃ + H₂O → H₂SO₄."}]);
+
+})();</script>
+<script>AS.U3.addSources("r-predict-sd2");AS.completion(document.querySelector(".wrap"),"r-predict-sd2");AS.chrome("r-predict-sd2");</script>
+</body>
+</html>
