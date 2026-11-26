@@ -7,7 +7,7 @@
 <title>Maxwell–Boltzmann Distribution</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
 </head>
 <body>
 <main class="wrap">
@@ -17,13 +17,14 @@
     <div class="hero-art" id="hero"></div>
   </section>
 
-  <div class="part enr" id="p1" data-short="Distribution"><div class="pn"><small>Part</small><span>1</span></div><h2>The Maxwell–Boltzmann Distribution</h2><p>At room temperature, the nitrogen molecules in the air move at an average speed of about 500 m/s, yet at any instant some are moving much more slowly and some move faster than 1,000 m/s. A thermometer reports only the average. In this section, we will discuss the Maxwell–Boltzmann distribution, which shows how the kinetic energies of the particles in a sample are spread out.</p></div>
+  <div class="part enr" id="p1" data-short="Distribution"><div class="pn"><small>Part</small><span>1</span></div><h2>The Maxwell–Boltzmann Distribution</h2></div>
 
   <section class="note enr">
     <div class="tile"><h2>Maxwell–Boltzmann Distribution Curve</h2></div>
     <div class="body">
-      <p class="intro">A glass of water at room temperature slowly evaporates even though it is far below its boiling point. Only the molecules at the surface with the most kinetic energy can break away from their neighbors, and at every moment a few molecules have far more energy than the average.</p>
-      <ul>
+      <div class="prose"><p>At room temperature, the nitrogen molecules in the air move at an average speed of about 500 m/s, yet at any instant some are moving much more slowly and some faster than 1,000 m/s. A thermometer reports only the average. Temperature is a measure of the <i>average</i> kinetic energy of the particles in a sample, and not every particle has that average amount of energy: some have more and some have less. This is why a glass of water at room temperature slowly evaporates even though it is far below its boiling point. At every moment, a few molecules at the surface have much more energy than the average, enough to break away from their neighbors.</p>
+<p>The way the kinetic energies of the particles are spread out is shown by a <b>Maxwell–Boltzmann distribution curve</b>, a graph of the number of particles having each amount of kinetic energy. Kinetic energy is plotted on the x-axis and the number of particles on the y-axis. The curve shows that the particles are not spread evenly across every energy and that no particle has zero kinetic energy. When the temperature is increased, <span class="kr">the total number of particles does not change, but the curve spreads out and the proportion of particles with high kinetic energy increases</span>.</p></div><!--/prose-->
+<ul>
         <li>Temperature is a measurement of the average kinetic energy of the particles in a sample. However, not all particles in a sample have the same amount of energy.
           <ul><li>Some particles have more than the average kinetic energy, and some particles have less than the average.</li></ul></li>
         <li><span class="def">Maxwell–Boltzmann Distribution Curve</span> – a graph showing the number of particles possessing different amounts of energy in a sample.
@@ -49,13 +50,13 @@
     <div id="vc-host"></div>
   </section>
 
-  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2></div>
   <section class="note lc"><div class="body" id="qs"></div></section>
 </main>
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=d21e4c0fdc"></script>
+<script src="site.js?v=f0daaf38ad"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
@@ -67,7 +68,9 @@ A.QSet(A.$("#qs"),[
 {type:"mc",stem:"When the temperature of a sample of gas increases, what happens to its Maxwell–Boltzmann distribution curve?",choices:["The curve gets taller and narrower.","The curve spreads out toward higher kinetic energies.","The total number of particles increases.","All of the particles reach the same kinetic energy."],ans:2,explain:"The proportion of particles at higher kinetic energies increases, so the curve spreads to the right."},
  {type:"mc",stem:"Which statement about the particles in a sample of gas at 300 K is true?",choices:["All of the particles have the same kinetic energy.","Some particles have more kinetic energy than the average and some have less.","Most particles have zero kinetic energy.","The particles have no kinetic energy at room temperature."],ans:2,explain:"The kinetic energies are spread out around the average."},
  {type:"mc",stem:"The same sample of gas is heated from 300 K to 600 K. How does the total number of particles represented by the distribution curve change?",choices:["It doubles.","It is halved.","It does not change.","It increases by 300."],ans:3,explain:"Heating changes how the energy is spread out, not how many particles there are."},
- {type:"cr",stem:"Explain why a puddle of water can evaporate at 20 °C, far below its boiling point.",parts:["Explanation"],model:["The water molecules do not all have the same kinetic energy. A small fraction at the surface have much more than the average, enough to overcome the attractions to their neighbors and escape into the gas phase."],noCredit:"An answer that says all of the molecules have enough energy, or that the water is boiling."}
+ {type:"cr",stem:"Explain why a puddle of water can evaporate at 20 °C, far below its boiling point.",parts:["Explanation"],model:["The water molecules do not all have the same kinetic energy. A small fraction at the surface have much more than the average, enough to overcome the attractions to their neighbors and escape into the gas phase."],noCredit:"An answer that says all of the molecules have enough energy, or that the water is boiling."},
+ {type:"mc",stem:"A glass of water at 20 °C slowly evaporates even though its boiling point is 100 °C. Which statement explains this?",choices:["Every water molecule has the average kinetic energy.","Some molecules have much more than the average kinetic energy and can escape from the surface.","The water molecules lose their attractions at 20 °C.","Evaporation only happens at the boiling point."],ans:2,explain:"The energies are spread out: at any moment, a few molecules at the surface have enough energy to escape."},
+ {type:"mc",stem:"The temperature of a gas sample is raised. Which statement describes the Maxwell–Boltzmann curve for the sample?",choices:["The curve gets taller and narrower.","The total number of particles increases.","The curve spreads toward higher kinetic energies and its peak becomes lower.","Every particle now has the same kinetic energy."],ans:3,explain:"The same number of particles is spread over a wider range of energies, so the curve flattens and shifts to the right."}
 ]);
 
 })();</script>

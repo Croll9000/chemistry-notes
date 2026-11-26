@@ -7,7 +7,7 @@
 <title>Practice Arcade</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
 </head>
 <body>
 <main class="wrap">
@@ -48,7 +48,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=d21e4c0fdc"></script>
+<script src="site.js?v=f0daaf38ad"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, P=A.U3, L=A.U0;
@@ -58,7 +58,7 @@ P.TapSort(A.$("#wr-host"),{prompt:"Which relationship explains this observation?
  ["A sealed bag of chips puffs up when carried up a mountain.","b","The outside pressure falls, so the volume of the gas in the bag increases."],["A balloon shrinks when it is put in a freezer.","c","Lower temperature, smaller volume, at constant (air) pressure."],["The pressure in a car tire rises after a long drive.","g","The tire’s volume barely changes, so the higher temperature raises the pressure."],
  ["Pushing in a sealed syringe gets harder as the volume shrinks.","b","Smaller volume, higher pressure, at constant temperature."],["A dented table-tennis ball pops out in hot water.","c","Heating the gas inside increases its volume."],["An aerosol can may burst if it is heated.","g","The rigid can keeps the volume constant, so heating raises the pressure."],
  ["Air bubbles from a diver grow as they rise to the surface.","b","The water pressure decreases as the bubbles rise, so their volume increases."],["Bread dough rises in a warm oven.","c","The gas bubbles in the dough expand as they are heated."]]});
-L.DABuilder(A.$("#pc-host"),{eq:{atmkPa:[[1,"atm"],[101.3,"kPa"]],atmmm:[[1,"atm"],[760,"mmHg"]]},probs:[["atm","kPa",["atmkPa"],["atmmm"],[0.25,3.5]],["kPa","atm",["atmkPa"],["atmmm"],[25,350]],["mmHg","atm",["atmmm"],["atmkPa"],[200,1500]],["atm","mmHg",["atmmm"],["atmkPa"],[0.2,2.5]],["kPa","mmHg",["atmkPa","atmmm"],[],[40,250]],["mmHg","kPa",["atmmm","atmkPa"],[],[300,900]]]});
+L.DABuilder(A.$("#pc-host"),{eq:{atmkPa:[[1,"atm"],[101.3,"kPa"]],atmmm:[[1,"atm"],[760,"mmHg"]],mmkPa:[[760,"mmHg"],[101.3,"kPa"]]},probs:[["atm","kPa",["atmkPa"],["atmmm"],[0.25,3.5]],["kPa","atm",["atmkPa"],["atmmm"],[25,350]],["mmHg","atm",["atmmm"],["mmkPa"],[200,1500]],["atm","mmHg",["atmmm"],["atmkPa"],[0.2,2.5]],["kPa","mmHg",["mmkPa"],["atmkPa"],[40,250]],["mmHg","kPa",["mmkPa"],["atmmm"],[300,900]]]});
 G.VPQuiz(A.$("#vq-host"));
 P.TapSort(A.$("#ig-host"),{prompt:"Which gas, or which conditions, behave more like an ideal gas?",how:"Ideal behavior: high temperature, low pressure, and small, nonpolar particles with weak intermolecular forces.",choices:[["a","First"],["b","Second"]],items:[
  ["He or HCl at STP","a","He is small and nonpolar."],["N<sub>2</sub> at 500 K or at 100 K (same pressure)","a","High temperature favors ideal behavior."],["O<sub>2</sub> at 0.5 atm or at 50 atm (same temperature)","a","Low pressure favors ideal behavior."],["Xe or H<sub>2</sub> at STP","b","H<sub>2</sub> has the weakest intermolecular forces."],["NH<sub>3</sub> or Ne at STP","b","NH<sub>3</sub> is polar and hydrogen bonds."]]});

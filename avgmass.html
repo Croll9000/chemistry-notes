@@ -7,7 +7,7 @@
 <title>Average Atomic Mass</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
 </head>
 <body>
 <style>
@@ -129,39 +129,7 @@
     <div id="pr-host"></div>
   </section>
 
-  <div class="part enr" id="p3" data-short="Mass spectrometry"><div class="pn"><small>Part</small><span>3</span></div><h2>Measuring Isotopes: Mass Spectrometry</h2><p>The ratio of oxygen-18 to oxygen-16 in Antarctic ice, measured layer by layer, records changes in Earth’s temperature over the past 800,000 years. Scientists can read this record because isotopes of the same element have different masses, and an instrument known as the mass spectrometer separates atoms by mass and counts how many of each isotope are present. The same instrument supplies the isotope masses and percent abundances used to calculate every average atomic mass on the periodic table.</p></div>
-
-  <section class="note added enr">
-    <div class="tile"><h2>The Mass Spectrometer</h2></div>
-    <div class="body">
-      <p class="intro">To calculate an average atomic mass, chemists must know the mass and abundance of each isotope. These values are measured with a mass spectrometer, an instrument also used to detect performance-enhancing drugs in athletes.</p>
-      <ul>
-        <li>A <b>mass spectrometer</b> separates the atoms of a sample by mass, so scientists can measure the mass of each isotope and how common it is.</li>
-      </ul>
-      <figure id="ms-fig"><figcaption>A mass spectrometer. Lighter ions are bent the most by the magnet; heavier ions are bent less. Not to scale.</figcaption></figure>
-      <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:5px">
-        <li><b>Vaporize:</b> the sample is turned into a gas so the atoms are separate.</li>
-        <li><b>Ionize:</b> a beam of fast electrons knocks an electron off each atom, making <span class="kr">positive ions</span>. (Ions can be pushed by electric and magnetic fields; neutral atoms can’t.)</li>
-        <li><b>Accelerate:</b> negatively charged plates attract the positive ions and speed them into a narrow beam.</li>
-        <li>Deflect: a magnet bends the path of the moving ions into a curve.
-          <ul><li><span class="kb">Lighter ions bend more</span>.</li><li>Heavier ions bend less.</li><li>Each isotope follows its own path.</li></ul></li>
-        <li>Detect: a detector counts the ions that arrive along each path.
-          <ul><li>More ions means a larger signal.</li><li>The signal shows the isotope’s <span class="kg">percent abundance</span>.</li></ul></li>
-      </ol>
-      <ul>
-        <li><b>Mass Spectrum</b> – a graph with one peak for each isotope.
-          <ul><li>The position of a peak is the isotope’s mass.</li><li>The height of the peak is its percent abundance.</li></ul></li>
-        <li>The tallest peak is the most common isotope, and the average atomic mass is always closest to that peak.</li>
-      </ul>
-    </div>
-  </section>
-
-  <p class="bridge enr">Read real mass spectra: find each peak’s mass and abundance, calculate the average atomic mass, and identify the element.</p>
-
-  <section class="lab enr" id="ms">
-    <div class="lab-h"><span class="tag game">Game</span><h3>Mass Spectrum Reader</h3></div>
-    <div id="ms-host"></div>
-  </section>
+  <p class="bridge">Enrichment: continue on <a href="avgmass-ms.html">Mass Spectrometry</a>.</p>
 
   <section class="lab" id="vocab">
     <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
@@ -173,12 +141,12 @@
 </main>
 
 
+
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=d21e4c0fdc"></script>
+<script src="site.js?v=f0daaf38ad"></script>
 <script>(function(){
 
 const A=AS;
-/* NIST isotopic compositions (masses in u, abundance in %), rounded */
 const DATA={
   B:[[10,10.013,19.9],[11,11.009,80.1]],
   K:[[39,38.964,93.26],[41,40.962,6.74]],
@@ -195,11 +163,8 @@ const DATA={
 const nameOf=k=>A.bySym[k.toLowerCase()].name;
 const avg=rows=>rows.reduce((a,[,m,p])=>a+m*p,0)/100;
 const isoTable=(k,rows,o={})=>`<table class="nt"><tr><th>Isotope</th><th>Mass (u)</th><th>Percent Abundance (%)</th>${o.dec?"<th>Decimal</th>":""}</tr>${rows.map(([a,m,p],i)=>`<tr><td>${A.hy(nameOf(k),a)}</td><td data-c="m${i}">${m.toFixed(3)}</td><td data-c="p${i}">${p.toFixed(2)}</td>${o.dec?`<td data-c="d${i}">${o.showDec?(p/100).toFixed(4):"?"}</td>`:""}</tr>`).join("")}</table>`;
-
-/* hero: two carbon isotopes average into the periodic table box */
 A.$("#hero").innerHTML=`<div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center">${[[12,"12.000","98.9%"],[13,"13.003","1.1%"]].map(([m,ms,ab])=>`<div class="col">${A.iso({A:m,Z:6,sym:"C",cls:"big"})}<div class="math">${ms} u · ${ab}</div></div>`).join("")}<span style="font-size:30px;color:var(--ink)">→</span><div style="border:4px solid var(--ink);padding:4px 16px;text-align:center;line-height:1.05;color:var(--ink);background:#fff"><div style="font-size:22px;font-weight:600">6</div><div style="font-size:54px;font-weight:800">C</div><div style="font-size:22px;font-weight:600">12.01</div></div></div>`;
 A.$("#c-iso").innerHTML=[[12,"12.000","98.9%",false],[13,"13.003","1.1%",false],[14,"14.003","trace",true]].map(([m,ms,ab,fx])=>`<div class="col">${A.bohrSVG({p:6,n:m-6,shells:[2,4],size:150})}${A.iso({A:m,Z:6,sym:"C",cls:"mid"})}<span class="math">mass = ${fx?`<span class="fixed" data-orig="13.003" data-why="Carbon-14’s mass is about 14.003 u; 13.003 u is carbon-13.">${ms}</span>`:ms} u</span><span class="math">abundance = ${ab}</span></div>`).join("");
-/* grades bar picture */
 A.$("#grade-fig").innerHTML=`<svg width="420" height="150" viewBox="0 0 420 150" role="img" aria-label="Grade categories sized by their weight">
 <rect x="10" y="20" width="200" height="54" fill="#0070C0" stroke="#000"/><rect x="210" y="20" width="120" height="54" fill="#00B050" stroke="#000"/><rect x="330" y="20" width="80" height="54" fill="#f2b705" stroke="#000"/>
 <text x="110" y="45" text-anchor="middle" font-family="Inter,Arial" font-size="15" font-weight="800" fill="#fff">Tests 50%</text><text x="110" y="64" text-anchor="middle" font-family="Inter,Arial" font-size="13" fill="#fff">avg 80</text>
@@ -209,35 +174,6 @@ A.$("#grade-fig").innerHTML=`<svg width="420" height="150" viewBox="0 0 420 150"
 <path d="M150 88v14" stroke="#c40000" stroke-width="3"/><text x="150" y="142" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#c40000">weighted 87</text>
 <path d="M210 88v14" stroke="#8a979c" stroke-width="3" stroke-dasharray="3 2"/><text x="230" y="90" font-family="Inter,Arial" font-size="12" fill="#4a5257">plain average 90</text></svg>`;
 A.$("#b100").innerHTML=A.shuffle([...Array(100)].map((_,i)=>i<20)).map(b=>`<span style="background:${b?"#f2b705":"#0070C0"}"></span>`).join("");
-
-/* mass spectrometer diagram, notes style: black outlines, flat fills, labeled arrows */
-A.$("#ms-fig").insertAdjacentHTML("afterbegin",`<svg width="780" height="330" viewBox="0 0 780 330" role="img" aria-label="Mass spectrometer diagram">
-<defs><marker id="ma" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#1b2328"/></marker></defs>
-<text x="60" y="118" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328">1. Vaporize</text>
-<rect x="20" y="130" width="80" height="44" rx="6" fill="#e6eef0" stroke="#000" stroke-width="2"/><text x="60" y="157" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="700" fill="#1b2328">Sample (gas)</text>
-<path d="M100 152H140" stroke="#1b2328" stroke-width="2" marker-end="url(#ma)"/>
-<text x="197" y="104" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328">2. Ionize</text>
-<rect x="142" y="110" width="110" height="84" rx="6" fill="#fff3d6" stroke="#000" stroke-width="2"/>
-${[0,1,2].map(i=>A.P.electron(160+i*15,128,6)).join("")}<path d="M156 140L214 168" stroke="#e00000" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ma)"/>${A.P.proton(232,160,9)}
-<text x="197" y="188" text-anchor="middle" font-family="Inter,Arial" font-size="10.5" fill="#4a5257">electron beam</text>
-<text x="291" y="92" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328">3. Accelerate</text>
-<rect x="272" y="104" width="10" height="38" fill="#1b2328"/><rect x="272" y="162" width="10" height="38" fill="#1b2328"/><rect x="300" y="104" width="10" height="38" fill="#1b2328"/><rect x="300" y="162" width="10" height="38" fill="#1b2328"/>
-<text x="291" y="218" text-anchor="middle" font-family="Inter,Arial" font-size="11" fill="#4a5257">(−) plates</text>
-<path d="M252 152H340" stroke="#1b2328" stroke-width="2.5"/>
-<rect x="340" y="60" width="220" height="230" fill="#eef4f6" stroke="#000" stroke-width="2"/>
-${[...Array(5)].map((_,r)=>[...Array(6)].map((_,c)=>`<text x="${362+c*36}" y="${92+r*44}" text-anchor="middle" font-family="Inter,Arial" font-size="15" fill="#8a979c">×</text>`).join("")).join("")}
-<text x="450" y="50" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328">4. Deflect: magnetic field (× = into the page)</text>
-<path d="M340 152 A260 260 0 0 1 560 273.4 L575 297" fill="none" stroke="#f2b705" stroke-width="3.5"/>
-<path d="M340 152 A400 400 0 0 1 560 218 L575 228" fill="none" stroke="#00B050" stroke-width="3.5"/>
-<path d="M340 152 A700 700 0 0 1 560 187.5 L575 192.5" fill="none" stroke="#0070C0" stroke-width="3.5"/>
-
-<rect x="575" y="160" width="14" height="150" fill="#1b2328"/>
-<text x="582" y="150" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#1b2328">5. Detector</text>
-<text x="596" y="196" font-family="Inter,Arial" font-size="11.5" font-weight="700" fill="#005ea3">heaviest: bent least</text>
-<text x="596" y="232" font-family="Inter,Arial" font-size="11.5" font-weight="700" fill="#00843c">middle</text>
-<text x="596" y="301" font-family="Inter,Arial" font-size="11.5" font-weight="700" fill="#8a6a00">lightest: bent most</text></svg>`);
-
-/* step-by-step calculator: walkthrough or fill-in */
 (function(){
   const sel=A.$("#cl-el"); Object.keys(DATA).forEach(k=>sel.appendChild(A.h("option",{value:k},nameOf(k))));
   let k="B", mode="show", meth="dec", step=0;
@@ -322,8 +258,6 @@ ${[...Array(5)].map((_,r)=>[...Array(6)].map((_,c)=>`<text x="${362+c*36}" y="${
   A.$$("#cl-meth button").forEach(b=>b.addEventListener("click",()=>{ meth=b.dataset.v; A.$$("#cl-meth button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); render(); }));
   render();
 })();
-
-/* calculation practice */
 (function(){
   let cur;
   const g=A.Game(A.$("#pr-host"),{how:"Calculate the average atomic mass from the isotope data. Round to the hundredths place."});
@@ -337,37 +271,7 @@ ${[...Array(5)].map((_,r)=>[...Array(6)].map((_,c)=>`<text x="${362+c*36}" y="${
   A.$("#pr-in").addEventListener("keydown",e=>{ if(e.key==="Enter") check(); });
   next();
 })();
-
-/* mass spectrum reader */
-(function(){
-  let cur;
-  const g=A.Game(A.$("#ms-host"),{how:"Read the mass spectrum (hover or tap a peak for its exact value). Calculate the average atomic mass, then identify the element."});
-  g.button("Check",()=>check()); g.button("New spectrum",()=>next(),"ghost");
-  g.stage.innerHTML=`<div class="stage" id="ms-chart" style="padding:10px"></div><div class="controls"><label style="display:flex;gap:6px;align-items:center;font-weight:700;color:var(--ink)">Average atomic mass <input class="inp" id="ms-avg" style="width:110px" inputmode="decimal"> u</label><label style="display:flex;gap:6px;align-items:center;font-weight:700;color:var(--ink)">Element <input class="inp" id="ms-el" style="width:120px" placeholder="name or symbol"></label></div>`;
-  function next(){
-    const k=A.pick(Object.keys(DATA)); cur={k,rows:DATA[k]}; g.fresh();
-    const rows=cur.rows, lo=rows[0][0]-2, hi=rows[rows.length-1][0]+2, W=580, H=300, x=m=>56+(m-lo)/(hi-lo)*(W-86), y=p=>H-44-(p/100)*(H-80);
-    let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;display:block;margin:0 auto" role="img" aria-label="Mass spectrum"><line x1="56" y1="${H-44}" x2="${W-20}" y2="${H-44}" stroke="#1b2328"/><line x1="56" y1="22" x2="56" y2="${H-44}" stroke="#1b2328"/>`;
-    for(let p=0;p<=100;p+=20) s+=`<line x1="51" y1="${y(p)}" x2="${W-20}" y2="${y(p)}" stroke="#cfdde1"/><text x="46" y="${y(p)+4}" text-anchor="end" font-size="11" fill="#1b2328" font-family="Inter">${p}</text>`;
-    for(let m=Math.ceil(lo);m<=hi;m++) s+=`<text x="${x(m)}" y="${H-28}" text-anchor="middle" font-size="11" fill="#1b2328" font-family="Inter">${m}</text>`;
-    const placed=[];
-    rows.forEach(([a,m,p])=>{ const bx=x(m), top=y(p); let ly=top-22; const wl=58;
-      while(placed.some(q=>Math.abs(q.x-bx)<wl && Math.abs(q.y-ly)<30)) ly-=30;
-      placed.push({x:bx,y:ly});
-      s+=`<g><title>Mass ${m} u: ${p}%</title><rect x="${bx-9}" y="${top}" width="18" height="${H-44-top}" fill="#40BAD2" stroke="#1b2328"/>${ly<top-24?`<line x1="${bx}" y1="${ly+16}" x2="${bx}" y2="${top-2}" stroke="#8a979c" stroke-dasharray="2 2"/>`:""}<rect x="${bx-30}" y="${ly-12}" width="60" height="28" rx="3" fill="#fff" opacity=".9"/><text x="${bx}" y="${ly}" text-anchor="middle" font-size="12" font-weight="700" fill="#1b2328" font-family="Inter">${m.toFixed(3)} u</text><text x="${bx}" y="${ly+13}" text-anchor="middle" font-size="12" fill="#1b2328" font-family="Inter">${p.toFixed(2)}%</text></g>`; });
-    s+=`<text x="${(W+36)/2}" y="${H-8}" text-anchor="middle" font-size="12" font-weight="700" fill="#1b2328" font-family="Inter">Mass (u)</text><text x="16" y="${H/2}" transform="rotate(-90 16 ${H/2})" text-anchor="middle" font-size="12" font-weight="700" fill="#1b2328" font-family="Inter">Percent abundance (%)</text></svg>`;
-    A.$("#ms-chart").innerHTML=s; A.$("#ms-avg").value=""; A.$("#ms-el").value=""; g.msg("");
-  }
-  function check(){
-    const v=parseFloat(A.$("#ms-avg").value), s=A.$("#ms-el").value.trim().toLowerCase(), ans=avg(cur.rows), e=A.bySym[cur.k.toLowerCase()];
-    const okA=Math.abs(v-ans)<=0.03, okE=s===e.sym.toLowerCase()||s===e.name.toLowerCase();
-    if(okA&&okE){ g.win(); g.msg(`✔ ${ans.toFixed(2)} u matches <b>${e.name}</b> (${e.massStr} u on the periodic table).`,"good"); setTimeout(next,2400); }
-    else { g.lose(); g.msg(!okA? "Check your calculation: multiply each mass by its percent, add, then divide by 100." : "Your average is right. Find the element whose atomic mass on the periodic table matches it.","bad"); }
-  }
-  next();
-})();
-
-A.VocabCheck(A.$("#vc-host"),[{"s": "An average that counts common values more heavily is a ___ average.", "a": "weighted"}, {"s": "The percent of an element’s atoms that are a given isotope is its ___.", "a": "abundance"}, {"s": "The instrument that measures isotope masses and abundances is a mass ___.", "a": "spectrometer"}]);
+A.VocabCheck(A.$("#vc-host"),[{"s": "An average that counts common values more heavily is a ___ average.", "a": "weighted"}, {"s": "The percent of an element’s atoms that are a given isotope is its ___.", "a": "abundance"}]);
 A.QSet(A.$("#qs"),[
  {type:"num",stem:"Chlorine has two naturally occurring isotopes: "+A.hy("Cl",35)+" (34.969 u, 75.76%) and "+A.hy("Cl",37)+" (36.966 u, 24.24%). Calculate the average atomic mass of chlorine. Round to the hundredths place.",ans:35.45,round:{sf:4},unit:"u",explain:"[(34.969)(75.76) + (36.966)(24.24)] / 100 = (2649.25 + 896.06) / 100 = 35.45 u.",msg:x=>Math.abs(x-3545)<5?"Divide by 100.":"Multiply each mass by its percent, add, then divide by 100."},
  {type:"mc",stem:"The average atomic mass of copper is 63.55 u. Copper has two isotopes, "+A.hy("Cu",63)+" and "+A.hy("Cu",65)+". Which statement is true?",choices:["Cu-65 is more abundant than Cu-63.","Cu-63 is more abundant than Cu-65.","Both isotopes are equally abundant.","Copper atoms each have a mass of 63.55 u."],ans:2,explain:"63.55 is closer to 63 than to 65, so Cu-63 must be more abundant."},

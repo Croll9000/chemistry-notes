@@ -7,7 +7,7 @@
 <title>Ionization Energy</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=d21e4c0fdc">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
 </head>
 <body>
 <main class="wrap">
@@ -141,31 +141,9 @@
     <div id="og"></div>
   </section>
 
-  <div class="part enr" id="enr" data-short="Enrichment: the dips"><div class="pn"><small>Extra</small><span>★</span></div><h2>Why Are There Dips?</h2><p>Gallium has one more proton than zinc, yet removing an electron from gallium takes much less energy (579 vs. 906 kJ/mol). Gallium’s outermost electron is the first in a 4p subshell, which is higher in energy than zinc’s filled 4s subshell, so it is easier to remove. In this section, we will use orbitals from the Orbitals enrichment pages to explain the small dips in the ionization energy trend.</p></div>
+  <p class="bridge">Enrichment: continue on <a href="p-iedips.html">Why Ionization Energy Dips</a>.</p>
 
-  <section class="note enr">
-    <div class="tile"><h2>Exceptions to the Trend</h2></div>
-    <div class="body">
-      <div id="dip-art"></div>
-      <ul class="added">
-        <li>The trend graph is not perfectly smooth. Across a period, ionization energy dips in two places.
-          <ul><li>Group 2 → group 13: Be (900 kJ/mol) is higher than B (801 kJ/mol). Mg (738) is higher than Al (578).</li>
-          <li>Group 15 → group 16: N (1402 kJ/mol) is higher than O (1314 kJ/mol). P (1012) is higher than S (1000).</li></ul></li>
-        <li>Dip 1: a new subshell starts.
-          <ul><li>Boron’s outermost electron is the first one in the 2p subshell.</li>
-          <li>The 2p subshell is higher in energy than 2s, so that electron is easier to remove than beryllium’s 2s electrons.</li></ul></li>
-        <li>Dip 2: the first paired electron in a p subshell.
-          <ul><li>Nitrogen’s three 2p electrons each have their own orbital (a half-filled subshell).</li>
-          <li>In oxygen, the 4th 2p electron must share an orbital with another electron.</li>
-          <li>The two electrons in that orbital repel each other, so one of them is easier to remove.</li></ul></li>
-        <li>Half-filled and completely filled subshells are extra stable. The atom right after each one is a little easier to ionize.</li>
-      </ul>
-      <div class="center" id="orb-art"></div>
-      <p class="muted" style="padding:2px 6px">To review orbitals, see the <a href="orb-3-pauli-hund.html">Pauli &amp; Hund</a> enrichment page.</p>
-    </div>
-  </section>
-
-    <section class="lab" id="vocab">
+  <section class="lab" id="vocab">
     <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
     <div id="vc-host"></div>
   </section>
@@ -175,16 +153,15 @@
 </main>
 
 
+
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=d21e4c0fdc"></script>
+<script src="site.js?v=f0daaf38ad"></script>
 <script>(function(){
 
 const A=AS, P=A.U3, T=P.T;
-/* an atom with dashed shells (same art as the rest of the site); returns svg pieces */
 const E=(x,y,r=P.ER+1)=>A.P.electron(x,y,r);
 const ring=(cx,cy,r)=>`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1b2328" stroke-width="1.4" stroke-dasharray="5 4"/>`;
 const spot=(x,y)=>`<circle cx="${x}" cy="${y}" r="${P.ER+1}" fill="#fff" stroke="#1b2328" stroke-width="1.3" stroke-dasharray="2.5 2"/>`;
-/* definition: energy (photon) comes in, the electron leaves */
 A.$("#def-art").innerHTML=(()=>{ const cx=150, cy=150, r1=44, r2=96; let s=`<svg viewBox="0 0 470 290" width="470" style="max-width:100%" role="img" aria-label="Energy is added to a lithium atom and its valence electron leaves the atom">`;
   s+=ring(cx,cy,r1)+ring(cx,cy,r2)+P.nucleus(cx,cy,3)+E(cx-r1,cy)+E(cx+r1,cy);
   const a=-Math.PI/4, vx=cx+r2*Math.cos(a), vy=cy+r2*Math.sin(a), fx=vx+120, fy=vy-38;
@@ -194,7 +171,6 @@ A.$("#def-art").innerHTML=(()=>{ const cx=150, cy=150, r1=44, r2=96; let s=`<svg
   s+=T(cx,cy+r2+28,"Li atom → Li⁺ ion + e⁻",{fs:15});
   return s+`</svg>`; })();
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:4px">${A.$("#def-art").innerHTML.replace('width="470"','width="320"')}</div>`;
-/* Li: 1st and 2nd ionization energies (NIST) */
 A.$("#li-art").innerHTML=(()=>{ const cx=150, cy=130, r1=44, r2=96; let s=`<svg viewBox="0 0 680 260" width="680" style="max-width:100%" role="img" aria-label="Removing lithium's valence electron takes 520 kJ/mol; removing an inner electron takes 7298 kJ/mol">`;
   s+=ring(cx,cy,r1)+ring(cx,cy,r2)+P.nucleus(cx,cy,3)+E(cx-r1,cy);
   const a=-Math.PI/4, vx=cx+r2*Math.cos(a), vy=cy+r2*Math.sin(a), ix=cx+r1*Math.cos(Math.PI/4), iy=cy+r1*Math.sin(Math.PI/4);
@@ -202,7 +178,6 @@ A.$("#li-art").innerHTML=(()=>{ const cx=150, cy=130, r1=44, r2=96; let s=`<svg 
   s+=E(ix,iy)+P.photon(ix+150,iy+46,ix+10,iy+5,{amp:7,w:5})+T(ix+158,iy+52,"2nd ionization energy = 7298 kJ/mol",{fs:14,a:"start"});
   s+=T(cx,cy+r2+30,"lithium: 2-1",{fs:14})+T(560,118,"thicker wave = more energy",{fs:12,c:"#5f6b72",fw:500});
   return s+`</svg>`; })();
-/* successive ionization energies of Mg (NIST, kJ/mol) */
 A.$("#succ-art").innerHTML=(()=>{ const V=[738,1451,7733,10543], W=520,H=260,x0=70,y0=220,y1=20,mx=11000,Y=v=>y0-v/mx*(y0-y1); let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%" role="img" aria-label="Successive ionization energies of magnesium">`;
   for(let v=0;v<=10000;v+=2000) s+=`<line x1="${x0}" y1="${Y(v)}" x2="${W-20}" y2="${Y(v)}" stroke="#e3e9ec"/>`+T(x0-8,Y(v)+4,v,{fs:11,fw:400,a:"end"});
   V.forEach((v,i)=>{ const x=x0+30+i*105; s+=`<rect x="${x}" y="${Y(v)}" width="64" height="${y0-Y(v)}" fill="${i<2?"#f4a261":"#b22222"}" stroke="#1b2328"/>`+T(x+32,Y(v)-6,v,{fs:12})+T(x+32,y0+18,["1st","2nd","3rd","4th"][i],{fs:13}); });
@@ -217,14 +192,6 @@ P.TrendSim(A.$("#sim2"),{record:"ie",mode:"group",meters:["charge","shells","inn
 P.TrendGraph(A.$("#tg"),{prop:"ie",choose:false});
 A.PTExplorer(A.$("#pt-host"),{modes:["ie"],mode:"ie",start:11,maxZ:89,skipF:true});
 P.OrderGame(A.$("#og"),{props:["ie"]});
-A.$("#dip-art").innerHTML=P.barFig([3,4,5,6,7,8,9,10],"ie",{title:"Period 2: the dips at B and O",hi:2200,hlFill:Z=>[4,5].includes(Z)?"#9b59b6":[7,8].includes(Z)?"#c39bd3":null}).replace(P.locPT([3,4,5,6,7,8,9,10],{w:380}),P.miniPT({stair:false,w:380,label:"Be, B, N and O highlighted",fill:Z=>[4,5].includes(Z)?"#9b59b6":[7,8].includes(Z)?"#c39bd3":[3,6,9,10].includes(Z)?"#ece0f8":null,text:Z=>[4,5].includes(Z)?"#fff":null}));
-/* orbital box diagrams for the dips */
-A.$("#orb-art").innerHTML=(()=>{ const box=(x,y,lab,cfg)=>{ let s=T(x+12,y-8,lab,{fs:12,c:"#5f6b72"}); cfg.forEach((n,i)=>{ const bx=x+i*28; s+=`<rect x="${bx}" y="${y}" width="26" height="30" fill="#fff" stroke="#1b2328" stroke-width="1.5"/>`; if(n>=1) s+=`<path d="M${bx+9} ${y+25}V${y+6}M${bx+5} ${y+11}l4-6 4 6" stroke="#E00000" stroke-width="2" fill="none"/>`; if(n===2) s+=`<path d="M${bx+17} ${y+5}V${y+24}M${bx+13} ${y+19}l4 6 4-6" stroke="#2E75D6" stroke-width="2" fill="none"/>`; }); return s; };
-  const atom=(x,sym,s2,p,ie,note)=>{ let s=T(x+60,24,`${sym}: ${ie} kJ/mol`,{fs:15}); s+=box(x,50,"2s",[s2])+box(x+40,50,"2p",p)+T(x+60,108,note,{fs:12,c:"#5f6b72",fw:500}); return s; };
-  let s=`<svg viewBox="0 0 640 130" width="640" style="max-width:100%" role="img" aria-label="Orbital diagrams of Be, B, N and O">`;
-  s+=atom(0,"Be",2,[0,0,0],900,"full 2s")+atom(160,"B",2,[1,0,0],801,"new 2p electron")+atom(330,"N",2,[1,1,1],1402,"half-filled 2p")+atom(490,"O",2,[2,1,1],1314,"first paired 2p");
-  return s+`</svg>`; })();
-
 A.VocabCheck(A.$("#vc-host"),[{"s": "The amount of energy required to remove an electron from an atom is its ___.", "a": "ionization energy"}, {"s": "Ionization energy is measured in ___.", "a": "kJ/mol"}, {"s": "From left to right across a period, ionization energy ___.", "a": "increases"}, {"s": "From top to bottom down a group, ionization energy ___.", "a": "decreases"}]);
 A.QSet(A.$("#qs"),[
  {type:"mc",stem:"Which element requires the least amount of energy to remove the most loosely held electron from a gaseous atom in the ground state?",choices:["bromine","calcium","potassium","selenium"],ans:3,explain:"All four are in Period 4, so they have the same number of shells. Potassium has the smallest nuclear charge (19 protons), so its single valence electron is held least strongly and has the lowest first ionization energy."},
@@ -236,8 +203,6 @@ A.QSet(A.$("#qs"),[
  {type:"cr",stem:"Explain, in terms of nuclear charge, why the first ionization energy of chlorine is greater than the first ionization energy of sodium.",parts:["Explanation"],model:["A chlorine atom has a greater nuclear charge (17 protons) than a sodium atom (11 protons), and both have 3 energy levels, so chlorine holds its valence electrons more tightly."],noCredit:"“Chlorine is a nonmetal” or “chlorine is farther right” without the greater nuclear charge."},
  {type:"cr",stem:"The first ionization energy of lithium is 520 kJ/mol and its second ionization energy is 7298 kJ/mol. Explain, in terms of electron shells, why the second ionization energy is so much larger.",parts:["Explanation"],model:["The second electron comes from the first shell, which is much closer to the nucleus than lithium’s valence electron in the second shell, so it is held much more strongly."],noCredit:"“Because it is the second electron” without referring to an inner shell or distance from the nucleus."}
 ],{id:"ione",title:"Regents-Style Questions"});
-
-/* lab questions: what each lab showed */
 A.QSet(A.$("#lq-ionize"),[{"type": "mc", "stem": "In the Ionization Lab, removing a second electron from sodium took much more energy than removing the first because", "choices": ["the second electron comes from a full inner shell closer to the nucleus", "sodium gains a proton", "the second electron is farther from the nucleus", "the first electron was a neutron"], "ans": 1, "explain": "After the first electron leaves, the next one is in the full inner shell, which is much closer to the nucleus."}],{id:"lq-ionize",title:"Lab Questions"});
 A.QSet(A.$("#lq-sim-g"),[{"type": "mc", "stem": "Across a period, first ionization energy increased because", "choices": ["the nuclear charge increased while the number of shells stayed the same", "the number of shells increased", "the atoms got larger", "the valence electrons were farther away"], "ans": 1, "explain": "More protons with the same number of shells hold the valence electrons more tightly."}, {"type": "mc", "stem": "Down a group, first ionization energy decreased because", "choices": ["the nuclear charge decreased", "the valence electron was farther from the nucleus and more shielded", "there were fewer protons", "the atoms had fewer shells"], "ans": 2, "explain": "More shells put the valence electron farther away, so less energy is needed to remove it."}],{id:"lq-sim-g",title:"Lab Questions"});
 

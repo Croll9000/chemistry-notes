@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Why Ionization Energy Dips</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Periodic Table · 9 · Enrichment</span><h1>Why Ionization Energy Dips</h1><p>Graphed across a period, first ionization energy rises, but not perfectly smoothly. Boron is a little easier to ionize than beryllium, and oxygen a little easier than nitrogen, even though each has one more proton than the element before it. Nuclear charge and distance cannot explain these small dips. The orbitals introduced on the Orbitals enrichment pages can.</p><div class="pe-chips"><span>HS-PS1-1</span><span>SEP: Analyzing &amp; Interpreting Data</span><span>CCC: Patterns</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+  <div class="part enr" id="p1" data-short="Why there are dips"><div class="pn"><small>Part</small><span>1</span></div><h2>Why Are There Dips?</h2><p>Gallium has one more proton than zinc, yet removing an electron from gallium takes much less energy (579 vs. 906 kJ/mol). Gallium’s outermost electron is the first in a 4p subshell, which is higher in energy than zinc’s filled 4s subshell, so it is easier to remove. The same kind of reasoning, built on orbitals and subshells, explains the small dips in period 2.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Exceptions to the Trend</h2></div>
+    <div class="body">
+      <div id="dip-art"></div>
+      <ul class="added">
+        <li>The trend graph is not perfectly smooth. Across a period, ionization energy dips in two places.
+          <ul><li>Group 2 → group 13: Be (900 kJ/mol) is higher than B (801 kJ/mol). Mg (738) is higher than Al (578).</li>
+          <li>Group 15 → group 16: N (1402 kJ/mol) is higher than O (1314 kJ/mol). P (1012) is higher than S (1000).</li></ul></li>
+        <li>Dip 1: a new subshell starts.
+          <ul><li>Boron’s outermost electron is the first one in the 2p subshell.</li>
+          <li>The 2p subshell is higher in energy than 2s, so that electron is easier to remove than beryllium’s 2s electrons.</li></ul></li>
+        <li>Dip 2: the first paired electron in a p subshell.
+          <ul><li>Nitrogen’s three 2p electrons each have their own orbital (a half-filled subshell).</li>
+          <li>In oxygen, the 4th 2p electron must share an orbital with another electron.</li>
+          <li>The two electrons in that orbital repel each other, so one of them is easier to remove.</li></ul></li>
+        <li>Half-filled and completely filled subshells are extra stable. The atom right after each one is a little easier to ionize.</li>
+      </ul>
+      <div class="center" id="orb-art"></div>
+      <p class="muted" style="padding:2px 6px">To review orbitals, see the <a href="orb-3-pauli-hund.html">Pauli &amp; Hund</a> enrichment page.</p>
+    </div>
+  </section>
+
+      <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+<div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f0daaf38ad"></script>
+<script>(function(){
+
+const A=AS, P=A.U3, T=P.T;
+const E=(x,y,r=P.ER+1)=>A.P.electron(x,y,r);
+const ring=(cx,cy,r)=>`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1b2328" stroke-width="1.4" stroke-dasharray="5 4"/>`;
+const spot=(x,y)=>`<circle cx="${x}" cy="${y}" r="${P.ER+1}" fill="#fff" stroke="#1b2328" stroke-width="1.3" stroke-dasharray="2.5 2"/>`;
+A.$("#dip-art").innerHTML=P.barFig([3,4,5,6,7,8,9,10],"ie",{title:"Period 2: the dips at B and O",hi:2200,hlFill:Z=>[4,5].includes(Z)?"#9b59b6":[7,8].includes(Z)?"#c39bd3":null}).replace(P.locPT([3,4,5,6,7,8,9,10],{w:380}),P.miniPT({stair:false,w:380,label:"Be, B, N and O highlighted",fill:Z=>[4,5].includes(Z)?"#9b59b6":[7,8].includes(Z)?"#c39bd3":[3,6,9,10].includes(Z)?"#ece0f8":null,text:Z=>[4,5].includes(Z)?"#fff":null}));
+A.$("#orb-art").innerHTML=(()=>{ const box=(x,y,lab,cfg)=>{ let s=T(x+12,y-8,lab,{fs:12,c:"#5f6b72"}); cfg.forEach((n,i)=>{ const bx=x+i*28; s+=`<rect x="${bx}" y="${y}" width="26" height="30" fill="#fff" stroke="#1b2328" stroke-width="1.5"/>`; if(n>=1) s+=`<path d="M${bx+9} ${y+25}V${y+6}M${bx+5} ${y+11}l4-6 4 6" stroke="#E00000" stroke-width="2" fill="none"/>`; if(n===2) s+=`<path d="M${bx+17} ${y+5}V${y+24}M${bx+13} ${y+19}l4 6 4-6" stroke="#2E75D6" stroke-width="2" fill="none"/>`; }); return s; };
+  const atom=(x,sym,s2,p,ie,note)=>{ let s=T(x+60,24,`${sym}: ${ie} kJ/mol`,{fs:15}); s+=box(x,50,"2s",[s2])+box(x+40,50,"2p",p)+T(x+60,108,note,{fs:12,c:"#5f6b72",fw:500}); return s; };
+  let s=`<svg viewBox="0 0 640 130" width="640" style="max-width:100%" role="img" aria-label="Orbital diagrams of Be, B, N and O">`;
+  s+=atom(0,"Be",2,[0,0,0],900,"full 2s")+atom(160,"B",2,[1,0,0],801,"new 2p electron")+atom(330,"N",2,[1,1,1],1402,"half-filled 2p")+atom(490,"O",2,[2,1,1],1314,"first paired 2p");
+  return s+`</svg>`; })();
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:10px">${A.$("#orb-art").innerHTML.replace(/width="640"/,'width="380"')}</div>`;
+A.VocabCheck(A.$("#vc-host"),[{"s": "Boron's outermost electron is the first electron in the 2p ___.", "a": "subshell"}, {"s": "Nitrogen's three 2p electrons each occupy their own orbital, so its 2p subshell is ___.", "a": "half-filled"}]);
+A.QSet(A.$("#qs"),[{"type": "mc", "stem": "Why is the first ionization energy of boron lower than that of beryllium?", "choices": ["Boron's outermost electron is in the 2p subshell, which is higher in energy than 2s.", "Boron has fewer protons than beryllium.", "Boron has more energy levels than beryllium.", "Boron's outermost electron is paired with another electron."], "ans": 1, "explain": "Boron's 2p electron starts a new, higher-energy subshell, so it is easier to remove."}, {"type": "mc", "stem": "Why is the first ionization energy of oxygen lower than that of nitrogen?", "choices": ["Oxygen's fourth 2p electron shares an orbital and is repelled by its partner.", "Oxygen has fewer protons than nitrogen.", "Oxygen has a larger atomic radius than nitrogen.", "Oxygen's outermost electron is in a new energy level."], "ans": 1, "explain": "The paired electron in oxygen's 2p subshell is repelled by its partner, so it is easier to remove."}, {"type": "mc", "stem": "Which pair of period 3 elements shows the same kind of dip as beryllium and boron?", "choices": ["Mg and Al", "P and S", "Na and Mg", "Cl and Ar"], "ans": 1, "explain": "Aluminum's outermost electron starts the 3p subshell, so Al (578 kJ/mol) is below Mg (738 kJ/mol)."}, {"type": "mc", "stem": "Between which two period 3 elements does the dip caused by the first paired p electron occur?", "choices": ["P and S", "Mg and Al", "Si and P", "Cl and Ar"], "ans": 1, "explain": "Sulfur's fourth 3p electron must pair up, so S (1000 kJ/mol) is slightly below P (1012 kJ/mol)."}]);
+
+})();</script>
+<script>AS.U3.addSources("p-iedips");AS.completion(document.querySelector(".wrap"),"p-iedips");AS.chrome("p-iedips");</script>
+</body>
+</html>

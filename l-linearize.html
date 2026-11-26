@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Linearizing Data</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="site.css?v=f0daaf38ad">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-t"><span class="eyebrow">Lab Skills · 12 · Enrichment</span><h1>Linearizing Data</h1><p>Curved graphs are hard to read with certainty, because many different curves look alike. Changing what is plotted on one axis can turn a curve into a straight line, and a straight line can be tested and its slope measured.</p>
+    <div class="pe-chips"><span>SEP: Analyzing &amp; Interpreting Data</span><span>SEP: Using Mathematics</span><span>CCC: Patterns</span></div></div>
+    <div class="hero-art" id="hero"></div>
+  </section>
+
+    <div class="part enr" id="p1" data-short="Linearizing data"><div class="pn"><small>Part</small><span>1</span></div><h2>Linearizing Data</h2><p>When Robert Boyle plotted the pressure of trapped air against its volume, the points fell on a curve. A curve like this could describe several different relationships, but plotting the pressure against 1 ÷ volume gives a straight line through the origin, which shows at a glance that the two quantities are inversely proportional.</p></div>
+
+  <section class="note enr">
+    <div class="tile"><h2>Linearizing Data</h2></div>
+    <div class="body">
+      <p class="intro">A curved graph is hard to test by eye, because many different curves look alike. A straight line is easy to check, and its slope can be measured. Scientists therefore change one of the variables before plotting, so that the graph becomes a straight line.</p>
+      <ul>
+        <li><span class="def">Linearization</span> – changing the data (for example, plotting <span class="mth"><span class="wf"><span>1</span><span>x</span></span></span> instead of x) so that the graph becomes a straight line.</li>
+        <li>If y is <b>inversely proportional</b> to x (<span class="mth">y = <span class="wf"><span>k</span><span>x</span></span></span>), plot <span class="kr">y vs. <span class="mth"><span class="wf"><span>1</span><span>x</span></span></span></span>.</li>
+        <li>If the new graph is a straight line with a positive slope that passes through the origin, the inverse relationship is confirmed, and the <span class="kb">slope is the constant k</span> (k = x × y).</li>
+      </ul>
+      <div class="" id="lin-art"></div>
+      <div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">For air in a sealed syringe, the graph of pressure vs. volume is a curve. The graph of pressure vs. 1/volume is a straight line that passes through the origin with a slope of 6000 kPa·mL, the constant value of P × V.</div></div></div>
+
+    </div>
+  </section>
+
+  <section class="lab enr" id="lin">
+    <div class="lab-h"><span class="tag">Lab</span><h3>Make It Straight</h3></div>
+    <div id="ll-host"></div>
+  </section>
+
+  <section class="lab" id="vocab">
+    <div class="lab-h"><span class="tag game">Game</span><h3>Words We Need</h3></div>
+    <div id="vc-host"></div>
+  </section>
+
+  <div class="part lc" id="lc" data-short="Learning Check"><div class="pn"><small>Check</small><span>✓</span></div><h2>Learning Check</h2><p>Your first answer to each question is your score.</p></div>
+  <section class="note lc"><div class="body" id="qs"></div></section>
+</main>
+
+
+
+<script>window.SITE_MODE="gsites";</script>
+<script src="site.js?v=f0daaf38ad"></script>
+<script>(function(){
+
+const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
+A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${L.figLinearize()}</div>`;
+A.$("#lin-art").innerHTML=L.figLinearize(); L.LinLab(A.$("#ll-host"));
+A.VocabCheck(A.$("#vc-host"),[{"s": "Changing the data so that a curved graph becomes a straight line is called ___.", "a": "linearization"}, {"s": "If y is inversely proportional to x, a graph of y against ___ is a straight line through the origin.", "a": "1/x"}, {"s": "For a straight line through the origin, the slope equals the ___ in the relationship.", "a": "constant"}]);
+A.QSet(A.$("#qs"),[{"type": "mc", "stem": "A graph of pressure against volume for a gas at constant temperature is a curve. What should be plotted to produce a straight line through the origin?", "choices": ["pressure against volume squared", "pressure against 1/volume", "pressure against temperature", "volume against volume"], "ans": 2, "explain": "Pressure is inversely proportional to volume, so P against 1/V is a straight line through the origin."}, {"type": "mc", "stem": "A graph of distance against time² for a rolling ball is a straight line through the origin. What does this show?", "choices": ["Distance is directly proportional to time.", "Distance is directly proportional to the square of the time.", "Distance is inversely proportional to time.", "Distance does not depend on time."], "ans": 2, "explain": "A straight line through the origin means the two plotted quantities are directly proportional: d is proportional to t²."}, {"type": "mc", "stem": "Why do scientists linearize curved data?", "choices": ["A straight line is easy to test and its slope can be measured.", "Straight lines always have more data points.", "Curved graphs cannot be drawn by hand.", "Linearizing removes measurement errors."], "ans": 1, "explain": "Many curves look alike, but a straight line is easy to check, and its slope gives the constant in the relationship."}, {"type": "mc", "stem": "For a sample of gas, a graph of P against 1/V is a straight line through the origin with a slope of 202 kPa·L. What is the pressure when the volume is 2.0 L?", "choices": ["101 kPa", "202 kPa", "404 kPa", "51 kPa"], "ans": 1, "explain": "P = slope × (1/V) = 202 kPa·L × (1 ÷ 2.0 L) = 101 kPa."}]);
+
+})();</script>
+<script>AS.U3.addSources("l-linearize");AS.completion(document.querySelector(".wrap"),"l-linearize");AS.chrome("l-linearize");</script>
+</body>
+</html>
