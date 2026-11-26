@@ -7,7 +7,7 @@
 <title>Quantum Numbers</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08427de77e">
+<link rel="stylesheet" href="site.css?v=08eb5c2d95">
 </head>
 <body>
 <main class="wrap">
@@ -30,18 +30,18 @@
           <ul><li><span class="kr">n can be any whole number: 1, 2, 3, 4 and so on.</span></li>
           <li>The larger the value of n, the farther the electron is from the nucleus on average and the higher its energy.</li>
           <li>Energy level n can hold up to 2n<sup>2</sup> electrons.</li>
-          <li>The principal quantum number of an atom’s valence electrons matches its period (row) on the periodic table. Sodium is in period 3, so its valence electron has n = 3.</li></ul></li>
+          <li>The principal quantum number of an atom’s valence electrons matches its period (row) on the periodic table. Sodium is in period 3, so its valence electron has n = 3.</li></ul><div class="qn-figslot" data-q="n"></div></li>
         <li><span class="def">Angular Momentum Quantum Number (ℓ)</span> – the quantum number that gives the sublevel of an electron and the shape of its orbital.
           <ul><li><span class="kb">ℓ can be any whole number from 0 to n − 1.</span></li>
           <li>Each value of ℓ is a sublevel: ℓ = 0 is s, ℓ = 1 is p, ℓ = 2 is d and ℓ = 3 is f.</li>
-          <li>Energy level n has n sublevels. For example, energy level 3 has three sublevels: 3s, 3p and 3d.</li></ul></li>
+          <li>Energy level n has n sublevels. For example, energy level 3 has three sublevels: 3s, 3p and 3d.</li></ul><div class="qn-figslot" data-q="l"></div></li>
         <li><span class="def">Magnetic Quantum Number (m<sub>ℓ</sub>)</span> – the quantum number that gives the orientation of an orbital in space.
           <ul><li><span class="kg">m<sub>ℓ</sub> can be any whole number from −ℓ to +ℓ, including 0.</span></li>
           <li>Each value of m<sub>ℓ</sub> is one orbital, so a sublevel has 2ℓ + 1 orbitals: s has 1, p has 3, d has 5 and f has 7.</li>
-          <li>For example, the three orbitals of a p sublevel (m<sub>ℓ</sub> = −1, 0 and +1) point along the three axes in space: x, y and z.</li></ul></li>
+          <li>For example, the three orbitals of a p sublevel (m<sub>ℓ</sub> = −1, 0 and +1) point along the three axes in space: x, y and z.</li></ul><div class="qn-figslot" data-q="m"></div></li>
         <li><span class="def">Spin Quantum Number (m<sub>s</sub>)</span> – the quantum number that gives the spin of an electron.
           <ul><li><span class="kp">m<sub>s</sub> can only be +½ (spin up, ↑) or −½ (spin down, ↓).</span> An electron cannot have a spin of zero.</li>
-          <li>Each orbital holds at most two electrons, and they must have opposite spins.</li></ul></li>
+          <li>Each orbital holds at most two electrons, and they must have opposite spins.</li></ul><div class="qn-figslot" data-q="s"></div></li>
       </ul>
       <div class="t7-fig" id="qa-art"></div>
       <div class="center"><table class="nt qn-tbl"><tr><th>Energy level (n)</th><th>Values of ℓ</th><th>Sublevels</th><th>Orbitals (values of m<sub>ℓ</sub>)</th><th>Maximum electrons</th></tr>
@@ -67,9 +67,10 @@
       <ul>
         <li><span class="kr">No two electrons in the same atom can have the same set of four quantum numbers.</span> This is another way of stating the Pauli exclusion principle.</li>
         <li>To label the orbitals in a sublevel, write the values of m<sub>ℓ</sub> under the boxes from −ℓ on the left to +ℓ on the right. For a p sublevel, the boxes are −1, 0 and +1.</li>
-        <li>In these notes, electrons fill each sublevel from left to right, and the first electron in each orbital is drawn spin up (+½).</li>
+        <li>In these notes, electrons fill each sublevel from left to right, and the first electron in each orbital is drawn spin up (+½).
+          <ul><li>This order is a <b>convention</b>, not a law of nature. All of the orbitals in a sublevel have the same energy, so nothing makes the −1 orbital fill before the +1 orbital.</li><li>Hund’s rule only requires that each orbital in a sublevel receives one electron before any orbital receives a second, and that those first electrons have the same spin.</li><li>Agreeing to fill from left to right with spin up first means everyone writes the same set of quantum numbers for the same electron. Some textbooks fill from +ℓ down to −ℓ instead, and they would write a different m<sub>ℓ</sub> for the same electron.</li></ul></li>
         <li>Steps for writing the quantum numbers of an electron:
-          <ol><li>Find the sublevel of the electron. The number is n.</li><li>Convert the sublevel letter to ℓ: s = 0, p = 1, d = 2, f = 3.</li><li>Find the orbital (box) that holds the electron. Its label is m<sub>ℓ</sub>.</li><li>Find the spin from the arrow: up is +½ and down is −½.</li><li>Write the set in order: (n, ℓ, m<sub>ℓ</sub>, m<sub>s</sub>).</li></ol></li>
+          <ol><li><b>Find the sublevel of the electron.</b> The number is <b>n</b>.</li><li><b>Convert the sublevel letter to ℓ:</b> s = 0, p = 1, d = 2, f = 3.</li><li><b>Find the orbital (box) that holds the electron.</b> Its label is <b>m<sub>ℓ</sub></b>.</li><li><b>Find the spin from the arrow:</b> up is +½ and down is −½.</li><li><b>Write the set in order:</b> (n, ℓ, m<sub>ℓ</sub>, m<sub>s</sub>).</li></ol></li>
       </ul>
       <div id="ex1" style="margin-top:12px"></div>
 
@@ -92,25 +93,26 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08427de77e"></script>
+<script src="site.js?v=08eb5c2d95"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:6px">${A.UQ.figAddress()}</div>`;
 A.$("#qa-art").innerHTML=A.UQ.figAddress();
+A.$$(".qn-figslot").forEach(d=>{ d.outerHTML=A.UQ.figQN(d.dataset.q); });
 A.UQ.Explorer(A.$("#qe-host"));
 S.workedTabs(A.$("#ex1"),[{label:"Sodium’s outermost electron",...S.wk("Ex: Write the set of quantum numbers for the outermost electron of a sodium atom, 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>1</sup>.",[
- ["Find the sublevel of the electron. The number is n.","3s<sup>1</sup>: n = 3"],
- ["Convert the sublevel letter to ℓ.","s sublevel: ℓ = 0"],
- ["Find the orbital that holds the electron. Its label is m<sub>ℓ</sub>.","An s sublevel has one orbital: m<sub>ℓ</sub> = 0"],
- ["Find the spin from the arrow.","The only electron in the orbital is drawn spin up: m<sub>s</sub> = +½"],
- ["Write the set in order.","(3, 0, 0, +½)"]])},
+ ["<b>Find the sublevel of the electron.</b> The number is n.","3s<sup>1</sup>: n = 3"],
+ ["<b>Convert the sublevel letter to ℓ.</b>","s sublevel: ℓ = 0"],
+ ["<b>Find the orbital that holds the electron.</b> Its label is m<sub>ℓ</sub>.","An s sublevel has one orbital: m<sub>ℓ</sub> = 0"],
+ ["<b>Find the spin from the arrow.</b>","The only electron in the orbital is drawn spin up: m<sub>s</sub> = +½"],
+ ["<b>Write the set in order.</b>","(3, 0, 0, +½)"]])},
  {label:"The last electron in oxygen",...S.wk("Ex: Oxygen has the configuration 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>4</sup>. Write the set of quantum numbers for the last electron added to the 2p sublevel.",[
- ["Find the sublevel of the electron. The number is n.","2p<sup>4</sup>: n = 2"],
- ["Convert the sublevel letter to ℓ.","p sublevel: ℓ = 1"],
- ["Find the orbital that holds the electron. Its label is m<sub>ℓ</sub>.","Three electrons fill the −1, 0 and +1 orbitals spin up. The fourth pairs in the first orbital: m<sub>ℓ</sub> = −1"],
- ["Find the spin from the arrow.","It is the second electron in that orbital, drawn spin down: m<sub>s</sub> = −½"],
- ["Write the set in order.","(2, 1, −1, −½)"]])}]);
+ ["<b>Find the sublevel of the electron.</b> The number is n.","2p<sup>4</sup>: n = 2"],
+ ["<b>Convert the sublevel letter to ℓ.</b>","p sublevel: ℓ = 1"],
+ ["<b>Find the orbital that holds the electron.</b> Its label is m<sub>ℓ</sub>.","By Hund’s rule, the first three electrons go into the −1, 0 and +1 orbitals, one each, spin up (filling from left to right by convention). The fourth pairs in the first orbital: m<sub>ℓ</sub> = −1"],
+ ["<b>Find the spin from the arrow.</b>","It is the second electron in that orbital, drawn spin down: m<sub>s</sub> = −½"],
+ ["<b>Write the set in order.</b>","(2, 1, −1, −½)"]])}]);
 A.UQ.Game(A.$("#qg-host"));
 A.VocabCheck(A.$("#vc-host"),[{"s": "The quantum number that gives the energy level of an electron is the ___ quantum number.", "a": "principal"}, {"s": "The quantum number that gives the sublevel and the shape of an orbital is the ___ quantum number.", "a": "angular momentum"}, {"s": "The quantum number that gives the orientation of an orbital is the ___ quantum number.", "a": "magnetic"}, {"s": "The spin quantum number can only be +½ or ___.", "a": "−½"}, {"s": "No two electrons in an atom can have the same four quantum numbers. This is the Pauli ___ principle.", "a": "exclusion"}]);
 A.QSet(A.$("#qs"),[

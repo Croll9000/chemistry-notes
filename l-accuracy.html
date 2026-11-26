@@ -7,7 +7,7 @@
 <title>Accuracy, Precision & Percent Error</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08427de77e">
+<link rel="stylesheet" href="site.css?v=08eb5c2d95">
 </head>
 <body>
 <style>
@@ -40,14 +40,16 @@
   <section class="note">
     <div class="tile"><h2>Accuracy and Precision</h2></div>
     <div class="body">
-      <div class="prose"><p>From 1889 to 2019, the kilogram was defined by a metal cylinder kept near Paris, and its official copies drifted by about 50 micrograms over a century. No measurement is perfect, so scientists judge the quality of their data in two ways. The <b>accepted value</b> is the true or actual value of a quantity, usually from a reference table or another trusted source, while the <b>measured value</b> is the value measured or calculated during the experiment. <b>Accuracy</b> is how close a measurement comes to the <span class="kr">accepted value</span>, and it is measured by percent error. <b>Precision</b> is how close repeated measurements are to <span class="kb">one another</span>. An instrument with smaller increments is more precise because it allows more digits to be recorded, and these meaningful digits are called significant figures.</p></div><!--/prose-->
+      <div class="prose"><p>Imagine an archer who shoots five arrows that land in a tight cluster, but all of them in the upper corner of the target, far from the bullseye. The archer is very consistent, but consistently wrong, perhaps because the sight on the bow is bent. A second archer’s arrows are scattered all over the target, but their average position is right in the center. Neither archer is doing well, and for opposite reasons.</p>
+<p>Scientists describe these two qualities separately. The <span class="def">accepted value</span> is the true or actual value of a quantity, usually from a reference table or a trusted source, while the <span class="def">measured value</span> is the value measured or calculated during the experiment. <span class="def">Accuracy</span> is how close a measurement comes to the <span class="kr">accepted (true) value</span>, and it is measured by percent error. <span class="def">Precision</span> is how close repeated measurements are to <span class="kb">one another</span>.</p>
+<div class="pr-slot" data-fig="0"></div><p>Precision also describes the instrument itself. An instrument with smaller increments is more precise, because it allows more digits to be recorded: a ruler marked in millimeters gives a more precise reading than one marked only in centimeters. These meaningful digits are called significant figures.</p></div><!--/prose-->
 <ul>
         <li><b>Accepted Value</b> – the true or actual value of a quantity (usually from a reference table or a trusted source).</li>
         <li><b>Measured Value</b> – the value measured or calculated by the student during the experiment.</li>
         <li><span class="def">Accuracy</span> – how close a measurement comes to the <span class="kr">accepted (true) value</span>.
           <ul><li>Accuracy is measured by percent error.</li></ul></li>
         <li><span class="def">Precision</span> – how close repeated measurements are to <span class="kb">one another</span>.
-          <ul><li>An instrument with smaller increments is more precise because it allows more digits to be recorded.</li></ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">A balance that reads 2.153 g is more precise than one that reads 2.2 g.</div></div></div><ul><li>These meaningful digits are called significant figures (next page).</li></ul></li>
+          <ul><li>An instrument with smaller increments is more precise because it allows more digits to be recorded.</li></ul><div class="xbox"><span class="xtag">Example</span><div class="xbody"><div class="xl">A balance that reads 2.153 g is more precise than one that reads 2.2 g.</div></div></div><ul><li>These meaningful digits are called significant figures.</li></ul></li>
       </ul>
       <p>Think of a dartboard. The bull’s-eye is the accepted value, and each dart is one measurement.</p>
       <div class="tg4" id="tg4"></div>
@@ -70,7 +72,8 @@
   <section class="note">
     <div class="tile"><h2>Accuracy and Precision in Data</h2></div>
     <div class="body">
-      <div class="prose"><p>A dart player whose darts all land in a tight cluster far from the bullseye is precise but not accurate. In the laboratory, the same two ideas are judged from data: accuracy from how close the average of several trials is to the accepted value, and precision from how close the trials are to one another. A set of results can be accurate and precise, precise but not accurate, or neither.</p></div><!--/prose-->
+      <div class="prose"><p>A set of measurements can be very precise and still be wrong. If a student’s three density measurements of aluminum are 2.48, 2.49 and 2.48 g/cm³, they agree closely with one another, so they are precise, but they are far from the accepted value of 2.70 g/cm³, so they are not accurate. Results like these usually point to a systematic error, a problem that affects every trial the same way, such as a balance that was not zeroed. Results that scatter widely but average out near the accepted value point instead to random error. Comparing the spread of the trials with the accepted value shows which kind of problem to look for.</p>
+<div class="pr-slot" data-fig="0"></div><div class="pr-slot" data-fig="1"></div></div><!--/prose-->
 <p>Four students each measured the density of the same aluminum sample three times. The accepted value is 2.70 g/cm³.</p>
       <div class="tbl-wrap"><table class="nt"><tr><th>Student</th><th>Trial 1</th><th>Trial 2</th><th>Trial 3</th><th>Average</th><th>Description</th></tr>
         <tr><td>A</td><td>2.71</td><td>2.69</td><td>2.70</td><td>2.70</td><td><span class="kr">accurate and precise</span>: close to 2.70 and close to each other</td></tr>
@@ -101,7 +104,8 @@
   <section class="note">
     <div class="tile"><h2>Percent Error</h2></div>
     <div class="body">
-      <div class="prose"><p>A measured density of 2.80 g/cm³ for aluminum, whose accepted density is 2.70 g/cm³, is off by 0.10 g/cm³. Knowing that a result is incorrect is not enough; it is more useful to know how far off it is compared with the size of the value being measured. <b>Percent error</b> is how far a measured value differs from the accepted value, as a percent of the accepted value. For the aluminum, the error is 3.7%. A <span class="kr">smaller percent error means a more accurate measurement</span>.</p></div><!--/prose-->
+      <div class="prose"><p>A pharmacist who measures out a 500 mg dose of medicine but actually weighs 485 mg is off by 15 mg. A chemist weighing a 7 kg bag of salt that is off by the same 15 mg has made an error that hardly matters, since 15 mg is a tiny fraction of 7 kg. The size of an error only means something when it is compared with the size of the value being measured.</p>
+<div class="pr-slot" data-fig="0"></div><p><span class="def">Percent error</span> is how far a measured value differs from the accepted value, as a percent of the accepted value. The difference between the two values is divided by the accepted value and multiplied by 100. The pharmacist’s error is <span class="mth"><span class="wf"><span>485 mg − 500 mg</span><span>500 mg</span></span></span> × 100 = −3%, while the chemist’s is only about −0.0002%. <span class="kr">A smaller percent error means a more accurate measurement.</span> A negative percent error means the measured value was too low, while a positive one means it was too high.</p></div><!--/prose-->
 <ul>
         <li><span class="def">Percent Error</span> – how far a measured value differs from the accepted value, as a percent of the accepted value.
           <ul><li class="qu"><i>Unit</i> – percent (%)</li><li>A <span class="kr">smaller percent error means a more accurate</span> measurement.</li></ul></li>
@@ -145,7 +149,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08427de77e"></script>
+<script src="site.js?v=08eb5c2d95"></script>
 <script>(function(){
 
 const A=AS, L=A.U0, U=A.U1, T=L.T;

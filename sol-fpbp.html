@@ -7,7 +7,7 @@
 <title>Calculating Freezing and Boiling Points</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08427de77e">
+<link rel="stylesheet" href="site.css?v=08eb5c2d95">
 </head>
 <body>
 <main class="wrap">
@@ -23,8 +23,9 @@
   <section class="note enr">
     <div class="tile"><h2>ΔT = iKm</h2></div>
     <div class="body">
-      <div class="prose"><p>Airline crews spray airplanes with a heated mixture of propylene glycol and water before winter takeoffs. The mixture must stay liquid at the temperature of the wings, so the amount of glycol is calculated from how much each mole of solute lowers the freezing point of water. For a dilute solution, the change in freezing point or boiling point is proportional to the molality of the dissolved particles. The number of particles one formula unit or molecule forms when it dissolves is called the <b>van ’t Hoff factor (i)</b>: 1 for sugar, 2 for NaCl and 3 for CaCl<sub>2</sub>. For water, the constants are K<sub>f</sub> = 1.86 °C/m and K<sub>b</sub> = 0.512 °C/m.</p>
-<p>The freezing point of the solution is the normal freezing point minus ΔT, and the boiling point is the normal boiling point plus ΔT. The steps for calculating a new freezing or boiling point are:</p>
+      <div class="prose"><p>Many cooks add salt to a pot of water “to make it boil hotter.” If we calculate the effect, it turns out to be almost nothing. A tablespoon of salt, about 17 g or 0.29 mol, dissolved in 4 kg of water gives a molality of about 0.073 m. Each formula unit forms two ions, and each mole of dissolved particles in a kilogram of water raises the boiling point by 0.512 °C, so the boiling point rises by only 2 × 0.512 °C/m × 0.073 m ≈ 0.07 °C. The salt makes the pasta taste better, but it does not make the water noticeably hotter.</p>
+<p>That calculation used the equations for freezing point depression and boiling point elevation. For a dilute solution, the change in freezing or boiling point is directly proportional to the molality of the dissolved particles. The molality of the particles is the molality of the solute times the number of particles each formula unit or molecule forms, a number referred to as the <span class="def">van ’t Hoff factor (i)</span>: 1 for sugar, 2 for NaCl and 3 for CaCl<sub>2</sub>. The constant K tells how many degrees the temperature changes for each mole of particles in a kilogram of solvent, and it is different for every solvent:</p>
+<div class="pr-slot" data-fig="0"></div><div class="pr-slot" data-fig="1"></div><p>For water, the constants are K<sub>f</sub> = 1.86 °C/m and K<sub>b</sub> = 0.512 °C/m, so dissolved particles lower the freezing point of water more than three times as much as they raise its boiling point. The equations give only the size of the change, ΔT, so the last step is always to apply it in the correct direction: <span class="kr">the freezing point of the solution is the normal freezing point minus ΔT</span>, while <span class="kb">the boiling point is the normal boiling point plus ΔT</span>. To calculate a new freezing or boiling point:</p>
 <ol class="pr-steps"><li><b>List the variables and the unknown,</b> each with its unit.</li><li><b>Find i and the molality</b> (convert grams to moles and grams of solvent to kilograms).</li><li><b>Write down the equation.</b></li><li><b>Substitute and solve for ΔT.</b></li><li><b>Subtract ΔT from the freezing point,</b> or add it to the boiling point, and write the final answer with units.</li></ol></div><!--/prose-->
 <ul>
         <li>The <span class="def">van ’t Hoff factor (i)</span> – the number of particles one formula unit or molecule forms when it dissolves (1 for sugar, 2 for NaCl, 3 for CaCl<sub>2</sub>).</li>
@@ -58,7 +59,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08427de77e"></script>
+<script src="site.js?v=08eb5c2d95"></script>
 <script>(function(){
 
 const A=AS, G=A.U8, T=A.U7, S=A.U6, L=A.U0, P=A.U3, INK="#1b2328";
