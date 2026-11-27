@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guided Inquiry: Energy in Chemical Reactions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#40BAD2;--teal-deep:#1f8fa8;--teal-ink:#0e5f72;--row:#E7F6F9;--ink:#1b2328;--body:#4a5257;--line:#cfdde1;--purple:#7030A0;--gold:#f2b705;--good:#00843c;--good-bg:#e3f6ea;--bad:#c40000;--bad-bg:#fde8e8;--ch-bg:#eef6f9;--ch-bd:#9fc4d6;--ch-hov:#e2f1f6;--g-q:19px;--g-p:16.5px}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:Inter,system-ui,"Segoe UI",Roboto,Arial,sans-serif;font-size:17px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 40px}
+header.top{background:var(--teal);color:#fff;padding:30px 34px 28px;margin:24px 0 10px}
+header.top .eyebrow{font-size:14px;letter-spacing:.08em;text-transform:uppercase;opacity:.9;margin-bottom:10px}
+header.top h1{margin:0;font-size:46px;font-weight:500;line-height:1.12}
+header.top .sub{font-size:17px;opacity:.95;margin-top:12px}
+header.top .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+header.top .tags span{border:1px solid rgba(255,255,255,.75);border-radius:999px;padding:2px 9px;font-size:13px}
+nav.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+nav.tabs button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 13px;font:inherit;font-size:15px;cursor:pointer;color:var(--ink)}
+nav.tabs button.on{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff;font-weight:600}
+nav.tabs button .tk{color:var(--good);font-weight:800;margin-left:4px}
+nav.tabs button.on .tk{color:#fff}
+section.part{display:none}section.part.on{display:block}
+.banner{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px;color:var(--body)}
+.banner h2{margin:0;background:var(--teal);color:#fff;font-weight:500;font-size:25px;line-height:1.2;padding:11px 22px}
+.banner>div{padding:10px 22px 12px}
+.banner .time{font-size:13px;color:#6b7782}
+.banner p{margin:6px 0}
+.lvl{background:#fff;border-left:6px solid #0070C0;border-radius:10px;padding:10px 16px;margin:18px 0 8px}
+.lvl h3{margin:0;font-size:19px;font-weight:600;color:#0070C0}
+.lvl div{color:var(--body);font-size:16.5px}
+.model{background:#fff;border:2px solid var(--ch-bd);border-radius:12px;padding:12px 14px;margin:14px 0}
+.model h3{margin:0 0 8px;font-size:19px;font-weight:600;color:var(--teal-ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cards.c4{grid-template-columns:repeat(4,1fr)}
+.cards.c2{grid-template-columns:1fr 1fr}
+.card{border:1px solid var(--line);border-radius:10px;padding:6px;text-align:center;background:#fbfdfe}
+.card .f{font-size:22px;font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.panel{border:1px solid var(--line);border-radius:10px;padding:8px;background:#fbfdfe}
+.panel .nm{font-weight:700}
+.panel .eq{font-size:19px;margin:2px 0 4px}
+.key{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:15px;color:#5b6b78;margin-top:6px}
+.key span.sw{display:inline-block;width:16px;height:16px;border-radius:50%;border:1.1px solid #000;vertical-align:middle;margin-right:4px}
+.q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0;position:relative}
+.qh{display:flex;gap:10px;align-items:flex-start}
+.qn{flex:0 0 auto;font-weight:600;color:var(--teal-deep);min-width:34px;font-size:var(--g-q)}
+.wtag{display:inline-block;background:#fff1d6;color:#8a4b00;border:1px solid #e9c48a;border-radius:6px;font-size:12.5px;font-weight:600;padding:1px 7px;margin-left:8px;vertical-align:middle}
+.qp{flex:1;font-size:var(--g-q);font-weight:500}
+.qp .ins{display:block;font-size:var(--g-p);font-weight:400;color:#5b6b78;margin-top:2px}
+button.chk{flex:0 0 auto;background:var(--teal);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-family:inherit;font-weight:600;font-size:15px;line-height:1.2;cursor:pointer}
+button.chk:hover{filter:brightness(1.07)}
+.qb{margin:10px 0 0 44px}
+.stock{grid-template-columns:1fr 44px 1fr!important;align-items:center}
+.stock .arr{font-size:34px;font-weight:500;color:#1b2328;text-align:center}
+.fb{margin:8px 0 0 44px;font-size:16.5px}
+.fb.ok{color:var(--good);font-weight:600}.fb.no{color:var(--bad)}
+.fb .first{color:#6b7782;font-weight:400;font-size:14px;margin-left:6px}
+.fb button{margin-left:8px;border:1px solid var(--bad);background:#fff;color:var(--bad);border-radius:6px;padding:2px 8px;cursor:pointer;font:inherit;font-size:13px}
+input.n,input.c{width:58px;padding:5px 6px;border:1.5px solid #9aa8b3;border-radius:6px;font:inherit;text-align:center;font-size:16px}
+input.c{width:44px}
+input.f{width:150px;padding:5px 8px;border:1.5px solid #9aa8b3;border-radius:6px;font:inherit;font-size:17px}
+input.t{padding:6px 8px;border:1.5px solid #9aa8b3;border-radius:6px;font:inherit;font-size:17px}
+select{padding:5px 6px;border:1.5px solid #9aa8b3;border-radius:6px;font:inherit;font-size:16px;background:#fff;max-width:100%}
+.ok{background:var(--good-bg)!important;border-color:var(--good)!important}
+.no{background:var(--bad-bg)!important;border-color:var(--bad)!important}
+table.tt{border-collapse:collapse;margin:4px 0;font-size:17px}
+table.tt th,table.tt td{border:1px solid #b9c6cf;padding:6px 9px;text-align:center}
+table.tt th{background:var(--teal);border-color:var(--teal-deep);color:#fff;font-weight:600}
+table.tt td.l{text-align:left;font-weight:600;white-space:nowrap}
+.els{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.els label{white-space:nowrap}
+.frame{font-size:17.5px;line-height:2.3}
+.choices{display:flex;flex-wrap:wrap;gap:8px;padding:4px;border-radius:10px;border:1.5px solid transparent}
+.choices button{background:var(--ch-bg);border:1.5px solid var(--ch-bd);border-radius:8px;padding:7px 12px;font:inherit;font-size:17px;cursor:pointer;color:var(--ink);text-align:left}
+.choices button:hover{background:var(--ch-hov)}
+.choices button.sel{background:var(--teal);border-color:var(--teal-deep);color:#fff}
+.choices.col{flex-direction:column;align-items:stretch}
+.rowpick tr.rp{cursor:pointer}.rowpick tr.rp:hover td{background:var(--ch-hov)}.rowpick tr.pick td{background:var(--teal)!important;color:#fff;font-weight:600}.rowpick.ok{outline:3px solid var(--good);background:none!important}.rowpick.no{outline:3px solid var(--bad);background:none!important}
+textarea{width:100%;min-height:76px;padding:8px;border:1.5px solid #9aa8b3;border-radius:8px;font:inherit;font-size:17px;resize:vertical}
+.wsave{margin-top:6px;display:flex;gap:10px;align-items:center;font-size:15px;color:#5b6b78}
+.wsave button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:6px 14px;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.rt{border:2px solid var(--teal);border-left-width:8px;background:var(--row);border-radius:12px;padding:12px 18px;margin:14px 0}
+.rt h4{margin:0 0 6px;font-size:19px;font-weight:600;color:var(--teal-ink)}
+.rt.lock{background:#f4f5f6;border-color:#c9c9c9;color:#777}.rt.lock h4{color:#777}
+.rt ul,.rt ol{margin:4px 0;padding-left:22px}
+.navb{display:flex;justify-content:space-between;margin:18px 0}
+.navb button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:9px 18px;font:inherit;font-weight:600;cursor:pointer}
+.navb button.back{background:#8a99a5}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.tools button{background:#fff;border:1.5px solid var(--teal-deep);color:var(--teal-deep);border-radius:8px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.tools button:hover{background:var(--ch-hov)}
+.tools button.sel{background:var(--teal-deep);color:#fff}
+.status{font-size:15px;color:#5b6b78}
+.bal{display:inline-block;padding:3px 10px;border-radius:12px;font-weight:600;font-size:14px}
+.bal.y{background:var(--good-bg);color:var(--good)}.bal.n{background:#eef0f2;color:#6b7782}
+.stock{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stock .side{border:1px solid var(--line);border-radius:10px;padding:6px;background:#fbfdfe}
+.stock .side h5{margin:2px 0 4px;font-size:15px;text-align:center;color:#5b6b78}
+.ctrls{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:4px}
+.ctrl{display:flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:8px;padding:3px 6px;background:#fff}
+.ctrl button{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--ch-bd);background:var(--ch-bg);font-size:18px;font-weight:700;cursor:pointer;line-height:1}
+.ctrl .cn{min-width:20px;text-align:center;font-weight:600}.ctrl .cf{font-size:17px}
+.eqline{font-size:20px;margin:8px 0;line-height:2.2}
+.info{border:1px solid #b9c6cf;border-radius:10px;padding:8px 12px;background:#f7fafc;margin-top:8px;font-size:16.5px}
+.start label{display:inline-block;margin:6px 14px 6px 0;font-weight:600}
+.howto{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 18px}
+.howto li{margin:4px 0}
+.sumtab{border-collapse:collapse;width:100%;font-size:15px}
+.sumtab td,.sumtab th{border:1px solid #c9d3da;padding:6px 8px;vertical-align:top;text-align:left}
+.sumtab th{background:var(--teal);color:#fff;font-weight:600}
+.big{font-size:26px;font-weight:600;color:var(--teal-deep)}
+a.submit,button.submit{display:inline-block;background:var(--good);color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:10px;font-size:18px;border:0;cursor:pointer}
+.warn{color:var(--bad);font-weight:600}
+.small{font-size:14.5px;color:#5b6b78}
+svg text{font-family:Inter,Arial,sans-serif}
+.builder svg{background:#fbfdfe;border:1px solid var(--line);border-radius:10px}
+#printsum{display:none}
+@media (max-width:760px){header.top{padding:20px 20px}header.top h1{font-size:32px}.cards,.cards.c4{grid-template-columns:1fr 1fr}.grid2,.stock{grid-template-columns:1fr!important}.stock .arr{transform:rotate(90deg)}.qb,.fb{margin-left:0}}
+@media print{body{background:#fff}.wrap>*:not(#printsum){display:none!important}#printsum{display:block!important}}
+.eqrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;font-size:19px;margin:6px 0;line-height:1.8}
+.eqlab{font-weight:600;font-size:16px;min-width:96px;color:#0e5f72}
+.eqx{font-size:16px;color:#4a5257}
+.dh{font-style:italic;font-family:"Cambria Math",Cambria,Georgia,serif}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:760px){.cmp{grid-template-columns:1fr}}
+.eqline2{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0}
+:root{--g-q:19px;--g-p:16.5px}
+.banner p,.model p,.rt p,.rt li{font-size:17px;color:var(--body)}
+.frame{font-size:17.5px}
+table.tt{font-size:17px}
+.choices button{font-size:17px}
+.small{font-size:14.5px;color:#5b6b78}
+.dh{font-family:"LippOps",Cambria,"Caladea","Cambria Math",serif;font-style:normal;color:var(--ink)}
+.eqrow{font-size:18px}
+.eqlab{font-size:16px;font-weight:600}
+.eqx{font-size:16px}
+.build{margin:4px 0}
+.bline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:18px;line-height:2.2;margin:4px 0}
+.slot{display:inline-flex;min-width:88px;min-height:38px;border:2px dashed #9fc4d6;border-radius:8px;align-items:center;justify-content:center;padding:2px;vertical-align:middle;background:#fff;cursor:pointer}
+.slot.filled{border-style:solid;border-color:#9fc4d6}
+.slot.ok{border-color:var(--good);background:var(--good-bg)}.slot.no{border-color:var(--bad);background:var(--bad-bg)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;min-height:46px;padding:8px;border:1.5px solid var(--line);border-radius:10px;background:#f7fbfd;margin-top:4px}
+button.tile{background:var(--ch-bg);border:1.5px solid var(--ch-bd);border-radius:8px;padding:6px 12px;font:inherit;font-size:17px;cursor:grab;color:var(--ink)}
+button.tile.sel{background:var(--teal);border-color:var(--teal-deep);color:#fff}
+svg.ok{outline:3px solid var(--good);border-radius:8px}svg.no{outline:3px solid var(--bad);border-radius:8px}
+.choices.ok{outline:3px solid var(--good);border-radius:8px}.choices.no{outline:3px solid var(--bad);border-radius:8px}
+td .choices{flex-wrap:nowrap}
+.bbreak{flex-basis:100%;height:4px}.blab{font-weight:600;color:var(--teal-ink);margin-right:4px}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="eyebrow">Chemical Reactions · Guided Inquiry</div><h1>Energy in Chemical Reactions</h1><div class="sub" id="who">Unit 5 · Chemical Reactions</div><div class="tags"><span>HS-PS1-4</span><span>SEP: Developing &amp; Using Models</span><span>CCC: Energy &amp; Matter</span></div></header>
+<nav class="tabs" id="tabs"></nav>
+<main id="main"></main>
+<div id="printsum"></div>
+</div>
+<script>
+/* ================= TEACHER SETUP =================
+   After running the gradebook setup script, paste the line it prints
+   in place of the GRADEBOOK line below. */
+const GRADEBOOK = {"formUrl":"","fields":{}};
+/* ================================================= */
+const VERSION = "Energy in Reactions GI v1";
+const TITLE = "Guided Inquiry: Energy in Chemical Reactions";
+const STORE = "gi-energy-v1";
+const SP = {"H2": {"s": "<line x1=\"-10.5\" y1=\"0.0\" x2=\"10.5\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-10.5\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-10.5\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"10.5\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"10.5\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g>", "x": -17.5, "y": -7, "w": 35, "h": 14}, "Cl2": {"s": "<line x1=\"-13.5\" y1=\"0.0\" x2=\"13.5\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#F28C28\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.2\" font-weight=\"800\" fill=\"#fff\">Cl</text></g><g><circle cx=\"13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#F28C28\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.2\" font-weight=\"800\" fill=\"#fff\">Cl</text></g>", "x": -23.5, "y": -10, "w": 47, "h": 20}, "HCl": {"s": "<line x1=\"-12.0\" y1=\"0.0\" x2=\"12.0\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-12.0\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-12.0\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"12.0\" cy=\"0.0\" r=\"10.0\" fill=\"#F28C28\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"12.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.2\" font-weight=\"800\" fill=\"#fff\">Cl</text></g>", "x": -19, "y": -10, "w": 41, "h": 20}, "N2": {"s": "<line x1=\"-13.5\" y1=\"-3.6\" x2=\"13.5\" y2=\"-3.6\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"-13.5\" y1=\"0.0\" x2=\"13.5\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"-13.5\" y1=\"3.6\" x2=\"13.5\" y2=\"3.6\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#7030A0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">N</text></g><g><circle cx=\"13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#7030A0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">N</text></g>", "x": -23.5, "y": -10, "w": 47, "h": 20}, "O2": {"s": "<line x1=\"-13.5\" y1=\"-1.8\" x2=\"13.5\" y2=\"-1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"-13.5\" y1=\"1.8\" x2=\"13.5\" y2=\"1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g>", "x": -23.5, "y": -10, "w": 47, "h": 20}, "NO": {"s": "<line x1=\"-13.5\" y1=\"-1.8\" x2=\"13.5\" y2=\"-1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"-13.5\" y1=\"1.8\" x2=\"13.5\" y2=\"1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#7030A0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">N</text></g><g><circle cx=\"13.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"13.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g>", "x": -23.5, "y": -10, "w": 47, "h": 20}, "H2O": {"s": "<line x1=\"9.6\" y1=\"0.0\" x2=\"-9.6\" y2=\"-14.4\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"9.6\" y1=\"0.0\" x2=\"-9.6\" y2=\"14.4\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"9.6\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"9.6\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"-9.6\" cy=\"-14.4\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-9.6\" y=\"-11.9\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"-9.6\" cy=\"14.4\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-9.6\" y=\"16.9\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g>", "x": -16.6, "y": -21.4, "w": 36.2, "h": 42.8}, "H": {"s": "<g><circle cx=\"0.0\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g>", "x": -7, "y": -7, "w": 14, "h": 14}, "Cl": {"s": "<g><circle cx=\"0.0\" cy=\"0.0\" r=\"10.0\" fill=\"#F28C28\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.2\" font-weight=\"800\" fill=\"#fff\">Cl</text></g>", "x": -10, "y": -10, "w": 20, "h": 20}, "N": {"s": "<g><circle cx=\"0.0\" cy=\"0.0\" r=\"10.0\" fill=\"#7030A0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">N</text></g>", "x": -10, "y": -10, "w": 20, "h": 20}, "O": {"s": "<g><circle cx=\"0.0\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g>", "x": -10, "y": -10, "w": 20, "h": 20}, "CH4": {"s": "<line x1=\"0.0\" y1=\"0.0\" x2=\"0.0\" y2=\"-24.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"0.0\" y1=\"0.0\" x2=\"0.0\" y2=\"24.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"0.0\" y1=\"0.0\" x2=\"-24.0\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"0.0\" y1=\"0.0\" x2=\"24.0\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"0.0\" cy=\"0.0\" r=\"10.0\" fill=\"#00B050\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">C</text></g><g><circle cx=\"0.0\" cy=\"-24.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"-21.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"0.0\" cy=\"24.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"26.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"-24.0\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-24.0\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"24.0\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"24.0\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g>", "x": -31, "y": -31, "w": 62, "h": 62}, "CO2": {"s": "<line x1=\"0.0\" y1=\"1.8\" x2=\"-27.0\" y2=\"1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"0.0\" y1=\"-1.8\" x2=\"-27.0\" y2=\"-1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"0.0\" y1=\"-1.8\" x2=\"27.0\" y2=\"-1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"0.0\" y1=\"1.8\" x2=\"27.0\" y2=\"1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"0.0\" cy=\"0.0\" r=\"10.0\" fill=\"#00B050\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">C</text></g><g><circle cx=\"-27.0\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-27.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"27.0\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"27.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g>", "x": -37, "y": -10, "w": 74, "h": 20}, "Mg": {"s": "<g><circle cx=\"0.0\" cy=\"0.0\" r=\"12.0\" fill=\"#9FA8B0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"4.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Mg</text></g>", "x": -12, "y": -12, "w": 24, "h": 24}, "MgCl2": {"s": "<rect x=\"-42.9\" y=\"-21.4\" width=\"85.8\" height=\"42.7\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><g><circle cx=\"-0.0\" cy=\"5.4\" r=\"12.0\" fill=\"#9FA8B0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-0.0\" y=\"9.7\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Mg</text></g><g><circle cx=\"-20.5\" cy=\"5.4\" r=\"10.0\" fill=\"#F28C28\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-20.5\" y=\"9.0\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.2\" font-weight=\"800\" fill=\"#fff\">Cl</text></g><g><circle cx=\"20.5\" cy=\"5.4\" r=\"10.0\" fill=\"#F28C28\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"20.5\" y=\"9.0\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.2\" font-weight=\"800\" fill=\"#fff\">Cl</text></g><g opacity=\"1\"><rect x=\"-8.6\" y=\"-17.2\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"-0.0\" y=\"-8.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">2+</text></g><g opacity=\"1\"><rect x=\"-38.9\" y=\"-13.0\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"-33.1\" y=\"-4.1\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g><g opacity=\"1\"><rect x=\"27.3\" y=\"-13.0\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"33.1\" y=\"-4.1\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g>", "x": -42.9, "y": -21.4, "w": 85.8, "h": 42.7}, "CaO": {"s": "<rect x=\"-25.3\" y=\"-21.4\" width=\"50.5\" height=\"42.7\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><g><circle cx=\"-9.3\" cy=\"5.4\" r=\"12.0\" fill=\"#E6E6E6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-9.3\" y=\"9.7\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Ca</text></g><g><circle cx=\"11.3\" cy=\"5.4\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"11.3\" y=\"9.0\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g opacity=\"1\"><rect x=\"-17.8\" y=\"-17.2\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"-9.2\" y=\"-8.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">2+</text></g><g opacity=\"1\"><rect x=\"2.7\" y=\"-15.2\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"11.3\" y=\"-6.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">2−</text></g>", "x": -25.3, "y": -21.4, "w": 50.5, "h": 42.7}, "Ca(OH)2": {"s": "<rect x=\"-57.0\" y=\"-36.5\" width=\"114.0\" height=\"73.0\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><circle cx=\"-20.5\" cy=\"0.0\" r=\"32.5\" fill=\"none\" stroke=\"#5f6b72\" stroke-width=\"1.10\" stroke-dasharray=\"3.0 2.2\" opacity=\"1\"/><circle cx=\"20.5\" cy=\"0.0\" r=\"32.5\" fill=\"none\" stroke=\"#5f6b72\" stroke-width=\"1.10\" stroke-dasharray=\"3.0 2.2\" opacity=\"1\"/><line x1=\"-20.5\" y1=\"0.0\" x2=\"-44.5\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"20.5\" y1=\"0.0\" x2=\"44.5\" y2=\"-0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"0.0\" cy=\"0.0\" r=\"12.0\" fill=\"#E6E6E6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"4.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Ca</text></g><g><circle cx=\"-20.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-20.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"-44.5\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-44.5\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"20.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"20.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"44.5\" cy=\"-0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"44.5\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g opacity=\"1\"><rect x=\"-8.6\" y=\"-22.5\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"0.0\" y=\"-13.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">2+</text></g><g opacity=\"1\"><rect x=\"-51.5\" y=\"-31.0\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"-45.7\" y=\"-22.1\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g><g opacity=\"1\"><rect x=\"39.9\" y=\"-31.0\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"45.7\" y=\"-22.1\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g>", "x": -57, "y": -36.5, "w": 114, "h": 73}, "Fe": {"s": "<g><circle cx=\"0.0\" cy=\"0.0\" r=\"12.0\" fill=\"#8A929A\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"4.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Fe</text></g>", "x": -12, "y": -12, "w": 24, "h": 24}, "Fe2O3": {"s": "<rect x=\"-49.5\" y=\"-30.9\" width=\"99.0\" height=\"61.7\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><g><circle cx=\"-35.5\" cy=\"-6.1\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-35.5\" y=\"-2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"-17.8\" cy=\"4.1\" r=\"12.0\" fill=\"#8A929A\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-17.8\" y=\"8.4\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Fe</text></g><g><circle cx=\"0.0\" cy=\"-6.1\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"-2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"17.8\" cy=\"4.1\" r=\"12.0\" fill=\"#8A929A\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"17.8\" y=\"8.4\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Fe</text></g><g><circle cx=\"35.5\" cy=\"-6.1\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"35.5\" y=\"-2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g opacity=\"1\"><rect x=\"-44.1\" y=\"-26.7\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"-35.5\" y=\"-17.8\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">2−</text></g><g opacity=\"1\"><rect x=\"-26.4\" y=\"15.1\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"-17.8\" y=\"24.0\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">3+</text></g><g opacity=\"1\"><rect x=\"-8.6\" y=\"-26.7\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"0.0\" y=\"-17.8\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">2−</text></g><g opacity=\"1\"><rect x=\"9.2\" y=\"15.1\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"17.8\" y=\"24.0\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">3+</text></g><g opacity=\"1\"><rect x=\"26.9\" y=\"-26.7\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"35.5\" y=\"-17.8\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">2−</text></g>", "x": -49.5, "y": -30.9, "w": 99, "h": 61.7}, "CaCO3": {"s": "<rect x=\"-53.0\" y=\"-42.5\" width=\"106.0\" height=\"85.0\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><circle cx=\"10.5\" cy=\"0.0\" r=\"38.5\" fill=\"none\" stroke=\"#5f6b72\" stroke-width=\"1.10\" stroke-dasharray=\"3.0 2.2\" opacity=\"1\"/><line x1=\"10.5\" y1=\"1.8\" x2=\"-16.5\" y2=\"1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"10.5\" y1=\"-1.8\" x2=\"-16.5\" y2=\"-1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"10.5\" y1=\"0.0\" x2=\"24.0\" y2=\"-23.4\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"10.5\" y1=\"0.0\" x2=\"24.0\" y2=\"23.4\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-37.0\" cy=\"0.0\" r=\"12.0\" fill=\"#E6E6E6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-37.0\" y=\"4.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Ca</text></g><g><circle cx=\"10.5\" cy=\"0.0\" r=\"10.0\" fill=\"#00B050\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"10.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">C</text></g><g><circle cx=\"-16.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-16.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"24.0\" cy=\"-23.4\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"24.0\" y=\"-19.8\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"24.0\" cy=\"23.4\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"24.0\" y=\"27.0\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g opacity=\"1\"><rect x=\"-45.6\" y=\"-22.5\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"-37.0\" y=\"-13.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">2+</text></g><g opacity=\"1\"><rect x=\"-28.7\" y=\"24.8\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"-20.1\" y=\"33.7\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">2−</text></g>", "x": -53, "y": -42.5, "w": 106, "h": 85}, "Mg(OH)2": {"s": "<rect x=\"-57.0\" y=\"-36.5\" width=\"114.0\" height=\"73.0\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><circle cx=\"-20.5\" cy=\"0.0\" r=\"32.5\" fill=\"none\" stroke=\"#5f6b72\" stroke-width=\"1.10\" stroke-dasharray=\"3.0 2.2\" opacity=\"1\"/><circle cx=\"20.5\" cy=\"0.0\" r=\"32.5\" fill=\"none\" stroke=\"#5f6b72\" stroke-width=\"1.10\" stroke-dasharray=\"3.0 2.2\" opacity=\"1\"/><line x1=\"-20.5\" y1=\"0.0\" x2=\"-44.5\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"20.5\" y1=\"0.0\" x2=\"44.5\" y2=\"-0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"0.0\" cy=\"0.0\" r=\"12.0\" fill=\"#9FA8B0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"0.0\" y=\"4.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Mg</text></g><g><circle cx=\"-20.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-20.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"-44.5\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-44.5\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"20.5\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"20.5\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"44.5\" cy=\"-0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"44.5\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g opacity=\"1\"><rect x=\"-8.6\" y=\"-22.5\" width=\"17.2\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"0.0\" y=\"-13.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">2+</text></g><g opacity=\"1\"><rect x=\"-51.5\" y=\"-31.0\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"-45.7\" y=\"-22.1\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g><g opacity=\"1\"><rect x=\"39.9\" y=\"-31.0\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"45.7\" y=\"-22.1\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g>", "x": -57, "y": -36.5, "w": 114, "h": 73}, "NH3": {"s": "<line x1=\"12.0\" y1=\"0.0\" x2=\"-7.0\" y2=\"-14.6\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"12.0\" y1=\"0.0\" x2=\"-7.0\" y2=\"14.6\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"12.0\" y1=\"0.0\" x2=\"-12.0\" y2=\"0.0\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"12.0\" cy=\"0.0\" r=\"10.0\" fill=\"#7030A0\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"12.0\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">N</text></g><g><circle cx=\"-7.0\" cy=\"-14.6\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-7.0\" y=\"-12.1\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"-7.0\" cy=\"14.6\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-7.0\" y=\"17.2\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g><circle cx=\"-12.0\" cy=\"0.0\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-12.0\" y=\"2.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g>", "x": -19, "y": -21.6, "w": 41, "h": 43.2}, "NaHCO3": {"s": "<rect x=\"-64.1\" y=\"-56.8\" width=\"128.1\" height=\"113.6\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><circle cx=\"7.2\" cy=\"0.0\" r=\"52.8\" fill=\"none\" stroke=\"#5f6b72\" stroke-width=\"1.10\" stroke-dasharray=\"3.0 2.2\" opacity=\"1\"/><line x1=\"7.2\" y1=\"1.8\" x2=\"-19.8\" y2=\"1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"7.2\" y1=\"-1.8\" x2=\"-19.8\" y2=\"-1.8\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"7.2\" y1=\"0.0\" x2=\"20.7\" y2=\"23.4\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"7.2\" y1=\"0.0\" x2=\"20.7\" y2=\"-23.4\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><line x1=\"20.7\" y1=\"-23.4\" x2=\"8.9\" y2=\"-44.3\" stroke=\"#1b2328\" stroke-width=\"1.90\" stroke-linecap=\"round\" opacity=\"1\"/><g><circle cx=\"-40.3\" cy=\"0.0\" r=\"12.0\" fill=\"#A98BDB\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-40.3\" y=\"4.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Na</text></g><g><circle cx=\"7.2\" cy=\"0.0\" r=\"10.0\" fill=\"#00B050\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"7.2\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">C</text></g><g><circle cx=\"-19.8\" cy=\"0.0\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-19.8\" y=\"3.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"20.7\" cy=\"23.4\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"20.7\" y=\"27.0\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"20.7\" cy=\"-23.4\" r=\"10.0\" fill=\"#E00000\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"20.7\" y=\"-19.8\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.5\" font-weight=\"800\" fill=\"#fff\">O</text></g><g><circle cx=\"8.9\" cy=\"-44.3\" r=\"7.0\" fill=\"#2E75D6\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"8.9\" y=\"-41.8\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.6\" font-weight=\"800\" fill=\"#fff\">H</text></g><g opacity=\"1\"><rect x=\"-60.1\" y=\"-19.8\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"-54.3\" y=\"-10.9\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">+</text></g><g opacity=\"1\"><rect x=\"41.0\" y=\"-45.4\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"46.8\" y=\"-36.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g>", "x": -64.1, "y": -56.8, "w": 128.1, "h": 113.6}, "NaCl": {"s": "<rect x=\"-33.3\" y=\"-20.0\" width=\"66.7\" height=\"40.0\" rx=\"8.0\" fill=\"#eef3f7\" stroke=\"#7f97a6\" stroke-width=\"1.30\" opacity=\"1\"/><g><circle cx=\"-9.5\" cy=\"4.0\" r=\"12.0\" fill=\"#A98BDB\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"-9.5\" y=\"8.3\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"9.8\" font-weight=\"800\" fill=\"#1b2328\">Na</text></g><g><circle cx=\"11.0\" cy=\"4.0\" r=\"10.0\" fill=\"#F28C28\" stroke=\"#000\" stroke-width=\"1.1\"/><text x=\"11.0\" y=\"7.6\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.2\" font-weight=\"800\" fill=\"#fff\">Cl</text></g><g opacity=\"1\"><rect x=\"-29.3\" y=\"-15.8\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#005ea3\" stroke-width=\"1\"/><text x=\"-23.5\" y=\"-6.9\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#005ea3\">+</text></g><g opacity=\"1\"><rect x=\"17.7\" y=\"-14.4\" width=\"11.6\" height=\"11.6\" rx=\"5.8\" fill=\"#fff\" stroke=\"#c40000\" stroke-width=\"1\"/><text x=\"23.5\" y=\"-5.5\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"8.6\" font-weight=\"800\" fill=\"#c40000\">−</text></g>", "x": -33.3, "y": -20, "w": 66.7, "h": 40}};
+const EX = {"col": {"H": "#2E75D6", "C": "#00B050", "N": "#7030A0", "O": "#E00000", "Cl": "#F28C28", "Br": "#8B2E1A", "Al": "#C9CDD1", "Cu": "#D2843B", "Na": "#A98BDB", "Zn": "#A9B4BE", "K": "#B7B7B7", "Mg": "#9FA8B0", "Ag": "#D9D9D9", "Ca": "#E6E6E6", "Ba": "#BFD8A8", "S": "#FFD200", "Pb": "#6E7A84", "I": "#4B2A7A"}, "ink": {"H": "#fff", "C": "#fff", "N": "#fff", "O": "#fff", "Cl": "#fff", "Br": "#fff", "Al": "#1b2328", "Cu": "#1b2328", "Na": "#1b2328", "Zn": "#1b2328", "K": "#1b2328", "Mg": "#1b2328", "Ag": "#1b2328", "Ca": "#1b2328", "Ba": "#1b2328", "S": "#1b2328", "Pb": "#1b2328", "I": "#fff"}, "bal": "\n  <ellipse cx=\"140\" cy=\"192\" rx=\"126\" ry=\"6\" fill=\"#d7dee2\"/>\n  <rect x=\"34\" y=\"184\" width=\"16\" height=\"6\" rx=\"2\" fill=\"#5f6b72\" stroke=\"#1b2328\" stroke-width=\"1.2\"/><rect x=\"230\" y=\"184\" width=\"16\" height=\"6\" rx=\"2\" fill=\"#5f6b72\" stroke=\"#1b2328\" stroke-width=\"1.2\"/>\n  <path d=\"M24 186l14-62h204l14 62z\" fill=\"#e9eef1\" stroke=\"#1b2328\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><path d=\"M38 124h204l-6 14H44z\" fill=\"#cfd8dc\" stroke=\"#1b2328\" stroke-width=\"1.5\"/>\n  <path d=\"M30 172h220\" stroke=\"#b9c4ca\" stroke-width=\"1.2\"/><path d=\"M44 130h192\" stroke=\"#fff\" stroke-width=\"1.5\" opacity=\".7\"/>\n  <text x=\"140\" y=\"135\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6.5\" font-weight=\"800\" letter-spacing=\".12em\" fill=\"#5f6b72\">ELECTRONIC BALANCE \u00b7 d = 0.01 g</text>\n  <circle cx=\"42\" cy=\"161\" r=\"7\" fill=\"#f6fbfd\" stroke=\"#1b2328\" stroke-width=\"1.2\"/><circle cx=\"43\" cy=\"160\" r=\"2.4\" fill=\"#9fd3a0\"/><text x=\"42\" y=\"180\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"6\" font-weight=\"700\" fill=\"#5f6b72\">LEVEL</text>\n  <rect x=\"58\" y=\"146\" width=\"112\" height=\"30\" rx=\"4\" fill=\"#1b2328\"/><rect x=\"62\" y=\"150\" width=\"104\" height=\"22\" rx=\"2\" fill=\"#b9e3a4\"/><rect x=\"62\" y=\"150\" width=\"104\" height=\"6\" rx=\"2\" fill=\"#fff\" opacity=\".18\"/>\n  <text x=\"160\" y=\"167\" text-anchor=\"end\" font-family=\"'Courier New',monospace\" font-size=\"18\" font-weight=\"700\" fill=\"#1b2328\">@@R@@</text>\n  <circle cx=\"196\" cy=\"161\" r=\"8\" fill=\"#e00000\" stroke=\"#1b2328\" stroke-width=\"1.5\"/><circle cx=\"222\" cy=\"161\" r=\"8\" fill=\"#2E75D6\" stroke=\"#1b2328\" stroke-width=\"1.5\"/>\n  <text x=\"196\" y=\"182\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"7.5\" font-weight=\"700\" fill=\"#1b2328\">ON</text><text x=\"222\" y=\"182\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"7.5\" font-weight=\"700\" fill=\"#1b2328\">TARE</text>\n  <rect x=\"128\" y=\"104\" width=\"24\" height=\"20\" fill=\"#9aa7ad\" stroke=\"#1b2328\" stroke-width=\"1.5\"/>\n  <ellipse cx=\"140\" cy=\"104\" rx=\"76\" ry=\"12\" fill=\"#c9cdd1\" stroke=\"#1b2328\" stroke-width=\"2.5\"/><ellipse cx=\"140\" cy=\"101\" rx=\"70\" ry=\"9\" fill=\"#e4e9ec\"/><ellipse cx=\"140\" cy=\"101\" rx=\"52\" ry=\"6\" fill=\"none\" stroke=\"#c9cdd1\" stroke-width=\"1\"/><ellipse cx=\"140\" cy=\"101\" rx=\"30\" ry=\"3.5\" fill=\"none\" stroke=\"#c9cdd1\" stroke-width=\"1\"/><path d=\"M98 97q14 -4 30 -5\" stroke=\"#fff\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" opacity=\".8\"/>\n  "};
+
+function load(){try{const t=localStorage.getItem(STORE);if(t)return JSON.parse(t);}catch(e){}return{stu:{first:"",last:"",period:""},v:{},q:{},part:0};}
+let S=load();
+function save(){try{localStorage.setItem(STORE,JSON.stringify(S));}catch(e){}}
+
+function h(tag,a,...kids){const e=document.createElement(tag);if(a)for(const k in a){const v=a[k];if(v===false||v==null)continue;if(k==="class")e.className=v;else if(k==="html")e.innerHTML=v;else if(k.slice(0,2)==="on")e.addEventListener(k.slice(2),v);else e.setAttribute(k,v);}for(const c of kids.flat(9)){if(c==null||c===false)continue;if(c.nodeType)e.append(c);else if(/<\/?(sub|sup|b|i|br)\b/.test(String(c)))e.append(Object.assign(document.createElement("span"),{innerHTML:String(c)}));else e.append(document.createTextNode(c));}return e;}
+function F(s){return String(s).replace(/\^(\d*)([+-])/g,(m,d,sg)=>"<sup>"+d+(sg==="-"?"−":"+")+"</sup>").replace(/([A-Za-z\)])(\d+)/g,"$1<sub>$2</sub>").replace(/->/g,"→");}
+const SUBC="₀₁₂₃₄₅₆₇₈₉";
+function normF(s){return String(s).replace(/\s+/g,"").replace(/[₀-₉]/g,d=>SUBC.indexOf(d));}
+const subify=a=>a.replace(/([A-Za-z)])(\d+)/g,(m,l,d)=>l+[...d].map(x=>SUBC[+x]).join(""));
+const NS="http://www.w3.org/2000/svg";
+function sv(tag,a,p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+function svgBox(w,h){return sv("svg",{viewBox:`0 0 ${w} ${h}`,width:"100%",style:`max-width:${w}px;display:block;margin:0 auto`});}
+
+/* ---------- particle drawing (site drawings) ---------- */
+const SPX=2.5;
+function drawSp(parent,key,cx,cy,s){const P=SP[key];const g=sv("g",{transform:`translate(${(cx-(P.x+P.w/2)*s).toFixed(1)},${(cy-(P.y+P.h/2)*s).toFixed(1)}) scale(${s.toFixed(3)})`},parent);g.innerHTML=P.s;return g;}
+function layout(keys,W,H,s){for(let t=0;t<14;t++){const gap=16,rows=[];let row=[],rw=0;
+  keys.forEach(k=>{const P=SP[k],w=P.w*s+gap;if(row.length&&rw+w>W-8){rows.push(row);row=[];rw=0;}row.push({k,w:P.w*s,h:P.h*s});rw+=w;});if(row.length)rows.push(row);
+  const rh=rows.map(r=>Math.max(...r.map(o=>o.h)));const tot=rh.reduce((a,b)=>a+b,0)+gap*(rows.length-1);
+  const maxW=Math.max(...rows.map(r=>r.reduce((a,o)=>a+o.w,0)+gap*(r.length-1)));if((tot<=H-10&&maxW<=W-6)||t===13){const out=[];let y=(H-tot)/2;rows.forEach((r,i)=>{const w=r.reduce((a,o)=>a+o.w,0)+gap*(r.length-1);let x=(W-w)/2;r.forEach(o=>{out.push({k:o.k,x:x+o.w/2,y:y+rh[i]/2});x+=o.w+gap;});y+=rh[i]+gap;});return{pos:out,s};}
+  s*=0.9;}}
+function scene(parent,keys,x,y,W,H,s){const L=layout(keys,W,H,s*SPX);L.pos.forEach(p=>drawSp(parent,p.k,x+p.x,y+p.y,L.s));}
+function arrow(p,x1,y,x2,label){sv("line",{x1,y1:y,x2:x2-8,y2:y,stroke:"#1b2328","stroke-width":2.5},p);sv("path",{d:`M${x2} ${y} l-11 -6 v12 z`,fill:"#1b2328"},p);if(label){const t=sv("text",{x:(x1+x2)/2,y:y-9,"text-anchor":"middle","font-size":12,fill:"#555"},p);t.textContent=label;}}
+const ENAME={H:"hydrogen",C:"carbon",N:"nitrogen",O:"oxygen",Cl:"chlorine",Ca:"calcium",Al:"aluminum",Ba:"barium",Ag:"silver",Cu:"copper",Na:"sodium",Zn:"zinc",K:"potassium",S:"sulfur"};
+function keyRow(els,extra){return h("div",{class:"key"},"Key:",els.map(e=>h("span",null,h("span",{class:"sw",style:`background:${EX.col[e]}`}),ENAME[e])),extra||null);}
+function lbl(p,x,y,txt,size,anchor,col){const t=sv("text",{x,y,"text-anchor":anchor||"middle","font-size":size||13,fill:col||"#333","font-weight":600},p);t.textContent=txt;return t;}
+function balanceAt(p,x,y,reading,sc){const g=sv("g",{transform:`translate(${x} ${y}) scale(${sc})`},p);g.innerHTML=EX.bal.replace("@@R@@",reading);return g;}
+
+/* ---------- inputs ---------- */
+function keep(el,key,get,set){if(S.v[key]!=null)set(S.v[key]);el.addEventListener("input",()=>{S.v[key]=get();el.classList.remove("ok","no");save();});el.addEventListener("change",()=>{S.v[key]=get();save();});}
+function numIn(key,ans,alt){const e=h("input",{class:"n",inputmode:"decimal",autocomplete:"off","aria-label":"answer"});keep(e,key,()=>e.value,v=>e.value=v);
+ e._grade=()=>{const v=e.value.trim().replace(/[−–]/g,"-").replace(/,/g,"").replace(/\s*k?J\s*$/i,"").replace(/^\+/,"");if(v==="")return[e,null];const x=parseFloat(v);return[e,x===ans||(alt||[]).includes(x)];};e._reveal=()=>{e.value=ans;S.v[key]=String(ans);};return e;}
+function coefIn(key,ans){const e=h("input",{class:"c",inputmode:"numeric",autocomplete:"off","aria-label":"coefficient"});keep(e,key,()=>e.value,v=>e.value=v);
+ e._val=()=>{const v=e.value.trim();return v===""?1:(/^\d+$/.test(v)?parseInt(v,10):0);};e._grade=()=>[e,e._val()===ans];e._reveal=()=>{e.value=ans===1?"":ans;S.v[key]=e.value;};return e;}
+function sel(key,opts,ans){const e=h("select",{"aria-label":"choose"},h("option",{value:""},"choose…"),opts.map((o,i)=>h("option",{value:i,html:F(o)})));keep(e,key,()=>e.value,v=>e.value=v);
+ e._grade=()=>e.value===""?[e,null]:[e,+e.value===ans];e._reveal=()=>{e.value=ans;S.v[key]=String(ans);};return e;}
+function chooser(key,opts,ans,multi,col){const box=h("div",{class:"choices"+(col?" col":"")});let cur=S.v[key]!=null?S.v[key]:(multi?[]:null);
+ const btns=opts.map((o,i)=>h("button",{type:"button",html:F(o),onclick:()=>{if(multi){cur=cur.includes(i)?cur.filter(x=>x!==i):cur.concat(i);}else cur=i;S.v[key]=cur;box.classList.remove("ok","no");paint();save();}}));
+ function paint(){btns.forEach((b,i)=>b.classList.toggle("sel",multi?cur.includes(i):cur===i));}btns.forEach(b=>box.append(b));paint();
+ box._grade=()=>{if(multi?cur.length===0:cur==null)return[box,null];return[box,multi?(cur.length===ans.length&&ans.every(a=>cur.includes(a))):cur===ans];};
+ box._reveal=()=>{cur=multi?ans.slice():ans;S.v[key]=cur;paint();};return box;}
+function autoSub(e,eq){e.addEventListener("input",()=>{let v=e.value,pos=e.selectionStart||0;
+ if(eq){const bf=v.slice(0,pos),nb=bf.replace(/->/g,"→");pos-=bf.length-nb.length;v=nb+v.slice(bf.length).replace(/->/g,"→");}
+ let out="",prev="";for(const ch of v){let c=ch;const isD=/[0-9]/.test(ch),isS=SUBC.includes(ch),ctx=prev!==""&&(/[A-Za-z)]/.test(prev)||SUBC.includes(prev));
+  if(isD&&ctx)c=SUBC[+ch];else if(isS&&!ctx)c=String(SUBC.indexOf(ch));out+=c;prev=c;}
+ if(out!==e.value){e.value=out;try{e.setSelectionRange(pos,pos);}catch(x){}}});}
+function fIn(key,answers){const e=h("input",{class:"f",autocomplete:"off",spellcheck:"false","aria-label":"formula"});autoSub(e,false);keep(e,key,()=>e.value,v=>{e.value=v;});
+ e._grade=()=>e.value.trim()===""?[e,null]:[e,answers.includes(normF(e.value))];e._reveal=()=>{e.value=subify(answers[0]);S.v[key]=e.value;};return e;}
+const WMAX=300;
+function wbox(key,label,minc){const ta=h("textarea",{placeholder:"Type your answer here…",maxlength:WMAX});const st=h("span");const cnt=h("span",{class:"small",style:"margin-left:auto"});const cu=()=>cnt.textContent=ta.value.length+" / "+WMAX+" characters";const btn=h("button",{type:"button"},"Save answer");
+ if(S.v[key])ta.value=S.v[key];const shown=()=>{st.textContent=S.v[key+"_saved"]?"Saved. You can still edit and save again.":"";};
+ ta.addEventListener("input",()=>{S.v[key]=ta.value;save();cu();});cu();
+ btn.onclick=()=>{if(ta.value.trim().length<(minc||20)){st.innerHTML='<span class="warn">Write a complete answer (at least a full sentence) before saving.</span>';return;}S.v[key]=ta.value;S.v[key+"_saved"]=true;save();shown();refresh();};shown();
+ return h("div",null,label?h("div",{style:"font-weight:600;margin-bottom:4px",html:label}):null,ta,h("div",{class:"wsave"},btn,st,cnt));}
+
+/* ---------- question cards ---------- */
+const QDEF={},QORDER=[];
+function allGraders(root){return [...root.querySelectorAll("*")].filter(e=>e._grade);}
+function Q(o){const fb=h("div",{class:"fb"}),card=h("div",{class:"q",id:"q-"+o.id});
+ const head=h("div",{class:"qh"},h("span",{class:"qn"},o.num+"."),h("div",{class:"qp",html:(o.auto===false?'<span class="wtag" style="margin:0 6px 0 0">'+(o.tag||'Explain')+'</span>':"")+o.prompt+(o.ins?`<span class="ins">${o.ins}</span>`:"")}));
+ if(o.auto!==false){head.append(h("button",{class:"chk",type:"button",onclick:()=>check(o)},"Check"));QDEF[o.id]=o;QORDER.push(o.id);}
+ card.append(head,h("div",{class:"qb"},o.body),fb);o.card=card;o.fb=fb;o.parts=o.parts||(()=>allGraders(card));return card;}
+function check(o,silent){
+ const res=o.parts().map(g=>g._grade()).flatMap(r=>Array.isArray(r[0])?r:[r]);
+ if(res.some(r=>r[1]===null)){if(!silent){o.fb.className="fb no";o.fb.textContent="Answer every part before checking.";}return;}
+ const rec=S.q[o.id]||(S.q[o.id]={first:null,tries:0});if(!silent)rec.tries++;
+ const n=res.length,c=res.filter(r=>r[1]).length;if(!silent&&rec.first==null)rec.first=Math.round(c/n*100)/100;
+ res.forEach(r=>{r[0].classList.toggle("ok",r[1]);r[0].classList.toggle("no",!r[1]);});
+ const firstTxt=rec.first!=null?`<span class="first">(first try: ${Math.round(rec.first*n)} of ${n})</span>`:"";
+ if(c===n){rec.done=true;o.fb.className="fb ok";o.fb.innerHTML=(rec.revealed?"Answer shown. Study it before moving on.":"Correct.")+firstTxt;}
+ else{o.fb.className="fb no";const msgs=res.filter(r=>!r[1]&&r[2]).map(r=>r[2]);const hint=typeof o.hint==="function"?o.hint():o.hint;o.fb.innerHTML=`${c} of ${n} correct. `+(msgs[0]||hint||"Look back at the model and try again.")+firstTxt;
+  if(rec.tries>=2)o.fb.append(h("button",{type:"button",onclick:()=>{o.parts().forEach(g=>g._reveal&&g._reveal());if(o.reveal)o.reveal();rec.revealed=true;save();check(o,true);refresh();}},"Show answer"));}
+ save();refresh();}
+function restoreChecks(){Object.values(QDEF).forEach(o=>{const r=S.q[o.id];if(r&&r.tries>0)check(o,true);});}
+const RTS=[];
+function RT(title,html,unlocked,lockMsg){const box=h("div",{class:"rt"});RTS.push({box,title,html,unlocked,lockMsg});return box;}
+function paintRT(){RTS.forEach(r=>{const u=r.unlocked();r.box.className="rt"+(u?"":" lock");r.box.innerHTML=u?`<h4>Read This! ${r.title}</h4>${r.html}`:`<h4>Read This! (locked)</h4><div>${r.lockMsg}</div>`;});}
+const done=id=>S.q[id]&&S.q[id].tries>0;
+const saved=k=>!!S.v[k+"_saved"];
+function elCells(prefix,counts){return h("div",{class:"els"},Object.entries(counts).map(([el,n])=>h("label",null,h("b",null,el)," ",numIn(prefix+"_"+el,n))));}
+const PARTS=[];
+function part(id,tab,banner,body){const sec=h("section",{class:"part",id:"p-"+id},banner,body);PARTS.push({id,tab,sec});return sec;}
+function banner(title,time,html){return h("div",{class:"banner"},h("h2",null,title),h("div",{html}));}
+function level(t,d){return h("div",{class:"lvl"},h("h3",null,t),h("div",null,d));}
+function cardsOf(list,W,Hh){return list.map(([f,n,k])=>{const s=svgBox(W||240,Hh||120);scene(s,Array(n).fill(k),0,0,W||240,Hh||120,0.85);return h("div",{class:"card"},h("div",{class:"f",html:F(f)}),s);});}
+/* ---------- shared: free-form math, row questions ---------- */
+function solveRep(raw,need,ans,what){what=what||"values";
+ let s=String(raw).replace(/[×·]/g,"*").replace(/÷/g,"/").replace(/[−–]/g,"-").replace(/[₀-₉]/g,"").replace(/,/g,"").replace(/Δ/g,"");
+ s=s.replace(/(\d)\s*(kJ\/mol|kJ|J|grams?|g|u)\b/gi,"$1");
+ s=s.replace(/[A-Za-z_][A-Za-z0-9_]*/g,"X").replace(/X\s*\(\s*X\s*\)/g,"X").replace(/X(\s*X)+/g,"X");
+ if(!/^[0-9.+\-*/()X=\s]*$/.test(s))return{ok:false,msg:"Use only numbers, +, −, ×, ÷, = and a letter (such as x) for the unknown."};
+ s=s.replace(/(\d)\s*X/g,"$1*X").replace(/X\s*(\d)/g,"X*$1").replace(/\)\s*\(/g,")*(").replace(/(\d)\s*\(/g,"$1*(").replace(/\)\s*(\d)/g,")*$1");
+ const nums=(s.match(/\d*\.?\d+/g)||[]).map(Number);
+ if(!need.every(n=>nums.some(m=>Math.abs(m-n)<1e-6)))return{ok:false,msg:`Your representation must use the ${what} given in the problem.`};
+ const sides=s.split("=").map(t=>t.trim());if(sides.some(t=>t===""))return{ok:false,msg:"Each side of the equals sign needs an expression."};
+ let fn;try{fn=sides.map(t=>compileExpr(t));fn.forEach(f=>{if(!isFinite(f(1)))throw 0;});}catch(e){return{ok:false,msg:"Check the way your representation is written."};}
+ const tol=0.015*Math.max(1,Math.abs(ans)/100);
+ if(sides.length===1){if(/X/.test(s))return{ok:false,msg:"Write an equation with an equals sign."};return{ok:Math.abs(fn[0](0)-ans)<tol,msg:`Your calculation does not give the correct answer. Check which ${what} should be added or subtracted.`};}
+ const hasX=/X/.test(s);let X=null;
+ for(let i=0;i<sides.length-1;i++){const f=x=>fn[i](x)-fn[i+1](x),f0=f(0),a=f(1)-f0;
+  if(Math.abs(a)<1e-9){if(Math.abs(f0)>tol)return{ok:false,msg:`The two sides of your equation are not equal. Check which ${what} belong on each side.`};}
+  else{const x=-f0/a;if(X!=null&&Math.abs(x-X)>tol)return{ok:false,msg:"Check your equation."};X=x;}}
+ if(hasX)return{ok:X!=null&&Math.abs(X-ans)<tol,msg:`Solving your equation does not give the correct answer. Check which ${what} should be added or subtracted, and the order of subtraction.`};
+ const sideHit=fn.some(f=>Math.abs(f(0)-ans)<tol);
+ return{ok:sideHit||(ans>=0&&nums.some(m=>Math.abs(m-ans)<tol)),msg:"Include the value you calculated, with its sign, in your representation."};}
+function compileExpr(src){const tk=src.match(/\d*\.?\d+|[X+\-*/()]/g)||[];let i=0;
+ const peek=()=>tk[i],eat=t=>{if(tk[i]!==t)throw 0;i++;};
+ function prim(){const t=tk[i++];if(t===undefined)throw 0;if(t==="("){const e=expr();eat(")");return e;}if(t==="-"){const p=prim();return x=>-p(x);}if(t==="+")return prim();if(t==="X")return x=>x;const v=parseFloat(t);if(isNaN(v))throw 0;return()=>v;}
+ function term(){let a=prim();while(peek()==="*"||peek()==="/"){const op=tk[i++],b=prim(),A=a;a=op==="*"?x=>A(x)*b(x):x=>A(x)/b(x);}return a;}
+ function expr(){let a=term();while(peek()==="+"||peek()==="-"){const op=tk[i++],b=term(),A=a;a=op==="+"?x=>A(x)+b(x):x=>A(x)-b(x);}return a;}
+ const f=expr();if(i!==tk.length)throw 0;return f;}
+function mathRep(key,need,ans,unit,sample,what,ansLabel){const ta=h("input",{class:"t",style:"width:100%;max-width:520px",autocomplete:"off",spellcheck:"false","aria-label":"mathematical representation"});keep(ta,key+"r",()=>ta.value,v=>ta.value=v);
+ const an=numIn(key+"n",ans);const w=h("div",null,h("div",{style:"font-weight:600"},"Mathematical Representation:"),ta,h("div",{class:"small"},"Write it any correct way. Use a letter such as x (or ΔH) for the unknown if you need one. Units are optional."),h("div",{class:"frame"},(ansLabel||"Answer:")+" ",an," "+(unit||"")));
+ ta._grade=()=>{if(!ta.value.trim())return[ta,null];const r=solveRep(ta.value,need,ans,what);return[ta,r.ok,r.ok?null:r.msg];};ta._reveal=()=>{ta.value=sample||"";S.v[key+"r"]=ta.value;};
+ return w;}
+function rowQ(key,heads,rows,ans){let cur=S.v[key]!=null&&S.v[key]!==""?+S.v[key]:null;
+ const pick=i=>{cur=i;S.v[key]=i;tb.classList.remove("ok","no");paint();save();};
+ const trs=rows.map((r,i)=>h("tr",{class:"rp",tabindex:"0","aria-label":"Row "+(i+1),onclick:()=>pick(i),onkeydown:e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick(i);}}},h("td",null,`(${i+1})`),r.map(c=>h("td",{html:c}))));
+ const tb=h("table",{class:"tt rowpick",style:"margin:6px 0"},h("tr",null,h("th",null,"Row"),heads.map(t=>h("th",{html:t}))),trs);
+ function paint(){trs.forEach((tr,i)=>tr.classList.toggle("pick",cur===i));}paint();
+ tb._grade=()=>cur==null?[tb,null]:[tb,cur===ans];tb._reveal=()=>{cur=ans;S.v[key]=ans;paint();};
+ return h("div",null,tb,h("div",{class:"small"},"Click a row in the table to choose it."));}
+/* choose a category for each item (buttons stay highlighted) */
+function sortQ(key,items,cats,ans){return h("table",{class:"tt"},h("tr",null,h("th",null,"Item"),h("th",null,"Choose one")),items.map((it,i)=>h("tr",null,h("td",{style:"text-align:left",html:it}),h("td",{style:"text-align:left;white-space:nowrap"},chooser(key+"_"+i,cats,ans[i])))));}
+function signedIn(key,ans){return numIn(key,ans);}
+/* equations: formulas with subscripts, states and energy terms */
+function EQ(s){return F(s).replace(/\((s|l|g|aq)\)/g,'<span style="font-size:.8em">($1)</span>').replace(/ \+ /g," + ").replace(/-(\d)/g,"−$1");}
+function eqDiv(label,s,extra){return h("div",{class:"eqrow"},label?h("span",{class:"eqlab"},label):null,h("span",{class:"eqtxt",html:EQ(s)}),extra?h("span",{class:"eqx",html:extra}):null);}
+function src(t){return h("div",{class:"small",style:"margin-top:4px",html:t});}
+
+Object.assign(ENAME,{Mg:"magnesium",Fe:"iron",Na:"sodium",Ca:"calcium",C:"carbon",Cl:"chlorine",N:"nitrogen",O:"oxygen",H:"hydrogen"});
+/* ---------- site lab drawings (same beaker and thermometer as the notes site) ---------- */
+const GLS="#f6fbfd",INKC="#1b2328";
+function thermoSVG(x,top,len,tw,br,frac,col){col=col||"#e23b3b";const sw=2,hw=tw/2,by=top+len,jy=by-Math.sqrt(Math.max(0,br*br-hw*hw)),lvl=by-(len-hw)*Math.max(0,Math.min(1,frac));
+ const o=`M${x-hw} ${top+hw}a${hw} ${hw} 0 0 1 ${tw} 0V${jy.toFixed(1)}A${br} ${br} 0 1 1 ${x-hw} ${jy.toFixed(1)}Z`;
+ const t0=top+tw*1.2,t1=jy-tw*.4,nT=10;let ticks="";if(len>60)for(let i=0;i<=nT;i++){const y=t1-(t1-t0)*i/nT;ticks+=`<line x1="${(x+hw*(i%5?.15:-.35)).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x+hw).toFixed(1)}" y2="${y.toFixed(1)}" stroke="#1b2328" stroke-width="1"/>`;}
+ return `<path d="${o}" fill="#f6fbfd"/><rect x="${x-hw*.45}" y="${lvl.toFixed(1)}" width="${hw*.9}" height="${(by-lvl).toFixed(1)}" fill="${col}"/><circle cx="${x}" cy="${by}" r="${br*.72}" fill="${col}"/>${ticks}<path d="${o}" fill="none" stroke="#1b2328" stroke-width="${sw}"/>`;}
+function beakerSVG(x,y,w,hh,o){o=o||{};const lv=o.level===undefined?.55:o.level,lt=y+hh-(hh-6)*lv,col=o.liquid||"#9fd3f2";
+ return `<g><path d="M${x} ${y}V${y+hh-6}q0 6 6 6H${x+w-6}q6 0 6 -6V${y}" fill="${GLS}"/>${lv>0?`<path d="M${x+2} ${lt}H${x+w-2}V${y+hh-6}q0 4 -4 4H${x+6}q-4 0 -4 -4z" fill="${col}" opacity=".9"/>`:""}${o.inner||""}<path d="M${x-6} ${y-4}q6 0 6 6V${y+hh-6}q0 6 6 6H${x+w-6}q6 0 6 -6V${y+2}q0 -6 6 -6" fill="none" stroke="${INKC}" stroke-width="2.5" stroke-linejoin="round"/>${[.25,.45,.65].map(f=>`<path d="M${x+w-14} ${(y+hh*f).toFixed(1)}h10" stroke="${INKC}" stroke-width="1.2"/>`).join("")}</g>`;}
+/* one beaker with a thermometer standing in it; returns svg markup. t = temperature (°C), scale 0–50 °C */
+function labBeaker(x,y,t,o){o=o||{};const w=120,hh=130,lt=y+hh-(hh-6)*(o.level||.55);let inner="";
+ if(o.solid)inner+=o.solid(x,y,w,hh,lt);if(o.bubbles)for(let i=0;i<o.bubbles;i++){const cols=4,bx=x+16+(i%cols)*18+(Math.floor(i/cols)%2)*9,by=lt+12+Math.floor(i/cols)*(Math.max(14,(y+hh-lt-24))/Math.ceil(o.bubbles/cols));inner+=`<circle cx="${bx}" cy="${by}" r="${3+(i%3)}" fill="#fff" stroke="#6b8a99" stroke-width="1"/>`;}
+ const tx=x+w-34;return beakerSVG(x,y,w,hh,{level:o.level||.55,liquid:o.liquid,inner})+thermoSVG(tx,y-70,190,12,11,Math.max(0,Math.min(1,t/50)))
+  +`<rect x="${tx+12}" y="${y-62}" width="64" height="26" rx="6" fill="#fff" stroke="#9aa8b3"/><text x="${tx+44}" y="${y-44}" text-anchor="middle" font-size="15" font-weight="700" fill="#1b2328">${t.toFixed(1)} °C</text>`;}
+function bigArrow(x1,y,x2,label){return `<line x1="${x1}" y1="${y}" x2="${x2-10}" y2="${y}" stroke="#1b2328" stroke-width="2.5"/><path d="M${x2} ${y} l-12 -7 v14 z" fill="#1b2328"/>`+(label?`<text x="${(x1+x2)/2}" y="${y-10}" text-anchor="middle" font-size="13" fill="#555">${label}</text>`:"");}
+function svgFrom(w,hh,markup){const s=svgBox(w,hh);s.innerHTML=markup;return s;}
+/* site particle drawing as markup (for innerHTML-built figures) */
+function spM(key,cx,cy,s){const P=SP[key];return `<g transform="translate(${(cx-(P.x+P.w/2)*s).toFixed(1)},${(cy-(P.y+P.h/2)*s).toFixed(1)}) scale(${s.toFixed(3)})">${P.s}</g>`;}
+function rowM(keys,cx,cy,s,gap){gap=gap==null?14:gap;const ws=keys.map(k=>SP[k].w*s),tot=ws.reduce((a,b)=>a+b,0)+gap*(keys.length-1);let x=cx-tot/2,m="";keys.forEach((k,i)=>{m+=spM(k,x+ws[i]/2,cy,s);x+=ws[i]+gap;});return m;}
+const T=(x,y,t,o)=>{o=o||{};return `<text x="${x}" y="${y}" text-anchor="${o.a||"middle"}" font-size="${o.fs||14}" font-weight="${o.fw||600}" fill="${o.c||"#1b2328"}"${o.it?' font-style="italic"':""}>${t}</text>`;};
+const ABS="#0070C0",REL="#E00000";
+function vArrow(x,y1,y2,col,w){w=w||4;const dir=y2<y1?-1:1;return `<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2-dir*12}" stroke="${col}" stroke-width="${w}"/><path d="M${x} ${y2} l-8 ${-dir*14} h16 z" fill="${col}"/>`;}
+
+/* ---------- build an equation from tiles (drag and drop, or click a tile then click a blank) ---------- */
+function buildEq(key,tokens,tiles,ans,groups){
+ let st=(S.v[key]&&typeof S.v[key]==="object")?S.v[key]:{};let selT=null;
+ const wrap=h("div",{class:"build"}),line=h("div",{class:"bline"}),bank=h("div",{class:"bank"}),slots={};
+ const placedIn=i=>Object.keys(st).find(k=>st[k]===i);
+ const commit=()=>{S.v[key]=st;save();Object.values(slots).forEach(s=>s.classList.remove("ok","no"));paint();};
+ const place=(sl,i)=>{const p=placedIn(i);if(p!=null)delete st[p];st[sl]=i;selT=null;commit();};
+ const remove=i=>{const p=placedIn(i);if(p!=null)delete st[p];selT=null;commit();};
+ const tileEls=tiles.map((t,i)=>{const b=h("button",{type:"button",class:"tile",draggable:"true",html:EQ(t)});
+  b.addEventListener("click",e=>{e.stopPropagation();if(placedIn(i)!=null){remove(i);return;}selT=selT===i?null:i;paint();});
+  b.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",String(i));});return b;});
+ tokens.forEach(t=>{if(t==="\n")line.append(h("div",{class:"bbreak"}));else if(typeof t==="object"&&t.lab)line.append(h("span",{class:"blab"},t.lab));else if(typeof t==="string")line.append(h("span",{class:"btok",html:EQ(t)}));else{const sl=h("span",{class:"slot",tabindex:"0","aria-label":"blank"});slots[t.s]=sl;
+  sl.addEventListener("click",()=>{if(selT!=null)place(t.s,selT);});sl.addEventListener("dragover",e=>e.preventDefault());
+  sl.addEventListener("drop",e=>{e.preventDefault();const i=parseInt(e.dataTransfer.getData("text/plain"),10);if(!isNaN(i))place(t.s,i);});line.append(sl);}});
+ bank.addEventListener("dragover",e=>e.preventDefault());bank.addEventListener("drop",e=>{e.preventDefault();const i=parseInt(e.dataTransfer.getData("text/plain"),10);if(!isNaN(i))remove(i);});
+ function paint(){Object.keys(slots).forEach(k=>{if(st[k]==null)slots[k].textContent="";slots[k].classList.toggle("filled",st[k]!=null);});
+  tileEls.forEach((b,i)=>{b.classList.toggle("sel",selT===i);const k=placedIn(i);if(k!=null)slots[k].append(b);else bank.append(b);});}
+ Object.keys(st).forEach(k=>{if(!slots[k]||!(st[k]>=0&&st[k]<tiles.length))delete st[k];});
+ paint();wrap.append(line,h("div",{class:"small"},"Word bank: drag a piece into a blank, or click a piece and then click a blank. Click a placed piece to return it. You may not need every piece."),bank);
+ const G=groups||Object.keys(slots).map(k=>[k]);
+ wrap._grade=()=>{if(!Object.keys(st).length)return[wrap,null];return G.map(g=>{const have=g.map(k=>st[k]!=null?tiles[st[k]]:"").sort().join("|"),want=g.map(k=>ans[k]||"").sort().join("|"),ok=have===want;g.slice(1).forEach(k=>{slots[k].classList.toggle("ok",ok);slots[k].classList.toggle("no",!ok);});return[slots[g[0]],ok];});};
+ wrap._reveal=()=>{st={};const used=new Set();Object.keys(ans).forEach(k=>{if(!ans[k])return;const i=tiles.findIndex((t,j)=>t===ans[k]&&!used.has(j));if(i>=0){used.add(i);st[k]=i;}});selT=null;S.v[key]=st;paint();};
+ return wrap;}
+
+/* ---------- student-built potential energy model: click to place the products, drag to draw the ΔH arrow ---------- */
+function peBuild(key,ans,rlab,plab){let st=(S.v[key]&&typeof S.v[key]==="object")?S.v[key]:{};const RY=150,VW=470,VH=290;
+ const svg=svgBox(VW,VH);svg.style.maxWidth=VW+"px";svg.style.touchAction="none";let drag=null;
+ const pt=e=>{const r=svg.getBoundingClientRect();return{x:(e.clientX-r.left)*VW/r.width,y:Math.max(30,Math.min(262,(e.clientY-r.top)*VH/r.height))};};
+ const dirty=()=>{S.v[key]=st;save();svg.classList.remove("ok","no");};
+ svg.addEventListener("pointerdown",e=>{const p=pt(e);if(p.x>=398){drag={y0:p.y,y1:p.y};svg.setPointerCapture(e.pointerId);draw();}else if(p.x>=200){st.y=Math.round(p.y);dirty();draw();}});
+ svg.addEventListener("pointermove",e=>{if(!drag)return;drag.y1=pt(e).y;draw();});
+ svg.addEventListener("pointerup",()=>{if(!drag)return;if(Math.abs(drag.y1-drag.y0)>10){st.a0=Math.round(drag.y0);st.a1=Math.round(drag.y1);dirty();}drag=null;draw();});
+ function draw(){let m=`<rect x="200" y="28" width="188" height="236" rx="8" fill="#f3f9fb" stroke="#b9d3dc" stroke-dasharray="5 4"/><rect x="398" y="28" width="64" height="236" rx="8" fill="#fff8e8" stroke="#e9c48a" stroke-dasharray="5 4"/>`;
+  if(st.y==null)m+=T(294,46,"Click to place products",{fs:12,c:"#5b6b78",fw:500});
+  m+=T(430,46,"Drag",{fs:12,c:"#8a4b00",fw:500})+T(430,60,"ΔH arrow",{fs:12,c:"#8a4b00",fw:500});
+  m+=`<line x1="40" y1="264" x2="40" y2="24" stroke="#1b2328" stroke-width="2"/><path d="M40 14 l-6 12 h12 z" fill="#1b2328"/><text x="22" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#1b2328" transform="rotate(-90 22 150)">Potential energy</text>`;
+  m+=`<line x1="60" y1="${RY}" x2="170" y2="${RY}" stroke="#1b2328" stroke-width="5"/>`+T(115,RY+24,rlab,{fs:14})+`<line x1="170" y1="${RY}" x2="462" y2="${RY}" stroke="#7a8a96" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+  if(st.y!=null)m+=`<line x1="236" y1="${st.y}" x2="352" y2="${st.y}" stroke="#1b2328" stroke-width="5"/>`+T(294,st.y+(st.y<RY?-12:24),plab,{fs:14})+`<line x1="352" y1="${st.y}" x2="462" y2="${st.y}" stroke="#7a8a96" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+  const a=drag?[drag.y0,drag.y1]:(st.a0!=null?[st.a0,st.a1]:null);if(a&&Math.abs(a[1]-a[0])>10)m+=vArrow(440,a[0],a[1],"#1b2328",3)+T(426,(a[0]+a[1])/2+5,"ΔH",{fs:13,a:"end"});
+  svg.innerHTML=m;}
+ draw();
+ svg._grade=()=>{if(st.y==null||st.a0==null)return[svg,null];const pos=st.y<RY-14?"higher":st.y>RY+14?"lower":"same";const okA=Math.abs(st.a0-RY)<=22&&Math.abs(st.a1-st.y)<=22;return[[svg,pos===ans],[svg,okA]];};
+ svg._reveal=()=>{const y=ans==="higher"?80:220;st={y,a0:RY,a1:y};S.v[key]=st;draw();};
+ return h("div",null,svg,h("div",{class:"small"},"Click in the blue box to place the products line. Then press on the reactants level in the tan strip and drag to the products level to draw the ΔH arrow."));}
+/* ---------- zoomed-in system and surroundings model ---------- */
+function zoomFig(rows){let m="";const bx=90,by=150,bw=160,bh=180,W=780,H=470;
+ m+=beakerSVG(bx,by,bw,bh,{level:.6,liquid:"#cfe9f6"})+thermoSVG(bx+bw-38,by-84,250,12,11,.5);
+ const mx=bx+62,my=by+bh-52;m+=`<circle cx="${mx}" cy="${my}" r="17" fill="none" stroke="#1b2328" stroke-width="2.5"/>`;
+ const cx=565,cy=235,R=205,rx=150,ry=112,ey=cy+8;m+=`<line x1="${mx+8}" y1="${my-15}" x2="${cx-150}" y2="${cy-140}" stroke="#7a8a96" stroke-width="1.5"/><line x1="${mx+8}" y1="${my+15}" x2="${cx-150}" y2="${cy+140}" stroke="#7a8a96" stroke-width="1.5"/>`;
+ m+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#e6f4fb" stroke="#1b2328" stroke-width="2.5"/>`;
+ for(let a=0;a<360;a+=30){const th=(a+15)*Math.PI/180,c=Math.cos(th),sn=Math.sin(th),re=1/Math.sqrt(c*c/(rx*rx)+sn*sn/(ry*ry));if(R-re<62)continue;const d=(re+R)/2;m+=spM("H2O",cx+d*c,ey+d*sn,1.05);}
+ m+=`<ellipse cx="${cx}" cy="${ey}" rx="${rx}" ry="${ry}" fill="#fff" stroke="#1f8fa8" stroke-width="2.5" stroke-dasharray="9 6"/>`;
+ m+=`<text x="${cx}" y="${ey-ry+26}" text-anchor="middle" font-size="15" font-weight="700" fill="#0e5f72">System</text>`;
+ // fit rows inside the ellipse with one common scale
+ const gap=18,vgap=14,top=ey-ry+38,bot=ey+ry-10;let sc=1.35,layout;
+ for(;sc>0.4;sc-=0.05){const hs=rows.map(r=>Math.max(...r.map(k=>SP[k].h))*sc),tot=hs.reduce((a,b)=>a+b,0)+vgap*(rows.length-1);if(tot>bot-top)continue;
+  let y=top+(bot-top-tot)/2,ok=true;layout=rows.map((r,i)=>{const yc=y+hs[i]/2,ws=r.map(k=>SP[k].w*sc),tw=ws.reduce((a,b)=>a+b,0)+gap*(r.length-1);
+   const far=Math.max(Math.abs(y-ey),Math.abs(y+hs[i]-ey)),half=far<ry?rx*Math.sqrt(1-(far/ry)**2)-12:0;if(tw>2*half)ok=false;y+=hs[i]+vgap;return{yc,ws,tw,r};});if(ok)break;}
+ layout.forEach(L=>{let x=cx-L.tw/2;L.r.forEach((k,i)=>{m+=spM(k,x+L.ws[i]/2,L.yc,sc);x+=L.ws[i]+gap;});});
+ const lab=(x1,y1,x2,y2,t,a)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#5b6b78" stroke-width="1.2"/>`+T(x2+(a==="end"?-5:5),y2+5,t,{fs:14,a:a||"start",c:"#4a5257",fw:600});
+ m+=lab(bx-2,by+50,bx-24,by+30,"beaker","end")+lab(bx+bw-30,by-50,bx+bw+20,by-66,"thermometer")+lab(bx+30,by+bh-30,bx+8,by+bh+34,"water","end");
+ m+=`<rect x="12" y="10" width="350" height="34" rx="8" fill="#f3f6f8" stroke="#5b6b78"/>`+T(187,32,"Surroundings: beaker, thermometer, water, air",{fs:14,c:"#4a5257"});
+ m+=T(470,cy+R+26,"Water molecules outside the dashed line are part of the surroundings.",{fs:14,c:"#4a5257",fw:500});
+ return svgFrom(W,H+30,m);}
+/* small before/after thermometer strip */
+function tempStrip(t0,t1){const one=(x,t,lab)=>T(x,16,lab,{fs:13,c:"#5b6b78"})+thermoSVG(x,26,120,10,9,t/50)+`<rect x="${x+14}" y="56" width="62" height="24" rx="6" fill="#fff" stroke="#9aa8b3"/>`+T(x+45,73,t.toFixed(1)+" °C",{fs:14,fw:700});
+ return svgFrom(300,160,one(40,t0,"Before")+bigArrow(130,90,180)+one(200,t1,"After"));}
+
+/* ---------- START ---------- */
+(function(){
+ const first=h("input",{class:"t",autocomplete:"off"});first.value=S.stu.first;const last=h("input",{class:"t",autocomplete:"off"});last.value=S.stu.last;
+ const per=h("select",null,h("option",{value:""},"choose…"),[1,2,3,4,5,6,7,8,9,10].map(n=>h("option",{value:n},n)));per.value=S.stu.period;
+ const upd=()=>{S.stu={first:first.value.trim(),last:last.value.trim(),period:per.value};save();showWho();};[first,last].forEach(e=>e.addEventListener("input",upd));per.addEventListener("change",upd);
+ part("start","Start",banner("Why?","",`<p><b>Essential question:</b> Why do some chemical reactions warm their surroundings while others cool them, and how does a chemical equation show the difference?</p>
+<p>A hand warmer packet heats up within a minute of being opened, while an instant cold pack placed on a sprained ankle quickly feels icy. Neither packet is plugged in, and neither contains a flame. The energy comes from chemical reactions: the substances inside are rearranged into new substances, and as they change, energy moves between the reacting particles and everything around them.</p>
+<p>In this activity, you will use models to find out which way energy moves during a reaction, how that energy is shown in a chemical equation, where the energy comes from at the level of bonds, and how the energy written with an equation changes when the equation is reversed or multiplied.</p>`),
+ h("div",{class:"howto"},h("h3",{style:"margin:6px 0"},"Your information"),h("div",{class:"start"},h("label",null,"First name ",first),h("label",null,"Last name ",last),h("label",null,"Class period ",per)),
+  h("h3",{style:"margin:10px 0 4px"},"How this activity works"),h("ul",{html:`<li>Work through the parts in order. Every question can be answered using the models.</li>
+<li>Press <b>Check</b> to check an answer. <b>Your first try on each question is what counts.</b> If an answer is not correct, you will get a hint and can try again.</li>
+<li>Questions marked <span class="wtag" style="margin:0">Explain</span> are answered in your own words and are read by your teacher.</li>
+<li>Boxes labeled <b>Read This!</b> stay locked until you have answered the questions before them.</li>
+<li>You may discuss with your group, but every student completes and submits their own work.</li>
+<li>Your work saves on this device as you go. Finish on the same computer and browser, and submit on the last tab.</li>`})));
+})();
+
+/* ---------- PART 1: SYSTEMS AND SURROUNDINGS ---------- */
+(function(){
+ const ribbon=(x,y,w,hh,lt)=>`<rect x="${x+22}" y="${y+hh-40}" width="54" height="9" rx="2" fill="#a7adb2" stroke="#1b2328" stroke-width="1.3" transform="rotate(-12 ${x+49} ${y+hh-36})"/>`;
+ const powder=(x,y,w,hh)=>`<path d="M${x+14} ${y+hh-1}q30 -26 60 0z" fill="#fff" stroke="#1b2328" stroke-width="1.3"/>`;
+ const lumps=(x,y,w,hh)=>[[x+26,y+hh-11],[x+46,y+hh-9],[x+64,y+hh-12],[x+38,y+hh-24]].map(([a,b])=>`<path d="M${a-9} ${b+6}l3 -11l10 -3l7 7l-2 9z" fill="#f4f1e8" stroke="#1b2328" stroke-width="1.2"/>`).join("");
+ const R=[{n:1,name:"magnesium + hydrochloric acid",t:[21.0,33.0],b:{liquid:"#d4ecf7",solid:ribbon},a:{liquid:"#d4ecf7",bubbles:9},note:"Magnesium ribbon is dropped into hydrochloric acid. Bubbles of hydrogen gas form and the ribbon disappears."},
+  {n:2,name:"sodium hydrogen carbonate (baking soda) + hydrochloric acid",t:[21.0,16.0],b:{liquid:"#d4ecf7",solid:powder},a:{liquid:"#d4ecf7",bubbles:11},note:"Baking soda is stirred into hydrochloric acid. The mixture fizzes as carbon dioxide gas forms."},
+  {n:3,name:"calcium oxide (quicklime) + water",t:[21.0,39.0],b:{liquid:"#d4ecf7",solid:lumps},a:{liquid:"#e8ecee",solid:(x,y,w,hh)=>`<path d="M${x+6} ${y+hh-14}h${w-30}v8h${-(w-30)}z" fill="#fbfbfb" stroke="#9aa8b3" stroke-width="1"/>`},note:"Lumps of calcium oxide are added to water. A white solid, calcium hydroxide, forms."}];
+ const Z={1:[["Mg","HCl","HCl"],["MgCl2","H2"]],2:[["NaHCO3","HCl"],["NaCl","CO2","H2O"]],3:[["CaO","H2O"],["Ca(OH)2"]]};
+ window.RXN=R;window.pairSVG=r=>svgFrom(660,236,T(150,16,"Before",{fs:14,c:"#5b6b78"})+T(500,16,"After",{fs:14,c:"#5b6b78"})+labBeaker(70,96,r.t[0],r.b)+bigArrow(268,165,392)+labBeaker(420,96,r.t[1],r.a));
+ const panel=r=>{
+  return h("div",{class:"panel",style:"margin-bottom:12px"},h("div",{class:"nm"},`Reaction ${r.n}: ${r.name}`),h("div",{class:"small"},r.note),pairSVG(r),h("div",{class:"nm",style:"margin-top:8px"},`Zoomed-in model of Reaction ${r.n}`),zoomFig(Z[r.n]));};
+ const sysFig=()=>{let m=`<rect x="10" y="10" width="640" height="250" rx="16" fill="#f3f6f8" stroke="#5b6b78" stroke-width="2"/>`+T(330,36,"SURROUNDINGS",{fs:15,c:"#5b6b78",fw:800})
+  +T(330,58,"the water the acid is dissolved in, the beaker, the thermometer, the air, the lab table",{fs:13,fw:500,c:"#4a5257"})
+  +`<ellipse cx="330" cy="162" rx="275" ry="84" fill="#eaf7fb" stroke="#1f8fa8" stroke-width="2.5" stroke-dasharray="9 6"/>`+T(330,105,"SYSTEM: the substances that react and form",{fs:14,c:"#0e5f72",fw:800});
+  m+=rowM(["Mg","HCl","HCl"],200,158,1.6,14)+bigArrow(302,158,366)+rowM(["MgCl2","H2"],460,158,1.3,18);
+  m+=T(200,212,"Mg + 2HCl",{fs:15})+T(460,212,"MgCl₂ + H₂",{fs:15});return svgFrom(660,270,m);};
+ const model=h("div",{class:"model"},h("h3",null,"Model 1 – Three Reactions in Beakers"),
+  h("p",{style:"margin:0 0 6px"},"Each reaction was carried out in a beaker containing a water solution at room temperature. A thermometer measured the temperature of the liquid in the beaker before the substances were mixed and after the reaction was complete."),
+  R.map(panel),
+  h("p",{style:"margin:6px 0"},"In each zoomed-in model, the system (inside the dashed line) is the particles that react and the particles that form. Everything else, including the water molecules around them, the beaker and the thermometer, is the surroundings. Particles are not drawn to scale. To keep the models simple, HCl is drawn as molecules, even though in water it exists as H⁺ and Cl⁻ ions. In Reaction 3, water is a reactant: the water molecules that react are part of the system, and the rest of the water is part of the surroundings."),keyRow(["H","C","O","Na","Mg","Cl","Ca"]),
+  src("Temperatures are illustrative values for small-scale classroom reactions."));
+ const t1=h("table",{class:"tt"},h("tr",null,h("th",null,"Reaction"),h("th",null,"Starting temperature (°C)"),h("th",null,"Final temperature (°C)"),h("th",null,"Change in temperature, ΔT (°C)")),
+  R.map((r,i)=>h("tr",null,h("td",{class:"l"},String(r.n)),h("td",null,r.t[0].toFixed(1)),h("td",null,r.t[1].toFixed(1)),h("td",null,numIn("q1_"+i,+(r.t[1]-r.t[0]).toFixed(1))))));
+ const SYS=["System","Surroundings"];
+ const items=["the magnesium atoms","the HCl particles","the MgCl<sub>2</sub> that forms","the H<sub>2</sub> gas that forms","the water the HCl is dissolved in","the glass beaker","the thermometer","the air around the beaker"];
+ const flow=["The energy enters the system from the surroundings, and the temperature of the surroundings decreases.","The energy enters the system from the surroundings, and the temperature of the surroundings increases.","The energy exits the system to the surroundings, and the temperature of the surroundings decreases.","The energy exits the system to the surroundings, and the temperature of the surroundings increases."];
+ const num=a=>a.map((t,i)=>`(${i+1}) ${t}`);
+ const ev5=["(1) The thermometer reading fell from 21.0 °C to 16.0 °C, so cold moved from the reaction into the thermometer.","(2) The reacting substances lost energy to the water, so the water became colder.","(3) The temperature of the water decreased because energy moved out of the water and into the reacting substances.","(4) Cold is a form of energy that is produced when baking soda reacts with hydrochloric acid."];
+ const sit=[["A hand warmer packet becomes hot after it is opened and shaken.",0],["An instant cold pack feels cold when it is placed on a sprained ankle.",1],["Natural gas burns in a stove flame and heats a pot of water. (The system is the burning gas, not the water.)",0],["Leaves absorb energy from sunlight to make glucose during photosynthesis.",1]];
+ part("p1","Part 1",banner("Part 1: Systems and Surroundings","",`<p>When you touch a beaker in which a reaction is happening, your hand does not feel the reaction itself. It feels the beaker and the water around the reacting particles. To describe which way energy moves during a reaction, chemists separate the substances that are reacting from everything around them. Model 1 shows three reactions and the temperature changes measured in each.</p>`),
+ [model,
+ Q({id:"q1",num:"1",prompt:"Calculate the change in temperature for each reaction in Model 1.",ins:"ΔT = final temperature − starting temperature. Use a negative sign (−) for a decrease.",body:t1,hint:"Subtract the starting temperature from the final temperature. A temperature that goes down gives a negative ΔT."}),
+ Q({id:"q2",num:"2",prompt:"Use the zoomed-in view of Reaction 1 in Model 1 to classify each item as part of the system or part of the surroundings.",body:sortQ("q2",items,SYS,[0,0,0,0,1,1,1,1]),hint:"The system is only the particles that react and the particles that form. Everything else, even the water in the beaker, is the surroundings."}),
+ Q({id:"q3",num:"3",prompt:"Which statement describes the flow of energy in Reaction 1?",body:chooser("q3",num(flow),3,false,true),hint:"The thermometer is part of the surroundings. Did its reading go up or down? Energy moved in the direction that would cause that change."}),
+ Q({id:"q4",num:"4",prompt:"Which statement describes the flow of energy in Reaction 2?",body:chooser("q4",num(flow),0,false,true),hint:"The thermometer reading went down, so the water lost energy. Where did that energy go?"}),
+ Q({id:"q5",num:"5",prompt:"A student claims that the temperature of the water in Reaction 2 dropped because the reaction released cold into the water. Place a check mark in either the Support or Refute box, then choose the evidence that justifies your decision.",body:[chooser("q5c",["Support","Refute"],1),h("div",{style:"font-weight:600;margin:8px 0 2px"},"Evidence:"),chooser("q5e",ev5,2,false,true)],hint:"Is cold a substance or form of energy that can move? Think about which way energy moved when the water got colder."}),
+ Q({id:"q6",num:"6",auto:false,prompt:"The thermometer in Reaction 3 is not part of the reaction. Explain why its reading increased from 21.0 °C to 39.0 °C.",ins:"Use the words <b>system</b> and <b>surroundings</b>. Saving your answer unlocks the next Read This! box.",body:wbox("q6w","",30)}),
+ RT("Exothermic and Endothermic Reactions",`<ul><li>The <b><u>system</u></b> is the specific part of the universe being studied. In a chemical reaction, the system is usually the particles taking part in the reaction. The <b><u>surroundings</u></b> are everything that is not part of the system.</li>
+<li>An <b><u>exothermic reaction</u></b> releases energy to its surroundings. Energy leaves the system, and <span style="color:#c00000;font-weight:700;font-style:italic">the temperature of the surroundings increases</span>.</li>
+<li>An <b><u>endothermic reaction</u></b> absorbs energy from its surroundings. Energy enters the system, and <span style="color:#0070C0;font-weight:700;font-style:italic">the temperature of the surroundings decreases</span>.</li></ul>
+<p>“Cold” is not something that moves. An endothermic reaction feels cold because energy is leaving your hand and the water and entering the reacting particles.</p>`,()=>done("q3")&&done("q4")&&done("q5")&&saved("q6w"),"Answer Questions 1 to 5 and save your answer to Question 6 to unlock this box."),
+ Q({id:"q7",num:"7",prompt:"Go back to Model 1. Use the Read This! box to classify each reaction as exothermic or endothermic.",body:sortQ("q7r",["Reaction 1: magnesium + hydrochloric acid (21.0 °C → 33.0 °C)","Reaction 2: baking soda + hydrochloric acid (21.0 °C → 16.0 °C)","Reaction 3: calcium oxide + water (21.0 °C → 39.0 °C)"],["Exothermic","Endothermic"],[0,1,0]),hint:"An increase in the temperature of the surroundings means energy left the system."}),
+ Q({id:"q8",num:"8",prompt:"Classify each change as exothermic or endothermic.",body:sortQ("q8",sit.map(s=>s[0]),["Exothermic","Endothermic"],sit.map(s=>s[1])),hint:"Ask whether energy leaves the reacting substances (warming the surroundings) or enters them."})]);
+})();
+
+/* ---------- PART 2: ENERGY IN CHEMICAL EQUATIONS ---------- */
+function peDiag(o){const W=680,H=330,base=296,lo=o.lo||0,hi=o.hi||700,st=o.st||100,k=(base-34)/(hi-lo),yv=v=>base-(v-lo)*k;let m="";
+ m+=`<line x1="78" y1="${base}" x2="78" y2="24" stroke="#1b2328" stroke-width="2"/><path d="M78 14 l-6 12 h12 z" fill="#1b2328"/><line x1="78" y1="${base}" x2="650" y2="${base}" stroke="#1b2328" stroke-width="2"/>`;
+ for(let v=lo;v<=hi;v+=st){m+=`<line x1="72" y1="${yv(v)}" x2="78" y2="${yv(v)}" stroke="#1b2328" stroke-width="1.5"/>`+T(66,yv(v)+5,String(v),{fs:13,a:"end",fw:500});}
+ m+=`<text x="22" y="${base/2+10}" text-anchor="middle" font-size="14" font-weight="600" fill="#1b2328" transform="rotate(-90 22 ${base/2+10})">Potential energy of the system (kJ)</text>`;
+ const yr=yv(o.r),yp=yv(o.p);
+ m+=`<line x1="120" y1="${yr}" x2="280" y2="${yr}" stroke="#1b2328" stroke-width="5"/><line x1="380" y1="${yp}" x2="540" y2="${yp}" stroke="#1b2328" stroke-width="5"/>`;
+ m+=T(200,yr-12,"Reactants: "+o.r+" kJ",{fs:14})+T(200,yr+22,o.rf,{fs:14,fw:500})+T(460,yp-12,"Products: "+o.p+" kJ",{fs:14})+T(460,yp+22,o.pf,{fs:14,fw:500});
+ m+=`<line x1="280" y1="${yr}" x2="620" y2="${yr}" stroke="#7a8a96" stroke-width="1.5" stroke-dasharray="5 4"/><line x1="540" y1="${yp}" x2="620" y2="${yp}" stroke="#7a8a96" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+ m+=vArrow(605,yr,yp,"#1b2328",3)+T(616,(yr+yp)/2+5,"ΔH",{fs:15,a:"start"});
+ return svgFrom(W,H,m);}
+(function(){
+ const RX=[["Reaction 1:","Mg(s) + 2HCl(aq) → MgCl2(aq) + H2(g) + energy",21.0,33.0],["Reaction 2:","NaHCO3(s) + HCl(aq) + energy → NaCl(aq) + H2O(l) + CO2(g)",21.0,16.0],["Reaction 3:","CaO(s) + H2O(l) → Ca(OH)2(s) + energy",21.0,39.0]];
+ const model2=h("div",{class:"model"},h("h3",null,"Model 2 – Energy Terms in Chemical Equations"),
+  h("p",{style:"margin:0 0 6px"},"These are the balanced equations for the three reactions in Model 1, shown with the same beakers. Each equation includes the word energy, written on one side of the arrow."),
+  RX.map(([l,e,a,b],i)=>h("div",{class:"panel",style:"margin-bottom:8px"},eqDiv(l,e),pairSVG(RXN[i]))));
+ const A9=[[0,1,0],[1,0,1],[0,1,0]];
+ const t9=h("table",{class:"tt"},h("tr",null,h("th",null,"Reaction"),h("th",null,"Temperature of the surroundings"),h("th",null,"Energy is written on the…"),h("th",null,"Type of reaction")),
+  [1,2,3].map((r,i)=>h("tr",null,h("td",{class:"l"},"Reaction "+r),h("td",null,sel("q9t"+i,["increased","decreased"],A9[i][0])),h("td",null,sel("q9s"+i,["reactant side","product side"],A9[i][1])),h("td",null,sel("q9k"+i,["exothermic","endothermic"],A9[i][2])))));
+ const model3=h("div",{class:"model"},h("h3",null,"Model 3 – The Potential Energy of the System"),
+  h("p",{style:"margin:0 0 6px",html:"Potential energy is energy stored in the particles of the system, in their bonds and in the attractions between them. The energy change of a reaction is called the <b>heat of reaction</b>, ΔH. It is the change in the potential energy of the system: <span class=\"dh\">ΔH = PE<sub>products</sub> − PE<sub>reactants</sub></span>. The diagrams compare the potential energy of the reactants and the products for Reactions 1 and 2 from Model 1."}),
+  h("div",{class:"panel",style:"margin-bottom:8px"},h("div",{class:"nm"},"Reaction 1"),eqDiv("","Mg(s) + 2HCl(aq) → MgCl2(aq) + H2(g)"),peDiag({r:600,p:133,rf:"Mg + 2HCl",pf:"MgCl₂ + H₂"}),h("div",{class:"small",style:"text-align:center"},"The temperature of the surroundings increased.")),
+  h("div",{class:"panel"},h("div",{class:"nm"},"Reaction 2"),eqDiv("","NaHCO3(s) + HCl(aq) → NaCl(aq) + H2O(l) + CO2(g)"),peDiag({r:240,p:271,lo:0,hi:300,st:50,rf:"NaHCO₃ + HCl",pf:"NaCl + H₂O + CO₂"}),h("div",{class:"small",style:"text-align:center"},"The temperature of the surroundings decreased.")),
+  src("Potential energies are relative values chosen so that each difference equals the measured heat of reaction (calculated from standard enthalpies of formation, CRC Handbook)."));
+ const t12=h("table",{class:"tt"},h("tr",null,h("th",null,"Reaction"),h("th",null,"PE of reactants (kJ)"),h("th",null,"PE of products (kJ)"),h("th",null,"ΔH = PE<sub>products</sub> − PE<sub>reactants</sub> (kJ)"),h("th",null,"Energy was…"),h("th",null,"Sign of ΔH")),
+  [["1",600,133,"released",0],["2",240,271,"absorbed",1]].map(([r,a,b,x,sg],i)=>h("tr",null,h("td",{class:"l"},"Reaction "+r),h("td",null,numIn("q12r"+i,a)),h("td",null,numIn("q12p"+i,b)),h("td",null,numIn("q12h"+i,b-a)),h("td",null,sel("q12e"+i,["absorbed by the system","released by the system"],x==="absorbed"?0:1)),h("td",null,sel("q12s"+i,["negative (−)","positive (+)"],sg)))));
+ const num=a=>a.map((t,i)=>`(${i+1}) ${t}`);
+ const flow=["The energy enters the system from the surroundings, and the temperature of the surroundings decreases.","The energy enters the system from the surroundings, and the temperature of the surroundings increases.","The energy exits the system to the surroundings, and the temperature of the surroundings decreases.","The energy exits the system to the surroundings, and the temperature of the surroundings increases."];
+ part("p2","Part 2",banner("Part 2: Energy in Chemical Equations","",`<p>A balanced equation shows which substances react and which form, but it can also show the energy that moves into or out of the system. Engineers who design hand warmers, cold packs and furnaces read this information directly from the equation. Model 2 shows the equations for the reactions you studied in Part 1, and Model 3 shows how the potential energy of the system changes during two reactions.</p>`),
+ [model2,
+ Q({id:"q9",num:"9",prompt:"Use Models 1 and 2 to complete the table.",body:t9,hint:"Use your answers from Part 1 for the temperature and the type of reaction. Then look at which side of the arrow the word energy appears on."}),
+ Q({id:"q10",num:"10",prompt:"Complete the statements to describe the pattern in Question 9.",body:h("div",{class:"frame"},
+  "In an exothermic reaction, energy is written on the ",sel("q10a",["reactant side","product side"],1)," because energy is ",sel("q10b",["absorbed by","released by"],1)," the system as the reaction happens, just as products are made.",h("br"),
+  "In an endothermic reaction, energy is written on the ",sel("q10c",["reactant side","product side"],0)," because energy is ",sel("q10d",["absorbed by","released by"],0)," the system as the reaction happens, just as reactants are used up."),hint:"Products are what a reaction makes. Reactants are what a reaction uses up."}),
+ Q({id:"q11",num:"11",prompt:"Use the word bank to build each equation, including energy, on the correct side.",ins:"Each equation is already balanced. Not every blank needs a piece.",body:[
+  h("div",{style:"margin:2px 0"},"a. Propane, C₃H₈, burns in oxygen in a gas grill, producing carbon dioxide and water vapor and cooking the food."),
+  buildEq("q11a",[{s:"L1"},"+",{s:"L2"},"+",{s:"L3"},"→",{s:"R1"},"+",{s:"R2"},"+",{s:"R3"}],["C3H8(g)","5O2(g)","3CO2(g)","4H2O(g)","energy","3H2(g)"],{L1:"C3H8(g)",L2:"5O2(g)",R1:"3CO2(g)",R2:"4H2O(g)",R3:"energy"},[["L1","L2","L3"],["R1","R2","R3"]]),
+  h("div",{style:"margin:12px 0 2px"},"b. An electric current is passed through water, breaking it down into hydrogen gas and oxygen gas. The reaction stops when the current is turned off."),
+  buildEq("q11b",[{s:"L1"},"+",{s:"L2"},"→",{s:"R1"},"+",{s:"R2"},"+",{s:"R3"}],["2H2O(l)","2H2(g)","O2(g)","energy","H2O2(l)"],{L1:"2H2O(l)",L2:"energy",R1:"2H2(g)",R2:"O2(g)"},[["L1","L2"],["R1","R2","R3"]])],hint:"Reactants go on the left and products on the right. Does each reaction release energy, or does it need a steady supply of energy?"}),
+ model3,
+ Q({id:"q12",num:"12",prompt:"Use Model 3 to complete the table.",ins:"Read each potential energy from the diagram. Type a negative sign (−) when ΔH is negative.",body:t12,hint:"ΔH = PE of products − PE of reactants. If the products have less potential energy than the reactants, the system released energy."}),
+ Q({id:"q13",num:"13",prompt:"Use each energy amount once. Place it on the correct side of the correct equation.",body:buildEq("q13",[{lab:"Reaction 1:"},"Mg(s) + 2HCl(aq) +",{s:"A"},"→ MgCl2(aq) + H2(g) +",{s:"B"},"\n",{lab:"Reaction 2:"},"NaHCO3(s) + HCl(aq) +",{s:"C"},"→ NaCl(aq) + H2O(l) + CO2(g) +",{s:"D"}],["467 kJ","31 kJ"],{B:"467 kJ",C:"31 kJ"},[["A"],["B"],["C"],["D"]]),hint:"Use your values of ΔH from Question 12. Energy released is written with the products; energy absorbed is written with the reactants."}),
+ Q({id:"q14",num:"14",auto:false,prompt:"The temperature of the surroundings increases during Reaction 1, yet ΔH for Reaction 1 is negative. Explain why ΔH is negative.",ins:"Describe what happens to the potential energy of the system. Saving your answer unlocks the next Read This! box.",body:wbox("q14w","",30)}),
+ RT("Energy in Chemical Equations",`<ul><li>In an <b>exothermic</b> reaction, energy is released, so it is written on the <span style="color:#c00000;font-weight:700;font-style:italic">product side</span> of the equation. The potential energy of the system decreases, so ΔH is <span style="color:#c00000;font-weight:700;font-style:italic">negative</span>.</li>
+<li>In an <b>endothermic</b> reaction, energy is absorbed, so it is written on the <span style="color:#0070C0;font-weight:700;font-style:italic">reactant side</span> of the equation. The potential energy of the system increases, so ΔH is <span style="color:#0070C0;font-weight:700;font-style:italic">positive</span>.</li>
+<li>The <b><u>heat of reaction</u></b> (ΔH) is the change in the potential energy of the system: <span class="dh">ΔH = PE<sub>products</sub> − PE<sub>reactants</sub></span>. Its sign describes the system, not the surroundings.</li></ul>
+<p>Both of these describe the same exothermic reaction:<br>${EQ("Mg(s) + 2HCl(aq) → MgCl2(aq) + H2(g) + 467 kJ")}<br>${EQ("Mg(s) + 2HCl(aq) → MgCl2(aq) + H2(g)")} &nbsp; <span class="dh">ΔH = −467 kJ</span></p>`,()=>done("q12")&&done("q13")&&saved("q14w"),"Answer Questions 9 to 13 and save your answer to Question 14 to unlock this box."),
+ level("Practice","Use the patterns you found to read and write the energy information for each reaction."),
+ Q({id:"q15",num:"15",prompt:"During photosynthesis, plants use energy from sunlight to make glucose. Which row identifies where the energy term is written in the equation for photosynthesis and the type of reaction?",body:[eqDiv("","6CO2(g) + 6H2O(l) → C6H12O6(s) + 6O2(g)","ΔH = +2803 kJ"),rowQ("q15",["Energy Term Written on the","Type of Reaction"],[["reactant side","endothermic"],["reactant side","exothermic"],["product side","endothermic"],["product side","exothermic"]],0)],hint:"What does a positive ΔH tell you about the potential energy of the system?"}),
+ Q({id:"q16",num:"16",prompt:"Hydrogen gas burns in oxygen to produce water vapor.",body:[eqDiv("","2H2(g) + O2(g) → 2H2O(g) + 484 kJ"),h("div",{class:"frame"},"ΔH for this reaction = ",numIn("q16a",-484)," kJ",h("br"),"During this reaction, the temperature of the surroundings ",sel("q16b",["increases","decreases"],0),".")],hint:"Energy is written on the product side. What does that tell you about the system and the surroundings?"}),
+ Q({id:"q17",num:"17",prompt:"Solid ammonium chloride is heated in a test tube and breaks down into ammonia gas and hydrogen chloride gas. The reaction continues only while the test tube is heated, and it stops as soon as the heating stops. Which statement describes the change in energy and the placement of the energy term in the equation for this reaction?",body:[eqDiv("","NH4Cl(s) → NH3(g) + HCl(g)"),chooser("q17",["(1) The reaction is endothermic and the term is on the left.","(2) The reaction is exothermic and the term is on the left.","(3) The reaction is endothermic and the term is on the right.","(4) The reaction is exothermic and the term is on the right."],0,false,true)],hint:"If the reaction needs a steady supply of energy, is energy a reactant or a product?"}),
+ Q({id:"q18",num:"18",prompt:"Lightning provides the energy for nitrogen and oxygen in the air to react. Which statement describes the flow of energy in this reaction?",body:[eqDiv("","N2(g) + O2(g) + 181 kJ → 2NO(g)"),chooser("q18",num(flow),0,false,true)],hint:"Which side of the equation is the energy term on?"}),
+ Q({id:"q19",num:"19",prompt:"Create a potential energy model for each reaction, then identify the sign of ΔH.",ins:"The ΔH arrow starts at the reactants and ends at the products.",body:[
+  h("div",{class:"cmp"},h("div",null,h("div",{style:"margin-bottom:4px",html:"a. "+EQ("2H2(g) + O2(g) → 2H2O(g) + 484 kJ")}),peBuild("q19a","lower","2H₂ + O₂","2H₂O"),h("div",{class:"frame"},"The arrow points ",sel("q19c",["up","down"],1),", so ΔH is ",sel("q19d",["positive","negative"],1),".")),
+  h("div",null,h("div",{style:"margin-bottom:4px",html:"b. "+EQ("N2(g) + O2(g) + 181 kJ → 2NO(g)")}),peBuild("q19b","higher","N₂ + O₂","2NO"),h("div",{class:"frame"},"The arrow points ",sel("q19e",["up","down"],0),", so ΔH is ",sel("q19f",["positive","negative"],0),".")))],hint:"In an exothermic reaction the system loses potential energy, so the products are lower. In an endothermic reaction the products are higher."})]);
+})();
+
+/* ---------- PART 3: BREAKING AND FORMING BONDS ---------- */
+(function(){
+ const PR=[[1,"H2(g) → 2H(g)",["H2"],["H","H"],"+432"],[2,"2Cl(g) → Cl2(g)",["Cl","Cl"],["Cl2"],"−239"],[3,"HCl(g) → H(g) + Cl(g)",["HCl"],["H","Cl"],"+427"],
+  [4,"2H(g) → H2(g)",["H","H"],["H2"],"−432"],[5,"Cl2(g) → 2Cl(g)",["Cl2"],["Cl","Cl"],"+239"],[6,"H(g) + Cl(g) → HCl(g)",["H","Cl"],["HCl"],"−427"]];
+ const pic=(a,b)=>svgFrom(300,62,rowM(a,70,31,1.9,22)+bigArrow(128,31,172)+rowM(b,230,31,1.9,22));
+ const model4=h("div",{class:"model"},h("h3",null,"Model 4 – Breaking and Forming Bonds"),
+  h("p",{style:"margin:0 0 6px"},"Each process shows hydrogen and chlorine particles in the gas phase. The energy change is the change in the energy of the system for 1 mole of the particles shown on the left."),
+  h("table",{class:"tt",style:"margin:0 auto"},h("tr",null,h("th",null,"Process"),h("th",null,"Equation"),h("th",null,"Particle model"),h("th",null,"Energy change (kJ)")),
+   PR.map(([n,e,a,b,dE])=>h("tr",null,h("td",null,String(n)),h("td",{style:"text-align:left;white-space:nowrap",html:EQ(e)}),h("td",{style:"padding:2px 6px"},pic(a,b)),h("td",{style:"font-weight:600;color:"+(dE[0]==="+"?ABS:REL)},dE)))),
+  keyRow(["H","Cl"]),src("Energy changes are average bond energies (kJ/mol), from the average bond energy table in LibreTexts Chemistry, “Bond Energies.”"));
+ const BE=[["H–H",432],["Cl–Cl",239],["H–Cl",427],["O=O",495],["O–H",467],["N≡N",941],["N=O",607],["C–H",413],["C=O (in CO<sub>2</sub>)",799]];
+ const model5=h("div",{class:"model"},h("h3",null,"Model 5 – Average Bond Energies"),
+  h("p",{style:"margin:0 0 6px"},"A single line (–) is a single bond, a double line (=) is a double bond, and a triple line (≡) is a triple bond. Each value is the energy needed to break 1 mole of that bond in the gas phase."),
+  h("div",{style:"display:flex;gap:16px;flex-wrap:wrap;justify-content:center"},[BE.slice(0,5),BE.slice(5)].map(list=>h("table",{class:"tt"},h("tr",null,h("th",null,"Bond"),h("th",null,"Bond energy (kJ/mol)")),list.map(([b,e])=>h("tr",null,h("td",{style:"font-weight:600",html:b}),h("td",null,String(e))))))),
+  src("Source: average bond energies, LibreTexts Chemistry, “Bond Energies,” Table 1."));
+ const ev20=["(1) Process 4 has an energy change of −432 kJ, so breaking the H–H bond releases energy.","(2) Process 5 has an energy change of +239 kJ, so forming the Cl–Cl bond absorbs energy.","(3) Process 1 has an energy change of +432 kJ, so breaking the H–H bond absorbs energy.","(4) Bonds store energy inside them, and the energy comes out when the bond breaks."];
+ part("p3","Part 3",banner("Part 3: Breaking and Forming Bonds","",`<p>The energy released by a hand warmer or absorbed by a cold pack comes from the particles of the system. During a reaction, some bonds in the reactants break and new bonds form in the products, because the atoms are rearranged. Model 4 separates these two steps so that you can see the energy change of each one by itself.</p>`),
+ [model4,
+ Q({id:"q20",num:"20",prompt:"For each process in Model 4, identify whether a bond is broken or formed, and whether the process is endothermic or exothermic.",body:h("table",{class:"tt"},h("tr",null,h("th",null,"Process"),h("th",null,"Bond broken or formed?"),h("th",null,"Endothermic or exothermic?")),
+  PR.map((p,i)=>h("tr",null,h("td",{class:"l",html:"Process "+p[0]+": "+EQ(p[1])}),h("td",{style:"text-align:left"},chooser("q20b_"+i,["broken","formed"],i%2)),h("td",{style:"text-align:left"},chooser("q20k_"+i,["endothermic","exothermic"],i%2))))),hint:"Compare the left and right sides of each particle model. Then use the sign of the energy change: positive means energy is absorbed by the system."}),
+ Q({id:"q21",num:"21",prompt:"Complete the statements using Model 4.",body:h("div",{class:"frame"},
+  "When a bond is broken, the energy change is ",sel("q21a",["positive","negative"],0),", so breaking a bond is ",sel("q21b",["endothermic","exothermic"],0),".",h("br"),
+  "When a bond is formed, the energy change is ",sel("q21c",["positive","negative"],1),", so forming a bond is ",sel("q21d",["endothermic","exothermic"],1),"."),hint:"Group the processes you labeled in Question 20 and look at the signs of their energy changes."}),
+ Q({id:"q22",num:"22",prompt:"Process 4 is the reverse of Process 1. Which row compares the energy changes of these two processes?",body:rowQ("q22",["Size of the Energy Change","Sign of the Energy Change"],[["the same","the same"],["the same","opposite"],["different","the same"],["different","opposite"]],1),hint:"Look at the numbers and the signs for Processes 1 and 4 separately."}),
+ Q({id:"q23",num:"23",prompt:"A student claims, “Energy is released when the bonds in a fuel molecule break.” Place a check mark in either the Support or Refute box, then choose the evidence from Model 4 that justifies your decision.",body:[chooser("q23c",["Support","Refute"],1),h("div",{style:"font-weight:600;margin:8px 0 2px"},"Evidence:"),chooser("q23e",ev20,2,false,true)],hint:"Find a process in which a bond breaks. What is the sign of its energy change?"}),
+ Q({id:"q24",num:"24",auto:false,prompt:"The two atoms in an H<sub>2</sub> molecule are held together because both nuclei attract the pair of electrons they share. Use this idea to explain why energy must be added to break the H–H bond, and why the same amount of energy is released when the bond forms.",ins:"Saving your answer unlocks the next Read This! box.",body:wbox("q24w","",30)}),
+ RT("Bond Energy",`<ul><li>A chemical bond is a strong attraction between atoms. To break a bond and overcome that attraction, energy must be added, so <span style="color:#0070C0;font-weight:700;font-style:italic">breaking bonds is endothermic</span>.</li>
+<li>When atoms are attracted together and a bond forms, energy is released, so <span style="color:#c00000;font-weight:700;font-style:italic">forming bonds is exothermic</span>.</li>
+<li>The energy needed to break a bond is equal to the energy released when that same bond forms.</li>
+<li><b><u>Bond energy</u></b> – the energy required to break 1 mole of a specific type of bond in the gas phase.</li></ul>`,()=>done("q22")&&done("q23")&&saved("q24w"),"Answer Questions 20 to 23 and save your answer to Question 24 to unlock this box."),
+ model5,
+ Q({id:"q25",num:"25",prompt:"Use Model 5 to answer each part.",body:h("div",{class:"frame"},
+  "The bond that requires the most energy to break is ",sel("q25a",["H–H","O=O","N≡N","C=O"],2),".",h("br"),
+  "When 1 mole of O–H bonds forms, the energy released is ",numIn("q25b",467)," kJ.",h("br"),
+  "When 2 moles of H–Cl bonds form, the energy released is ",numIn("q25c",854)," kJ."),hint:"Bond energies are given for 1 mole of bonds. For 2 moles of bonds, the energy is twice as large."})]);
+})();
+
+/* ---------- PART 4: BONDS AND THE ENERGY OF A REACTION ---------- */
+function stair(o){const k=o.k,yA=78,yR=yA+o.up*k,yP=yA+o.down*k,Hh=Math.max(yR,yP)+70,W=760;
+ const lvl=(x1,x2,y)=>`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="#1b2328" stroke-width="4"/>`;
+ let m=`<line x1="26" y1="${Hh-22}" x2="26" y2="20" stroke="#1b2328" stroke-width="2"/><path d="M26 10 l-6 12 h12 z" fill="#1b2328"/><text x="14" y="${(Hh)/2}" text-anchor="middle" font-size="13" font-weight="600" fill="#1b2328" transform="rotate(-90 14 ${Hh/2})">Energy of the system</text>`;
+ m+=lvl(44,214,yR)+lvl(254,444,yA)+lvl(484,654,yP);
+ m+=T(129,yR+44,o.pr||"",{fs:14,c:"#0e5f72"})+T(349,yA+22,o.pa||"",{fs:14,c:"#0e5f72"})+T(569,yP+44,o.pp||"",{fs:14,c:"#0e5f72"});
+ m+=rowM(o.react,129,yR-26,o.s,14)+T(129,yR+22,o.rl,{fs:15})+rowM(o.atoms,349,yA-24,o.s,10)+T(349,yA-50,o.al,{fs:15})+rowM(o.prod,569,yP-26,o.s,14)+T(569,yP+22,o.pl,{fs:15});
+ const my1=(yR+yA)/2,my2=yA+(yP-yA)/2;
+ m+=vArrow(234,yR,yA,ABS,4)+T(224,my1-16,"Step 1: bonds broken",{fs:14,a:"end",c:ABS})+T(224,my1+3,"energy absorbed",{fs:14,a:"end",c:ABS,fw:500})+T(224,my1+24,o.upL,{fs:16,a:"end",c:ABS,fw:800});
+ m+=vArrow(464,yA,yP,REL,4)+T(476,my2-16,"Step 2: bonds formed",{fs:14,a:"start",c:REL})+T(476,my2+3,"energy released",{fs:14,a:"start",c:REL,fw:500})+T(476,my2+24,o.downL,{fs:16,a:"start",c:REL,fw:800});
+ m+=`<line x1="214" y1="${yR}" x2="690" y2="${yR}" stroke="#7a8a96" stroke-width="1.5" stroke-dasharray="5 4"/><line x1="654" y1="${yP}" x2="690" y2="${yP}" stroke="#7a8a96" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+ m+=`<path d="M684 ${yR}h12M690 ${yR}V${yP}M684 ${yP}h12" stroke="#1b2328" stroke-width="2" fill="none"/>`+T(702,(yR+yP)/2+5,"ΔH",{fs:15,a:"start"});
+ return svgFrom(W,Hh,m);}
+(function(){
+ const model6=h("div",{class:"model"},h("h3",null,"Model 6 – Breaking and Forming Bonds During a Reaction"),
+  h("p",{style:"margin:0 0 6px"},"Hydrogen gas reacts with chlorine gas to produce hydrogen chloride gas. The diagram imagines the reaction happening in two steps. In Step 1, every bond in the reactants is broken, leaving separate atoms. In Step 2, the atoms form the bonds in the products. The potential energy (PE) of the reactants is set at 0 kJ as a starting point."),
+  eqDiv("","H2(g) + Cl2(g) → 2HCl(g)"),
+  stair({k:.24,up:671,down:854,s:1.7,react:["H2","Cl2"],atoms:["H","H","Cl","Cl"],prod:["HCl","HCl"],rl:"H₂ + Cl₂",al:"2H + 2Cl",pl:"2HCl",upL:"? kJ",downL:"? kJ",pr:"PE = 0 kJ",pa:"PE = ? kJ",pp:"PE = ? kJ"}),
+  keyRow(["H","Cl"],h("span",null,"· The bond energies are in Model 5. Diagram not drawn to scale.")));
+ const row=(key,b,n,e)=>h("tr",null,h("td",{style:"font-weight:600;white-space:nowrap"},b),h("td",null,String(n)),h("td",null,String(e)),h("td",null,numIn(key,n*e)));
+ const hd=()=>h("tr",null,h("th",null,"Bond"),h("th",null,"Moles of bonds"),h("th",null,"Bond energy (kJ/mol)"),h("th",null,"Energy (kJ)"));
+ const tot=(key,lab,v,col)=>h("tr",null,h("td",{colspan:3,style:"text-align:right;font-weight:600;color:"+col},lab),h("td",null,numIn(key,v)));
+ const tables=(p,br,fo,tb,tf)=>h("div",{class:"cmp"},h("div",null,h("div",{style:"font-weight:600;color:"+ABS},"Step 1: Bonds broken"),h("table",{class:"tt"},hd(),br.map((r,i)=>row(p+"b"+i,...r)),tot(p+"tb","Total energy absorbed",tb,ABS))),
+  h("div",null,h("div",{style:"font-weight:600;color:"+REL},"Step 2: Bonds formed"),h("table",{class:"tt"},hd(),fo.map((r,i)=>row(p+"f"+i,...r)),tot(p+"tf","Total energy released",tf,REL))));
+ const track=(p,up,down)=>h("div",{class:"frame"},
+  h("div",null,"1. The system starts with PE = 0 kJ."),
+  h("div",null,"2. In Step 1, the system absorbs the energy needed to break the bonds. After Step 1, its PE = ",numIn(p+"a",up)," kJ."),
+  h("div",null,"3. In Step 2, the system releases energy as the new bonds form. After Step 2, its PE = ",numIn(p+"b",up-down)," kJ."),
+  h("div",null,"4. ΔH = PE",h("sub",null,"products")," − PE",h("sub",null,"reactants")," = ",numIn(p+"c",up-down)," − 0 = ",numIn(p+"d",up-down)," kJ."));
+ const model7=h("div",{class:"model"},h("h3",null,"Model 7 – A Second Reaction"),
+  h("p",{style:"margin:0 0 6px"},"Inside a car engine, the high temperature causes some of the nitrogen and oxygen in the air to react, forming nitrogen monoxide, an air pollutant. Each NO molecule contains one N=O double bond."),
+  eqDiv("","N2(g) + O2(g) → 2NO(g)"),
+  stair({k:.13,up:1436,down:1214,s:1.7,react:["N2","O2"],atoms:["N","N","O","O"],prod:["NO","NO"],rl:"N₂ + O₂",al:"2N + 2O",pl:"2NO",upL:"? kJ",downL:"? kJ",pr:"PE = 0 kJ",pa:"PE = ? kJ",pp:"PE = ? kJ"}),
+  keyRow(["N","O"],h("span",null,"· Diagram not drawn to scale.")));
+ const meth0=["(1) More energy is absorbed breaking the bonds in CH₄ and O₂ than is released forming the bonds in CO₂ and H₂O.","(2) More energy is released forming the bonds in CO₂ and H₂O than is absorbed breaking the bonds in CH₄ and O₂.","(3) Energy is released when the bonds in CH₄ and O₂ are broken.","(4) Energy is absorbed when the bonds in CO₂ and H₂O are formed."];
+ part("p4","Part 4",banner("Part 4: Bonds and the Energy of a Reaction","",`<p>Every reaction both breaks bonds and forms bonds, so every reaction both absorbs energy and releases energy. Whether a reaction warms or cools its surroundings depends on which of these two amounts is larger. In this part, you will follow the potential energy of the system through each step of a reaction, the same way you would follow a bank balance through a deposit and a withdrawal.</p>`),
+ [model6,
+ Q({id:"q26",num:"26",prompt:"Use Models 5 and 6 to complete the tables for the reaction of hydrogen with chlorine.",ins:"Energy = moles of bonds × bond energy. The coefficient 2 in 2HCl means 2 moles of HCl molecules.",body:tables("q26",[["H–H",1,432],["Cl–Cl",1,239]],[["H–Cl",2,427]],671,854),hint:"Multiply each number of moles by its bond energy, then add the energies in each table."}),
+ Q({id:"q27",num:"27",prompt:"Follow the potential energy of the system through Model 6 to determine ΔH.",body:track("q27",671,854),hint:"Use your totals from Question 26. Energy absorbed is added to the system’s potential energy, and energy released is subtracted from it."}),
+ Q({id:"q28",num:"28",prompt:"Compare the two totals in Question 26 and complete the statement.",body:h("div",{class:"frame"},"More energy is ",sel("q28a",["absorbed breaking bonds","released forming bonds"],1),", so the products are ",sel("q28b",["lower","higher"],0)," in potential energy than the reactants, and the reaction is ",sel("q28c",["exothermic","endothermic"],0),"."),hint:"Which arrow in Model 6 is longer?"}),
+ RT("Bond Energies and the Heat of Reaction",`<ul><li>In a chemical reaction, energy must be added to break the bonds of the reactants. When new bonds are formed to create the products, energy is released.</li>
+<li>If more energy is needed to break the old bonds than is released forming the new bonds, there is a net absorption of energy and the reaction is <span style="color:#0070C0;font-weight:700;font-style:italic">endothermic</span>.</li>
+<li>If more energy is released forming the new bonds than is needed to break the old bonds, there is a net release of energy and the reaction is <span style="color:#c00000;font-weight:700;font-style:italic">exothermic</span>.</li>
+<li>Following the potential energy of the system gives the same ΔH as Part 2: the system ends at the products’ PE, so <span class="dh">ΔH = PE<sub>products</sub> − PE<sub>reactants</sub> = (energy absorbed breaking bonds) − (energy released forming bonds)</span>.</li></ul>`,()=>done("q27")&&done("q28"),"Answer Questions 26 to 28 to unlock this box."),
+ model7,
+ Q({id:"q29",num:"29",prompt:"Use Models 5 and 7 to complete the tables for the reaction of nitrogen with oxygen, then follow the potential energy of the system to determine ΔH.",body:[tables("q29",[["N≡N",1,941],["O=O",1,495]],[["N=O",2,607]],1436,1214),track("q29",1436,1214)],hint:"N₂ has one triple bond, O₂ has one double bond, and each NO has one N=O double bond."}),
+ h("div",{class:"model",style:"padding:10px 14px"},h("p",{style:"margin:0",html:"<b>Note:</b> Bond energies are average values for each type of bond, so a ΔH calculated from them is an estimate. Measured values are slightly different: ΔH for H<sub>2</sub> + Cl<sub>2</sub> → 2HCl is −185 kJ (estimate −183 kJ), and ΔH for N<sub>2</sub> + O<sub>2</sub> → 2NO is +181 kJ (estimate +222 kJ). The measured values are used in the rest of this activity."})),
+ Q({id:"q30",num:"30",prompt:"Which row describes the energy changes during the reaction of nitrogen with oxygen?",body:rowQ("q30",["Energy Absorbed Breaking Bonds","Energy Released Forming Bonds","Type of Reaction"],[["1436 kJ","1214 kJ","exothermic"],["1436 kJ","1214 kJ","endothermic"],["1214 kJ","1436 kJ","exothermic"],["1214 kJ","1436 kJ","endothermic"]],1),hint:"Which is larger here, the energy absorbed or the energy released?"}),
+ Q({id:"q31",num:"31",auto:false,prompt:"Natural gas, CH<sub>4</sub>, burns in a furnace: CH<sub>4</sub>(g) + 2O<sub>2</sub>(g) → CO<sub>2</sub>(g) + 2H<sub>2</sub>O(g) + energy. Explain why this reaction is exothermic in terms of the energy absorbed and released by bonds.",ins:"Name the bonds that are broken and the bonds that are formed.",body:wbox("q31w","",30)}),
+ Q({id:"q32",num:"32",auto:false,prompt:"A classmate says, “Burning fuel releases energy because breaking the bonds in the fuel releases energy.” Use Models 4 and 6 to correct this statement.",ins:"Describe what happens to energy when bonds break and when bonds form.",body:wbox("q32w","",40)})]);
+})();
+
+/* ---------- PART 5: MANIPULATING EQUATIONS ---------- */
+(function(){
+ const mini=(dh,lab)=>{const k=.32,yr=dh<0?40:150,yp=yr-dh*k*(dh<0?-1:1)*(dh<0?1:-1);const Y=dh<0?yr+Math.abs(dh)*k:yr-Math.abs(dh)*k;
+  let m=`<line x1="24" y1="168" x2="24" y2="14" stroke="#1b2328" stroke-width="2"/><path d="M24 6 l-5 10 h10 z" fill="#1b2328"/>`+`<line x1="34" y1="${yr}" x2="104" y2="${yr}" stroke="#1b2328" stroke-width="4"/><line x1="134" y1="${Y}" x2="204" y2="${Y}" stroke="#1b2328" stroke-width="4"/>`+`<line x1="104" y1="${yr}" x2="236" y2="${yr}" stroke="#7a8a96" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="204" y1="${Y}" x2="236" y2="${Y}" stroke="#7a8a96" stroke-width="1.4" stroke-dasharray="5 4"/>`+vArrow(226,yr,Y,"#1b2328",3)+T(69,yr+(dh<0?-8:18),"Reactants",{fs:12,fw:500})+T(169,Y+(dh<0?18:-8),"Products",{fs:12,fw:500})+T(140,208,lab,{fs:14})+`<text x="10" y="92" text-anchor="middle" font-size="12" font-weight="600" fill="#1b2328" transform="rotate(-90 10 92)">Potential energy</text>`;
+  return svgFrom(260,216,m);};
+ const pan=(lab,eq,a,b,dh,dhv)=>{const s=svgBox(620,120);s.innerHTML=`<rect x="4" y="4" width="270" height="112" rx="10" fill="#f7fbfd" stroke="#9aa8b3" stroke-width="1.5"/><rect x="346" y="4" width="270" height="112" rx="10" fill="#f7fbfd" stroke="#9aa8b3" stroke-width="1.5"/>`+bigArrow(286,60,336);scene(s,a,4,4,270,112,0.7);scene(s,b,346,4,270,112,0.7);
+  return h("div",{class:"panel",style:"margin-bottom:8px"},h("div",{style:"display:flex;flex-wrap:wrap;gap:14px;align-items:baseline"},h("span",{class:"nm"},lab),h("span",{class:"eq",html:EQ(eq)})),
+   h("div",{style:"display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center"},h("div",{style:"flex:1 1 420px;max-width:620px"},s),h("div",{style:"flex:0 0 260px"},mini(dhv,"ΔH = "+dh))));};
+ const model8=h("div",{class:"model"},h("h3",null,"Model 8 – One Reaction Written Three Ways"),
+  h("p",{style:"margin:0 0 6px"},"The value of ΔH given with an equation applies to the equation exactly as it is written. Equations 2 and 3 are changed versions of Equation 1. Each equation is shown with a particle model and a potential energy diagram drawn to the same scale."),
+  pan("Equation 1","H2(g) + Cl2(g) → 2HCl(g)",["H2","Cl2"],["HCl","HCl"],"−185 kJ",-185),
+  pan("Equation 2","2H2(g) + 2Cl2(g) → 4HCl(g)",["H2","H2","Cl2","Cl2"],["HCl","HCl","HCl","HCl"],"?",-370),
+  pan("Equation 3","2HCl(g) → H2(g) + Cl2(g)",["HCl","HCl"],["H2","Cl2"],"?",185),
+  keyRow(["H","Cl"]),src("ΔH for Equation 1 is the measured value, calculated from standard enthalpies of formation (CRC Handbook)."));
+ const cell=(k,n,b)=>h("span",{style:"white-space:nowrap;margin-right:8px"},numIn(k,n)," "+b);
+ const t31=h("table",{class:"tt"},h("tr",null,h("th",null,"Equation"),h("th",null,"Bonds broken (moles)"),h("th",null,"Bonds formed (moles)")),
+  h("tr",null,h("td",{class:"l"},"1"),h("td",null,cell("q34a",1,"H–H"),cell("q34b",1,"Cl–Cl")),h("td",null,cell("q34c",2,"H–Cl"))),
+  h("tr",null,h("td",{class:"l"},"2"),h("td",null,cell("q34d",2,"H–H"),cell("q34e",2,"Cl–Cl")),h("td",null,cell("q34f",4,"H–Cl"))),
+  h("tr",null,h("td",{class:"l"},"3"),h("td",null,cell("q34g",2,"H–Cl")),h("td",null,cell("q34h",1,"H–H"),cell("q34i",1,"Cl–Cl"))));
+ const f32=h("div",{class:"frame"},"Equation 2 breaks and forms ",sel("q35a",["the same number of","twice as many","half as many"],1)," bonds as Equation 1, so for Equation 2, ΔH = ",numIn("q35b",-370)," kJ.",h("br"),
+  "In Equation 3, the bonds that were formed in Equation 1 are now ",sel("q35c",["broken","formed"],0),", so for Equation 3, ΔH = ",numIn("q35d",185)," kJ.");
+ const AUG=["(1) 2NO(g) + 180.6 kJ → N₂(g) + O₂(g)","(2) 2NO(g) → N₂(g) + O₂(g) + 361.2 kJ","(3) 2NO(g) → N₂(g) + O₂(g) + 180.6 kJ","(4) NO(g) + 180.6 kJ → N₂(g) + O₂(g)"];
+ const f37=[h("div",{style:"margin:2px 0"},"Place the correct energy term on the correct side of the new equation, then give its ΔH."),
+  buildEq("q40a",["2CaO(s) + 2CO2(g) +",{s:"L"},"→ 2CaCO3(s) +",{s:"R"}],["179 kJ","358 kJ"],{R:"358 kJ"}),
+  h("div",{class:"frame"},"For 2CaO(s) + 2CO₂(g) → 2CaCO₃(s), ΔH = ",numIn("q40c",-358)," kJ.")];
+ const ev38=h("div",{class:"frame"},"Evidence: In Model 8, ΔH for Equation 1 is ",numIn("q41a",-185)," kJ, and ΔH for the reverse reaction, Equation 3, is ",numIn("q41b",185)," kJ, so the reverse reaction is ",sel("q41d",["exothermic","endothermic"],1),".");
+ part("p5","Part 5",banner("Part 5: Manipulating Equations and Their Heats of Reaction","",`<p>A furnace burns far more natural gas than a lab burner, and it releases far more energy. A rechargeable battery runs a reaction one way while it powers a phone, and the reverse way while it charges. Chemists often need to change an equation, by reversing it or by multiplying its coefficients, and then they must know what happens to the energy written with it. Model 8 shows one reaction written three different ways.</p>`),
+ [model8,
+ Q({id:"q33",num:"33",prompt:"Compare the potential energy diagrams in Model 8.",body:h("div",{class:"frame"},
+  "a. Compared with the ΔH arrow for Equation 1, the arrow for Equation 2 is ",sel("q33a",["the same length","twice as long","half as long"],1)," and points in ",sel("q33b",["the same direction","the opposite direction"],0),".",h("br"),
+  "b. Compared with the ΔH arrow for Equation 1, the arrow for Equation 3 is ",sel("q33c",["the same length","twice as long","half as long"],0)," and points in ",sel("q33d",["the same direction","the opposite direction"],1),".",h("br"),
+  "c. A ΔH arrow that points down shows that the potential energy of the system ",sel("q33e",["increases","decreases"],1),", so ΔH is ",sel("q33f",["positive","negative"],1),". The ΔH arrow for Equation 3 points ",sel("q33g",["up","down"],0),", so ΔH for Equation 3 is ",sel("q33h",["positive","negative"],0),"."),hint:"The diagrams are drawn to the same scale. Compare the length of each ΔH arrow and whether it points up or down. Equation 1 has a negative ΔH."}),
+ Q({id:"q34",num:"34",prompt:"Use the particle pictures in Model 8 to count the moles of each type of bond broken and formed in each equation.",ins:"All of the bonds in the reactants are broken, and all of the bonds in the products are formed.",body:t31,hint:"Each H₂ has one H–H bond, each Cl₂ has one Cl–Cl bond and each HCl has one H–Cl bond. Count the molecules on each side."}),
+ Q({id:"q35",num:"35",prompt:"Use your answers to Questions 33 and 34 and ΔH for Equation 1 to determine ΔH for Equations 2 and 3.",body:f32,hint:"Twice the bonds means twice the energy. When the bonds formed become the bonds broken, energy that was released is now absorbed."}),
+ Q({id:"q36",num:"36",prompt:"Which row describes how ΔH changes when an equation is changed?",body:rowQ("q36",["All Coefficients Multiplied by 2","Equation Reversed"],[["ΔH doubles","ΔH keeps the same sign"],["ΔH doubles","ΔH changes sign"],["ΔH stays the same","ΔH keeps the same sign"],["ΔH stays the same","ΔH changes sign"]],1),hint:"Compare Equation 2 with Equation 1, then compare Equation 3 with Equation 1."}),
+ Q({id:"q37",num:"37",auto:false,prompt:"Write two rules for changing ΔH when an equation is changed.",ins:"Base each rule on Model 8. Saving both rules unlocks the next Read This! box.",body:[wbox("q37a","Rule 1: What happens to ΔH when all of the coefficients are multiplied by a number?",20),h("div",{style:"height:8px"}),wbox("q37b","Rule 2: What happens to ΔH when an equation is reversed?",20)]}),
+ RT("Manipulating Reactions and Their Enthalpies",`<p>When the heat of reaction is given, it applies to the reaction exactly as it is written. Changing the coefficients or reversing the reaction changes ΔH.</p><ul>
+<li><b>Multiplying or dividing:</b> if all of the coefficients are multiplied or divided by a number, <span style="color:#c00000;font-weight:700;font-style:italic">ΔH is multiplied or divided by the same number</span>, because that many more (or fewer) bonds are broken and formed.</li>
+<li><b>Reversing:</b> if a reaction is reversed, <span style="color:#0070C0;font-weight:700;font-style:italic">the sign of ΔH is switched but its size stays the same</span>, because the bonds that were formed are now broken. An exothermic reaction becomes endothermic, and an endothermic reaction becomes exothermic.</li></ul>
+<p>${EQ("H2(g) + Cl2(g) → 2HCl(g)")} <span class="dh">ΔH = −185 kJ</span><br>${EQ("4HCl(g) → 2H2(g) + 2Cl2(g)")} <span class="dh">ΔH = +370 kJ</span> (reversed and multiplied by 2)</p>`,()=>done("q33")&&done("q35")&&done("q36")&&saved("q37a")&&saved("q37b"),"Answer Questions 33 to 36 and save both rules in Question 37 to unlock this box."),
+ level("Practice","Apply the rules to real reactions."),
+ Q({id:"q38",num:"38",prompt:"A hand warmer heats up when iron powder inside it reacts with oxygen in the air to form iron(III) oxide.",body:[eqDiv("","4Fe(s) + 3O2(g) → 2Fe2O3(s)","ΔH = −1648 kJ"),h("div",{class:"frame"},
+  h("span",{html:EQ("2Fe2O3(s) → 4Fe(s) + 3O2(g)")})," ΔH = ",numIn("q38a",1648)," kJ",h("br"),
+  h("span",{html:EQ("8Fe(s) + 6O2(g) → 4Fe2O3(s)")})," ΔH = ",numIn("q38b",-3296)," kJ",h("br"),
+  "The reaction 2Fe₂O₃(s) → 4Fe(s) + 3O₂(g) is ",sel("q38c",["exothermic","endothermic"],1),".")],hint:"Is each new equation reversed, multiplied, or both?"}),
+ Q({id:"q39",num:"39",prompt:"Nitrogen monoxide forms in car engines by the reaction N<sub>2</sub>(g) + O<sub>2</sub>(g) → 2NO(g), ΔH = +180.6 kJ. A catalytic converter changes the NO back into N<sub>2</sub> and O<sub>2</sub>. Which equation correctly represents the reaction in the catalytic converter, including its energy term?",body:chooser("q39",AUG,2,false,true),hint:"The reaction in the converter is the reverse of the reaction in the engine. Does reversing change the size of ΔH, its sign, or both?"}),
+ Q({id:"q40",num:"40",prompt:"In a lime kiln, limestone is heated to produce quicklime: CaCO<sub>3</sub>(s) + 179 kJ → CaO(s) + CO<sub>2</sub>(g). When quicklime is later used to make mortar, it slowly reacts with carbon dioxide from the air and turns back into calcium carbonate. Complete the equation for this reaction.",body:f37,hint:"The new equation is the kiln reaction reversed and multiplied by 2."}),
+ Q({id:"q41",num:"41",prompt:"A student claims, “Reversing an exothermic reaction produces another exothermic reaction.” Place a check mark in either the Support or Refute box, then complete the numerical evidence.",body:[chooser("q41c",["Support","Refute"],1),ev38],hint:"Find Equation 1 and Equation 3 in Model 8."})]);
+})();
+
+/* ---------- REGENTS CHECK (cluster) ---------- */
+(function(){
+ // Figure 1: flameless ration heater (schematic)
+ let m=`<rect x="150" y="20" width="360" height="230" rx="18" fill="#eef3f6" stroke="#1b2328" stroke-width="2.5"/>`
+  +`<rect x="200" y="62" width="260" height="70" rx="8" fill="#d9b48a" stroke="#1b2328" stroke-width="2"/>`+T(330,103,"Meal pouch",{fs:15})
+  +`<rect x="190" y="176" width="280" height="38" rx="6" fill="#b9c2c8" stroke="#1b2328" stroke-width="2"/>`+T(330,201,"Heater pad (Mg with a little Fe and NaCl)",{fs:13})
+  +[230,290,350,410].map(x=>`<path d="M${x} 170 q-8 -9 0 -18 q8 -9 0 -18" fill="none" stroke="#E00000" stroke-width="2.5"/><path d="M${x} 132 l-5 9 h10 z" fill="#E00000"/>`).join("")
+  +`<path d="M560 70 q-40 10 -60 60" fill="none" stroke="#2f7fc1" stroke-width="3"/><path d="M498 138 l-2 -14 l12 6 z" fill="#2f7fc1"/>`+T(575,58,"Water added",{fs:14,c:"#2f7fc1"})
+  +`<path d="M420 20 q10 -14 0 -26" fill="none" stroke="#7a8a96" stroke-width="2" stroke-dasharray="4 4"/>`+T(470,14,"H₂ gas vents",{fs:13,c:"#5b6b78"});
+ const f1=svgFrom(660,286,`<g transform="translate(0,24)">${m}</g>`);
+ const num=a=>a.map((t,i)=>`(${i+1}) ${t}`);
+ const flow=["The energy enters the system from the surroundings, and the temperature of the surroundings decreases.","The energy enters the system from the surroundings, and the temperature of the surroundings increases.","The energy exits the system to the surroundings, and the temperature of the surroundings decreases.","The energy exits the system to the surroundings, and the temperature of the surroundings increases."];
+ const r4=h("div",{class:"frame"},"Claim: The heater that releases more energy per mole of solid reactant uses ",sel("r4a",["magnesium (Equation 1)","calcium oxide (Equation 2)"],0),".",h("br"),
+  "Evidence: Equation 1 releases ",numIn("r4b",353)," kJ for each mole of Mg, while Equation 2 releases ",numIn("r4c",65)," kJ for each mole of CaO.");
+ part("reg","Regents Check",banner("Regents Check: Heating Meals Without a Flame","",`<p>Base your answers to questions R1 through R5 on the information below and on your knowledge of chemistry. Your first answer to each question counts.</p>`),
+ [h("div",{class:"model"},h("p",{style:"margin-top:0",html:"Soldiers in the field often heat their packaged meals without a stove or a flame. Each Meal, Ready-to-Eat (MRE) includes a flameless ration heater, a pad containing powdered magnesium mixed with a small amount of iron and salt. When about 60 mL of water is added, the magnesium reacts with the water, as shown in Equation 1. Within about 10 minutes, the temperature of the meal rises by about 55°C. The hydrogen gas that is produced escapes from the pouch, so the heater is used only in well-ventilated areas. Figure 1 shows the heater."}),
+  h("div",{style:"font-weight:700;text-align:center"},"Figure 1: Flameless Ration Heater"),f1,h("div",{class:"small",style:"text-align:center"},"(Not drawn to scale)"),
+  h("p",{html:"Some self-heating cans sold in stores use calcium oxide, also called quicklime, instead of magnesium. When the can is activated, water mixes with the calcium oxide, as shown in Equation 2. This reaction produces no gas."}),
+  eqDiv("Equation 1:","Mg(s) + 2H2O(l) → Mg(OH)2(s) + H2(g) + 353 kJ"),eqDiv("Equation 2:","CaO(s) + H2O(l) → Ca(OH)2(s) + 65 kJ"),
+  src("Heater description based on published descriptions of the U.S. military flameless ration heater; values approximate. Energy values calculated from standard enthalpies of formation (CRC Handbook), rounded.")),
+ Q({id:"r1",num:"R1",prompt:"Which statement describes the flow of energy in Equation 1?",body:chooser("r1",num(flow),3,false,true),hint:"Which side of Equation 1 is the energy term on? The meal is part of the surroundings."}),
+ Q({id:"r2",num:"R2",prompt:"Which row compares the energy absorbed to break the bonds in the reactants of Equation 1 with the energy released to form the bonds in the products, and identifies the sign of ΔH?",body:rowQ("r2",["Energy Absorbed Breaking Bonds Compared to Energy Released Forming Bonds","Sign of ΔH"],[["greater","positive"],["greater","negative"],["less","positive"],["less","negative"]],3),hint:"Equation 1 releases energy overall. Which step must be larger?"}),
+ Q({id:"r3",num:"R3",prompt:"A larger heater for a group of soldiers is designed for the reaction 3Mg(s) + 6H<sub>2</sub>O(l) → 3Mg(OH)<sub>2</sub>(s) + 3H<sub>2</sub>(g). Construct a mathematical representation, using appropriate calculations, to determine the energy released by this reaction. Show all work. [1]",body:mathRep("r3",[353,3],1059,"kJ","353 × 3 = x","values","Energy released ="),hint:"How was Equation 1 changed to get this equation? Apply the same change to the energy."}),
+ Q({id:"r4",num:"R4",prompt:"Make a claim identifying which heater releases more energy for each mole of solid reactant that reacts. Cite numerical evidence from the equations to support your claim. [1]",body:r4,hint:"Each equation is written for 1 mole of the solid reactant."}),
+ Q({id:"r5",num:"R5",prompt:"Which statement identifies a trade-off of using a magnesium heater instead of a calcium oxide heater?",body:chooser("r5",["(1) The magnesium heater releases less energy per mole of solid, but it produces no gas.","(2) The magnesium heater releases less energy per mole of solid, and it produces flammable hydrogen gas.","(3) The magnesium heater releases more energy per mole of solid, and it produces no gas.","(4) The magnesium heater releases more energy per mole of solid, but it produces flammable hydrogen gas."],3,false,true),hint:"Compare the energy values, then compare the products of Equations 1 and 2."})]);
+})();
+
+/* ---------- SUBMIT ---------- */
+const WRITTEN=[["q6w","6. Why the thermometer reading increased","q6"],["q14w","14. Why ΔH is negative","q14"],["q24w","24. Breaking and forming the H–H bond","q24"],["q31w","31. Why burning methane is exothermic","q31"],["q32w","32. Correcting the fuel statement","q32"],["q37a","37. Rule 1 (multiplying)","q37a"],["q37b","37. Rule 2 (reversing)","q37b"]];
+
+function score(){let pts=0;QORDER.forEach(id=>{const r=S.q[id];if(r&&r.first!=null)pts+=r.first;});return{pts:Math.round(pts*100)/100,max:QORDER.length};}
+function items(){return QORDER.map(id=>{const r=S.q[id];return id.toUpperCase()+":"+(r&&r.first!=null?r.first:"–");}).join(" ");}
+const subBox=h("div");
+part("sub","Submit",banner("Submit Your Work","",`<p>Check that your name and period are correct on the Start tab, then submit. Your score is based on your first try at each checked question.</p>`),[subBox]);
+function paintSubmit(){
+ const sc=score(),missing=QORDER.filter(id=>!(S.q[id]&&S.q[id].tries>0)).map(id=>id.toUpperCase()),wMissing=[...new Set(WRITTEN.filter(([k])=>!(S.v[k]||"").trim()).map(([k,l])=>l.split(".")[0]))];
+ const stu=S.stu,okName=stu.first&&stu.last&&stu.period;subBox.innerHTML="";
+ subBox.append(h("div",{class:"q"},h("div",null,"Student: ",h("b",null,okName?`${stu.first} ${stu.last}, Period ${stu.period}`:"—"),okName?null:h("span",{class:"warn"}," Enter your name and period on the Start tab.")),
+  h("div",{style:"margin-top:6px"},"Score on checked questions: ",h("span",{class:"big"},`${sc.pts} / ${sc.max}`),` (${Math.round(sc.pts/sc.max*100)}%)`),
+  missing.length?h("div",{class:"warn",style:"margin-top:6px"},"Not yet answered: "+missing.join(", ")):null,wMissing.length?h("div",{class:"warn"},"Written answers still blank: Question "+wMissing.join(", ")):null,
+  h("table",{class:"sumtab",style:"margin-top:10px"},h("tr",null,h("th",null,"Written question"),h("th",null,"Your answer")),WRITTEN.map(([k,l])=>h("tr",null,h("td",{style:"width:32%"},l),h("td",null,S.v[k]||"—"))))));
+ const area=h("div",{class:"q"});subBox.append(area);
+ if(!okName){area.append(h("div",{class:"warn"},"You must enter your first name, last name and period before submitting."));return;}
+ const vals={last:stu.last,first:stu.first,period:String(stu.period),score:String(sc.pts),possible:String(sc.max),percent:String(Math.round(sc.pts/sc.max*100)),items:items(),version:VERSION};WRITTEN.forEach(([k,l,f])=>vals[f]=S.v[k]||"");
+ if(GRADEBOOK.formUrl&&GRADEBOOK.fields&&GRADEBOOK.fields.last){
+  const qs=Object.entries(GRADEBOOK.fields).map(([k,e])=>e+"="+encodeURIComponent(vals[k]||"")).join("&");const url=GRADEBOOK.formUrl+(GRADEBOOK.formUrl.includes("?")?"&":"?")+"usp=pp_url&"+qs;
+  if(url.length<7500)area.append(h("p",null,"Press the green button. A Google Form opens with your answers already filled in. Check your name and period, then press ",h("b",null,"Submit")," on the form."),h("a",{class:"submit",href:url,target:"_blank",rel:"noopener"},"Open my submission form"));
+  else{const f=h("form",{method:"POST",action:GRADEBOOK.formUrl.replace(/viewform.*$/,"formResponse"),target:"_blank"});Object.entries(GRADEBOOK.fields).forEach(([k,e])=>f.append(h("input",{type:"hidden",name:e,value:vals[k]||""})));f.append(h("button",{type:"submit",class:"submit"},"Submit my work"));area.append(h("p",null,"Press the green button once. A confirmation page opens when your work is recorded."),f);}
+ }else area.append(h("p",{class:"small"},"Your teacher has not connected a gradebook to this activity. Use Print or Copy below to turn in your work."));
+ const txt=`${VERSION}\n${stu.first} ${stu.last} — Period ${stu.period}\nScore: ${sc.pts}/${sc.max}\n${items()}\n\n`+WRITTEN.map(([k,l])=>l+":\n"+(S.v[k]||"—")).join("\n\n");
+ const ta=h("textarea",{readonly:true,style:"min-height:60px;font-size:12px;margin-top:8px"});ta.value=txt;
+ area.append(h("div",{class:"tools",style:"margin-top:12px"},h("button",{type:"button",onclick:()=>{const p=document.getElementById("printsum");p.innerHTML="";p.append(h("h2",null,TITLE),h("pre",{style:"white-space:pre-wrap;font-family:Inter,Arial,sans-serif;font-size:13px"},txt));try{window.print();}catch(e){}}},"Print / Save as PDF"),h("button",{type:"button",onclick:()=>{ta.select();try{document.execCommand("copy");}catch(e){}try{navigator.clipboard.writeText(txt);}catch(e){}}},"Copy my answers")),ta);}
+
+/* ---------- NAV ---------- */
+const main=document.getElementById("main"),tabs=document.getElementById("tabs");
+PARTS.forEach((p,i)=>{main.append(p.sec);p.sec.append(h("div",{class:"navb"},i?h("button",{type:"button",class:"back",onclick:()=>go(i-1)},"← Back"):h("span"),i<PARTS.length-1?h("button",{type:"button",onclick:()=>go(i+1)},"Next →"):h("span")));});
+QORDER.splice(0,QORDER.length,...[...main.querySelectorAll(".q")].map(c=>c.id.slice(2)).filter(id=>QDEF[id]));
+function partDone(p){const ids=[...p.sec.querySelectorAll(".q")].map(c=>c.id.slice(2)).filter(id=>QDEF[id]);return ids.length&&ids.every(id=>S.q[id]&&S.q[id].tries>0);}
+function paintTabs(){tabs.innerHTML="";PARTS.forEach((p,i)=>tabs.append(h("button",{type:"button",class:i===S.part?"on":"",onclick:()=>go(i)},p.tab,partDone(p)?h("span",{class:"tk"},"✓"):null)));}
+function go(i,force){if(!force&&S.part===0&&i>0&&!(S.stu.first&&S.stu.last&&S.stu.period)){const w=document.getElementById("p-start").querySelector(".start");if(!w.querySelector(".warn"))w.append(h("div",{class:"warn"},"Enter your first name, last name and period to begin."));return;}
+ S.part=i;save();PARTS.forEach((p,j)=>p.sec.classList.toggle("on",j===i));paintTabs();if(PARTS[i].id==="sub")paintSubmit();try{window.scrollTo(0,0);}catch(e){}}
+function showWho(){document.getElementById("who").textContent=S.stu.first?`Unit 5 · Chemical Reactions — ${S.stu.first} ${S.stu.last}${S.stu.period?", Period "+S.stu.period:""}`:"Unit 5 · Chemical Reactions";}
+function refresh(){paintRT();paintTabs();}
+restoreChecks();showWho();refresh();go(Math.min(S.part||0,PARTS.length-1),true);
+</script>
+</body>
+</html>
