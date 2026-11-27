@@ -7,7 +7,7 @@
 <title>Significant Figures</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08eb5c2d95">
+<link rel="stylesheet" href="site.css?v=7b580c1b92">
 </head>
 <body>
 <style>
@@ -31,7 +31,8 @@
     <div class="tile"><h2>Why Significant Figures Matter</h2></div>
     <div class="body">
       <div class="prose"><p>Imagine a friend measures their height with a tape measure and says, “I am 6.01598 ft tall.” That last digit is in the hundred-thousandths place, and 0.00001 ft is about 0.003 mm, much thinner than a human hair. No tape measure can measure that finely, and your height changes by more than that between morning and night. A tape measure marked every 0.1 ft lets you estimate one more place, to the hundredths, so the honest measurement is 6.02 ft.</p>
-<div class="pr-slot" data-fig="0"></div><p>The digits written down in a measurement tell the reader <span class="kr">how precisely it was measured</span>. Writing extra digits claims a precision that was never measured, while leaving digits out throws away information that was. Thus, the number of digits is part of the information in a measurement, just as much as the digits themselves.</p></div><!--/prose-->
+<div class="pr-slot" data-fig="0"></div>
+<p>The digits written down in a measurement tell the reader <span class="kr">how precisely it was measured</span>. Writing extra digits claims a precision that was never measured, while leaving digits out throws away information that was. Thus, the number of digits is part of the information in a measurement, just as much as the digits themselves.</p></div><!--/prose-->
 <ul>
         <li>Imagine a friend measures their height with a tape measure and says, “I am 6.01598 ft tall.”</li>
         <li>That last digit is in the hundred-thousandths place.
@@ -48,8 +49,10 @@
   <section class="note">
     <div class="tile"><h2>Significant Figures</h2></div>
     <div class="body">
-      <div class="prose"><p>A ruler reading of 2.81 cm has three digits that each carry meaning: the 2 and the 8 are certain, read from the markings, and the 1 is the estimated digit. <span class="def">Significant figures</span> (sig figs) are the digits in a measurement that are <span class="kr">known with certainty plus the one estimated digit</span>. Significant figures show how precise a measurement is: <span class="kb">more sig figs means more precision</span>.</p>
-<div class="pr-slot" data-fig="0"></div><p>When an instrument is read correctly, every digit written down is significant. The tricky part is zeros. Some zeros are measured digits, like the 0 in 7.70 cm, while others are only placeholders that show where the decimal point is, like the zeros in 0.005 g. The rules for counting significant figures sort out which zeros are which.</p></div><!--/prose-->
+      <div class="prose"><p>A ruler reading of 2.81 cm has three digits that each carry meaning: the 2 and the 8 are certain, read from the markings, and the 1 is the estimated digit. We call these meaningful digits <span class="def">significant figures</span> (sig figs). Significant figures show how precise a measurement is, and <span class="kr">the more sig figs a measurement has, the more precise it is</span>.</p>
+<p class="pr-def"><span class="def">Significant Figures (sig figs)</span> – the digits in a measurement that are known with certainty plus the one estimated digit.</p>
+<div class="pr-slot" data-fig="0"></div>
+<p>When an instrument is read correctly, every digit written down is significant. The tricky part is zeros. Some zeros are measured digits, like the 0 in 7.70 cm, while others are only placeholders that show where the decimal point is, like the zeros in 0.005 g. The rules for counting significant figures sort out which zeros are which.</p></div><!--/prose-->
 <ul>
         <li><span class="def">Significant Figures</span> (sig figs) – the digits in a measurement that are <span class="kr">known with certainty plus the one estimated digit</span>.</li>
         <li>Significant figures show <span class="kb">how precise</span> a measurement is: <span class="kb">more sig figs = more precision</span>.</li>
@@ -65,8 +68,9 @@
   <section class="note">
     <div class="tile"><h2>Rules for Counting Significant Figures</h2></div>
     <div class="body">
-      <div class="prose"><p>The number 0.004050 has seven digits, but only four of them are significant. The three zeros at the front only show how small the number is: written in milligrams instead of grams, 0.004050 g becomes 4.050 mg, and the leading zeros disappear. The zero between the 4 and the 5, and the zero at the end after a decimal point, cannot be removed by changing units, because they were measured.</p>
-<div class="pr-slot" data-fig="0"></div><p>This is the idea behind every rule. <span class="kr">A digit is significant if it was measured</span>, and not significant if it only holds a place. All nonzero digits are significant, as are zeros between nonzero digits and zeros at the end of a number when there is a decimal point. Leading zeros are never significant, and zeros at the end of a number with no decimal point are not counted, since there is no way to tell whether they were measured. Scientific notation removes the doubt: every digit in the coefficient is significant, so 1.50 × 10<sup>3</sup> has three significant figures.</p></div><!--/prose-->
+      <div class="prose"><p>Consider the number 0.004050. It has seven digits, but only four of them are significant. The three zeros at the front only show how small the number is: written in milligrams instead of grams, 0.004050 g becomes 4.050 mg, and the leading zeros disappear. However, the zero between the 4 and the 5, and the zero at the end after the decimal point, cannot be removed by changing units, since they were measured.</p>
+<div class="pr-slot" data-fig="0"></div>
+<p>This is the idea behind every rule. <span class="kr">A digit is significant if it was measured</span>, and not significant if it only holds a place. All nonzero digits are significant, as are zeros between nonzero digits and zeros at the end of a number when there is a decimal point. Leading zeros are never significant, and zeros at the end of a number with no decimal point are not counted, since there is no way to tell whether they were measured. Scientific notation removes the doubt: every digit in the coefficient is significant, so 1.50 × 10<sup>3</sup> has three significant figures.</p></div><!--/prose-->
 <div class="rules">
         <div style="border-color:#0a7a2f"><h4 style="color:#0a7a2f">Significant</h4><ol>
           <li>All nonzero digits. <span class="ex" id="e1"></span></li>
@@ -140,7 +144,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08eb5c2d95"></script>
+<script src="site.js?v=7b580c1b92"></script>
 <script>(function(){
 
 const A=AS, L=A.U0, T=L.T;

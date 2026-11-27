@@ -7,7 +7,7 @@
 <title>Advanced Ionization Energy Patterns</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08eb5c2d95">
+<link rel="stylesheet" href="site.css?v=7b580c1b92">
 </head>
 <body>
 <main class="wrap">
@@ -21,9 +21,13 @@
   <section class="note enr">
     <div class="tile"><h2>Exceptions to the Trend</h2></div>
     <div class="body">
-      <div class="prose"><p>Plot the first ionization energies of period 2, and the graph rises from left to right as expected, but not smoothly. It dips in two places. Beryllium (900 kJ/mol) is higher than boron (801 kJ/mol), even though boron has one more proton, and nitrogen (1402 kJ/mol) is higher than oxygen (1314 kJ/mol). The same dips appear in period 3, between magnesium (738) and aluminum (578), and between phosphorus (1012) and sulfur (1000). The general trend is explained by nuclear charge, but the dips need a closer look at how electrons are arranged within each energy level.</p>
-<div class="pr-slot" data-fig="0"></div><div class="pr-slot" data-fig="1"></div><p>The first dip happens when a new subshell starts. Boron’s outermost electron is the first one in the 2p subshell, and the 2p subshell is higher in energy than 2s, so that electron is easier to remove than beryllium’s 2s electrons. The second dip happens at the first paired electron in a p subshell. Nitrogen’s three 2p electrons each have their own orbital, a half-filled subshell, while in oxygen, the fourth 2p electron must share an orbital with another electron. The two electrons in that orbital repel each other, so one of them is easier to remove.</p>
-<p>Thus, <span class="kr">half-filled and completely filled subshells are extra stable</span>, and the atom right after each one is a little easier to ionize. The exceptions do not break the explanation of the trends; they show that it works at a finer level of detail.</p></div><!--/prose-->
+      <div class="prose"><p>If ionization energy depended only on nuclear charge, a graph of the first ionization energies across a period would rise smoothly from left to right. When the graph for period 2 is drawn from measured values, it does rise, but not smoothly. It dips in two places. Beryllium (900 kJ/mol) is higher than boron (801 kJ/mol), even though boron has one more proton. Nitrogen (1402 kJ/mol) is higher than oxygen (1314 kJ/mol). The same two dips appear in period 3, between magnesium (738) and aluminum (578), and between phosphorus (1012) and sulfur (1000).</p>
+<div class="pr-slot" data-fig="0"></div>
+<div class="pr-slot" data-fig="1"></div>
+<p>Explaining the dips requires a closer look at how electrons are arranged within each energy level. Recall that the second energy level is divided into two sublevels, 2s and 2p.</p>
+<p>The first dip happens where a new sublevel begins. Beryllium’s outermost electrons are both in the 2s sublevel. Boron’s fifth electron is the first one in the 2p sublevel. A 2p electron is slightly higher in energy than a 2s electron, and it does not get as close to the nucleus as a 2s electron does. The two 2s electrons are also partly between it and the nucleus, so they shield it. Since boron’s 2p electron is held less tightly from the start, less energy is needed to remove it, even though boron has one more proton than beryllium.</p>
+<p>The second dip happens at the first paired electron in a p sublevel. Following Hund’s rule, nitrogen’s three 2p electrons each occupy their own orbital. In oxygen, the fourth 2p electron must share an orbital with another electron. Since electrons all carry a negative charge, the two electrons in that orbital repel each other. This repulsion pushes one of them partly away, which makes it easier to remove. Oxygen therefore has a lower ionization energy than nitrogen, even with its extra proton.</p>
+<p>Thus, <span class="kr">an electron in a new, higher-energy sublevel, or an electron that has to share an orbital, is easier to remove than the trend predicts</span>. Note that these exceptions do not break the explanation of the trend. Nuclear charge, distance and shielding still decide how tightly an electron is held. The dips show that the same ideas still work when we look at sublevels and orbitals instead of whole energy levels.</p></div><!--/prose-->
 <div id="dip-art"></div>
       <ul class="added">
         <li>The trend graph is not perfectly smooth. Across a period, ionization energy dips in two places.
@@ -31,12 +35,12 @@
           <li>Group 15 → group 16: N (1402 kJ/mol) is higher than O (1314 kJ/mol). P (1012) is higher than S (1000).</li></ul></li>
         <li>Dip 1: a new subshell starts.
           <ul><li>Boron’s outermost electron is the first one in the 2p subshell.</li>
-          <li>The 2p subshell is higher in energy than 2s, so that electron is easier to remove than beryllium’s 2s electrons.</li></ul></li>
+          <li>The 2p subshell is higher in energy than 2s, and the 2s electrons partly shield it from the nucleus.</li>
+          <li>As a result, boron’s 2p electron is easier to remove than beryllium’s 2s electrons.</li></ul></li>
         <li>Dip 2: the first paired electron in a p subshell.
-          <ul><li>Nitrogen’s three 2p electrons each have their own orbital (a half-filled subshell).</li>
+          <ul><li>Nitrogen’s three 2p electrons each have their own orbital.</li>
           <li>In oxygen, the 4th 2p electron must share an orbital with another electron.</li>
           <li>The two electrons in that orbital repel each other, so one of them is easier to remove.</li></ul></li>
-        <li>Half-filled and completely filled subshells are extra stable. The atom right after each one is a little easier to ionize.</li>
       </ul>
       <div class="center" id="orb-art"></div>
       <p class="muted" style="padding:2px 6px">To review orbitals, see the <a href="orb-3-pauli-hund.html">Pauli &amp; Hund</a> enrichment page.</p>
@@ -55,7 +59,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08eb5c2d95"></script>
+<script src="site.js?v=7b580c1b92"></script>
 <script>(function(){
 
 const A=AS, P=A.U3, T=P.T;
@@ -66,10 +70,10 @@ A.$("#dip-art").innerHTML=P.barFig([3,4,5,6,7,8,9,10],"ie",{title:"Period 2: the
 A.$("#orb-art").innerHTML=(()=>{ const box=(x,y,lab,cfg)=>{ let s=T(x+12,y-8,lab,{fs:12,c:"#5f6b72"}); cfg.forEach((n,i)=>{ const bx=x+i*28; s+=`<rect x="${bx}" y="${y}" width="26" height="30" fill="#fff" stroke="#1b2328" stroke-width="1.5"/>`; if(n>=1) s+=`<path d="M${bx+9} ${y+25}V${y+6}M${bx+5} ${y+11}l4-6 4 6" stroke="#E00000" stroke-width="2" fill="none"/>`; if(n===2) s+=`<path d="M${bx+17} ${y+5}V${y+24}M${bx+13} ${y+19}l4 6 4-6" stroke="#2E75D6" stroke-width="2" fill="none"/>`; }); return s; };
   const atom=(x,sym,s2,p,ie,note)=>{ let s=T(x+60,24,`${sym}: ${ie} kJ/mol`,{fs:15}); s+=box(x,50,"2s",[s2])+box(x+40,50,"2p",p)+T(x+60,108,note,{fs:12,c:"#5f6b72",fw:500}); return s; };
   let s=`<svg viewBox="0 0 640 130" width="640" style="max-width:100%" role="img" aria-label="Orbital diagrams of Be, B, N and O">`;
-  s+=atom(0,"Be",2,[0,0,0],900,"full 2s")+atom(160,"B",2,[1,0,0],801,"new 2p electron")+atom(330,"N",2,[1,1,1],1402,"half-filled 2p")+atom(490,"O",2,[2,1,1],1314,"first paired 2p");
+  s+=atom(0,"Be",2,[0,0,0],900,"2s only")+atom(160,"B",2,[1,0,0],801,"new 2p electron")+atom(330,"N",2,[1,1,1],1402,"one per 2p orbital")+atom(490,"O",2,[2,1,1],1314,"first paired 2p");
   return s+`</svg>`; })();
 A.$("#hero").innerHTML=`<div style="background:#fff;border-radius:10px;padding:10px">${A.$("#orb-art").innerHTML.replace(/width="640"/,'width="380"')}</div>`;
-A.VocabCheck(A.$("#vc-host"),[{"s": "Boron's outermost electron is the first electron in the 2p ___.", "a": "subshell"}, {"s": "Nitrogen's three 2p electrons each occupy their own orbital, so its 2p subshell is ___.", "a": "half-filled"}]);
+A.VocabCheck(A.$("#vc-host"),[{"s": "Boron's outermost electron is the first electron in the 2p ___.", "a": "subshell"}, {"s": "In oxygen, two electrons share one 2p ___, so they repel each other.", "a": "orbital"}]);
 A.QSet(A.$("#qs"),[{"type": "mc", "stem": "Why is the first ionization energy of boron lower than that of beryllium?", "choices": ["Boron's outermost electron is in the 2p subshell, which is higher in energy than 2s.", "Boron has fewer protons than beryllium.", "Boron has more energy levels than beryllium.", "Boron's outermost electron is paired with another electron."], "ans": 1, "explain": "Boron's 2p electron starts a new, higher-energy subshell, so it is easier to remove."}, {"type": "mc", "stem": "Why is the first ionization energy of oxygen lower than that of nitrogen?", "choices": ["Oxygen's fourth 2p electron shares an orbital and is repelled by its partner.", "Oxygen has fewer protons than nitrogen.", "Oxygen has a larger atomic radius than nitrogen.", "Oxygen's outermost electron is in a new energy level."], "ans": 1, "explain": "The paired electron in oxygen's 2p subshell is repelled by its partner, so it is easier to remove."}, {"type": "mc", "stem": "Which pair of period 3 elements shows the same kind of dip as beryllium and boron?", "choices": ["Mg and Al", "P and S", "Na and Mg", "Cl and Ar"], "ans": 1, "explain": "Aluminum's outermost electron starts the 3p subshell, so Al (578 kJ/mol) is below Mg (738 kJ/mol)."}, {"type": "mc", "stem": "Between which two period 3 elements does the dip caused by the first paired p electron occur?", "choices": ["P and S", "Mg and Al", "Si and P", "Cl and Ar"], "ans": 1, "explain": "Sulfur's fourth 3p electron must pair up, so S (1000 kJ/mol) is slightly below P (1012 kJ/mol)."}]);
 
 })();</script>
