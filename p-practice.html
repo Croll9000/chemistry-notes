@@ -7,7 +7,7 @@
 <title>Periodic Table Practice Arcade</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08eb5c2d95">
+<link rel="stylesheet" href="site.css?v=7b580c1b92">
 </head>
 <body>
 <main class="wrap">
@@ -35,7 +35,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08eb5c2d95"></script>
+<script src="site.js?v=7b580c1b92"></script>
 <script>(function(){
 
 const A=AS, P=A.U3, T=P.T;
@@ -53,10 +53,10 @@ P.MatchGame(A.$("#h-vocab"),{id:"vm",pairs:[["Period","Horizontal row; its numbe
   const C=[
    {title:"Patterns in Period 3",intro:"<p>A student collected data on the elements in Period 3 of the Periodic Table. Figure 1 shows the atomic radius, first ionization energy and electronegativity of each element.</p>",
     fig:tbl("Figure 1: Properties of Period 3 Elements",["Element","Atomic Radius (pm)","First Ionization Energy (kJ/mol)","Electronegativity"],["Na","Mg","Al","Si","P","S","Cl"].map(s=>{ const e=E(s); return [s,e.radius,e.ie,e.enStr]; })),
-    qs:[{type:"mc",stem:"Which statement describes the trend in atomic radius shown in Figure 1?",choices:["Atomic radius increases as atomic number increases.","Atomic radius decreases as atomic number increases.","Atomic radius stays the same across the period.","Atomic radius increases, then decreases."],ans:2,explain:"Across Period 3 the radius goes from 160 pm (Na) down to 100 pm (Cl)."},
+    qs:[{type:"mc",stem:"Which statement describes the trend in atomic radius shown in Figure 1?",choices:["Atomic radius increases as atomic number increases.","Atomic radius decreases as atomic number increases.","Atomic radius stays the same across the period.","Atomic radius increases, then decreases."],ans:2,explain:"Across Period 3 the radius goes from 186 pm (Na) down to 100 pm (Cl)."},
         {type:"mc",stem:"Which element in Figure 1 is classified as a metalloid?",choices:["Al","Si","P","S"],ans:2,explain:"Silicon touches the staircase."},
-        {type:"mc",stem:"Which row compares sodium and chlorine?",table:tbl("",["Row","Larger Atom","Higher Electronegativity"],[["(1)","Na","Na"],["(2)","Na","Cl"],["(3)","Cl","Na"],["(4)","Cl","Cl"]]),choices:["","","",""],ans:2,explain:"Sodium has the larger radius (160 vs. 100 pm); chlorine has the higher electronegativity (3.16 vs. 0.93)."},
-        {type:"cr",stem:"Make a claim about the relationship between atomic radius and first ionization energy for these elements. Cite evidence from Figure 1 to support your claim.",parts:["Claim","Evidence"],model:["Claim: as atomic radius decreases, first ionization energy generally increases.","Evidence: sodium has the largest radius (160 pm) and the lowest ionization energy (496 kJ/mol), while chlorine has the smallest radius (100 pm) and the highest ionization energy (1251 kJ/mol)."],noCredit:"A claim with no data from Figure 1, or evidence that compares only one element."}]},
+        {type:"mc",stem:"Which row compares sodium and chlorine?",table:tbl("",["Row","Larger Atom","Higher Electronegativity"],[["(1)","Na","Na"],["(2)","Na","Cl"],["(3)","Cl","Na"],["(4)","Cl","Cl"]]),choices:["","","",""],ans:2,explain:"Sodium has the larger radius (186 vs. 100 pm); chlorine has the higher electronegativity (3.16 vs. 0.93)."},
+        {type:"cr",stem:"Make a claim about the relationship between atomic radius and first ionization energy for these elements. Cite evidence from Figure 1 to support your claim.",parts:["Claim","Evidence"],model:["Claim: as atomic radius decreases, first ionization energy generally increases.","Evidence: sodium has the largest radius (186 pm) and the lowest ionization energy (496 kJ/mol), while chlorine has the smallest radius (100 pm) and the highest ionization energy (1251 kJ/mol)."],noCredit:"A claim with no data from Figure 1, or evidence that compares only one element."}]},
    {title:"Alkali Metals in Water",intro:"<p>A teacher drops a small piece of each of four alkali metals into a separate beaker of water and records what happens. Figure 1 shows the observations along with data about each metal.</p>",
     fig:tbl("Figure 1: Alkali Metals in Water",["Metal","Atomic Radius (pm)","First Ionization Energy (kJ/mol)","Observation"],[["Li",E("Li").radius,E("Li").ie,"fizzes steadily"],["Na",E("Na").radius,E("Na").ie,"melts into a ball and skates across the water"],["K",E("K").radius,E("K").ie,"bursts into a lilac flame"],["Rb",E("Rb").radius,E("Rb").ie,"reacts explosively"]]),
     qs:[{type:"cr",stem:"Make a claim about the relationship between first ionization energy and reactivity with water for these metals. Cite evidence from Figure 1 to support your claim.",parts:["Claim","Evidence"],model:["Claim: the lower the first ionization energy, the more reactive the metal.","Evidence: lithium has the highest ionization energy (520 kJ/mol) and only fizzes, while rubidium has the lowest (403 kJ/mol) and reacts explosively."],noCredit:"A claim based on color or mass, or no data cited."},

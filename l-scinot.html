@@ -7,7 +7,7 @@
 <title>Scientific Notation</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=08eb5c2d95">
+<link rel="stylesheet" href="site.css?v=7b580c1b92">
 </head>
 <body>
 <style>
@@ -38,9 +38,11 @@
   <section class="note">
     <div class="tile"><h2>Scientific Notation</h2></div>
     <div class="body">
-      <div class="prose"><p>A single drop of water contains about 1,700,000,000,000,000,000,000 water molecules, while each of those molecules is about 0.000 000 000 28 m across. Writing numbers like these in full is slow, and it is very easy to miscount the zeros. A missing or extra zero changes a number by a factor of ten, and nobody can tell at a glance whether a long string of zeros has 21 or 22 of them.</p>
-<p><span class="def">Scientific notation</span> is a shorthand way of writing very large or very small numbers as a number multiplied by a power of 10. The drop of water holds about 1.7 × 10<sup>21</sup> molecules, and the exponent, 21, counts the zeros for us. <span class="kr">A number in scientific notation has only a single nonzero digit in the ones place of the coefficient</span>, with all other digits following the decimal point: #.## × 10<sup>y</sup>.</p>
-<div class="pr-slot" data-fig="0"></div><p>The sign of the exponent tells the size of the number. <span class="kb">A positive exponent means a large number</span>, 10 or more, while <span class="kg">a negative exponent means a small number</span>, less than 1. Each step of 1 in the exponent multiplies or divides the number by 10, so 10<sup>3</sup> is a thousand and 10<sup>−3</sup> is a thousandth.</p>
+      <div class="prose"><p>A single drop of water contains about 1,700,000,000,000,000,000,000 water molecules, while each of those molecules is only about 0.000 000 000 28 m across. Writing numbers like these in full is slow, and it is very easy to miscount the zeros. A missing or extra zero changes a number by a factor of ten, and nobody can tell at a glance whether a long string of zeros has 21 or 22 of them.</p>
+<p>We can avoid this problem by writing such numbers in <span class="def">scientific notation</span>, a shorthand that writes a number as a coefficient multiplied by a power of 10. In scientific notation, the drop of water holds about 1.7 × 10<sup>21</sup> molecules, and the exponent, 21, keeps track of the place value for us. <span class="kr">A number in scientific notation has only a single nonzero digit in front of the decimal point</span>, with all other digits following it: #.## × 10<sup>y</sup>.</p>
+<p class="pr-def"><span class="def">Scientific Notation</span> – a shorthand way of writing very large or very small numbers as a number multiplied by a power of 10.</p>
+<div class="pr-slot" data-fig="0"></div>
+<p>The sign of the exponent tells us the size of the number. <span class="kb">A positive exponent means a large number</span>, 10 or more, while <span class="kg">a negative exponent means a small number</span>, less than 1. Each step of 1 in the exponent multiplies or divides the number by 10, so 10<sup>3</sup> is a thousand and 10<sup>−3</sup> is a thousandth.</p>
 <div class="pr-slot" data-fig="1"></div></div><!--/prose-->
 <ul>
         <li><span class="def">Scientific Notation</span> – a shorthand way of writing very <span class="kr">large</span> or very <span class="kb">small</span> numbers as a number multiplied by a power of 10.</li>
@@ -57,8 +59,9 @@
   <section class="note">
     <div class="tile"><h2>Converting to Scientific Notation</h2></div>
     <div class="body">
-      <div class="prose"><p>The sun is about 150,000,000 km from Earth. To write this distance in scientific notation, the decimal point is moved until only one nonzero digit is in front of it, giving 1.5, and the number of places it moved, 8, becomes the exponent: 1.5 × 10<sup>8</sup> km. Moving the decimal point to the left makes the coefficient smaller, so the power of 10 must make up for it by being larger, which is why the exponent is positive.</p>
-<div class="pr-slot" data-fig="0"></div><p>Thus, <span class="kr">the exponent is positive if the original number is larger than 1</span>, and <span class="kb">negative if the original number is smaller than 1</span>. When converting, leading and trailing zeros are left off, since the exponent now holds the place value they used to show, but zeros in the middle of the number are kept, since they are part of the measured value.</p></div><!--/prose-->
+      <div class="prose"><p>To write a number in scientific notation, we move the decimal point until only one nonzero digit is in front of it, and the number of places it moved becomes the exponent. Consider the distance from Earth to the sun, about 150,000,000 km. Moving the decimal point 8 places to the left gives 1.5, so the distance is 1.5 × 10<sup>8</sup> km. Note how moving the decimal point to the left made the coefficient smaller. In order to keep the value the same, the power of 10 must make up for it by being larger, which is why the exponent is positive.</p>
+<div class="pr-slot" data-fig="0"></div>
+<p>Thus, <span class="kr">the exponent is positive if the original number is larger than 1</span>, and <span class="kb">negative if the original number is smaller than 1</span>. When converting, leading and trailing zeros are left off, since the exponent now holds the place value they used to show. However, zeros in the middle of the number are kept, since they are part of the measured value.</p></div><!--/prose-->
 <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:5px">
         <li>Rewrite the number, leaving off leading and trailing zeros (but not zeros in the middle of the number).</li>
         <li>Put the decimal point between the 1<sup>st</sup> and 2<sup>nd</sup> nonzero digits (#.###).</li>
@@ -74,8 +77,9 @@
   <section class="note">
     <div class="tile"><h2>Converting from Scientific Notation</h2></div>
     <div class="body">
-      <div class="prose"><p>Converting back to standard form reverses the process: the exponent tells how many places to move the decimal point, and the sign tells which way. A positive exponent means the number is large, so the decimal point moves to the right and the number gets bigger, as in 7.98 × 10<sup>6</sup> = 7,980,000. A negative exponent means the number is small, so the decimal point moves to the left and the number gets smaller. Any empty places are filled with zeros.</p>
-<div class="pr-slot" data-fig="0"></div><p><span class="kr">If y is positive, move the decimal to the right</span>, and <span class="kb">if y is negative, move the decimal to the left</span>. A quick check catches most mistakes: a positive exponent should give a number of 10 or more, and a negative exponent should give a number less than 1.</p></div><!--/prose-->
+      <div class="prose"><p>Converting back to standard form reverses the process. The exponent tells us how many places to move the decimal point, and the sign tells us which way. A positive exponent means the number is large, so the decimal point moves to the right and the number gets bigger, as in 7.98 × 10<sup>6</sup> = 7,980,000. A negative exponent means the number is small, so the decimal point moves to the left and the number gets smaller. Any empty places are filled with zeros.</p>
+<div class="pr-slot" data-fig="0"></div>
+<p>In other words, <span class="kr">if y is positive, move the decimal to the right</span>, and <span class="kb">if y is negative, move the decimal to the left</span>. A quick check catches most mistakes: a positive exponent should give a number of 10 or more, while a negative exponent should give a number less than 1.</p></div><!--/prose-->
 <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:5px">
         <li>Rewrite the number, leaving off the “× 10<sup>y</sup>”.</li>
         <li>Move the decimal point a number of places equal to the exponent, y.
@@ -110,8 +114,10 @@
   <section class="note">
     <div class="tile"><h2>Scientific Notation on Your Calculator</h2></div>
     <div class="body">
-      <div class="prose"><p>Most calculators have a key for “× 10 to the power of,” labeled EE, EXP or ×10<sup>x</sup>, and using it correctly avoids one of the most common calculator mistakes. To enter 6.02 × 10<sup>23</sup>, press 6.02, then the EE key, then 23. The EE key already means “× 10,” so typing “× 10” before pressing EE would enter 6.02 × 10 × 10<sup>23</sup>, which is 6.02 × 10<sup>24</sup>, ten times too big.</p>
-<div class="pr-slot" data-fig="0"></div><div class="pr-slot" data-fig="1"></div><p>Numbers in scientific notation should also be surrounded with <span class="kr">parentheses</span> when they are entered, especially when dividing. Without them, the calculator may divide by 1.5 and then multiply by 10<sup>3</sup>, instead of dividing by the whole number 1.5 × 10<sup>3</sup>: 3.0 ÷ (1.5 × 10<sup>3</sup>) gives 2.0 × 10<sup>−3</sup>, while 3.0 ÷ 1.5 × 10<sup>3</sup> gives 2000.</p></div><!--/prose-->
+      <div class="prose"><p>Most calculators have a key for “× 10 to the power of,” labeled EE, EXP or ×10<sup>x</sup>, and using it correctly avoids one of the most common calculator mistakes. To enter 6.02 × 10<sup>23</sup>, press 6.02, then the EE key, then 23. Note that the EE key already means “× 10,” so typing “× 10” before pressing EE would enter 6.02 × 10 × 10<sup>23</sup>, which is 6.02 × 10<sup>24</sup>, ten times too big.</p>
+<div class="pr-slot" data-fig="0"></div>
+<div class="pr-slot" data-fig="1"></div>
+<p>Numbers in scientific notation should also be surrounded with <span class="kr">parentheses</span> when they are entered, especially when dividing. Without them, the calculator may divide by 1.5 and then multiply by 10<sup>3</sup>, instead of dividing by the whole number 1.5 × 10<sup>3</sup>. In this case, 3.0 ÷ (1.5 × 10<sup>3</sup>) gives 2.0 × 10<sup>−3</sup>, while 3.0 ÷ 1.5 × 10<sup>3</sup> gives 2000.</p></div><!--/prose-->
 <ul>
         <li>Most calculators have a key for “× 10 to the power of”.
           <ul><li>It may be labeled EE, EXP or ×10<sup>x</sup>.</li>
@@ -150,7 +156,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=08eb5c2d95"></script>
+<script src="site.js?v=7b580c1b92"></script>
 <script>(function(){
 
 const A=AS, L=A.U0, T=L.T;
