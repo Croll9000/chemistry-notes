@@ -7,7 +7,7 @@
 <title>Atom Overview</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=11515248da">
+<link rel="stylesheet" href="site.css?v=01bcd08006">
 </head>
 <body>
 <main class="wrap">
@@ -22,17 +22,16 @@
   <section class="note">
     <div class="tile"><h2>Subatomic Particles</h2></div>
     <div class="body">
-      <div class="prose"><p class="pr-q">If every atom is built from the same three parts, what makes gold different from oxygen?</p>
-<p>A gold atom, an oxygen atom and a carbon atom are all built from the same three kinds of particles. What differs is how many of each they contain. A gold atom has 79 of one kind of particle in its center. An oxygen atom has 8. That single difference in number is what separates a shiny, heavy metal from the invisible gas we breathe.</p>
-<p>The particles that make up an atom are called subatomic particles. Two of them are found in the nucleus, the tiny, dense center of the atom. The <span class="def">protons</span> carry a positive charge, while the <span class="def">neutrons</span> carry no charge at all.</p>
+      <div class="prose"><p>All atoms are built from the same three kinds of particles, known as subatomic particles. Two of them are found in the nucleus, the tiny, dense center of the atom. <span class="def">Protons</span> carry a positive charge, while <span class="def">neutrons</span> carry no charge at all.</p>
 <p class="pr-def"><span class="def">Protons</span> – massive, positively charged particles found in the nucleus</p>
 <p class="pr-def"><span class="def">Neutrons</span> – massive, neutral particles found in the nucleus</p>
 <p>The third particle, the <span class="def">electron</span>, carries a negative charge and is found outside the nucleus.</p>
 <p class="pr-def"><span class="def">Electrons</span> – light, negative particles found outside the nucleus</p>
 <div class="pr-slot" data-fig="0"></div>
 <div class="pr-slot" data-fig="1"></div>
-<p>“Massive” here means heavy compared with an electron. A proton or a neutron has about 1836 times the mass of an electron. As a result, nearly all of an atom’s mass is packed into its tiny nucleus, and its nearly massless electrons occupy the space around it.</p>
-<p>You might expect the heavy nucleus to decide how an atom behaves. However, it is the electrons that sit on the outside of the atom, so they are the part that meets other atoms. For this reason, the electrons determine how an atom reacts.</p></div><!--/prose-->
+<p>Protons and neutrons are described as massive because they are heavy compared with an electron. A proton or a neutron has about 1836 times the mass of an electron. As a result, nearly all of an atom’s mass is packed into its tiny nucleus, while its nearly massless electrons occupy the space around it.</p>
+<p>What makes one element different from another is how many of these particles its atoms contain. For instance, a gold atom has 79 protons in its nucleus, while an oxygen atom has 8. That difference is what separates a shiny, heavy metal from the invisible gas that we breathe.</p>
+<p>Although the nucleus contains almost all of the mass, it is the electrons that determine how an atom reacts. Since the electrons are found on the outside of the atom, they are the part that comes into contact with other atoms.</p></div><!--/prose-->
 <p class="lead">Atoms are composed of 3 subatomic particles:</p>
       <ul>
         <li><span class="def">Protons</span> – massive, positively charged particles found in the nucleus</li>
@@ -80,7 +79,7 @@
         </table></div>
         <figure id="c12-fig"></figure>
       </div>
-      <p class="added muted" style="padding:4px 6px">Your Reference Table writes the proton as <span id="rt-p"></span> or <span id="rt-p2"></span> and the neutron as <span id="rt-n"></span> (in the “Symbols Used in Nuclear Chemistry” table). The top number is the mass and the bottom number is the charge.</p>
+      <p class="added muted" style="padding:4px 6px">The proton can also be written as <span id="rt-p"></span> or <span id="rt-p2"></span> and the neutron as <span id="rt-n"></span> (in the “Symbols Used in Nuclear Chemistry” table). The top number is the mass and the bottom number is the charge.</p>
     </div>
   </section>
 
@@ -127,7 +126,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=11515248da"></script>
+<script src="site.js?v=01bcd08006"></script>
 <script>(function(){
 
 const A=AS;
@@ -178,7 +177,7 @@ drawAtom();
 /* particle sort: 3 bins; cards marked ×2 belong in two bins */
 (function(){
   const CARDS=[["Charge of +1","p"],["Charge of 0 (neutral)","n"],["Charge of −1","e"],["Mass of about 0 u","e"],["Found outside the nucleus","e"],["Found in energy levels","e"],["Gained or lost when an ion forms","e"],
-   [A.iso({A:1,Z:1,sym:"p"})+" on the Reference Table","p"],[A.iso({A:1,Z:0,sym:"n"})+" on the Reference Table","n"],["The number of these is the atomic number","p"],["Isotopes of an element have different numbers of these","n"],
+   [A.iso({A:1,Z:1,sym:"p"})+" (symbol)","p"],[A.iso({A:1,Z:0,sym:"n"})+" (symbol)","n"],["The number of these is the atomic number","p"],["Isotopes of an element have different numbers of these","n"],
    ["Found in the nucleus","pn"],["Mass of about 1 u","pn"],["Counted in the mass number","pn"]];
   const BINS=[["p","Proton","proton"],["n","Neutron","neutron"],["e","Electron","electron"]];
   const total=CARDS.reduce((a,c)=>a+c[1].length,0);

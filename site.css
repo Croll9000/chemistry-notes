@@ -2489,3 +2489,5 @@ body.kip-modal .kip-body{background:#fff;border-radius:0 0 12px 12px;flex:1}
 .pic5-tb{border:0;border-left:5px solid #F28C28;background:#fff4e6;border-radius:4px;padding:9px 13px;max-width:320px;font-size:15.5px;line-height:1.5;color:var(--ink)}
 .note .lw-box{background:transparent;border:0;padding:4px 0}
 [data-fbadd]{margin:8px 0 14px!important}
+/* Nov 28: first-line indents on prose paragraphs (not definitions, questions or boxes) */
+.note .prose > p:not([class]){text-indent:1.6em}
