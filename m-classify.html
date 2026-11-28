@@ -7,7 +7,7 @@
 <title>Classifying Matter & Particle Diagrams</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=7fd306d368">
+<link rel="stylesheet" href="site.css?v=01bcd08006">
 </head>
 <body>
 <style>
@@ -81,6 +81,12 @@
       <div class="prose"><p>There are millions of different kinds of matter, so chemists need a way to sort them into groups. Much like a library sorts its books first by subject and then again within each subject, matter can be sorted by asking two questions about its particles. The first question is whether the sample contains only one type of particle or more than one. The second is whether the particles are chemically bonded to one another or just mixed together.</p>
 <div class="pr-slot" data-fig="0"></div>
 <p>The answers to these two questions place every sample of matter, from seawater to a diamond, into one of four categories: element, compound, homogeneous mixture or heterogeneous mixture. Knowing the category of a sample tells a chemist how it can be separated. For example, the parts of a mixture can be separated with a filter or a magnet, while a compound can only be broken down by a chemical reaction.</p></div><!--/prose-->
+<ul>
+        <li>Matter is sorted by asking two questions about its particles:
+          <ul><li>Does it contain one type of particle or more than one?</li>
+          <li>Are the particles chemically bonded or just mixed?</li></ul></li>
+        <li>Every sample is an element, a compound, a homogeneous mixture or a heterogeneous mixture.</li>
+      </ul>
 <p><b>Click any bubble</b> to see its definition and an example.</p>
       <div class="web"><div id="tree-art"></div><div class="web-info" id="web-info"></div></div>
     </div>
@@ -278,7 +284,7 @@
       <div class="prose"><p>Consider what happens when you stir a spoonful of sugar into a glass of water. Within a minute, the sugar seems to have disappeared. Yet the water tastes sweet, and if the water were allowed to evaporate, the sugar would be left behind in the glass. The sugar is clearly still there. It has broken apart into individual molecules, far too small to see, and these molecules have spread out evenly among the water molecules.</p>
 <div class="pr-slot" data-fig="0"></div>
 <p>A homogeneous mixture formed this way is called a <span class="def">solution</span>. Every solution has two parts. The <span class="def">solute</span> is the substance that dissolves, and it is usually present in the smaller amount. The <span class="def">solvent</span> is the substance that does the dissolving, and it is usually present in the larger amount. In sugar water, the sugar is the solute and the water is the solvent.</p>
-<p class="pr-def"><span class="def">Solution</span> – a type of homogeneous mixture.</p>
+<p class="pr-def"><span class="def">Solution</span> – a homogeneous mixture in which dissolved solute particles are spread evenly throughout a solvent.</p>
 <p class="pr-def"><span class="def">Solute</span> – the substance that dissolves.</p>
 <p class="pr-def"><span class="def">Solvent</span> – the substance that does the dissolving.</p>
 <div class="pr-slot" data-fig="1"></div>
@@ -286,7 +292,7 @@
 <p>Solutions in which the solvent is water are especially common, since water dissolves so many different substances. These are known as <span class="def">aqueous solutions</span>, and they are labeled with the symbol (aq) after the formula of the solute. Sugar dissolved in water is written C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>(aq).</p>
 <p class="pr-def"><span class="def">Aqueous Solution</span> – a solution in which the solvent is water.</p></div><!--/prose-->
 <ul>
-        <li><span class="def">Solution</span> – a type of homogeneous mixture.
+        <li><span class="def">Solution</span> – a homogeneous mixture in which dissolved solute particles are spread evenly throughout a solvent.
           <ul><li>Usually a solid, liquid or gas dissolved in a liquid.</li></ul></li>
         <li>Every solution has 2 parts:
           <ul><li><span class="def">Solute</span> – the substance that dissolves.
@@ -339,7 +345,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=7fd306d368"></script>
+<script src="site.js?v=01bcd08006"></script>
 <script>(function(){
 
 const A=AS, U=A.U1;
@@ -362,7 +368,7 @@ A.$("#hero").innerHTML=`<div class="boxrow" style="gap:14px">${[[D([{f:"C",n:9}]
    het:["Heterogeneous Mixture","The particles are <b>distributed unevenly</b>. Different samples of the mixture have different ratios of particles.","Ex: salad, sand + water, granite.","het"],
    homo:["Homogeneous Mixture","The particles are <b>distributed evenly</b> throughout. Every sample has the same ratio. <b>Solutions</b> are homogeneous mixtures.","Ex: salt water, air, brass.",[{f:"A",n:6},{f:"B",n:6}]]};
   const ln=([a,b])=>`<line x1="${N[a][0]}" y1="${N[a][1]+22}" x2="${N[b][0]}" y2="${N[b][1]-22}" stroke="#1b2328" stroke-width="2.5"/>`;
-  A.$("#tree-art").innerHTML=`<svg viewBox="0 0 730 280" width="100%" role="group" aria-label="Classification of matter: click a bubble">${E.map(ln).join("")}${Object.entries(N).map(([k,[x,y,w,t]])=>`<g class="nd" data-k="${k}" tabindex="0" role="button" aria-label="${t}"><ellipse cx="${x}" cy="${y}" rx="${w}" ry="26" fill="#0070C0" stroke="#002b55" stroke-width="2.5"/>${T(x,y+5,t,{c:"#fff",fs:16})}</g>`).join("")}</svg>`;
+  A.$("#tree-art").innerHTML=`<svg viewBox="0 0 744 280" width="100%" role="group" aria-label="Classification of matter: click a bubble">${E.map(ln).join("")}${Object.entries(N).map(([k,[x,y,w,t]])=>`<g class="nd" data-k="${k}" tabindex="0" role="button" aria-label="${t}"><ellipse cx="${x}" cy="${y}" rx="${w}" ry="26" fill="#0070C0" stroke="#002b55" stroke-width="2.5"/>${T(x,y+5,t,{c:"#fff",fs:16})}</g>`).join("")}</svg>`;
   const het=()=>{ let s=`<svg width="170" height="130" viewBox="0 0 170 130" class="u1-box"><rect x="1.5" y="1.5" width="167" height="127" fill="#fff" stroke="#000" stroke-width="3"/>`; const r=U.rng(3); for(let i=0;i<6;i++) s+=U.atom(20+i*26+r()*4,26+r()*10,9,"B",false); for(let i=0;i<6;i++) s+=U.atom(20+i*26+r()*4,100+r()*8,9,"A",false); return s+`</svg>`; };
   function show(k){ const [t,d,ex,dg]=INFO[k]; A.$$("#tree-art .nd").forEach(n=>n.classList.toggle("on",n.dataset.k===k));
     A.$("#web-info").innerHTML=`<h4>${t}</h4><div>${d}</div><div class="ex">${ex}</div>${dg?`<div style="margin-top:8px">${dg==="het"?het():U.diagram({items:dg,w:170,h:130,r:9,seed:5})}</div>`:""}`; }

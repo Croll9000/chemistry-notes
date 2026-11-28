@@ -7,7 +7,7 @@
 <title>Calculations with Significant Figures</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="site.css?v=7fd306d368">
+<link rel="stylesheet" href="site.css?v=01bcd08006">
 </head>
 <body>
 <style>
@@ -35,9 +35,10 @@
   <section class="note">
     <div class="tile"><h2>Why Round?</h2></div>
     <div class="body">
-      <div class="prose"><p>A student measures a sample of aluminum with a mass of 12.50 g and a volume of 4.6 mL, then divides to find its density. The calculator shows 2.7173913… g/mL. However, the volume was only measured to the tenths place, so the student does not truly know the density to the ten-millionths place. All of those extra digits were created by the calculator, not by the measurements.</p>
+      <div class="prose"><p>A calculator does not know how precisely a measurement was made, so it often shows far more digits than the measurements can support. <span class="kr">A calculated answer cannot be more precise than the least precise measurement used to calculate it</span>. A chain is only as strong as its weakest link, and in the same way, a calculation is only as precise as its least precise measurement.</p>
+<p>For instance, a student measures a sample of aluminum with a mass of 12.50 g and a volume of 4.6 mL, then divides to find its density. The calculator shows 2.7173913… g/mL. However, the volume was only measured to the tenths place, so the student does not truly know the density to the ten-millionths place. All of those extra digits were created by the calculator, not by the measurements.</p>
 <div class="pr-slot" data-fig="0"></div>
-<p>Thus, <span class="kr">a calculated answer cannot be more precise than the least precise measurement used to calculate it</span>. A chain is only as strong as its weakest link, and in the same way, a calculation is only as precise as its least precise measurement. The calculator’s answer is always written down first, followed by the final rounded answer, 2.7 g/mL, which shows honestly how well the density is known.</p></div><!--/prose-->
+<p>Therefore, The calculator’s answer is always written down first, followed by the final rounded answer, 2.7 g/mL, which shows honestly how well the density is known.</p></div><!--/prose-->
 <ul>
         <li>A calculated answer <span class="kr">cannot be more precise than the least precise measurement</span> used to calculate it.</li>
         <li>Your calculator will often show many more digits than you actually know.
@@ -51,7 +52,7 @@
   <section class="note">
     <div class="tile"><h2>Rounding Rules</h2></div>
     <div class="body">
-      <div class="prose"><p>Say, for instance, we need to round 49.69 to three significant figures. This means keeping three digits and deciding what to do with the rest. The last digit kept is the 6, and the next digit to its right, 9, is 5 or more, so the 6 rounds up to 7, giving 49.7. If the next digit had been 4 or less, the 6 would have stayed the same. The digits after the last one kept are then dropped.</p>
+      <div class="prose"><p>To round a number, we keep the digits we need and look at the next digit to the right. If that digit is 5 or more, the last digit kept rounds up. If it is 4 or less, the last digit kept stays the same. For instance, to round 49.69 to three significant figures, we keep three digits and decide what to do with the rest. The last digit kept is the 6, and the next digit to its right, 9, is 5 or more, so the 6 rounds up to 7, giving 49.7. If the next digit had been 4 or less, the 6 would have stayed the same. The digits after the last one kept are then dropped.</p>
 <div class="pr-slot" data-fig="0"></div>
 <p>When the dropped digits are to the left of the decimal point, they are replaced with zeros so the number stays the same size: 1,496 rounded to three significant figures is 1,500, not 150. If the zeros make the number of sig figs unclear, since 1,500 might seem to have only two, we use scientific notation instead: 1.50 × 10<sup>3</sup>. Note that in a problem with several steps, all of the digits are kept in the calculator and only the final answer is rounded, since rounding at every step allows small errors to pile up.</p></div><!--/prose-->
 <ol>
@@ -80,7 +81,7 @@
   <section class="note">
     <div class="tile"><h2>Adding and Subtracting</h2></div>
     <div class="body">
-      <div class="prose"><p>Consider adding a mass measured to the hundredths place, 0.56 g, to one measured to the thousandths place, 0.153 g. The calculator gives 0.713 g. However, the first mass was only known to the hundredths place, so the thousandths place of the total is unknown: the first mass could have been anything from 0.555 to 0.564 g. Thus, <span class="kr">when adding or subtracting, the answer can have no more decimal places than the measurement with the fewest decimal places</span>, and the sum is written as 0.71 g. Note that when adding and subtracting, we count decimal places, not significant figures.</p>
+      <div class="prose"><p>For instance, suppose we add a mass measured to the hundredths place, 0.56 g, to one measured to the thousandths place, 0.153 g. The calculator gives 0.713 g. However, the first mass was only known to the hundredths place, so the thousandths place of the total is unknown: the first mass could have been anything from 0.555 to 0.564 g. Thus, <span class="kr">when adding or subtracting, the answer can have no more decimal places than the measurement with the fewest decimal places</span>, and the sum is written as 0.71 g. Note that when adding and subtracting, we count decimal places, not significant figures.</p>
 <div class="pr-slot" data-fig="0"></div>
 <div class="pr-slot" data-fig="1"></div></div><!--/prose-->
 <ul><li>When adding or subtracting, the answer can have <span class="kr">no more decimal places</span> than the measurement with the <span class="kr">fewest decimal places</span>.</li>
@@ -110,7 +111,7 @@
   <section class="note">
     <div class="tile"><h2>Exact Numbers</h2></div>
     <div class="body">
-      <div class="prose"><p>A teacher counting 24 students in a classroom does not have any uncertainty in that number, since there cannot be 23.8 or 24.1 students. Numbers like this are different from measurements. They are not read from an instrument with limited markings, so they never limit the precision of an answer.</p>
+      <div class="prose"><p>Not every number in a calculation is a measurement. Some numbers are exact, since they are not read from an instrument with limited markings. For instance, a teacher counting 24 students in a classroom does not have any uncertainty in that number, since there cannot be 23.8 or 24.1 students.</p>
 <div class="pr-slot" data-fig="0"></div>
 <p>A <span class="def">counted number</span> comes from counting whole objects rather than reading a measuring tool, such as 3 trials or 2 beakers. A <span class="def">defined equivalence</span> is a relationship that is true by definition, such as 1 m = 100 cm or 1 kJ = 1000 J. <span class="kr">Counted numbers and defined equivalences are exact</span>, which means they have unlimited significant figures and never limit the answer; only measured numbers do.</p>
 <p class="pr-def"><span class="def">Counted Number</span> – a number that comes from counting whole objects, not from reading a measuring tool.</p>
@@ -147,7 +148,7 @@
 
 
 <script>window.SITE_MODE="gsites";</script>
-<script src="site.js?v=7fd306d368"></script>
+<script src="site.js?v=01bcd08006"></script>
 <script>(function(){
 
 const A=AS, L=A.U0, T=L.T;
