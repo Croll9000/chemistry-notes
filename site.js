@@ -20271,6 +20271,648 @@ if(document.readyState==="complete") go(); else window.addEventListener("load",g
 A.wireKeyIdeas=wire;
 })();
 
+/* common97.js — figure-box rework (Nov 27, his rule): each yellow box beside or under a figure tells the
+   student how to read the figure or adds a detail the prose does not give. Old box text (start) -> new HTML,
+   matched per page. Source of truth for these box texts; edit here. */
+(function(){
+const A=window.AS; if(!A) return;
+const MAP=[
+{
+"p": "m-atoms",
+"k": "Most elements are metals (pink)",
+"h": "Note how few of the elements are blue or green. More than three quarters of the known elements are metals."
+},
+{
+"p": "m-atoms",
+"k": "Note that the letters of the symbol",
+"h": "Note that several other symbols also come from Latin names. Potassium is K (<i>kalium</i>), copper is Cu (<i>cuprum</i>), silver is Ag (<i>argentum</i>) and tin is Sn (<i>stannum</i>)."
+},
+{
+"p": "m-atoms",
+"k": "Capital letters matter",
+"h": "Every capital letter starts a new element symbol. This means that we can count the capital letters in a formula to find how many elements it contains, so NaCl contains 2 elements."
+},
+{
+"p": "m-bonds",
+"k": "Two separate hydrogen atoms have more energy",
+"h": "Note how the bonded H<sub>2</sub> molecule sits lower on the graph than the two separate atoms. The size of this gap is the energy released when the bond forms, and the same amount must be added to break it."
+},
+{
+"p": "m-bonds",
+"k": "H2 would be classified as a molecule",
+"h": "H<sub>2</sub> is a molecule since its atoms are chemically bonded. However, both atoms are hydrogen, so it is not a compound."
+},
+{
+"p": "m-bonds",
+"k": "H2O is both a molecule and a compound",
+"h": "H<sub>2</sub>O contains bonded atoms of 2 different elements, hydrogen and oxygen. Therefore, it is both a molecule and a compound."
+},
+{
+"p": "m-bonds",
+"k": "Hydrogen peroxide is made of the same elements",
+"h": "Note how the only difference between the two models is a single oxygen atom. Water has 2 hydrogen atoms and 1 oxygen atom, while hydrogen peroxide has 2 of each."
+},
+{
+"p": "m-bonds",
+"k": "Magnesium hydroxide, Mg(OH)2",
+"h": "The circles show which atoms travel together. In a reaction, each OH group stays in one piece, which is why it is counted and written as a unit."
+},
+{
+"p": "m-bonds",
+"k": "Diamond and graphite are allotropes",
+"h": "Note the space between the layers of graphite. Only weak attractions hold one sheet to the next, so the sheets slide apart easily. Diamond’s network has no such gaps."
+},
+{
+"p": "m-classify",
+"k": "Note how the pure substance contains only",
+"h": "Note how every particle in the pure substance is identical (green). The number of particles does not matter, only that they are all the same kind."
+},
+{
+"p": "m-classify",
+"k": "The second mixture also contains the same 2 particles",
+"h": "Both mixtures contain green and yellow particles, but in different ratios (1:4 green to yellow in the second). Both are still mixtures of the same two substances."
+},
+{
+"p": "m-classify",
+"k": "Note how in the homogeneous mixture",
+"h": "Note how any small region of the homogeneous mixture contains both types of particles in the same proportion as every other region."
+},
+{
+"p": "m-props",
+"k": "Copper conducts electricity well",
+"h": "Note that each label lists more than one property. A material is rarely chosen for a single property, since it must meet every requirement of the job."
+},
+{
+"p": "m-props",
+"k": "Note how all chemical properties involve",
+"h": "If the only way to observe a property is to turn the substance into something new, it is a chemical property."
+},
+{
+"p": "m-density",
+"k": "We can use a graduated cylinder",
+"h": "Keep your eye level with the surface of the liquid. Looking from above or below makes the meniscus appear higher or lower than it actually is."
+},
+{
+"p": "m-density",
+"k": "A cube 1 cm on each side",
+"h": "Each edge of this cube is 1 cm. A cube 10 cm on each edge would hold 1000 of these small cubes, which is exactly 1 L."
+},
+{
+"p": "m-density",
+"k": "Water has a density of 1.00 g/mL",
+"h": "Note how deep each object sits in the water. The closer an object’s density is to that of water, the more of it sits below the surface, which is why the ice floats much lower than the wood."
+},
+{
+"p": "m-separate",
+"k": "When sand, salt (NaCl) and water are mixed",
+"h": "The sand is caught by the filter paper. The salt, however, passes through with the water and only reappears in the dish once the water has boiled off."
+},
+{
+"p": "m-separate",
+"k": "In paper chromatography, a liquid solvent",
+"h": "Note that the starting line is drawn above the level of the solvent. If the dot sat in the liquid, it would dissolve into the beaker instead of being carried up the paper."
+},
+{
+"p": "history",
+"k": "Democritus reasoned that if you kept cutting",
+"h": "Each cut halves the piece of gold again. A small grain of gold would reach a single atom in fewer than 100 cuts, far smaller than any blade Democritus could have used."
+},
+{
+"p": "history",
+"k": "Dalton imagined atoms like tiny marbles",
+"h": "Note how each element is given its own size and shade of marble. In Dalton’s model, every atom of an element is identical, and atoms of different elements are different."
+},
+{
+"p": "history",
+"k": "The beam bent away from the negative plate",
+"h": "Note how the beam bends toward the positive (+) plate. A beam of positive particles would have bent the other way."
+},
+{
+"p": "history",
+"k": "In the plum pudding model of the atom",
+"h": "In this model, the electrons are scattered evenly throughout the positive sphere. Nothing in the atom is dense or concentrated, and this is exactly what Rutherford’s experiment would test."
+},
+{
+"p": "history",
+"k": "Most alpha particles went straight through",
+"h": "Only the alpha particles headed almost directly at a nucleus are turned back. The nucleus is so small that nearly every path misses it."
+},
+{
+"p": "history",
+"k": "When energy was added to atoms in the form",
+"h": "Hydrogen gives off only four colors of visible light: red, blue-green, blue and violet. Each color corresponds to one specific drop between energy levels."
+},
+{
+"p": "counting",
+"k": "The element Carbon (C) has an atomic number of 6",
+"h": "The whole number above the symbol is the atomic number. Carbon’s 6 tells us its number of protons, its nuclear charge (+6) and, in a neutral atom, its number of electrons."
+},
+{
+"p": "coulomb",
+"k": "Neutral does not mean the absence of charge",
+"h": "This object contains 2 positive and 2 negative charges. Therefore, its net charge is 2 − 2 = 0, even though it is full of charged particles."
+},
+{
+"p": "ions",
+"k": "In an atom, the number of protons",
+"h": "Note how the nucleus is identical in both Bohr models. Only the number of electrons in the outer shell has changed."
+},
+{
+"p": "ions",
+"k": "Atoms in the same group form ions with the same charge",
+"h": "Every element in a colored group forms an ion with the same charge. Note how the charge changes from positive to negative as you move from the metals on the left to the nonmetals on the right."
+},
+{
+"p": "isotopes",
+"k": "Both atoms shown have the same number of protons",
+"h": "Both nuclei contain 2 protons. However, helium-3 has 1 neutron and helium-4 has 2."
+},
+{
+"p": "avgmass",
+"k": "Note that to convert from % to decimal",
+"h": "Moving the decimal point two places to the left is the same as dividing by 100, so 80% becomes 0.80 and 7.5% becomes 0.075."
+},
+{
+"p": "bohr",
+"k": "Lithium, sodium and potassium each have 1 valence",
+"h": "Note how the outermost shell of each atom holds just one electron (gold), no matter how many shells lie beneath it."
+},
+{
+"p": "valence",
+"k": "This atom of phosphorus has 5 electrons",
+"h": "Only the outermost shell counts. Phosphorus has 5 valence electrons, and the 10 electrons in its inner shells are core electrons that do not take part in bonding."
+},
+{
+"p": "valence",
+"k": "Neon has a stable electron configuration",
+"h": "Neon’s second shell holds 8 electrons, the most it can hold. Therefore, neon has nothing to gain or lose."
+},
+{
+"p": "valence",
+"k": "Helium is stable with only 2 valence",
+"h": "Helium’s only shell is full with 2 electrons. For helium, 2 is a complete valence shell."
+},
+{
+"p": "valence",
+"k": "Both Neon and Helium are found in group 18",
+"h": "Neon and helium have different numbers of valence electrons, but they share one feature: each has a completely full outer shell."
+},
+{
+"p": "excited",
+"k": "The electrons in Magnesium are normally found",
+"h": "In the ground state, the shells are filled from the inside out with no gaps. An arrangement that leaves an inner shell short while an outer shell has extra electrons is an excited state."
+},
+{
+"p": "excited",
+"k": "Step 1: Energy is absorbed",
+"h": "Step 1: The electron absorbs exactly the energy difference between its energy level and a higher one, and jumps up."
+},
+{
+"p": "excited",
+"k": "Step 2: The electron returns to the ground state",
+"h": "Step 2: The electron falls back down and releases that same amount of energy as light of one specific color."
+},
+{
+"p": "p-building",
+"k": "When the elements are lined up in order",
+"h": "Each new row starts with a red element, so the red elements line up in the first column. The green and blue elements line up in their own columns in the same way."
+},
+{
+"p": "p-building",
+"k": "Mendeleev left a gap below silicon",
+"h": "Mendeleev’s predicted mass and density were off from germanium’s measured values by only about 1% and 3%."
+},
+{
+"p": "p-forces",
+"k": "As the nuclear charge (number of protons) increases",
+"h": "In order to see the effect of nuclear charge alone, we compare atoms with the same number of shells. More protons at the same distance means a stronger pull on every electron."
+},
+{
+"p": "p-radius",
+"k": "Cause: each step down a group adds an energy level",
+"h": "Each atom down the column has one more shell than the atom above it, and each one is larger."
+},
+{
+"p": "p-radius",
+"k": "Across a period: increasing nuclear charge",
+"h": "The arrow pointing right shows that radius decreases across a period, from lithium (152 pm) to fluorine (60 pm)."
+},
+{
+"p": "p-radius",
+"k": "Down a group: more energy levels, greater distance from the nucleus → radius",
+"h": "The arrow pointing down shows that radius increases down a group, from lithium (152 pm) to cesium (265 pm)."
+},
+{
+"p": "p-ionic",
+"k": "Sodium, as a metal, loses an electron",
+"h": "Sodium loses its entire outer shell, so the ion has 2 shells instead of 3 (186 pm → 102 pm)."
+},
+{
+"p": "p-ionic",
+"k": "Chlorine is a nonmetal and gains an electron",
+"h": "Chlorine still has 3 shells, but now 18 electrons repel one another instead of 17 (100 pm → 181 pm)."
+},
+{
+"p": "p-ionization",
+"k": "To remove an electron from an atom, energy must be added",
+"h": "Removing an electron always absorbs energy. Therefore, every ionization energy is a positive number."
+},
+{
+"p": "p-ionization",
+"k": "Cause: the nuclear charge increases across a period",
+"h": "Note how the bars rise from sodium to argon. The rise is not perfectly smooth, but argon’s value is about three times that of sodium."
+},
+{
+"p": "p-ionization",
+"k": "Cause: each step down a group adds an energy level",
+"h": "Note how each bar down group 1 is shorter than the one above it, from lithium (520 kJ/mol) to cesium (376 kJ/mol)."
+},
+{
+"p": "p-ionization",
+"k": "Down a group: more energy levels, greater distance from the nucleus → ionization",
+"h": "The downward arrow points toward cesium and francium, the elements that give up an electron most easily."
+},
+{
+"p": "p-electroneg",
+"k": "Cause: the nuclear charge increases across a period",
+"h": "Note how the values climb steadily across period 2, from lithium (0.98) to fluorine (3.98)."
+},
+{
+"p": "p-electroneg",
+"k": "Down a group: more energy levels, greater distance from the nucleus → electroneg",
+"h": "The downward arrow points away from fluorine, the most electronegative element, toward cesium and francium, the least electronegative."
+},
+{
+"p": "b-bonds",
+"k": "A calcium atom has 2 valence electrons",
+"h": "Calcium is in group 2, so its symbol has 2 dots. The dots are placed on separate sides since each one is unpaired."
+},
+{
+"p": "b-bonds",
+"k": "A chlorine atom has 7 valence electrons",
+"h": "Three sides have a pair of dots, and one side has a single dot. That unpaired electron is the one chlorine uses to form a bond."
+},
+{
+"p": "b-bonds",
+"k": "A line drawn between two atoms represents a covalent bond",
+"h": "Each bromine counts the 2 electrons in the bond plus its 6 lone pair electrons, giving it 8."
+},
+{
+"p": "b-bonds",
+"k": "A calcium ion has lost its 2 valence electrons",
+"h": "Note that no dots are left inside the brackets. The 2+ records the 2 electrons that calcium gave away."
+},
+{
+"p": "b-bonds",
+"k": "A chloride ion has gained 1 electron",
+"h": "There are 8 dots inside the brackets, one more than the chlorine atom had. The 1− records that extra electron."
+},
+{
+"p": "b-bonds",
+"k": "An ionic bond involves a transfer",
+"h": "Potassium’s single valence electron moves to bromine, leaving K<sup>+</sup> with no dots and Br<sup>−</sup> with 8."
+},
+{
+"p": "b-bonds",
+"k": "A covalent bond involves a sharing of electrons",
+"h": "The circled pair belongs to both fluorine atoms at once. Each fluorine counts it, so each reaches 8 valence electrons."
+},
+{
+"p": "b-bonds",
+"k": "Carbon is stable when it has 8 valence electrons",
+"h": "Note the 8 dots around carbon: 4 of its own and one from each hydrogen."
+},
+{
+"p": "b-bonds",
+"k": "Hydrogen is an exception to the octet rule",
+"h": "Each hydrogen sits next to only one shared pair, 2 electrons. This already fills its first and only shell."
+},
+{
+"p": "b-bonds",
+"k": "Cause: the nuclei of bonded atoms attract",
+"h": "Note the direction of each wavy arrow. When a bond forms, energy leaves the bond. When a bond breaks, energy must be added."
+},
+{
+"p": "b-bonds",
+"k": "When a bond is formed, energy is released",
+"h": "Energy leaves as the bond forms, usually as heat."
+},
+{
+"p": "b-bonds",
+"k": "To break a bond, energy must be added",
+"h": "Energy must be added to pull the atoms apart."
+},
+{
+"p": "b-ionic",
+"k": "Potassium phosphide (K3P) has 3 K+ ions",
+"h": "The charges cancel: 3(+1) + (−3) = 0. Three potassium ions are needed since one phosphorus atom takes 3 electrons."
+},
+{
+"p": "b-ionprops",
+"k": "Cause: each ion is attracted to all",
+"h": "Both of these crystals are solid at room temperature. Sodium chloride does not melt until 801 °C, and magnesium chloride not until 714 °C."
+},
+{
+"p": "b-ionprops",
+"k": "Both sodium chloride (NaCl) and magnesium chloride",
+"h": "Both crystals are hard, brittle solids made from a metal and a nonmetal, and when dissolved in water, each one conducts electricity."
+},
+{
+"p": "b-ionprops",
+"k": "Sodium chloride (NaCl) consists of many Na+",
+"h": "Note how every ion in the lattice is surrounded by six ions of the opposite charge."
+},
+{
+"p": "b-ionprops",
+"k": "When the layers of an ionic compound are shifted",
+"h": "Before the shift, every ion faces an ion of the opposite charge. After the shift, like charges line up across from each other and push the layers apart."
+},
+{
+"p": "b-ionname",
+"k": "Two Al3+ ions give +6 and three O2− ions give −6",
+"h": "Each subscript comes from the charge of the other ion. Al<sup>3+</sup> gives oxygen its 3, and O<sup>2−</sup> gives aluminum its 2."
+},
+{
+"p": "b-covalent",
+"k": "Cause: the covalent bonds inside each molecule",
+"h": "Note the gaps between the molecules. Melting only has to pull the molecules across these gaps, so no bonds inside the molecules are broken."
+},
+{
+"p": "b-covalent",
+"k": "Each oxygen atom starts with 6 valence electrons",
+"h": "The two lines hold 4 electrons. Each oxygen counts all 4, plus its 4 lone pair electrons, giving it 8."
+},
+{
+"p": "b-lewis",
+"k": "Nitrogen can form the most bonds (3)",
+"h": "Each circle holds one electron from nitrogen and one from hydrogen. After three circles, nitrogen has no unpaired electrons left, and every atom has a full valence shell."
+},
+{
+"p": "b-lewis-adv",
+"k": "Note how in the formation of the bond between NH3 and BF3",
+"h": "Note how both electrons come from nitrogen’s lone pair and go into boron’s empty space. Once formed, the bond is the same as any other single bond."
+},
+{
+"p": "b-lewis-adv",
+"k": "Ozone, O3, is a molecule consisting of 3 oxygen",
+"h": "The double-headed arrow does not mean the molecule switches back and forth. The real molecule is a blend of both drawings, with both bonds the same length."
+},
+{
+"p": "b-geometry",
+"k": "In boron trifluoride (BF3), boron forms 3 single bonds",
+"h": "Boron is surrounded by 3 shared pairs, 6 electrons in all. The empty space is where a lone pair from another molecule can fit."
+},
+{
+"p": "b-geometry",
+"k": "Sulfur hexafluoride (SF6) is an example",
+"h": "Sulfur is surrounded by 6 shared pairs, 12 electrons in all. Only an atom from period 3 or below has room for that many."
+},
+{
+"p": "b-geometry",
+"k": "Lone pairs have more repulsive strength",
+"h": "Note how BF<sub>3</sub> is flat. In NH<sub>3</sub>, however, the lone pair pushes the three bonds down into a pyramid shape."
+},
+{
+"p": "b-metallic",
+"k": "Both metal ions have an attraction to the same electrons",
+"h": "No electron belongs to any one ion. Every ion is surrounded by the same sea of electrons, and this attraction holds the whole piece of metal together."
+},
+{
+"p": "b-metallic",
+"k": "Bronze is an example of an alloy",
+"h": "Bronze is usually about 88% copper and 12% tin. Changing the proportions changes its hardness and color, but it is still bronze."
+},
+{
+"p": "b-bondpol",
+"k": "Since chlorine (electronegativity 3.16)",
+"h": "The difference in electronegativity is 3.16 − 2.20 = 0.96. Therefore, the shared pair sits closer to chlorine, and the chlorine end has a partial negative charge (δ−)."
+},
+{
+"p": "b-strength",
+"k": "Cause: this is Coulomb’s law",
+"h": "These molecules are drawn to scale. Each step down the group adds a shell, so the shared pair sits farther from both nuclei and the bond gets weaker."
+},
+{
+"p": "b-imf",
+"k": "When hydrogen bonds to fluorine, oxygen or nitrogen",
+"h": "The dashed lines are the hydrogen bonds. Each one runs from the δ+ hydrogen of one molecule to a lone pair on the oxygen of the next."
+},
+{
+"p": "b-compare",
+"k": "Cause: a property depends on what must be pulled apart",
+"h": "The three solids held together by strong attractions throughout melt at high temperatures. Only the separate molecules can be pulled apart easily."
+},
+{
+"p": "r-reactions",
+"k": "Watch the atoms: the bonds in the hydrogen",
+"h": "There are 4 hydrogen atoms and 2 oxygen atoms on each side. Only their partners have changed."
+},
+{
+"p": "r-reactions",
+"k": "This equation can be read as “1 molecule of CH4",
+"h": "Note that the 2 in front of O<sub>2</sub> and H<sub>2</sub>O counts molecules, while the 4 in CH<sub>4</sub> counts the hydrogen atoms in one molecule."
+},
+{
+"p": "r-reactions",
+"k": "This equation can be read as “1 molecule of N2",
+"h": "There are 2 nitrogen and 6 hydrogen atoms on each side. The coefficients 3 and 2 are what make this true."
+},
+{
+"p": "r-reactions",
+"k": "Why subscripts never change",
+"h": "According to the key, a coefficient adds whole copies of the same particle. A subscript, on the other hand, would change what is drawn inside each particle."
+},
+{
+"p": "r-conservation",
+"k": "When combined, the mass of the reactants equals",
+"h": "The total mass before and after the reaction is the same, since every atom is still in the container."
+},
+{
+"p": "r-conservation",
+"k": "For any chemical reaction, the total number of atoms",
+"h": "Every element has the same number of atoms before and after the reaction, even though the number of molecules has changed."
+},
+{
+"p": "r-balancing",
+"k": "There are 4 hydrogen atoms and 2 oxygen atoms",
+"h": "Three molecules on the left become two on the right. However, the atoms match exactly."
+},
+{
+"p": "r-types",
+"k": "In this synthesis reaction, 2 simple substances",
+"h": "Two reactants combine to form one product. Fewer substances after the arrow than before is the pattern of a synthesis reaction."
+},
+{
+"p": "r-types",
+"k": "In this double replacement reaction, the sodium ion",
+"h": "Each positive ion ends up paired with the negative ion from the other compound. The silver iodide that forms is the precipitate."
+},
+{
+"p": "s-molarmass",
+"k": "Each sample contains the same number of particles",
+"h": "Each sample is one mole. A magnesium atom has about twice the mass of a carbon atom, so the magnesium sample has about twice the mass."
+}
+];
+const norm=s=>s.replace(/\s+/g," ").replace(/[₀-₉]/g,d=>"0123456789"["₀₁₂₃₄₅₆₇₈₉".indexOf(d)]).trim();
+function run(){ const slug=(location.pathname.split("/").pop()||"").replace(/\.html$/,"");
+  const mine=MAP.filter(m=>m.p===slug); if(!mine.length) return;
+  document.querySelectorAll(".callout,.pic5-tb,.cause").forEach(el=>{ if(el.dataset.fb) return; const t=norm(el.textContent);
+    const m=mine.find(m=>t.startsWith(norm(m.k))); if(m){ el.innerHTML=m.h; el.dataset.fb=1; if(el.classList.contains("cause")) { el.classList.remove("cause"); el.classList.add("callout"); } } }); }
+const ADD=[
+{
+"p": "m-classify",
+"a": "Salt (the solute) dissolving",
+"h": "Note how the salt particles spread evenly among the water molecules. None of them disappear, so the solution still contains every particle of salt that was added."
+},
+{
+"p": "m-phases",
+"a": "Solid particles",
+"h": "Solid and liquid particles are touching, which is why both are hard to compress. Only the gas has empty space between its particles."
+},
+{
+"p": "m-phases",
+"a": "Slow moving particles",
+"h": "The arrows show speed. Longer arrows mean faster particles and a higher average kinetic energy, which is what a higher temperature measures."
+},
+{
+"p": "m-phases",
+"a": "Phase change names between solid",
+"h": "Note that every arrow pointing toward the gas absorbs energy, while every arrow pointing toward the solid releases it."
+},
+{
+"p": "m-separate",
+"a": "Distillation apparatus",
+"h": "The vapor rises from the flask, passes the thermometer and cools in the condenser. Cold water enters the condenser at the bottom and leaves at the top so that the jacket stays completely full."
+},
+{
+"p": "m-separate",
+"a": "Filtration: a funnel lined",
+"h": "The filter paper is folded into a cone that fits inside the funnel. The tip of the funnel touches the inside of the beaker so the filtrate runs down the glass without splashing."
+},
+{
+"p": "overview",
+"a": "Carbon-12 nucleus balanced",
+"h": "Twelve 1 u weights balance one carbon-12 nucleus, since it contains 6 protons and 6 neutrons, each with a mass of about 1 u."
+},
+{
+"p": "coulomb",
+"a": "Graph of force versus distance",
+"h": "Note how the curve drops steeply at first and then levels off. Doubling the distance reduces the force to a quarter, not a half."
+},
+{
+"p": "coulomb",
+"a": "Graph of force versus charge",
+"h": "The straight line through the origin shows a direct relationship. Doubling the charge doubles the force."
+},
+{
+"p": "coulomb",
+"a": "The nucleus attracts a close electron",
+"h": "The closer electron feels the stronger pull, even though the nucleus is the same."
+},
+{
+"p": "avgmass-ms",
+"a": "Mass spectrometer diagram",
+"h": "After the magnet, the lightest ions curve the most. Therefore, each isotope lands at its own spot on the detector."
+},
+{
+"p": "light",
+"a": "The electromagnetic spectrum",
+"h": "From left to right, the wavelength gets shorter, and the frequency and energy get higher. Note that visible light is only the narrow band in the middle."
+},
+{
+"p": "p-ionization",
+"a": "Successive ionization energies of magnesium",
+"h": "Note the large jump after the second electron. This tells us that magnesium has 2 valence electrons."
+},
+{
+"p": "p-iedips",
+"a": "Period 2: the dips at B and O",
+"h": "Note the two dips: boron is lower than beryllium, and oxygen is lower than nitrogen. The orbital diagrams below show the reason for each."
+},
+{
+"p": "b-covalent",
+"a": "Bond length: single 199 pm",
+"h": "These lengths come from three different molecules (Cl<sub>2</sub>, O<sub>2</sub> and N<sub>2</sub>), so atom size plays a part as well. For any one pair of elements, more shared pairs always means a shorter bond."
+},
+{
+"p": "b-covalent",
+"a": "Bond strength: single 242",
+"h": "Note that the triple bond in N<sub>2</sub> takes almost four times as much energy to break as the single bond in Cl<sub>2</sub>."
+},
+{
+"p": "b-bondpol",
+"a": "Electronegativity difference scale",
+"h": "H–Cl has a difference of 0.96, which falls in the middle region of the scale. Therefore, the bond is polar covalent."
+},
+{
+"p": "t-curves",
+"a": "Heating curve with five segments",
+"h": "Note how much longer the boiling segment is than the melting segment. Vaporizing water takes almost seven times as much heat as melting it."
+},
+{
+"p": "t-curves",
+"a": "Cooling curve with five segments",
+"h": "The flat segments are at the same temperatures as on the heating curve, since a substance condenses at its boiling point and freezes at its melting point."
+},
+{
+"p": "t-diagrams",
+"a": "Phase diagram with arrows",
+"h": "Moving straight to the right from any point means the temperature rises at constant pressure. Crossing a line means a phase change takes place."
+},
+{
+"p": "t-hess",
+"a": "Two routes from reactants to products",
+"h": "Both routes start at the same reactants and end at the same products. Therefore, the total ΔH is the same either way."
+},
+{
+"p": "g-maxwell",
+"a": "Maxwell-Boltzmann curves at a low",
+"h": "The high-temperature curve is lower and wider, with more particles on the high-energy side. However, both curves represent the same number of particles."
+},
+{
+"p": "g-vapor",
+"a": "Vapor pressure curves of propanone",
+"h": "The temperature at which each curve crosses 101.3 kPa is the liquid’s normal boiling point."
+},
+{
+"p": "g-avogadro",
+"a": "Volume against moles",
+"h": "The straight line through the origin shows a direct relationship. Doubling the moles doubles the volume."
+},
+{
+"p": "s-molvolume",
+"a": "One mole of oxygen, neon and hydrogen",
+"h": "The three volumes are equal even though the masses are very different. This means that the volume of a gas depends on the number of particles, not on what the particles are."
+},
+{
+"p": "g-kmt",
+"a": "Four boxes of gas.",
+"h": "Moving toward high temperature and low pressure makes a gas behave more like an ideal gas."
+},
+{
+"p": "t-heat",
+"a": "Heat flowing from a hot side through a wall",
+"h": "Each label on the wall is one factor in the equation. A thicker wall (d) slows the flow of heat, while a larger area (A) speeds it up."
+},
+{
+"p": "t-phases",
+"a": "A sealed bottle of water: molecules vaporize",
+"h": "The upward and downward arrows are the same length. Equal rates mean that the amounts of liquid and vapor stay the same."
+},
+{
+"p": "s-limiting",
+"a": "Before: 12 buns and 3 patties",
+"h": "Note that 6 buns and no patties are left over. The patties ran out first, so they set the number of burgers."
+}
+];
+function addBoxes(){ const slug=(location.pathname.split("/").pop()||"").replace(/\.html$/,"");
+  ADD.filter(m=>m.p===slug).forEach(m=>{ if(document.querySelector(`[data-fbadd="${m.a.slice(0,20)}"]`)) return;
+    const f=[...document.querySelectorAll('svg[aria-label],img[alt]')].find(e=>(e.getAttribute('aria-label')||e.getAttribute('alt')||'').startsWith(m.a)&&e.closest('section.note')&&!e.closest('.kp-body,details,.lab'));
+    if(!f) return; let host=f.closest('.pic5,.two,.center,figure,.media')||f.parentElement; if(!host||host===document.body||host.tagName==='HTML') return; if(host.parentElement&&host.parentElement.closest('.two')&&host.closest('.two')!==host) host=host.closest('.two');
+    const d=document.createElement('div'); d.className='center'; d.dataset.fbadd=m.a.slice(0,20); d.style.marginTop='8px'; d.innerHTML=`<div class="callout">${m.h}</div>`; host.after(d); }); }
+A.figBoxes=()=>{run();addBoxes();}; window.addEventListener("load",()=>{ A.figBoxes(); setTimeout(A.figBoxes,400); setTimeout(A.figBoxes,1500); });
+})();
+
 /* ================= SECTION PICTURES, UNITS 0–5 =================
    One simple drawing per section plus a short text box beside it (the style of Mr. Lipp's slides:
    flat shapes with black outlines, the site's atom colors, a thin black-bordered text box).
@@ -20841,7 +21483,7 @@ add(29,{box:"A sodium atom loses its whole outer energy level when it becomes Na
   return col(row(scale(a.atom,f),a.mid?scale(a.mid,f):"",scale(a.ion,f)),cap("metal: Na → Na⁺ (smaller)",{c:"#005ea3"}),row(scale(b.atom,f),b.mid?scale(b.mid,f):"",scale(b.ion,f)),cap("nonmetal: Cl → Cl⁻ (larger)",{c:"#c40000"})); }});
 
 /* 30 Ionic Lewis structures: the site's electron-transfer drawing (MgCl2 needs a second chlorine) */
-add(30,{box:"Magnesium has 2 valence electrons, but one chlorine atom only needs 1. A second chlorine atom is recruited. The arrows point to the nonmetal. Each ion ends with a complete valence shell.",
+add(30,{box:"Count the arrows. One leaves each of magnesium’s two valence electrons, and each chlorine receives one. Both chlorines end with 8 dots inside their brackets, and magnesium ends with none, a full shell beneath.",
  alt:"Lewis diagrams: magnesium gives one electron to each of two chlorine atoms (arrows point to chlorine). Below: Cl− , Mg2+ and Cl− in brackets with their charges.",
  art:()=>{ const L=B.lewis, D=n=>B.atomDots(n), ion=(s,n,q)=>L({atoms:[{s,x:0,y:0,dots:D(n)}],brackets:true,charge:q},{scale:.8,label:`${s} ion`});
   const down=`<svg viewBox="0 0 40 40" width="26" aria-hidden="true"><path d="M12 2h16v18h10L20 38 2 20h10z" fill="#2E75D6" stroke="#1b2328" stroke-width="1.5"/></svg>`;
